@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<head>
+
+<title>GEOS-Chem Online User's Guide</title>
+
+  <meta name="description" contents="Information about the GEOS-Chem tropospheric chemistry model">
+
+  <meta name="keywords" contents="Atmospheric Chemistry,Computer Models,GEOS-Chem,Harvard/GEOS-CTM,GEOS-CTM,GEOS,DAO,Tropospheric Chemistry">
+
+  <link rel="stylesheet" href="../../../gc.css" type="text/css">
+
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+
+  <meta name="GENERATOR" content="OpenOffice.org 3.2  (Linux)">
+
+  <style type="text/css">
+
+	<!--
+
+		@page { margin: 0.79in }
+
+		P { margin-bottom: 0.08in }
+
+	-->
+
+	</style>
+
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+
+  <meta name="GENERATOR" content="OpenOffice.org 3.2  (Linux)">
+
+  <style type="text/css">
+
+	<!--
+
+		@page { margin: 0.79in }
+
+		P { margin-bottom: 0.08in }
+
+		A:link { color: #0000ff }
+
+	-->
+
+	</style>
+
+</head>
+
+
+
+<body style="background-color: rgb(255, 255, 255);">
+
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+
+<!-- JavaScript for breadcrumb links -->
+
+<p class="size20bi" align="center">GEOS-Chem v10-01 Online 
+
+  User's Guide</p>
+
+
+
+<p class="size14bi" align="center"><a href="appendix_7.html">Previous</a> | <a href="appendix_9.html">Next</a> | <a href="appendix_8.html" target="_parent">Printable View (no frames)</a></p>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size24bi">Appendix 8: Modifications to facilitate High-Performance Computing in GEOS-Chem</p>
+
+<p align="justify">GEOS-Chem will form the core of a   fully-coupled system that will connect to the NASA   GEOS-5/GCM.  Before this can happen, the GEOS-Chem standard model   must become compliant with the <a href="http://www.earthsystemmodeling.org/" target="_blank">Earth System Model Framework (ESMF)</a>.  This will allow us to take advantage of <a href="http://www.mcs.anl.gov/research/projects/mpi/" target="_blank">Message Passing Interface (MPI) parallelization</a> via ESMF, which has been a long-term goal of the GEOS-Chem development   community.  MPI parallelization will facilitate GEOS-Chem simulations at   extremely fine horizontal resolution, running on hundreds or thousands of   CPUs in High-Performance Computing (HPC) environments.</p>
+
+<p align="justify">To  achieve this coupling between GEOS-Chem and the NASA GEOS-5 GCM, we  have introduced the concept of <strong>grid-independence</strong>.  We no longer shall assume a preset horizontal grid, but instead shall allow the GCM to dictate the size of the grid, and how many grid boxes will be processed by each CPU. This lets us to keep the all calls to ESMF library routines completely outside of GEOS-Chem.</p>
+
+<p align="justify">We have made it a priority to implement  necesary structural changes into GEOS-Chem without  disrupting ongoing GEOS-Chem research projects. We have already removed several legacy code routines that prevented GEOS-Chem from connecting to the NASA GCM. We have added new source code instructions into many GEOS-Chem routines,  set apart by <a href="chapter_3.html#CPP">C-preprocessor switches</a>. Eventually, the new code will replace the old code, but during the transition phase we must keep both new and old code side-by-side.</p>
+
+<p align="justify">We describe below the structural changes that we made to facilitate HPC in GEOS-Chem. Please also see our <a href="http://wiki.geos-chem.org/Grid-independent_GEOS-Chem" target="_blank">Grid-Independent GEOS-Chem wiki page</a>.</p>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="A8.1"></a>A8.1 Initial preparations</p>
+
+<p align="justify">Our  initial preparations involved <a href="appendix_7.html">replacing F77-style legacy code with modern F90 code</a>:</p>
+
+<ol>
+
+  <li><a href="http://wiki.geos-chem.org/Grid-independent_GEOS-Chem#Source_code_cleanup_and_initial_ESMF_prep" target="_blank">Removal of global parameters</a></li>
+
+  <li><a href="http://wiki.geos-chem.org/Grid-independent_GEOS-Chem#Source_code_cleanup_and_initial_ESMF_prep" target="_blank">Renaming file extensions from <tt>*.f</tt> and <tt>*.f90</tt> to <tt>*.F</tt> and <tt>*.F90</tt></a></li>
+
+  <li><a href="http://wiki.geos-chem.org/Grid-independent_GEOS-Chem#Elimination_of_COMMON_blocks" target="_blank">Elmination of COMMON blocks</a></li>
+
+  <li><a href="http://wiki.geos-chem.org/Grid-independent_GEOS-Chem#Removal_of_hardwired_grid" target="_blank">Removal of the hardwired grid</a></li>
+
+</ol>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="A8.2"></a>A8.2 Construction of the Chemistry Component</p>
+
+<p align="justify">Please see the information on this wiki page:</p>
+
+<ul class="disc">
+
+  <li>GEOS-Chem wiki: <a href="http://wiki.geos-chem.org/Grid-Independent_GEOS-Chem:_Chemistry_Component" target="_blank">Grid-Independent GEOS-Chem: Chemistry Component</a>  </li>
+
+</ul>
+
+<p><img src="../../../img/black_rule.jpg" alt="" width="100%" height="2"></p>
+
+<p class="size18bi"><a name="A8.3"></a>A8.3 Construction of the Emissions Component</p>
+
+<p align="justify">Christoph Keller (Harvard) has created a grid-independent Emissions Component that replaces GEOS-Chem emissions functionality. The <a href="http://wiki.geos-chem.org/HEMCO" target="_blank">Harvard-NASA Emissions Component (HEMCO)</a> has been incorporated into <a href="http://wiki.geos-chem.org/GEOS-Chem_v10-01" target="_blank">GEOS-Chem v10-01</a>. It has allowed us to remove many legacy emission routines from GEOS-Chem. For a complete list, please see our <a href="http://wiki.geos-chem.org/Derived_type_objects_used_by_the_Grid-Independent_GEOS-Chem#Removal_of_obsolete_modules_and_files" target="_blank" class="size16i">Removal of obsolete modules and files</a> wiki page.</p>
+
+
+
+<p align="justify">For more information on HEMCO, please see the following links:</p>
+
+<ul>
+
+  <li>HEMCO paper: <a href="http://www.geosci-model-dev.net/7/1409/2014/gmd-7-1409-2014.html" target="_blank">Keller et al. (2014)</a></li>
+
+  <li>GEOS-Chem wiki: <a href="http://wiki.geos-chem.org/HEMCO" target="_blank">HEMCO</a></li>
+
+  <li>GEOS-Chem wiki: <a href="http://wiki.geos-chem.org/The_HEMCO_User%27s_Guide" target="_blank">The HEMCO User's Guide</a></li>
+
+  <li>GEOS-Chem wiki: <a href="http://wiki.geos-chem.org/Implementation_of_HEMCO_in_GEOS-Chem" target="_blank">Implementation of HEMCO in GEOS-Chem</a></li>
+
+
+
+  <li>GEOS-Chem wiki: <a href="http://wiki.geos-chem.org/HEMCO_data_directories" target="_blank">HEMCO data directories</a></li>
+
+</ul>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size14bi" align="center"><a href="appendix_7.html">Previous</a> | <a href="appendix_9.html">Next</a> | <a href="appendix_8.html" target="_parent">Printable View (no frames)</a></p>
+
+
+
+</body>
+
+</html>
+

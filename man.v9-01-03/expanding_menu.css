@@ -1,0 +1,66 @@
+/* "expanding_menu.css"
+Style Sheet for the GEOS-Chem manual table of contents page 
+Modified by Bob Yantosca (bmy, 4/25/08)
+
+MODIFICATIONS:
+(1) Changed class name to "expmenu" to avoid confusion w/ GEOS-Chem dropdown menu
+(2) Left-aligned sub-menu text
+(3) Changed colors of HTML links to blue, red (active), and light green #008800 (hover)
+(4) Changed border top & border bottom colors to black
+(5) Aligned all colons vertically for easier reading.
+(6) Changed the width of the menu from 100px to 175px.
+(7) Added class "size12b" for page title text
+
+Original code from:
+The JavaScript Source :: http://javascript.internet.com
+Created by: Travis Beckham :: http://www.squidfingers.com | http://www.podlob.com
+version date: 06/02/03 :: If want to use this code, feel free to do so,
+but please leave this message intact. (Travis Beckham) */
+
+ul#expmenu {
+  width           : 175px;
+  list-style-type : none;
+  border-top      : solid 1px #000000;
+  margin          : 0;
+  padding         : 0;
+}
+
+ul#expmenu ol {
+  display         : none;
+  text-align      : left;
+  list-style-type : none;
+  margin          : 0;
+  padding         : 5px;
+}
+
+ul#expmenu li, ul#expmenu a {
+  font-family     : Arial, Helvetica, sans-serif;
+  font-size       : 12px;
+  color           : #0000FF;
+}
+
+ul#expmenu li {
+  border-bottom   : solid 1px #000000;
+  line-height     : 15px;
+}
+
+ul#expmenu ol li {
+  border-bottom   : none;
+}
+
+ul#expmenu ol li:before {
+  content         : "- ";
+}
+
+ul#expmenu a {
+  text-decoration : none;
+  outline         : none;
+}
+
+ul#expmenu a:hover {
+  color           : #008800;
+}
+
+ul#expmenu a.active {
+  color           : #FF0000;
+}

@@ -1,0 +1,3556 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS-Chem Online User's Guide</title>
+  <link rel="stylesheet" type="text/css" href="../../../gc.css"><!-- Cascading style sheet for font declarations -->
+  <style type="text/css">
+li {
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 14px;
+}
+tr {
+  vertical-align: top;
+  text-align: left;
+}
+th {
+  font-family: Arial,Helvetica,sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
+  background-color: #cccccc;
+}
+</style>
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&ndash;Chem
+v9&ndash;01&ndash;01 Online User's Guide</p>
+
+<p class="size14bi" align="center"><a href="appendix_4.html">Previous</a>
+| <a href="appendix_6.html">Next</a> | <a href="appendix_5.html" target="_parent">Printable
+View (no frames)</a></p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size24bi"><a name="A5"></a>Appendix 5: GEOS&ndash;Chem Diagnostics</p>
+<p align="justify">In this Appendix, we shall list the various diagnostic quantities that you can archive with  GEOS&ndash;Chem.</p>
+
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p align="justify">This documentation is also contained in
+the comments to source code files <span class="courier16">diag3.f,
+diag03_mod.f, diag04_mod.f, diag42_mod.f, </span>and<span class="courier16"> diag56_mod.f</span>. For each
+diagnostic, the following fields are shown:</p>
+
+<table align="center" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="50%">
+  <tbody>
+    <tr>
+      <th width="5%">Flag</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">Quantity</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+  </tbody>
+</table>
+
+<p align="justify">where <span class="courier16">CATEGORY</span>
+is the 8-character name used by <a href="http://www-as.harvard.edu/chemistry/trop/gamap/" target="_parent">GAMAP</a>
+to reference a particular
+diagnostic field. Information about how to set the different flags in
+the <span class="courier16">input.geos</span> file
+can be found in <a href="chapter_5.html#5.2.1">Chapter 5</a>.
+<span class="courier16">DIMENSION</span> is usually
+2D or 3D, with <span class="courier16">I,J,L</span>
+for longitude, latitude and level indices. <span class="courier16">N</span>
+as a third or fourth dimension refers to the number of tracers that a
+diagnostic can carry. </p>
+
+<p align="justify">&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND01</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">RADON 222 - LEAD 210 - BERYLLIUM 7 SOURCE</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>(I,J,L)</td>
+      <td>222Rn  emissions</td>
+      <td>[kg/s]</td>
+      <td class="courier16">RN-SRCE</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>(I,J,L)</td>
+      <td>210Pb emissions</td>
+      <td>[kg/s]</td>
+      <td class="courier16">RN-SRCE</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>(I,J,L)</td>
+      <td>7Be emissions</td>
+      <td>[kg/s]</td>
+      <td class="courier16">RN-SRCE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND02</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">RADON 222 - LEAD 210 - BERYLLIUM 7 DECAY</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>(I,J,L)</td>
+      <td>222Rn  loss</td>
+      <td>[kg/s]</td>
+      <td class="courier16">RN-DECAY</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>(I,J,L)</td>
+      <td>210Pb loss</td>
+      <td>[kg/s]</td>
+      <td class="courier16">RN-DECAY</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>(I,J,L)</td>
+      <td>7Be loss</td>
+      <td>[kg/s]</td>
+      <td class="courier16">RN-DECAY</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND03</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">MERCURY EMISSIONS, PRODUCTION, LOSS</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>      
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Anthropogenic HG0 emission</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">HG-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Total mass of oceanic Hg0</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">HG-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Oceanic HgO emission</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">HG-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Land reemission</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">HG-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Land natural emission</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">HG-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">6<br>
+      </td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Anthropogenic Hg2 emission</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">HG-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">7<br>
+      </td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Ocean mass of divalent Hg</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">HG-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">8</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Mass of Hg2 sunk in the ocean</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">HG-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">9</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Anthropogenic HgP emission</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">HG-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">10</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Henry's law piston velocity Kw</td>
+      <td width="16%">[cm/h]</td>
+      <td width="15%" class="courier16">HG-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">11</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Hg in Colloidal phase</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">HG-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">12</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Hg converted to colloidal</td>
+      <td width="16%">[kg/m2/s]</td>
+      <td width="15%" class="courier16">HG-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">13</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of Hg2 from Hg0</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">PL-HG2-$</td>
+    </tr>
+    <tr>
+      <td width="5%">14</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of Hg2 from rxn w/OH</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">PL-HG2-$</td>
+    </tr>
+    <tr>
+      <td width="5%">15</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of Hg2 from rxn w/O3</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">PL-HG2-$</td>
+    </tr>
+    <tr>
+      <td width="5%">16</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Loss of Hg2 from rxn w/sea salt</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">PL-HG2-$</td>
+    </tr>
+    <tr>
+      <td width="5%">17</td>
+      <td width="11%"><br>
+      </td>
+      <td width="53%">+ OCEAN tagged tracers</td>
+      <td width="16%"><br>
+      </td>
+      <td width="15%" class="courier16"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+
+  <tbody>
+    <tr>
+      <th  width="5%">ND04</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">CO2 SOURCES</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CO2 fossil fuel emiss</td>
+      <td width="16%">[atoms C/cm2/s]</td>
+      <td width="15%" class="courier16">CO2-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CO2 ocean emissions</td>
+      <td width="16%">[atoms C/cm2/s]</td>
+      <td width="15%" class="courier16">CO2-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CO2 balanced biosphere</td>
+      <td width="16%">[atoms C/cm2/s]</td>
+      <td width="15%" class="courier16">CO2-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CO2 biomass burning emiss</td>
+      <td width="16%">[atoms C/cm2/s]</td>
+      <td width="15%" class="courier16">CO2-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CO2 biofuel emission</td>
+      <td width="16%">[atoms C/cm2/s]</td>
+      <td width="15%" class="courier16">CO2-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">6</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CO2 net terr exchange</td>
+      <td width="16%">[atoms C/cm2/s]</td>
+      <td width="15%" class="courier16">CO2-SRCE</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>(I,J)</td>
+      <td>CO2 ship emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td width="15%" class="courier16">CO2-SRCE</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>(I,J,L)</td>
+      <td>CO2 aircraft emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td width="15%" class="courier16">CO2-SRCE</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>(I,J,L)</td>
+      <td>CO2 chemical source</td>
+      <td>[atoms C/cm2/s]</td>
+      <td width="15%" class="courier16">CO2-SRCE</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>(I,J)</td>
+      <td>CO2 chemical source surface correction</td>
+      <td>[atoms C/cm2/s]</td>
+      <td width="15%" class="courier16">CO2-SRCE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+
+  <tbody>
+    <tr>
+      <th  width="5%">ND05</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">PROD/LOSS for SULFATE CHEMISTRY QUANTITIES</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">P(SO2) from DMS + OH</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">PL-SUL-$</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">P(SO2) from DMS + NO3</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">PL-SUL-$</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Total P(SO2)</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">PL-SUL-$</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">P(MSA) from DMS</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">PL-SUL-$</td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">P(SO4) gas phase</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">PL-SUL-$</td>
+    </tr>
+    <tr>
+      <td width="5%">6</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">P(SO4) by cloud H2O2</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">PL-SUL-$</td>
+    </tr>
+    <tr>
+      <td width="5%">7</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">P(SO4) by cloud O3</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">PL-SUL-$</td>
+    </tr>
+    <tr>
+      <td width="5%">8</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">P(SO4) by seasalt O3</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">PL-SUL-$</td>
+    </tr>
+    <tr>
+      <td width="5%">9</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">L(OH) by DMS</td>
+      <td width="16%">[kg OH]</td>
+      <td width="15%" class="courier16">PL-SUL-$</td>
+    </tr>
+    <tr>
+      <td width="5%">10</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">L(NO3) by DMS</td>
+      <td width="16%">[kg NO3]</td>
+      <td width="15%" class="courier16">PL-SUL-$ </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+
+  <tbody>
+    <tr>
+      <th  width="5%">ND06</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">DESERT DUST EMISSIONS</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">DST1 (Dust aerosol, <em>Reff</em> = 0.7 microns)</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">DUSTSRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">DST2 (Dust aerosol, Reff = 1.4 microns)</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">DUSTSRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">DST3 (Dust aerosol, Reff = 2.4 microns)</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">DUSTSRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">DST4 (Dust aerosol, Reff = 4.5 microns)</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">DUSTSRCE</td>
+    </tr>    
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND07</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">SOURCES OF BLACK CARBON &amp; ORGANIC CARBON<br>(initially developed for offline aerosol simulations)</th>
+      <th width="16%">&nbsp;</th>
+      <th width="15%">&nbsp;</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">BLACK CARBON from anthro sources</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">BC-ANTH</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">BLACK CARBON from biomass burning</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">BC-BIOB</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">BLACK CARBON from biofuels</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">BC-BIOF</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Hydrophilic BC from Hydrophobic BC</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">PL-BC=$</td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">ORGANIC CARBON from anthro sources</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">OC-ANTH</td>
+    </tr>
+    <tr>
+      <td width="5%">6</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">ORGANIC CARBON from biomass burning</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">OC-BIOB</td>
+    </tr>
+    <tr>
+      <td width="5%">7</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">ORGANIC CARBON from biofuels</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">OC-BIOF</td>
+    </tr>
+    <tr>
+      <td width="5%">8</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">ORGANIC CARBON from biogenic sources</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">OC-BIOG</td>
+    </tr>
+    <tr>
+      <td width="5%">9</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Hydrophilic OC from Hydrophobic OC</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">PL-OC=$ </td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">10</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">ORGANIC CARBON : a-pinene source</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16_orange">OC-ALPH</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">11</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">ORGANIC CARBON : limonene source</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16_orange">OC-LIMO</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">12</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">ORGANIC CARBON : terpene source</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16_orange">OC-TERP</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">13</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">ORGANIC CARBON : alcohol source</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16_orange">OC-ALCO</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">14</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">ORGANIC CARBON : sesqterpene source</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16_orange">OC-SESQ</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">15</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"><p>SOA produced from ALPH + LIMO + TERP tracer</p></td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16_orange">PL-OC=$</td>
+    </tr>
+    <tr class="orange">
+      <td>16</td>
+      <td>(I,J,L)</td>
+      <td>SOA produced from ALCO tracer</td>
+      <td>[kg]</td>
+      <td class="courier16_orange">PL-OC=$</td>
+    </tr>
+    <tr class="orange">
+      <td>17</td>
+      <td>(I,J,L)</td>
+      <td>SOA produced from SESQ</td>
+      <td>[kg]</td>
+      <td class="courier16_orange">PL-OC=$</td>
+    </tr>
+    <tr class="orange">
+      <td>18</td>
+      <td>(I,J,L)</td>
+      <td>SOA produced from ISOP</td>
+      <td>[kg]</td>
+      <td class="courier16_orange">PL-OC=$</td>
+    </tr>
+    <tr class="orange">
+      <td>19</td>
+      <td>(I,J,L)</td>
+      <td>SOA produced from Aromatics</td>
+      <td>[kg]</td>
+      <td class="courier16_orange">PL-OC=$</td>
+    </tr>
+    <tr class="orange">
+      <td>20</td>
+      <td>(I,J,L)</td>
+      <td>SOAG production from GLYX in aerosol</td>
+      <td>[kg]</td>
+      <td class="courier16_orange" >SOAGM=$</td>
+    </tr>
+    <tr class="orange">
+      <td>21</td>
+      <td>(I,J,L)</td>
+      <td>SOAM production from MGLY in aerosol</td>
+      <td>[kg] </td>
+      <td class="courier16_orange">SOAGM=$</td>
+    </tr>
+    <tr class="orange">
+      <td>22</td>
+      <td>(I,J,L)</td>
+      <td>SOAG production from GLYX in cloud</td>
+      <td>[kg] </td>
+      <td class="courier16_orange">SOAGM=$</td>
+    </tr>
+    <tr class="orange">
+      <td>23</td>
+      <td>(I,J,L)</td>
+      <td>SOAM production from MGLY in cloud</td>
+      <td>[kg] </td>
+      <td class="courier16_orange">SOAGM=$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p align="justify">NOTE: <span class="orange">Orange lines</span> indicate output only available for simulations with the secondary organic aerosol (SOA) chemistry mechanism.</p>
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+
+  <tbody>
+    <tr>
+      <th  width="5%">ND08</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">SEA SALT EMISSIONS</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Accumulation mode seasalt</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">SALTSRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Coarse mode seasalt</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">SALTSRCE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND09</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">HCN &amp; CH3CN sources &amp; sinks</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J,L,N)</td>
+      <td width="53%">Loss of tagged tracer to OH</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">HCN-PL-$</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">HCN from biomass burning</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">HCN-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CH3CN from biomass burning</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">HCN-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">HCN from domestic fossil fuel</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">HCN-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CH3CN from domestic fossil fuel</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">HCN-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">6</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">HCN loss to ocean uptake</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">HCN-SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">7</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CH3CN loss to ocean uptake</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">HCN-SRCE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND10</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">H2-DEUTERIUM SOURCES (EMISSIONS, PRODUCTION, LOSS)</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Loss of H2 by OH</td>
+      <td width="16%">[molec H2/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of H2 from Isoprene</td>
+      <td width="16%">[molec H2/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of H2 from CH4</td>
+      <td width="16%">[molec H2/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of H2 from CH3OH</td>
+      <td width="16%">[molec H2/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of H2 from MONO</td>
+      <td width="16%">[molec H2/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">6</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of H2 from ACET</td>
+      <td width="16%">[molec H2/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">7</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Loss of H2 by stratospheric O1D</td>
+      <td width="16%">[molec H2/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">8</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Loss of HD by OH</td>
+      <td width="16%">[molec HD/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">9</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of HD from Isoprene</td>
+      <td width="16%">[molec HD/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">10</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of HD from CH4</td>
+      <td width="16%">[molec HD/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">11</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of HD from CH3OH</td>
+      <td width="16%">[molec HD/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">12</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of HD from MONO</td>
+      <td width="16%">[molec HD/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">13</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Production of HD from ACET</td>
+      <td width="16%">[molec HD/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">14</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Loss of HD by stratospheric O1D</td>
+      <td width="16%">[molec HD/cm3/s]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">15</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Ratio of OH k rates kH2/kHD</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">PL-H2HD-$</td>
+    </tr>
+    <tr>
+      <td width="5%">16</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Fossil Fuel H2 (anthropogenic)</td>
+      <td width="16%">[molec HD/cm2/s]</td>
+      <td width="15%" class="courier16">H2HD-SRC</td>
+    </tr>
+    <tr>
+      <td width="5%">17</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Biomass Burning of H2</td>
+      <td width="16%">[molec HD/cm2/s]</td>
+      <td width="15%" class="courier16">H2HD-SRC</td>
+    </tr>
+    <tr>
+      <td width="5%">18</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Biofuel Burning of H2</td>
+      <td width="16%">[molec HD/cm2/s]</td>
+      <td width="15%" class="courier16">H2HD-SRC</td>
+    </tr>
+    <tr>
+      <td width="5%">19</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Ocean emissions of H2</td>
+      <td width="16%">[molec HD/cm2/s]</td>
+      <td width="15%" class="courier16">H2HD-SRC</td>
+    </tr>
+    <tr>
+      <td width="5%">20</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Ocean emissions of HD</td>
+      <td width="16%">[molec HD/cm2/s]</td>
+      <td width="15%" class="courier16">H2HD-SRC</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND11</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">ACETONE SOURCES &amp; SINKS</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Acetone source from MONOTERPENES</td>
+      <td width="16%">[at C/cm2/s]</td>
+      <td width="15%" class="courier16">ACETSRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Acetone source from METHYL BUTENOL</td>
+      <td width="16%">[at C/cm2/s]</td>
+      <td width="15%" class="courier16">ACETSRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Acetone source from DIRECT EMISSION</td>
+      <td width="16%">[at C/cm2/s]</td>
+      <td width="15%" class="courier16">ACETSRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Acetone source from DRY LEAF MATTER</td>
+      <td width="16%">[at C/cm2/s]</td>
+      <td width="15%" class="courier16">ACETSRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Acetone source from GRASSLANDS</td>
+      <td width="16%">[at C/cm2/s]</td>
+      <td width="15%" class="courier16">ACETSRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">6</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Acetone source from OCEANS</td>
+      <td width="16%">[at C/cm2/s]</td>
+      <td width="15%" class="courier16">ACETSRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">7</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Acetone sink from OCEANS</td>
+      <td width="16%">[at C/cm2/s]</td>
+      <td width="15%" class="courier16">ACETSRCE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND12</th>
+      <td width="11%">(I,J,L)</td>
+      <th width="53%">FRACTION OF BOUNDARY LAYER OCCUPIED BY LEVEL L</th>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">EMDIS-BL</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND13</th>
+      <th>Dimension</th>
+      <th>TROPOSPHERIC SULFUR EMISSIONS</th>
+      <th>Units</th>
+      <th>Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Biogenic DMS</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">DMS-BIOG</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Aircraft SO2 (1 &lt;= L &lt;= ND13)</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">SO2-AC-$</td>
+    </tr>
+    <tr>
+      <td width="5%">3<</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Anthro SO2 (1 &lt;= L &lt;= 2 )</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">SO2-AN-$</td>
+    </tr>
+    <tr>
+      <td width="5%">4<</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Biomass SO2</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">SO2-BIOB</td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Biofuel SO2</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">SO2-BIOF</td>
+    </tr>
+    <tr>
+      <td width="5%">6</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Non-eruptive volcano SO2 (1 &lt;= L &lt;= ND13)</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">SO2-NV-$</td>
+    </tr>
+    <tr>
+      <td width="5%">7</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Eruptive volcano SO2 (1 &lt;= L
+&lt;= ND13)</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">SO2-EV-$</td>
+    </tr>
+    <tr>
+      <td width="5%">8</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Ship SO2</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">SO2-SHIP</td>
+    </tr>
+    <tr>
+      <td width="5%">9</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Anthro SO4 (1 &lt;= L &lt;= 2 )</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">SO4-AN-$</td>
+    </tr>
+    <tr>
+      <td width="5%">10</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Biofuel SO4</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">SO4-BIOF</td>
+    </tr>
+    <tr>
+      <td width="5%">11</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Natural NH3</td>
+      <td width="16%">[kg S]</td>
+      <td width="15%" class="courier16">NH3-NATU</td>
+    </tr>
+    <tr>
+      <td width="5%">12</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Anthro NH3</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">NH3-AN-$</td>
+    </tr>
+    <tr>
+      <td width="5%">13</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Biomass NH3</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">NH3-BIOB</td>
+    </tr>
+    <tr>
+      <td width="5%">14</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Biofuel NH3</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">NH3-BIOF</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND14</th>
+      <td width="11%">(I,J,L,N)</td>
+      <th width="53%"><p>UPWARD MASS FLUX DUE TO WET CONVECTION</p></th>
+      <td width="16%">[kg/s]</td>
+      <td width="15%" class="courier16">CV-FLX-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND15</th>
+      <td width="11%">(I,J,L,N)</td>
+      <th width="53%"><p>MASS CHANGE DUE TO BOUNDARY-LAYER MIXING</p></th>
+      <td width="16%">[kg/s]</td>
+      <td width="15%" class="courier16">TURBMC-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND16</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">AREAL FRACTION OF PRECIP</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>(I,J,L)</td>
+      <td>Fraction of grid box having rainout + washout (large-scale precip)</td>
+      <td>[unitless]</td>
+      <td class="courier16">WD-FRC-$</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Fraction of grid box having rainout + washout (convectvive precip)</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">WD-FRC-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND17</th>
+      <th width="11%">Dimension</th>
+      <th width="53%"><p>RAINOUT FRACTION IN PRECIP</p></th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>(I,J,L,N)</td>
+      <td>Fraction of soluble tracer lost to rainout (large-scale precip)</td>
+      <td>[unitless]</td>
+      <td class="courier16">WD-LSR-$</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J,L,N)</td>
+      <td width="53%">Fraction of soluble tracer lost to rainout (convective precip)</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">WD-CVR-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table style="width: 95%;" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+  <tbody>
+    <tr>
+      <th  width="5%">ND18</th>
+      <th style="width: 11%;">Dimension</th>
+      <th width="53%"><p>WASHOUT FRACTION IN PRECIP</p></th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td>1-N</td>
+      <td>(I,J,L,N)</td>
+      <td>Fraction of soluble tracer lost to washout (large-scale precip)</td>
+      <td>[unitless]</td>
+      <td class="courier16">WD-LSW-$</td>
+    </tr>
+    <tr>
+      <td width="5%">1-N</td>
+      <td width="11%">(I,J,L,N)</td>
+      <td width="53%">Fraction of soluble tracer lost to washout (convective precip)</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">WD-CVW-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table style="width: 95%;" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+  <tbody>
+    <tr>
+      <th width="5%">ND19</th>
+      <td style="width: 11%;">(I,J,L)</td>
+      <th style="width: 53%;">CH4 removal by OH</th>
+      <td style="width: 16%;">[kg CH4]</td>
+      <td style="width: 15%;"><span class="courier16">CH4-LOSS</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND20</th>
+      <td width="11%">(I,J,L,2)</td>
+      <th width="53%">SAVE O3 PROD/LOSS RATES TO DISK</th>
+      <td width="16%">[molec/cm3/s]</td>
+      <td width="15%"><br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND21</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">CLOUD OPTICAL DEPTHS AND CLOUD
+FRACTIONS</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">OPTD Cloud Optical Depth</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">OD-MAP-$</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">CLMO Max Overlap Cloud Fraction (GEOS1,S)</td>
+      <td width="16%">unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">CLDF 3-D Total Cloud fraction (GEOS3,4)</td>
+      <td width="16%">unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">CLRO Random Overlap Cloud Fraction</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">OPD Mineral Dust Optical Depth (400 nm)</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">6</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SD Mineral Dust Surface Area</td>
+      <td width="16%">[cm2/cm3]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">7</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">OPSO4 Sulfate Optical Depth (400 nm)</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">8</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">HGSO4 Hygroscopic growth of SO4</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">9</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SSO4 Sulfate Surface Area</td>
+      <td width="16%">[cm2/cm3]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">10</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">OPBC Black Carbon Optical Depth (400 nm)</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">11</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">HGBC Hygroscopic growth of BC</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">12</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SBC Black Carbon Surface Area</td>
+      <td width="16%">[cm2/cm3]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">13</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">OPOC Organic C Optical Depth (400 nm)</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">14</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">HGOC Hygroscopic growth of OC</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">15</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SOC Organic Carbon Surface Area</td>
+      <td width="16%">[cm2/cm3]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">16</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">OPSSa Sea Salt (accum) Opt Depth (400 nm)</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">17</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">HGSSa Hygroscopic growth of SSa</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">18</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SSSa Sea Salt (accum) Surface Area</td>
+      <td width="16%">[cm2/cm3]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">19</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">OPSSc Sea Salt (coarse) Opt Depth(400 nm)</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">20</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">HGSSc Hygroscopic growth of SSc</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">21</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SSSc Sea Salt (coarse) Surface Area</td>
+      <td width="16%">[cm2/cm3]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+<!--
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td width="11%">&nbsp;</td>
+      <th width="53%"><p>and only if we are using the
+      crystalline sulfate tracers:<br>
+      </p></th>
+      <td width="16%"><br>
+      </td>
+      <td width="15%">&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="5%">22</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Opt depth for HYSTERESIS CASE</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">23</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Opt depth for SOLID CASE</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">24</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Opt depth for LIQUID CASE</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">25</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Opt depth HYSTERESIS - Opt depth
+SOLID</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">26</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Opt depth HYSTERESIS - Opt depth
+LIQUID</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">27</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Radiative forcing</td>
+      <td width="16%">[W/m2]</td>
+      <td width="15%"><span class="courier16">OD-MAP-$</span></td>
+    </tr>
+-->
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND22</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">Photolysis rates (aka J-Values)</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>(I,J,L)</td>
+      <td>J(NO2)</td>
+      <td>[1/s]</td>
+      <td class="courier16">JV-MAP-$</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>(I,J,L)</td>
+      <td>J(HNO3)</td>
+      <td>[1/s]</td>
+      <td class="courier16">JV-MAP-$</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>(I,J,L)</td>
+      <td>J(H2O2)</td>
+      <td>[1/s]</td>
+      <td class="courier16">JV-MAP-$</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>(I,J,L)</td>
+      <td>J(CH2O)</td>
+      <td>[1/s]</td>
+      <td class="courier16">JV-MAP-$</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>(I,J,L)</td>
+      <td>J(OH)</td>
+      <td>[1/s]</td>
+      <td class="courier16">JV-MAP-$</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>(I,J,L)</td>
+      <td>OH source from O3 photolysis</td>
+      <td>[1/s]</td>
+      <td class="courier16">JV-MAP-$</td>
+    </tr>
+    <tr class="orange">
+      <td>7</td>
+      <td>(I,J,L)</td>
+      <td>J(GLYX)</td>
+      <td>[1/s]</td>
+      <td class="courier16_orange">JV-MAP-$</td>
+    </tr>
+    <tr class="orange">
+      <td>8</td>
+      <td>(I,J,L)</td>
+      <td>J(MGLY)</td>
+      <td>[1/s]</td>
+      <td class="courier16_orange">JV-MAP-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p align="justify">NOTE: <span class="orange">Orange lines</span> indicate output only available for simulations with the secondary organic aerosol (SOA) chemistry mechanism.</p>
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND23</th>
+      <td width="11%">&nbsp;</td>
+      <th width="53%">Mean OH concentration diagnostic </th>
+      <td width="16%">[10<sup>5</sup> molec/cm3] </td>
+      <td width="15%">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND24</th>
+      <td width="11%">(I,J,L,N)</td>
+      <th width="53%">EASTWARD MASS FLUX BY TRANSPORT</th>
+      <td width="16%">[kg/s]</td>
+      <td width="15%" class="courier16">EW-FLX-$</td>
+    </tr>
+    <tr>
+      <th  width="5%">ND25</th>
+      <td width="11%">(I,J,L,N)</td>
+      <th width="53%">NORTHWARD MASS FLUX BY TRANSPORT</th>
+      <td width="16%">[kg/s]</td>
+      <td width="15%" class="courier16">NS-FLX-$</td>
+    </tr>
+    <tr>
+      <th  width="5%">ND26</th>
+      <td width="11%">(I,J,L,N)</td>
+      <th width="53%">UPWARD MASS FLUX BY TRANSPORT</th>
+      <td width="16%">[kg/s]</td>
+      <td width="15%" class="courier16">UP-FLX-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND27</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">STRATOSPHERIC INFLUX (mostly obsolete now)</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J,3)</td>
+      <td width="53%">of NOx, Ox, HNO3 : if NOx-Ox-HC simulation</td>
+      <td width="16%">[kg/s]</td>
+      <td width="15%" class="courier16">STRT-FL</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J,2)</td>
+      <td width="53%">of H2, HD : if H2/HD simulation</td>
+      <td width="16%">[kg/s]<br>
+      </td>
+      <td width="15%" class="courier16">STRT-FL</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">of Ox : else</td>
+      <td width="16%">[kg/s]</td>
+      <td width="15%" class="courier16">STRT-FL</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th>ND28</th>
+      <th>Dimension</th>
+      <th>BIOMASS BURNING EMISSIONS </th>
+      <th>Units</th>
+      <th>Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">NOx  biomass emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td width="15%" class="courier16">BIOBSRCE</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>(I,J)</td>
+      <td>CO biomass emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>(I,J)</td>
+      <td>ALK4 biomass emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>(I,J)</td>
+      <td>ACET biomass emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>(I,J)</td>
+      <td>MEK biomass emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>(I,J)</td>
+      <td>ALD2 biomass emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>(I,J)</td>
+      <td>PRPE (lumped &gt;=C3 alkenes) biomass emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>(I,J)</td>
+      <td>C3H8 biomass emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>(I,J)</td>
+      <td>CH2O biomass emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>(I,J)</td>
+      <td>C2H6 biomass emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>(I,J)</td>
+      <td>SO2 biomass emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>(I,J)</td>
+      <td>NH3 biomass emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td>(I,J)</td>
+      <td>BC (black carbon) biomass emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td>(I,J)</td>
+      <td>OC (organic carbon) biomass emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND29</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">TROPOSPHERIC CO EMISSIONS</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Anthropogenic</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">CO--SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Biomass</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">CO--SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Biofuel</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">CO--SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CO produced from monoterpenes</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">CO--SRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CO produced from methanol</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">CO--SRCE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND30</th>
+      <td width="11%">(I,J)</td>
+      <th width="53%">LAND MAP FOR GEOS&ndash;Chem</th>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">LANDMAP</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND31</th>
+      <td width="11%">(I,J,L)</td>
+      <th width="53%">PRESSURE AT BOTTOM EDGE OF LEVEL L (1 &lt;= L &lt;= ND31 )</th>
+      <td width="16%">[hPa]]</td>
+      <td width="15%" class="courier16">PEDGE-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND32</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">TROPOSPHERIC NOx EMISSIONS</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Aircraft </td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">NOX-AC-$</td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Anthropogenic ( 1 &lt;= L &lt;= NOXEXTENT )</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">NOX-AN-$</td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Biomass</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">NOX-BIOB</td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Biofuel</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">NOX-BIOF</td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Fertilization</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">NOX-FERT</td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">Lightning </td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">NOX-LI-$</td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Soils</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">NOX-SOIL</td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Upper Boundary</td>
+      <td width="16%">[molec/cm2/s]</td>
+      <td width="15%" class="courier16">NOX-STRT</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND33</th>
+      <td width="11%">(I,J,N)</td>
+      <th width="53%">ATMOS. COLUMN SUM OF TRACER (N : selected tracers)</th>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">COLUMN-T</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%" >ND34</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">BIOFUEL BURNING EMISSIONS </th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>(I,J)</td>
+      <td>NOx  biofuel emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td class="courier16">BIOFSRCE</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>(I,J)</td>
+      <td>CO biofuel emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">BIOFSRCE</span></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>(I,J)</td>
+      <td>ALK4 biofuel emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOFSRCE</span></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>(I,J)</td>
+      <td>ACET biofuel emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOFSRCE</span></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>(I,J)</td>
+      <td>MEK biofuel emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOFSRCE</span></td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>(I,J)</td>
+      <td>ALD2 biofuel emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOFSRCE</span></td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>(I,J)</td>
+      <td>PRPE (lumped &gt;=C3 alkenes) biofuel emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOFSRCE</span></td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>(I,J)</td>
+      <td>C3H8 biofuel emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOFSRCE</span></td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>(I,J)</td>
+      <td>CH2O biofuel emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">BIOFSRCE</span></td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>(I,J)</td>
+      <td>C2H6 biofuel emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">BIOFSRCE</span></td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>(I,J)</td>
+      <td>SO2 biofuel emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">BIOFSRCE</span></td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>(I,J)</td>
+      <td>NH3 biofuel emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">BIOFSRCE</span></td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td>(I,J)</td>
+      <td>BC (black carbon) biofuel emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td>(I,J)</td>
+      <td>OC (organic carbon) biofuel emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">BIOBSRCE</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND35</th>
+      <td width="11%">(I,J,N)</td>
+      <th width="53%">TRACER AT 500 MBAR ( L = 9 ) (N: selected tracers )<br>
+        NOTE: THIS IS NOW OBSOLETE</th>
+      <td width="16%">[v/v]</td>
+      <td width="15%" class="courier16">500-AVRG</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%" >ND36</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">ANTHROPOGENIC EMISSIONS</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>(I,J)</td>
+      <td>NOx anthropogenic emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td class="courier16">ANTHSRCE</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>(I,J)</td>
+      <td>CO anthropogenic emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">ANTHSRCE</span></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>(I,J)</td>
+      <td>ALK4 anthropogenic emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">ANTHSRCE</span></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>(I,J)</td>
+      <td>ACET anthropogenic emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">ANTHSRCE</span></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>(I,J)</td>
+      <td>MEK anthropogenic emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">ANTHSRCE</span></td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>(I,J)</td>
+      <td>PRPE (lumped &gt;=C3 alkenes) anthropogenic emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">ANTHSRCE</span></td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>(I,J)</td>
+      <td>C3H8 anthropogenic emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">ANTHSRCE</span></td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>(I,J)</td>
+      <td>CH2O anthropogenic emissions</td>
+      <td>[molec/cm2/s]</td>
+      <td><span class="courier16">ANTHSRCE</span></td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>(I,J)</td>
+      <td>C2H6 anthropogenic emissions</td>
+      <td>[atoms C/cm2/s]</td>
+      <td><span class="courier16">ANTHSRCE</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND36</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">CH3I EMISSIONS (for simulation type
+2)</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CH3Ioc : Methyl Iodide (oceanic source)</td>
+      <td width="16%">[ng/m2/s]</td>
+      <td width="15%" class="courier16">CH3ISRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%"> CH3Ibb : Methyl Iodide (biomass burning)</td>
+      <td width="16%">[ng/m2/s]</td>
+      <td width="15%" class="courier16">CH3ISRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CH3Iwb : Methyl Iodide (wood burning)</td>
+      <td width="16%">[ng/m2/s]</td>
+      <td width="15%" class="courier16">CH3ISRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CH3Irc : Methyl Iodide (rice paddies)</td>
+      <td width="16%">[ng/m2/s]</td>
+      <td width="15%" class="courier16">CH3ISRCE</td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CH3Iwl : Methyl Iodide (wetlands) </td>
+      <td width="16%">[ng/m2/s]</td>
+      <td width="15%" class="courier16">CH3ISRCE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND37</th>
+      <td width="11%">(I,J,L,N)</td>
+      <th width="53%">FRACTION OF TRACER SCAVENGED BY CLOUD UPDRAFTS IN MOIST CONVECTION </th>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">MC-FRC-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND38</th>
+      <td width="11%">(I,J,L,N)</td>
+      <th width="53%">LOSS OF TRACER IN MOIST CONVECTION</th>
+      <td width="16%">[kg/s]</td>
+      <td width="15%" class="courier16">WETDCV-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND39</th>
+      <td width="11%">(I,J,L,N)</td>
+      <th width="53%">LOSS OF TRACER IN AEROSOL WET DEPOSITION</th>
+      <td width="16%">[kg/s]</td>
+      <td width="15%" class="courier16">WETDLS-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND40</th>
+      <td width="11%">&nbsp;</td>
+      <th width="53%">Free diagnostic</th>
+      <td width="16%">&nbsp;</td>
+      <td width="15%" class="courier16">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND41</th>
+      <td width="11%">(I,J)</td>
+      <th width="53%">AFTERNOON PBL DEPTH (1200-1600 LT)</th>
+      <td width="16%">[m]</td>
+      <td width="15%" class="courier16">PBLDEPTH</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND42</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">SOA CONCENTRATIONS</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SOA1</td>
+      <td width="16%">[ug/m3]</td>
+      <td width="15%" class="courier16">IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SOA2</td>
+      <td width="16%">[ug/m3]</td>
+      <td width="15%" class="courier16">IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SOA3</td>
+      <td width="16%">[ug/m3]</td>
+      <td width="15%" class="courier16">IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SOA4</td>
+      <td width="16%">[ug/m3]</td>
+      <td width="15%" class="courier16">IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>(I,J,L</td>
+      <td>SOA5</td>
+      <td>[ug/m3]</td>
+      <td class="courier16">IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td width="5%">6</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SOA1 + SOA2 + SOA3</td>
+      <td width="16%">[ug/m3]</td>
+      <td width="15%" class="courier16">IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td width="5%">7</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SOA1 + SOA2 + SOA3 + SOA4</td>
+      <td width="16%">[ug/m3]</td>
+      <td width="15%" class="courier16">IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>(I,J,L)/td>
+      <td>SOA1 + SOA2 + SOA3 + SOA4 + SOA5</td>
+      <td>[ug/m3]</td>
+      <td class="courier16" >IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>(I,J,L)</td>
+      <td>Sum of all Org Aerosols (OC + SOA)</td>
+      <td>[ug C/m3]</td>
+      <td class="courier16" >IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>(I,J,L)</td>
+      <td>Sum of all Org Aerosols (OC+SOA) @ STP</td>
+      <td>[ug C/m3]</td>
+      <td class="courier16" >IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>(I,J,L)</td>
+      <td>Sum of all Org Aerosols (OC+SOA)</td>
+      <td>[ug/m3]</td>
+      <td class="courier16" >IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td width="5%">12<</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">OCPI + OCPO</td>
+      <td width="16%">[ug C/m3]</td>
+      <td width="15%" class="courier16">IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td width="5%">13</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">BCPI + BCPO</td>
+      <td width="16%">[ug C/m3]</td>
+      <td width="15%" class="courier16">IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>(I,J,L)</td>
+      <td>SO4</td>
+      <td>[ug/m3]</td>
+      <td class="courier16" >IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>(I,J,L)</td>
+      <td>NH4</td>
+      <td>[ug/m3]</td>
+      <td class="courier16" >IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>(I,J,L)</td>
+      <td>NIT</td>
+      <td>[ug/m3]
+      </td>
+      <td class="courier16" >IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>(I,J,L)</td>
+      <td>SAL</td>
+      <td>[ug/m3]</td>
+      <td class="courier16" >IJ-SOA-$</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>(I,J,L)</td>
+      <td>Total aerosol</td>
+      <td>[ug/m3]</td>
+      <td class="courier16" >IJ-SOA-$</td>
+    </tr>
+    <tr class="green">
+      <td>19</td>
+      <td>(I,J,L)</td>
+      <td>SOAG (from GLYX)</td>
+      <td>[ug/m3]
+      </td>
+      <td class="courier16_green" >IJ-SOA-$</td>
+    </tr>
+    <tr class="green">
+      <td>20</td>
+      <td>(I,J,L)</td>
+      <td>SOAM (from MGLY)</td>
+      <td>[ug/m3]</td>
+      <td class="courier16_green" >IJ-SOA-$</td>
+    </tr>
+    <tr class="green">
+      <td>21</td>
+      <td>(I,J,L)</td>
+      <td>SOA1 + SOA2 + SOA3 + SOA4 + SOA5 + SOAG + SOAM</td>
+      <td>[ug/m3]</td>
+      <td class="courier16_green" >IJ-SOA-$</td>
+    </tr>
+    <tr class="green">
+      <td>22<br>
+      </td>
+      <td>(I,J,L)</td>
+      <td>SOA1 + SOA2 + SOA3 + SOA4 + SOA5 + SOAG + SOAM + OCPO + OCPI</td>
+      <td>[ug C/m3]</td>
+      <td class="courier16_green" >IJ-SOA-$</td>
+    </tr>
+    <tr class="green">
+      <td>23</td>
+      <td>(I,J,L)</td>
+      <td>SOA1 + SOA2 + SOA3 + SOA4 + SOA5 + SOAG + SOAM @ STP</td>
+      <td>[ug/m3]</td>
+      <td class="courier16_green" >IJ-SOA-$</td>
+    </tr>
+    <tr class="green">
+      <td>24</td>
+      <td>(I,J,L)</td>
+      <td>SOA1 + SOA2 + SOA3 + SOA4 + SOA5 + SOAG + SOAM + OCPO + OCPI @ STP</td>
+      <td>[ug C/m3]</td>
+      <td class="courier16_green" >IJ-SOA-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p align="justify">NOTE: <span class="green">Green lines</span> indicate output only available for simulations using the dicarbonyls chemistry mechanism.</p>
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND43</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">CHEMICAL PRODUCTION  OF VARIOUS SPECIES</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>(I,J,L)</td>
+      <td>OH</td>
+      <td>[molec/cm3]</td>
+      <td class="courier16">CHEM-L=$</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">NO</td>
+      <td width="16%">[v/v]</td>
+      <td width="15%"><span class="courier16">CHEM-L=$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">HO2</td>
+      <td width="16%">[v/v]</td>
+      <td width="15%"><span class="courier16">CHEM-L=$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">NO2</td>
+      <td width="16%">[v/v]</td>
+      <td width="15%"><span class="courier16">CHEM-L=$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">NO3</td>
+      <td width="16%">[v/v]</td>
+      <td width="15%"><span class="courier16">CHEM-L=$</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+
+  <tbody>
+    <tr>
+      <th  width="5%">ND44</th>
+      <th width="11%">&nbsp;</th>
+      <th width="53%">DRYDEP ( M = NUMber DEP )</th>
+      <th width="16%">&nbsp;</th>
+      <th width="15%">&nbsp;</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>(I,J,M)</td>
+      <td>Dry deposition fluxes  (M = 1, NUMDEP)</td>
+      <td>[molec/cm2/s]</td>
+      <td class="courier16">DRYD-FLX</td>
+    </tr>
+    <tr>
+      <td width="5%"></td>
+      <td width="11%">(I,J,M)</td>
+      <td width="53%">Dry deposition velocities (M = 1, NUMDEP)</td>
+      <td width="16%">[cm/s]</td>
+      <td width="15%" class="courier16">DRYD-VEL</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND45</th>
+      <td width="11%">(I,J,L,N)</td>
+      <th width="53%">TRACER CONCENTRATION, AVERAGED BETWEEN OTH_HR1 and OTH_HR2 (from "input.geos")</th>
+      <td width="16%">[v/v]</td>
+      <td width="15%" class="courier16">IJ-AVG-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+
+  <tbody>
+    <tr>
+      <th >ND46</th>
+      <th>Dimension</th>
+      <th>BIOGENIC EMISSIONS</th>
+      <th>Units</th>
+      <th>Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Isoprene</td>
+      <td width="16%">[atoms C/cm2/s]</td>
+      <td width="15%" class="courier16">BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>(I,J)</td>
+      <td>Acetone</td>
+      <td>[atoms C/cm2/s]</td>
+      <td class="courier16">BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>(I,J)</td>
+      <td>PRPE (Lumped &gt;= C3 alkenes)</td>
+      <td>[atoms C/cm2/s]</td>
+      <td class="courier16">BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>(I,J)</td>
+      <td>Monoterpenes</td>
+      <td>[atoms C/cm2/s]</td>
+      <td class="courier16">BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>(I,J)</td>
+      <td>Methyl Butenol (aka MBO)</td>
+      <td>[atoms C/cm2/s]</td>
+      <td class="courier16">BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>(I,J)</td>
+      <td>Ethene</td>
+      <td>[atoms C/cm2/s]</td>
+      <td class="courier16">BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>(I,J)</td>
+      <td>a-Pinene</td>
+      <td>[atoms C/cm2/s]</td>
+      <td class="courier16">BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>(I,J)</td>
+      <td>b-Pinene</td>
+      <td>[atoms C/cm2/s]</td>
+      <td class="courier16">BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>(I,J)</td>
+      <td>Limonene</td>
+      <td>[atoms C/cm2/s]</td>
+      <td class="courier16">BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>(I,J)</td>
+      <td>Sabinene</td>
+      <td>[atoms C/cm2/s]</td>
+      <td class="courier16">BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>(I,J)</td>
+      <td>Myrcene</td>
+      <td>[atoms C/cm2/s]</td>
+      <td class="courier16">BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>(I,J)</td>
+      <td>3-Carene</td>
+      <td>[atoms C/cm2/s]</td>
+      <td class="courier16">BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>(I,J)</td>
+      <td>Ocimene</td>
+      <td>[atoms C/cm2/s]</td>
+      <td class="courier16">BIOGSRCE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND47</th>
+      <td width="11%">(I,J,L,N)</td>
+      <th width="53%">DAILY (24-h) AVERAGE TRACER CONCENTRATIONS</th>
+      <td width="16%">[v/v]</td>
+      <td width="15%" class="courier16">IJ-24H-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND48</th>
+      <th width="11%">Dimension</th>
+      <th width="53%"><p>TIME SERIES AT NL = NUMBER OF LOCATIONS</p></th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td>1-N</td>
+      <td>(I,J,L)<br>
+      </td>
+      <td><p>GEOS-Chem transported tracers<br>
+          <span class="size14i">(Tracer # for GAMAP = 1 .. N_TRACERS)</span></p></td>
+      <td>[v/v]</td>
+      <td class="courier16">IJ-AVG-$</td>
+    </tr>
+    <tr>
+      <td width="5%">76</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">OH concentration<br>
+      <span class="size14i">(Tracer # for GAMAP = 2)</span></td>
+      <td width="16%">[molec/cm3]</td>
+      <td width="15%" class="courier16">TIME-SER</td>
+    </tr>
+    <tr>
+      <td width="5%">77</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> NO2 concentration<br>
+      <span class="size14i">(Tracer # for GAMAP = 19)</span></td>
+      <td width="16%">[v/v]</td>
+      <td width="15%" class="courier16">TIME-SER</td>
+    </tr>
+    <tr>
+      <td width="5%">78</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> PBL heights<br>
+      <span class="size14i">(Tracer # for GAMAP = 1)</span></td>
+      <td width="16%">[m]</td>
+      <td width="15%" class="courier16">PBLDEPTH</td>
+    </tr>
+    <tr>
+      <td width="5%">79</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> PBL heights<br>
+      <span class="size14i">(Tracer # for GAMAP = 2)</span></td>
+      <td width="16%">[levels]</td>
+      <td width="15%" class="courier16">PBLDEPTH</td>
+    </tr>
+    <tr>
+      <td width="5%">80</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Air density<br>
+      <span class="size14i">(Tracer # for GAMAP = 22)</span></td>
+      <td width="16%">[molec/cm3]</td>
+      <td width="15%" class="courier16">TIME-SER</td>
+    </tr>
+    <tr>
+      <td width="5%">81</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%"> <p>Cloud fractions<br>
+      <span class="size14i">(Tracer # for GAMAP = 19)</span></p></td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">TIME-SER</td>
+    </tr>
+    <tr>
+      <td width="5%">82</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%"> Column optical depths<br>
+      <span class="size14i">(Tracer # for GAMAP = 20)</span></td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">TIME-SER</td>
+    </tr>
+    <tr>
+      <td width="5%">83</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%"> Cloud top heights<br>
+      <span class="size14i">(Tracer # for GAMAP = 21)</span></td>
+      <td width="16%">[hPa]</td>
+      <td width="15%" class="courier16">TIME-SER</td>
+    </tr>
+    <tr>
+      <td width="5%">84</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Sulfate aerosol optical depth<br>
+      <span class="size14i">(Tracer # for GAMAP = 6)</span></td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">OD-MAP-$</td>
+    </tr>
+    <tr>
+      <td width="5%">85</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Black carbon aerosol optical
+depth<br>
+<span class="size14i">(Tracer # for GAMAP = 9)</span></td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">OD-MAP-$</td>
+    </tr>
+    <tr>
+      <td width="5%">86</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Organic carbon aerosol optical
+depth<br>
+<span class="size14i">(Tracer # for GAMAP = 12)</span></td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">OD-MAP-$</td>
+    </tr>
+    <tr>
+      <td width="5%">87</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Accumulation mode seasalt
+optical depth<br>
+<span class="size14i">(Tracer # for GAMAP = 15)</span></td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">OD-MAP-$</td>
+    </tr>
+    <tr>
+      <td width="5%">88</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Coarse mode seasalt optical
+depth<br>
+<span class="size14i">(Tracer # for GAMAP = 18)</span></td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">OD-MAP_$</td>
+    </tr>
+    <tr>
+      <td width="5%">89</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Total dust optical depth<br>
+      <span class="size14i">(Tracer # for GAMAP = 4)</span></td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">OD-MAP-$</td>
+    </tr>
+    <tr>
+      <td width="5%">90</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Total seasalt tracer
+concentration <br>
+<span class="size14i">(Tracer # for GAMAP = 24)</span></td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">TIME-SER</td>
+    </tr>
+    <tr>
+      <td>91</td>
+      <td>(I,J,L)</td>
+      <td> Pure O3 (not Ox)
+concentration <br>
+<span class="size14i">(Tracer # for GAMAP =  N_TRACERS+1)</span></td>
+      <td>[v/v]</td>
+      <td class="courier16" >IJ-AVG-$</td>
+    </tr>
+    <tr>
+      <td>92</td>
+      <td>(I,J,L)</td>
+      <td> NO concentration <br>
+      <span class="size14i">(Tracer # for GAMAP = 9)</span></td>
+      <td>[v/v]</td>
+      <td class="courier16" >TIME-SER</td>
+    </tr>
+    <tr>
+      <td>93</td>
+      <td>(I,J,L)</td>
+      <td> NOy concentration <br>
+      <span class="size14i">(Tracer # for GAMAP = 3)</span></td>
+      <td>[v/v]</td>
+      <td class="courier16" >TIME-SER</td>
+    </tr>
+    
+    <tr>
+      <td width="5%">94</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Grid box height<br>
+      <span class="size14i">(Tracer # for GAMAP = 1)</span></td>
+      <td width="16%">[m]</td>
+      <td width="15%" class="courier16">BXHGHT-$</td>
+    </tr>
+    <tr>
+      <td width="5%">95</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Relative humidity<br>
+      <span class="size14i">(Tracer # for GAMAP = 17)</span></td>
+      <td width="16%">[%]</td>
+      <td width="15%" class="courier16">TIME-SER</td>
+    </tr>
+    <tr>
+      <td width="5%">96</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%"> Sea level pressure<br>
+      <span class="size14i">(Tracer # for GAMAP = 18)</span></td>
+      <td width="16%">[hPa]</td>
+      <td width="15%" class="courier16">DAO-FLDS</td>
+    </tr>
+    <tr>
+      <td width="5%">97</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Zonal wind (a.k.a. U-wind)<br>
+      <span class="size14i">(Tracer # for GAMAP = 1)</span></td>
+      <td width="16%">[m/s]</td>
+      <td width="15%" class="courier16">DAO-3D-$</td>
+    </tr>
+    <tr>
+      <td width="5%">98</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Meridional wind (a.k.a. V-wind)<br>
+      <span class="size14i">(Tracer # for GAMAP = 2)</span></td>
+      <td width="16%">[m/s]</td>
+      <td width="15%" class="courier16">DAO-3D-$</td>
+    </tr>
+    <tr>
+      <td width="5%">99</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%"> P(surface) - PTOP<br>
+      <span class="size14i">(Tracer # for GAMAP = 1)</span></td>
+      <td width="16%">[hPa]</td>
+      <td width="15%" class="courier16">PEDGE-$</td>
+    </tr>
+    <tr>
+      <td width="5%">100</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%"> Temperature<br>
+      <span class="size14i">(Tracer # for GAMAP = 3)</span></td>
+      <td width="16%">[K]</td>
+      <td width="15%" class="courier16">DAO-3D-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p align="justify">&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND49</th>
+      <th width="11%">Dimension</th>
+      <th width="53%"><p>3-D INSTANTANEOUS TRACER TIMESERIES</p></th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><strong><em>Same tracers as ND48 plus:</em></strong></td>
+      <td>&nbsp;</td>
+      <td class="courier16" >&nbsp;</td>
+    </tr>
+    <tr>
+      <td>101</td>
+      <td>(I,J)</td>
+      <td>PARDF (diffuse PAR)<br>
+      <span class="size14i">(Tracer # for GAMAP = 20)</span></td>
+      <td>[W/m2]</td>
+      <td class="courier16" >DAO-FLDS</td>
+    </tr>
+    <tr>
+      <td>102</td>
+      <td>(I,J)</td>
+      <td><p>PARDR (direct PAR)<br>
+      <span class="size14i">(Tracer # for GAMAP = 21)</span></p></td>
+      <td>[W/m2]</td>
+      <td class="courier16" >DAO-FLDS</td>
+    </tr>
+    <tr>
+      <td>103</td>
+      <td>(I,J)</td>
+      <td> Daily LAI (leaf area index)<br>
+      <span class="size14i">(Tracer # for GAMAP = 32)</span></td>
+      <td>[cm2/cm2]</td>
+      <td class="courier16" >TIME-SER</td>
+    </tr>
+    <tr>
+      <td>104</td>
+      <td>(I,J)</td>
+      <td> Temperature @ 2m (i.e. proxy for surface air temperature)<br>
+      <span class="size14i">(Tracer # for GAMAP = 5)</span></td>
+      <td>[K]</td>
+      <td class="courier16" >DAO-FLDS</td>
+    </tr>
+    <tr>
+      <td>105</td>
+      <td>(I,J)</td>
+      <td> Isoprene emissions<br>
+      <span class="size14i">(Tracer # for GAMAP = 1)</span></td>
+      <td>[atoms C/cm2]</td>
+      <td class="courier16" >BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>106</td>
+      <td>(I,J)</td>
+      <td> <p>Monoterpene emissions<br>
+      <span class="size14i">(Tracer # for GAMAP = 4)</span></p></td>
+      <td>[atoms C/cm2]</td>
+      <td class="courier16" >BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>107</td>
+      <td>(I,J)</td>
+      <td>MBO emissions<br>
+      <span class="size14i">(Tracer # for GAMAP = 5)</span></td>
+      <td>[atoms C/cm2]</td>
+      <td class="courier16" >BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>108</td>
+      <td>(I,J)</td>
+      <td>a-Pinene emissions<br>
+      <span class="size14i">(Tracer # for GAMAP = 7)</span></td>
+      <td>[atoms C/cm2]</td>
+      <td class="courier16" >BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>109</td>
+      <td>(I,J)</td>
+      <td>b-Pinene emissions<br>
+      <span class="size14i">(Tracer # for GAMAP = 8)</span></td>
+      <td>[atoms C/cm2]</td>
+      <td class="courier16" >BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>110</td>
+      <td>(I,J)</td>
+      <td>Limonene emissions<br>
+      <span class="size14i">(Tracer # for GAMAP = 9)</span></td>
+      <td>[atoms C/cm2]</td>
+      <td class="courier16" >BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>111</td>
+      <td>(I,J)</td>
+      <td>Sabinene emissions<br>
+      <span class="size14i">(Tracer # for GAMAP = 10)</span></td>
+      <td>[atoms C/cm2]</td>
+      <td class="courier16" >BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>112</td>
+      <td>(I,J)</td>
+      <td>Myrcene emissions<br>
+      <span class="size14i">(Tracer # for GAMAP = 11)</span></td>
+      <td>[atoms C/cm2]</td>
+      <td class="courier16" >BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>113</td>
+      <td>(I,J)</td>
+      <td>3-carene emissions<br>
+      <span class="size14i">(Tracer # for GAMAP = 12)</span></td>
+      <td>[atoms C/cm2]</td>
+      <td class="courier16" >BIOGSRCE</td>
+    </tr>
+    <tr>
+      <td>114</td>
+      <td>(I,J)</td>
+      <td>Ocimene emissions<br>
+      <span class="size14i">(Tracer # for GAMAP = 13)</span></td>
+      <td>[atoms C/cm2]</td>
+      <td class="courier16" >BIOGSRCE</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table style="width: 95%;" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+  <tbody>
+    <tr>
+      <th  width="5%">ND50</th>
+      <td style="width: 11%;">(I,J,L,N)</td>
+      <th>3-D 24-h AVERAGE TRACER TIMESERIES<br>
+(Archives the same diagnostic quantities as ND48, listed above)</th>
+
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND51</th>
+      <td width="11%">(I,J,L,N)</td>
+      <th width="53%">3-D AVERAGE TRACER TIMESERIES b/w two Local Times<br>
+        (Archives the same diagnostic quantities as ND49, listed above)
+      </th>
+      <td width="16%">&nbsp;</th>
+      <td width="15%">&nbsp;</th>
+    </tr>
+    <tr>
+      <th >ND51b</th>
+      <td>(I,J,L,N)</td>
+      <th >Archives the same diagnostic quantities as ND51, but saves to HDF5 output format</th>
+      <td width="16%">&nbsp;</th>
+      <td width="15%">&nbsp;</th>    
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND52</th>
+      <td width="11%">(I,J,L)</td>
+      <th width="53%">Uptake coefficient for HO2 by aerosols</th>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">GAMMA</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table width="95%" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+  <tr>
+    <th width="5%">ND53</th>
+    <td width="11%">&nbsp;</td>
+    <th width="53%">Free diagnostic</th>
+    <td width="16%">&nbsp;</td>
+    <td width="15%">&nbsp;</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND54</th>
+      <td width="11%">(I,J,L)</td>
+      <th width="53%">FRACTION OF TIME IN THE TROPOSPHERE</th>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">TIME-TPS</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND55</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">DYNAMIC TROPOPAUSE DIAGNOSTICS</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1<br>
+      </td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Level at which the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Dynamic_tropopause" target="_blank">dynamic tropopause</a> occurs</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%" class="courier16">TR-PAUSE</td>
+    </tr>
+    <tr>
+      <td width="5%">2<br>
+      </td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Height of the dynamic tropopause</td>
+      <td width="16%">[km]</td>
+      <td width="15%" class="courier16">TR-PAUSE</td>
+    </tr>
+    <tr>
+      <td width="5%">3<br>
+      </td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Pressure of the dynamic tropopause</td>
+      <td width="16%">[mb]</td>
+      <td width="15%" class="courier16">TR-PAUSE</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table style="width: 95%;" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+  <tbody>
+    <tr>
+      <th width="5%">ND56</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">LIGHTNING FLASHES</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td>Total lightning flash rate</td>
+      <td>[flashes/min/km2]</td>
+      <td class="courier16">LFLASH-$</td>
+    </tr>
+    <tr>
+      <td width="5%">2<br>
+      </td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Intra-cloud flash rate</td>
+      <td width="16%">[flashes/min/km2]</td>
+      <td width="15%" class="courier16">LFLASH-$</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Cloud-ground flash rate</td>
+      <td width="16%">[flashes/min/km2]</td>
+      <td width="15%" class="courier16">LFLASH-$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND57</th>
+      <td width="11%">(I,J,L)</td>
+      <th width="53%">Potential temperature</th>
+      <td width="16%">[K]</td>
+      <td width="15%"><span class="courier16">THETA-$</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND58</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">CH4 emissions</th>
+      <th width="16%">Units</th>
+      <th width="15%">CH4-EMIS</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>(I,J)</td>
+      <td>CH4-TOT: Total emissions</td>
+      <td>[kg]
+      </td>
+      <td class="courier16" >CH4-EMIS</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>(I,J)</td>
+      <td>CH4-GAO: Gas &amp; Oil emissions</td>
+      <td>[kg] </td>
+      <td><span class="courier16" >CH4-EMIS</span></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>(I,J)</td>
+      <td>CH4-COL: Coal emisisons</td>
+      <td>[kg] </td>
+      <td><span class="courier16" >CH4-EMIS</span></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>(I,J)</td>
+      <td>CH4-LIV: Livestock emissions</td>
+      <td>[kg] </td>
+      <td><span class="courier16" >CH4-EMIS</span></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>(I,J)</td>
+      <td>CH4-WST: Waste emisisons</td>
+      <td>[kg] </td>
+      <td><span class="courier16" >CH4-EMIS</span></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>(I,J)</td>
+      <td>CH4-BFL: Biofuel emissions</td>
+      <td>[kg] </td>
+      <td><span class="courier16" >CH4-EMIS</span></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>(I,J)</td>
+      <td>CH4-RIC: Rice field emissions</td>
+      <td>[kg] </td>
+      <td><span class="courier16" >CH4-EMIS</span></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>(I,J)</td>
+      <td>CH4-OTA: Other anthropic emissions</td>
+      <td>[kg] </td>
+      <td><span class="courier16" >CH4-EMIS</span></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>(I,J)</td>
+      <td>CH4-BBN: Biomass burning emissions</td>
+      <td>[kg] </td>
+      <td><span class="courier16" >CH4-EMIS</span></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>(I,J)</td>
+      <td>CH4-WTL: Wetland emissions</td>
+      <td>[kg] </td>
+      <td><span class="courier16" >CH4-EMIS</span></td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>(I,J)</td>
+      <td>CH4-SAB: Soil absorption</td>
+      <td>[kg] </td>
+      <td><span class="courier16" >CH4-EMIS</span></td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>(I,J)</td>
+      <td>CH4-OTN: Other natural emissions</td>
+      <td>[kg] </td>
+      <td><span class="courier16" >CH4-EMIS</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table width="95%" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+  <tr>
+    <th width="5%">ND59</th>
+    <td width="11%">&nbsp;</td>
+    <th width="53%">Free diagnostic</th>
+    <td width="16%">&nbsp;</td>
+    <td width="15%">&nbsp;</td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+<table width="95%" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+  <tr>
+    <th width="5%">ND60</th>
+    <td width="11%">(I,J)</td>
+    <th width="53%">Wetland fraction</th>
+    <td width="16%">unitless</td>
+    <td width="15%"><span class="courier16">WET-FRAC</span></td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+<table width="95%" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+  <tbody>
+    <tr>
+      <th width="5%">ND61</th>
+      <td width="11%">&nbsp;</td>
+      <th width="53%">Free diagnostic</th>
+      <td width="16%">&nbsp;</td>
+      <td width="15%">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND62</th>
+      <td width="11%">(I,J,N)</td>
+      <th width="53%">INSTANTANEOUS INTEGRATED COLUMN DENSITY</th>
+      <td width="16%">[molec/cm2] or <br>[atoms C/cm2]</td>
+      <td width="15%" class="courier16">INST-MAP</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table width="95%" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+  <tbody>
+    <tr>
+      <th width="5%">ND63</th>
+      <td width="11%">&nbsp;</td>
+      <th width="53%">Free diagnostic</th>
+      <td width="16%">&nbsp;</td>
+      <td width="15%">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND65</th>
+      <td width="11%">(I,J,L,N)</td>
+      <th width="53%">PRODUCTION &amp; LOSS OF SELECTED CHEMICAL SPECIES<br>
+(Users can define which species/families to output in input.geos)</th>
+      <td width="16%">[molec/cm3/s]</td>
+      <td width="15%" class="courier16">PORL-L=$</td>
+    </tr>
+  </tbody>
+</table>
+
+<p align="justify">&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND66</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">GMAO (formerly DAO) 3-D met fields</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">UWND : U-winds</td>
+      <td width="16%">[m/s]</td>
+      <td width="15%" class="courier16">DAO-3D-$</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">VWND : V-winds</td>
+      <td width="16%">[m/s]</td>
+      <td width="15%"><span class="courier16">DAO-3D-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">TMPU : Temperature</td>
+      <td width="16%">[K]</td>
+      <td width="15%"><span class="courier16">DAO-3D-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">SPHU : Specific humidity</td>
+      <td width="16%">[g H20/kg air]</td>
+      <td width="15%"><span class="courier16">DAO-3D-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">CLDMAS : Convective Mass Flux</td>
+      <td width="16%">[kg/m2/s]</td>
+      <td width="15%"><span class="courier16">DAO-3D-$</span></td>
+    </tr>
+    <tr>
+      <td width="5%">6</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">DTRAIN : Detrainment Flux</td>
+      <td width="16%">[kg/m2/s]</td>
+      <td width="15%"><span class="courier16">DAO-3D-$</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th width="5%">ND67</th>
+      <th width="11%">(I,J)</th>
+      <th width="53%">GMAO (formerly DAO) 2-D met fields </th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">HFLUX: sensible heat flux from
+surface</td>
+      <td width="16%">[W/m2]</td>
+      <td width="15%" class="courier16">DAO-FLDS</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">RADSWG : solar radiation @ ground<br>
+        <span class="size14i">For <a href="appendix_4.html#A4.4">GEOS&ndash;5</a>, this is the net radiation @ ground (SWGNET)<br>
+        For <a href="appendix_4.html#A4.5">MERRA</a>, this is the incident radiation @ ground (SWGDN)</span></td>
+      <td width="16%">[W/m2]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">PREACC: total precip. @ ground<br>
+      <span class="size14i">For GEOS&ndash;5 and MERRA, this field is named PRECTOT</span></td>
+      <td width="16%">[mm/day]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">PRECON: conv. precip. @ ground<br>
+      <span class="size14i">For GEOS&ndash;5 and MERRA, this field is named PRECCON</span></td>
+      <td width="16%">[mm/day]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">TS: surface air temperature<br>
+        <span class="size14i">NOTE: For GEOS&ndash;4, GEOS&ndash;5, and MERRA, this is really the air temperature at 2 m altitude above the surface.</span></td>
+      <td width="16%">[K]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">6</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">RADSWT: solar radiation @ atm. top</td>
+      <td width="16%">[W/m2]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">7</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">USTAR : friction velocity</td>
+      <td width="16%">[m/s]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">8</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">Z0 : surface roughness height</td>
+      <td width="16%">[m]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">9</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">PBL (aka PBLM): planetary boundary layer depth</td>
+      <td width="16%">[hPa]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">10</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CLDFRC : column cloud fraction</td>
+      <td width="16%">[0 - 1]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">11</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">U10M : U-winds @ 10 meters altitude</td>
+      <td width="16%">[m/s]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">12</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">V10M : V-winds @ 10 meters altitude</td>
+      <td width="16%">[m/s]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">13</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">PS-PBL : Boundary Layer Top Pressure</td>
+      <td width="16%">[hPa]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">14</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">ALBD : Surface Albedo</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">15</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">PHIS : Geopotential Heights</td>
+      <td width="16%">[m]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">16</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">CLTOP :  Cloud Top Height</td>
+      <td width="16%">[levels]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">17</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">TROPP: Tropopause pressure (read directly from the met fields, without any further processing). For more information see our <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Dynamic_tropopause">dynamic tropopause wiki page</a>.</td>
+      <td width="16%">[hPa]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">18</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">SLP: Sea Level pressure (read directly from the met fields)</td>
+      <td width="16%">[hPa]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">19</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">TSKIN : Ground / Sea Surface Temp</td>
+      <td width="16%">[K]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">20</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">PARDF : Photosynthetically active diffuse radiation</td>
+      <td width="16%">[W/m2]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">21</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">PARDR : Photosynthetically active direct radiation</td>
+      <td width="16%">[W/m2]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+    <tr>
+      <td width="5%">22</td>
+      <td width="11%">(I,J)</td>
+      <td width="53%">GWETTOP: Top soil wetness</td>
+      <td width="16%">[unitless]</td>
+      <td width="15%"><span class="courier16">DAO-FLDS</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND68</th>
+      <th width="11%">Dimension</th>
+      <th width="53%">GRID BOX QUANTITIES</th>
+      <th width="16%">Units</th>
+      <th width="15%">Category</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">BXHEIGHT: Grid box heights</td>
+      <td width="16%">[m]</td>
+      <td width="15%" class="courier16">      BXHGHT-$</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">AD: Air mass in grid box</td>
+      <td width="16%">[kg]</td>
+      <td width="15%" class="courier16">BXHGHT-$
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">AVGW : Mixing ratio of water vapor</td>
+      <td width="16%">[v/v]</td>
+      <td width="15%" class="courier16">      BXHGHT-$</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="11%">(I,J,L)</td>
+      <td width="53%">N_AIR: Air number density</td>
+      <td width="16%">[molec air/m3]</td>
+      <td width="15%" class="courier16">BXHGHT-$
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th  width="5%">ND69</th>
+      <td width="11%">(I,J)</td>
+      <th width="53%">DXYP: grid box surface areas</th>
+      <td width="16%">[m2]</td>
+      <td width="15%" class="courier16">DXYP</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>&nbsp;</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody>
+    <tr>
+      <th >ND70</th>
+      <td width="11%">&nbsp;</td>
+      <th width="53%">TURN ON DEBUG OUTPUT STATEMENTS</th>
+      <td width="16%">&nbsp;</td>
+      <td width="15%">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size14bi" align="center"><a href="appendix_4.html">Previous</a>
+| <a href="appendix_6.html">Next</a> | <a href="appendix_5.html" target="_parent">Printable
+View (no frames)</a></p>
+
+</body>
+</html>

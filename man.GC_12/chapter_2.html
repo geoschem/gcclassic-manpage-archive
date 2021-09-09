@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS-Chem User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css">
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<div style="width:1000px; margin:auto;">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script><!-- JavaScript for breadcrumb links -->
+
+<h2 align="center">GEOS-Chem Online User's Guide</h2>
+<h5 align="center"><a href="chapter_1.html">Previous</a> | <a href="chapter_3.html">Next</a> | <a href="chapter_2.html" target="_parent">Printable View (no frames)</a></h5>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h1>2. Getting set up with GEOS-Chem</h1>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h2><a name="WhatYouNeed" id="WhatYouNeed"></a>2.1 Useful skills for working with GEOS-Chem</h2>
+
+<p>In order to use GEOS-Chem, it is helpful to have general experience with the following:</p>
+<ul>
+  <li> Programming using the <a href="http://wiki.geos-chem.org/GEOS-Chem_basics#Fortran_resources" target="_blank">Fortran programming language</a></li>
+  <li> Generating graphics using <a href="http://wiki.geos-chem.org/GEOS-Chem_basics#Visualization_packages" target="_blank">visualization software</a> (Python is gaining populatrity!)</li>
+  <li>Working with <a href="http://wiki.geos-chem.org/GEOS-Chem_basics#Unix_resources" target="_blank">a version of the Unix operating system</a> (e.g. familiarity with unix commands and file paths) </li>
+  <li> Exposure to working with and writing Unix scripts</li>
+  <li> Familiarity with <a href="http://wiki.geos-chem.org/GEOS-Chem_basics#The_Git_source_code_management_system" target="_blank">using Git for source code management</a></li>
+</ul>
+<p>For a useful list of resorces, including tutorials, please see the <a href="http://wiki.geos-chem.org/GEOS-Chem_basics" target="_blank">GEOS-Chem basics</a> and <a href="http://wiki.geos-chem.org/Version_control_with_Git" target="_blank">Version control with Git</a> wiki pages.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h2><a name="WhereCanIRun" id="WhatYouNeed"></a>2.2 Where can I run GEOS-Chem?</h2>
+
+<p>You can run <a href="http://wiki.geos-chem.org/GEOS-Chem_v11-02" target="_blank">GEOS-Chem</a> on the following types of machines: </p>
+
+<table width="95%" border="1" cellspacing="0" cellpadding="10" align="center">
+  <tbody>
+    <tr valign="top">
+      <th bgcolor="#CCCCCC" width="35%" scope="col">Architecture</th>
+      <th bgcolor="#CCCCCC" width="65%" scope="col">Description</th>
+    </tr>
+    <tr valign="top">
+      <td><p><strong>Any computer system running a version of the Unix operating system</strong></p></td>
+      <td><p>These include the Linux (Red Hat, CentOS, SuSE), Fedora, Ubuntu, etc. operating systems.
+        </p>
+        <p>Please see the following wiki pages for a list of required system software (compilers, libraries, and utilities) that you will need to install before you can run GEOS-Chem on your system.</p>
+        <ul class="disc">
+          <li><a href="http://wiki.geos-chem.org/GEOS-Chem_basics" target="_blank">GEOS-Chem basics </a></li>
+          <li><a href="http://wiki.geos-chem.org/Minimum_system_requirements_for_GEOS-Chem" target="_blank">Minimum system requirements for GEOS-Chem</a>
+            <ul class="circle">
+              <li><a href="http://wiki.geos-chem.org/Minimum_system_requirements_for_GEOS-Chem#Hardware_Recommendations" target="_blank">Hardware requirements</a></li>
+              <li><a href="http://wiki.geos-chem.org/Minimum_system_requirements_for_GEOS-Chem#Software_Requirements" target="_blank">Software requirement</a></li>
+              <li><a href="http://wiki.geos-chem.org/Minimum_system_requirements_for_GEOS-Chem#Estimated_Disk_Space" target="_blank">Disk space requirements</a></li>
+            </ul>
+          </li>
+        </ul>
+        <p>If you are not sure what hardware or software is available to you, then please check with your  IT   department. For the most up-to-date information
+          
+        regarding GEOS-Chem performance on specific platforms and operating systems, please see <a href="http://wiki.geos-chem.org/GEOS-Chem_performance" target="_blank">our<em> GEOS-Chem performance</em> wiki page</a>.</p>
+        <p><em>NOTE: While it may be possible to run GEOS-Chem on Windows (via a Unix emulator such as CygWin), we cannot officially support this platform.</em></p></td>
+    </tr>
+    <tr valign="top">
+      <td><p><strong><a href="http://cloud.geos-chem.org"> Amazon Web Services<br>
+        Elastic Compute (EC2) cloud</a></strong></td>
+      <td><p>If your institution does not have its own computer cluster, or if you are looking for some extra computational capacity not available at your institution, you might want to consider running GEOS-Chem on the Amazon EC2 cloud computing platform. This 
+        brings the following advantages:</p>
+        <ul>
+          <li>
+            <p>Your computational enviroment can be initialized with the exact same hardware and software each time you log in. This will ensure that your GEOS-Chem simulations will be 100% reproducible. </p>
+          </li>
+          <li>
+            <p>All of the input data (meteorological fields, emissions, etc.) required to run GEOS-Chem have already been uploaded to the Amazon S3 storage system. This will let you get started with GEOS-Chem right away, without having to download terabytes of data to a local disk server.</p>
+          </li>
+        </ul>
+        <p>For more information, please see our very comprehensive cloud computing tutorial (written by Jiawei Zhuang): <a href="http://cloud.geos-chem.org/" target="_blank"><strong>cloud.geos-chem.org</strong></a>.</p></td>
+
+    </tr>   
+   </tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h2><a name="DownloadThese" id="DownloadThese"></a>2.3 Additional downloads</h2>
+
+<p>The required software packages mentioned in the <a href="#WhatYouNeed">prior section</a>&mdash;the compilers, the operating system, the Git version control system, etc.&mdash;will usually come pre-installed on your system (or machine image if you are using the Amazon cloud).  The most important items that you will still need to download to your system are the following:</p>
+
+<table width="95%" border="1" cellspacing="0" cellpadding="10" align="center">
+  <tbody>
+    <tr valign="top">
+      <th bgcolor="#CCCCCC" width="35%" scope="col">Item</th>
+      <th bgcolor="#CCCCCC" width="65%" scope="col">Description</th>
+    </tr>
+    <tr valign="top">
+      <td><p><strong><a href="chapter_3.html">A NetCDF Library</a></strong></p></td>
+      <td><p>All of the data files read by GEOS-Chem   are now in <a href="http://wiki.geos-chem.org/Preparing_data_files_for_use_with_HEMCO%23The_COARDS_netCDF_standard" target="_blank">COARDS-compliant netCDF format</a>. As part of the High-Performance Computing (HPC) GEOS-Chem project, we are in the process of converting the remaining binary data files to netCDF format. This will facilitate running GEOS-Chem in HPC environments, a requirement for several objectives such as interfacing GEOS-Chem with the NASA GEOS-5 GCM. </p>
+        <ul>
+          <li>
+            <p><strong>If you are using the Amazon EC2 cloud</strong>, then a netCDF library will be included in the machine image (or software container) that you use to initialize your computational environment. (If you are an advanced user, you can also install  netCDF and other libraries on the cloud by yourself.)   See our tutorial <strong><a href="http://cloud.geos-chem.org" target="_blank">cloud.geos-chem.org</a></strong> for more information.</p>
+          </li>
+          <li>
+            <p><strong>If you are using your institution's computer system</strong>, then your IT staff may have already pre-built one or more versions of the netCDF library that you can load into your Unix environment. If not, then you can build a netCDF library with our installer package. </p>
+          </li>
+        </ul>
+        <p>For more information, please see <a href="chapter_3.html">Chapter 3</a>.</p></td>
+    </tr>
+    <tr valign="top">
+      <td><p><strong><a href="chapter_4.html">GEOS-Chem Shared Data Directories</a></strong> (including the sample restart files)</p></td>
+      <td><p>The GEOS-Chem shared data directories contain many large files (e.g. emissions, metorological fields) that cannot fit into your own personal disk space. We recommend that you (or your IT staff) download the shared data directories to a common disk space where all GEOS-Chem users in your group or institution can access them. </p>
+        <ul>
+          <li>
+            <p><strong>If you are using the Amazon EC2 cloud</strong>, then a copy of the shared data directories has been synced to the  Amazon S3 storage system. For more information about how to access the data, please see our tutorial <a href="http://cloud.geos-chem.org" target="_blank"><strong>cloud.geos-chem.org</strong></a>.</p>
+          </li>
+          <li>
+            <p><strong>If you are using your institution's computer system:</strong> You will only need to download the shared data directories from disk once from scratch. As new met fields or emissions data are added, you can download the new folders and files individually. (NOTE: If several people at your institution are alreasy using GEOS-Chem, then chances are the shared data directories have already been downloaded to a location on your disk storage server. Check with your IT staff.)</p>
+          </li>
+        </ul>
+        <p>For more information, please see <a href="chapter_4.html">Chapter 4</a>.</p></td>
+    </tr>
+    <tr valign="top">
+      <td><p><strong><a href="chapter_5.html">GEOS-Chem Source Code Directory</a></strong></p></td>
+      <td><p>The GEOS-Chem source code is available for download to your personal disk space using the Git source code management system.</p>
+        <p>For more information, please see <a href="chapter_5.html">Chapter 5</a>. </p></td>
+    </tr>
+    <tr valign="top">
+      <td><p><strong><a href="chapter_6.html">GEOS-Chem Run Directories</a></strong></p></td>
+      <td><p>You must create a run directory for each combination of meteorology field , grid resolution, and simulation type that you use. Run directories are created with our GEOS-Chem Unit Tester and may be stored locally in your personal disk space.</p>
+        <p>For more information, please see <a href="chapter_6.html">Chapter 6</a>.</p></td>
+    </tr>
+     
+   </tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h5 align="center"><a href="chapter_1.html">Previous</a> | <a href="chapter_3.html">Next</a> | <a href="chapter_2.html" target="_parent">Printable View (no frames)</a></h5>
+
+</div>
+</body>
+</html>

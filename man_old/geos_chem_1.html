@@ -1,0 +1,184 @@
+<HTML>
+<HEAD>
+<TITLE>GEOS&#150;CHEM User's Guide</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="FF0000" HLINK="#FFFF00">
+<CENTER>
+  <p><font face="Arial, Helvetica, sans-serif" size="2"><B>GEOS&#150;CHEM v6&#150;02&#150;05 
+    User's Guide<br>Contact: 
+    Bob Yantosca (<A HREF="mailto:bmy@io.harvard.edu">bmy@io.harvard.edu</A>)</b></font></p>
+  </CENTER>
+
+<P><HR>
+<P> <A NAME="1"></a><font size="+1"><b><font face="Arial, Helvetica, sans-serif">1. 
+  Introduction</font></b></font>
+<P>
+<HR>
+<P> <A NAME="1.1"></a><b><font face="Arial, Helvetica, sans-serif" size="2">1.1 
+  Brief overview of GEOS&#150;CHEM</font></b>
+<CENTER>
+  <IMG BORDER=0 SRC="../../../img/geos_chem_nation.png" WIDTH=650 HEIGHT=350 ALT="GEOS&#150;CHEM Nation"> 
+</CENTER>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">The GEOS&#150;CHEM 
+  model is a global three-dimensional model of tropospheric chemistry driven by 
+  assimilated meteorological observations from the Goddard Earth Observing System 
+  (GEOS) of the <A HREF="http://gmao.gsfc.nasa.gov" TARGET="_blank">NASA Global 
+  Modeling Assimilation Office</A>. GEOS&#150;CHEM is being developed by <a href="../../../documentation/geos_people.html" target="_blank">personnel 
+  at Harvard University and other institutions in the United States and Europe</a>.</font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> GEOS&#150;CHEM 
+  began as a merging of Mian Chin's GEOS&#150;CTM code with Harvard's emissions, 
+  dry deposition, and chemistry routines from the old GISS-II 9-layer model. Over 
+  the years, several improvements have been added to GEOS&#150;CHEM. The model 
+  now uses detailed inventories for fossil fuel, biomass burning, biofuel burning, 
+  and biogenic emissions. GEOS&#150;CHEM includes state-of-the-art transport (TPCORE) 
+  and photolysis (FAST-J) routines, as well as the SMVGEAR chemistry solver package. 
+  GEOS&#150;CHEM has also been parallelized using the <a href="geos_chem_3.html#3.5">OpenMP</a> 
+  compiler directives, and it scales well when running across multiple CPU's. 
+  </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> GEOS&#150;CHEM 
+  has also kept pace with changes in the meteorological data products being produced 
+  by DAO. GEOS&#150;CHEM can now be used with the DAO's <A HREF="geos_chem_a4.html#A4.1">GEOS&#150;1</A>, 
+  <A HREF="geos_chem_a4.html#A4.2">GEOS&#150;STRAT</A>, <A HREF="geos_chem_a4.html#A4.3">GEOS&#150;3</A>, 
+  and <a href="geos_chem_a4.html#A4.4">GEOS-4</a> data products at either <A HREF="geos_chem_a2.html#A2.2">2 
+  x 2.5</A> or <A HREF="geos_chem_a2.html#A2.1">4 x 5</A> global resolution. GEOS&#150;CHEM 
+  can also be run at 1 x 1 resolution in <a href="geos_chem_a2.html">nested grids</a> 
+  for both China and North America. </font> 
+<P>
+<HR>
+<P> <A NAME="1.2"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>1.2 
+  What's new in GEOS&#150;CHEM v6&#150;02&#150;05</b></font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Here is a 
+  list of the most important improvements to GEOS&#150;CHEM since version v6&#150;01&#150;05 
+  (08 Apr 2003):</font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"><b>1.2.1. 
+  Addition of extra aerosol tracers</b></font> 
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;CHEM 
+  v6&#150;02&#150;05 now carries the following additional aerosol tracers for 
+  the fully-coupled NOx&#150;Ox&#150;Hydrocarbon&#150;aerosol simulation and the 
+  offline aerosol simulation:</font>
+<ul>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Black carbon (both hydrophilic 
+    and hydrophobic)</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Organic Carbon (both 
+    hydrophilic and hydrophobic)</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Desert Dust (Effective 
+    radii = 0.7, 1.4, 2.4, and 4.5 microns)</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Accumulation mode sea 
+    salt (Effective radii = 0.1 &#150; 2.5 microns)</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Coarse mode sea salt 
+    (Effective radii = 2.5 &#150; 10 microns)</font></li>
+</ul>
+<p><font face="Arial, Helvetica, sans-serif" size="2">These aerosol tracers are 
+  used to compute </font></p>
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"><b>1.2.2. 
+  On-line mobilization of desert dust</b></font>
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;CHEM 
+  v6&#150;02&#150;05 now includes the DEAD dust mobilization package (by C. Zender 
+  et al), as well as the dust mobilization package from the GOCART model (by P. 
+  Ginoux et al). The user may select either package at runtime via a logical switch. 
+  </font>
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"><b>1.2.2. 
+  Higher degree of parallelization than in previous versions</b></font>
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">A higher 
+  fraction of the code is parallelized In GEOS&#150;CHEM v6&#150;02&#150;05 than 
+  in previous versions. The routines which compute lightning NOx emissions, stratospheric 
+  boundary conditions, and certain diagnostics have now been parallelized with 
+  OpenMP directives.</font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"><b>1.2.4. 
+  SO2 emissions from ship exhaust</b></font> 
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">SO2 emissions 
+  from ship exhaust are now added to the total anthropogenic SO2 emissions. This 
+  results in an extra 4.24 Tg S per year being emitted into the atmosphere. </font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"><b>1.2.5. 
+  Compatability with GEOS&#150;4 meteorological fields</b></font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;CHEM 
+  v6&#150;02&#150;05 can be used with the GEOS&#150;4 meteorological data fields 
+  from NASA's <a href="http://gmao.gsfc.nasa.gov" target="_blank">Global Modeling 
+  and Assimilation Office</a> (GMAO). New transport and convection routines have 
+  been installed in order to accomodate the GEOS&#150;4 fields. The LLNL pressure 
+  fixer has also been implemented in order to ensure that GEOS&#150;CHEM conserves 
+  global air and tracer mass when being driven by GEOS&#150;4 winds. For a complete 
+  list of the GEOS&#150;4 meteorological fields that are used, please see <a href="geos_chem_a4.html#A4.4">Appendix 
+  4</a>.</font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"><b>1.2.6. 
+  Now can read compressed or uncompressed met field files</b></font> 
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;CHEM 
+  v6&#150;02&#150;05 now gives users the option of reading zipped meterological 
+  data files, or to read unzipped meteorological data files directly from disk. 
+  Reading unzipped meteorological data files is more efficient, and eliminates 
+  excess clock cycles. If you have the disk space available, we recommend storing 
+  your meteorological data unzipped.</font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"><b>1.2.6. 
+  Now supports Intel IFC and EFC Fortran compilers</b></font> 
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> GEOS&#150;CHEM 
+  v6&#150;02&#150;05 can be compiled on Linux boxes using the 32-bit IFC Intel 
+  compiler, or on SGI Itanium machines using the 64-bit Intel EFC compiler. If 
+  you have been having problems with the Portland Group F90 compiler, then we 
+  recommend switching to the IFC compiler. IFC seems to be a better compiler and 
+  it implements the parallel <a href="geos_chem_3.html#3.5">OpenMP</a> directives 
+  extremely well.<br>
+  </font><font face="Arial, Helvetica, sans-serif" size="2"><br>
+  </font> 
+<HR>
+<P> <A NAME="1.3"></a><FONT FACE="Arial,Helvetica" SIZE=-1><font face="Arial, Helvetica, sans-serif"><b>1.3 
+  Requirements for GEOS&#150;CHEM v6&#150;02&#150;05</b></font></font> 
+<P><font face="Arial, Helvetica, sans-serif" size="2">In order to run GEOS&#150;CHEM 
+  you will need to have access to a platform which has a version of Fortran&#150;90 
+  that supports the <A HREF="geos_chem_3.html#3.5">OpenMP parallel processor directives</A>. 
+  Compliant platforms and compilers include: </font> 
+<UL>
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">SGI Origins with SGI&#150;MIPS 
+    Fortran&#150;90 Compiler</font>
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">SGI Itanium machines 
+    with 64-bit Intel Fortran Compiler (EFC)</font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">HP/Compaq Alpha machines 
+    with DEC/Compaq Fortran&#150;90 </font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">Linux boxes with 32-bit 
+    Intel Fortran Compiler (IFC)</font>
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">Linux boxes with Portland 
+    Group Inc. Fortran 90 Compiler (PGF90)</font>
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">Sun/Sparc machines with 
+    SUN/Forte compiler</font>
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">IBM-AIX machines</font>
+</UL>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Fortran&#150;90 
+  is an extension of Fortran&#150;77, which for many years has been the standard programming 
+  language for scientific computing. GEOS&#150;CHEM takes advantage of several 
+  powerful features of Fortran&#150;90, including dynamic memory allocation, modular 
+  program design, and array operation syntax. Please view our<a href="../../../documentation/manual_v6/geos_chem_style.html" target="_blank"> 
+  GEOS&#150;CHEM Style Guide</a> for more tips on how to write effective Fortran&#150;90 
+  code.</font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+  When setting up GEOS&#150;CHEM on your system, you will need to make sure that you 
+  have installed the following components: </font> 
+<OL>
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">A GEOS&#150;CHEM 
+    source code directory </font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">One or more 
+    run directories containing user-modifiable input files </font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">A data directory 
+    containing files to be shared across multiple users </font> 
+</OL>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Installing 
+  the source code directory will be the topic of <A HREF="geos_chem_2.html">Section 
+  2: Installation and Compilation</A>. F90 coding practices and parallelization 
+  are the subject of <A HREF="geos_chem_3.html">Section 3: Coding: Practice and 
+  Style</A>. The many shared data files contained in the data directory will be 
+  the focus of <A HREF="geos_chem_4.html">Section 4: Shared Data Directories</A>. 
+  Setting up the files in your own personal run directory is discussed in <A HREF="geos_chem_5.html">Section 
+  5: Run Directories</A>. Running and debugging the GEOS&#150;CHEM code is the 
+  topic of <A HREF="geos_chem_5.html">Section 6: Running GEOS&#150;CHEM</A>. </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> You may 
+  download gzipped TAR files containing the GEOS&#150;CHEM source code, data directories, 
+  and run directories (at both 2 x 2.5 and 4 x 5 resolution) from the <A HREF="../../../documentation/geos_gatekeeper.html">GEOS&#150;CHEM 
+  Source Code and Data Files</A> page. </font> 
+<P>
+<HR>
+<P> 
+  <CENTER>
+    <A HREF="geos_chem_0.html"><font face="Arial, Helvetica, sans-serif" size="2">[Return 
+    to GEOS&#150;CHEM Home]</font></A><font face="Arial, Helvetica, sans-serif" size="2"> 
+    | <A HREF="geos_chem_2.html">[Go on to Chapter 2]</A> </font> 
+  </CENTER> 
+</BODY>
+</HTML>

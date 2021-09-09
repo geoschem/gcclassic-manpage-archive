@@ -1,0 +1,536 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS&#8211;Chem Online User's Guide</title>
+  <link rel="stylesheet" type="text/css" href="../../../gc.css"><!-- Cascading style sheet for font declarations --></head><body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&#8211;Chem
+v8&#8211;03&#8211;01 Online User's Guide</p>
+
+<p class="size14bi" align="center"><a href="chapter_0.html">Previous</a>
+| <a href="chapter_2.html">Next</a> | <a href="chapter_1.html" target="_parent">Printable View
+(no frames)</a></p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size24bi" align="justify"><a name="1"></a>1.
+Introduction</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi" align="justify"><a name="1.1"></a>1.1
+Brief overview of GEOS&#8211;Chem</p>
+
+<p align="justify">The GEOS&#8211;Chem model is a global
+three-dimensional model of tropospheric chemistry driven by assimilated
+meteorological observations from the Goddard Earth Observing System
+(GEOS) of the <a href="http://gmao.gsfc.nasa.gov" target="_blank">NASA
+Global Modeling Assimilation Office</a>.
+GEOS&#8211;Chem is being developed by <a href="../../../geos_people.html" target="_blank">personnel at Harvard University and other
+institutions in the Americas, Europe, and Asia</a>.</p>
+
+<p align="center"><img src="../../../img/gc_users_na.png"></p>
+
+<p align="center"><img src="../../../img/gc_users_eur.png"></p>
+
+<p align="center"><img src="../../../img/gc_users_asia.png"></p>
+
+<p align="justify">GEOS&#8211;Chem began as a merging of Mian
+Chin's GEOS&#8211;CTM code with the emissions, dry deposition, and chemistry
+routines from the old Harvard&#8211;GISS 9-layer model. Over the years,
+several improvements have been added to GEOS&#8211;Chem. The model now uses
+detailed inventories for fossil fuel, biomass burning, biofuel burning,
+biogenic, and aerosol emissions. GEOS&#8211;Chem includes state-of-the-art
+transport (TPCORE) and photolysis (FAST&#8211;J) routines, as well as the
+SMVGEAR II chemistry solver package. GEOS&#8211;Chem has also been
+parallelized using the <a href="chapter_7.html#7.1.5">OpenMP</a>
+compiler directives, and it <a target="_blank" href="http://wiki.seas.harvard.edu/geos-chem/index.php/Intel_Fortran_Compiler">scales well</a> when running across multiple
+CPU's. We are also investigating how to port GEOS&#8211;Chem to distributed
+memory machines using the MPI parallelization directives. </p>
+
+<p align="justify">GEOS&#8211;Chem has also kept pace with
+changes in the meteorological data products being produced by GMAO.
+GEOS&#8211;Chem can now be used with the GMAO's <a href="appendix_4.html#A4.2">GEOS&#8211;3</a>, <a href="appendix_4.html#A4.3">GEOS&#8211;4</a>,
+and <a href="appendix_4.html#A4.4">GEOS&#8211;5</a> data products
+at either <a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>
+or <a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>
+global resolution. GEOS&#8211;Chem can also be run at <a href="appendix_2.html#A2.5">1&deg; x 1&deg;</a> resolution in nested grids for
+both China and North America, and&nbsp; <a href="appendix_2.html#A2.6">0.5&deg;
+x 0.667&deg;</a>
+resolution in nested grid for&nbsp;China.</p>
+
+<p align="justify">In addition, GEOS&#8211;Chem can now be
+driven with meteorological data from the GISS&#8211;II GCM (<a href="appendix_3.html#A3.2">23 layers</a>, <a href="appendix_2.html#A2.1">4&deg; x 5&deg;</a> horizontal
+grid) to perform simulations for the <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gcap" target="_blank">GCAP project</a>.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi" align="justify">
+<a name="1.2"></a>1.2 What's new in GEOS-Chem v8-03-01</p>
+<p class="size18bi" align="justify">1.2.1 Caltech isoprene chemistry</p>
+<p align="justify">A <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/New_isoprene_scheme" target="_blank">new isoprene chemistry</a> was
+introduced as an option to solve  an over-estimation in isoprene in
+previous GEOS-Chem versions</p>
+<p class="size18bi" align="justify">1.2.2 LINOZ stratospheric ozone
+chemistry</p>
+<p align="justify">Implementation of <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Linoz_stratospheric_ozone_chemistry" target="_blank">LINOZ</a> which
+provides a linear chemistry for ozone in the stratosphere.</p>
+<p class="size18bi" align="justify">1.2.3 ISORROPIA II</p>
+<p align="justify"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/ISORROPIA_II" target="_blank">ISORROPIA II</a> is now used to
+calculate the aerosol thermodynamic equilibrium instead of RPMARES</p>
+<p class="size18bi" align="justify">1.2.4 Updated aerosol optical
+properties for FAST-J photolysis</p>
+<p align="justify">The <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Aerosols_overview:_projects_and_developments" target="_blank">GEOS&#8211;Chem Aerosols Working Group</a> has created an updated list of <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Aerosol_optical_properties" target="_blank">aerosol optical properties</a> (i.e. quantum yields, cross-sections) for input into the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Aerosol_optical_properties" target="_blank">FAST&#8211;J photolysis mechanism</a>.
+</p>
+<p class="size18bi" align="justify">1.2.5 Option to use chemical solver
+from KPP software</p>
+
+<p align="justify">The <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/KPP_solvers_FAQ" target="_blank">KPP chemical solver</a> now contains 3 mechanisms to choose from: </p>
+
+<ul>
+<li>Standard simulation without <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Secondary_organic_aerosols" target="_blank">secondary organic aerosols</a></li><li>Standard simulation with secondary organic aerosols</li><li>Simulation with <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/New_isoprene_scheme" target="_blank">new isoprene chemistry scheme</a></li>
+</ul>
+<p class="size18bi" align="justify">1.2.6 Emissions modifications</p>
+<ul>
+  <li>Extension of <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Scale_factors_for_anthropogenic_emissions" target="_blank">annual anthropogenic
+scale factor</a>s to 2006</li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Anthropogenic_emissions#EMEP" target="_blank">EMEP emissions</a> extended to 2007 and Seasonality extended to SOx, CO, and NH3</li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Carbonaceous_aerosols#EC_and_OC_emissions" target="_blank">BOND inventory for BC and OC</a> with monthly variations</li>
+  <li>Implementation of<a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MEGAN_biogenic_emissions#MEGAN_in_GEOS-Chem_v8-02-04_and_later_versions" target="_blank"> MEGAN v2.1 biogenic emissions</a></li>
+  <li>Implementation of <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Ship_emissions#ICOADS" target="_blank">ICOADS ship emissions</a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Volcanic_SO2_emissions_from_Aerocom" target="_blank">Volcanic SO2 emissions</a> from AeroCom</li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/EPA/NEI05_North_American_emissions" target="_blank">EPA/NEI 2005 inventory </a>for North America  </li>
+</ul><p class="size18bi" align="justify">1.2.7 New non-local planetary
+boundary layer scheme</p>
+<p align="justify">Jintai Lin has implemented a <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Boundary_layer_mixing#VDIFF" target="_blank">new boundary layer mixing scheme</a> option into GEOS&#8211;Chem. It is a non-local scheme formulated by <em>Holtslag and Boville </em> (1993).</p>
+<p class="size18bi" align="justify">1.2.8 Modifications to SOA formation</p>
+
+<p align="justify">Several modifications were applied to the<a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Secondary_organic_aerosols" target="_blank"> secondary organic aerosol</a> scheme:</p>
+
+<ul>
+<li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Secondary_organic_aerosols#Modification_to_SOA_formulation" target="_blank">SOA no longer  depends  on inorganic concentrations</a></li><li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Secondary_organic_aerosols#SOA_formation_from_aromatics" target="_blank">SOA formation now includes formation by aromatics</a></li>
+<li>We now use the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Secondary_organic_aerosols#Speciated_biogenic_emissions_from_MEGAN" target="_blank">speciated emissions from MEGAN v2.1</a></li>
+</ul>
+<p class="size18bi" align="justify">1.2.9 Updates for sea salt aerosols</p>
+<p align="justify">Lyatt Jaeglé and Becky Alexander have <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Sea_salt_aerosols#Updates_to_sea_salt_emissions_algorithm" target="_blank">updated the sea salt emissions scheme</a> in GEOS&#8211;Chem.</p>
+<p class="size18bi" align="justify">1.2.10 TOMAS aerosol microphysics
+option</p>
+
+<p align="justify">The Carnegie-Mellon group has interfaced the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/TOMAS_aerosol_microphysics" target="_blank">TOMAS aerosol microphysics scheme</a> into GEOS&#8211;Chem.</p>
+<p class="size18bi" align="justify">1.2.11 Global 1 x 1.25 simulation
+capability</p>
+
+<p align="justify">Lok Lamsal from Dalhousie University has added the capability to run  GEOS&#8211;Chem at the GEOS&#8211;4 native resolution of 1&deg; x 1.25&deg;.</p>
+<p class="size18bi" align="justify">1.2.12 Modifications to / Creation
+of the GEOS-5 0.5 x 0.667 N. American and European Nested Grid
+simulation</p>
+
+<p align="justify">Several modifications were made to <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_nested_grid_simulations" target="_blank">GEOS&#8211;Chem's nested grid simulation capability</a>, including:</p>
+
+<ul>
+<li>Standardization of North America 0.5&deg; x 0.667&deg; nested grid (GEOS&#8211;5) </li><li>Introduction of Europe 0.5&deg; x 0.667&deg; nested grid (GEOS&#8211;5) </li><li>Ability to keep boundary conditions for different grids in different directories</li><li>HDF5 output has been added to selected timeseries diagnostics. </li>
+</ul>
+<p class="size18bi" align="justify">1.2.13 Updated CH4 simulation</p>
+<p align="justify">Christopher Pickett-Heaps and Kevin Wecht have updated the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/CH4_simulation" target="_blank">CH4 simulation in GEOS&#8211;Chem</a>, following earlier work by Jerome Drevet. 
+</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi" align="justify"><a name="1.3"></a>1.3
+What's new in GEOS-Chem v8-02-01</p>
+
+<p class="size20bi" align="justify"><span class="size18bi">1.3.1
+Updated chemistry</span></p>
+
+<p align="justify"><span class="size18bi"></span>Chemical
+relations and relation rates are updated&nbsp;mainly from JPL06 and
+IUPAC06. Photolysis quantum yields are updated from FAST-JX version 6.4
+data. See <a href="../../../wiki_docs/chemistry/chemistry_updates_v4.pdf">HERE</a>
+for detailed changes compared to v8-01-04. The pressure-dependency
+sheme for acetone photolysis is now updated to FAST-JX version 6.4.</p>
+
+<p align="justify">The format of <span class="courier16">jv_spec.dat</span>
+file has
+slightly changed. The new format is explained in <a href="chapter_5.html">Chapter 5: GEOS-Chem run directories.</a></p>
+
+<p align="justify"><span class="size18bi">1.3.2
+Updated dust scattering</span></p>
+
+<p align="justify"><span class="size18bi">1.3.3
+Updated emissions</span></p>
+
+<p align="justify">Several emission inventories are
+updated or newly implemented. All details concerning emissions are in <a href="chapter_4.html">Chapter 4: GEOS-Chem data directories</a>.</p>
+
+<p align="justify"><span class="size18bi">1.3.4 Improved stratospheric
+exchange</span></p>
+
+GEOS-Chem
+uses now the transport routine and pressure fixer from GMI. This
+ensures to have a reasonable troposphere-stratosphere exchange.
+<p class="size20bi" align="justify"><img style="width: 100%; height: 2px;" alt="" src="../../../img/black_rule.jpg"></p>
+
+<p class="size20bi" align="justify"><a name="1.4"></a>1.4
+What's new
+in GEOS&#8211;Chem v8&#8211;01&#8211;01</p>
+
+<p align="justify">Here is a list of the most important
+improvements to GEOS&#8211;Chem since version v7&#8211;03&#8211;06 (08 Nov 2005). Please
+also be sure to <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Outstanding_issues_yet_to_be_resolved" target="_blank">check the GEOS&#8211;Chem wiki for a list of
+outstanding issues</a>.</p>
+
+<p class="size18bi" align="justify">1.4.1
+Compatibility with GEOS&#8211;5 meteorological fields</p>
+
+<p align="justify">GEOS&#8211;Chem v8&#8211;01&#8211;01 is now fully
+compatible with the GMAO GEOS&#8211;5 operational data product (e.g.
+GEOS-5.0.1 and GEOS-5.1.0). You must upgrade to GEOS&#8211;Chem v8&#8211;01&#8211;01 if
+you wish to drive GEOS&#8211;Chem with the GEOS&#8211;5 meteorology.</p>
+
+<p align="justify">Please see the GEOS&#8211;Chem wiki for a
+more complete account of some of the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-5_issues" target="_blank">issues that were encountered during GEOS&#8211;5
+implementation</a>.</p>
+
+<p align="justify"><span class="size18bi">1.4.2
+GEOS&#8211;1 and GEOS&#8211;STRAT meteorology is no longer supported </span></p>
+
+<p align="justify"><a href="../../../geos_sim.html" target="_blank">With
+the availability of several years of
+GMAO's GEOS&#8211;4 and GEOS&#8211;5 meteorological data products</a>, it is
+no longer necessary to use the older GEOS&#8211;1 and GEOS&#8211;STRAT products.
+Therefore, GEOS&#8211;Chem v8&#8211;01&#8211;01 no longer supports these data sets.</p>
+
+<p class="size16i" align="justify">NOTE: GMAO's <a href="appendix_4.html#A4.2">GEOS&#8211;3</a> meteorological
+data product is still supported in GEOS&#8211;Chem v8&#8211;01&#8211;01, and will
+continue to be supported indefinitely. </p>
+
+<p class="size18bi" align="justify">1.4.3. Dynamic
+tropopause</p>
+
+<p align="justify">GEOS&#8211;Chem now has the capability to
+perform chemistry with SMVGEAR up to the location of the actual
+tropopause, as diagnosed by the tropopause pressure (TROPP)
+meteorological field. This results in a more accurate representation of
+the tropopause, and causes more grid boxes in the tropics to be sent to
+the SMVGEAR solver. In prior versions, SMVGEAR chemistry was only done
+up to the location of the annual mean tropopause. </p>
+
+<p class="size18bi" align="justify">1.4.4. Updated
+lightning with OTD/LIS local redistribution </p>
+
+<p align="justify">The <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/lightning_NOx_emissions" target="_blank">lightning NOx emissions algorithm</a>
+in GEOS&#8211;Chem v8&#8211;01&#8211;01 has been substantially rewritten to try to better
+match the observational distribution of lightning flashes. The location
+of lightning flashes now follows the patterns observed by the OTD/LIS
+satellite instruments. </p>
+
+<p class="size18bi" align="justify">1.4.5 Updated
+global and regional anthropogenic emissions</p>
+
+<p align="justify">In GEOS&#8211;Chem v8&#8211;01&#8211;01, the default
+GEIA/Piccot anthropogenic emissions can now be overwritten with a
+combination of global and regional anthropogenic emissions inventories,
+including:</p>
+
+<ul>
+
+  <li>EDGAR (global) </li>
+  <li>EMEP (Europe)</li>
+  <li> BRAVO (Mexico) </li>
+  <li>Updated EPA-NEI99 (USA)</li>
+  <li>David Streets (SE Asia)</li>
+</ul>
+
+<p align="justify">Click <a href="http://www.as.harvard.edu/ctm/geos/word_pdf_docs/INVENTORY_GC_public.pdf">HERE</a>
+to view a table with more detailed information about each of these
+inventories. </p>
+
+<p class="size16i" align="justify">NOTE: In a
+future version of GEOS&#8211;Chem, we will be introducing an improved
+algorithm to scale fossil fuel emissions from the baseline year of 2000
+to the present year (cf. Aaron van Donkelaar). </p>
+
+<p class="size18bi" align="justify">1.4.6 GFED2
+biomass burning emissions </p>
+
+<p align="justify">In GEOS&#8211;Chem v8&#8211;01&#8211;01, you may select
+either the default Duncan et al (2001) biomass burning emissions, or
+the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Biomass_burning_emissions#GFED2" target="_blank">GFED2 biomass burning emissions</a>. </p>
+
+<p align="justify"><em>NOTE: At present only the
+GFED2 monthly mean emissions have been implemented. The <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Biomass_burning_emissions#04-Apr-2008" target="_blank">8-day-averaged GFED2 emissions</a>
+will be introduced into a future version of GEOS&#8211;Chem (cf. Ray Nassar).
+</em></p>
+
+<p class="size18bi" align="justify">1.4.7 Safer
+floating-point operations </p>
+
+<p align="justify">GEOS&#8211;Chem v8&#8211;01&#8211;01 includes some extra <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Floating_point_math_issues" target="_blank">floating point error traps</a> (e.g.
+safe division, avoiding division by zero, etc.) in order to prevent NaN
+and infinity values from propagating throughout the code. Also, a <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Bugs_and_fixes#02_Nov_2007" target="_blank">bug fix was implemented into SMVGEAR</a>
+in order to better screen out negative values. </p>
+
+<p align="justify"><span class="size18bi">1.4.8
+Aerosol Thermodynamic Equilibrium with RPMARES</span></p>
+
+<p align="justify">It was recently discovered that <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Aerosol_thermodynamical_equilibrium#01-Apr-2008" target="_blank">the version of ISORROPIA that ships with
+GEOS&#8211;Chem can give bad values</a> when computing the aerosol
+thermodynamical equilibrium for grid boxes where relative humidity is
+below 30%. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Aerosol_thermodynamical_equilibrium#11-Apr-2008" target="_blank">Therefore, until further notice we have
+reverted back to the RPMARES code</a> for computing aerosol
+thermodynamical equilibrium until further notice.</p>
+
+<p class="size18bi" align="justify">1.4.9
+Compatibility with SunStudio 11/12 and Intel Fortran Compiler 10</p>
+
+<p align="justify">GEOS&#8211;Chem v8&#8211;01&#8211;01 now ships with
+Makefiles for compiling with the newest Sun or Intel Fortran compilers.
+Options for using the TotalView Debugger are also now included in the
+makefiles. </p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi" align="justify"><a name="1.5"></a>1.5
+What's new in GEOS&#8211;Chem v7&#8211;03&#8211;06</p>
+
+<p align="justify">NOTE: This section described the new
+features in v7&#8211;03&#8211;06, which was the last public release of GEOS&#8211;Chem.
+We shall keep this section here for your reference. </p>
+
+<p class="size18bi" align="justify">1.5.1.
+Compatibility with Intel Fortran Compiler version 9.0</p>
+
+<p align="justify">GEOS&#8211;Chem v7&#8211;03&#8211;06 is now compatible
+with the Intel Fortran Compiler version 9.0. This compiler (named
+"ifort") optimizes much better than previous compiler versions and is
+much more stable. When GEOS&#8211;Chem is compiled with Intel Fortran
+Compiler v9, a <a href="../../../geos_benchmark.html" target="_blank">1-month,
+4x5, full-chemistry simulation</a>
+now finishes <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_supported_platforms_and_compilers" target="_blank">1/2 hour faster</a> than if the code
+were compiled with previous Intel Fortran compiler versions. </p>
+
+<p class="size18bi" align="justify">1.5.2. EMEP
+anthropogenic emissions over Europe </p>
+
+<p align="justify">GEOS&#8211;Chem v7&#8211;03&#8211;06 now allows you to
+"overwrite" the existing anthropogenic emissions over Europe with the
+EMEP anthropogenic emissions for the following tracers: NOx, CO, ALK4,
+MEK, ALD2, PRPE, and C2H6. For more information about the EMEP
+emissions, click <a href="../../../word_pdf_docs/emep.pdf" target="_blank">HERE</a>.</p>
+
+<p class="size18bi" align="justify">1.5.3. MEGAN
+biogenic emissions </p>
+
+<p align="justify">GEOS&#8211;Chem v7&#8211;03&#8211;06 now allows you to
+select MEGAN biogenic emissions or for the following species: Isoprene,
+Acetone, PRPE (&gt;= C3 Alkenes), Monoterpenes, and Methyl Butenol.
+You may also select the default GEIA biogenic emissions. However, GEIA
+biogenic emissions are now considered "deprecated" and will be removed
+from GEOS&#8211;Chem at a future date. For the time being, you may select
+either MEGAN or GEIA biogenic emissions.</p>
+
+<p class="size18bi" align="justify">1.5.4. Ability
+to regrid emissions data from 1x1 grid on the fly</p>
+
+<p align="justify">GEOS&#8211;Chem v7&#8211;03&#8211;06 now contains code to
+regrid emissions (or other) data which is on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg; grid</a> (360
+longitudes x 181 latitudes) to the current model resolution on-the-fly.
+This will eliminate the need for offline regridding of emissions data
+with IDL code. At present, the MEGAN emissions, the EMEP emisisions,
+and AVHRR LAI data (for MEGAN) are stored on the GEOS 1&deg; x 1&deg; grid.
+Other types of 1&deg; x 1&deg; emissions data will be added in the near future
+as time allows.</p>
+
+<p class="size18bi" align="justify">1.5.5. Met
+field updates</p>
+
+<p align="justify">GEOS&#8211;Chem v7&#8211;03&#8211;06 now contains the
+following updates for meteorological met fields</p>
+
+<ul class="disc">
+
+  <li>Now can read 4 x 5 GISS met fields for GCAP simulations</li>
+  <li>Now can read "extra" fields PARDF, PARDR, SNOW for GEOS&#8211;3
+simulations</li>
+  <li>Snow depth is now applied to GEOS&#8211;3 dust emissions</li>
+</ul>
+
+<p class="size18bi" align="justify">1.5.6. New
+simulations</p>
+
+<p align="justify">In GEOS&#8211;Chem v7&#8211;03&#8211;06, the following
+offline simulations have been added:</p>
+
+<ul class="disc">
+
+  <li>CO2 simulation <i>(P. Suntharalingam)</i></li>
+  <li>Tagged HCN&#8211;CH3CN simulation <i>(Y. Xiao)</i></li>
+</ul>
+
+<p class="size18bi" align="justify">1.5.7. Improved
+land / water / ice diagnosis and lightning NOx rescaling</p>
+
+<p align="justify"> In GEOS&#8211;Chem v7&#8211;03&#8211;06, the diagnosis
+of which grid boxes are over land, water, and ice, respectively, has
+been improved in order to ensure better consistency among the different
+types of met fields. </p>
+
+<p align="justify">Lightning NOx emissions have been
+rescaled accordingly so that the totals match that of the previous
+model versions. However while the annual total of lightning NOx
+emissions may be the same as previous versions, the distribution of the
+lightning NOx emissions will be different and will reflect the new
+diagnosis of land, water, and ice boxes.</p>
+
+<p align="justify">Also, lightning NOx emissions have been
+turned off in the polar regions, since very little (if any) lightning
+occurs there.</p>
+
+<p class="size18bi" align="justify">1.5.8. Improved
+sea-air exchange for ocean emissions</p>
+
+<p align="justify">In GEOS&#8211;Chem v7&#8211;03&#8211;06, we now use the
+formulation for sea-air exchange as given by Nightingale et al [2000b],
+<u>Geophys. Res. Lett.</u>, 27, 2117-2120. This formulation
+is used for the emissions of DMS, CH3I, acetone, and sea-salt. </p>
+
+<p class="size18bi" align="justify">1.5.9. Updated
+treatment of aerosols</p>
+
+<p align="justify">In GEOS&#8211;Chem v7&#8211;03&#8211;06, we have
+introduced the following improvements for the treatment of aerosols. </p>
+
+<ul class="disc">
+
+  <li>Aerosol thermodynamical equilibrium is now computed with
+the ISORROPIA code</li>
+  <li>Added SO4 and NIT on seasalt aerosols (SO4s, NITs) as
+transported tracers</li>
+  <li>Created new oxidant fields (total HNO3, P(H2O2), J(H2O2),
+NO3, O3) for the offline aerosol simulation. These fields were archived
+from the 1-year benchmark simulation that was done with version
+v7&#8211;02&#8211;04.</li>
+  <li>Hygroscopic growth of aerosols is now accounted for in dry
+deposition</li>
+</ul>
+
+<p class="size18bi" align="justify">1.5.10.
+Diagnostic updates</p>
+
+<p align="justify">In GEOS&#8211;Chem v7&#8211;03&#8211;06, we have
+incorporated the following improvements to the diagnostics:</p>
+
+<ul class="disc">
+
+  <li>
+    <p align="justify">The plane flight diagnostic (ND40)
+now archives both tropospheric column aerosol optical depth, as well as
+column aerosol optical depth from the surface to the location of the
+aircraft. These diagnostics will facilitate comparision of GEOS&#8211;Chem
+modeled data with observations from both satellites and aircraft.</p>
+  </li>
+  <li>
+    <p align="justify">The plane flight diagnostic (ND40)
+also now scales aerosol optical depths to 400 nm.</p>
+  </li>
+  <li>
+    <p align="justify">Minor fixes have been made to the
+ND49 timeseries diagnostic. Also, all timeseries diagnostics can now
+archive grid box height.</p>
+  </li>
+</ul>
+
+<p class="size18bi" align="justify">1.5.11.
+Technical updates</p>
+
+<p align="justify">In GEOS&#8211;Chem v7&#8211;03&#8211;06, we have
+incorporated the following technical improvements:</p>
+
+<ul>
+
+  <li>
+    <p align="justify">We have removed obsolete code for
+SLOW&#8211;J and CO&#8211;OH parameterization. These are not used anymore.
+Furthermore, these codes make frequent use of old F77-style common
+blocks, which will make it difficult for us to convert GEOS&#8211;Chem to the
+    <a href="http://www.esmf.ucar.edu/" target="_blank">Earth
+System Model Framework.</a></p>
+  </li>
+  <li>
+    <p align="justify">We have removed lots of other
+obsolete variables, particularly those in old common blocks.</p>
+  </li>
+  <li>
+    <p align="justify">GEOS&#8211;Chem v7&#8211;03&#8211;06 is now able to
+create diaginfo.dat and tracerinfo.dat files for <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/index.html" target="_blank">GAMAP</a>
+which are customized to the particular simulation that is being done.
+You will not have to manually edit these files anymore.</p>
+  </li>
+</ul>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi" align="justify"><a name="1.6"></a>1.6
+Requirements for GEOS&#8211;Chem v8&#8211;03&#8211;01</p>
+
+<p align="justify">GEOS&#8211;Chem v8&#8211;03&#8211;01 is written in the
+Fortran&#8211;90 language. Fortran&#8211;90 is an extension of Fortran&#8211;77, which
+for many years has been the standard programming language for
+scientific computing. GEOS&#8211;Chem takes advantage of several powerful
+features of Fortran&#8211;90, including dynamic memory allocation, modular
+program design, and array operation syntax. Please view <a href="appendix_7.html" target="_blank">Appendix 7:
+GEOS&#8211;Chem Style Guide</a> for more tips on how to write effective
+Fortran&#8211;90 code.</p>
+
+<p align="justify">Please see the section on our wiki
+entitled <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Minimum_system_requirements_for_GEOS-Chem" target="_blank" class="size16i">Minimum System
+Requirements for GEOS&#8211;Chem</a> and <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_supported_platforms_and_compilers" target="_blank" class="size16i">GEOS&#8211;Chem supported
+platforms and compilers</a> for the most up-to-date information
+regarding supported systems, compilers, and other hardware and software
+issues.<br>
+</p>
+<p align="justify">From v8-03-01, GEOS-Chem is now managed by the version control software <a href="http://git-scm.com/" target="_blank">Git</a>. Git allows users at remote
+sites to easily download GEOS-Chem over the network. Git also enables
+users to keep track of their changes when developing the code and
+enables the creation of patches that would simplify the implementation
+of new developements in the standard version. For all these reasons, we
+strongly advice users to install Git on their systems to manage their
+version of GEOS-Chem.<br>
+ </p>
+
+<p align="justify">When setting up GEOS&#8211;Chem on your
+system, you will need to make sure that you have installed the
+following components: </p>
+
+<ol>
+
+  <li>A GEOS&#8211;Chem source code directory </li>
+  <li>One or more run directories containing user-modifiable
+input files </li>
+  <li>A data directory containing files to be shared across
+multiple users </li>
+</ol>
+
+<p align="justify">Installing the source code directory
+will be the topic of <a href="chapter_2.html">Chapter 2:
+Installation</a> and of <a href="chapter_3.html">Chapter
+3: Compilation</a>. F90 coding practices and
+parallelization are the subject of <a href="chapter_7.html">Chapter
+7: Coding: Practice and Style</a>. The many shared data files
+contained in the data directory will be the focus of <a href="chapter_4.html">Chapter 4: Data Directories</a>.
+Setting up the files in your own personal run directory is discussed in
+<a href="chapter_5.html">Chapter 5: Run Directories</a>.
+Running and debugging the GEOS&#8211;Chem code is the topic of <a href="chapter_6.html">Chapter 6: Running GEOS&#8211;Chem</a>.</p>
+
+<p align="justify"> You may download gzipped TAR files
+containing the GEOS&#8211;Chem source code, data directories, and run
+directories (at <a href="appendix_2.html#A2.3">2&deg; x 2.5</a>&deg;,
+<a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>, and
+higher resolutions) from the <a href="../../../geos_download.html" target="_blank">GEOS&#8211;Chem Source Code and Data Files</a>
+page.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p align="center"><span class="size14bi"><a href="chapter_0.html">Previous</a>
+| <a href="chapter_2.html">Next</a> | <a href="chapter_1.html" target="_parent">Printable View
+(no frames)</a></span></p>
+
+</body></html>

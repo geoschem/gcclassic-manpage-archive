@@ -1,0 +1,398 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS-Chem Online User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css"><!-- Cascading style sheet for font declarations -->
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&ndash;Chem
+v9&ndash;01&ndash;03 Online User's Guide</p>
+
+<p class="size14bi" align="center"><a href="chapter_0.html">Previous</a>
+| <a href="chapter_2.html">Next</a> | <a href="chapter_1.html" target="_parent">Printable View
+(no frames)</a></p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size24bi" align="justify"><a name="1"></a>1. Introduction</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi" align="justify"><a name="1.1"></a>1.1 Welcome to the GEOS&ndash;Chem user community!</p>
+<p align="justify">We (the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Support_Team" title="GEOS-Chem Support Team" target="_new">GEOS&ndash;Chem Support Team</a>) welcome you to the international GEOS&ndash;Chem user community. The following sections describe the expectations and responsibilities that we expect from you as a GEOS&ndash;Chem user.  For additional information, please see our <a href="../../../geos_overview.html" target="_new">GEOS&ndash;Chem overview page</a>. </p>
+<p align="justify"><span class="size18bi"><a name="1.1.1"></a>1.1.1 Expectations and responsibilities</span></p>
+<p align="justify">We expect you to have the required <a href="#1.4.1" title="Minimum system requirements for GEOS-Chem">hardware</a> and <a href="#1.4.2" title="Minimum system requirements for GEOS-Chem">software</a>  to run GEOS&ndash;Chem.  If you are not sure what hardware or software is available to you, then please check with your local IT   department. </p>
+<p align="justify">We expect that you will have at least some familiarity with the following: </p>
+<ul>
+  <li> The Fortran programming language</li>
+  <li> IDL (preferred), or other graphics software (e.g. Splus, Matlab) </li>
+  <li> The Unix environment (i.e. commands, file paths, etc.) </li>
+  <li> Unix scripts (not strictly required but is very helpful to know!) </li>
+  <li> How <a href="chapter_8.html" title="Version control with Git">version control</a> works</li>
+</ul>
+<p>For more information about these topics, please follow these links:</p>
+<ul>
+  <li>GEOS&ndash;Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_programming_resources" title="GEOS-Chem programming resources" target="_new">GEOS&ndash;Chem programming resources</a></li>
+  <li>Presentation: <a href="http://acmg.seas.harvard.edu/geos/word_pdf_docs/resources_guidelines_tips.pdf" title="resources_guidelines_tips.pdf" target="_new" rel="nofollow">GEOS&ndash;Chem User Resources, Code Development Guidelines, and Debugging Tips</a>.</li>
+</ul>
+<p class="size18bi"><a name="1.1.2"></a>1.1.2 Register your GEOS&ndash;Chem user group</p>
+
+<p align="justify">We  invite you to send us  a paragraph  describing how you and the other members of your research group plan to use GEOS&ndash;Chem.  We will add this to our <a href="../../../geos_people.html" title="http://acmg.seas.harvard.edu/geos/geos_people.html" target="_new" rel="nofollow">GEOS&ndash;Chem People and Projects</a> web page. </p>
+<p align="justify"> Registering your group helps us to accurately track how many research groups are using GEOS&ndash;Chem. This helps us to plan accordingly.</p>
+<p class="size18bi"><a name="1.1.3"></a>1.1.3 Join a working group and subscribe to the email lists</p>
+<p align="justify">We expect you to join  the <a href="../../../geos_working_groups.html" title="http://acmg.seas.harvard.edu/geos/geos_working_groups.html" target="_new" rel="nofollow">Working Group</a> that is most relevant to your area of research.  The Working Groups foster communication and collaboration between   GEOS&ndash;Chem users, and identify <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_model_development_priorities" title="GEOS-Chem model development priorities" target="_new">priorities for model development</a> to the <a href="../../../geos_steering_cmte.html" target="_new">GEOS&ndash;Chem Steering Committee</a>.  Please take a moment to introduce yourself to the Working Group Chairperson via email.</p>
+<p align="justify">Each GEOS&ndash;Chem Working Group has its own email list, so that group members can discuss various aspects of model development and validation among themselves. We have also established a general GEOS&ndash;Chem email list where we shall make announcements about new model releases, bugs and fixes, and other information pertient to the entire GEOS&ndash;Chem community. Therefore, you should subscribe to the general GEOS&ndash;Chem email list and to the email list of your Working Group.</p>
+<p align="justify">Click <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_welcome_letter_for_new_users#Subscribing_to_the_GEOS-Chem_email_lists" target="_new">HERE</a> for more information about subscribing to the GEOS&ndash;Chem email lists.</p>
+<p class="size18bi"><a name="1.1.4"></a>1.1.4 Be an active member of the community</p>
+<p align="justify">As a GEOS&ndash;Chem user, we expect you to  adhere to our list of <a href="../../../geos_overview.html" title="http://acmg.seas.harvard.edu/geos/geos_welcome.html" target="_new" rel="nofollow">best practices</a>.    In particular, if you discover a problem (e.g. bugs, missing   files, numerical issues, etc.), please alert the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Support_Team" title="GEOS-Chem Support Team" target="_new">GEOS&ndash;Chem Support Team</a> right away.  Other GEOS&ndash;Chem users will most   certainly benefit from your discovery! </p>
+<p align="justify">Please feel free to send us your <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_supported_platforms_and_compilers" title="GEOS-Chem supported platforms and compilers" target="_new">timing results from the 1-month benchmark simulation</a>.  This will allow us to keep a list of   how the model is performing across several different platform/compiler   combinations. We will post this information on the GEOS&ndash;Chem wiki.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi" align="justify"><a name="1.2"></a>1.2 The GEOS&ndash;Chem model of atmospheric chemistry and composition</p>
+<p align="justify"><span class="size18bi"><a name="1.2.1"></a>1.2.1. Overview</span></p>
+<p align="justify">The GEOS&ndash;Chem model is a global three-dimensional model of tropospheric chemistry driven by assimilated meteorological observations from the Goddard Earth Observing System (GEOS) of the <a href="http://gmao.gsfc.nasa.gov" target="_new">NASA Global Modeling Assimilation Office</a>.
+  GEOS&ndash;Chem is being developed by <a href="../../../geos_people.html" target="_new">personnel at Harvard University and other institutions in the Americas, Europe, and Asia</a>.</p> 
+<p align="justify">GEOS&ndash;Chem began as a merging of Mian Chin's GEOS&ndash;CTM code with the emissions, dry deposition, and chemistry
+  routines from the old Harvard&ndash;GISS 9-layer model. Since then, we have added many updates and improvements to GEOS&ndash;Chem. The model now uses
+  detailed inventories for fossil fuel, biomass burning, biofuel burning,
+  biogenic, and aerosol emissions. GEOS&ndash;Chem includes state-of-the-art
+  transport (TPCORE) and photolysis (FAST&ndash;J) routines, as well as the
+  SMVGEAR II chemistry solver package. Detailed aerosol microphysical simulations using GEOS&ndash;Chem may performed with the  <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/TOMAS_aerosol_microphysics" target="_new">TOMAS aerosol microphysics code</a> or the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/APM_aerosol_microphysics" target="_new">APM aerosol microphysics code</a>.</p>
+<p align="justify">GEOS&ndash;Chem has been
+  parallelized using the <a href="chapter_7.html#7.1.5">OpenMP</a>
+  compiler directives, and it <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_supported_platforms_and_compilers" target="_new">scales well when running across multiple CPU's on shared-memory machines</a>. We are currently building a <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem" target="_new">Grid-Independent version of GEOS-Chem</a> in order to take advantage of distributed memory architectures and MPI parallelization.</p>
+
+<p align="justify">GEOS&ndash;Chem has kept pace with
+changes in the meteorological data products being produced by GMAO.
+You can perform GEOS&ndash;Chem simulations with  GMAO's <a href="appendix_4.html#A4.3">GEOS&ndash;4</a>, <a href="appendix_4.html#A4.4">GEOS&ndash;5</a>, <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MERRA" target="_new">MERRA</a>, (and soon <a href="">GEOS&ndash;5.7.2!)</a> data products
+on <a href="appendix_2.html#A2.4">1&deg; x 1.25&deg;</a>, <a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>
+or <a href="appendix_2.html#A2.2">4&deg; x 5&deg; </a>global grids.  GEOS&ndash;Chem has become a popular tool for regional-scale modeling. You can perform  nested-grid simulations (one-way nesting)  at <a href="appendix_2.html#A2.6">0.5&deg;
+x 0.666&deg;</a>  horizontal resolution for the following regions: <a href="appendix_2.html#A2.6.1">China/SE Asia</a>, <a href="appendix_2.html#A2.6.2">North America</a>, and <a href="appendix_2.html#A2.6.3">Europe</a>.</p>
+<p align="justify">Those of you who are part of the  <a href="../../../../gcap/" target="_new">GCAP project</a> can use GEOS&ndash;Chem to perform simulations using meteorology from the GISS&ndash;II GCM (<a href="appendix_3.html#A3.2">23 layers</a>, <a href="appendix_2.html#A2.1">4&deg; x 5&deg;</a> horizontal
+  grid). You can select from several IPCC future-climate scenarios.</p>
+<p align="justify"><span class="size18bi"><a name="1.2.2"></a>1.2.2. The benchmarking process</span></p>
+<p align="justify">We updated our benchmarking procedure, starting with version GEOS&ndash;Chem v9&ndash;01&ndash;02. For details, <a href="../../../geos_benchmark.html" target="_new">GEOS&ndash;Chem benchmarking web page</a>.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi" align="justify"><a name="1.3"></a>1.3 What's new in GEOS&ndash;Chem v9&ndash;01&ndash;03</p>
+<p>The following features were introduced into <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03" target="_new">GEOS&ndash;Chem public release v9&ndash;01&ndash;03</a>:</p>
+
+<table width="100%" align="center" border="1" bordercolor="#000000" cellspacing="0" cellpadding="5">
+  <tr>
+    <th width="30%" valign="top" bgcolor="#cccccc" scope="col">Feature</th>
+    <th valign="top" bgcolor="#cccccc" scope="col">Description</th>
+  </tr>
+  <tr>
+      <th colspan="2" rowspan="1" valign="top" style="vertical-align: top; background-color: rgb(153, 153, 153); text-align: center;">Science updates<br>
+    </th>
+  </tr>
+  <tr>
+    <td valign="top"><p>Updated acetone chemistry</p></td>
+    <td valign="top"><p align="justify">Emily Fischer has updated the acetone formulation used in GEOS&ndash;Chem. See the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Acetone" target="_new">acetone wiki page</a> for more information.</p>
+  </tr>
+  <tr>
+  	<td valign="top"><p>OVOC dry deposition updates</p></td>
+    <td valign="top"><p align="justify">The reactivity factor (f0) for all OVOCs has been changed from 0 to 1, according to Karl et al. (2010). See <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Dry_deposition#OVOCs_dry_deposition" target="_new">this wiki page</a> for more information.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Improved sea salt emission and deposition</p></td>
+    <td valign="top"><p align="justify">Sea salt <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Sea_salt_aerosols#SST_dependent_sea_salt_emissions" target="_new">emissions</a> and <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Sea_salt_aerosols#Updates_to_sea_salt_dry_deposition" target="_new">dry deposition</a> have been updated according to Jaegl&eacute; et al. (2011).</p>
+  </tr>
+  <tr>
+    <td valign="top"><p>Dust submicron size distribution</p></td>
+    <td valign="top"><p align="justify">A more realistic partitioning for the dust mass into the submicron size bins has been applied. See <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Mineral_dust_aerosols#Sub-micron_dust_mass_partitioning_change" target="_new">this wiki page</a> for more information.</p></td>
+  </tr>
+  <tr>
+  <tr>
+    <td valign="top"><p>Improved snow scavenging and washout parameterization</p></td>
+    <td valign="top"><p align="justify">The following updates have been added to improve wet scavenging algorithm:</p>
+    <ol>
+    <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Wet_deposition#Add_scavenging_by_snow" target="_new">Add scavenging by snow</a></li>
+    <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Wet_deposition#Updates_for_aerosol_scavenging_efficiency" target="_new">Update aerosol scavenging efficiency</a></li>
+    </ol></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>PARANOX ship plume emissions</p></td>
+    <td valign="top"><p align="justify">Previously, 10 molecules O3 and 1 molecule HNO3 were emitted per ship NOx molecule. Ship emissions have been updated according to Vinken et al. (2011) to account for non-linear chemistry of ship plumes. See <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Ship_emissions#PARANOX_ship_plume_model" target="_new">this wiki page</a> for more information.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Add scaling of lightning NOx for 2x2.5 MERRA simulations </p></td>
+    <td valign="top"><p align="justify">Lee Murray has generated OTD/LIS local redistribution factors for use with MERRA at 2&deg; x 2.5&deg;. See <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Lightning_NOx_emissions#OTD.2FLIS_redistribution_for_MERRA_2x2.5" target="_new">this wiki page</a> for more information.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Historical emission inventories of SO2, NOx, BC, and POA</p></td>
+    <td valign="top"><p align="justify">Historical emission inventories of SO2, NOx, BC, and POA have been implemented according to Leibensperger et al. (2011). See <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Sources_and_Sinks_Working_Group#Available_Historical_and_Future_Emissions" target="_new">this wiki page</a> for more information.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Nested-grid updates for offline simulations</p></td>
+    <td valign="top"><p align="justify">Nested-grid capability has been added to the following offline simulations:</p>
+    <ul>
+    <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/CO2_simulation#Nested-grid_CO2_simulation" target="_new">Nested-grid CO2</a></li>
+    <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/CH4_simulation#Update_methane_emissions_and_add_capability_for_North_America_nested_grid" target="_new">Nested grid CH4</a> (North America)</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Hg(II) gas-aerosol partitioning</a></p></td>
+    <td valign="top"><p align="justify">This update includes the following items:</p>
+      <ol><li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Mercury#Hg.28II.29_gas-particle_partitioning" target="_new">Hg(II) gas-aerosol partitioning</a> from Amos et al. (2012)</li>
+	<li>Primary anthropogenic Hg(p) is emitted as Hg(II)</li>
+    </ol></td>
+  </tr>
+  <tr>
+  	<td valign="top">CH4 simulation updates</td>
+    <td valign="top"><p align="justify">Kevin Wecht has updated the CH4 simulation to include GFED3 biomass burning emissions and linearized CH4 chemistry from GMI output. See the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/CH4_simulation#Update_methane_emissions_and_add_capability_for_North_America_nested_grid" target="_new">CH4 simulation wiki page</a> for more information.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Daily and 3-hourly GFED3 biomass emissions</p></td>
+    <td valign="top"><p align="justify">Prasad Kasibhatla updated GEOS&ndash;Chem to incorporate the capabilty to use GFED3 daily and 3-hourly fire fractions, and to regrid on the fly from the GFED3 native   resolution (0.5&deg; x 0.5&deg;) to the model resolution. See <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Biomass_burning_emissions#GFED3_daily_and_3-hourly_emissions" target="_new">this wiki page</a> for more information.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Tropospheric bromine chemistry</p></td>
+    <td valign="top"><p align="justify">Justin Parrella added 10 bromine tracers and their associated chemical reactions to the GEOS&ndash;Chem full chemistry simulation. See <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Bromine_chemistry_mechanism" target="_new">this wiki page</a> for more information</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Satellite-based NOx emission trends </p></td>
+    <td valign="top"><p align="justify">Scaling factors for anthropogenic NOx emissions derived from OMI tropospheric NO2 columns (compiled by Lok Lamsal) have been implemented. See <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Scale_factors_for_anthropogenic_emissions#Anthropogenic_NOx_scaling_factors_from_OMI" target="_new">this wiki page</a> for more information.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Stratospheric P and k (monthly climatology)</p></td>
+    <td valign="top"><p align="justify">An updated linearized stratospheric chemistry scheme has been implemented into GEOS&ndash;Chem v9&ndash;01&ndash;03. See the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Stratospheric_chemistry#New_implementation_of_linearized_stratospheric_chemistry" target="_new">stratospheric chemistry wiki page</a> for more information.</p></td>
+  </tr>
+  <tr>
+    <th colspan="2" rowspan="1" valign="top" style="vertical-align: top; background-color: rgb(153, 153, 153); text-align: center;">Structural updates<br>
+    </th>
+  </tr>
+  <tr>
+    <td valign="top"><p>Retirement of obsolete GEIA biogenic emissions</p></td> 
+    <td valign="top"><p align="justify">GEIA biogenic VOC emissions have been removed from <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03" target="_new">GEOS&ndash;Chem v9&ndash;01&ndash;03</a>. It is recommended that you use the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MEGAN_biogenic_emissions" target="_new">MEGAN biogenic emissions</a> in your GEOS&ndash;Chem simulations.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Structural changes to clarify science behind washout</p></td>
+    <td valign="top"><p align="justify">Washout code has been split into three cases: aerosols, HNO3, and soluble gases. This was done to ensure that HNO3 is not affected by the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Wet_deposition#Updates_for_aerosol_scavenging_efficiency" target="_new">aerosol scavenging updates</a> and is still scavenged according to Eq. 14 from Jacob (2000).</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Initial source code modification for GEOS&ndash;5.7.2</p></td>
+    <td valign="top"><p align="justify">GEOS&ndash;Chem has been modified for compatilibility with the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-5.7.2_implementation_details" target="_new">GEOS&ndash;5.7.2</a> meteorological data.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Remove support for GEOS&ndash;3 meteorology</p></td>
+    <td valign="top"><p align="justify">See <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Overview_of_GMAO_met_data_products#Removal_of_support_for_GEOS-3" target="_new">this wiki page</a> for more information.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Updates from the grid-independent GEOS&ndash;Chem model code</p></td>
+    <td valign="top"><p align="justify">Modifications made for the grid-independent GEOS&ndash;Chem model include:</p>
+    <ol>
+    <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem#Modifications_to_remove_legacy_code_that_hinders_grid-indpendent_functionality" target="_new">Fixes to facilitate implementation of grid-independent code</a></li>
+    <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem#Restructuring_of_GEOS-Chem_for_grid-independent_functionality" target="_new">Preliminary interface to link driving GCM</a></li></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>MAP_A2A regridding package</p></td>
+    <td valign="top"><p align="justify">Matt Cooper replaced the existing GEOS&ndash;Chem regridding routines with the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Emissions_overview#MAP_A2A_regridding_algorithm" target="_new">MAP_A2A regridding package</a> (developed by S.-J. Lin and refined by Bob Yantosca). The new algorithm regrids emissions from any arbitrary horizontal grid to the current model resolution.</p></td>
+  </tr>
+  <tr>
+    <th colspan="2" rowspan="1" valign="top" style="vertical-align: top; background-color: rgb(153, 153, 153); text-align: center;">Bug fixes<br>
+    </th>
+  </tr>
+  <tr>
+    <td valign="top"><p>Fix for GLCO3/GLPAN bug in standard chemistry mechanism</p></td> 
+    <td valign="top"><p align="justify">Fabien Paulot found a bug in the standard chemistry mechanism, which resulted in an artificial loss of NOx. See <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Chemistry_Issues#GLCO3.2C_GLPAN_bug_in_standard_mechanism" target="_new">this wiki page</a> for more information.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Bug fix in routine ARSL1K</p></td> 
+    <td valign="top"><p align="justify">The default value for the loss rate on wet aerosol (ARSL1K) has been changed from 1.0d-3 to 1.0d-30. See <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Chemistry_Issues#Bug_in_routine_ARSL1K" target="_new">this wiki page</a> for more information.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p>Various other bug fixes</p></td> 
+    <td valign="top"><p align="justify"> </a> The following updates were made to fix several bugs in <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-02" target="_new">GEOS&ndash;Chem v9&ndash;01&ndash;02</a>:</p>
+      <ul>
+        <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Nested_Model_Working_Group#Fixes_to_Streets_emissions_for_model_years_2005_and_earlier" target="_new">Bug fixes for David Streets emissions for years 2005 and earlier</a></li>
+        <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-02#Fixes_in_emep_mod.f" target="_new">Bug fix in emep_mod.F for offline simulations</a></li>
+        <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-02#Fix_for_offline_simulations_in_nei2005_anthro_mod.f" target="_new">Bug fix in nei2005_anthro_mod.F for offline simulations</a></li>
+        <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Wet_deposition#Anomalous_PRECTOT_values_on_22_July_2010" target="_new">Bug fix to prevent crash in wetdep when encountering anomalously low PRECTOT values</a></li>
+        <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Rn-Pb-Be_simulation#Missing_drydep_diagnostics_caused_by_tracer_name_error" target="_new">Minor fix in Rn-Pb-Be simulation to prevent missing drydep diagnostics</a></li>
+        <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03#Correct_out-of-bounds_error_in_offline_aerosol_simulation" target="_new">Correct out-of-bounds error in offline aerosol simulation</a></li>
+        <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03#Bug_fixes_in_diag3.F" target="_new">Bug fixes in diag3.F</a></li>
+        <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03#Bug_fixes_for_nested-grid_simulation" target="_new">Bug fixes for nested-grid simulations</a></li>
+        <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Mercury#Bug_fix_for_reading_Hg_emissions" target="_new">Bug fix for reading Hg emissions</a></li>
+        <li><a href="" target="_new"></a><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03#Bug_fix_in_streets_anthro_mod.F_for_offline_simulations" target="new">Bug fix in streets anthro mod.F for offline simulations</a></li>
+        <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03#Bug_fixes_for_dicarbonyls_simulation" target="_new">Bug fixes for dicarbonyl simulations</a></li>
+    </ul></td>
+  </tr>
+</table>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi" align="justify"><a name="1.4"></a>1.4 Requirements for GEOS&ndash;Chem v9&ndash;01&ndash;03</p>
+<p align="justify">We summarize  below the hardware and software requirements that you will need  in order to run GEOS&ndash;Chem. For the most up-to-date information
+  regarding supported systems, compilers, and other hardware and software
+issues, please also see our  wiki pages   entitled <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Minimum_system_requirements_for_GEOS-Chem" target="_new" class="size16i">Minimum System
+  Requirements for GEOS&ndash;Chem</a> and <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_supported_platforms_and_compilers" target="_new" class="size16i">GEOS&ndash;Chem supported
+platforms and compilers</a>.</p>
+<p class="size18bi"><a name="1.4.1"></a>1.4.1. Hardware requirements</p>
+<p>To run GEOS&ndash;Chem your hardware must have:</p>
+<ul class="disc">
+  <li>Enough memory to run GEOS&ndash;Chem</li>
+  <ul class="circle">
+    <li>At least 2 GB RAM</li>
+    <li>But more than 4 GB RAM for running at 2&deg; x 2.5&deg; or higher resolution</li>
+    <li>You may want to consider 8 GB RAM if you plan on doing any of the following:
+      <ul>
+        <li>Running GEOS&ndash;4 1&deg; x 1.25&deg; global GEOS&ndash;Chem simulations </li>
+        <li>Running  GEOS&ndash;5 0.5&deg; x 0.667&deg; <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_nested_grid_simulations" target="_new">nested-grid GEOS&ndash;Chem simulations</a></li>
+        <li>Running 2&deg; x 2.5&deg; global GEOS&ndash;Chem simulation and saving a lot   of output fields (the more output you generate the more memory GEOS&ndash;Chem   will require) </li>
+      </ul>
+    </li>
+  </ul>
+  <li> <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Minimum_system_requirements_for_GEOS-Chem#How_much_disk_space_will_I_need_for_GEOS-Chem.3F" target="_new">Sufficient disk storage for met fields</a></li>
+</ul>
+<p class="size18bi"><a name="1.4.2"></a>1.4.2. Software requirements</p>
+
+
+<p>GEOS&ndash;Chem requires the following software: </p>
+<ol>
+  <li>Any Unix-style operating system, such as:
+    <ul>
+      <li>Linux (Red Hat, SuSE, CentOS, etc.) </li>
+      <li>Ubuntu </li>
+      <li>Fedora </li>
+      <li>Mac OS X (which is POSIX-compliant) </li>
+      <li><em><strong>NOTE: GEOS&ndash;Chem cannot run on a Microsoft (XP, Vista, Windows 7) environment!</strong></em></li>
+    </ul>
+  </li>
+  <li>A <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Minimum_system_requirements_for_GEOS-Chem#Supported_compilers" target="_new">Fortran 90 compiler</a> that supports <a href="chapter_7.html#7.1.5" title="Parallelizing GEOS-Chem">OpenMP parallelization</a>
+    <ul>
+      <li> If using the Portland Group compiler, then a C compiler (such as <a href="http://gcc.gnu.org/" target="_new" rel="nofollow">GNU C compiler</a>) is also required.  The gcc comes installed with most Unix builds. </li>
+    </ul>
+  </li>
+  <li><a href="http://www.gnu.org/software/make/" title="http://www.gnu.org/software/make/" target="_new" rel="nofollow">GNU Make</a> (chances are your Unix system has this installed already) </li>
+  <li><a href="http://www.git-scm.org" title="http://www.git-scm.org" target="_new" rel="nofollow">Git version control system</a> (free, open-source version control software) </li>
+</ol>
+<p align="justify">The Linux flavor (RedHat, SuSE, Fedora, Ubuntu, etc.) is not   important.  Also, 64-bit architecture is not an issue with GEOS&ndash;Chem.</p>
+<p align="justify"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03" target="_new">GEOS&ndash;Chem v9&ndash;01&ndash;03</a> is written in the
+  <a href="appendix_7.html">Fortran&ndash;90</a> language. Fortran&ndash;90 is an extension of Fortran&ndash;77, which
+  for many years has been the standard programming language for
+  scientific computing. GEOS&ndash;Chem takes advantage of several powerful
+  features of Fortran&ndash;90, including dynamic memory allocation, modular
+program design, array operation syntax, and derived data types. Please view <a href="appendix_7.html">Appendix 7: GEOS&ndash;Chem Style Guide</a> for more tips on how to write effective
+Fortran&ndash;90 code.</p>
+<p align="justify"> GEOS&ndash;Chem is now managed by the version control software <a href="chapter_8.html">Git</a>. Git allows users at remote
+  sites to easily download GEOS&ndash;Chem over the network. Git also enables
+  users to keep track of their changes when developing the code and
+  enables the creation of patches that would simplify the implementation
+  of new developements in the standard version. For all these reasons, we
+  strongly advise you to install Git so that you can  <a href="chapter_8.html">manage your 
+local  GEOS&ndash;Chem source code</a>.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p> 
+<p class="size20bi"><a name="1.5"></a>1.5 The Git version control software</p>
+<p align="justify" class="size18bi"><a name="1.5.1"></a>1.5.1. Why use Git?</p>
+<p align="justify">GEOS&ndash;Chem model development is done in a distributed manner. <a href="../../../geos_people.html" target="_new">GEOS&ndash;Chem users  from many different institutions</a> download the most recent  model version and modify it according to their own particular  research interests. Once a GEOS&ndash;Chem user has deemed  his or her  source code modifications to be mature&mdash;usually coinciding with the submission of a paper to an academic journal&mdash;he or she will submit his or her source code modifications to us for inclusion into the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_versions_under_development" target="_new">mainline &quot;standard&quot; model</a>.</p>
+<p align="justify">We used to disseminate the GEOS&ndash;Chem source code and run directories as  a series of TARBALL (i.e. <tt>*.tar.gz</tt>)  files (one for each version) via   anonymous FTP. The advantage of this method was that each GEOS&ndash;Chem user only had to download a single file. However, as the number of GEOS&ndash;Chem users (and the submitted source code modifications) grew, this method became unwieldy. For example, if only a single file needed to be updated, the entire TARBALL file would have to be regenerated. This often led to confusion and error.</p>
+<p align="justify"> Given the large number of user code submissions,   we must employ  robust source code management techniques  in order to ensure the integrity of the GEOS&ndash;Chem source code. Therefore, we have selected the <a href="http://www.git-scm.com" target="_new">Git version control software</a> for GEOS&ndash;Chem source code management.  Git is a relatively new version control system and offers many improvements over previous source code management software such as <a href="http://cvsbook.red-bean.com/cvsbook.html" target="_new">CVS</a> and <a href="http://subversion.apache.org/" target="_new">Subversion</a>.</p>
+<p align="justify" class="size18bi"><a name="1.5.2"></a>1.5.2. Advantages of using Git</p>
+<ul class="disc">
+  <li>
+    <p align="justify">Git avoids some of the <a href="http://www.scmgalaxy.com/cvs-concurrent-version-system/introcution-of-cvs/cvs-limitations.html" target="_new">limitations of CVS</a> (which is by now 30-year-old software).</p>
+    <ul>
+      <li>
+        <p align="justify">Git is a distributed source code management system. Instead of having one central GEOS&ndash;Chem repository residing on a single server, Git allows you to keep an identical copy (a.k.a. &quot;clone&quot;) of the GEOS&ndash;Chem source code repository on your own system. Having several copies of the GEOS&ndash;Chem repository allows for redundancy in case of catastrophic server failure or other such calamity.</p>
+      </li>
+      <li>
+        <p align="justify">Modifications that you make to your own repository will not affect the repositories of other users. (That is, unless you consciously decide to &quot;push&quot; your changes to another repository).</p>
+      </li>
+      <li>
+        <p align="justify">When you are ready to submit your source code modifications for inclusion into the &quot;standard&quot; code, the GEOS&ndash;Chem Support Team can simply get them with a Git &quot;pull&quot; operation.</p>
+      </li>
+      <li>
+        <p align="justify">Git allows you to save out your source code changes to a &quot;patch&quot; file (a text file with a list of source code differences). This can be emailed to other users.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p align="justify">Git is in general much simpler to use than CVS.</p>
+    <ul>
+      <li>
+        <p align="justify">With Git, you can &quot;pull&quot; changes from other users directly into your own local source code repository.</p>
+      </li>
+      <li>
+        <p align="justify">With Git, one can easily create several branches off of the &quot;master&quot; branch of code development. (Branching was always problematic in CVS).</p>
+        <ul>
+          <li>
+            <p align="justify">Each branch can hold a new &quot;feature&quot;, which may be tested independently of the rest of the code.</p>
+          </li>
+          <li>
+            <p align="justify">Branches can be merged back into the &quot;master&quot; branch when it is time to release the code.</p>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <p align="justify">The GitK tool allows you to see every single line of code that has been modified, going all the way back to the start of the project.</p>
+      </li>
+      <li>
+        <p align="justify">A graphic user interface (the Git Gui) lets you control Git in a more visual manner than the command-line options.</p>
+      </li>
+    </ul>
+  <li>
+    <p align="justify">With Git, GEOS&ndash;Chem developers will be able to:
+    <ul class="circle">
+      <li>
+        <p align="justify">Download the most current GEOS&ndash;Chem source code online.</p>
+      </li>
+      <li>
+        <p align="justify">Download the most current GEOS&ndash;Chem run directories online</p>
+      </li>
+      <li>
+        <p align="justify">Develop and test their source code additions to GEOS&ndash;Chem in their own local repository, and</p>
+      </li>
+      <li>
+        <p align="justify">Submit their mature source code updates back to the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Support_Team" title="GEOS-Chem programming staff" target="_new">GEOS&ndash;Chem Support Team</a> for inclusion in the standard mainline code (via "Git pull" or patch files)</p>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>For more information about using Git, please see our wiki pages:</p>
+<ul>
+  <li>Chapter 8: <a href="chapter_8.html">Using Git to manage the GEOS&ndash;Chem source code</a></li>
+  <li>GEOS&ndash;Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Version_control_with_Git" target="_new">Version control with Git</a></li>
+  <li>GEOS&ndash;Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Using_Git_with_GEOS-Chem" target="_new">Using Git with GEOS&ndash;Chem</a></li>
+  <li>The Git web page: <a href="http://www.git-scm.com" target="_new">http://www.git-scm.com</a></li>
+</ul>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p> 
+<p class="size20bi"><a name="1.6"></a>1.6 Topics covered in the GEOS&ndash;Chem User's Guide</p>
+<p align="justify">We have arranged the GEOS&ndash;Chem User's Guide as follows:</p>
+<ul>
+  <li>
+    <p align="justify">Installing the  GEOS&ndash;Chem source code directory, run directories,and shared data directories will be the topic of <a href="chapter_2.html">Chapter 2:
+      Installation</a>.</p>
+  </li>
+  <li>
+    <p align="justify">Compiling the GEOS&ndash;Chem source code into an executable will be covered in <a href="chapter_3.html">Chapter
+      3: Compilation</a>.</p>
+  </li>
+  <li>
+    <p align="justify">The various shared data files (met fields, emissions inventories, oxidants, etc.), 
+      contained in the data directory will be the focus of <a href="chapter_4.html">Chapter 4: Data Directories</a>. </p>
+  </li>
+  <li>
+    <p align="justify">Setting up the files in your own personal run directory is discussed in <a href="chapter_5.html">Chapter 5: Run Directories</a>. </p>
+  </li>
+  <li>
+    <p align="justify">Running and debugging the GEOS&ndash;Chem code is the topic of <a href="chapter_6.html">Chapter 6: Running GEOS&ndash;Chem</a>.</p>
+  </li>
+  <li>
+    <p align="justify">F90 coding practices and parallelization are the subject of <a href="chapter_7.html">Chapter 7: Coding: Practice and Style</a>.</p>
+  </li>
+  <li>
+    <p align="justify">A brief summary of the most common Git commands is covered in <a href="chapter_8.html">Chapter 8: Using Git to manage the GEOS&ndash;Chem source code</a>.</p>
+  </li>
+  <li>
+    <p align="justify">The <a href="chapter_9.html">Reference Section in Chapter 9</a> contains links to the GEOS&ndash;Chem reference guides that are generated automatically with the ProTeX too. Here you will also find a  list of acknowlegments and guidelines for offering credit to GEOS&ndash;Chem developers.</p>
+  </li>
+  <li>Supplementary information GEOS&ndash;Chem, including  <a href="appendix_1.html">lists of tracers by simulation</a>, <a href="appendix_2.html">horizontal</a> and <a href="appendix_3.html">vertical</a> grids, <a href="appendix_4.html">meteorological data fields</a>, <a href="appendix_5.html">diagnostic output options</a>, <a href="appendix_6.html">chemical species</a>, etc. are contained in the Appendices.</li>
+</ul>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p align="center"><span class="size14bi"><a href="chapter_0.html">Previous</a>
+| <a href="chapter_2.html">Next</a> | <a href="chapter_1.html" target="_parent">Printable View
+(no frames)</a></span></p>
+
+</body></html>

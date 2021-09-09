@@ -1,0 +1,776 @@
+<HTML>
+<HEAD>
+<TITLE>GEOS&#150;CHEM User's Guide</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="FF0000" HLINK="#FFFF00">
+<CENTER>
+  <p><font face="Arial, Helvetica, sans-serif" size="2"><b>GEOS&#150;CHEM v6&#150;02&#150;05 
+    User's Guide<br>Contact: Bob Yantosca (<A HREF="mailto:bmy@io.harvard.edu">bmy@io.harvard.edu</A>)</b></font></p>
+  
+</CENTER>
+
+<hr>
+<P> <A NAME="6"></a> <font face="Arial, Helvetica, sans-serif" size="+1"><b>6. 
+  Running the GEOS&#150;CHEM Model</b></font></P>
+<hr>
+<P> <A NAME="6.1"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>6.1 
+  Input File Checklists for GEOS&#150;CHEM Model Simulations</b></font>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> After you 
+  have compiled the GEOS&#150;CHEM source code <A HREF="geos_chem_2.html">(Section 
+  2)</A>, installed your data directory <A HREF="geos_chem_4.html">(Section 4)</A>, 
+  and set up your run directory <A HREF="geos_chem_5.html">(Section 5)</A>, you 
+  may proceed to run the model. The first thing you will want to do is to ensure 
+  that all of the input files in your run directory are set correctly for the 
+  type of GEOS&#150;CHEM simulation that you want to do. Here follows some convenient 
+  checklists that you may use as a guide before starting your model runs. </font></p>
+<hr>
+<P> <A NAME="6.1.1"></a> <b><font face="Arial, Helvetica, sans-serif" size="2">6.1.1 
+  Checklist for NOx-Ox-Hydrocarbon chemistry simulation with SMVGEAR</font></b>
+<OL>
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Set <font face="Courier New, Courier, mono">NSRCX=3</font> 
+    and <font face="Courier New, Courier, mono">NTRACE=41</font> in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">Set <font face="Courier New, Courier, mono">LSULF=T</font> 
+    in <font face="Courier New, Courier, mono" size="2">input.geos</font> in order 
+    to turn on sulfur and nitrogen species emission &amp; chemistry</font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">Set <font face="Courier New, Courier, mono">LCARB=T</font> 
+    in <font face="Courier New, Courier, mono" size="2">input.geos</font> in order 
+    to turn on carbon aerosol emission &amp; chemsitry</font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">Set <font face="Courier New, Courier, mono">LDUST=T</font> 
+    in <font face="Courier New, Courier, mono" size="2">input.geos</font> in order 
+    to turn on desert dust aerosol emission &amp; chemistry</font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">Set <font face="Courier New, Courier, mono">LSSALT=T</font> 
+    in <font face="Courier New, Courier, mono" size="2">input.geos</font> in order 
+    to turn on sea salt aerosol emission &amp; chemistry</font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">Set diagnostic switches 
+    in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Schedule 
+    days for punch file output in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Make 
+    sure you have output scheduled for the last day of the run in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Set start 
+    and end time of run, and turn operators on/off in <font face="Courier New, Courier, mono" size="2">input.geos</font></font> 
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Set the 
+    dynamic timestep variable <font face="Courier New, Courier, mono">NTDT=1800</font> 
+    (for 4 x 5) or <font face="Courier New, Courier, mono">NTDT=900</font> (for 
+    2 x 2.5)</font> 
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Make 
+    sure <font face="Courier New, Courier, mono" size="2">inptr.ctm</font> contains 
+    the proper tracer names and molecular weights </font> 
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Check 
+    your convergence criteria in <font face="Courier New, Courier, mono" size="2">mglob.dat</font></font> 
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Make 
+    sure you are using the proper <font face="Courier New, Courier, mono" size="2">globchem.dat</font> 
+    and <font face="Courier New, Courier, mono" size="2">ratj.d</font> files </font> 
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Check 
+    family tracer specifications in <font face="Courier New, Courier, mono" size="2">tracer.dat</font></font> 
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Check 
+    <font size="2"> <font face="Courier New, Courier, mono"> diag.dat</font></font> 
+    to make sure that the tracers of interest will be printed out </font> 
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Check 
+    <font face="Courier New, Courier, mono">ND48</font> station timeseries settings 
+    in <font face="Courier New, Courier, mono" size="2">inptr.ctm</font></font> 
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Check 
+    <font face="Courier New, Courier, mono">ND49</font> movie timeseries settings 
+    in <font face="Courier New, Courier, mono" size="2">timeseries.dat</font></font> 
+  <LI ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Check 
+    chemical prod/loss family settings for <font face="Courier New, Courier, mono">ND65</font> 
+    diagnostic in <font face="Courier New, Courier, mono" size="2">prodloss.dat</font></font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">Check the aircraft flight 
+    track settings in <font face="Courier New, Courier, mono" size="2">Planeflight.dat</font></font> 
+</OL>
+<hr>
+<P><A NAME="6.1.2"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>6.1.2 
+  Checklist for Radon - Lead - Beryllium simulation</b></font> 
+<OL>
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">Set <font face="Courier New, Courier, mono">NSRCX=1</font> 
+    and <font face="Courier New, Courier, mono">NTRACE=3</font> in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set diagnostic 
+    switches in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Schedule 
+    days for punch file output in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Make 
+    sure you have output scheduled for the last day of the run in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set start 
+    and end time of run, and turn operators on/off in <font face="Courier New, Courier, mono" size="2">input.geos</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Set the 
+    dynamic timestep variable <font face="Courier New, Courier, mono">NTDT=1800</font> 
+    (for 4 x 5) or <font face="Courier New, Courier, mono">NTDT=900</font> (for 
+    2 x 2.5)</font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Make 
+    sure <font face="Courier New, Courier, mono" size="2">inptr.ctm</font> contains 
+    the proper tracer names and molecular weights </font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Check 
+    <font size="2"> <font face="Courier New, Courier, mono"> diag.dat</font></font> 
+    to make sure that the tracers of interest will be printed out </font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Check 
+    <font face="Courier New, Courier, mono">ND48</font> station timeseries settings 
+    in <font face="Courier New, Courier, mono" size="2">inptr.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Check 
+    <font face="Courier New, Courier, mono">ND49, ND50, ND51</font> movie timeseries 
+    settings in <font face="Courier New, Courier, mono" size="2">timeseries.dat</font></font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2"><font face="Arial, Helvetica, sans-serif" size="2">Check 
+    the aircraft flight track settings in <font face="Courier New, Courier, mono" size="2">Planeflight.dat</font></font> 
+    </font> 
+</OL>
+<hr>
+<P> <A NAME="6.1.3"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>6.1.3 
+  Checklist for Methyl Iodide (CH3I) simulation</b></font>
+<OL>
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set <font face="Courier New, Courier, mono">NSRCX=2</font> 
+    and <font face="Courier New, Courier, mono">NTRACE=5</font> in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set diagnostic 
+    switches in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Schedule 
+    days for punch file output in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Make 
+    sure you have output scheduled for the last day of the run in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set start 
+    and end time of run, and turn operators on/off in <font face="Courier New, Courier, mono" size="2">input.geos</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Set the 
+    dynamic timestep variable <font face="Courier New, Courier, mono">NTDT=1800</font> 
+    (for 4 x 5) or <font face="Courier New, Courier, mono">NTDT=900</font> (for 
+    2 x 2.5)</font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Make 
+    sure <font face="Courier New, Courier, mono" size="2">inptr.ctm</font> contains 
+    the proper tracer names and molecular weights </font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Check 
+    <font size="2"> <font face="Courier New, Courier, mono"> diag.dat</font></font> 
+    to make sure that the tracers of interest will be printed out </font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Check 
+    <font face="Courier New, Courier, mono">ND48</font> station timeseries settings 
+    in <font face="Courier New, Courier, mono" size="2">inptr.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Check 
+    <font face="Courier New, Courier, mono">ND49, ND50, ND51</font> movie timeseries 
+    settings in <font face="Courier New, Courier, mono" size="2">timeseries.dat</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Make 
+    sure you are using the special <font face="Courier New, Courier, mono" size="2">chem.dat</font> 
+    and <font face="Courier New, Courier, mono" size="2">ratj.d</font> files for 
+    CH3I simulation (which contain the cross-sections, reagents, and products 
+    for the CH3I photolysis reactions). </font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">Check the aircraft flight 
+    track settings in <font face="Courier New, Courier, mono" size="2">Planeflight.dat</font></font> 
+</OL>
+<hr>
+<P> <A NAME="6.1.4"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>6.1.4 
+  Checklist for HCN simulation</b></font>
+<ol>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Set <font face="Courier New, Courier, mono">NSRCX=4</font> 
+    and <font face="Courier New, Courier, mono">NTRACE=1</font> in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Set diagnostic switches 
+    in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Schedule days for punch 
+    file output in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Make sure you have 
+    output scheduled for the last day of the run in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Set start and end time 
+    of run, and turn operators on/off in <font face="Courier New, Courier, mono" size="2">input.geos</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Set the dynamic timestep 
+    variable <font face="Courier New, Courier, mono">NTDT=1800</font> (for 4 x 
+    5) or <font face="Courier New, Courier, mono">NTDT=900</font> (for 2 x 2.5)</font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Make sure <font face="Courier New, Courier, mono" size="2">inptr.ctm</font> 
+    contains the proper tracer names and molecular weights </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Check <font face="Courier New, Courier, mono" size="2">diag.dat</font> 
+    to make sure that the tracers of interest will be printed out </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Check <font face="Courier New, Courier, mono">ND48</font> 
+    station timeseries settings in <font face="Courier New, Courier, mono" size="2">inptr.ctm</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Check <font face="Courier New, Courier, mono">ND49, 
+    ND50, ND51</font> movie timeseries settings in <font face="Courier New, Courier, mono" size="2">timeseries.dat</font></font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Check the aircraft flight 
+    track settings in <font face="Courier New, Courier, mono" size="2">Planeflight.dat</font></font> 
+  </li>
+</ol>
+<hr>
+<P>
+<P> <A NAME="6.1.5"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>6.1.5 
+  Checklist for Tagged Ox simulation</b></font> 
+<ol>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Set <font face="Courier New, Courier, mono">NSRCX=6</font> 
+    and <font face="Courier New, Courier, mono">NTRACE=13</font> in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Set diagnostic switches 
+    in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Schedule days for punch 
+    file output in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Make sure you have 
+    output scheduled for the last day of the run in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Set start &amp; end 
+    time of run, and turn operators on/off in <font face="Courier New, Courier, mono" size="2">input.geos</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Check setting of <font face="Courier New, Courier, mono">NTDT</font> 
+    (dynamic timestep variable) in <font face="Courier New, Courier, mono" size="2">input.geos</font> 
+    or 4 x 5 (1800 s) or 2 x 2.5 (900 s) </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Make sure <font face="Courier New, Courier, mono">inptr.ctm</font> 
+    contains the proper tracer names and molecular weights </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Check <font face="Courier New, Courier, mono" size="2">diag.dat</font> 
+    to make sure that the tracers of interest will be printed out </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Check <font face="Courier New, Courier, mono">ND48</font> 
+    station timeseries settings in <font face="Courier New, Courier, mono" size="2">inptr.ctm</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Check <font face="Courier New, Courier, mono">ND49, 
+    ND50, ND51</font> movie timeseries settings in <font face="Courier New, Courier, mono">timeseries.dat</font></font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Check the aircraft flight 
+    track and diagnostic settings in <font face="Courier New, Courier, mono" size="2">Planeflight.dat</font></font> 
+  </li>
+</ol>
+<hr>
+<P><A NAME="6.1.6"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>6.1.6 
+  Checklist for Tagged CO simulation</b></font> 
+<OL>
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set <font face="Courier New, Courier, mono">NSRCX=7</font> 
+    and <font face="Courier New, Courier, mono">NTRACE</font> to the # of your 
+    tracers in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set diagnostic 
+    switches in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Schedule 
+    days for punch file output in <font face="Courier New, Courier, mono">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Make 
+    sure you have output scheduled for the last day of the run in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set start 
+    &amp; end time of run, and turn operators on/off in <font face="Courier New, Courier, mono">input.geos</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set the 
+    dynamic timestep variable <font face="Courier New, Courier, mono">NTDT=1800</font> 
+    (for 4 x 5) or <font face="Courier New, Courier, mono">NTDT=900</font> (for 
+    2 x 2.5)</font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Make 
+    sure <font face="Courier New, Courier, mono" size="2">inptr.ctm</font> contains 
+    the proper tracer names and molecular weights </font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Check 
+    <font size="2"> <font face="Courier New, Courier, mono"> diag.dat</font></font> 
+    to make sure that the tracers of interest will be printed out </font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Check 
+    <font face="Courier New, Courier, mono">ND48</font> station timeseries settings 
+    in <font face="Courier New, Courier, mono" size="2">inptr.ctm</font></font> 
+  <LI ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Check 
+    <font face="Courier New, Courier, mono">ND49, ND50, ND51</font> movie timeseries 
+    settings in <font face="Courier New, Courier, mono" size="2">timeseries.dat</font></font> 
+  <LI><font face="Arial, Helvetica, sans-serif" size="2">Check the aircraft flight 
+    track settings in <font face="Courier New, Courier, mono" size="2">Planeflight.dat</font></font> 
+</OL>
+<hr>
+<P><a name="6.1.7"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>6.1.7 
+  Checklist for offline Sulfate&#150;Carbon&#150;Dust&#150;Sea Salt aerosol simulation</b></font> 
+<ol>
+  <li align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set <font face="Courier New, Courier, mono">NSRCX=10</font> 
+    and <font face="Courier New, Courier, mono">NTRACE=12</font> in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Set <font face="Courier New, Courier, mono">LSULF=T</font> 
+    in <font face="Courier New, Courier, mono" size="2">input.geos</font> in order 
+    to turn on sulfur and nitrogen species emission &amp; chemistry</font> 
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Set <font face="Courier New, Courier, mono">LCARB=T</font> 
+    in <font face="Courier New, Courier, mono" size="2">input.geos</font> in order 
+    to turn on carbon aerosol emission &amp; chemsitry</font> 
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Set <font face="Courier New, Courier, mono">LDUST=T</font> 
+    in <font face="Courier New, Courier, mono" size="2">input.geos</font> in order 
+    to turn on desert dust aerosol emission &amp; chemistry</font> 
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Set <font face="Courier New, Courier, mono">LSSALT=T</font> 
+    in <font face="Courier New, Courier, mono" size="2">input.geos</font> in order 
+    to turn on sea salt aerosol emission &amp; chemistry</font> 
+  <li align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set diagnostic 
+    switches in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <li align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Schedule 
+    days for punch file output in <font face="Courier New, Courier, mono">input.ctm</font></font> 
+  <li align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Make 
+    sure you have output scheduled for the last day of the run in <font face="Courier New, Courier, mono" size="2">input.ctm</font></font> 
+  <li align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set start 
+    &amp; end time of run, and turn operators on/off in <font face="Courier New, Courier, mono">input.geos</font></font> 
+  <li align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Set the 
+    dynamic timestep variable <font face="Courier New, Courier, mono">NTDT=1800</font> 
+    (for 4 x 5) or <font face="Courier New, Courier, mono">NTDT=900</font> (for 
+    2 x 2.5)</font> 
+  <li align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Make 
+    sure <font face="Courier New, Courier, mono" size="2">inptr.ctm</font> contains 
+    the proper tracer names and molecular weights </font> 
+  <li align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Check 
+    <font size="2"> <font face="Courier New, Courier, mono"> diag.dat</font></font> 
+    to make sure that the tracers of interest will be printed out </font> 
+  <li align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Check 
+    <font face="Courier New, Courier, mono">ND48</font> station timeseries settings 
+    in <font face="Courier New, Courier, mono" size="2">inptr.ctm</font></font> 
+  <li align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Check 
+    <font face="Courier New, Courier, mono">ND49, ND50, ND51</font> movie timeseries 
+    settings in <font face="Courier New, Courier, mono" size="2">timeseries.dat</font></font> 
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Check the aircraft flight 
+    track settings in <font face="Courier New, Courier, mono" size="2">Planeflight.dat</font></font> 
+</ol>
+<hr>
+<P> <A NAME="6.2"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>6.2 
+  Running a Regular GEOS&#150;CHEM Job</b></font>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> The following 
+  section describes how to run the GEOS&#150;CHEM model for either the LSF or 
+  PBS batch queue systems. However, you may want to use the <a href="../../../documentation/manual_v6/geos_testrun.html" target="_blank">TESTRUN</a> 
+  package, which will automatically compile and run</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+  GEOS&#150;CHEM code via your local batch queue system. </font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Also, it 
+  is STRONGLY RECOMMENDED to test your simulation with a short (1-day or 2-day) 
+  run before submitting a very long-term GEOS&#150;CHEM simulation. A shorter 
+  run will make it easier to detect errors or problems without tying up precious 
+  computer time. </font></p>
+<hr>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"><b>6.2.1 
+  LSF Batch Queue System</b></font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">If your platform 
+  uses the LSF batch queue system, you can use the following commands to submit, 
+  delete, and check the status of GEOS&#150;CHEM jobs:</font></p>
+<blockquote>
+<PRE>bman            : prints LSF man pages to stdout 
+bsub or submit  : submit a batch jobs to a queue 
+bkill           : kill batch jobs  
+bjobs           : Lists all jobs currently running 
+bqueues         : Lists available batch queues 
+bhist           : shows history list of submitted jobs 
+lsload          : shows % of each machine's resources that 
+                  is currently utilized </PRE>
+</blockquote>
+
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Perhaps 
+  the best way to submit batch jobs to the queues is to write a simple job script, 
+  such as: </font> 
+<P ALIGN=JUSTIFY>
+<blockquote>
+  <PRE>#!/bin/tcsh -f                # Script definition line
+cd /scratch/bmy/run.v5&#150;05&#150;03  # cd to your run dir
+rm -f log                     # clear pre-existing log files    
+time geos > log               # time job; pipe output to log file  
+exit(0)                       #  exit normally </PRE>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> and then 
+  save that to a file named <font face="Courier New, Courier, mono" size="2">job</font>. 
+  To submit the job script to the queue system, pick a queue in which to run the 
+  GEOS&#150;CHEM, and type:</font>
+<blockquote>
+  <p> <font face="Courier New, Courier, mono" size="2">bsub -q <VAR>queue-name 
+    job</VAR> </font></p>
+</blockquote>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">at the Unix 
+  prompt. You can check the status of the run by looking at the log file. LSF 
+  should also email you when your job is done, or if for any reason it dies prematurely.</font></P>
+  <hr>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"><b>6.2.2 
+  PBS Batch Queue System</b></font> 
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">If your platform 
+  uses the PBS batch queue system, you can use the following commands to submit, 
+  delete, and check the status of GEOS&#150;CHEM jobs:</font></p>
+<blockquote> 
+  <pre>qsub              : submits a PBS job 
+qstat -Q          : list all available batch queues 
+qstat -a @machine : list all PBS jobs that are running on 'machine'
+qstat -f <i>jobid</i>    : list information about PBS Job <i>jobid</i> 
+qdel <i>jobid</i>        : Kills PBS Job <i>jobid</i>
+xpbs              : Graphical user interface for PB</pre>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Then create 
+  a simple GEOS&#150;CHEM job script (named job), similar to the above example for 
+  LSF:</font>
+<blockquote> 
+  <pre>#!/bin/tcsh -f                # Script definition line
+cd /scratch/bmy/run.v5&#150;05&#150;03  # cd to your run dir
+rm -f log                     # clear pre-existing log files    
+time geos > log               # time job; pipe output to log file  
+exit(0)                       #  exit normally </pre>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">and then 
+  submit this with the qsub command:</font>
+<blockquote> 
+  <p><font face="Courier New, Courier, mono" size="2">qsub -q <i>queue-name</i> 
+    -o <i>output-file-name</i> job </font> </p>
+</blockquote>
+<p><font face="Arial, Helvetica, sans-serif" size="2">at the Unix prompt.</font> 
+</p>
+<p><font face="Arial, Helvetica, sans-serif" size="2">The job status command<font face="Courier New, Courier, mono"> 
+  qstat -f <i>jobid</i> </font>sometimes provides a little too much information. 
+  Bob Yantosca has written a script called </font><font face="Arial, Helvetica, sans-serif" size="2"><font face="Courier New, Courier, mono">pbstat</font> 
+  (this is already installed at Harvard) which condenses the output you get from<font face="Courier New, Courier, mono"> 
+  qstat -f <i>jobid. </i></font>If you type <font face="Courier New, Courier, mono">pbstat</font> 
+  at the Unix prompt, you will output similar to:</font></p>
+  
+<pre>     --------------------------------------------------------
+     PBS Job ID number    : 10929.sol
+     Job owner            : pip@sol
+     Job name             : run.sh
+     Job started on       : Sun Aug 10 17:22:21 2003
+     Job status           : Running
+     PBS queue and server : q4x64 on amalthea
+     Job is running on    : hera/0*4 (R12K processors)
+     # of CPUs being used : 4 (max allowed is 4)
+     CPU utilization      : 394% (ideal max is 400%)
+     Elapsed walltime     : 22:14:43 (max allowed is 64:00:00)
+     Elapsed CPU time     : 76:20:40
+     Memory usage         : 10475844kb (max allowed is 1700Mb)
+     VMemory usage        : 8244704kb</pre>
+<p><font face="Arial, Helvetica, sans-serif" size="2">This allows you to obtain 
+  information about your run much more easily. If you type<font face="Courier New, Courier, mono"> 
+  pbstat all</font>, you will obtain information about every job which is running. 
+  If you type<font face="Courier New, Courier, mono"> pbstat userid</font> , then 
+  you will get information about all of the jobs that user <font face="Courier New, Courier, mono">userid</font> 
+  is running.</font></p>
+<hr>
+<P> <A NAME="6.3"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>6.3 
+  Profiling GEOS&#150;CHEM execution (SGI only)</b></font>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+  You can use the SGI Speedshop profiler to obtain additional information about 
+  your run, including how long each individual subroutine takes, how efficient 
+  the parallelization is, and which lines of code are the most time consuming. 
+  This can be very helpful in determining potential bottlenecks in the code. 
+  </font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+  A word of warning: <B>profiling runs should ALWAYS be done on a single processor</B>. 
+  A multi-processor profiling job that dies can potentially hang the entire machine 
+  that it is running on. Therefore, you should only profile GEOS&#150;CHEM code 
+  which has been previously tested and is known to be stable.</font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+  To invoke the SpeedShop profiler on a single processor (once again assuming 
+  that your executable file is named geos), set up the following job script: </font></p>
+<P ALIGN=JUSTIFY>
+<blockquote>
+  <PRE>#!/bin/tcsh -f                 # shebang line
+cd /scratch/bmy/run.v6&#150;02&#150;05   # your run dir
+rm -f log                      # clear log file 
+time ssrun -pcsamp geos > log  # time job; pipe to log 
+exit(0)                        # exit normally </PRE>
+</blockquote>
+
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">and 
+  submit it to a single processor queue on your system. This will start 
+  the SpeedShop profiler with the PC-sampling option and send the output to the 
+  geos.log file. After the job has finished, you will notice a file named:</font>
+<blockquote>
+  <pre>geos.pcsamp.m_____</pre>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">This 
+  is the output from the profiler for the main thread. Immediately following 
+  the &quot;m&quot; will be a unique number assigned by the system. </font>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">These 
+  <font size="2"> <font face="Courier New, Courier, mono"> *.pcsamp.*</font></font> 
+  files are binary output files and are not human-readable. To convert them 
+  to ASCII files, you must type: </font> 
+<blockquote>
+  <pre>prof -usage -lines geos.pcsamp.m______ &gt; main.pcs</pre>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+  This will generate an ASCII report which details the percentage of time spent 
+  in each routine, plus the percentage of time spent at certain lines of code. 
+  Using this output, you may determine exactly where your code is spending the 
+  most time. </font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+  It is also possible to write a shell script which calls the prof command. 
+  The shell script can even be submitted to the LSF batch queue system. 
+  However, you must make sure to submit the shell script to the same machine as 
+  the job ran on, otherwise the prof command won't work. </font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+  Bob Yantosca has some IDL software that can help you read and plot the information 
+  contained in these ASCII files. Contact him (<A HREF="mailto:bmy@io.harvard.edu">bmy@io.harvard.edu</A>) 
+  for more information. </font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> NOTE: The 
+  -usage switch to the prof command will include statistics on CPU time usage. 
+  The -lines switch will identify the lines of code in each subroutine that are 
+  the most CPU-intensive. These can be useful tools in identifying bottlenecks 
+  in your CTM code. You can omit these options in order to obtain a more basic 
+  report. Also see the Unix man pages for ssrun and prof for more information.</font></P> 
+<hr>
+<P> <A NAME="6.4"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>6.4 
+  Error output</b></font></P>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+  Almost all of the GEOS&#150;CHEM code supports I/O error trapping. In other words, 
+  if an error occurs while reading from a file or writing to a file, the run will 
+  stop and an appropriate error message will be displayed. Many of the error 
+  messages have the following format: </font></p>
+<blockquote>
+  <PRE>=============================================================== 
+I/O Error Number    4001 in file unit       10 
+Encountered in routine read_bpch2:3  
+=============================================================== </PRE>
+</blockquote>
+
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">This means 
+  that an error (#4001) has occurred while reading from logical file unit 10. 
+  The routine where the error occurred is routine <font face="Courier New, Courier, mono" size="2">read_bpch2</font>(which 
+  happens to belong to <font face="Courier New, Courier, mono" size="2">bpch2_mod.f</font>). 
+  The string <font face="Courier New, Courier, mono" size="2">read_bpch2:3</font> 
+  indicates that the third error trap within <font face="Courier New, Courier, mono" size="2">read_bpch2</font> 
+  was where the error occurred. If you grep for the string <font face="Courier New, Courier, mono" size="2">read_bpch2:3</font> 
+  in <font face="Courier New, Courier, mono" size="2">bpch2_mod.f</font>, you 
+  will be taken to the offending line of code. </font> 
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">For 
+  the SGI platform, it is possible to get a more detailed explanation of the error. 
+  Simply type at the Unix prompt: </font>
+<blockquote>
+  <pre>explain lib-4001 </pre>
+</blockquote>
+ <P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">which 
+  gives the following output: </font>
+<blockquote>
+  <pre>A READ operation tried to read past the end-of-file.
+
+
+A Fortran READ operation encountered the endfile record 
+(end-of-file), and neither an END nor an IOSTAT specifier 
+was present on the READ statement. Either 1) add an END=s 
+specifier (s is a statement label) and/or an IOSTAT=i 
+specifier (i is an integer variable) to the READ statement, 
+or 2) modify the program so that it reads no more data than 
+is in the file. For more information, see the input/output
+section of your Fortran reference manual.
+
+
+Because this is an end-of-file condition, the negative of 
+this error number is returned in the IOSTAT variable, if 
+specified. The error class is UNRECOVERABLE (issued by the
+run-time library). </pre>
+</blockquote>
+<font face="Courier New, Courier, mono"> 
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> On SGI, 
+  error numbers 4000 and greater are FORTRAN library errors, hence the prefix 
+  <font face="Courier New, Courier, mono" size="2">lib-</font> in the command 
+  explain <font face="Courier New, Courier, mono" size="2">lib-4001</font>. Error 
+  numbers 1000 and greater are generated by the Cray F90 library, and so the appropriate 
+  command would be explain <font face="Courier New, Courier, mono" size="2">cf90-1xxx</font>. 
+  </font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Also, you 
+  will find that error number 2 is a common I/O error. This error condition usually 
+  happens when you try to read from a file that does not exist (i.e. a symbolic 
+  link is invalid or the file is not found in the directory). </font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Finally, 
+  Sometimes you might be presented with error number 1133. This occurs when there 
+  is no more disk space in the run directory. You will have to remove some large 
+  files from your run directory and then restart the run. </font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> If you are 
+  not running GEOS&#150;CHEM on the SGI platform, then consult your local computer 
+  guru for more information on Fortran error numbers for your particular compiler 
+  and operating system.</font></p>
+</font>
+<hr>
+<P> <A NAME="6.5"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>6.5 
+  GEOS&#150;CHEM Debugging</b></font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> GEOS&#150;CHEM 
+  is an evolving model. <A HREF="../../../documentation/geos_versions.html" TARGET="_blank">New features 
+  and functionalities</A> are constantly being added to it by <A HREF="../../../documentation/geos_people.html" TARGET="_blank">a 
+  rapidly increasing group of users</A>. As with any software project, mistakes 
+  are inevitable. </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Most of 
+  the bugs you you will encounter when working on GEOS&#150;CHEM will fall into 
+  one of two categories: </font> 
+<OL>
+</OL>
+<ol>
+  <li><font face="Courier New, Courier, mono"><font face="Arial, Helvetica, sans-serif" size="2"><B>True 
+    bugs</B>: typos, omissions, reading the wrong file, or other outright mistakes.</font> 
+    </font></li>
+  <li><font face="Courier New, Courier, mono"><font face="Arial, Helvetica, sans-serif" size="2"><B>Design 
+    limitation bugs</B>: that is, writing code in such a way that will make it 
+    difficult or impossible to extend the functionality of the model at some future 
+    time. </font> </font></li>
+</ol>
+<p align=justify><font face="Courier New, Courier, mono"><font face="Arial, Helvetica, sans-serif" size="2">Bugs 
+  of the first category are, in general, easily rectified. The fixes to 
+  these bugs typically involve either correcting a misspelled word or updating 
+  an incorrect numerical value. </font> </font></p>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+  Bugs belonging to the second category can be rather pernicious. In almost 
+  all instances, you will find that the model is working fine -- that is, until 
+  you try to add in a new chemistry simulation, diagnostic, or third-party routine. 
+  Then you may find that a major modification to the structure of GEOS&#150;CHEM is 
+  necessary before the new code can be successfully interfaced. </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> GEOS&#150;CHEM 
+  is a combination of several different indivdual pieces: emissions, chemistry 
+  and deposition routines from Harvard, transport and convection routines from 
+  GSFC, photolysis from UC Irvine, etc. Therefore, the structure of GEOS&#150;CHEM 
+  was (and still is) largely defined by the structure of the individual pieces 
+  from which it was created. It is not always possible to deviate from this set 
+  structure without having to rewrite entire sections of source code.
+  </font></P>
+<hr>
+<P> <A NAME="6.5.1"></a> <font face="Arial, Helvetica, sans-serif"><b><font size="2">6.5.1 
+  Debugging Tips</font></b></font> 
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Here are 
+  some steps you can take to try to diagnose a particular GEOS&#150;CHEM error.</font><font face="Arial, Helvetica, sans-serif"> 
+  </font></p>
+<blockquote>
+  <table width="95%" border="0" cellpadding="3" cellspacing="3">
+    <tr align="left" valign="top"> 
+      <td width="4%"><font face="Arial, Helvetica, sans-serif" size="2">1.</font></td>
+      <td><P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Turn on diagnostic 
+        <font size="2"> <font face="Courier New, Courier, mono"> ND70</font></font> 
+        in the file <font face="Courier New, Courier, mono" size="2">input.ctm</font>. 
+        This will cause debugging messages (via routine <font face="Courier New, Courier, mono">debug_msg</font> 
+        contained in <font face="Courier New, Courier, mono" size="2">error_mod.f</font>) 
+        to be written to the log file after operations such as transport, chemistry, 
+        emissions, dry deposition, etc. are called from the main program. 
+        In this way, you should be able to identify in which operation the error 
+        occurred. </font></P>
+        <P ALIGN=JUSTIFY>
+		<font face="Arial, Helvetica, sans-serif" size="2">NOTE: <font face="Courier New, Courier, mono" size="2">debug_msg</font> 
+        will cause the text to be flushed to disk after it is printed. Most 
+        Unix systems feature buffered I/O; that is, the contents of a file or 
+        screen output are not updated until an internal buffer (usually 16K of 
+        memory) is filled up. If you don't flush the error message to disk, 
+        then the last output to the log file may not accurately indicate the location 
+        at which the error occurred. Therefore, we recommend using <font face="Courier New, Courier, mono" size="2">debug_msg</font> 
+        instead of a standard Fortran <font face="Courier New, Courier, mono" size="2">WRITE</font> 
+        or <font face="Courier New, Courier, mono" size="2">PRINT*</font> statement.</font></P>
+	  </td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="4%">&nbsp;</td>
+      <td></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="4%"><font face="Arial, Helvetica, sans-serif" size="2">2.</font></td>
+      <td> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">It may also be 
+          necessary to include additional debug statements into main.f or other 
+          routines. This may be done by calling subroutine <font face="Courier New, Courier, mono" size="2">debug_msg</font> 
+          as follows</font></p>
+        <blockquote> 
+          <pre>CALL DEBUG_MSG( '### after routine X' )</pre>
+        </blockquote>
+        <p><font face="Arial, Helvetica, sans-serif" size="2"> By adding several 
+          of these debug statements, you should be able to track down the particular 
+          place at which the error is occurring. </font> 
+      </td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="4%">&nbsp;</td>
+      <td></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="4%"><font face="Arial, Helvetica, sans-serif" size="2">3.</font></td>
+      <td> 
+        <P align=justify><font face="Arial, Helvetica, sans-serif" size="2">If you suspect 
+          a that problem with one of the meteorological field input files could 
+          be causing GEOS&#150;CHEM to die with an unexplained error, then look for 
+          the following line in </font><font face="Courier New, Courier, mono" size="2">main.f</font>:</P>
+        <blockquote> 
+          <PRE>! Update dynamic timestep 
+CALL SET_CT_DYN( INCREMENT = .TRUE. )</PRE>
+        </blockquote>
+        <P><font face="Arial, Helvetica, sans-serif" size="2"> and, immediately 
+          below, insert the following subroutine call:</font></P>
+        <blockquote> 
+<PRE>### Debug
+CALL MET_FIELD_DEBUG</PRE>
+        </blockquote>
+        <P align=justify><font face="Arial, Helvetica, sans-serif" size="2">This will cause 
+          GEOS&#150;CHEM to print out the minimum, maximum, and sum of each meteorological 
+          field at the top of the dynamic loop. You can then examine this 
+          output to determine if the data range of a particular field is invalid. 
+          </font></p>
+      </td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="4%">&nbsp;</td>
+      <td></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="4%"><font face="Arial, Helvetica, sans-serif" size="2">4.</font></td>
+      <td> 
+        <P align=justify><font face="Arial, Helvetica, sans-serif" size="2">If you want to 
+          just print out the minimum and maximum value of an array variable that 
+          is not included in met_field_debug, then simply add the following line 
+          of code:</font></P>
+        <blockquote> 
+          <PRE>PRINT*, '### Min, Max: ', MINVAL( X ), MAXVAL( X )
+CALL FLUSH( 6 )</PRE>
+        </blockquote>
+        <font face="Arial,Helvetica" size=-1> 
+        <P align=justify>where X is the name of the variable. </P>
+        <P align=justify>If you want to print out the sum of X instead of the min and max, add 
+          this line of code:</P>
+        </FONT> 
+        <blockquote> 
+<PRE>PRINT*, '### Sum of X : ', SUM( X )
+CALL FLUSH( 6 )</PRE>
+        </blockquote>
+        <P align=justify> <font face="Arial, Helvetica, sans-serif" size="2"> Here we also 
+          have to call the Fortran routine <font face="Courier New, Courier, mono" size="2">FLUSH(6)</font>, 
+          which ensures that the output (in this case, to the screen, unit #6), 
+          will be immediately written to disk.</font> 
+      </td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="4%">&nbsp;</td>
+      <td></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="4%"><font face="Arial, Helvetica, sans-serif" size="2">5.</font></td>
+      <td>
+	    <P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">It 
+          is a good idea to periodically compile your code with array-out-of-bounds 
+          error checking. This will make sure that all of the arrays are 
+          being accessed with indices whose values fall within the specified array 
+          dimensions.</font></P>
+        <P ALIGN=JUSTIFY><font face="Arial,Helvetica" size=-1>
+        For example, if you have the following situation in your code:</font></P>
+<blockquote> 
+<pre>REAL*8 :: A(10), B(10)
+...
+DO I = 1, 10
+   B(I) = A(I+1)
+ENDDO</pre>
+        </blockquote>
+		<P ALIGN=JUSTIFY>
+        <font face="Arial,Helvetica" size=-1> then the code will try to access 
+        the 11th element of the A array. But since A only has 10 elements, 
+        the code will try to access the next contiguous memory location, which 
+        may belong to a different variable altogether. Therefore, a "junk" 
+        value will be copied into the 10th element of the B array.</font></P></td>
+    </tr>
+    <tr align="left" valign="top">
+      <td width="4%">&nbsp;</td>
+      <td></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="4%"><font face="Arial, Helvetica, sans-serif" size="2">6.</font></td>
+      <td> 
+        <P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">To 
+          invoke array-out-of-bounds checking in your code, make clean, and then 
+          make sure you the appropriate line in your Makefile:</font></P>
+        <blockquote> 
+          <pre>FFLAGS = f90 -cpp -64 -O3 -OPT:reorg_common=off -C   (SGI   )
+FFLAGS = f90 -cpp -convert big_endian -tune host -C  (Compaq)
+FF     = pgf90 -Mpreprocess -byteswapio -Mbounds     (Linux )
+FFLAGS = f90 -xpp=cpp -O4 -xarch=v9 -C               (Sparc)</pre>
+        </blockquote>
+        <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">Then 
+          recompile your code as usual. This will build the array-out-of-bounds 
+          checking into your executable. Any errors will be detected at runtime, 
+          and you should get error output such as:</font><font face="Arial, Helvetica, sans-serif"><br>
+          <br>
+          </font> 
+        <blockquote>
+          <PRE>lib-4964: WARNING 
+Subscript is out of range for dimension 1 for array 
+'A' at line 8 in procedure 'MAIN__', 
+diagnosed by '__f90_bounds_check'.</PRE>
+        </blockquote>
+        <P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">The 
+          above error was generated on the SGI platform; Alpha and Linux compilers 
+          should give similar errors.</font></p>
+        <P ALIGN=JUSTIFY><font face="Arial,Helvetica" size=-1>NOTE: Once you have 
+          located and fixed the offending array statement, you should recompile 
+          to make an executable without the array-out-of-bounds checking built 
+          in. The error checking is thorough, but it can cause your code 
+          to slow down noticeably. Therefore, it is only recommended to 
+          use array-out-of-bounds checking in debugging runs and not in production 
+          runs. </font></p>
+      </td>
+    </tr>
+  </table>
+</blockquote>
+<hr>
+<P> 
+  <CENTER>
+    <A HREF="geos_chem_5.html"><font face="Arial, Helvetica, sans-serif" size="2">[Return 
+    to Chapter 5]</font></A><font face="Arial, Helvetica, sans-serif" size="2"> 
+    | <A HREF="geos_chem_7.html">[Go on to Chapter 7]</A></font> 
+  </CENTER>
+<P> 
+</BODY>
+</HTML>

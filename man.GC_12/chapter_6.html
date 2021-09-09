@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS-Chem User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css">
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<div style="width:1000px; margin:auto;">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script><!-- JavaScript for breadcrumb links -->
+
+<h2 align="center">GEOS-Chem Online User's Guide</h2>
+<h5 align="center"><a href="chapter_5.html">Previous</a> | <a href="chapter_7.html">Next</a> | <a href="chapter_6.html" target="_parent">Printable View (no frames)</a></h5>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h1>6. GEOS-Chem Run Directories</h1>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h2><a name="Install"></a>6.1 Installation instructions</h2>
+
+<p>There is a unique run directory for every combination of <a href="chapter_11.html">meteorological field</a>, <a href="chapter_12.html">grid resolution</a>, and <a href="http://wiki.geos-chem.org/GEOS-Chem_chemistry_mechanisms" target="blank">simulation type</a>. Run directories are small enough to store in your personal disk space. Each run directory contains the following:</p>
+
+<ul class="disc">
+  <li>Various  <a href="http://wiki.geos-chem.org/GEOS-Chem_Input_Files" target="_blank">input configuration files</a> that you can modify in order to select different options for your GEOS-Chem simulation</li>
+  <li>Files that define GEOS-Chem's photolysis mechanism</li>
+  <li>Router Makefile that enables actions such as 
+    <ul class="circle">
+      <li>Compiling the GEOS-Chem source code stored elsewhere on your system</li>
+      <li>Copying the executable to the run directory</li>
+      <li>Running GEOS-Chem</li>
+      </ul>
+  </li>
+  </ul>
+<p>A collection of GEOS-Chem run directories are stored in the GEOS-Chem Unit Test repository, which is stored on Github.org. You can create fresh copies of any GEOS-Chem run directories by using the <tt>gcCopyRunDirs</tt> perl script and the <tt>CopyRunDirs.input</tt> configuration file within the Unit Test's perl directory. For detailed instructions on creating run directories for your GEOS-Chem simulations, please see the <a href="http://wiki.geos-chem.org/Creating_GEOS-Chem_run_directories" target="_blank">Creating GEOS-Chem run directories</a> wiki page. Quick links to relevant subsections of this wiki page are provided below.</p>
+<ul>
+  <li><a href="http://wiki.geos-chem.org/GEOS-Chem_unit_tester_for_v11-02" target="_blank">Downloading the GEOS-Chem unit tester</a></li>
+  <li><a href="http://wiki.geos-chem.org/Creating_GEOS-Chem_run_directories%23Editing_the_CopyRunDirs.input_file" target="_blank">Editing the <tt>CopyRunDirs.input</tt> file</a></li>
+  <li><a href="http://wiki.geos-chem.org/Creating_GEOS-Chem_run_directories%23Generating_a_GEOS-Chem_Run_Directory" target="_blank">Generating a GEOS-Chem run directory</a></li>
+  <li><a href="http://wiki.geos-chem.org/Creating_GEOS-Chem_run_directories%23Available_run_directories" target="_blank">Run directories available from the Unit Tester</a></li>
+  <li><a href="http://wiki.geos-chem.org/Creating_GEOS-Chem_run_directories%23Tips_and_tricks_for_creating_run_directories" target="_blank">Run directory tips and tricks</a></li>
+</ul>
+<p>The 1-month benchmark output for recent GEOS-Chem versions are posted online.  You may download them via anonymous FTP from:</p>
+<blockquote><tt>ftp://ftp.as.harvard.edu/gcgrid/geos-chem/1mo_benchmarks</tt></blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h2><a name="Input"></a>6.2 GEOS-Chem input files contained in the run directory</h2>
+
+<p>For a complete list of GEOS-Chem input files that ship with each  run directory, please see the <a href="http://wiki.geos-chem.org/GEOS-Chem_Input_Files" target="_blank">GEOS Chem Input Files</a> wiki page. Of these, the most important is <tt>input.geos</tt>, where users the set start and end times and toggle the various <a href="chapter_9.html">GEOS-Chem components</a> on or off.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h2><a name="Output"></a>6.3 Output files created by GEOS-Chem in the run directory</h2>
+<p>For a complete list output files that GEOS-Chem will create in the run directory,  please see the <a href="http://wiki.geos-chem.org/GEOS-Chem_Output_Files" target="_blank">GEOS-Chem Output Files</a> wiki page.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h5 align="center"><a href="chapter_5.html">Previous</a> | <a href="chapter_7.html">Next</a> | <a href="chapter_6.html" target="_parent">Printable View (no frames)</a></h5>
+
+</div>
+</body>
+</html>

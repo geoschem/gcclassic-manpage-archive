@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html><head><title>GEOS-Chem User's Guide</title>
+
+ <link rel="stylesheet" type="text/css" href="../../../gc.css"><!-- Cascading style sheet for font declarations --></head><body style="background-color: rgb(255, 255, 255);">
+
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+
+<!-- JavaScript for breadcrumb links -->
+
+<p class="size20bi" align="center">GEOS-Chem v10-01 Online 
+
+  User's Guide</p>
+
+
+
+<p class="size14bi" align="center"><a href="chapter_2.html">Previous</a>
+
+| <a href="chapter_4.html">Next</a> | <a href="chapter_3.html" target="_parent">Printable View
+
+(no frames)</a></p>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+
+
+<p class="size24bi">3. Compilation </p>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p align="justify">Prior to running GEOS-Chem, you must compile the source code using a Fortran-90 compiler in order to create a GEOS-Chem executable. Compiling GEOS-Chem invokes
+  
+ the GNU Make utility which manages the entire compilation process. A series of scripts called makefiles directs GNU Make to compile the GEOS-Chem source code files in the proper order and with the proper options.  The resultant binary executable has filename <tt>geos</tt> and is stored in the<tt>/bin</tt> subdirectory in the top-level source code directory.</p>
+<p align="justify">The GEOS&#150;Chem source code directory is partitioned into several subdirectories and each GEOS-Chem source code subdirectory contains its own makefile. You will usually not have to modify any of the GEOS&#150;Chem source code makefiles unless you are introducing new modules or module-dependencies into GEOS-Chem. In those cases, you will need to add the new modules to the appropriate makefile and update appropriate dependency lists accordingly.</p>
+<p align="justify">In general there are two types of makefiles: </p>
+
+<ul>
+
+  <li>
+
+    <p align="justify"><strong><em>Router</em> makefiles</strong>: Makefiles that tell GNU Make to look at makefiles in other directories.</p>
+
+  </li>
+
+  <li>
+
+    <p align="justify"><strong><em>Regular</em> makefiles</strong>: Makefiles that are used by GNU Make to compile source code programs.</p>
+
+  </li>
+
+</ul>
+
+<p align="justify">The  top-level GEOS-Chem source code directory contains a <em>router</em> makefile, which  calls down to the   <em>regular</em> makefiles in the various subdirectories.  In each subdirectory, the <em>regular</em> makefile tells GNU Make how to compile the source code files. When the source code in all subdirectories has been compiled, the top-level Makefile tells GNU Make to create the GEOS-Chem executable file. For this reason, you must always compile GEOS-Chem from the top-level source code directory. You may do this either at the command line within the top-level source code directory or using another <em>router</em> makefile such as the one that comes with run directories copied from the GEOS-Chem Unit Tester (see Chapter 2).</p>
+<p align="justify">Please consult the <a href="http://wiki.geos-chem.org/GEOS-Chem_Makefile_Structure" target="_blank">GEOS-Chem Makefile Structure wiki page</a> for detailed information about GEOS-Chem makefiles and instructions for compiling GEOS-Chem. Quick links to subsections of this wiki page are included below:</p>
+<ul>
+  <li><a href="http://wiki.geos-chem.org/GEOS-Chem_Makefile_Structure%23Directory_Structure" target="_blank">GEOS-Chem v10-01 directory structure</a></li>
+  <li><a href="http://wiki.geos-chem.org/GEOS-Chem_Makefile_Structure%23Compilation_sequence" target="_blank">Compilation sequence and information about dependency lists</a></li>
+  <li><a href="http://wiki.geos-chem.org/GEOS-Chem_Makefile_Structure%23Compiling_GEOS-Chem" target="_blank">Compiling GEOS-Chem from the top-level source code directory</a></li>
+  <li><a href="http://wiki.geos-chem.org/GEOS-Chem_Makefile_Structure%23Advanced_compilation_techniques" target="_blank">Compiling GEOS-Chem from a run directory copied from the Unit Tester</a></li>
+  <li><a href="http://wiki.geos-chem.org/GEOS-Chem_Makefile_Structure%23Technical_Issues" target="_blank">Technical issues</a></li>
+</ul>
+<p align="justify">You can find more information about GNU Make at the GNU Operating System website: <a href="https://www.gnu.org/software/make/" align="justify">https://www.gnu.org/software/make/</a>.</p>
+<p align="justify">Note that executables generally cannot be easily swapped between computers unless the computers have identical systems. We therefore recommend that you recompile GEOS-Chem if you  decide to move GEOS-Chem to a different computer.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+
+
+<p align="center"><span class="size14bi"><a href="chapter_2.html">Previous</a>
+
+| <a href="chapter_4.html">Next</a> | <a href="chapter_3.html" target="_parent">Printable View
+
+(no frames)</a></span> </p>
+
+
+
+</body></html>
+

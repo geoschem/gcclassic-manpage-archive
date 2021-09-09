@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+
+<head>
+
+<title>GEOS-Chem Online User's Guide</title>
+
+<link rel="stylesheet" type="text/css" href="../../../gc.css"><!-- Cascading style sheet for font declarations -->
+
+</head>
+
+
+
+<body style="background-color: rgb(255, 255, 255);">
+
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+
+<!-- JavaScript for breadcrumb links -->
+
+<p class="size20bi" align="center">GEOS-Chem
+
+v10-01 Online User's Guide</p>
+
+
+
+<p class="size14bi" align="center"><a href="chapter_0.html">Previous</a>
+
+| <a href="chapter_2.html">Next</a> | <a href="chapter_1.html" target="_parent">Printable View
+
+(no frames)</a></p>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+
+
+<h1 align="justify">1. Introduction</h1>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+
+<p align="justify">Welcome to the international GEOS-Chem user community! The GEOS-Chem model is a global three-dimensional model of tropospheric chemistry driven by assimilated meteorological observations from the Goddard Earth Observing System (GEOS) of the NASA Global Modeling Assimilation Office
+
+(GMAO). GEOS-Chem is being developed by <a href="../../../geos_people.html" target="_blank">personnel at Harvard University and other institutions in the Americas, Europe, and Asia</a>. and is actively supported by the <a href="http://wiki.geos-chem.org/GEOS-Chem_Support_Team" title="GEOS-Chem Support Team" target="_blank">GEOS-Chem Support Team</a>.</p>
+<p align="justify">In this GEOS-Chem User's Guide you will find information and resources necessary for using GEOS-Chem v10-01. Much of the GEOS-Chem documentation has recently migrated to the GEOS-Chem online wiki located at <a href="http://wiki.geos-chem.org/" target="_blank">http://wiki.geos-chem.org/</a>. Wiki hyperlinks are provided throughout the User's Guide directing you to where you can find in-depth information on different GEOS-Chem topics. We encourage you to explore the GEOS-Chem wiki to supplement the information provided in this User's Guide and to access the most up-to-date information available for GEOS-Chem v10-01 as well as past versions.</p>
+<p align="justify">The GEOS-Chem v10-01 Online User's Guide is arranged as follows:</p>
+<ul>
+  
+  <li>
+    <p align="justify"><a href="chapter_1.html">Chapter 1: Introduction</a> provides a brief overview of GEOS-Chem v10-01, a list of basic computing requirements, and guidelines for how to be an active and responsible participant in the GEOS-Chem community.</p>
+  </li>
+  <li>
+    <p align="justify"><a href="chapter_2.html">Chapter 2: Installation</a> gives installation instructions for required software, including how to download the  GEOS-Chem source code directory, run directories, shared data directories, and netCDF libraries.</p>
+  </li>
+  <li>
+    <p align="justify"><a href="chapter_3.html">Chapter 3: Compilation</a> describes the makefile structure of GEOS-Chem and covers how to compile the GEOS-Chem source code into an executable.</p>
+  </li>
+  <li>
+    <p align="justify"><a href="chapter_4.html">Chapter 4: Data Directories</a> provides resources for data input files, such as the met fields and emissions inventories, contained in the shared data directories. </p>
+  </li>
+  <li>
+    <p align="justify"><a href="chapter_5.html">Chapter 5: Run Directories</a> details the contents of GEOS-Chem run directories required for running a GEOS-Chem simulation.</p>
+  </li>
+  <li>
+    <p align="justify"><a href="chapter_6.html">Chapter 6: Running GEOS-Chem</a> gives instruction on how to set up and run a GEOS-Chem simulation and provides resources for trouble-shooting issues.</p>
+  </li>
+  <li>
+    <p align="justify"><a href="chapter_7.html">Chapter 7: Coding and Debugging</a> describes Fortran coding best practices, parallelization, debugging, and Git verson control software.</p>
+  </li>
+  <li>
+    <p align="justify"><a href="chapter_8.html">Chapter 8: GEOS-Chem Reference Guides</a> contains links to software-generated GEOS-Chem reference guides and gives instruction on how to generate your own GEOS-Chem documentation.</p>
+  </li>
+  <li>The Appendices include in-depth supplementary information about GEOS-Chem. They include:
+    <ul>
+      <li><a href="appendix_1.html" target="_blank">Appendix 1: List of GEOS-Chem tracers, by simulation</a></li>
+    <li><a href="appendix_2.html" target="_blank">Appendix 2: Horizontal coordinates</a></li>
+    <li><a href="appendix_3.html" target="_blank">Appendix 3: Vertical grids</a></li>
+    <li><a href="appendix_4.html" target="_blank">Appendix 4: Meteorological fields</a></li>
+     <li><a href="appendix_5.html" target="_blank">Appendix 5: Diagnostics</a></li>
+     <li><a href="appendix_6.html" target="_blank">Appendix 6: List of chemical species</a></li>
+     <li><a href="appendix_7.html" target="_blank">Appendix 7: Coding style guide</a></li>
+     <li><a href="appendix_8.html" target="_blank">Appendix 8: High-Performance computing in GEOS-Chem</a></li>
+     <li><a href="appendix_9.html" target="_blank">Appendix 9: Addenda</a></li>
+     <li><a href="appendix_10.html" target="_blank">Appendix 10: Version history, including what's new in GEOS-Chem v10-01</a></li>
+  </ul>
+  </li>
+</ul>
+<p align="justify"><span class="size20bi"><a name="Overview" id="Overview"></a>1.1 GEOS-Chem Overview</span></p>
+<p align="justify">GEOS-Chem began as a merging of Mian Chin's GEOS-CTM code with the emissions, dry deposition, and chemistry
+  
+  routines from the old Harvard-GISS 9-layer model. Since then, we have added many updates and improvements to GEOS-Chem. The model now uses
+  
+  detailed inventories for fossil fuel, biomass burning, biofuel burning,
+  
+  biogenic, and aerosol emissions. GEOS-Chem includes state-of-the-art
+  
+  transport (<a href="http://wiki.geos-chem.org/Advection_scheme_TPCORE" target="_blank">TPCORE</a>) and photolysis (<a href="http://wiki.geos-chem.org/Photolysis_mechanism" target="_blank">FAST-JX</a>) routines, as well as the
+  
+  SMVGEAR II and <a href="http://wiki.geos-chem.org/KPP_solvers_FAQ" target="_blank">KPP</a> chemistry solver packages. Detailed aerosol microphysical simulations using GEOS-Chem may performed with the <a href="http://wiki.geos-chem.org/TOMAS_aerosol_microphysics" target="_blank">TOMAS aerosol microphysics code</a> or the <a href="http://wiki.geos-chem.org/APM_aerosol_microphysics" target="_blank">APM aerosol microphysics code</a>.</p>
+<p align="justify">GEOS-Chem has been
+  
+  parallelized using the <a href="chapter_7.html#OpenMP">OpenMP</a> compiler directives, and it <a href="http://wiki.geos-chem.org/GEOS-Chem_supported_platforms_and_compilers" target="_blank">scales well when running across multiple CPU's on shared-memory machines</a>. We are currently building a <a href="http://wiki.geos-chem.org/Grid-independent_GEOS-Chem" target="_blank">High-Performance Computing version of GEOS-Chem</a> in order to take advantage of distributed memory architectures and <a href="http://www.mcs.anl.gov/research/projects/mpi/" target="_blank">MPI parallelization</a>.</p>
+<p align="justify">GEOS-Chem has kept pace with
+  
+  changes in the meteorological data products being produced by GMAO.
+  
+  You can perform GEOS-Chem simulations with  GMAO's <a href="appendix_4.html#GEOS-4">GEOS-4</a>, <a href="appendix_4.html#GEOS-5">GEOS-5</a>, <a href="appendix_4.html#MERRA">MERRA</a>, and <a href="appendix_4.html#GEOS-FP">GEOS-FP</a> data products
+  
+  on <a href="appendix_2.html#GMAO_1x125">1&deg; x 1.25&deg;</a>, <a href="appendix_2.html#GMAO_2x25">2&deg; x 2.5&deg;</a> or <a href="appendix_2.html#GMAO_4x5">4&deg; x 5&deg; </a>global grids.  GEOS-Chem has become a popular tool for regional-scale modeling and you can perform  nested-grid simulations (one-way nesting)  using GEOS-5 at <a href="appendix_2.html#GMAO_05">0.5&deg;
+    
+    x 0.666&deg;</a> horizontal resolution for the following
+  
+  regions: <a href="appendix_2.html#GMAO_05_CH">China</a>, <a href="appendix_2.html#GMAO_05_NA">North
+    
+    America</a>,
+  
+  and <a href="appendix_2.html#GMAO_05_EU">Europe</a>. Nested-grid
+  
+  simuations may now also be performed using GEOS-FP
+  
+  at <a href="appendix_2.html#GMAO_025">0.25&deg; x 0.3125&deg;</a> horizontal resolution over the following
+  
+  regions: <a href="appendix_2.html#GMAO_025_CH">China</a>, <a href="appendix_2.html#GMAO_025_NA">North
+    
+    America</a>, <a href="appendix_2.html#GMAO_025_EU">Europe</a>, and <a href="appendix_2.html#GMAO_025_SE">SE Asia</a>.</p>
+<p align="justify">Those of you who are part of the <a href="../../../../gcap" target="_blank">GCAP project</a> can use GEOS-Chem to perform simulations using meteorology from the GISS-II GCM (<a href="appendix_3.html#A3.2">23 layers</a>, <a href="appendix_2.html#GCAP_4x5">4&deg; x 5&deg;</a> horizontal
+  
+  grid). You can select from several IPCC future-climate scenarios.</p>
+<p align="justify">See <a href="appendix_10.html#A10.1">Appendix 10</a> of this User's Guide for a complete list of features that were introduced into GEOS-Chem v10-01. Detailed information about this version can also be found on the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v10-01" target="_blank" class="size16">GEOS-Chem v10-01</a> wiki page.</p>
+<p align="justify">Starting with version GEOS-Chem v9-01-02, we have updated our benchmarking procedure. For details on the 1-month and 1-year benchmarks, please see the <a href="../../../geos_benchmark.html" target="_blank" class="size16">GEOS-Chem Benchmark Simulations wiki page</a>.</p>
+<p align="justify"><span class="size20bi"><a name="ComputeBasics" id="ComputeBasics"></a>1.2 Computer Basics</span></p>
+<p align="justify">Minimum system requirements for GEOS-Chem are outlined on the <a href="http://wiki.geos-chem.org/Minimum_system_requirements_for_GEOS-Chem" target="_blank" class="size16">Minimum system requirements for GEOS-Chem wiki page</a>. Below are quick links to subsections of that wiki page for easy reference:</p>
+<ul>
+  <li><a href="http://wiki.geos-chem.org/Minimum_system_requirements_for_GEOS-Chem%23Hardware_Recommendations" target="_blank" class="size16">Hardware Recommendations</a></li>
+  <li><a href="http://wiki.geos-chem.org/Minimum_system_requirements_for_GEOS-Chem%23Software_Requirements" target="_blank" class="size16">Software Requirements</a></li>
+  <li><a href="http://wiki.geos-chem.org/Minimum_system_requirements_for_GEOS-Chem%23Performance_and_scalability" target="_blank" class="size16">Performance and Scalability</a></li>
+  <li><a href="http://wiki.geos-chem.org/Minimum_system_requirements_for_GEOS-Chem%23Estimated_Disk_Space" target="_blank" class="size16">Estimated Disk Space</a></li>
+</ul>
+<p align="justify">If you are not sure what hardware or software is available to you, then please check with your local IT   department. For the most up-to-date information
+
+  regarding GEOS-Chem performance on specific platforms and operating systems, please see the <a href="http://wiki.geos-chem.org/GEOS-Chem_supported_platforms_and_compilers" target="_blank" class="size16">GEOS-Chem supported
+
+platforms and compilers wiki page</a>.</p>
+<p align="justify">In order to use GEOS-Chem, it is helpful to have general experience with the following:</p>
+<ul>
+  <li> Programming using the Fortran programming language</li>
+  <li> Generating graphics using IDL (preferred) or other software (e.g. Matlab, NCL, R, or Python)</li>
+  <li>Working in a  Unix environment (e.g. familiarity with unix commands and file paths) </li>
+  <li> Exposure to working with and writing Unix scripts</li>
+  <li> Familiarity with Git software version control</li>
+</ul>
+<p>For resources about these topics, including tutorials, please see the <a href="http://wiki.geos-chem.org/GEOS-Chem_programming_resources" title="GEOS-Chem programming resources" target="_blank">GEOS-Chem programming resources wiki page</a> and <a href="http://wiki.geos-chem.org/Version_control_with_Git" title="GEOS-Chem programming resources" target="_blank">Version control with Git wiki page</a>.</p>
+<p align="justify"><span class="size20bi"><a name="UserCommunity" id="UserCommunity"></a>1.3 Participation in the GEOS-Chem User Community</span></p>
+<p align="justify">Development of the GEOS-Chem model and its adjoint is a grass-roots activity by <a href="../../../geos_people.html" target="_blank">individual scientists</a> pursuing their own research interests and sharing their work for the   benefit of all. Being a GEOS-Chem user therefore comes with expectations and responsibilities. Please read and follow the guidelines below to help us maintain an active and vibrant GEOS-Chem community.</p>
+<ol>
+<li><p align="justify">Please send an email to <tt>geos-chem-support[at]g.harvard.edu</tt> containing a paragraph  describing how you and the other members of your research group plan to use GEOS-Chem.  We will add this to our <a href="../../../geos_people.html" title="http://acmg.seas.harvard.edu/geos/geos_people.html" target="_blank" rel="nofollow">GEOS-Chem People and Projects</a> web page. Registering your group helps us to accurately track how many research groups are using GEOS-Chem.</p></li>
+
+<li>
+  <p align="justify">Please subscribe to the general GEOS-Chem email list and to an email list of one or more Working Groups. The general GEOS-Chem listserv is where we make announcements about new model releases, bugs and fixes, and other information of interest to the entire GEOS-Chem community. In addition, each GEOS-Chem Working Group has its own listserv where group members can discuss various aspects of model development and validation among themselves. Please see our <a href="http://wiki.geos-chem.org/GEOS-Chem_welcome_letter_for_new_users#Subscribing_to_the_GEOS-Chem_email_lists" target="_blank" class="size16">Subscribing to the GEOS-Chem email lists wiki page</a> for instructions.</p></li>
+
+<li><p align="justify">We encourage you to join  a <a href="../../../geos_working_groups.html" title="http://acmg.seas.harvard.edu/geos/geos_working_groups.html" target="_blank" rel="nofollow">Working Group</a> that is most relevant to your area of research.  The Working Groups foster communication and collaboration between   GEOS-Chem users, and they identify <a href="http://wiki.geos-chem.org/GEOS-Chem_model_development_priorities" title="GEOS-Chem model development priorities" target="_blank">priorities for model development</a> to the <a href="../../../geos_steering_cmte.html" target="_blank">GEOS-Chem Steering Committee</a>.  Please take a moment to introduce yourself to any relevant Working Group  via email.</p></li>
+
+<li><p align="justify">Please adhere to our list of <a href="../../../geos_overview.html" title="http://acmg.seas.harvard.edu/geos/geos_welcome.html" target="_blank">best practices</a>.    In particular, if you discover a problem (e.g. bugs, missing   files, numerical issues, etc.), please alert the <a href="http://wiki.geos-chem.org/GEOS-Chem_Support_Team" title="GEOS-Chem Support Team" target="_blank">GEOS-Chem Support Team</a> right away.  Other GEOS-Chem users will most   certainly benefit from your discovery! </p></li>
+
+<li><p align="justify">We encourage you  to send us your <a href="http://wiki.geos-chem.org/GEOS-Chem_supported_platforms_and_compilers" title="GEOS-Chem supported platforms and compilers" target="_blank">timing results from a 1-month benchmark simulation</a>. This will allow us to keep a list of   how the model is performing across several different platform/compiler   combinations. We will post this information on the GEOS-Chem supported platforms and compilers wiki page.</p></li>
+
+<li><p align="justify">Please read our <a href="http://acmg.seas.harvard.edu/geos/geos_credit_and_refs.html" target="_blank">GEOS-Chem Credits and References</a> wiki page containing guidelines for giving appropriate credit to developers through co-authorship or citation. You may also refer to the <a href="http://acmg.seas.harvard.edu/geos/geos_chem_narrative.html" target="_blank">Narrative Description of the GEOS-Chem Model</a> wiki page for assistance with correctly citing relevant model components of the <a href="http://wiki.geos-chem.org/GEOS-Chem_versions_under_development" target="_blank">current standard version</a> of GEOS-Chem in your publications.</p> </li>
+</ol>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+
+
+<p align="center"><span class="size14bi"><a href="chapter_0.html">Previous</a>
+
+| <a href="chapter_2.html">Next</a> | <a href="chapter_1.html" target="_parent">Printable View
+
+(no frames)</a></span></p>
+
+
+
+</body></html>
+

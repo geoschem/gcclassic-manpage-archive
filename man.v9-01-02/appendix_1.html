@@ -1,0 +1,1757 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS-Chem User's Guide</title>
+  <link rel="stylesheet" type="text/css" href="../../../gc.css"><!-- Cascading style sheet for font declarations -->
+  <style type="text/css">
+.orange {
+  color: #ff6600;
+}
+tr {
+  vertical-align: top;
+}
+th {
+  font-family: Arial,Helvetica,sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
+  background-color: #cccccc;
+}
+td {
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 16px;
+  text-align: left;
+}
+.green {
+  color: #009900;
+}
+.purple {
+  color: #cc33cc;
+}
+
+</style><!-- Style for re-defining the table settings --></head><body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&ndash;Chem v9&ndash;01&ndash;02 Online 
+  User's Guide</p>
+
+<p class="size14bi" align="center"><a href="chapter_9.html">Previous</a>
+| <a href="appendix_2.html">Next</a> | <a href="appendix_1.html" target="_parent">Printable
+View (no frames)</a></p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size24bi"><a name="A1"></a>Appendix
+1: GEOS&ndash;Chem Tracers, by Simulation</p>
+<p align="justify">In this Appendix, we shall enumerate the different types of GEOS&ndash;Chem simulations that you can perform. For each simulation, we shall provide a list of    <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Advection_scheme_TPCORE" target="_new">advected</a> tracers.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A1.1"></a>A1.1 NOx&ndash;Ox&ndash;hydrocarbon&ndash;aerosol 
+  simulations</p>
+<p align="justify"> The tracers listed below are in general either long-lived (and must be transported in the model) or are "families" consisting of two or more molecules. For a complete list of all of the chemical species used in the GEOS&ndash;Chem chemistry mechanisms, please consult <a href="appendix_6.html">Appendix 6</a>.</p>
+
+<p align="justify">Also, tracers in <span class="size16bi">BOLD <i>ITALICS</i></span> are carried as atoms C instead of molecules tracer. We assign to these a molecular weight of 12 g/mole. The number of moles C per moles tracer
+is listed below.</p>
+
+<p align="justify">There are different chemistry mechanism options for the NOx&ndash;Ox&ndash;hydrocarbon&ndash;aerosol 
+  simulations. In the following table we give the tracers for each option: the 
+  standard mechanism, the <span style="color: rgb(255, 102, 0);">SOA mechanism</span>, 
+  the <span style="color: rgb(0, 153, 0);">dicarbonyls mechanism</span> and the 
+  <span style="color: rgb(204, 51, 204);">Caltech isoprene mechanism.</span></p>
+
+<p align="justify"><span class="size16">For more information, please see:</span></p>
+<ol>
+  <li>Chapter 6.1.1, <a href="chapter_6.html#6.1.1">Checklist for NOx&#150;Ox&#150;Hydrocarbon&#150;aerosol 
+    chemistry simulation with SMVGEAR or KPP</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/NOx-Ox-HC-aerosol" target="_new">The 
+  &quot;standard&quot; NOx&ndash;Ox&ndash;Hydrocarbon&ndash;aerosol simulation</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Secondary_organic_aerosols" target="_new">Secondary 
+    organic aerosols</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Dicarbonyls_simulation" target="_new">Dicarbonyls 
+    simulation</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/New_isoprene_scheme" target="_new">Caltech 
+    isoprene mechanism</a></li>
+</ol>
+<table width="80%" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+    <tr>
+      <th width="5%">#</th>
+      <th width="15%">Name</th>
+      <th width="50%">Description</th>
+      <th width="15%">g/mole</th>
+      <th width="14%">mole C/<br>mole tracer</th>
+    </tr>
+    <tr>
+      <th colspan="5" rowspan="1" style="vertical-align: top; background-color: rgb(153, 153, 153); text-align: center;">Standard
+mechanism<br>
+      </th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="15%">NOx</td>
+      <td width="50%">NO + NO2+ NO3 + HNO2</td>
+      <td width="15%">46</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="15%">Ox</td>
+      <td width="50%">O3 + NO2 + 2NO3</td>
+      <td width="15%">48</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="15%">PAN</td>
+      <td width="50%">Peroxyacetyl Nitrate</td>
+      <td width="15%">121</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="15%">CO</td>
+      <td width="50%">Carbon Monoxide</td>
+      <td width="15%">28</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="size16bi">
+      <td width="5%">5</td>
+      <td width="15%">ALK4</td>
+      <td width="50%">Lumped &gt;= C4 Alkanes</td>
+      <td width="15%">12</td>
+      <td width="14%">4</td>
+    </tr>
+    <tr class="size16bi">
+      <td width="5%">6</td>
+      <td width="15%">ISOP</td>
+      <td width="50%">Isoprene</td>
+      <td width="15%">12</td>
+      <td width="14%">5</td>
+    </tr>
+    <tr>
+      <td width="5%">7</td>
+      <td width="15%">HNO3</td>
+      <td width="50%">Nitric Acid</td>
+      <td width="15%">63</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">8</td>
+      <td width="15%">H2O2</td>
+      <td width="50%">Hydrogen Peroxide</td>
+      <td width="15%">34</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="size16bi">
+      <td width="5%">9</td>
+      <td width="15%">ACET</td>
+      <td width="50%">Acetone</td>
+      <td width="15%">12</td>
+      <td width="14%">3</td>
+    </tr>
+    <tr class="size16bi">
+      <td width="5%">10</td>
+      <td width="15%">MEK</td>
+      <td width="50%">Methyl Ethyl Ketone</td>
+      <td width="15%">12</td>
+      <td width="14%">4</td>
+    </tr>
+    <tr class="size16bi" valign="top">
+      <td width="5%">11</td>
+      <td width="15%">ALD2</td>
+      <td width="50%">Acetaldehyde</td>
+      <td width="15%">12</td>
+      <td width="14%">2</td>
+    </tr>
+    <tr>
+      <td width="5%">12</td>
+      <td width="15%">RCHO</td>
+      <td width="50%">Lumped Aldehyde &gt;= C3</td>
+      <td width="15%">58</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">13</td>
+      <td width="15%">MVK</td>
+      <td width="50%">Methyl Vinyl Ketone</td>
+      <td width="15%">70</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">14</td>
+      <td width="15%">MACR</td>
+      <td width="50%">Methacrolein</td>
+      <td width="15%">70</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">15</td>
+      <td width="15%">PMN</td>
+      <td width="50%">Peroxymethacroyl Nitrate</td>
+      <td width="15%">147</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">16</td>
+      <td width="15%">PPN</td>
+      <td width="50%">Lumped Peroxypropionyl Nitrate</td>
+      <td width="15%">135</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">17</td>
+      <td width="15%">R4N2</td>
+      <td width="50%">Lumped Alkyl Nitrate</td>
+      <td width="15%">119</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="size16bi">
+      <td width="5%">18</td>
+      <td width="15%">PRPE</td>
+      <td width="50%">Lumped &gt;= C3 Alkenes</td>
+      <td width="15%">12</td>
+      <td width="14%">3</td>
+    </tr>
+    <tr class="size16bi" valign="top">
+      <td width="5%">19</td>
+      <td width="15%">C3H8</td>
+      <td width="50%">Propane</td>
+      <td width="15%">12</td>
+      <td width="14%">3</td>
+    </tr>
+    <tr>
+      <td width="5%">20</td>
+      <td width="15%">CH2O</td>
+      <td width="50%">Formaldehyde</td>
+      <td width="15%">30</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="size16bi">
+      <td width="5%">21</td>
+      <td width="15%">C2H6</td>
+      <td width="50%">Ethane</td>
+      <td width="15%">12</td>
+      <td width="14%">2</td>
+    </tr>
+    <tr>
+      <td height="23" width="5%">22</td>
+      <td height="23" width="15%">N2O5</td>
+      <td height="23" width="50%">Dinitrogen Pentoxide</td>
+      <td height="23" width="15%">105</td>
+      <td height="23" width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">23</td>
+      <td width="15%">HNO4</td>
+      <td width="50%">Pernitric Acid</td>
+      <td width="15%">79</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">24</td>
+      <td width="15%">MP</td>
+      <td width="50%">Methyl Hydro Peroxide</td>
+      <td width="15%">48</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">25</td>
+      <td width="15%">DMS</td>
+      <td width="50%">Dimethyl Sulfide</td>
+      <td width="15%">62</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">26</td>
+      <td width="15%">SO2</td>
+      <td width="50%">Sulfur Dioxide</td>
+      <td width="15%">64</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td height="23" width="5%">27</td>
+      <td height="23" width="15%">SO4</td>
+      <td height="23" width="50%">Sulfate</td>
+      <td height="23" width="15%">96</td>
+      <td height="23" width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">28</td>
+      <td height="23" width="15%">SO4s</td>
+      <td height="23" width="50%">Sulfate on surface of sea-salt aerosol</td>
+      <td height="23" width="15%">96</td>
+      <td height="23" width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">29</td>
+      <td width="15%">MSA</td>
+      <td width="50%">Methyl Sulfonic Acid</td>
+      <td width="15%">96</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">30</td>
+      <td width="15%">NH3</td>
+      <td width="50%">Ammonia</td>
+      <td width="15%">17</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">31</td>
+      <td width="15%">NH4</td>
+      <td width="50%">Ammonium</td>
+      <td width="15%">18</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">32</td>
+      <td width="15%">NIT</td>
+      <td width="50%">Inorganic Sulfur Nitrates</td>
+      <td width="15%">62</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">33</td>
+      <td width="15%">NITs</td>
+      <td width="50%">Inorganic Nitrates on surface of sea-salt aerosol</td>
+      <td width="15%">62</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="size16bi" valign="top">
+      <td width="5%">34</td>
+      <td width="15%">BCPI</td>
+      <td width="50%">Hydrophilic black carbon aerosol</td>
+      <td width="15%">12</td>
+      <td width="14%">1</td>
+    </tr>
+    <tr class="size16bi">
+      <td width="5%">35</td>
+      <td width="15%">OCPI</td>
+      <td width="50%">Hydrophilic organic carbon aerosol</td>
+      <td width="15%">12</td>
+      <td width="14%">1</td>
+    </tr>
+    <tr class="size16bi">
+      <td width="5%">36</td>
+      <td width="15%">BCPO</td>
+      <td width="50%">Hydrophobic black carbon aerosol</td>
+      <td width="15%">12</td>
+      <td width="14%">1</td>
+    </tr>
+    <tr class="size16bi">
+      <td width="5%">37</td>
+      <td width="15%">OCPO</td>
+      <td width="50%">Hydrophobic organic carbon aerosol</td>
+      <td width="15%">12</td>
+      <td width="14%">1</td>
+    </tr>
+    <tr>
+      <td>38</td>
+      <td>DST1</td>
+      <td>Dust aerosol, <i>Reff</i> = 0.7 microns</td>
+      <td>29</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>39</td>
+      <td>DST2</td>
+      <td>Dust aerosol, Reff = 1.4 microns</td>
+      <td>29</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>40</td>
+      <td>DST3</td>
+      <td>Dust aerosol, Reff = 2.4 microns</td>
+      <td>29</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>41</td>
+      <td>DST4</td>
+      <td>Dust aerosol, Reff = 4.5 microns</td>
+      <td>29</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>42</td>
+      <td>SALA</td>
+      <td>Accumulation mode sea salt aerosol<br>(Reff = 0.1 &ndash; 2.5 microns)</td>
+      <td>36</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <td>43</td>
+      <td>SALC</td>
+      <td>Coarse mode sea salt aerosol<br>(Reff = 2.5 &ndash; 4 microns)</td>
+      <td>36</td>
+      <td>-</td>
+    </tr>
+    <tr>
+      <th colspan="5" rowspan="1" style="vertical-align: top; background-color: rgb(153, 153, 153); text-align: center;"><span class="orange">SOA mechanism</span></th>
+    </tr>
+    <tr>
+    <td height="28">1-37</td>
+      <td colspan="4" rowspan="1" height="28" >Same tracers as for the standard mechanism</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">38</td>
+      <td width="15%">ALPH</td>
+      <td width="50%">A-pinene, B-pinene, sabinene, carene, terpenoid ketones</td>
+      <td width="15%">136.23</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">39</td>
+      <td width="15%">LIMO</td>
+      <td width="50%">Limonene</td>
+      <td width="15%">136.23</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">40</td>
+      <td width="15%">ALCO</td>
+      <td width="50%">Myrcene, terpenoid alcohols, ocimene</td>
+      <td width="15%">142</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">41</td>
+      <td width="15%">SOG1</td>
+      <td width="50%">Lump of gas products of first 3 (ALPH + LIMO + TERP) hydrocarbon oxidation</td>
+      <td width="15%">150</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">42</td>
+      <td width="15%">SOG2</td>
+      <td width="50%">Gas product of ALCO oxidation</td>
+      <td width="15%">160</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">43</td>
+      <td width="15%">SOG3</td>
+      <td width="50%">Gas product of SESQ oxidation </td>
+      <td width="15%">220</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="orange">
+      <td>44</td>
+      <td>SOG4</td>
+      <td>Gas product of ISOP oxidation</td>
+      <td>130</td>
+      <td>-</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">45</td>
+      <td width="15%">SOG5</td>
+      <td width="50%">Gas product of aromatics oxidation</td>
+      <td width="15%">150</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">46</td>
+      <td width="15%">SOA1</td>
+      <td width="50%">Lump of aerosol products of first 3 (ALPH + LIMO + TERP) hydrocarbon oxidation</td>
+      <td width="15%">150</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">47</td>
+      <td width="15%">SOA2</td>
+      <td width="50%">Aerosol product of ALCO oxidation</td>
+      <td width="15%">160</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">48</td>
+      <td width="15%">SOA3</td>
+      <td width="50%">Aerosol product of SESQ oxidation </td>
+      <td width="15%">220</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr class="orange">
+      <td>49</td>
+      <td>SOA4</td>
+      <td>Aerosol product of ISOP oxidation</td>
+      <td>130</td>
+      <td>-</td>
+    </tr>
+    <tr class="orange">
+      <td width="5%">50</td>
+	  <td width="15%">SOA5</td>
+      <td width="50%">Aerosol product of aromatics oxidation</td>
+      <td width="15%">150</td>
+      <td width="14%">-</td>
+    </tr>
+    <tr>
+      <td width="5%">51-56
+      </td>
+      <td colspan="4" rowspan="1" width="15%">Insert tracers 38-43 (dusts and sea salts) from standard simulation. 
+      </td>
+    </tr>
+    <tr class="size16bi orange">
+      <td width="5%">57</td>
+      <td width="15%">BENZ</td>
+      <td width="50%">Benzene</td>
+      <td width="15%">12</td>
+      <td width="14%">6</td>
+    </tr>
+    <tr class="size16bi orange">
+      <td>58</td>
+      <td>TOLU</td>
+      <td>Toluene</td>
+      <td>12</td>
+      <td>7</td>
+    </tr>
+    <tr class="size16bi orange">
+      <td>59</td>
+      <td>XYLE</td>
+      <td>Xylene</td>
+      <td>12</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th class="green" colspan="5" rowspan="1" style="width: 5%; background-color: rgb(153, 153, 153); text-align: center;">Dicarbonyls mechanism</th>
+    </tr>
+    <tr class="orange">
+      <td width="5%">1-56</td>
+      <td colspan="4" rowspan="1" width="15%">Same tracers as SOA simulation</td>
+    </tr>
+    <tr>
+      <td class="green">57</td>
+      <td class="green">GLYX</td>
+      <td class="green">Glyoxal</td>
+      <td class="green">58</td>
+      <td class="green">-</td>
+    </tr>
+    <tr>
+      <td class="green">58</td>
+      <td class="green">MGLY</td>
+      <td class="green">Methylglyoxal</td>
+      <td class="green">72</td>
+      <td class="green">-</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; font-style: italic;" class="green">59</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">BENZ</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">Benzene</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">12</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">6</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; font-style: italic;" class="green">60</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">TOLU</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">Toluene</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">12</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">7</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; font-style: italic;" class="green">61</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">XYLE</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">Xylene</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">12</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">8</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; font-style: italic;" class="green">62</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">MONX</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">Monoterpenes</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">12</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">10</td>
+    </tr>
+    <tr>
+      <td class="green">63</td>
+      <td class="green">SOAG</td>
+      <td class="green">SOA product of GLYX</td>
+      <td class="green">58</td>
+      <td class="green">-</td>
+    </tr>
+    <tr>
+      <td class="green">64</td>
+      <td class="green">SOAM</td>
+      <td class="green">SOA product of MGLY</td>
+      <td class="green">72</td>
+      <td class="green">-</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; font-style: italic;" class="green">65</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">C2H4</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">Ethene</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">12</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">2</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; font-style: italic;" class="green">66</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">C2H2</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">Acetylene</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">12</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">2</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; font-style: italic;" class="green">67</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">MBO</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">2-methyl-3-bute-2-nol</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">12</td>
+      <td style="font-weight: bold; font-style: italic;" class="green">5</td>
+    </tr>
+    <tr>
+      <td class="green">68</td>
+      <td class="green">GLYC</td>
+      <td class="green">Glycoaldehyde</td>
+      <td class="green">60</td>
+      <td class="green">-</td>
+    </tr>
+    <tr>
+      <td class="green">69</td>
+      <td class="green">HAC</td>
+      <td class="green">Hydroxyacetone</td>
+      <td class="green">74</td>
+      <td class="green">-</td>
+    </tr>
+    <tr>
+      <td class="green">70
+      </td>
+      <td class="green">ACRPAN</td>
+      <td class="green">APAN (CH2CHC(O)OONO2)</td>
+      <td class="green">133</td>
+      <td class="green">-</td>
+    </tr>
+    <tr>
+      <td class="green">71
+      </td>
+      <td class="green">ENPAN</td>
+      <td class="green">ENPAN (NO2OCH2C(O)OONO2)</td>
+      <td class="green">182</td>
+      <td class="green">-</td>
+    </tr>
+    <tr>
+      <td class="green">72</td>
+      <td class="green">GLPAN</td>
+      <td class="green">Peroxyacylnitrate from GLCO3</td>
+      <td class="green">137</td>
+      <td class="green">-</td>
+    </tr>
+    <tr>
+      <td class="green">73</td>
+      <td class="green">GPAN</td>
+      <td class="green">Peroxyacylnitrate from GCO3</td>
+      <td class="green">135</td>
+      <td class="green">-</td>
+    </tr>
+    <tr>
+      <td class="green">74</td>
+      <td class="green">MPAN</td>
+      <td class="green">2-methyl-1-oxo-2-propenyl nitroperoxyde</td>
+      <td class="green">132</td>
+      <td class="green">-</td>
+    </tr>
+    <tr>
+      <td class="green">75</td>
+      <td class="green">NIPAN</td>
+      <td class="green">NIPAN (NO2OCH2CCH3CHC(O)OONO2, &nbsp;C5PAN18)</td>
+      <td class="green">224</td>
+      <td class="green">-</td>
+    </tr><tr>
+      <th class="purple" colspan="5" rowspan="1" style="vertical-align: top; background-color: rgb(153, 153, 153); text-align: center;">Caltech isoprene mechanism
+      </th>
+    </tr>
+    <tr>
+      <td>1-43
+      </td>
+      <td colspan="4" rowspan="1" >Same tracers as standard simulation
+      </td>
+    </tr>
+    <tr class="purple">
+      <td>44 </td>
+      <td>HCOOH </td>
+      <td>Formic acid </td>
+      <td>46 </td>
+      <td>-</td>
+    </tr>
+    <tr class="purple">
+      <td>45
+      </td>
+      <td>ACTA
+      </td>
+      <td>Acetic acid</td>
+      <td>60</td>
+      <td>-</td>
+    </tr>
+    <tr class="purple">
+      <td>46
+      </td>
+      <td>ISOPN</td>
+      <td>Isoprene nitrate</td>
+      <td>147</td>
+      <td>-</td>
+    </tr>
+    <tr class="purple">
+      <td>47
+      </td>
+      <td>MOBA</td>
+      <td>5C acid from isoprene </td>
+      <td>114</td>
+      <td>-</td>
+    </tr>
+    <tr class="purple">
+      <td>48</td>
+      <td>PROPNN</td>
+      <td>Propanone nitrate </td>
+      <td>109</td>
+      <td>-</td>
+    </tr>
+    <tr class="purple">
+      <td>49</td>
+      <td>HAC</td>
+      <td>Hydroxyacetone</td>
+      <td>74</td>
+      <td>-</td>
+    </tr>
+    <tr class="purple">
+      <td>50</td>
+      <td>GLYC</td>
+      <td>Glycolaldehyde</td>
+      <td>60</td>
+      <td>-</td>
+    </tr>
+    <tr class="purple">
+      <td>51</td>
+      <td>MMN</td>
+      <td>Nitrate from MACR  + MVK</td>
+      <td>149</td>
+      <td>-</td>
+    </tr>
+    <tr class="purple">
+      <td>52</td>
+	  <td>RIP</td>
+      <td>Peroxide from RIO2</td>
+      <td>118</td>
+      <td>-</td>
+    </tr>
+    <tr class="purple">
+      <td>53</td>
+      <td>IEPOX</td>
+      <td>Isoprene epoxide</td>
+      <td>118</td>
+      <td>-</td>
+    </tr>
+    <tr class="purple">
+      <td>54</td>
+      <td>PYPAN</td>
+      <td>Pyruvic acid PAN </td>
+      <td>149</td>
+      <td>-</td>
+    </tr>
+    <tr class="purple">
+      <td>55</td>
+      <td>MAP</td>
+      <td>Peroxyacetic acid</td>
+      <td>76</td>
+      <td>-</td>
+    </tr>
+    <tr class="purple">
+      <td>56</td>
+      <td>AP</td>
+      <td>&nbsp;</td>
+      <td>76</td>
+      <td>-</td>
+    </tr>
+
+  
+</table>
+
+<p align="justify">NOTES:&nbsp;</p>
+
+<ol>
+  <li>You may omit the <span class="orange">secondary organic aerosol tracers (ALPH, LIMO, ALCO, SOG1, SOG2, SOG3, SOG4,
+SOG5, SOA1, SOA2, SOA3, SOA4, SOA5, BENZ, TOLU, XYLE)</span> by setting the following switches
+in the <a href="chapter_5.html#5.2.1.7">aerosol menu</a>
+section of the <a href="chapter_5.html#5.2.1" class="courier16">input.geos</a>
+file.&nbsp;
+    <pre> Online 2dy ORG AEROSOLS : F</pre>
+  </li>
+  <li>You may omit the <span class="green">dicarbonyl chemistry tracers (tracers 57 to 75)</span>. In this case, you
+need to set the following switch in the <a href="chapter_5.html#5.2.1.7">aerosol menu</a> section 
+of the <a href="chapter_5.html#5.2.1"><span class="courier16">input.geos</span></a>
+file:
+    <pre> Online dicarb. chem. : F</pre></li>
+  <li>Each of these chemistry mechanism requires different versions of <tt>globchem.dat</tt>, 
+    <tt>jv_spec.dat</tt>, <tt>mglob.dat</tt> and <tt>ratj.d</tt>. The proper files 
+    are included when you download the various GEOS&ndash;Chem run directories (see <a href="chapter_2.html#2.3">Chapter 
+    2.3</a>).</li>
+</ol>
+
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A1.2"></a>A1.2 Offine aersosol simulations</p>
+<p align="justify">You may run a GEOS&ndash;Chem &quot;offline&quot; aerosol simulation 
+  without having to call the SMVGEAR II or KPP solver. The tracer list is below.</p>
+<p align="justify"><span class="size16">For more information, please see:</span></p>
+<ol>
+  <li>Chapter 6.1.6, <a href="chapter_6.html#6.1.6">Checklist for offline aerosol 
+    chemistry simulation</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Aerosol-only_simulation" target="_new">Offline 
+    aerosol chemistry simulation</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Sulfate_aerosols" target="_new">Sulfate 
+    aerosols</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Carbonaceous_aerosols" target="_new">Carbonaceous 
+    aerosols</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Secondary_organic_aerosols" target="_new">Secondary 
+    organic aerosols</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Mineral_dust_aerosols" target="_new">Mineral 
+    dust aerosols</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Sea_salt_aerosols" target="_new">Sea 
+    salt aerosols</a></li>
+</ol>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+  <tr> 
+    <th width="5%">#</th>
+    <th width="15%">Name</th>
+    <th width="65%">Description</th>
+    <th width="15%">g/mole</th>
+  </tr>
+  <tr> 
+    <td width="5%">1</td>
+    <td width="15%">DMS</td>
+    <td width="65%">Dimethyl sulfide</td>
+    <td width="15%">62</td>
+  </tr>
+  <tr> 
+    <td width="5%">2</td>
+    <td width="15%">SO2</td>
+    <td width="65%">Sulfur dioxide </td>
+    <td width="15%">64</td>
+  </tr>
+  <tr> 
+    <td width="5%">3</td>
+    <td width="15%">SO4</td>
+    <td width="65%">Sulfate</td>
+    <td width="15%">96</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>SO4s</td>
+    <td>Sulfate on surface of sea salt aerosol</td>
+    <td>96</td>
+  </tr>
+  <tr> 
+    <td width="5%">5</td>
+    <td width="15%">MSA</td>
+    <td width="65%">Methane Sulfionic Acid</td>
+    <td width="15%">96</td>
+  </tr>
+  <tr> 
+    <td width="5%">6</td>
+    <td width="15%">NH3</td>
+    <td width="65%">Ammonia</td>
+    <td width="15%">17</td>
+  </tr>
+  <tr> 
+    <td width="5%">7</td>
+    <td width="15%">NH4</td>
+    <td width="65%">Ammonium</td>
+    <td width="15%">18</td>
+  </tr>
+  <tr> 
+    <td width="5%">8</td>
+    <td width="15%">NIT</td>
+    <td width="65%">Inorganic sulfur nitrates</td>
+    <td width="15%">62</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>NITs</td>
+    <td>Inorganic sulfur nitrates on surface of sea-salt aerosol</td>
+    <td>62</td>
+  </tr>
+  <tr> 
+    <td width="5%">10</td>
+    <td width="15%">BCPI</td>
+    <td width="65%">Hydrophilic black carbon aerosol</td>
+    <td width="15%">12</td>
+  </tr>
+  <tr> 
+    <td width="5%">11</td>
+    <td width="15%">OCPI</td>
+    <td width="65%">Hydrophilic organic carbon aerosol</td>
+    <td width="15%">12</td>
+  </tr>
+  <tr> 
+    <td width="5%">12</td>
+    <td width="15%">BCPO</td>
+    <td width="65%">Hydrophobic black carbon aerosol</td>
+    <td width="15%">12</td>
+  </tr>
+  <tr> 
+    <td width="5%">13</td>
+    <td width="15%">OCPO</td>
+    <td width="65%">Hydrophobic organic carbon aerosol</td>
+    <td width="15%">12</td>
+  </tr>
+  <tr class="orange"> 
+    <td width="5%">14</td>
+    <td width="15%">ALPH</td>
+    <td width="65%">A-pinene, B-pinene, sabinene, carene, terpenoid ketones</td>
+    <td width="15%">136.23</td>
+  </tr>
+  <tr class="orange"> 
+    <td width="5%">15</td>
+    <td width="15%">LIMO</td>
+    <td width="65%">Limonene</td>
+    <td width="15%">136.23</td>
+  </tr>
+  <tr class="orange"> 
+    <td width="5%">16</td>
+    <td width="15%">ALCO</td>
+    <td width="65%">Myrcene, terpenoid alcohols, ocimene</td>
+    <td width="15%">142</td>
+  </tr>
+  <tr class="orange"> 
+    <td width="5%">17</td>
+    <td width="15%">SOG1</td>
+    <td width="65%">Lump of gas products of first 3 (ALPH+LIMO+TERP)<br>
+      hydrocarbon oxidation</td>
+    <td width="15%">150</td>
+  </tr>
+  <tr class="orange"> 
+    <td width="5%">18</td>
+    <td width="15%">SOG2</td>
+    <td width="65%">Gas product of ALCO oxidation</td>
+    <td width="15%">160</td>
+  </tr>
+  <tr class="orange"> 
+    <td width="5%">19</td>
+    <td width="15%">SOG3</td>
+    <td width="65%">Gas product of SESQ oxidation </td>
+    <td width="15%">220</td>
+  </tr>
+  <tr class="orange"> 
+    <td>20</td>
+    <td>SOG4</td>
+    <td>Gas product of ISOP oxidation </td>
+    <td>130</td>
+  </tr>
+  <tr class="orange"> 
+    <td>21</td>
+    <td>SOG5</td>
+    <td>Gas product of aromatics oxidation</td>
+    <td>150</td>
+  </tr>
+  <tr class="orange"> 
+    <td width="5%">22</td>
+    <td width="15%">SOA1</td>
+    <td width="65%">Lump of aerosol products of first 3 (ALPH+LIMO+TERP)<br>
+      hydrocarbon oxidation</td>
+    <td width="15%">150</td>
+  </tr>
+  <tr class="orange"> 
+    <td width="5%">23</td>
+    <td width="15%">SOA2</td>
+    <td width="65%">Aerosol product of ALCO oxidation</td>
+    <td width="15%">160</td>
+  </tr>
+  <tr class="orange"> 
+    <td width="5%">24</td>
+    <td width="15%">SOA3</td>
+    <td width="65%">Aerosol product of SESQ oxidation </td>
+    <td width="15%">220</td>
+  </tr>
+  <tr class="orange"> 
+    <td>25</td>
+    <td>SOA4</td>
+    <td>Aerosol product of ISOP oxidation </td>
+    <td>130</td>
+  </tr>
+  <tr class="orange"> 
+    <td>26</td>
+    <td>SOA5</td>
+    <td>Aerosol product of aromatics oxidation</td>
+    <td>150</td>
+  </tr>
+  <tr> 
+    <td width="5%">27</td>
+    <td width="15%">DST1</td>
+    <td width="65%">Dust aerosol, Reff = 0.7 microns</td>
+    <td width="15%">29</td>
+  </tr>
+  <tr> 
+    <td width="5%">28</td>
+    <td width="15%">DST2</td>
+    <td width="65%">Dust aerosol, Reff = 1.4 microns</td>
+    <td width="15%">29</td>
+  </tr>
+  <tr> 
+    <td width="5%">29</td>
+    <td width="15%">DST3</td>
+    <td width="65%">Dust aerosol, Reff = 2.4 microns</td>
+    <td width="15%">29</td>
+  </tr>
+  <tr> 
+    <td width="5%">30</td>
+    <td width="15%">DST4</td>
+    <td width="65%">Dust aerosol, Reff = 4.5 microns</td>
+    <td width="15%">29</td>
+  </tr>
+  <tr> 
+    <td width="5%">31</td>
+    <td width="15%">SALA</td>
+    <td width="65%">Accumulation mode sea salt aerosol<br>
+      (Reff = 0.1 &ndash; 2.5 microns)</td>
+    <td width="15%">36</td>
+  </tr>
+  <tr> 
+    <td width="5%">32</td>
+    <td width="15%">SALC</td>
+    <td width="65%">Coarse mode sea salt aerosol<br>
+      (Reff = 2.5 &ndash; 4 microns)</td>
+    <td width="15%">36</td>
+  </tr>
+</table>
+<p align="justify">NOTE: You may omit the <span class="orange">secondary organic 
+  aerosol tracers (ALPH, LIMO, ALCO, SOG1, SOG2, SOG3, SOG4, SOG5, SOA1, SOA2, 
+  SOA3, SOA4, SOA5)</span> by setting the following switches in the <a href="chapter_5.html#5.2.1.7">aerosol 
+  menu</a> section of the <a href="chapter_5.html#5.2.1" class="courier16">input.geos</a> 
+  file.</p>
+<blockquote>
+  <pre>Online 2dy ORG AEROSOLS : F</pre>
+</blockquote
+
+>
+<p align="justify">If you omit the <span class="orange">secondary organic aerosol 
+  tracers</span> then there will be a total of 18 tracers.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A1.3"></a>A1.3 Total CO2 and Tagged CO2 simulations</p>
+<p>The CO2 simulation was updated by Ray Nassar in <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-03-02" target="_new">GEOS&ndash;Chem v8&ndash;03&ndash;02</a>.</p>
+<p>For more information, please see:</p>
+<ol>
+  <li>Chapter 6.1.9: <a href="chapter_6.html#6.1.9">Checklist for Total CO2 and 
+    Tagged CO2 simulations</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/CO2_simulation" target="_new">CO2 
+    simulation</a></li>
+</ol>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+  <tr> 
+    <th width="5%">#</th>
+    <th width="15%">Name</th>
+    <th width="65%">Description</th>
+    <th width="15%">g/mole</th>
+  </tr>
+  <tr> 
+    <td width="5%">1</td>
+    <td width="15%">CO2</td>
+    <td width="65%">Total CO2</td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td colspan="4" bgcolor="#cccccc" class="size16b"><p align="center">If you wish, you may add tracers for additional CO2 sources:</p></td>
+  </tr>
+  <tr> 
+    <td width="5%">2</td>
+    <td width="15%">CO2ff</td>
+    <td width="65%">CO2 from fossil fuel emissions </td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td width="5%">3</td>
+    <td width="15%">CO2oc</td>
+    <td width="65%">CO2 from ocean emissions</td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td width="5%">4</td>
+    <td width="15%">CO2bal</td>
+    <td width="65%">CO2 from balanced biosphere</td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td width="5%">5</td>
+    <td width="15%">CO2bb</td>
+    <td width="65%">CO2 from biomass burning emissions </td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td width="5%">6</td>
+    <td width="15%">CO2bf</td>
+    <td width="65%">CO2 from biofuel emissions</td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td width="5%">7</td>
+    <td width="15%">CO2nte</td>
+    <td width="65%">CO2 from net terrestrial exchange</td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td width="5%">8</td>
+    <td width="15%">CO2se</td>
+    <td width="65%">CO2 from ship emissions</td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td width="5%">9</td>
+    <td width="15%">CO2av</td>
+    <td width="65%">CO2 from aircraft emissions</td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td width="5%">10</td>
+    <td width="15%">CO2ch</td>
+    <td width="65%">CO2 from chemical source</td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td width="5%">11</td>
+    <td width="15%">CO2corr</td>
+    <td width="65%">CO2 chemical source surface correction</td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td colspan="4" bgcolor="#cccccc" class="size16b"> 
+      <p align="center">For a full tagged CO2 simulation, you can add the following tracers.<br>NOTE: These extra tracers are only valid for a 2 x 2.5 simulation.</p>
+    </td>
+  </tr>
+  <tr> 
+    <td width="5%">12</td>
+    <td width="15%">CO2bg</td>
+    <td width="65%">CO2 background (including only fossil fuel CO2)</td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td width="5%">13-52</td>
+    <td width="15%">CO2xx</td>
+    <td width="65%">CO2 tracers produced in various geographic regions</td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td width="5%">53</td>
+    <td width="15%">CO2se</td>
+    <td width="65%">CO2 from shipping</td>
+    <td width="15%">44</td>
+  </tr>
+  <tr> 
+    <td width="5%">54</td>
+    <td width="15%">CO2av</td>
+    <td width="65%">CO2 from aviation</td>
+    <td width="15%">44</td>
+  </tr>
+</table>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A1.4"></a>A1.4 CH4 simulations</p>
+<p class="size16">The CH4 simulation was updated by Christopher 
+  Pickett-Heaps and Kevin Wecht in <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-03" target="_new">GEOS&ndash;Chem v8&ndash;02&ndash;03</a>.</p>
+<p class="size16">For more information, please see:</p>
+<ol>
+  <li>Chapter 6.1.8: <a href="chapter_6.html#6.1.8">Checklist for a CH4 offline 
+    simulation</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/CH4_simulation" target="_new">CH4 
+    simulation</a></li>
+</ol>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+  <tr> 
+    <th width="5%">#</th>
+    <th width="15%">Name</th>
+    <th width="65%">Description</th>
+    <th width="15%">g/mole</th>
+  </tr>
+  <tr> 
+    <td width="5%">1</td>
+    <td width="15%">CH4</td>
+    <td width="65%">Total CH4</td>
+    <td width="15%">16</td>
+  </tr>
+  <tr> 
+    <td width="5%">2</td>
+    <td width="15%">CH4og</td>
+    <td width="65%">CH4 produced by oil &amp; gas processing</td>
+    <td width="15%">16</td>
+  </tr>
+  <tr> 
+    <td width="5%">3</td>
+    <td width="15%">CH4cm</td>
+    <td width="65%">CH4 produced by coal mining</td>
+    <td width="15%">16</td>
+  </tr>
+  <tr> 
+    <td width="5%">4</td>
+    <td width="15%">CH4ls</td>
+    <td width="65%">CH4 produced by livestock</td>
+    <td width="15%">16</td>
+  </tr>
+  <tr> 
+    <td width="5%">5</td>
+    <td width="15%">CH4wa</td>
+    <td width="65%">CH4 produced by waste</td>
+    <td width="15%">16</td>
+  </tr>
+  <tr> 
+    <td width="5%">6</td>
+    <td width="15%">CH4bf</td>
+    <td width="65%">CH4 produced by biofuel</td>
+    <td width="15%">16</td>
+  </tr>
+  <tr> 
+    <td width="5%">7</td>
+    <td width="15%">CH4ri</td>
+    <td width="65%">CH4 produced by rice</td>
+    <td width="15%">16</td>
+  </tr>
+  <tr> 
+    <td width="5%">8</td>
+    <td width="15%">CH4an</td>
+    <td width="65%">CH4 produced by other anthropogenic processes</td>
+    <td width="15%">16</td>
+  </tr>
+  <tr> 
+    <td width="5%">9</td>
+    <td width="15%">CH4bb</td>
+    <td width="65%">CH4 produced by biomass burning</td>
+    <td width="15%">16</td>
+  </tr>
+  <tr> 
+    <td width="5%">10</td>
+    <td width="15%">CH4we</td>
+    <td width="65%">CH4 produced by wetlands</td>
+    <td width="15%">16</td>
+  </tr>
+  <tr> 
+    <td width="5%">11</td>
+    <td width="15%">CH4sa</td>
+    <td width="65%">CH4 produced by soil absorption</td>
+    <td width="15%">16</td>
+  </tr>
+  <tr> 
+    <td width="5%">12</td>
+    <td width="15%">CH4nat</td>
+    <td width="65%">CH4 produced by other natural sources</td>
+    <td width="15%">16</td>
+  </tr>
+</table>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A1.5"></a>A1.5 Total Hg and Tagged Hg simulations</p>
+<p align="justify">It is possible to peform the following GEOS&ndash;Chem mercury simulations:</p>
+<ol>
+  <li>Simulation with the total Hg0, Hg2, and HgP tracers only, with or without 
+    the Global Terrestrial Mercury Model option.</li>
+  <li>Simulation with all tagged Hg0, Hg2, and HgP tracers.</li>
+</ol>
+<p align="justify">For more information, please see:</p>
+<ol>
+  <li>Chapter 6.1.7: <a href="chapter_6.html#6.1.7">Checklist for Total Hg and 
+    Tagged Hg simulations</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Mercury" target="_new">Mercury 
+    simulation</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Global_Terrestrial_Mercury_Model" target="_new">Global 
+    Terrestrial Mercury Model</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+  <tr> 
+    <th width="5%">#</th>
+    <th width="15%">Name</th>
+    <th width="65%">Description</th>
+    <th width="15%">g/mole</th>
+  </tr>
+  <tr> 
+    <td width="5%">1</td>
+    <td width="15%">Hg0</td>
+    <td width="65%">Elemental mercury (total tracer) </td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">2</td>
+    <td width="15%">Hg2</td>
+    <td width="65%">Divalent mercury (total tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">3</td>
+    <td width="15%">HgP</td>
+    <td width="65%">Particulate mercury (total tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">4</td>
+    <td width="15%">Hg0_an_na</td>
+    <td width="65%">Elemental Mercury (anthro N. Am. tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">5</td>
+    <td width="15%">Hg0_an_eu</td>
+    <td width="65%">Elemental Mercury (anthro Europe tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">6</td>
+    <td width="15%">Hg0_an_as</td>
+    <td width="65%">Elemental Mercury (anthro Asia. tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">7</td>
+    <td width="15%">Hg0_an_rw</td>
+    <td width="65%">Elemental Mercury (anthro rest-of-world tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">8</td>
+    <td width="15%">Hg0_oc</td>
+    <td width="65%">Elemental Mercury (oceanic tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">9</td>
+    <td width="15%">Hg0_ln</td>
+    <td width="50%">Elemental Mercury (land re-emission tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">10</td>
+    <td width="15%">Hg0_nt</td>
+    <td width="50%">Elemental Mercury (natural land source tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">11</td>
+    <td width="15%">Hg2_an_na</td>
+    <td width="65%">Divalent Mercury (anthro N. Am. tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">12</td>
+    <td width="15%">Hg2_an_eu</td>
+    <td width="65%">Divalent Mercury (anthro Europe tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">13</td>
+    <td width="15%">Hg2_an_as</td>
+    <td width="65%">Divalent Mercury (anthro Asia. tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">14</td>
+    <td width="15%">Hg2_an_rw</td>
+    <td width="65%">Divalent Mercury (anthro rest-of-world tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">15</td>
+    <td width="15%">Hg2_oc</td>
+    <td width="65%">Divalent Mercury (oceanic tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">16</td>
+    <td width="15%">Hg2_ln</td>
+    <td width="50%">Divalent Mercury (land re-emission tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">17</td>
+    <td width="15%">Hg2_nt</td>
+    <td width="50%">Divalent Mercury (natural land source tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">18</td>
+    <td width="15%">HgP_an_na</td>
+    <td width="65%">Particulate Mercury (anthro N. Am. tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">19</td>
+    <td width="15%">HgP_an_eu</td>
+    <td width="65%">Particulate Mercury (anthro Europe tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">20</td>
+    <td width="15%">HgP_an_as</td>
+    <td width="65%">Particulate Mercury (anthro Asia. tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">21</td>
+    <td width="15%">HgP_an_rw</td>
+    <td width="65%">Particulate Mercury (anthro rest-of-world tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">22</td>
+    <td width="15%">HgP_oc</td>
+    <td width="65%">Particulate Mercury (oceanic tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">23</td>
+    <td width="15%">HgP_ln</td>
+    <td width="50%">Particulate Mercury (land re-emission tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+  <tr> 
+    <td width="5%">24</td>
+    <td width="15%">HgP_nt</td>
+    <td width="50%">Particulate Mercury (natural land source tagged tracer)</td>
+    <td width="15%">201</td>
+  </tr>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A1.6"></a>A1.6 Tagged CO simulations</p>
+<p align="justify">NOTE: Several GEOS&ndash;Chem users have customized the tagged 
+  CO simulation to their own purposes. Listed below is the "standard" Tagged CO 
+  configuration. </p>
+<p align="justify">For more information, please see:</p>
+<ol>
+  <li>Chapter 6.1.4: <a href="chapter_6.html#6.1.4">Checklist for tagged CO simulation</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Tagged_CO_simulation" target="_new">Tagged 
+    CO simulation</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+  <tr> 
+    <th width="5%">#</th>
+    <th width="15%">Name</th>
+    <th width="65%">Description</th>
+    <th width="15%">g/mole</th>
+  </tr>
+  <tr> 
+    <td width="5%">1</td>
+    <td width="15%">CO</td>
+    <td width="65%">Total CO</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">2</td>
+    <td width="15%">COus</td>
+    <td width="65%">CO from US fossil fuel emissions</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">3</td>
+    <td width="15%">COeur</td>
+    <td width="65%">CO from European fossil fuel emissions</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">4</td>
+    <td width="15%">COasia</td>
+    <td width="65%">CO from Asian fossil fuel emissions</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">5</td>
+    <td width="15%">COoth</td>
+    <td width="65%">CO from fossil fuel emissions -- rest of world</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">6</td>
+    <td width="15%">CObbAm</td>
+    <td width="65%">CO from South American biomass burning</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">7</td>
+    <td width="15%">CObbAf</td>
+    <td width="65%">CO from African biomass burning</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">8</td>
+    <td width="15%">CObbAs</td>
+    <td width="65%">CO from SE Asian biomass burning</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">9</td>
+    <td width="15%">CObbOc</td>
+    <td width="65%">CO from Oceania biomass burning</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">10</td>
+    <td width="15%">CObbEu</td>
+    <td width="65%">CO from European biomass burning</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">11</td>
+    <td width="15%">CObbNA</td>
+    <td width="65%">CO from North American biomass burning</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">12</td>
+    <td width="15%">COch4</td>
+    <td width="65%">CO chemically produced from methane oxidation</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">13</td>
+    <td width="15%">CObiof</td>
+    <td width="65%">CO from biofuel burning (whole world)</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">14</td>
+    <td width="15%">COisop</td>
+    <td width="65%">CO chemically produced from isoprene oxidation</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">15</td>
+    <td width="15%">COmono</td>
+    <td width="65%">CO chemically produced from monoterpenes oxidation</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">16</td>
+    <td width="15%">COmeoh</td>
+    <td width="65%">CO chemically produced from methanol oxidation</td>
+    <td width="15%">28</td>
+  </tr>
+  <tr> 
+    <td width="5%">17</td>
+    <td width="15%">COacet</td>
+    <td width="65%">CO chemically produced from acetone oxidation</td>
+    <td width="15%">28</td>
+  </tr>
+</table>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A1.7"></a>A1.7 Tagged Ox simulations</p>
+<p align="justify">NOTE: The tagged Ox simulation will be updated in <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03" target="_new">v9&ndash;01&ndash;03</a>.</p>
+<p>For more information, please see:</p>
+<ol>
+  <li>Chapter 6.1.3: <a href="chapter_6.html#6.1.3">Checklist for Tagged Ox simulation</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Tagged_Ox_simulation" target="_new">Tagged 
+    Ox simulation</a></li>
+</ol>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+  <tr> 
+    <th width="5%">#</th>
+    <th width="15%">Name</th>
+    <th width="65%">Description</th>
+    <th width="15%">g/mole</th>
+  </tr>
+  <tr> 
+    <td width="5%">1</td>
+    <td width="15%">Ox</td>
+    <td width="65%">Total Ox (O3 + NO2 + 2NO3)</td>
+    <td width="15%">46</td>
+  </tr>
+  <tr> 
+    <td width="5%">2</td>
+    <td width="15%">OxUT</td>
+    <td width="65%">Ox produced in the upper troposphere (above 350 hPa)</td>
+    <td width="15%">46</td>
+  </tr>
+  <tr> 
+    <td width="5%">3</td>
+    <td width="15%">OxMT</td>
+    <td width="65%">Ox produced in the middle troposphere (PBL top &ndash; 350 
+      hPa)</td>
+    <td width="15%">46</td>
+  </tr>
+  <tr> 
+    <td width="5%">4</td>
+    <td width="15%">OxROW</td>
+    <td width="65%">Ox produced in the rest of the world</td>
+    <td width="15%">46</td>
+  </tr>
+  <tr> 
+    <td width="5%">5</td>
+    <td width="15%">OxPcBL</td>
+    <td width="65%">Ox produced in the Pacific Ocean boundary layer</td>
+    <td width="15%">46</td>
+  </tr>
+  <tr> 
+    <td width="5%">6</td>
+    <td width="15%">OxNABL</td>
+    <td width="65%">Ox produced in the North American boundary layer</td>
+    <td width="15%">46</td>
+  </tr>
+  <tr> 
+    <td width="5%">7</td>
+    <td width="15%">OxAtBL</td>
+    <td width="65%">Ox produced in the Atlantic Ocean boundary layer</td>
+    <td width="15%">46</td>
+  </tr>
+  <tr> 
+    <td width="5%">8</td>
+    <td width="15%">OxEuBL</td>
+    <td width="65%">Ox produced in the European boundary layer</td>
+    <td width="15%">46</td>
+  </tr>
+  <tr> 
+    <td width="5%">9</td>
+    <td width="15%">OxAfBL</td>
+    <td width="65%">Ox produced in the African boundary layer</td>
+    <td width="15%">46</td>
+  </tr>
+  <tr> 
+    <td width="5%">10</td>
+    <td width="15%">OxAsBl</td>
+    <td width="65%">Ox produced in the Asian boundary layer</td>
+    <td width="15%">46</td>
+  </tr>
+  <tr> 
+    <td width="5%">11</td>
+    <td width="15%">OxStrt</td>
+    <td width="65%">Ox produced in the stratosphere</td>
+    <td width="15%">46</td>
+  </tr>
+  <tr> 
+    <td width="5%">12</td>
+    <td width="15%">OxInit</td>
+    <td width="65%">Ox from the initial condition</td>
+    <td width="15%">46</td>
+  </tr>
+  <tr> 
+    <td width="5%">13</td>
+    <td width="15%">OxUSA</td>
+    <td width="65%">Ox produced over the United States (surface &ndash; tropopause)</td>
+    <td width="15%">46</td>
+  </tr>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A1.8"></a>A1.8 Rn&ndash;Pb&ndash;Be simulations</p>
+<p>For more information, please see:</p>
+<ol>
+  <li>Chapter 6.1.2: <a href="chapter_6.html#6.1.2">Checklist for Radon&#150;Lead&#150;Beryllium 
+    simulation</a></li>
+  <li>GEOS&ndash;Chem Wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Rn-Pb-Be_simulation" target="_new">Rn&ndash;Pb&ndash;Be simulation</a></li>
+</ol>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+    <tr>
+      <th width="5%">#</th>
+      <th width="15%">Name</th>
+      <th width="65%">Description</th>
+      <th width="15%">g/mole</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="15%">Rn222</td>
+      <td width="65%">Radon-222 isotope</td>
+      <td width="15%">222</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="15%">Pb210</td>
+      <td width="65%">Lead-210 isotope</td>
+      <td width="15%">210</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="15%">Be7</td>
+      <td width="65%">Beryllium-7 isotope</td>
+      <td width="15%">7</td>
+    </tr>
+</table>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p><span class="size20bi"><a name="A1.9"></a>A1.9 H2 and HD simulation</span></p>
+<p>For more information, please see:</p>
+<ol>
+  <li>Chapter 6.1.5: <a href="chapter_6.html#6.1.5">Checklist for H2&#150;HD simulation</a></li>
+</ol>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+  <tr> 
+    <th width="5%">#</th>
+    <th width="15%">Name</th>
+    <th width="65%">Description</th>
+    <th width="15%">g/mole</th>
+  </tr>
+  <tr> 
+    <td width="5%">1</td>
+    <td width="15%">H2</td>
+    <td width="65%">Divalent hydrogen </td>
+    <td width="15%">2</td>
+  </tr>
+  <tr> 
+    <td width="5%">2</td>
+    <td width="15%">HD</td>
+    <td width="65%">Deuterium</td>
+    <td width="15%"> 2.0135</td>
+  </tr>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A1.10"></a>A1.10 CH3I simulations</p>
+<p align="justify">The CH3I simulation has not been used very much recently. If you wish to use 
+  this simulation, you will have to invest some time in bringing it back to the 
+  state of the science.</p>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+    <tr>
+      <th width="5%">#</th>
+      <th width="15%">Name</th>
+      <th width="65%">Description</th>
+      <th width="15%">g/mole</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="15%">CH3I-oc</td>
+      <td width="65%">Methyl iodide from oceans</td>
+      <td width="15%">141.939</td>
+    </tr>
+    <tr>
+      <td width="5%">2</td>
+      <td width="15%">CH3I-bb</td>
+      <td width="65%">Methyl iodide from biomass burning</td>
+      <td width="15%">141.939</td>
+    </tr>
+    <tr>
+      <td width="5%">3</td>
+      <td width="15%">CH3I-bf</td>
+      <td width="65%">Methyl iodide from biofuel burning</td>
+      <td width="15%">141.939</td>
+    </tr>
+    <tr>
+      <td width="5%">4</td>
+      <td width="15%">CH3I-rc</td>
+      <td width="65%">Methyl iodide from rice paddies</td>
+      <td width="15%">141.939</td>
+    </tr>
+    <tr>
+      <td width="5%">5</td>
+      <td width="15%">CH3I-wl</td>
+      <td width="65%">Methyl iodide from wetlands</td>
+      <td width="15%">141.939</td>
+    </tr>
+</table>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="A1.11"></a>A1.11 HCN simulations</p>
+
+<p align="justify">The HCN simulation has not been used very much recently. If you wish to use this simulation, you will have to invest some time in bringing it back to the 
+  state of the science.</p>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+    <tr>
+      <th width="5%">#</th>
+      <th width="15%">Name</th>
+      <th width="65%">Description</th>
+      <th width="15%">g/mole</th>
+    </tr>
+    <tr>
+      <td width="5%">1</td>
+      <td width="15%">HCN</td>
+      <td width="65%">Hydrogen Cyanide</td>
+      <td width="15%">27</td>
+    </tr>
+</table>
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size14bi" align="center"><a href="chapter_9.html">Previous</a>
+| <a href="appendix_2.html">Next</a> | <a href="appendix_1.html" target="_parent">Printable
+View (no frames)</a></p>
+
+</body></html>

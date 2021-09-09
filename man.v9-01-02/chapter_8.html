@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <title>GEOS-Chem Online User's Guide</title>
+  <link rel="stylesheet" type="text/css" href="../../../gc.css">
+<style type="text/css">
+.red {color: #FF0000;}  
+</style>
+</head>
+
+<body bgcolor="#FFFFFF">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script><!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&ndash;Chem v9&ndash;01&ndash;02 Online User's
+Guide</p>
+
+<p class="size14bi" align="center"><a href="chapter_7.html">Previous</a>
+| <a href="chapter_9.html">Next</a> | <a href="chapter_8.html" target="_parent">Printable View (no frames)</a></p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size24bi"><a name="8"></a>8. Using Git to manage the GEOS&ndash;Chem source code</p>
+<p>Here we list the Git commands that you will most commonly use to manage your local GEOS&ndash;Chem repository. For more information (including information about installing Git on your system), please see:</p>
+<ol>
+  <li>GEOS&ndash;Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Version_control_with_Git" target="_new">Version control with Git</a></li>
+  <li>GEOS&ndash;Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Using_Git_with_GEOS-Chem" target="_new">Using Git with GEOS&ndash;Chem</a></li>
+  <li>The Git web page: <a href="http://www.git-scm.com" target="_new">http://www.git-scm.com</a></li>
+</ol>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+<p class="size20bi"><a name="8.1"></a>8.1 Viewing the revision history</p>
+<p align="justify">The best way to examine the contents of your Git-backed GEOS&ndash;Chem source code is to use the <strong>gitk</strong> viewer.  There are two ways to do this:</p>
+<ol>
+  <li>
+    <p align="justify">Change into the <tt>Code.v9-01-02</tt> directory and start <strong>gitk</strong> as follows:</p>
+    <blockquote>
+      <tt>cd Code.v9-01-02<br>
+      gitk --all &   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# This will show ALL open branches</tt>
+    </blockquote>
+  </li>
+  <li>Or if you are using the <strong>git gui</strong> GUI browser (<a href="#8.2.1" title="">more on that below</a>), you can invoke <strong>gitk</strong> from the <strong>Repository/Visualize All Branch History</strong> menu item. </li>
+</ol>
+<p align="justify">At the top left of the <strong>gitk</strong> screen, you will see the graph   of revisions.  Each dot represents a commit, along with the log message   that accompanied each commit. Note that the most recent commit (i.e. the line at the very top), there are 2 green boxes at the top, one named <strong>master</strong> and one named <strong>origin</strong>:</p>
+  <ol>
+    <li>
+      <p align="justify"><strong>origin:</strong> This was the state of the repository on the   remote server when you checked it out for the first time.  Therefore,   this is the "pristine", unchanged code that you got from the download. </p>
+    </li>
+    <li>
+      <p align="justify"><strong>master:</strong> This is the current state of the local repository now.  Since we haven't done anything to the code yet, the <strong>master</strong> and <strong>origin</strong> point to the same commit. </p>
+    </li>
+  </ol>
+
+<p align="justify">If you click on any of the commits in the top left window, in the   window below, you will see the log message and a list of changes to the   source code.  The old code is marked in <strong><span class="red">RED</span></strong> and the new code is marked   in <span class="green"><strong>GREEN</strong></span>.  At right you will also see a list of files that were changed   during the commit.</p>
+<p align="justify">So it's really easy to see how the code has evolved with <strong>gitk</strong>. </p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+<p class="size20bi"><a name="8.2"></a>8.2 Making Revisions</p>
+
+<p class="size18bi"><a name="8.2.1"></a>8.2.1 Using the GUI browser</p>
+<p align="justify">We recommend using the <strong>git gui</strong> for source code management.  Start this in your <tt>Code.v9-01-02</tt> directory:</p>
+<blockquote>
+  <tt>cd Code.v9-01-02<br>
+  git gui & </tt>
+</blockquote>
+<p>On the left there are 2 windows: </p>
+<ol>
+  <li>
+    <p align="justify"><strong>Unstaged Changes:</strong> An unstaged change is a   modification that Git does not know about yet.  If you modified any   files since the last commit, then they should be displayed in this   window.  Also, right above this window you will find the name of the   current checked-out branch.  </p></li>
+  <li>
+    <p align="justify"><strong>Staged Changes:</strong> These are changes that Git will add to the repository the very next time you make a commit.  </p></li>
+</ol>
+<p align="justify">In general, anytime you need to modify the source code, you should NOT do it on the <strong>master</strong> branch.  You should create a new branch for your modifications.  Then   you can test your modifications ad nauseum until you are sure that   everything is functioning as it should.  When your modifications are   complete, you can merge them back into the <strong>master</strong> branch.  Then the branch you created can be <a href="#8.2.7" title="">deleted</a>. </p>
+<p align="justify">The advantage of this approach is that if you ever need to start over from scratch, you can just go back to the <strong>master</strong> branch and you will get back the state of the code before your modifications were added. </p>
+
+<p class="size18bi"><a name="8.2.2"></a>8.2.2 Creating branches</p>
+<p align="justify">To create a new branch, go to the <strong>Branch/Create</strong> on the menu (or type <strong>CTRL&ndash;N</strong>).  You will get a dialog box that prompts you for the new branch name.  Type a unique name and then click Create. </p>
+<p>You should pick names that have meaning to you.  For example, some good branch names are: </p>
+<ul>
+  <li>Bug_fix_sulfate_mod </li>
+  <li>CO2_simulation</li>
+  <li>KPP_with_isoprene</li>
+  <li>Methane_simulation</li>
+</ul>
+<p>You will be automatically placed into the branch you have just created. </p>
+
+<p class="size18bi"><a name="8.2.3"></a>8.2.3 Committing</p>
+<p align="justify">With Git, you should commit frequently, such as when you have   completed making revisions to a file or group of files.  Commits that   are made on one branch will not affect the other branches. </p>
+<p align="justify">Committing is best done with the <strong>git gui</strong>.  Basically you follow these steps: </p>
+<ol>
+  <li>
+    <p align="justify">To force the <strong>git gui</strong> to show the latest changes, you can pick <strong>Commit/Rescan</strong> from the menu (or type the F5 key). </p>
+  </li>
+  <li>
+    <p align="justify">You should get a list of files in the <strong>Unstaged Changes</strong> window.  Clicking on the icons on the left of the file names will send them to the <strong>Staged Changes</strong> window.  Once they are in the <strong>Staged Changes</strong> this means that Git will add them to the repository on the very next commit. Note: Clicking on the icon of the files in the <strong>Staged Changes</strong> moves back the file to the <strong>Unstaged Changes</strong> window. </p>
+  </li>
+  <li>
+    <p align="justify">Type a <strong>Commit message</strong> in the bottom right window. <a href="http://spheredev.org/wiki/Git_for_the_lazy#Writing_good_commit_messages" title="http://spheredev.org/wiki/Git_for_the_lazy#Writing_good_commit_messages" target="_new" rel="nofollow">See this example of a good commit message</a>.  Some pointers are:</p>
+    <ul>
+      <li> The first line should only be 50 characters or less and succinctly describe the commit      </li>
+      <li> Then leave a blank line      </li>
+      <li> Then add more in-depth text that describes the commit      </li>
+      <li> Then click on the <strong>Signed-off by</strong> button.  This will add your name, email address, and a timestamp.      </li>
+    </ul>
+  </li>
+  <li>
+    <p align="justify">There are two radio buttons above the <strong>Commit message</strong> window.</p>
+    <ul>
+      <li>New commit: This is the default.  Assumes we are making a totally new commit.</li>
+      <li>Amend last commit: If for whatever reason we need to update the last commit message, pick this button.</li>
+    </ul>
+  </li>
+  <li>
+    <p align="justify">Then when your commit message is done, you can click on the <strong>Commit</strong> button.</p>
+  </li>
+</ol>
+<p>Then if you <a href="#8.1" title="">start the <strong>gitk</strong> viewer</a>, your new commit should be visible.</p>
+
+<p class="size18bi"><a name="8.2.4"></a>8.2.4 Switching between branches</p>
+<p align="justify">Before you switch from one branch to another (aka "checking out a branch"), it is recommended to <a href="#8.2.3" title="">commit any remaining unstaged files</a> to the current open branch.  Unstaged files will remain in your working   directory even after you checkout a different branch.  This can potentially lead to confusion.</p>
+<p align="justify">To checkout a new branch, go to <strong>Branch/Checkout</strong> on the   menu and pick the name of the branch you would like to switch to.  The current branch name will be displayed just below the menu at top left. </p>
+<p align="justify">Once you have created your branch and have checked it out, then   you may begin making modifications to the source code with your favorite text editor.</p>
+<p align="justify">We recommend to keep one open branch per new feature that you are   adding into GEOS&ndash;Chem.  This will allow you to test each individual   feature separately.  After each feature has been validated, you may <a href="#8.2.5" title="">merge</a> each individual branch back into the master branch.</p>
+
+
+<p class="size18bi"><a name="8.2.5"></a>8.2.5 Merging</p>
+<p align="justify">When you are ready to merge your changes back into the mainline <strong>master</strong> branch, then you can follow this procedure. </p>
+<ol>
+  <li>
+    <p align="justify">Switch back to the <strong>master</strong> branch by selecting <strong>Branch/Checkout</strong> from the menu (or type <strong>CTRL&ndash;O</strong>).  You will be given a dialog box of available branches.  Select <strong>master</strong> and click Checkout.</p>
+  </li>
+  <li>
+    <p align="justify">From the menu, pick <strong>Merge/Local Merge</strong> (or <strong>CTRL&ndash;M</strong>). You will be given a dialog box of available branches. Select the branch you would like to merge into <strong>master</strong> and  click Merge.</p>
+  </li>
+</ol>
+<p align="justify">This should merge your changes back into <strong>master</strong>.  Then if you <a href="#8.1" title="">start the <strong>gitk</strong> viewer</a>, the merge you just made should be visible. </p>
+
+
+<p class="size18bi"><a name="8.2.6"></a>8.2.6 Tagging</p>
+<p align="justify">Git also allows you to tag a particular commit with an alphanumeric   string for easy reference.  This tag will allow users to just refer to   the tag name using <a href="#8.4"><tt>git pull</tt></a>. </p>
+<p align="justify">Tagging can be done in one of two ways.  You can add a tag via the command line: </p>
+<blockquote>
+<pre>git tag GEOS-Chem v8-03-01
+git tag GEOS-Chem v8-03-01-patched</pre>
+</blockquote>
+<p align="justify">etc. at the Unix command line.</p>
+<p align="justify">You may also add a tag via the <strong>gitk</strong> viewer utility, as follows:</p>
+<ol>
+  <li><p align="justify">Open the gitk browser:</p>
+    <ul>
+      <li> Type <tt>gitk</tt> (to view the current branch), or </li>
+      <li> Type <tt>gitk --all</tt> to view all branches. </li>
+    </ul>
+  </li>
+  <li>
+    <p align="justify">In the top-left window select a commit by clicking on it with the mouse</p>
+  </li>
+  <li>
+    <p align="justify">Right-click to pull up the context menu.  Select the <strong>Create tag</strong> option.</p>
+  </li>
+  <li>
+    <p align="justify">Type in your tag text and click Create.</p>
+  </li>
+</ol>
+<p>To remove a tag, you can use the <tt>git tag</tt> command directly:</p>
+<blockquote>
+<pre>git tag -d TAG_NAME</pre></blockquote>
+
+<p>Where <tt>TAG_NAME</tt> is the name of the tag that you have added.</p>
+<p>NOTE: Tagging is something that typically only the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Support_Team" target="_new">GEOS&ndash;Chem support team</a> will do.</p>
+
+<p class="size18bi"><a name="8.2.7"></a>8.2.7 Deleting branches</p>
+<p align="justify">Once you have merged your changes back into the <strong>master</strong> branch, you may delete the branch you just created.  In the <strong>git gui</strong>, go to the <strong>Branch/Delete</strong> menu item.  You will be given a dialog box where you can select the name of the branch you wish to delete.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+<p class="size20bi"><a name="8.3"></a>8.3 Sharing your revisions with others (and vice-versa)</p>
+
+<p align="justify">One of the really nice features of Git is that it can create <strong>patch files</strong>,   or files which contain a list of changes that can be imported into   someone else's local Git repository.  Using patch files totally obviates   the need of having to merge differences between codes manually. </p>
+
+<p class="size18bi"><a name="8.3.1"></a>8.3.1 Creating a patch file to share with others</p>
+<p align="justify">To create a patch file containing the code differences between a branch of your code with your <strong>master</strong> branch, type: </p>
+<blockquote>
+<pre>git format-patch master..BRANCH_NAME --stdout &gt; my-patch-file.diff</pre></blockquote>
+<p align="justify">where <tt>BRANCH_NAME</tt> is the name of the branch that you want to compare against the <strong>master</strong> branch. </p>
+<p align="justify">You can also create a patch file for a given number of past commits by typing: </p>
+<blockquote><pre>git format-patch -3 --stdout &gt; my-patch-file.diff</pre></blockquote>
+<p align="justify">will create a patch file for the last 3 commits.  If you want the most recent commit then use -1 instead, etc. </p>
+<p align="justify">These commands will pipe the output from the <tt>git format-patch</tt> command to a file named by you (in this case <tt>my-patch-file.diff</tt>,   but you may select whatever name you wish).  You can then include the   patch file as an email attachment and send it to other GEOS&ndash;Chem users or the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Support_Team" target="_new">GEOS&ndash;Chem Support Team</a>. </p>
+
+<p class="size18bi"><a name="8.3.2"></a>8.3.2 Checking the validity of a patch file</p>
+<p>Other users can also send you their source code revisions as patch files.  If you want to check the status of a Git patch file (i.e. what   it will actually do) before you apply it to your repository, you can use   the git apply command as follows: </p>
+<blockquote>
+  <pre>git apply --stat my-patch-file.diff
+     
+GeosCore/aerosol_mod.F |    7 ++++---   
+1 files changed, 4 insertions(+), 3 deletions(-)</pre></blockquote>
+<p align="justify">The sample output listed above indicates that the patch contained 4 insertions and 3 deletions from only one file (<tt>aerosol_mod.F</tt>).</p>
+<p align="justify">Note that the <tt>git apply --stat</tt> command does not apply the patch, but only shows you the stats about what it will do.  For more   detailed information about the patch, you can open it in either an emacs   or vi window and examine it manually.</p>
+<p align="justify">You can also find out if the patch will install in your Git repository, or if there will be problems.  You can also use the <tt>git apply</tt> command to do this: </p>
+<blockquote><pre>git apply --check my-patch-file.diff</pre></blockquote>
+<p align="justify">The most often error that is encountered is that the patch was made   from an earlier version of GEOS&ndash;Chem.  In that instance the situation   can usually be rectified by having the sender of the patch do a git pull to the last-released GEOS&ndash;Chem version and then to create the patch again.</p>
+
+<p class="size18bi"><a name="8.3.3"></a>8.3.3 Reading a patch file into your local repository</p>
+<p align="justify">To ingest a patch file into your local Git repository you should first <a href="#8.2.2" title="">make a new branch</a>. Then follow this procedure: </p>
+<ol>
+  <li>
+    <p align="justify">Pick <strong>Branch/Create</strong> from the menu (or type <strong>CTRL&ndash;N</strong>).  Give your branch a descriptive name like "Updates_from_xxxx" that will serve as a mnemonic.</p></li>
+  <li><p align="justify">Pick <strong>Branch/Checkout</strong> from the menu (or type <strong>CTRL&ndash;O</strong>) and switch to the branch you just created.</p></li>
+  <li><p align="justify">To ingest the other person's source code changes, type:</p>
+  <blockquote><pre>git am &lt; their-patch-file.diff</pre></blockquote></li>
+</ol>
+<p align="justify">You can then test the other person's revisions in the separate branch until you are sure they are OK.  Then you can <a href="#8.2.5" title="">merge them back into the <strong>master</strong> branch</a> as described above.</p>
+
+<p class="size18bi"><a name="8.3.4"></a>8.3.4 More about patch files</p>
+<p align="justify">For more information about Git patch files, please see the following links:</p>
+<ol>
+  <li><a href="https://rails.lighthouseapp.com/projects/8994/sending-patches" title="https://rails.lighthouseapp.com/projects/8994/sending-patches" target="_new">Sending Patches with Git</a>:  A guide how to use the patch feature of Git to send your changes to another user. </li>
+  <li><a href="http://ariejan.net/2009/10/26/how-to-create-and-apply-a-patch-with-git/" title="http://ariejan.net/2009/10/26/how-to-create-and-apply-a-patch-with-git/" target="new">How to create and apply a patch with Git</a>:  Another nice explanation of how to use Git to send patch files.</li>
+</ol>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+<p class="size20bi"><a name="8.4"></a>8.4 Getting updates from the remote repository</p>
+<p align="justify">When a new GEOS&ndash;Chem version is released, we recommend that you <a href="chapter_2.html#2.2">download it into a new local directory</a> with the <tt>git clone</tt> command. </p>
+<p>However, there may be times when "patches" (i.e. minor updates to   fix bugs or other issues) need to be applied to an existing GEOS&ndash;Chem   version.  The easiest way to obtain patches is to use the <tt>git pull</tt> command, as follows: </p>
+<ol>
+  <li>
+    <p> Change to your local code directory (e.g. <tt>Code.v9-01-02</tt>) </p>
+  </li>
+  <li> 
+    <p><a href="#8.2.2">Make a new branch</a> named <strong>patch</strong> (or something similar). </p>
+  </li>
+  <li> 
+    <p><a href="#8.2.4">Check out</a> the <strong>patch</strong> branch.  Now we are ready to obtain the updates from the remote server. </p>
+  </li>
+  <li>
+    <p> Use the <tt>git pull</tt> command to download the updated files, as follows:
+    </p>
+    <blockquote><pre>git pull git://git.as.harvard.edu/bmy/GEOS-Chem master</pre></blockquote>
+  </li>
+  <li>
+    <p> Test compilation to make sure everything is fine.</p>
+  </li>
+  <li> 
+    <p><a href="#8.2.4" title="">Check out</a> the <strong>master</strong> branch. </p>
+  </li>
+  <li> 
+    <p><a href="#8.2.5" title="">Merge</a> the <strong>patch</strong> branch into your <strong>master</strong> branch. </p>
+  </li>
+  <li> 
+    <p><a href="#8.2.7" title="">Delete</a> the <strong>patch</strong> branch. </p>
+  </li>
+</ol>
+<p align="justify">This will merge the changes from the <strong>master</strong> branch of the remote repository into your <strong>master</strong> branch.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+<p class="size20bi"><a name="8.5"></a>8.5 Reverting to an older state of the code</p>
+<p align="justify">When you clone GEOS&ndash;Chem from the remote repository to your local disk space (with the <tt>git clone</tt> command), the repository will point to the most recent commit.    However, you may want to revert to an older state of the code.  Git   allows you to do this very easily. </p>
+<p align="justify">Let's assume that the latest version of the code is v9&ndash;01&ndash;02, but   that you want to use the version v8&ndash;03&ndash;01.  The procedure is   as follows: </p>
+<ol>
+  <li>
+    <p align="justify">Clone GEOS&ndash;Chem with:</p>
+    <blockquote>
+      <pre>git clone git://git.as.harvard.edu/bmy/GEOS-Chem Code.v9-01-02</pre></blockquote>
+  </li>
+  <li>
+    <p align="justify">Open the <strong>gitk</strong> browser by typing <tt>gitk --all &amp;</tt> at the command line.</p>
+  </li>
+  <li>
+    <p align="justify">In the top-left window of <strong>gitk</strong>, find the commit that you want   to revert to.  Usually this will be denoted with a yellow tag (e.g. <strong>v8&ndash;03&ndash;01</strong> or <strong>v8&ndash;03&ndash;01&ndash;benchmark</strong>).  However, if there are any post-release patches, be sure you select the oldest one.</p>
+  </li>
+  <li>
+    <p align="justify">Right click with the mouse.  This will open a context menu.  Select <strong>Create new branch</strong>.</p>
+  </li>
+  <li>
+    <p align="justify">A new dialog box will pop up asking you to name the branch.  Type <strong>Code.v8&ndash;03&ndash;01</strong> and click Create.</p>
+  </li>
+  <li>
+    <p align="justify">Close <strong>gitk</strong> and open the <strong>git gui</strong> by typing <tt>git gui &amp;</tt>.</p>
+  </li>
+  <li>
+    <p align="justify">From the <strong>git gui</strong> dropdown menu, select <strong>Branch / Checkout</strong>, and then pick <strong>Code.v8&ndash;03&ndash;01</strong>.</p>
+  </li>
+</ol>
+<p align="justify">That's it!  We now have two branches that represent different GEOS&ndash;Chem versions. </p>
+<ol>
+  <li>
+    <p align="justify">The <strong>master</strong> branch represents the state of the code as of the v9&ndash;01&ndash;02 release.</p>
+  </li>
+  <li>
+    <p> The <strong>Code.v8&ndash;03&ndash;01</strong> branch represents the state of the code as of the v8&ndash;03&ndash;01 release. </p>
+  </li>
+</ol>
+<p align="justify">You can work on the <strong>Code.v8&ndash;03&ndash;01</strong> branch as you wish.  You can create   further branches off of the <strong>Code.v8&ndash;03&ndash;01</strong> branch.  The nice thing about this   method is that you can always revert to the v9&ndash;01&ndash;02 state of the code by just switching back to the <strong>master</strong> branch (with <strong>Branch / Checkout</strong> from the <strong>git gui</strong> dropdown menu).</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+    
+<p align="center" class="size14bi"><a href="chapter_7.html">Previous</a> | <a href="chapter_9.html">Next</a> | <a href="chapter_8.html" target="_parent">Printable View (no frames)</a><p>
+ 
+</body>
+</html>

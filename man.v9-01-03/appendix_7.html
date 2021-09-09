@@ -1,0 +1,1070 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS-Chem Online User's Guide</title>
+<meta name="description" contents="Information about the GEOS&ndash;Chem tropospheric chemistry model">
+<meta name="keywords" contents="Atmospheric Chemistry,Computer Models,GEOS&ndash;Chem,Harvard/GEOS-CTM,GEOS-CTM,GEOS,DAO,Tropospheric Chemistry">
+<link rel="stylesheet" href="../../../gc.css" type="text/css"></head><body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&ndash;Chem
+v9&ndash;01&ndash;03 Online User's Guide</p>
+<p class="size14bi" align="center"><a href="appendix_6.html">Previous</a> | <a href="appendix_8.html">Next</a> | <a href="appendix_7.html" target="_parent">Printable
+View (no frames)</a></p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size24bi"><a name="A6"></a>Appendix
+7: GEOS&ndash;Chem Style Guide</p>
+<p align="justify">We provide guidelines for writing clear, concise, and effective Fortran <a href="chapter_2.html#2.2">source code</a>.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A7.1"></a>A7.1
+Background</p>
+<p align="justify"><strong><em>A7.1.1</em></strong> We have written GEOS&ndash;Chem in the Fortran&ndash;90 (F90) language.  F90 introduces several new features over its predecessor, Fortran&ndash;77 (F77), including allocatable arrays, modules, derived types, and new programming statements. We invite you to consult the following F90 tutorials:</p> 
+<ul class="disc">
+<li><a href="http://www.nsc.liu.se/%7Eboein/f77to90/f77to90.html" target="_new">Fortran
+90 for the Fortran 77 Programmer</a></li>
+<li><a href="http://www.ibiblio.org/pub/languages/fortran/" target="_new">User notes on Fortran programming</a></li>
+<li><a href="http://www.liv.ac.uk/HPC/F90page.html" target="_new">University of Liverpool F90 tutorials and courses</a></li>
+</ul>
+<p align="justify">F90 contains all of the features of F77. Legacy code adhering to the F77 standard should build with  any F90 compiler. Although we have written GEOS&ndash;Chem source code to the F90 standard, you should be aware that many 3rd-party routines included in GEOS&ndash;Chem&mdash;such as, SMVGEAR, <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Photolysis_mechanism" target="_new">FAST&ndash;J</a>, and <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/ISORROPIA_II" target="_new">ISORROPIA</a>&mdash;were originally written to the F77 standard. In GEOS&ndash;Chem v9&ndash;01&ndash;03, we have started to replace older F77 code with F90 code, especially to  facilitate the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem" target="_new">Grid Independent GEOS&ndash;Chem project</a>.</p>
+<p align="justify">You should also be aware that several other updates to the Fortran standard (F95, F2000, F2003) have been introduced in recent years. These new Fortran versions contain the same functionality as F90, but generally omit the obsolete F77-style features. Most modern Fortran compilers include support for all of these standards.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.1.2 </span> We previously wrote GEOS&ndash;Chem source code  using <strong>fixed-format layout</strong>, which has the following requirements:</p>
+<ul class="disc">
+  <li>
+    <p align="justify">A line continuation character (usually <tt>&amp;</tt>) is placed in column 6</p>
+</li>
+  <li><p align="justify">Numeric labels can occupy column 2 through column 5</p></li>
+  <li>Executable statements begin in column 7 and extend to column 72</li>
+</ul>
+<p>We chose the fixed-format layout for compatibility with the F77-style include files that were contained in the <tt>Headers/</tt> directory. Starting with GEOS&ndash;Chem v9&ndash;01&ndash;03, we have now converted all header files (with the exception of <tt>define.h</tt>) to <a href="chapter_7.html#7.1.1">modules</a>. This allows the use of <strong>free-format layout</strong>, which does not restrict where you  place executable statements. (To continue a free-format statement across several lines of code, you must place an ampersand <tt>&quot;&amp;&quot;</tt> character at the end of each line.) We recommend that you write all new GEOS&ndash;Chem code using the free format layout. </p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.1.3 </span>
+Historically, we  denote
+code authors by a 3-letter abbreviation in source code comments <tt>(bmy, 5/1/03)</tt>.  However, computer account names grew longer, so did the length of these identifiers, e.g.<tt>(mpayer, 7/15/12)</tt>.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A7.2"></a>A7.2
+Headers, declarations, indentations, and white space</p>
+<p align="justify"><span class="size16bi">A7.2.1 </span>
+We generate detailed <a href="chapter_9.html">GEOS&ndash;Chem reference documentation</a> with <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Automatic_documentation_with_protex" target="_new">ProTeX.</a> ProTeX is a perl script developed by <a href="http://gmao.gsfc.nasa.gov/" target="_new">NASA/GMAO</a> that generates  LaTeX files from  GEOS&ndash;Chem's subroutine, function, and module comment headers. The LaTeX file can then be <a href="chapter_3.html#3.5">compiled</a> to produce both PostScript and PDF output.</p>
+<p align="justify">To use ProTeX, you need to add a standard header at the top of each subroutine, function, and module. The header looks like this:</p>
+<blockquote>
+<pre class="courier14">!------------------------------------------------------------------------------
+!            Harvard University Atmospheric Chemistry Modeling Group 
+!------------------------------------------------------------------------------
+!BOP
+!
+! !IROUTINE: metero
+!
+! !DESCRIPTION: Subroutine METERO calculates meteorological constants needed for the
+! dry deposition velocity module. (lwh, gmg, djj, 1989, 1994; bmy, 11/21/02)
+!
+! Arguments as Output:
+! ============================================================================
+! (1 ) CZ1 (REAL*8) : Midpoint height of first model level [m]
+! (2 ) TC0 (REAL*8) : Array for grid box surface temperature [K]
+! (3 ) OBK (REAL*8) : Array for the Monin-Obhukov length [m]
+!
+!\subsection*{Reference}
+! (1 ) Wesely, M. L., 1989. 
+! (2 ) Jacob, D.J., and S.C. Wofsy, 1990
+!
+!\\
+!\\
+! !INTERFACE: 
+!
+      SUBROUTINE METERO( CZ1, TC0, OBK )
+!
+! !USES:
+! 
+      USE DAO_MOD, ONLY : AIRDEN, HFLUX, T, TS, USTAR
+      USE PRESSURE_MOD, ONLY : GET_PEDGE 
+      
+      IMPLICIT NONE
+
+#     include "CMN_SIZE" ! Size parameters
+#     include "CMN_GCTM" ! Physical constants
+!
+! ! OUTPUT PARAMETERS:
+!
+      REAL*8, INTENT(OUT) :: CZ1(MAXIJ)
+      REAL*8, INTENT(OUT) :: TC0(MAXIJ)
+      REAL*8, INTENT(OUT) :: OBK(MAXIJ)
+!
+! !REVISION HISTORY: 
+!  (1 ) Now reference GET_PEDGE from "pressure_mod.f". Now reference T from 
+!   "dao_mod.f". Removed obsolete code &amp; comments, and added new 
+!  documentation header. Now force double precision with "D" 
+!  exponents. Now compute OBK here as well. Bundled into F90 module
+!  "drydep_mod.f" (bmy, 11/20/02)<br>!  02 Mar 2011 - J. Fisher - Set aerosol dry deposition velocity to 0.03 cm/s<br>!                            over snow and ice based on Nilsson &amp; Rannik, 2001<br>!  02 Mar 2011 - R. Yantosca -  Added ProTeX headers
+!EOP
+!------------------------------------------------------------------------------
+!BOC
+!
+! ! LOCAL VARIABLES:
+!
+INTEGER :: I, J, IJLOOP
+REAL*8 :: P1, P2, THIK, NUM, DEN
+
+!
+! !DEFINED PARAMETERS:
+!
+REAL*8, PARAMETER :: KAPPA = 0.4d0   ! Von Karman's Constant
+REAL*8, PARAMETER :: CP = 1000.0d0  
+
+!
+! ! EXTERNAL FUNCTIONS:
+!
+REAL*8, EXTERNAL :: XLTMMP
+
+!=================================================================
+! METERO begins here!
+!=================================================================
+
+  ... code goes here ...
+
+END SUBROUTINE METERO
+!EOC</pre>
+</blockquote>
+<p align="justify">Note that the ProTeX header contains the following elements:</p>
+<ol>
+<li>Indicators (<tt>!BOP</tt>, <tt>!EOP</tt>) as to where ProTeX should look for source code header comments</li>
+<li>Indicators (<tt>!BOC</tt>, <tt>!EOC</tt>) as to where the source code begins and ends. ProTeX will ignore code between <tt>!BOC</tt> and <tt>!EOC</tt> unless you tell it otherwise.</li>
+<li>A description of the routine, the original date and most recent</li>
+<li>Description of when the routine was last modified (with date &amp; name of the programmers)</li>
+<li>A list of input &amp; output arguments</li>
+<li> A list of references (if applicable)</li>
+<li>References to F90 modules (if any) after the <tt>USE</tt> keyword
+followed by the <tt>IMPLICIT NONE</tt> declaration</li>
+<li>Any <tt>#include</tt> declarations for header files. Since we are using the <a href="chapter_3.html#3.4">C-preprocessor</a> with 72-column fixed format, the <tt>#</tt> character must go in column 1.</li>
+<li>Each time the file is modified the
+REVISION HISTORY section should be updated.</li>
+<li>Declarations for local variables</li>
+<li>Declarations for Fortran parameters (aka constants)</li>
+<li>Declarations for external functions (if necessary)</li>
+</ol>
+<span class="size16bi"></span>
+<p align="justify">Fortran 90 allows you to  declare an argument to a subroutine or function with one of the following descriptors:</p>
+<ol>
+  <li><tt>INTENT(IN)</tt> (read-only),</li>
+  <li><tt>INTENT(OUT)</tt> (write-only) or</li>
+  <li><tt>INTENT(INOUT)</tt> (read-and-write)</li>
+</ol>
+<p align="justify">This helps you to prevent overwriting arguments which should not be overwritten.</p>
+
+<p align="justify">We recommend that you separate sections of source code with one or more divider comments:</p>
+<blockquote>
+<pre class="courier14">
+!=================================================================
+! 1st level header
+!=================================================================
+
+   !--------------------------------------------------------------
+   ! 2nd level header
+   !--------------------------------------------------------------
+
+      !-----------------------
+      ! 3rd-level header
+      !----------------------</pre>
+</blockquote>
+<p align="justify">Line up each header with the the code that follows immediately below it. You can mix and match these styles as you wish. You don't always have to extend the header all the way across the screen.</p>
+<p align="justify">If you are modifying a fixed-format source code file, end the major section headers at column #72. This will remind your reader where the limits of the allowable source code region occurs.  If you are modifying a free-format source code file, feel free to extend the ends of the major section headers to about column 76 or 77.</p>
+<p align="justify"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><strong><em>A7.2.2</em></strong> We used to write GEOS&ndash;Chem source code in ALL CAPITALS. We chose this approach  to avoid mistaking similar characters,  such as the  lowercase <tt>l</tt> and the number <tt>1</tt>, which in some fonts look remarkably alike. You may at  your discretion mix capitals and lowercase in variable names and subroutine names, particularly if you want to improve readability or preserve scientific abbreviations ( e.g. <tt>Rn_Pb_Be_mod.F</tt>).</p>
+<p align="justify">We still recommend that you write Fortran reserved words in ALL CAPITALS: <tt>SUBROUTINE</tt>, <tt>CALL</tt>, <tt>IF/THEN/ENDIF</tt>, <tt>DO/ENDDO</tt>, <tt>WHERE/ENDWHERE</tt>. This distinguishes Fortran language elements from your variable and routine names.</p>
+<p align="justify">Because GEOS&ndash;Chem contains a significant amount of 
+  3rd-party code, you will see many routines where the code is written in all lowercase letters. Feel free to leave this code as-is. Reformatting a fixed-format source code file  can be  a cumbersome task (and maybe not the best use of your precious time).</p>
+<p align="justify"> Good editors such as <tt>emacs</tt> and <tt>Xemacs</tt> can "colorize" the different words in a program (e.g. statements, variables, and quoted text are rendered in different colors), thus making the code infinitely more readable..</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.2.3 </span>
+Indent each new block of code 3 columns deeper than the last block: </p>
+<blockquote>
+<pre>         1         2         3         4
+1234567890123456789012345678901234567890
+      IF ( X == 0 ) THEN
+         PRINT*, 'Hello, X is 0!'
+
+         IF ( Y == 0 ) THEN
+            PRINT*, 'Hello, X is 0 and Y is also 0!'
+         ENDIF
+      ENDIF</pre>
+</blockquote>
+<p align="justify">A good editor such as <tt>emacs</tt> will indent for you automatically. You can specify the level of indent in your editor setup file (e.g. <tt>.emacs</tt>).</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi"> A7.2.4 </span>
+Omit
+indentation for each line of a multiple DO loop. Use this syntax:</p>
+<blockquote>
+  <pre>DO N = 1, NNPAR
+DO L = 1, LLPAR
+DO J = 1, JJPAR
+DO I = 1, IIPAR
+   A(I,J,L,N) = A(I,J,L,N) / 2.0d0
+ENDDO
+ENDDO
+ENDDO
+ENDDO</pre>
+</blockquote>
+<p align="justify">instead of letting the DO loops &quot;creep&quot; unneccessarily across the screen:</p>
+<blockquote>
+<pre>DO N = 1, NNPAR
+   DO L = 1, LLPAR
+      DO J = 1, JJPAR
+         DO I = 1, IIPAR
+            A(I,J,L,N) = A(I,J,L,N) / 2.0d0
+         ENDDO
+      ENDDO
+   ENDDO
+ENDDO</pre>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><strong><em>A7.2.5</em></strong> 
+Use LOTS of white space to separate code. For example instead of</p>
+<blockquote><pre>IF(X.eq.0)CALL DOLOOP(X,Y,Z,A,B,C,1,2,3)</pre></blockquote>
+<p align="justify">type:</p>
+<blockquote><pre>IF ( X == 0 ) CALL DOLOOP( X, Y, Z, A, B, C, 1, 2, 3 )</pre></blockquote>
+<p align="justify">This makes the code much more readable,
+which prevents bugs.. If  you can't read what you've written, you will never find your mistake! Don't be afraid to continue the statement to the next line if necessary.</p>
+<p align="justify">In the above example, we also have used the new F90 equality test
+  operator <tt>==</tt> (see
+  below for more information). </p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.2.6 </span>
+Always line up  quantities in assignment statements. Instead of:</p>
+<blockquote>
+<pre>A=1
+THISLOOP=2
+C=3
+D=THISLOOP*C - A</pre>
+</blockquote>
+<p align="justify">add white space so that all of the equals signs fall in the same column.</p>
+<blockquote>
+<pre>A        = 1
+THISLOOP = 2
+C        = 3 
+D        = ( THISLOOP * C ) - A</pre>
+</blockquote>
+<p align="justify">Your eyes can make more sense out of text that is lined up into vertical columns.</p>
+<p align="justify">Group multiple terms of an equation with parentheses (as we have done for the D equation above). The  compiler evaluates evaluate expressions in the order the parentheses are placed, from innermost to outermost.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.2.7</span>
+Do not leave white space between array indices: </p>
+<blockquote><pre>A = X(I,J,L)</pre></blockquote>
+<p align="justify">Leave  white space between arguments of functions and WRITE statements:</p>
+<blockquote>
+<pre>A = MYFUNCTION( I, J, L )
+WRITE( 6, '(a)' ) A</pre>
+</blockquote>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.2.8 </span>
+Line up arguments in
+subroutine or function calls. If there are an even
+number of arguments,  break them up symmetrically:</p>
+<blockquote>
+<pre> CALL MYSUB( THIS_A, THIS_B, THIS_C,
+&            THIS_D, THIS_E, THIS_F )
+</pre>
+</blockquote>
+<p align="justify">or</p>
+<blockquote>
+<pre> X = MYFUNCTION( THIS_A, THIS_B, THIS_C,
+&amp;                THIS_D, THIS_E, THIS_F )</pre>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A7.3"></a>A7.3
+Numeric and character data types</p>
+<p align="justify"><span class="size16bi">A7.3.1 </span>
+GEOS&ndash;Chem uses the following data types:</p>
+<blockquote>
+<pre>LOGICAL            --> TRUE or FALSE switch
+INTEGER            --> 32 byte integer value
+REAL*4             --> 32 byte floating-point value
+REAL*8             --> 64 byte floating-point value
+CHARACTER(LEN=255) --> string w/ 255 characters (the max limit)</pre>
+</blockquote>
+<p>where</p>
+<blockquote>
+<pre>INTEGER can express numbers from -2e9   to +2e9
+REAL*4  can express numbers from -1e38  to +1e38
+REAL*8  can express numbers from -1e312 to +1e312</pre>
+</blockquote>
+<p align="justify">Use <tt>REAL*8</tt> as your default floating-point type. This will prevent round off and precision truncation errors. </p>
+<p align="justify">However, you should use  <tt>REAL*4</tt> data type instead of <tt>REAL*8</tt> in the following instances:</p>
+<ul class="disc">
+<li>
+<p align="justify"><span class="size16bi">Diagnostic arrays:</span> GEOS&ndash;Chem
+diagnostic values rarely exceed 10<sup>38</sup>, since they
+are usually in units such as kg, v/v, ppbv, or molecules/cm<sup>2</sup>/s.</p>
+</li>
+<li>
+<p align="justify"><span class="size16bi">Arrays and scalars required for binary or netCDF file I/O:</span> Declaring these types of variables <tt>REAL*4</tt> will help to keep file sizes as small as possible, thus saving disk space.</p>
+</li>
+</ul>
+<p align="justify">Some third-party routines used by GEOS&ndash;Chem (such as <tt>TPCORE</tt>) use the <tt>REAL</tt> datatype. Most compilers (but not all) interpret   <tt>REAL</tt> as <tt>REAL*4</tt>.  If you want to force the compiler to interpret <tt>REAL</tt> as <tt>REAL*8</tt>, you must use a special compiler switch (usually <tt>-r8,</tt> but check your compiler manual to be sure). The GEOS&ndash;Chem Makefiles already take care of this for you..</p>
+<p class="size16bi" align="justify">NOTE: See the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Floating_point_math_issues" target="_new">GEOS&ndash;Chem wiki page on floating point math
+issues</a> for more information. </p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.3.2  
+</span>Use <tt>D</tt> (double-precision) exponents when assigning a value to a <tt>REAL*8</tt> variable:</p>
+<blockquote>
+  <pre>REAL*8 :: PI
+PI = 3.14159265358979323d0</pre>
+</blockquote>
+<p align="justify">instead of this syntax:</p>
+<blockquote>
+<pre>REAL*8 :: PI
+PI = 3.14159265359e0</pre>
+</blockquote>
+<p align="justify">In F90, the <tt>E</tt> (single-precision) exponent only yields about 7 decimal places of precision, whereas the <tt>D</tt> exponent yields 15 or 16 decimal places of precision.  Using <tt>D</tt> exponents prevents roundoff errors.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.3.3</span>
+Declare strings with 255 characters, even if you don't know 
+a priori how long the string will be. Use the <tt>TRIM</tt> statement to strip excess white space. For example:</p>
+<blockquote>
+<pre>CHARACTER(LEN=255) :: STR
+
+STR = 'I am the very model of a modern major general...'
+
+WRITE( 6, '(a)' ) TRIM( STR )</pre>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A7.4"></a>A7.4
+Converting from number to character (and vice versa)</p>
+<p align="justify"><span class="size16bi">A7.4.1</span>
+Several GEOS&ndash;Chem
+routines convert a numeric variable to a character variable (and vice-versa). This usually happens when a number representing a date or time has to be incorporated into a file path. </p>
+<p align="justify">Use a Fortran internal write statement to  convert from  from <tt>INTEGER</tt> to <tt>CHARACTER</tt>. This looks like a  regular <tt>WRITE</tt> statement, only that the unit number is replaced by a character variable. Think of it as "writing" your number into a character variable instead of to a file.</p>
+<p align="justify">For example, the following code creates a string containing the date 20110701:</p> 
+<blockquote>
+  <pre>! Declare variables
+CHARACTER(LEN=8) :: DATE_STR
+INTEGER          :: DATE = 20110701
+
+! FORTRAN internal write -- converts number to string
+WRITE( DATE_STR, '(i8.8)' ) DATE</pre>
+</blockquote>
+<p align="justify">You can incorporate DATE_STR into a directory or file path. The format <tt>'(i8.8)'</tt> tells the <tt>WRITE</tt> command to make the string 8 characters long, and to change any spaces (if they exist) into preceding zeroes.</p>
+<p align="justify">Caveat: Some versions of the PGI compiler did not allow internal WRITE statements. You can use the <tt>ENCODE</tt> function instead:</p>
+<blockquote>
+  <pre>! Declare variables
+CHARACTER(LEN=8) :: DATE_STR
+INTEGER :: DATE = 20010701
+
+! Writes value from DATE into DATE_STR
+ENCODE( 8, '(i8.8)', DATE_STR ) DATE</pre>
+</blockquote>
+<p align="justify">You must specify the length of the character variable (in this case, 8), the
+format string, and the character variable when calling <tt>ENCODE</tt>.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.4.2</span> Use a Fortran internal read to extract numbers from a character string. This is the reverse of the Fortran internal write described above:</p> 
+<blockquote>
+  <pre class="courier16" align="left">! Declare variables
+CHARACTER(LEN=8) :: DATE_STR = '20010101'
+INTEGER :: DATE
+
+! FORTRAN internal read -- converts string to number
+READ( DATE_STR, '(i8.8)' ) DATE</pre>
+</blockquote>
+<p align="justify">Caveat: Some versions of the PGI compiler did not allow Fortran internal reads. You can use the <tt>DECODE</tt> function instead:</p>
+<blockquote>
+<pre>! Declare variables
+CHARACTER(LEN=8) :: DATE_STR = '20010101'
+INTEGER :: DATE
+
+! Reads string value from DATE_STR into DATE
+DECODE( 8, '(i8.8)', DATE_STR ) DATE</pre>
+</blockquote>
+<p align="justify">As with <tt>ENCODE</tt>, you must specify the length of the character variable
+(in this case, 8), the format string, and the character variable in the call to <tt>DECODE</tt>.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.4.3</span> When writing GEOS&ndash;Chem code, you may have to use both the internal read / internal write and <tt>ENCODE</tt> / <tt>DECODE</tt> methods simultaneously,  separated by the appropriate <a href="chapter_3.html#3.4">C&ndash;preprocessor</a> compiler flags.</p>
+<blockquote>
+<pre>! Declare variables
+CHARACTER(LEN=8) :: DATE_STR
+INTEGER :: DATE = 20010701
+ 
+# include "define.h" ! C-preprocessor flags
+ 
+#if defined( LINUX_PGI )
+   ! Write numeric value from DATE into DATE_STR for PGI Linux
+   ENCODE( 8, '(i8)', DATE_STR ) DATE
+#else
+   ! FORTRAN Internal Write for other platforms
+   WRITE( DATE_STR, '(i8)' ) DATE
+#endif</pre>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A7.5"></a>A7.5 New language features of Fortran 90</p>
+<p align="justify"><span class="size16bi">A7.5.1</span>
+Use the new F90-style operators instead of the older F77-style operators:</p>
+<blockquote>
+<pre>== instead of .EQ.
+/= instead of .NE.
+>  instead of .GT.
+>= instead of .GE.
+<  instead of .LT.
+>= instead of .LE.
+</pre>
+</blockquote>
+<p align="justify">The new operators take up only one or two spaces (instead of four spaces) and are easier to read.</p>
+<p align="justify">Some operators (<tt>.AND.</tt>, <tt>.OR.</tt>, and <tt>.NOT.</tt>) are the same in F90 as in F77. This is also true of the boolean values (<tt>.TRUE.</tt> and <tt>.FALSE.</tt>).</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.5.2</span>
+Use the F90 <tt>!</tt> comment character. This replaces the F77 comment character (a <tt>C</tt> placed in the first column of fixed-format code). You can can create very legible comments by lining up the <tt>!</tt> with your source code.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.5.3</span> To continue an instruction from one line to the next, place an ampersand (<tt>&amp;</tt>) at the end of the line (for free-format layout).</p>
+<p align="justify">If you are working with a source code file that has not yet been converted to free-format, place an ampersand in column 6 of each continued line of code.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.5.4</span>
+Use the F90 array assignment functionality  to assign a value to all elements of an array without using array indices. For example:</p>
+<blockquote>
+<pre>INTEGER :: ARRAY(10,10)
+ARRAY(:,:) = 0</pre>
+</blockquote>
+<p align="justify">You can also leave off the default array mask <tt>(:,:),</tt> so</p>
+<blockquote><pre>ARRAY = 0</pre></blockquote>
+<p align="justify">is also acceptable. </p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.5.5</span>  Initialize <tt>PARAMETER</tt> constants on the same line where they are declared:</p>
+<blockquote><pre>REAL*8, PARAMETER :: PI = 3.14159265358979323d0</pre></blockquote>
+<p align="justify">Avoid using obsolete F77 syntax:</p>
+<blockquote>
+<pre>REAL*8 PI
+PARAMETER( PI = 3.14159265358979323 )</pre>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p><span class="size16bi">A7.5.6</span> Use F90 direct assignment statements  to assign values to arrays:</p>
+<blockquote><pre>REAL*8 :: A(2) = (/ 1.0d0, 2.0d0 /)</pre></blockquote>
+<p>Avoid using obsolete F77 syntax:</p>
+<blockquote>
+<pre>REAL*8 A(2)
+DATA A / 1.0, 2.0 /</pre>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.5.7 
+</span> Include the SAVE attribute on the same line where the variable is declared:</p>
+<blockquote><pre>LOGICAL, SAVE :: FIRSTTIME = .TRUE.</pre></blockquote>
+<p align="justify">Avoid using obsolete F77 syntax:</p>
+<blockquote><pre>LOGICAL FIRSTTIME 
+SAVE FIRSTTIME
+DATA FIRSTTIME / .TRUE. /</pre>
+</blockquote>
+Note: <tt>SAVE</tt>d variables within a subroutine or function keep their values from one call to the next. This allows you to do some initialization only on the first call to a subroutine, for example:
+<blockquote>
+<pre>LOGICAL, SAVE :: FIRSTTIME = .TRUE. 
+
+IF ( FIRSTTIME ) THEN
+   PRINT*, 'This is the first time this routine is called!'
+   FIRSTTIME = .FALSE.
+ENDIF</pre>
+</blockquote>
+<p align="justify">Since the value of <tt>FIRSTTIME</tt> is saved between calls, the sentence above will only be printed out on the first call to the subroutine.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.5.8 </span> Include the <tt>EXTERNAL</tt> attribute on the same line where a function's type is declared. Use this syntax:</p>
+<blockquote><pre>INTEGER, EXTERNAL :: MYFUNC</pre></blockquote>
+<p align="justify">Avoid using obsolete F77 syntax:</p>
+<blockquote>
+<pre>INTEGER MYFUNC
+EXTERNAL MYFUNC</pre>
+</blockquote>
+<p align="justify">NOTE: If you are referencing functions contained within a module file, then you do not need to declare it with <tt>EXTERNAL</tt>. The <tt>EXTERNAL</tt> statement is a hangover from F77.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.5.9 </span>
+Use the F90 <tt>SELECT CASE</tt> statement to pick from a list of options. In F77 you
+would have had to write:</p>
+<blockquote>
+  <pre>IF ( X .EQ. 1 ) THEN
+   CALL MYSUB( X1 )
+ELSE IF ( X .EQ. 2 ) THEN 
+   CALL MYSUB( X2 )
+ELSE
+   CALL MYSUB( X0 )
+ENDIF</pre>
+</blockquote>
+<p align="justify">but with F90, you can write this instead:</p>
+<blockquote>
+<pre>SELECT CASE ( X )
+   CASE( 1 )
+      CALL MYSUB( X1 )
+   CASE( 2 ) 
+      CALL MYSUB( X2 )
+   CASE DEFAULT
+      CALL MYSUB( X0 )
+END SELECT</pre>
+</blockquote>
+<p align="justify"><tt>SELECT CASE</tt> also works with character constants:</p>
+<blockquote>
+<pre>SELECT CASE ( TRIM( TRACERNAME ) )
+   CASE( 'NOx' )
+      CALL MYSUB( 1 )
+   CASE( 'Ox' )
+      CALL MYSUB( 2 )
+   CASE DEFAULT
+      CALL MYSUB( 3 )
+END SELECT</pre>
+</blockquote>
+<p align="justify">A note of warning: You cannot specify <tt>CASE( X )</tt> where <tt>X</tt> is a variable, or else the compiler will balk. Then you  must resort to the <tt>IF - ELSE IF</tt> block structure as shown above.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.5.10 </span> Use the F90 intrinsic functions <tt>LOG( X )</tt> and <tt>LOG10( X )</tt> to take the natural and common logarithms of <tt>X</tt>.  Here <tt>X</tt> may be declared either as <tt>REAL*4</tt> or <tt>REAL*8</tt>.</p>
+<p align="justify">Avoid using the  F77 intrinsic functions <tt>ALOG( X )</tt> and <tt>ALOG10( X )</tt>.  Some compilers do not support these functions.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.5.11 </span> Use F90's keyword argument capability to clarify subroutine calls. You can replace  this:</p>
+
+<blockquote>
+<pre> SUBROUTINE READ_A1( NYMD,     NHMS, 
+&                    ALBEDO,   CLDTOT,   EFLUX,    EVAP,    
+&                    ... etc ...                         )</pre>
+</blockquote>
+<p align="justify">with this:</p>
+<blockqute>
+<pre>      CALL READ_A1( NYMD     = NYMD, 
+     &              NHMS     = NHMS,
+     &              ALBEDO   = ALBD,
+     &              CLDTOT   = CLDTOT
+     &amp;              EFLUX    = EFLUX
+     &amp;              EVAP     = EVAP
+                    ... etc ...      )</pre>
+</blockquote>
+<p align="justify">In the call above, you see several  pairs of variable names separated by an equals sign:<blockquote><pre>ALBEDO   = ALBD,</pre></blockquote>
+<p align="justify">The name on the left of the equals sign is the name of the argument as defined in the subroutine (i.e. <tt>ALBEDO</tt>).  This is often called the "dummy argument" because it is just a name for the memory that is getting passed to it from outside of the subroutine.</p>  
+<p align="justify">The name on the right of the equals sign is the name of the variable that we are passing down to the subroutine.  Here we are using the <tt>ALBD</tt> variable (from GEOS&ndash;Chem module <tt>dao_mod.F</tt> and passing that down to READ_A1 as the <tt>ALBEDO</tt> argument.
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A7.6"></a>A7.6
+Math optimizations</p>
+<p align="justify"><span class="size16bi">A7.6.1 </span> Logarithms and exponentiation are the most computationally expensive mathematical functions. Avoid using the traditional formulation:</p>
+<blockquote><pre> Y = A0 + A1*X + A2*X**2 + A3*X**3 + A4*X**4 + A5*X**5 </pre></blockquote>
+<p align="justify">but instead use parentheses to group the polynomial terms.</p>
+<blockquote><pre > Y = A0 + X* ( A1 + X* ( A2 + X* ( A3 + X* ( A4 + X* ( A5 )))))</pre></blockquote>
+<p align="justify">This modified polynomial expression replaces the costly exponentiations with more efficient multiplication operations. A Nth order polynomial will
+now only require N multiplications.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.6.2</span>
+Although it is tempting to replace <tt>EXP( &ndash;x )</tt> with the first-order approximation <tt>1 &ndash; x,</tt> this can result in negative values for certain values of <tt>x</tt>. This can cause negative tracer concentrations.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A7.7"></a>A7.7
+DO loops</p>
+<p align="justify"><span class="size16bi">A7.7.1 </span> Always use the CYCLE statement to skip to the next iteration in a DO-loop. Use this syntax:</p>
+<blockquote>
+<pre>DO I = 1, 1000
+
+   ! Skip to next iteration
+   IF ( X(I) == 0 ) CYCLE
+ 
+   ! Print
+   PRINT*, X(I)
+ENDDO</pre>
+</blockquote>
+
+<p align="justify">instead of this obsolete F77 syntax:</p>
+<blockquote>
+<pre>DO 100 I = 1, 1000
+   IF ( X(I) .EQ. 0 ) GOTO 100
+   PRINT*, X(I)
+100 CONTINUE</pre>
+</blockquote>
+<p align="justify">Notice that the F90 <tt>ENDDO</tt> statement replaces the labeled <tt>CONTINUE</tt> statement.  This results in cleaner code.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.7.2 </span>
+Always use the EXIT statement to completely exit from a DO loop. Use this syntax:</p>
+<blockquote>
+<pre>DO I = 1, 1000
+ 
+   ! Break out of this loop if X==0!
+   IF ( X(I) == 0 ) EXIT
+ 
+   ! Print info if we have not exited
+   WRITE( 6, '(''Iteration: '', i5, f13.6)' ) I, X(I)
+ENDDO 
+
+PRINT*, 'outside loop'</pre>
+</blockquote>
+<p align="justify">instead of this obsolete F77 syntax:</p>
+<blockquote>
+<pre>C Do-loop
+DO 100 I = 1, 1000
+   IF ( X(I) .EQ. 0 ) GOTO 200
+   PRINT*, 'inside loop'
+100 CONTINUE
+
+C Continue outside loop
+200 CONTINUE
+PRINT*, 'outside loop'</pre>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.7.3 
+</span>Structure your DO loops so that they access memory in the most optimal manner. Fortran is a
+column-major language, which means that arrays are stored in memory by columns
+first, then by rows. If you have declared an array such as:</p>
+<blockquote>
+  <pre>INTEGER :: I, J, L, N
+REAL*8  :: ARRAY(IIPAR,JJPAR,LLPAR,NNPAR)</pre>
+</blockquote>
+<p align="justify">then for optimal efficiency, the leftmost dimension (<tt>I</tt>) needs to vary the fastest, and needs to be accessed by the innermost DO-loop.  Then the next leftmost dimension (<tt>J</tt>) should be accessed by the next innermost DO-loop, and so on. </p>
+<p align="justify">Therefore, the proper way to loop over this array is:</p>
+<blockquote>
+<pre>DO N = 1, NNPAR
+DO L = 1, LLPAR
+DO J = 1, JJPAR
+DO I = 1, IIPAR
+   ARRAY(I,J,L,N) = ARRAY(I,J,L,N) * 2.0d0
+ENDDO
+ENDDO
+ENDDO
+ENDDO </pre>
+</blockquote>
+<p align="justify">Note that the <tt>I</tt> index is varying most often, since it is the innermost DO-loop, then <tt>J</tt>, <tt>L</tt>, and <tt>N</tt>. This is opposite to how a car's odometer reads.</p>
+<p align="justify">If you loop through an array in this fashion, with leftmost indicies varying fastest, then the code minimizes the number of times it has to load subsections of the array into cache memory. In this optimal manner of execution, all of the array elements sitting in the cache memory are read in the proper order before the next array subsection needs to be loaded into the cache. But if you step through array elements in the wrong order, the number of cache loads is proportionally increased. Because it takes a finite amount of time to reload array elements into cache memory, the more times you have to access the cache, the longer it will take the code to execute. This can slow down the code dramatically.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.7.4</span>
+Use &quot;infinite&quot; DO loops in situations where you need to iterate for an unknown number of iterations before some exit criterion is reached. This is most often used to read data from a file whose length you do not know a priori. </p>
+<p align="justify">Here is an example of an infinite DO loop used to read data from disk:</p>
+<blockquote>
+<pre>INTEGER :: I, IOS, IUNIT
+REAL*8 :: A(10000) 
+
+! Open file
+OPEN( IUNIT, FILE='myfile.txt', IOSTAT=IOS )
+
+! Quit if we can't open the file
+IF ( IOS /= 0 ) THEN
+   PRINT*, 'Error opening the file!'
+   STOP
+ENDIF
+
+! Infinite DO loop for reading data from "myfile.txt"
+DO
+
+   ! Read I and A(I) from the file
+   READ( IUNIT, '(i3,f11.3)', IOSTAT=IOS ) I, A(I)
+ 
+   ! IOS < 0 is end-of-file, so we exit the loop
+   IF ( IOS < 0 ) EXIT
+	
+   ! If IOS < 0, then this is an I/O error,
+   ! so we print an error msg and quit
+   IF ( IOS > 0 ) THEN
+      PRINT*, 'I/O error reading from file!
+      STOP
+   ENDIF
+ENDDO
+ 
+! Close the file after we exit the loop
+CLOSE( IUNIT )</pre>
+</blockquote>
+<p align="justify">In this example, the DO loop wants to execute forever, but it is stopped by an external criterion&#8212;the end of the file. The <tt>OPEN</tt>, <tt>READ</tt>, and <tt>CLOSE</tt> functions can return the I/O status to a variable if you specify via the <tt>IOSTAT</tt> keyword.  If the I/O status variable (in this case, named IOS) is negative, then this is a normal end-of-file condition, and so we can just exit the loop and close the file. However, if <tt>IOS</tt> is a nonzero, positive number, then this means that we have encountered a real error condition.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="justify"><span class="size16bi">A7.7.5</span>
+Reserve the following variable names for DO-loop and array indices:</p>
+
+<ul>
+  <li>Use <tt>I</tt> for the longitude index</li>
+  <li>Use <tt>J</tt> for the latitude index</li>
+  <li>Use <tt>L</tt> for the altitude index</li>
+  <li>Use <tt>N</tt> for the quantity index (tracer, species, etc.)</pre>
+  </li>
+</ul>
+<p align="justify">Therefore, you can assume that any DO-loop that uses <tt>I</tt>, <tt>J</tt>, and <tt>L</tt> is looping over grid box longitude, latitude, and altitude dimensions, and that any DO-loop which uses <tt>N</tt>  is looping over  tracer, species, or some other quantity. These special indices should NOT be used to refer other quantities. In this way, if you should get an  error message such as:</p>
+<blockquote><pre> Error at grid box (I,J) = (23,34)!</pre></blockquote>
+<p align="justify">you will immediately understand <tt>(I,J)</tt> are the  longitude and latitude indices
+of the box where the error happened.</p>
+<p align="justify">NOTE: In some 3rd-party routines, you will see <tt>K</tt> used instead of <tt>L</tt> to denote the altitude index.  We recommend leaving these as-is, so as to avoid having to rewrite entire sections of 3rd-party code.   However, you should use <tt>L</tt> for the altitude index in any new GEOS&ndash;Chem code that you write.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A7.8"></a>A7.8 Fortran-90 modules</p>
+<p align="justify"><span class="size16bi">A7.8.1</span>
+Place all of your new GEOS&ndash;Chem code into  <a href="chapter_7.html#7.1.1">Fortran 90 modules</a>, if possible. These allow you to save both
+and routines and variables within a single program unit.</p>
+<p align="justify">An example module is shown below.</p>
+<blockquote>
+  <pre class="courier14">
+!------------------------------------------------------------------------------
+!          Harvard University Atmospheric Chemistry Modeling Group            !
+!------------------------------------------------------------------------------
+!BOP
+!
+! !MODULE: MY\_MODULE
+!
+! !DESCRIPTION: \subsection*{Overview}
+! Module MY\_MODULE contains variables and routines to do something.
+! (bmy, 5/1/03)
+!\\
+!\\
+!
+! !INTERFACE
+       MODULE MY_MODULE
+!
+! !USES:
+! 
+      IMPLICIT NONE
+
+ ! Make everything private...
+      PRIVATE
+&nbsp;!
+ ! !PUBLIC MEMBER FUNCTIONS:&nbsp;
+ !
+      PUBLIC :: DRIVER
+      PUBLIC :: INIT_MY_MODULE
+      PUBLIC :: CLEANUP_MY_MODULE
+ !
+ ! !REVISION HISTORY:
+ !  (1 ) Bug fix in MY_SUBROUTINE (bmy, 5/1/03)
+&nbsp;!EOP
+ !------------------------------------------------------------------------------
+ !
+ ! !PRIVATE DATA MEMBERS:
+ !
+      ! Argument to the SIN function
+      REAL*8, ALLOCATABLE :: B(:)
+
+      CONTAINS
+
+!------------------------------------------------------------------------------
+!          Harvard University Atmospheric Chemistry Modeling Group            !
+!------------------------------------------------------------------------------
+!BOP
+!
+! !IROUTINE: DRIVER
+!
+! !DESCRIPTION: \subsection*{Overview}
+! Subroutine DRIVER is the driver routine for MY_MODULE. (bmy, 5/1/03)
+!\\
+!\\
+!
+! !INTERFACE:
+      SUBROUTINE DRIVER
+!
+! !REVISION HISTORY:
+!
+!EOP
+!------------------------------------------------------------------------------
+!BOC
+!
+! !LOCAL VARIABLES:
+!
+      LOGICAL, SAVE :: FIRST = .TRUE.
+      INTEGER, :: I
+      REAL*8 :: X, Y1, Y2
+      REAL*8, PARAMETER :: PI180 = 180d0 / 3.14159265358979323d0
+ 
+      !=================================================================
+      ! DRIVER begins here!
+      !=================================================================
+ 
+      ! Initialize 
+      IF ( FIRST ) THEN
+         CALL INIT_MY_MODULE
+      ENDIF
+ 
+      !=================================================================
+      ! Loop over degrees
+      !=================================================================
+      DO I = 1, 360
+ 
+         ! Convert to radians
+         B = DBLE( I ) / PI180
+ 
+         ! Call subroutine
+         CALL MY_SUBROUTINE( B(I), Y1 )
+ 
+         ! Call function
+         Y2 = MY_FUNCTION( B(I) )
+ 
+         ! Write output
+         WRITE( 6, '(i3, 1x, 3(f13.6,1x))' ) I, B(I), Y1, Y2
+      ENDDO 
+ 
+      ! Return to calling program
+      END SUBROUTINE DRIVER
+!EOC
+!-----------------------------------------------------------------------------
+!          Harvard University Atmospheric Chemistry Modeling Group            !
+!------------------------------------------------------------------------------
+!BOP
+!
+! !IROUTINE: MY\_SUBROUTINE
+!
+! !DESCRIPTION: \subsection*{Overview}
+! Function MY_SUBROUTINE returns the sine of a number. (bmy, 5/1/03)
+!\\
+!\\
+!
+! !INTERFACE:
+
+      SUBROUTINE MY_SUBROUTINE( X, Y )
+!
+! !INPUT PARAMETERS: 
+!
+      ! Argument for the sine function
+      REAL*8, INTENT(IN) :: X
+!
+! !RETURN VALUE:
+!     
+      REAL*8, INTENT(OUT) :: Y 
+!
+! !REVISION HISTORY:
+! (1 ) Corrected typographic error (bmy, 5/1/03)
+!EOP
+!------------------------------------------------------------------------------
+!BOC
+ 
+      !=================================================================
+      ! MY_SUBROUTINE begins here!
+      !=================================================================
+      Y = SIN( X )
+ 
+      ! Return to calling program
+      END SUBROUTINE MY_SUBROUTINE
+!EOC
+!-----------------------------------------------------------------------------
+!          Harvard University Atmospheric Chemistry Modeling Group            !
+!------------------------------------------------------------------------------
+!BOP
+!
+! !IROUTINE: MY\_FUNCTION
+!
+! !DESCRIPTION: \subsection*{Overview}
+! Function MY_FUNCTION returns the sine of a number. (bmy, 5/1/03)
+!\\
+!\\
+!
+! !INTERFACE:
+
+      FUNCTION MY_FUNCTION( X ) RESULT( Y )
+!
+! !INPUT PARAMETERS: 
+!
+      ! Argument for the sine function
+      REAL*8, INTENT(IN) :: X
+!
+! !RETURN VALUE:
+!     
+      REAL*8, INTENT(OUT) :: Y 
+!
+! !REVISION HISTORY:
+!
+!EOP
+!------------------------------------------------------------------------------
+!BOC
+ 
+      !=================================================================
+      ! MY_FUNCTION begins here!
+      !=================================================================
+      Y = SIN( X )
+ 
+      ! Return to calling program
+      END FUNCTION MY_FUNCTION
+!EOC
+!------------------------------------------------------------------------------
+!!          Harvard University Atmospheric Chemistry Modeling Group            !
+!------------------------------------------------------------------------------
+!BOP
+!
+! !IROUTINE: INIT\_MY\_MODULE
+!
+! !DESCRIPTION: \subsection*{Overview}
+! Subroutine INIT\_MY\_MODULE allocates and zeroes the B array. (bmy, 5/1/03)
+!\\
+!\\
+!
+! !INTERFACE:
+      SUBROUTINE INIT_MY_MODULE
+!
+! !USES
+!
+      USE ERROR_MOD, ONLY : ALLOC_ERR
+!
+! !REVISION HISTORY:
+!
+!EOP
+!------------------------------------------------------------------------------
+!BOC
+!
+! !LOCAL VARIABLES
+      INTEGER :: AS
+ 
+      !=================================================================
+      ! INIT_MY_MODULE begins here!
+      !=================================================================
+ 
+      ! Allocate B, check status
+      ALLOCATE( B(360), STAT=AS )
+ 
+      ! Error check
+      IF ( AS /= 0 ) CALL ALLOC_ERR( 'B' )
+ 
+      ! Zero B
+      B(:) = 0d0
+ 
+      ! Return to calling program
+      END SUBROUTINE INIT_MY_MODULE
+!EOC
+!-----------------------------------------------------------------------------
+!!          Harvard University Atmospheric Chemistry Modeling Group            !
+!------------------------------------------------------------------------------
+!BOP
+!
+! !IROUTINE: CLEANUP\_MY\_MODULE
+!
+! !DESCRIPTION: \subsection*{Overview}
+! Subroutine CLEANUP_MY_MODULE deallocates all module arrays. (bmy, 5/1/03)
+!\\
+!\\
+!
+! !INTERFACE:
+      SUBROUTINE CLEANUP_MY_MODULE 
+!
+! !REVISION HISTORY:
+!
+!EOP
+!------------------------------------------------------------------------------
+!BOC
+
+      !=================================================================
+      ! CLEANUP_MY_MODULE begins here!
+      !=================================================================
+      IF ( ALLOCATED( B ) ) DEALLOCATE( B )
+
+      ! Return to calling program
+      END SUBROUTINE CLEANUP_MY_MODULE
+!EOC
+ END MODULE MY_MODULE</pre>
+</blockquote>
+
+<p align="justify">Fortran 90 modules written for GEOS&ndash;Chem  contain the following features:</p>
+<ol>
+<li>
+  <p align="justify">Module header: This is similar to the subroutine header. Contains a list of all module variables, routines,
+and modification notes, in <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Automatic_documentation_with_protex" target="_new">ProTeX</a> style.</p> 
+</li>
+<li>
+  <p align="justify"><tt>PRIVATE</tt> declarations: You can "hide" certain routines or variables within a F90 module from other routines or modules. Ideally your module will be like a "black box" with only a few routines or variables that are publicly accessible. By convention, in GEOS&ndash;Chem, we declare everything <tt>PRIVATE</tt> first then indicate the public routines.</p>
+</li>
+<li>
+  <p align="justify"><tt>IMPLICIT NONE</tt>: If you declare <tt>IMPLICIT NONE</tt> once at the top of the module, then you
+don't have to declare it in the individual subroutines; the declaration "carries through" below.</p>
+</li>
+<li>
+  <p align="justify">Module variables and arrays: Any variables declared above the <tt>CONTAINS</tt> statement are as if they were stored in F77 common blocks; that is, they are preserved between calls to the various module routines. Also, you should declare module arrays as <tt>ALLOCATABLE</tt> whenever possible. This allows you to only set aside memory for that array if a
+certain routine is called. This results in more efficient memory management.</p>
+</li>
+<li>
+  <p align="justify"><tt>CONTAINS</tt> statement: All module variables and <tt>PRIVATE</tt> declarations go above the <tt>CONTAINS</tt> statement.  Module routines and functions go below the <tt>CONTAINS</tt> statement.</p>
+</li>
+<li>
+  <p align="justify">Subroutines and functions: Your module will contain various subroutines and functions depending on the particular needs at hand.</p> 
+</li>
+<li>
+   <p align="justify">An INIT routine: Your module should have a subroutine named <tt>INIT_modulename</tt>, which initializes and allocates all module arrays.</p>
+</li>
+<li>
+  <p align="justify">A CLEANUP routine: Your module should have a subroutine named <tt>CLEANUP_modulename</tt>, which deallocates module arrays. (You only need this if you have allocatable arrays).</p>
+</li>
+</ol>
+<p align="justify">F90 modules are very similar to classes in Java and C++; they allow you to group data and the routines which work on the data in a single package.</p>
+<p align="justify">Theoretically, each GEOS&ndash;Chem routine and/or variable should belong to a module. In practice, this is not true, as we do have common blocks and separate subroutine and function files from some of the older routines which were written by 3rd party sources. <span class="size16bi">However, you should write all new  GEOS&ndash;Chem code  in module form</span>.</p>
+<p align="justify">Also, it is OK for modules to reference other modules. If Module B references Module A, all that you have to do is to make sure that Module B declaration in the Makefile refers to Module A. The GEOS&ndash;Chem Makefiles have been prepared for you by the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Support_Team" target="_new">GEOS&ndash;Chem Support Team</a>, so in most instances, you will not have to concern yourself with this.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p align="justify"><strong><em><a name="A7.8.2"></a>A7.8.2</em></strong> We used to refer to variables in modules by means of the <tt>USE</tt> statement, such as:</p>
+<blockquote>
+  <pre>! Reference variables from dao_mod.F
+USE DAO_MOD, ONLY : UWND, VWND, T</pre>
+</blockquote>
+<p align="justify"> While many routines in GEOS&ndash;Chem still use this syntax, <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem#Replacing_USE_associations_with_derived-type_objects" target="_new">we are abandoning this approach</a>. Instead of referring to module variables with <tt>USE</tt>, we shall (wherever expedient) use derived type objects to contain variables and arrays, which then can be passed from one routine to another via the argument list. We are doing this to facilitate our <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem">Grid Independent GEOS&ndash;Chem project</a>, which seeks to embed GEOS&ndash;Chem within the NASA GEOS&ndash;5 GCM.</p>
+<p align="justify">Eventually, the only things that you should obtain from modules via the USE statement will be:</p>
+<ol>
+  <li>Subroutines</li>
+  <li>Functions</li>
+  <li>Derived type definitions</li>
+</ol>
+<p align="justify">such as:</p>
+<blockquote>
+  <pre>! Refer to derived type definition from gc_type_mod.F
+USE GC_TYPE_MOD, ONLY : GC_MET_LOCAL
+
+! Refer to subroutines from dao_mod.F
+USE DAO_MOD, ONLY: AIRQNT, COSSZA</pre></blockquote>
+<p align="justify">For more information about derived types, please see <a href="appendix_8.html">Appendix 8</a>.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="A7.9"></a>A7.9 Programming techniques to facilitate grid-independence</p>
+<p align="justify"><span class="size16bi">A7.9.1</span> When GEOS&ndash;Chem connects to an external GCM&mdash;such as NASA's GEOS&ndash;5 GCM&mdash;it will utilize MPI parallelization. Each CPU will perform all of GEOS&ndash;Chem's operations, but on a much smaller geographical domain (i.e. on a single vertical column or several vertical columns). This also means that each CPU will print informational messages to the screen (or log file, if you redirect screen output there) simultaneously. All of these I/O operations can seriously impact performance.</p>
+<p align="justify">We have now started the process of bracketing <tt>WRITE</tt> and <tt>PRINT</tt> statements with <tt>IF</tt> blocks. In <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03" target="_new">GEOS&ndash;Chem v9&ndash;01&ndash;03</a> and higher versions, you will see code like this:</p>
+<blockquote>
+<pre>      IF ( am_I_Root ) THEN 
+         WRITE( 6, '(a  )' ) REPEAT( '=', 79 )           
+         WRITE( 6, '(a,/)' ) 'G E O S - C H E M   U S E R   I N P U T'
+         WRITE( 6, 100   ) TRIM( FILENAME )
+ 100     FORMAT( 'READ_INPUT_FILE: Reading ', a )        
+      ENDIF</pre></blockquote>
+<p align="justify">When we use MPI parallelization, the <tt>am_I_Root</tt> variable, which is passed as an argument to subroutines and functions, determines if we are on the root CPU.  This will restrict the printing of informational messages to just the root CPU. We encourage you to use this approach as you write new GEOS&ndash;Chem code.</p>
+<p align="justify">For more information, please see <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem#Restricting_screen_and_log_file_output_to_the_root_CPU" target="_new">this post on our Grid-Independent GEOS&ndash;Chem wiki page</a>.
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p align="justify"><span class="size16bi">A7.9.2</span> <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-02" target="_new">GEOS&ndash;Chem v9&ndash;01&ndash;02</a> and prior versions used fixed parameters (stored in module <tt>GeosUtil/file_mod.F</tt>) for Fortran logical unit numbers. Logical unit numbers, or LUN's, are numeric values that are used in Fortran <tt>OPEN</tt>, <tt>WRITE</tt>, <tt>READ</tt>, and <tt>CLOSE</tt> statements.  A typical GEOS&ndash;Chem file read operation looks like this:</p>
+<blockquote>
+  <pre>      USE FILE_MOD, ONLY : IU_FILE
+      ...
+      
+      ! Open file
+      OPEN( UNIT=IU_FILE, FILE=TRIM( FILENAME ) ... )
+      
+      ! Read data
+      READ( IU_FILE, IOSTAT=IOS ) ...
+      
+      ! Close file
+      CLOSE( IU_FILE )</pre></blockquote>
+
+<p>But when we connect GEOS&ndash;Chem to an external GCM, we can no longer rely on pre-defined LUNs.  The GCM may have already assigned the LUN that we are trying to use to a different file.  Therefore, starting in <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03" target="_new">GEOS&ndash;Chem v9&ndash;01&ndash;03</a>, all LUNs will be determined dynamically. We now call a function (<tt>inquireMod/findFreeLUN</tt>) to return the next unused LUN. You will now see code that looks like this:</p>
+<blockquote>
+  <pre>      USE inquireMod, ONLY : findFreeLUN
+      ...
+      
+      INTEGER :: IU_FILE
+      ...
+
+      ! Find a free file LUN
+      IU_FILE = findFreeLUN()
+    
+      ! Open file
+      OPEN( UNIT=IU_FILE, FILE=TRIM( FILENAME ) ... )
+      
+      ! Read data
+      READ( IU_FILE, IOSTAT=IOS ) ...
+      
+      ! Close file
+      CLOSE( IU_FILE )</pre></blockquote>
+
+
+<p>For more information, please see <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem#Using_findFreeLUN_to_assign_logical_unit_numbers_for_file_I.2FO" target="_new">this post on our Grid-Independent GEOS&ndash;Chem wiki page</a>.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p align="justify"><span class="size16bi">A7.9.3</span> As mentioned in <a href="#A7.8.2">Chapter A7.8.2</a>, we are now moving away from referring to module variables via <tt>USE</tt> statements. Please see <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem#Replacing_USE_associations_with_derived-type_objects" target="_new"> this wiki post on our Grid Independent GEOS-Chem wiki page</a> for more information about how we are passing data between subroutines via derived type objects.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size14bi" align="center"><a href="appendix_6.html">Previous</a> | <a href="appendix_8.html">Next</a> | <a href="appendix_7.html" target="_parent">Printable
+View (no frames)</a></p>
+</body></html>

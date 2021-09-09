@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS-Chem Online User's Guide</title>
+  <meta name="description" contents="Information about the GEOS&ndash;Chem tropospheric chemistry model">
+  <meta name="keywords" contents="Atmospheric Chemistry,Computer Models,GEOS&ndash;Chem,Harvard/GEOS-CTM,GEOS-CTM,GEOS,DAO,Tropospheric Chemistry">
+  <link rel="stylesheet" href="../../../gc.css" type="text/css">
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+  <meta name="GENERATOR" content="OpenOffice.org 3.2  (Linux)">
+  <style type="text/css">
+	<!--
+		@page { margin: 0.79in }
+		P { margin-bottom: 0.08in }
+	-->
+	</style>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+  <meta name="GENERATOR" content="OpenOffice.org 3.2  (Linux)">
+  <style type="text/css">
+	<!--
+		@page { margin: 0.79in }
+		P { margin-bottom: 0.08in }
+		A:link { color: #0000ff }
+	-->
+	</style>
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&ndash;Chem v9&ndash;02 Online 
+  User's Guide</p>
+
+<p class="size14bi" align="center"><a href="appendix_7.html">Previous</a> | <a href="appendix_9.html">Next</a> | <a href="appendix_8.html" target="_parent">Printable View (no frames)</a></p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size24bi">Appendix 8: Modifications to facilitate Grid-Independence in GEOS&ndash;Chem</p>
+<p align="justify">GEOS&ndash;Chem will form the core of a   fully-coupled system that will connect to the NASA   GEOS&ndash;5/GCM.  Before this can happen, the GEOS&ndash;Chem standard model   must become compliant with the <a href="http://www.earthsystemmodeling.org/" target="_new">Earth System Model Framework (ESMF)</a>.  This will allow us to take advantage of <a href="http://www.mcs.anl.gov/research/projects/mpi/" target="_new">Message Passing Interface (MPI) parallelization</a> via ESMF, which has been a long-term goal of the GEOS-Chem development   community.  MPI parallelization will facilitate GEOS&ndash;Chem simulations at   extremely fine horizontal resolution, running on hundreds or thousands of   CPUs.</p>
+<p align="justify">To  achieve this coupling between GEOS&ndash;Chem and the NASA GEOS&ndash;5 GCM, we  have introduced the concept of <strong>grid-independence</strong>.  We no longer shall assume a preset horizontal grid, but instead shall allow the GCM to dictate the size of the grid, and how many grid boxes will be processed by each CPU. This lets us to keep the all calls to ESMF library routines completely outside of GEOS&ndash;Chem.</p>
+<p align="justify">We have made it a priority to implement  necesary structural changes into GEOS&ndash;Chem without  disrupting ongoing GEOS&ndash;Chem research projects. We have already removed several legacy code routines that prevented GEOS&ndash;Chem from connecting to the NASA GCM. We have added new source code instructions into many GEOS&ndash;Chem routines,  set apart by <a href="chapter_3.html#CPP">C-preprocessor switches</a>. Eventually, the new code will replace the old code, but during the transition phase we must keep both new and old code side-by-side.</p>
+<p align="justify">We describe below the structural changes that we made to facilitate Grid-Independence in GEOS&ndash;Chem. Please also see our <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem" target="_new">Grid-Independent GEOS&ndash;Chem wiki page</a> for the latest information.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="A8.1"></a>A8.1 Initial preparations</p>
+<p align="justify">Our  initial preparations involved <a href="appendix_7.html">replacing F77-style legacy code with modern F90 code</a>:</p>
+<ol>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem#Source_code_cleanup_and_initial_ESMF_prep" target="_new">Removal of global parameters</a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem#Source_code_cleanup_and_initial_ESMF_prep" target="_new">Renaming file extensions from <tt>*.f</tt> and <tt>*.f90</tt> to <tt>*.F</tt> and <tt>*.F90</tt></a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem#Elimination_of_COMMON_blocks" target="_new">Elmination of COMMON blocks</a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem#Removal_of_hardwired_grid" target="_new">Removal of the hardwired grid</a></li>
+</ol>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="A8.2"></a>A8.2 Construction of the Chemistry Component</p>
+<p align="justify">We began by attempting to interface GEOS&ndash;Chem's chemistry solver, photolysis, and dry deposition routines into a &quot;<a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-Independent_GEOS-Chem:_Chemistry_Component" target="_new">Chemistry Component</a>&quot; that could be plugged into the GEOS&ndash;5 GCM. An initial test (using the Beijing Climate Center's GCM as a proxy) revealed <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-Independent_GEOS-Chem:_Chemistry_Component#Modifications_to_remove_legacy_code_that_hinders_grid-indpendent_functionality" target="_new">several bottlenecks that we had to rectify immediately</a>:</p>
+<ol>
+  <li>
+    <p align="justify">We modified all functions in in <tt>grid_mod.F</tt> (as well as routine   <tt>GET_LOCALTIME</tt> in <tt>time_mod.F</tt>) to accept   longitude, latitude, and altitude indices as inputs. In other words, functions such as <tt>GET_XMID( I )</tt> now look like <tt>GET_XMID( I, J, L )</tt>, etc.</p>
+  </li>
+  <li>
+    <p align="justify">We moved computation of the overhead ozone columns (and interpolation to TOMS/SBUV, where that data exists) outside of  FAST&ndash;J. FAST&ndash;J now accepts this as an input argument.</p>
+  </li>
+  <li>
+    <p align="justify">We introduced netCDF I/O capability into GEOS&ndash;Chem and converted several  ASCII data files to netCDF.  We shall continue to migrate all of GEOS&ndash;Chem's data files to netCDF, but this will be a gradual transiton.</p>
+  </li>
+  <li>
+    <p align="justify">We created  <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Olson_land_map" target="_new">a new module to read and regrid Olson land map  data</a> from its native resolution. This module can be used with both the older (1992, 0.5&deg; x 0.5&deg;) and newer (2001, 0.25&deg; x 0.25&deg;) Olson map products.  This removed legacy code that relied on ASCII data input.</p>
+  </li>
+  <li>
+    <p align="justify">We created a <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Leaf_area_indices_in_GEOS-Chem#Implementation_of_an_updated_LAI_code" target="_new">new module to read and regrid MODIS leaf-area-index data</a> from its native resolution (either 0.5&deg; x 0.5&deg; or 0.25&deg; x 0.25&deg;). This removed legacy code that relied on ASCII data input.</p>
+  </li>
+</ol>
+<p align="justify">We corrected all of these issues prior to the release of v9&ndash;01&ndash;03. Please see our <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03" target="_new">GEOS&ndash;Chem v9&ndash;01&ndash;03 wiki page </a>for more details about each of these improvements.</p>
+<p align="justify">For better compatibility with the <a href="http://www.earthsystemmodeling.org/" target="_new">Earth System Model Framework</a>&mdash;which controls the flow of data between components of the GEOS&ndash;5 GCM&mdash;we have added the following structural changes into the standard GEOS&ndash;Chem code:</p>
+<ol>
+  <li>
+    <p align="justify">We have introduced <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Derived_type_objects_used_by_the_Grid-Independent_GEOS-Chem" target="_new">new derived type objects</a> into GEOS&ndash;Chem. These objects will render referencing data arrays  via USE statements obsolete. </p>
+  </li>
+  <li>
+    <p align="justify">We now <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Programming_techniques_used_for_the_Grid-Independent_GEOS-Chem#Restricting_screen_and_log_file_output_to_the_root_CPU" target="_new">pass an argument named <tt>am_I_Root</tt> from main.F to lower level subroutines</a>. This will allow us to restrict printing to the root CPU when we connect GEOS&ndash;Chem to the GEOS&ndash;5 GCM.</p>
+  </li>
+  <li>
+    <p align="justify">We now <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Programming_techniques_used_for_the_Grid-Independent_GEOS-Chem#Using_findFreeLUN_to_assign_logical_unit_numbers_for_file_I.2FO" target="_new">determine available Fortran logical unit numbers while GEOS&ndash;Chem is running</a> rather than using fixed, pre-defined values.</p>
+  </li>
+</ol>
+<p><img src="../../../img/black_rule.jpg" alt="" width="100%" height="2"></p>
+<p class="size18bi"><a name="A8.3"></a>A8.3 Construction of the Emissions Component</p>
+<p align="justify">Initally, we  focused on delivering the  GEOS&ndash;Chem &quot;<a href="#A8.2">Chemistry Component</a>&quot; (chemistry, photolysis, dry deposition)  to NASA/GSFC for inclusion into the GEOS&ndash;5 GCM. We achieved this in June 2011. With the help of our colleagues at GSFC, we are continuing to refine the performance of the GEOS-Chem  within the GEOS&ndash;5 GCM.</p>
+<p align="justify">We also are re-engineering  GEOS&ndash;Chem's emissions routines into an &quot;<a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-Independent_GEOS-Chem:_Emissions_Component" target="_new">Emissions Component</a>&quot;. We have the  following goals in mind:</p>
+<ol>
+  <li>
+    <p align="justify">We wish to achieve a total separation between emissions routines and chemistry routines</p>
+  </li>
+  <li>
+    <p align="justify">We wish to implement &quot;top-down&quot; data flow (i.e. all data enters/leaves each subroutine via the argument list, contained in <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Derived_type_objects_used_by_the_Grid-Independent_GEOS-Chem" target="_new">derived type objects</a>)</p>
+  </li>
+  <li>
+    <p align="justify">We wish to segregate  all file I/O operations from routines in which computations are performed. This will prevent bottlenecks to parallelization.</p>
+  </li>
+  <li>
+    <p>We wish to have a flexible data structure to which we can attach emissions data, scale factors, or geographical masks.</p>
+  </li>
+</ol>
+<p align="justify">Christoph Keller (Harvard) is currently working on this task. He has created <a href="http://wiki.seas.harvard.edu/geos-chem/images/Gc_emissions_type.pdf" target="_new">a new emissions data structure (a "linked list")</a> that will form the backbone of the GEOS&ndash;Chem Emissions Component. The work is ongoing.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size14bi" align="center"><a href="appendix_7.html">Previous</a> | <a href="appendix_9.html">Next</a> | <a href="appendix_8.html" target="_parent">Printable View (no frames)</a></p>
+
+</body>
+</html>

@@ -1,0 +1,4030 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS–Chem Online User's Guide</title>
+  <link rel="stylesheet" type="text/css" href="../../../gc.css"><!-- Cascading style sheet for font declarations -->
+  <style type="text/css">
+<!-- th{ font-family : Arial, Helvetica, sans-serif; font-weight : bold; font-size : 16px; text-align : left;
+background-color : #CCCCCC; }
+tr { vertical-align : top;
+text-align : left;
+} li { font-family : Arial, Helvetica, sans-serif;
+font-size : 14px;
+}
+-->
+  </style>
+  
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+  <meta name="GENERATOR" content="OpenOffice.org 3.0 (Linux)">
+  <style type="text/css"><!--
+@page { margin: 0.79in }
+P { margin-bottom: 0.08in }
+--></style>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+  <meta name="GENERATOR" content="OpenOffice.org 3.0 (Linux)">
+  <style type="text/css"><!--
+@page { margin: 0.79in }
+P { margin-bottom: 0.08in }
+--></style></head><body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS–Chem
+v8–03–01 Online User's Guide</p>
+
+<p class="size14bi" align="center"><a href="chapter_3.html">Previous</a>
+| <a href="chapter_5.html">Next</a> | <a href="chapter_4.html" target="_parent">Printable View
+(no frames)</a></p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size24bi"><a name="4"></a>4.
+GEOS–Chem Data Directories</p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi" align="justify"><a name="4.1"></a>4.1
+Overview</p>
+
+<p align="justify">The GEOS–Chem model will read input files from two
+different types of directories: the data directories and the run
+directory. In this section we describe the data directories. (See <a href="http://acmg.seas.harvard.edu/geos/doc/man_claire/chapter_5.html">Chapter 5</a> for a full description of the files which are included in the run directory.)</p>
+
+<p class="size18bi" align="justify"><a name="4.1.1"></a> 4.1.1 Data archives </p>
+
+<p align="justify">There are currently two data archives from which you may download GEOS–Chem data files: </p>
+
+<ol>
+<li class="size16"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data#Primary_download_site" target="_blank">Harvard archive</a><span class="courier16"> (ftp.as.harvard.edu)</span></li><li class="size16"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data#Alternative_download_site" target="_blank">Dalhousie archive</a><span class="courier16"> (ucis.rain.dal.ca)</span></li>
+</ol>
+
+<p align="justify">The Dalhousie archive is not as comprehensive as the
+Harvard archive. However, the Dalhousie archive stores data files for
+the various nested grids and global 1&deg; x 1.25&deg; grids that are not
+available on the Harvard archive.</p>
+
+<p align="justify">For those of you who are interested in using GEOS–Chem with the GCAP data, please contact <a href="mailto:mickley@fas.harvard.edu" target="_blank">Loretta Mickley</a> for more information. </p>
+
+<p align="justify"><span class="size18bi"><a name="4.1.2"></a> 4.1.2 Contents</span></p>
+
+<p align="justify">We shall describe the contents of the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data#Primary_download_site" target="_blank">Harvard data archive</a> (unless otherwise specified) </p>
+
+<p align="justify">The data directories contain
+  globally-accessible, read-only data files (such as anthropogenic
+  emissions &amp; scale factors, biomass burning emissions, leaf area
+  indices, etc).</p>
+
+<p align="justify">All data directories may be downloaded
+via anonymous FTP:</p>
+
+<blockquote>
+<pre>ftp ftp.as.harvard.edu
+cd pub/geos-chem/data/GEOS_0.5x0.666_CH
+cd pub/geos-chem/data/GEOS_0.5x0.666_NA
+cd pub/geos-chem/data/GEOS_1x1
+cd pub/geos-chem/data/GEOS_2x2.5cd pub/geos-chem/data/GEOS_4x5<br>cd pub/gcap/data/GCAP_4x5</pre>
+</blockquote>
+
+
+<p align="justify">or we recommend using the <tt>wget</tt> utility:</p>
+<blockquote><pre>wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/DIRECTORY_NAME/"</pre></blockquote>
+<p align="justify">where <tt>DIRECTORY_NAME</tt> is the name of the directory you want to download. See our wiki page on <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data#Using_wget_to_download_files" target="_blank">how to download data with wget</a>.
+</p>
+<p align="justify">However, for those of you who are located at Harvard, you do not need to download this data, as it is 
+available on the Harvard internal filesystem, in directories:</p>
+
+
+
+<blockquote>
+<pre>/as/group/geos/data/GEOS_0.5x0.666_CH
+/as/group/geos/data/GEOS_0.5x0.666_CH
+/as/group/geos/data/GEOS_1x1
+/as/group/geos/data/GEOS_2x2.5
+/as/group/geos/data/GEOS_4x5
+/as/group/gcap/data/GCAP_4x5</pre>
+</blockquote>
+
+
+<p align="justify">Here follows a description of each of
+the subdirectories of the 1&deg; x 1&deg;, 2&deg; x 2.5&deg;, and 4&deg; x 5&deg; data
+directories, and the files contained within them.</p>
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="4.2"></a>4.2
+The GEOS_1x1 directories</p>
+
+
+<p align="justify">GEOS–Chem v8–03–01 is now able to
+regrid emissions data stored on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; horizontal grid</a> or <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a> generic on-the-fly during a model simulation.
+The following subdirectories contain 1&deg; x 1&deg; emissions data.</p>
+
+<p align="justify">NOTE: Assume that all files are in <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/documentation/gamap_5.html#5.2">GEOS–Chem
+binary punch format</a> unless otherwise specified. </p>
+
+<p class="size18bi"><a name="4.2.1"></a>
+4.2.1 The
+anth_scale_factors_200911
+subdirectory</p>
+
+<p><span class="size14">NOTE:</span></p>
+
+<ol>
+
+  <li><span class="size14">The anth_scale_factors_200811
+subdirectory is now obsolete.</span></li>
+  <li><span class="size14">This is an update of the now obsolete
+anth_scale_factors_200905 subdirectory. Scale factors are updated to
+include 2006. It follows same sources as previous updates. Each species
+was combined into a single file for ease of creation/use.
+    </span></li>
+</ol>
+
+<p><span class="size14">REFERENCES:</span></p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Scale_factors_for_anthropogenic_emissions" target="_blank">Scale factors for anthropogenic emissions</a><span class="size14"></span></li>
+  <li>Reference: <span style="font-style: italic;">Analysis of aircraft and
+satellite measurements from the Intercontinental Chemical Transport
+Experiment (INTEX-B) to quantify long-range transport of East Asian
+sulfur to Canada, </span>A. Van Donkelaar, R. V. Martin, W. R.
+Leaitch, A. M. Macdonald, T. W. Walker, D. G. Streets, Q. Zhang, E. J.
+Dunlea, J. L. Jimenez, J. E. Dibb, L. G. Huey, R. Weber, and M. O.
+Andreae, ACP, 8, 2999-3014, 2008.</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier14">CO-AnnualScalar.geos.1x1</td>
+      <td>
+      <p>Scale factor files for CO for years 1985 to 2006 on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg; grid</a>.</p>
+      <p>For years before 2000, these will scale emissions to 2000.<br>
+For years&nbsp; after&nbsp;&nbsp; 2000, these will scale emissions from
+2000 to later years.<br>
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">NOx-AnnualScalar.geos.1x1</td>
+      <td>
+      <p>Scale factor files for NOx for years 1985 to 2006 on
+the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg; grid</a>.</p>
+      <p>For years before 2000, these will scale emissions to 2000.<br>
+For years&nbsp; after&nbsp;&nbsp; 2000, these will scale emissions from
+2000 to later years.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">SOx-AnnualScalar.geos.1x1<br>
+      </td>
+      <td>
+      <p>Scale factor files for SOx for years 1985 to 2006 on
+the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg; grid</a>.</p>
+      <p>For years before 2000, these will scale emissions to 2000.<br>
+For years&nbsp; after&nbsp;&nbsp; 2000, these will scale emissions from
+2000 to later years.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi">
+<a name="4.2.2"></a>4.2.2
+The
+ARCTAS_SHIP_2008 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+
+<ol>
+  <li>This dataset is only implemented in ARCTAS-NRT version of
+GEOS-Chem</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Ship_emissions#ARCTAS" target="_blank">ARCTAS ship emissions</a><span style="font-style: italic;"></span></li>
+  <li><span style="font-style: italic;">Asian
+emissions in 2006 for the NASA INTEX-B mission,</span> Q. Zhang,
+D. G. Streets, G. Carmichael, K. He, H. Huo, A. Kannari, Z. Klimont, I.
+Park, S. Reddy, D. Chen, L. Duan, Y. Lei,&nbsp; L. Wang and Z. Yao,
+ACPD, submitted, 2009.</li>
+
+  <li>Chin, Streets, et al., NASA/GSFC, based on EDGAR 2000</li>
+  <li>EDGAR 3.2 FT2000 global inventory</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16">Arctas_CO2_ship_2008.generic.1x1</td>
+      <td>Ship emissions of CO2 [kg/yr] on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>.</td>
+    </tr>
+    <tr>
+      <td class="courier16">Arctas_CO_ship_2008.generic.1x1</td>
+      <td>Ship emissions of CO [kg/yr] on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>.</td>
+    </tr>
+    <tr>
+      <td class="courier16">Arctas_SO2_ship_2008.generic.1x1</td>
+      <td>Ship emissions of SO2 [kg/yr] on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.3"></a>4.2.3
+The BRAVO_200607 subdirectory</p>
+
+<p class="size14">REFERENCES:</p>
+
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Anthropogenic_emissions#BRAVO" target="_blank">BRAVO regional inventory</a></li>
+  <li>Reference: <em>Big Bend Regional Aerosol and
+Visibility Observational (BRAVO) Study Emissions Inventory</em>,
+H. Kuhns, M. Green, and V. Etyemezian, 2003. <a href="../../../word_pdf_docs/BRAVOEI_Report_d2.pdf" target="_blank">[PDF]</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16">BRAVO.CO.generic.1x1</td>
+      <td>
+      <p align="justify">File containing BRAVO Mexican
+emissions of
+CO [molec/cm2/s] on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">BRAVO.NOx.generic.1x1</td>
+      <td>File containing BRAVO Mexican emissions of NOx
+[molec/cm2/s] on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a>.</td>
+    </tr>
+    <tr>
+      <td class="courier16">BRAVO.SO2.generic.1x1</td>
+      <td>File containing BRAVO Mexican emissions of SO2
+[molec/cm2/s] on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a>.</td>
+    </tr>
+    <tr>
+      <td class="courier16">BRAVO.MexicoMask.generic.1x1</td>
+      <td>File containing the mask for the BRAVO Mexican
+emissions on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a>.
+Grid boxes where BRAVO emissions exist have a value of 1; other boxes
+have a value of 0.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.4"></a>4.2.4
+The CAC_200801 subdirectory</p>
+
+<p class="size14">REFERENCE:</p>
+
+<ol>
+
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Anthropogenic_emissions#CAC" target="_blank">CAC regional inventory</a></li>
+  <li>Data: <a href="http://www.ec.gc.ca/pdb/cac/cac_home_e.cfm">http://www.ec.gc.ca/pdb/cac/cac_home_e.cfm</a></li>
+
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16">CAC2002-CO.geos.1x1<br>
+CAC2005-CO.geos.1x1</td>
+      <td>Anthro CO&nbsp; emissions [kg/yr], base year 2002
+and 2005 on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x
+1&deg; grid</a>.</td>
+    </tr>
+    <tr>
+      <td class="courier16">CAC2002-NH3.geos.1x1<br>
+CAC2005-NH3.geos.1x1</td>
+      <td>Anthro NH3&nbsp; emissions [kg/yr], base year 2002
+and 2005 on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x
+1&deg; grid</a>.</td>
+    </tr>
+    <tr>
+      <td class="courier16">CAC2002-NOx.geos.1x1<br>
+CAC2005-NOx.geos.1x1</td>
+      <td>Anthro NOx&nbsp; emissions [kg/yr], base year 2002
+and 2005 on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x
+1&deg; grid</a>.</td>
+    </tr>
+    <tr>
+      <td class="courier16">CAC2002-SO2.geos.1x1<br>
+CAC2005-SO2.geos.1x1</td>
+      <td>Anthro SO2&nbsp; emissions [kg/yr], base year 2002
+and 2005 on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x
+1&deg; grid</a>.</td>
+    </tr>
+    <tr>
+      <td class="courier16">CanadaMask.geos.1x1</td>
+      <td>Mask to define Canadian region for the CAC emissions on
+the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg; grid</a>.
+Grid boxes where CAC emissions exist have a value of 1; other boxes
+have a value of 0.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.5"></a>4.2.5 The carbon_200909 subdirectory</p>
+<p class="size14">NOTES:</p>
+<ol>
+  <li>The data in this directory is not used in GEOS-Chem. GEOS-Chem uses the data
+directly regridded on <a href="appendix_2.html#A2.3">GMAO 2&deg; x 2.5&deg;</a>
+or <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg; </a>
+grids.</li>
+</ol>
+<p class="size18bi"><a name="4.2.6"></a>4.2.6 The drydep_200203 subdirectory</p>
+<p class="size14">NOTES:</p>
+<ol>
+  <li>The data in this directory is not used in GEOS-Chem. GEOS-Chem uses data directly regridded on <a href="appendix_2.html#A2.3">GMAO 2&deg; x 2.5&deg;</a>
+or <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg; </a>
+grids.</li>
+</ol>
+<p class="size18bi"><a name="4.2.7"></a>4.2.7
+The EDGAR_200607 subdirectory</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: EDGAR <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Anthropogenic_emissions#EDGAR" target="_blank">anthropogenic</a> and <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Ship_emissions#EDGAR" target="_blank">ship</a> emissions</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier14">CO/EDGAR.f1000co.generic.1x1 <br>
+CO/EDGAR.f2000co.generic.1x1 <br>
+CO/EDGAR.f3000co.generic.1x1 <br>
+CO/EDGAR.f4000co.generic.1x1 <br>
+CO/EDGAR.f5100co.generic.1x1 <br>
+CO/EDGAR.f5400co.generic.1x1 <br>
+CO/EDGAR.f5700co.generic.1x1 <br>
+CO/EDGAR.f5800co.generic.1x1 <br>
+CO/EDGAR.f8000co.generic.1x1 <br>
+CO/EDGAR.i1000co.generic.1x1 <br>
+CO/EDGAR.i2000co.generic.1x1 <br>
+CO/EDGAR.i5000co.generic.1x1 <br>
+CO/EDGAR.w4095co.generic.1x1</td>
+      <td>
+      <p align="justify">Files on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a>
+containing EDGAR CO emissions (baseline year 2000) for the following
+sectors:</p>
+      <ul>
+        <li class="size16">F10 Industrial </li>
+        <li class="size16">F20 Power Generation (fossil
+fuel)</li>
+        <li class="size16"> F30 Conversion (fossil fuel)</li>
+        <li class="size16"> F40 Res + Comm + Other (fossil
+fuel)</li>
+        <li class="size16">F51 Road Transport (fossil
+fuel) </li>
+        <li class="size16">F54 Land (Non-Road) Transport</li>
+        <li class="size16"> F57 Air Transport (fossil fuel)</li>
+        <li class="size16"> F58 Shipping (fossil fuel)<br>
+F80 Oil Production (fossil fuel)</li>
+        <li class="size16"> I10 Iron and Steel Production</li>
+        <li class="size16"> I20 Non-Ferrous Production</li>
+        <li class="size16"> I50 Pulp and Paper Production</li>
+        <li class="size16"> W40 Waste Incineration (NOTE:
+1995 emissions!) </li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">CO/EDGAR.COScalar-1985-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1986-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1987-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1988-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1989-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1990-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1991-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1992-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1993-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1994-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1995-2000.geos.1x1</td>
+      <td>
+      <p>Files on the on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a> containing scale factors for EDGAR CO emissions
+for years 1985-1995.</p>
+      <p>These scale factors scale the emissions up to the year
+2000. </p>
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">CO/EDGAR.COScalar-2002-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-2001-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1999-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1998-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1997-2000.geos.1x1 <br>
+CO/EDGAR.COScalar-1996-2000.geos.1x1 </td>
+      <td>
+      <p>Files on the on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a> containing scale factors for EDGAR CO emissions
+for years 1985-1995.</p>
+      <p>These scale factors scale the emissions from 2000 to the
+given year. </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">NOx/EDGAR.b1000nox.generic.1x1 <br>
+NOx/EDGAR.b2000nox.generic.1x1 <br>
+NOx/EDGAR.b3000nox.generic.1x1 <br>
+NOx/EDGAR.b4000nox.generic.1x1 <br>
+NOx/EDGAR.b5100nox.generic.1x1 <br>
+NOx/EDGAR.f1000nox.generic.1x1 <br>
+NOx/EDGAR.f2000nox.generic.1x1 <br>
+NOx/EDGAR.f3000nox.generic.1x1 <br>
+NOx/EDGAR.f4000nox.generic.1x1 <br>
+NOx/EDGAR.f5100nox.generic.1x1 <br>
+NOx/EDGAR.f5400nox.generic.1x1 <br>
+NOx/EDGAR.f5700nox.generic.1x1 <br>
+NOx/EDGAR.f5800nox(IEA).generic.1x1 <br>
+NOx/EDGAR.f8000nox.generic.1x1 <br>
+NOx/EDGAR.i1000nox.generic.1x1 <br>
+NOx/EDGAR.i3000nox.generic.1x1 <br>
+NOx/EDGAR.i4000nox.generic.1x1 <br>
+NOx/EDGAR.i5000nox.generic.1x1 <br>
+NOx/EDGAR.w4000nox.generic.1x1 </td>
+      <td>
+      <p>Files on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a> containing EDGAR NOx emissions (baseline year
+2000) for the following sectors:</p>
+      <ul>
+        <li class="size16">B10 Bio-industry (not used)</li>
+        <li class="size16">B20 Power generation (not used)</li>
+        <li class="size16">B30 Charcoal production (not
+used)</li>
+        <li class="size16">B40 RCO (not used)</li>
+        <li class="size16">B51 Road transport (Eth.) (not
+used)</li>
+        <li class="size16">F10 Industrial</li>
+        <li class="size16">F20 Power Generation (fossil
+fuel)</li>
+        <li class="size16">F30 Conversion (fossil fuel)</li>
+        <li class="size16">F40 Res + Comm + Other (fossil
+fuel)</li>
+        <li class="size16">F51 Road Transport (fossil fuel)</li>
+        <li class="size16">F54 Land (Non-Road) Transport</li>
+        <li class="size16">F57 Air Transport (fossil fuel)</li>
+        <li class="size16">F58 Ship exhaust (fossil fuel)</li>
+        <li class="size16">F80 Oil Production (fuel
+combustion)</li>
+        <li class="size16">I10 Iron and Steel Production</li>
+        <li class="size16">I30 Chemical Production</li>
+        <li class="size16">I40 Cement Production</li>
+        <li class="size16">I50 Pulp &amp; Paper
+Production</li>
+        <li class="size16">W40 Waste incineration</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">NOx/EDGAR.NOxScalar-1985-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1986-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1987-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1988-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1989-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1990-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1991-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1992-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1993-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1994-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1995-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1996-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1997-2000.geos.1x1</td>
+      <td>
+      <p>Files on the on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a> containing scale factors for EDGAR NOx emissions
+for years 1985-1995.</p>
+      <p>These scale factors scale the emissions up to the year
+2000. </p>
+      <p>&nbsp;</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">NOx/EDGAR.NOxScalar-2002-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-2001-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1999-2000.geos.1x1 <br>
+NOx/EDGAR.NOxScalar-1998-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1997-2000.geos.1x1<br>
+NOx/EDGAR.NOxScalar-1996-2000.geos.1x1</td>
+      <td>
+      <p>Files on the on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a> containing scale factors for EDGAR NOx emissions
+for years 1985-1995.</p>
+      <p>These scale factors scale the emissions from 2000 to the
+given year. </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">NOx/anth_NOx_scale.DJF.generic.1x1<br>
+NOx/anth_NOx_scale.MAM.generic.1x1<br>
+NOx/anth_NOx_scale.JJA.generic.1x1<br>
+NOx/anth_NOx_scale.SON.generic.1x1</td>
+      <td>
+      <p>Files on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a> contaning SEASONAL SCALE FACTORS which are
+computed as ( GEIA nox per season ) / ( GEIA NOx per year )</p>
+      <ul>
+        <li class="size16">WINTER seasonal ratios (DJF)</li>
+        <li class="size16"> SPRING seasonal ratios (MAM)</li>
+        <li class="size16"> SUMMER seasonal ratios (JJA)</li>
+        <li class="size16"> AUTUMN seasonal ratios (SON)</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">SOx/EDGAR.f1000so2.generic.1x1<br>
+SOx/EDGAR.f2000so2.generic.1x1 <br>
+SOx/EDGAR.f3000so2.generic.1x1 <br>
+SOx/EDGAR.f4000so2.generic.1x1 <br>
+SOx/EDGAR.f5100so2.generic.1x1 <br>
+SOx/EDGAR.f5400so2.generic.1x1 <br>
+SOx/EDGAR.f5700so2.generic.1x1 <br>
+SOx/EDGAR.f5800so2(IEA).generic.1x1 <br>
+SOx/EDGAR.f8000so2.generic.1x1 <br>
+SOx/EDGAR.i1000so2.generic.1x1 <br>
+SOx/EDGAR.i2000so2.generic.1x1 <br>
+SOx/EDGAR.i3000so2.generic.1x1 <br>
+SOx/EDGAR.i4000so2.generic.1x1 <br>
+SOx/EDGAR.i5000so2.generic.1x1 <br>
+SOx/EDGAR.w4000so2.generic.1x1 </td>
+      <td>
+      <p>Files on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a> containing EDGAR SOx emissions (baseline year
+2000) for the following sectors:</p>
+      <ul>
+        <li class="size16">F10 Industrial</li>
+        <li class="size16"> F20 Power Generation (fossil
+fuel)</li>
+        <li class="size16"> F30 Conversion (fossil fuel)</li>
+        <li class="size16"> F40 Res + Comm + Other (fossil
+fuel)</li>
+        <li class="size16"> F51 Road Transport (fossil
+fuel)</li>
+        <li class="size16"> F54 Land (Non-Road) Transport</li>
+        <li class="size16"> F57 Air Transport (fossil fuel)</li>
+        <li class="size16"> F58 Ship exhaust (fossil fuel)</li>
+        <li class="size16"> F80 Oil Production (fuel
+combustion)</li>
+        <li class="size16"> I10 Iron and Steel Production</li>
+        <li class="size16"> I20 Non-Ferrous Production</li>
+        <li class="size16"> I30 Chemical Production</li>
+        <li class="size16"> I40 Cement Production</li>
+        <li class="size16"> I50 Pulp &amp; Paper
+Production</li>
+        <li class="size16"> W40 Waste incineration </li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">SOx/EDGAR.SOxScalar-2002-2000.geos.1x1
+SOx/EDGAR.SOxScalar-2001-2000.geos.1x1
+SOx/EDGAR.SOxScalar-1999-2000.geos.1x1
+SOx/EDGAR.SOxScalar-1998-2000.geos.1x1 </td>
+      <td>
+      <p>Files on the on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a> containing scale factors for EDGAR SOx emissions
+for years 1985-1995.</p>
+      <p>These scale factors scale the emissions from 2000 to the
+given year. </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">SOx/ship_SOx_scale.JAN.geos.1x1<br>
+SOx/ship_SOx_scale.FEB.geos.1x1<br>
+SOx/ship_SOx_scale.MAR.geos.1x1<br>
+SOx/ship_SOx_scale.APR.geos.1x1<br>
+SOx/ship_SOx_scale.MAY.geos.1x1<br>
+SOx/ship_SOx_scale.JUN.geos.1x1<br>
+SOx/ship_SOx_scale.JUL.geos.1x1<br>
+SOx/ship_SOx_scale.AUG.geos.1x1<br>
+SOx/ship_SOx_scale.SEP.geos.1x1<br>
+SOx/ship_SOx_scale.OCT.geos.1x1<br>
+SOx/ship_SOx_scale.NOV.geos.1x1<br>
+SOx/ship_SOx_scale.DEC.geos.1x1</td>
+      <td>
+      <p>Files on the on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a> containing monthly scale factors for EDGAR ship
+SO2 emissions, which are defined as:</p>
+      <p> ( Corbett monthly ship SO2 ) / ( Ann. total of Corbett
+SO2 )<br>
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">SOx/anth_SOx_scale.DJF.generic.1x1<br>
+SOx/anth_SOx_scale.MAM.generic.1x1<br>
+SOx/anth_SOx_scale.JJA.generic.1x1<br>
+SOx/anth_SOx_scale.SON.generic.1x1</td>
+      <td>
+      <p>Files on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a> contaning SEASONAL SCALE FACTORS which are
+computed as ( GEIA SOx per season ) / ( GEIA SOx per year )</p>
+      <ul>
+        <li class="size16">WINTER seasonal ratios (DJF)</li>
+        <li class="size16"> SPRING seasonal ratios (MAM)</li>
+        <li class="size16"> SUMMER seasonal ratios (JJA)</li>
+        <li class="size16"> AUTUMN seasonal ratios (SON)</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">BENZ/BENZ_1985_FF_IND_EDGAR2.1x1geos.bpch<br>
+C2H2/C2H2_1985_FF_IND_EDGAR2.1x1geos.bpch<br>
+C2H4/C2H4_1985_FF_IND_EDGAR2.1x1geos.bpch<br>
+TOLU/TOLU_1985_FF_IND_EDGAR2.1x1geos.bpch<br>
+XYLE/XYLE_1985_FF_IND_EDGAR2.1x1geos.bpch</td>
+      <td>Files on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; </a>grid for species only used for
+dicarbonyl chemistry (73 tracers). Files were prepared by May Fu.<br>
+      <br>
+      <span class="size14">REFERENCE:</span><br>
+      <ol>
+        <li><a href="http://www.mnp.nl/edgar/model/edgar2/precursor_gases/edgar_20_nmvoc.jsp">http://www.mnp.nl/edgar/model/edgar2/precursor_gases/edgar_20_nmvoc.jsp</a></li>
+      </ol>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.8"></a>4.2.8
+The EMEP_200510 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+
+<ol>
+
+  <li>For years prior to 1985, GEOS–Chem will use EMEP emissions
+for 1985.</li>
+  <li>For NOx, CO, and SOx from 1990 onward data from EMEP_200911
+subdirectory are used.</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li class="size14">GEOS-Chem wiki: EMEP <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Anthropogenic_emissions#EMEP" target="_blank">anthropogenic</a> and <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Ship_emissions#EMEP" target="_blank">ship</a> emissions </li>
+  <li class="size14">Emission data reported to UNECE/EMEP:
+Quality assurance and trend analysis and presentation of WebDab, MSC-W
+Status Report 2002. <a href="../../../word_pdf_docs/emep.pdf" target="_blank">[PDF]</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16">EMEP.geos.1x1.1985<br>
+EMEP.geos.1x1.1986<br>
+EMEP.geos.1x1.1987<br>
+EMEP.geos.1x1.1988<br>
+EMEP.geos.1x1.1989<br>
+EMEP.geos.1x1.1990<br>
+EMEP.geos.1x1.1991<br>
+EMEP.geos.1x1.1992<br>
+EMEP.geos.1x1.1993<br>
+EMEP.geos.1x1.1994<br>
+EMEP.geos.1x1.1995<br>
+EMEP.geos.1x1.1996<br>
+EMEP.geos.1x1.1997<br>
+EMEP.geos.1x1.1998<br>
+EMEP.geos.1x1.1999<br>
+EMEP.geos.1x1.2000</td>
+      <td>
+      <p align="justify">EMEP European anthropogenic
+emissions on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x
+1&deg; grid</a>. </p>
+      <p align="justify">Species: NOx, CO, ALK4, MEK,
+ALD2, PRPE, C2H6.</p>
+      <p align="justify">EMEP raw data were supplied to us
+by Marion Auvray and Isabelle Bey at EPFL, Lausanne, Switzerland.
+Brendan Field created these <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2" target="_blank">binary
+punch files</a> from the raw data.</p>
+      <p align="justify">&nbsp;</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.9"></a>4.2.9
+The EMEP_200806 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>These data are now obsolete.</li>
+  <li>There is a reference to this directory in the code to run the
+European nested-grid simulation. However, Harvard does not store the
+data for this simulation. For more information, please refer to the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Regional_Air_Quality_Working_Group" target="_blank">Regional Air Quality Working Group wiki page</a>. </li>
+</ol>
+
+<p class="size18bi"><a name="4.2.10"></a>4.2.10
+The EMEP_200911 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>This is an update of the now obsolete EMEP_200806 subdirectory.</li>
+  <li>These data where gathered from the <a href="http://www.ceip.at">EMEP
+website</a> and
+compiled by Aaron van Donkelaar</li>
+  <li>These emissions are used complementary to emissions in the
+EMEP_200510 subdirectory.</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: EMEP <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Anthropogenic_emissions#EMEP" target="_blank">anthropogenic</a> and <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Ship_emissions#EMEP" target="_blank">ship</a> emissions</li>
+  <li>Data: <a href="http://www.ceip.at/">http://www.ceip.at/</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier14">EMEP-1990.geos.1x1<br>
+EMEP-1991.geos.1x1<br>
+EMEP-1992.geos.1x1<br>
+EMEP-1993.geos.1x1<br>
+EMEP-1994.geos.1x1<br>
+EMEP-1995.geos.1x1<br>
+EMEP-1996.geos.1x1<br>
+EMEP-1997.geos.1x1<br>
+EMEP-1998.geos.1x1<br>
+EMEP-1999.geos.1x1<br>
+EMEP-2000.geos.1x1<br>
+EMEP-2001.geos.1x1<br>
+EMEP-2002.geos.1x1<br>
+EMEP-2003.geos.1x1<br>
+EMEP-2004.geos.1x1<br>
+EMEP-2005.geos.1x1<br>
+EMEP-2006.geos.1x1<br>
+EMEP-2007.geos.1x1<br>
+      </td>
+      <td>
+      <p>EMEP anthropogenic emissions of CO, NH3, NOx, and SOx
+[molec/cm2/s] for
+year 1990 to 2007 on the&nbsp;<a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a>.&nbsp;</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">EMEP-SHIP-1990.geos.1x1<br>
+EMEP-SHIP-1991.geos.1x1<br>
+EMEP-SHIP-1992.geos.1x1<br>
+EMEP-SHIP-1993.geos.1x1<br>
+EMEP-SHIP-1994.geos.1x1<br>
+EMEP-SHIP-1995.geos.1x1<br>
+EMEP-SHIP-1996.geos.1x1<br>
+EMEP-SHIP-1997.geos.1x1<br>
+EMEP-SHIP-1998.geos.1x1<br>
+EMEP-SHIP-1999.geos.1x1<br>
+EMEP-SHIP-2000.geos.1x1<br>
+EMEP-SHIP-2001.geos.1x1<br>
+EMEP-SHIP-2002.geos.1x1<br>
+EMEP-SHIP-2003.geos.1x1<br>
+EMEP-SHIP-2004.geos.1x1<br>
+EMEP-SHIP-2005.geos.1x1<br>
+EMEP-SHIP-2006.geos.1x1<br>
+EMEP-SHIP-2007.geos.1x1<br>
+      </td>
+      <td>
+      <p>EMEP ship emissions of CO, NH3, NOx, and SOx [molec/cm2/s] for
+year 1990 to
+2007 on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg;
+grid</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">SeasonalVariation/EMEP-SeasonalVariation-1.1x1<br>
+SeasonalVariation/EMEP-SeasonalVariation-2.1x1<br>
+SeasonalVariation/EMEP-SeasonalVariation-3.1x1<br>
+SeasonalVariation/EMEP-SeasonalVariation-4.1x1<br>
+SeasonalVariation/EMEP-SeasonalVariation-5.1x1<br>
+SeasonalVariation/EMEP-SeasonalVariation-6.1x1<br>
+SeasonalVariation/EMEP-SeasonalVariation-7.1x1<br>
+SeasonalVariation/EMEP-SeasonalVariation-8.1x1<br>
+SeasonalVariation/EMEP-SeasonalVariation-9.1x1<br>
+SeasonalVariation/EMEP-SeasonalVariation-10.1x1<br>
+SeasonalVariation/EMEP-SeasonalVariation-11.1x1<br>
+SeasonalVariation/EMEP-SeasonalVariation-12.1x1</td>
+      <td>Monthly variations. Courtesy of the GENEMIS project
+coordinated by the Institute of Energy Economics and the Rational Use
+of Energy (IER) at the University of Stuttgart.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.11"></a>4.2.11
+The EPA_NEI_200708 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+
+<ol>
+  <li>The files in the EPA_NEI_200708 directory were updated to
+account for transport emissions in California. The files in
+EPA_NEI_200411 did not contain these emissions.</li>
+  <li>The files in the EPA_NEI_200708 directory contain NH3
+emissions, whereas the files in the EPA_NEI_200411 directory did not.</li>
+  <li>For more information, please see the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Anthropogenic_emissions#EPA.2FNEI99" target="_blank">Anthropogenic Emissions page on the
+GEOS–Chem Wiki</a>.</li>
+  <li>The mask file for USA in this subdirectory is used when not
+using BRAVO and CAC inventories.</li>
+</ol>
+
+<table style="width: 100%;" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier14"> wkday_avg_an.199901.geos.1x1<br>
+wkday_avg_an.199902.geos.1x1<br>
+wkday_avg_an.199903.geos.1x1<br>
+wkday_avg_an.199904.geos.1x1<br>
+wkday_avg_an.199905.geos.1x1<br>
+wkday_avg_an.199906.geos.1x1<br>
+wkday_avg_an.199907.geos.1x1 <br>
+wkday_avg_an.199908.geos.1x1<br>
+wkday_avg_an.199909.geos.1x1<br>
+wkday_avg_an.199910.geos.1x1<br>
+wkday_avg_an.199911.geos.1x1<br>
+wkday_avg_an.199912.geos.1x1</td>
+      <td>
+      <p align="justify">EPA / NEI99 weekday anthropogenic
+emissions files on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a>.</p>
+      <p align="justify">The following species are
+included:<br>
+NOx, CO, ALK4, ACET, MEK, PRPE, C2H6, C3H8, CH2O, SO2, SO4, NH3</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">wkend_avg_an.199901.geos.1x1<br>
+wkend_avg_an.199902.geos.1x1<br>
+wkend_avg_an.199903.geos.1x1<br>
+wkend_avg_an.199904.geos.1x1<br>
+wkend_avg_an.199905.geos.1x1<br>
+wkend_avg_an.199906.geos.1x1<br>
+wkend_avg_an.199907.geos.1x1<br>
+wkend_avg_an.199908.geos.1x1<br>
+wkend_avg_an.199909.geos.1x1<br>
+wkend_avg_an.199910.geos.1x1<br>
+wkend_avg_an.199911.geos.1x1<br>
+wkend_avg_an.199912.geos.1x1</td>
+      <td>
+      <p align="justify">EPA / NEI99 weekend anthropogenic
+emissions files on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a>.</p>
+      <p align="justify">The following species are
+included:<br>
+NOx, CO, ALK4, ACET, MEK, PRPE, C2H6, C3H8, CH2O, SO2, SO4, NH3</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">usa_mask.geos.1x1</td>
+      <td>
+      <p align="justify">Mask file (<a href="appendix_2.html#A2.5">on
+the GMAO 1&deg; x 1&deg; grid</a>)
+which is used for emissions over the continental USA. Grid boxes that
+lie totally within the USA are assigned a value of 1, other boxes are
+assigned a value of zero.<br>
+      </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.12"></a>4.2.12
+The EPA_NEI_200806</p>
+
+<p class="size14">NOTES:</p>
+
+<ol>
+  <li>For more information, see the GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/EPA/NEI99_North_American_emissions" target="_blank">EPA/NEI99 North American inventory</a></li>
+  <li>As of
+04/30/2009, the data are not available on any 1x1 grid. The data are
+directly read on the <a href="appendix_2.html#A2.3">GMAO
+2&deg; x 2.5&deg; grid</a>
+or on the <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg;</a>
+grid.</li>
+  <li>The mask file for USA in this subdirectory is used when
+using BRAVO and CAC inventories.</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16">usa_mask.geos.1x1</td>
+      <td>Mask file (<a href="appendix_2.html#A2.5">on
+the GMAO 1&deg; x 1&deg; grid</a>)
+which is used for emissions over the continental USA.&nbsp;Grid
+boxes where there is EPA emissions are assigned a value of 1, other
+boxes are assigned a value of zero.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.13"></a>4.2.13
+The GFED2_200601 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>The GFED2 emissions in this directory are monthly mean
+biomass emissions.</li>
+  <li>GEOS–Chem reads the GFED2 C emissions data on the
+generic 1x1 grid, then converts to equivalent biomass emissions for
+each species, and then regrids to the current model grid.
+Therefore, to change GFED2 biomass emissions, all one has to do is to
+change 
+the emission factors for the various vegetation types.</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Biomass_burning_emissions#GFED2_monthly_data_thru_2008" target="_blank">GFED2 monthly biomass burning emissions</a></li>
+  <li>Original GFED2 database from Jim Randerson: <a href="http://ess1.ess.uci.edu/%7Ejranders/data/GFED2/" target="_blank">http://ess1.ess.uci.edu/~jranders/data/GFED2/</a></li>
+  <li>Giglio, L., G.R. van der Werf, J.T. Randerson, G.J.
+Collatz, and P. Kasibhatla, <em>Global estimation of burned area
+using MODIS active fire observations</em>, <u>Atm. Chem.
+Phys. Discuss.</u>, Vol 5, 11091, 2005. </li>
+  <li>G.R. van der Werf, J.T. Randerson, L. Giglio, G.J.
+Collatz,P.S. Kasibhatla, and A.F. Arellano, Jr., <em>Interannual
+variability in global biomass burning emissions from 1997 to 2004</em>,
+    <u>Atm. Chem. Phys. Discuss.</u>, submitted, 2005</li>
+</ol>
+
+<table style="width: 100%;" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16"><span class="courier14">YYYY/GFED2_C_YYYY01.generic.1x1<br>
+YYYY/GFED2_C_YYYY02.generic.1x1<br>
+YYYY/GFED2_C_YYYY03.generic.1x1<br>
+YYYY/GFED2_C_YYYY04.generic.1x1<br>
+YYYY/GFED2_C_YYYY05.generic.1x1<br>
+YYYY/GFED2_C_YYYY06.generic.1x1<br>
+YYYY/GFED2_C_YYYY07.generic.1x1<br>
+YYYY/GFED2_C_YYYY08.generic.1x1<br>
+YYYY/GFED2_C_YYYY09.generic.1x1<br>
+YYYY/GFED2_C_YYYY10.generic.1x1<br>
+YYYY/GFED2_C_YYYY11.generic.1x1<br>
+YYYY/GFED2_C_YYYY12.generic.1x1</span><br>
+      </td>
+      <td>
+      <p align="justify">Files containing GFED2 monthly
+mean carbon emissions on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a>. Units are g/m2.</p>
+      <p align="justify">As of May 2009, emissions frrs
+from 1997 thru 2007 are available. 2008 may become available at a later
+date.<br>
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">GFED2_emission_factors.txt</td>
+      <td>
+      <p align="justify">Text file containing the GFED2
+emission factors for each species as a function of vegetation type.
+Includes emission factors for the following:</p>
+      <p align="justify">Gas-phase species:<br>
+NOx, CO, ALK4, ACET, MEK, ALD2, PRPE, C3H8, CH2O, C2H6</p>
+      <p align="justify">Aerosol species:<br>
+SO2, NH3, BC, OC</p>
+      <p align="justify">and also CO2 (for offline
+simulations).</p>
+      <p align="justify"><span class="size14bi">Note:
+This file is used by older versions than version 8-02-01</span> </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">GFED2_emission_factors_73t.txt</td>
+      <td>
+      <p align="justify">Text file containing the same
+emission factors for the same species than GFED2_emission_factors.txt
+and the GFED2 emission factors for species used in dicarbonyl
+simulation.</p>
+      <p align="justify">Includes&nbsp;emission
+factors for the following:</p>
+      <p align="justify">Gas-phase species:<br>
+NOx, CO, ALK4, ACET, MEK, ALD2, PRPE, C3H8, CH2O, C2H6, GLYX, MGLY,
+BENZ, TOLU, XYLE, C2H4, C2H2, GLYC, HAC</p>
+      <p align="justify">Aerosol species:<br>
+SO2, NH3, BC, OC</p>
+      <p align="justify">and also CO2 (for offline
+simulations).</p>
+      <p align="justify"><span class="size14bi">Note:
+This file is used by version 8-02-01 and newer.</span></p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">GFED2_vegmap.generic.1x1</td>
+      <td>
+      <p>GFED2 vegetation map on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a>. </p>
+      <p>Values are: </p>
+      <ul>
+        <li class="size16">3 = boreal forest</li>
+        <li class="size16">2 = tropical forest</li>
+        <li class="size16">1 = savanna / herb / other land</li>
+        <li class="size16">0 = water</li>
+      </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.14"></a>4.2.14 The GFED2_3hr_200901 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>These data were generated for a specific research project. We recommend using either the monthly or 8-day data.</li>
+  <li>The GFED2 emissions in this directory are 3-hourly data.
+The "3hr" data are obtained from applying a 3hr diurnal variation to
+the 8-day averages. The "synoptic" data distribute the 8-day average
+data in their respective 8 days according to the meteorological ISI
+index, then apply a 3hr diurnal cycle.<span class="size14"></span></li>
+  <li>As of 04/30/2009, there are only 4 months of data available: June, July,
+August and September 2004.</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16">2004/GFED2.3hr.C_200406.generic.1x1<br>
+2004/GFED2.3hr.C_200407.generic.1x1<br>
+2004/GFED2.3hr.C_200408.generic.1x1<br>
+2004/GFED2.3hr.C_200409.generic.1x1</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td class="courier16">2004/GFED2.synoptic.C_200406.generic.1x1<br>
+2004/GFED2.synoptic.C_200407.generic.1x1<br>
+2004/GFED2.synoptic.C_200408.generic.1x1<br>
+2004/GFED2.synoptic.C_200409.generic.1x1</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.15"></a>4.2.15
+The GFED2_8day_200712
+subdirectory</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>The GFED2 emissions in this directory are 8-day averages.</li>
+  <li>As of 04/30/2009, the <tt>GFED2_emission_factors.txt</tt>
+file, the&nbsp;<tt>GFED2_emission_factors_73t.txt</tt>
+file and the <tt>GFED2_vegmap.generic.1x1</tt> file are
+the same versions as are found in the <a href="#4.2.10">GFED2_200601</a>
+directory, which contains monthly emissions. At some point we may
+upgrade to a newer version of the vegetation map file from Prasad
+Kasibhatla, but that has not been done as of 04/30/2009. </li>
+  <li>GEOS-Chem reads the GFED2 C emissions data on the
+generic 1x1 grid, then converts to equivalent biomass emissions for
+each species, and then regrids to the current model grid. Therefore, to
+change GFED2 biomass emissions, all one has to do is to change the
+emission factors for the various vegetation types.</li>
+</ol>
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Biomass_burning_emissions#GFED2_8-day_emissions" target="_blank">GFED2 8-day-average biomass burning emissions</a></li>
+  <li>Original GFED2 database from Jim Randerson: <a href="%20http://ess1.ess.uci.edu/%7Ejranders/data/GFED2/%3C" target="_blank">http://ess1.ess.uci.edu/~jranders/data/GFED2/</a></li>
+  <li>Giglio, L., G.R. van der Werf, J.T. Randerson, G.J. Collatz, and P. Kasibhatla, <em>Global estimation of burned area
+using MODIS active fire observations</em>, <u>Atm. Chem. Phys. Discuss.</u>, Vol 5, 11091, 2005. </li>
+  <li>G.R. van der Werf, J.T. Randerson, L. Giglio, G.J.
+Collatz,P.S. Kasibhatla, and A.F. Arellano, Jr., <em>Interannual
+variability in global biomass burning emissions from 1997 to 2004</em>,
+    <u>Atm. Chem. Phys. Discuss.</u>, submitted, 2005</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16"><span class="courier14">YYYY/GFED2_C_YYYYMMDD.generic.1x1<br>
+YYYY/GFED2_C_YYYYMMDD.generic.1x1<br>
+YYYY/GFED2_C_YYYYMMDD.generic.1x1<br>
+YYYY/GFED2_C_YYYYMMDD.generic.1x1<br>
+YYYY/GFED2_C_YYYYMMDD.generic.1x1<br>
+YYYY/GFED2_C_YYYYMMDD.generic.1x1<br>
+YYYY/GFED2_C_YYYYMMDD.generic.1x1<br>
+YYYY/GFED2_C_YYYYMMDD.generic.1x1<br>
+YYYY/GFED2_C_YYYYMMDD.generic.1x1<br>
+YYYY/GFED2_C_YYYYMMDD.generic.1x1<br>
+YYYY/GFED2_C_YYYYMMDD.generic.1x1<br>
+YYYY/GFED2_C_YYYYMMDD.generic.1x1</span><br>
+      </td>
+      <td>
+      <p align="justify">Files containing GFED2 monthly
+mean carbon emissions on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a>. Units are g/m2.</p>
+      <p align="justify">In the file names, YYYYMMDD is
+the starting date of the 8-day averaging period. The first 8-day
+averaging period of any given year starts on January 1st. </p>
+      <p align="justify">As of May 2009, emissions frrs
+from 2001 thru 2007 are available. 2008 may become available at a later
+date.<br>
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">GFED2_emission_factors.txt</td>
+      <td>
+      <p align="justify">Text file containing the GFED2
+emission factors for each species as a function of vegetation type.
+Includes emission factors for the following:</p>
+      <p align="justify">Gas-phase species:<br>
+NOx, CO, ALK4, ACET, MEK, ALD2, PRPE, C3H8, CH2O, C2H6</p>
+      <p align="justify">Aerosol species:<br>
+SO2, NH3, BC, OC</p>
+      <p align="justify">and also CO2 (for offline
+simulations).</p>
+      <p align="justify">NOTE: As of May 2009, this file
+is currently the same as in the <a href="#4.2.10">GFED_200601
+subdirectory</a>. <br>
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">GFED2_emission_factors_73t.txt</td>
+      <td>
+      <p align="justify">Text file containing the same
+emission factors for the same species than GFED2_emission_factors.txt
+and the GFED2 emission factors for species used in dicarbonyl
+simulation.</p>
+      <p align="justify">Includes&nbsp;emission
+factors for the following:</p>
+      <p align="justify">Gas-phase species:<br>
+NOx, CO, ALK4, ACET, MEK, ALD2, PRPE, C3H8, CH2O, C2H6, GLYX, MGLY,
+BENZ, TOLU, XYLE, C2H4, C2H2, GLYC, HAC</p>
+      <p align="justify">Aerosol species:<br>
+SO2, NH3, BC, OC</p>
+      <p align="justify">and also CO2 (for offline
+simulations).</p>
+      <p align="justify">NOTE: As of May 2009, this file
+is currently the same as in the <a href="#4.2.10">GFED_200601
+subdirectory</a>. </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">GFED2_vegmap.generic.1x1</td>
+      <td>
+      <p>GFED2 vegetation map (bpch format) on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>. </p>
+      <p>Values are: </p>
+      <ul>
+        <li class="size16">3 = boreal forest</li>
+        <li class="size16">2 = tropical forest</li>
+        <li class="size16">1 = savanna / herb / other land</li>
+        <li class="size16">0 = water</li>
+      </ul>
+      <p>NOTE: As of May 2009, this file is currently the same as
+in the <a href="#4.2.10">GFED_200601 subdirectory</a>. </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.16"></a>4.2.16 The ICOADS_200907 subdirectory</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Ship_emissions#ICOADS" target="_blank">ICOADS ship emissions</a></li>
+  <li>Wang, C., J. J. Corbett, and J. Firestone, Improving Spatial
+representation of Global Ship Emissions Inventories, Environ. Sci.
+Technol., 42 (1), 193-199, 2008.</li>
+  <li>Download <a href="http://pubs.acs.org/doi/abs/10.1021/es0700799" target="_blank">publication</a></li>
+  <li>Data located at: <a href="http://coast.cms.udel.edu/GlobalShipEmissions/" target="_blank">http://coast.cms.udel.edu/GlobalShipEmissions/</a></li>
+</ol>
+
+<table style="text-align: left; width: 100%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+
+  <tbody>
+    <tr>
+      <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Files<br>
+      </th>
+      <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Description<br>
+      </th>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">CO_01.geos.1x1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <br>
+CO_02.geos.1x1<br>
+CO_03.geos.1x1<br>
+CO_04.geos.1x1<br>
+CO_05.geos.1x1<br>
+CO_06.geos.1x1<br>
+CO_07.geos.1x1<br>
+CO_08.geos.1x1<br>
+CO_09.geos.1x1<br>
+CO_10.geos.1x1<br>
+CO_11.geos.1x1<br>
+CO_12.geos.1x1<span class="courier16"></span><span class="courier16"><br>
+      </span></td>
+      <td style="vertical-align: top;">Monthly ship emissions for CO
+[kg CO/month] on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg; grid</a><br>
+      <br>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">NOx_01.geos.1x1<br>
+NOx_02.geos.1x1<br>
+NOx_03.geos.1x1<br>
+NOx_04.geos.1x1<br>
+NOx_05.geos.1x1<br>
+NOx_06.geos.1x1<br>
+NOx_07.geos.1x1<br>
+NOx_08.geos.1x1<br>
+NOx_09.geos.1x1<br>
+NOx_10.geos.1x1<br>
+NOx_11.geos.1x1<br>
+NOx_12.geos.1x1<br>
+      </td>
+      <td style="vertical-align: top;">Monthly ship emissions for NOx
+[kg NOx/month] on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg; grid</a></td>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">SOx_01.geos.1x1<br>
+SOx_02.geos.1x1<br>
+SOx_03.geos.1x1<br>
+SOx_04.geos.1x1<br>
+SOx_05.geos.1x1<br>
+SOx_06.geos.1x1<br>
+SOx_07.geos.1x1<br>
+SOx_08.geos.1x1<br>
+SOx_09.geos.1x1<br>
+SOx_10.geos.1x1<br>
+SOx_11.geos.1x1<br>
+SOx_12.geos.1x1<br>
+      </td>
+      <td style="vertical-align: top;">Monthly ship emissions for SOx
+[kg S/month] on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg; grid</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.17"></a>4.2.17 The leaf_area_index_200412 subdirectory</p>
+<p class="size14">NOTES:</p>
+<ol>
+<li>The leaf area indices in this directory were derived from
+the AVHRR satellite. However, these data are now obsolete and have been
+replaced by the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MODIS_leaf_area_indices" target="_blank">MODIS-derived leaf area index product</a>. </li><li>The AVHRR LAI should not be used with MEGAN v2.1 biogenic emissions (i.e in GEOS-Chem versions <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-04" target="_blank">v8-02-04</a> and higher). <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MEGAN_biogenic_emissions#Use_MEGAN_with_MODIS_leaf_area_indices" target="_blank">See this wiki post for more information.</a> </li>
+</ol>
+<p class="size18bi"><a name="4.2.18"></a>4.2.18 The Linoz_200910
+subdirectory</p>
+<p class="size14">REFERENCES:</p>
+<ol>
+<li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Linoz_stratospheric_ozone_chemistry" target="_blank">Linoz stratospheric ozone chemistry</a></li>
+</ol>
+<p class="size18bi">
+</p>
+
+
+<table style="text-align: left; width: 100%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+
+  <tbody>
+    <tr>
+      <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Files<br>
+      </th>
+      <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Description<br>
+      </th>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span class="courier16">Linoz_March2007.dat</span></td>
+      <td style="vertical-align: top;">Text file containing the
+climatology for Linoz</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.19"></a>4.2.19 The MEGAN_200909 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+
+<ol>
+  <li>This is an update of the now obsolete MEGAN_200510 directory.</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki:<a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MEGAN_biogenic_emissions#MEGAN_in_GEOS-Chem_v8-02-04_and_later_versions" target="_blank"> MEGAN v2.1 biogenic emissions</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier14">MEGANv2.1_AEF_ALPHA_PINENE.geos.1x1&nbsp;
+MEGANv2.1_AEF_BETA_PINENE.geos.1x1&nbsp;
+MEGANv2.1_AEF_CARENE.geos.1x1&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+MEGANv2.1_AEF_ISOPRENE.geos.1x1&nbsp;&nbsp;&nbsp;&nbsp;
+MEGANv2.1_AEF_LIMONENE.geos.1x1&nbsp;&nbsp;&nbsp;&nbsp;
+MEGANv2.1_AEF_MBO.geos.1x1<br>
+MEGANv2.1_AEF_METHANOL.geos.1x1<br>
+MEGANv2.1_AEF_MONOTERPENES.geos.1x1<br>
+MEGANv2.1_AEF_MYRCENE.geos.1x1<br>
+MEGANv2.1_AEF_NITRIC_OXIDE.geos.1x1<br>
+MEGANv2.1_AEF_OCIMENE.geos.1x1<br>
+MEGANv2.1_AEF_SABINENE.geos.1x1<br>
+      </td>
+      <td>
+      <p align="justify">Annual Emission Factor (AEF)
+files for</p>
+      <ul class="disc">
+        <li class="size16">Isoprene</li>
+        <li class="size16">Methyl Butenol (MBO)</li>
+        <li class="size16">Monoterpenes (MTP)</li>
+        <li class="size16">Alpha-Pinene</li>
+        <li class="size16">Beta-Pinene</li>
+        <li class="size16">Carene</li>
+        <li class="size16">Limoene</li>
+        <li class="size16">Methanol</li>
+        <li class="size16">Myrcene</li>
+        <li class="size16">Nitric Oxide</li>
+        <li class="size16">Ocimene</li>
+        <li class="size16">Sabinene</li>
+      </ul>
+      <p align="justify">These data were saved into <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2" target="_blank">binary
+punch file (bpch) file format</a> on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a> by
+Mike Barkley.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.20"></a>4.2.20 The MODIS_LAI_200911 subdirectory</p>
+<p class="size14">NOTES:</p>
+<ol>
+  <li>This is an update of the now obsolete MODIS_LAI_200910 directory.</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+<li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MODIS_leaf_area_indices" target="_blank">MODIS-derived leaf area indices</a></li>
+</ol>
+
+
+<table style="text-align: left; width: 100%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+
+  <tbody>
+    <tr>
+      <th style="vertical-align: top;">Files<br>
+      </th>
+      <th style="vertical-align: top;">Description<br>
+      </th>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span class="courier16">YYYY/MODIS.LAIv.V5.geos.1x1.YYYY</span><br>
+      </td>
+      <td style="vertical-align: top;">Monthly LAI values on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg; grid</a>. For years YYYY=1985
+and 2000 to 2008<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" style="vertical-align: top;">YYYY/lai01.global<br>
+YYYY/lai02.global<br>
+YYYY/lai03.global<br>
+YYYY/lai04.global<br>
+YYYY/lai05.global<br>
+YYYY/lai06.global<br>
+YYYY/lai07.global<br>
+YYYY/lai08.global<br>
+YYYY/lai09.global<br>
+YYYY/lai10.global<br>
+YYYY/lai11.global<br>
+YYYY/lai12.global<br>
+      </td>
+      <td style="vertical-align: top;">LAI values for each month in
+ASCII format, for years YYYY=1985 and 2000 to 2008</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span class="courier16">YYYY/vegtype.global</span><br>
+      </td>
+      <td style="vertical-align: top;">Olson land types in ASCII
+format, for years YYYY=1985 and 2000 to 2008</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.21"></a>4.2.21
+The mercury_200511 subdirectory</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Mercury" target="_blank">Mercury simulation</a></li>
+  <li> Esaias, W.E. (1996), <em>Algorithm theoretical
+basis document for MODIS product MOD-27 ocean primary productivity</em>,
+report, NASA Goddard Space Flight Cent., Greenbelt, MD. </li>
+  <li>Frank, D. G. (1999), <em>Mineral Resource Data
+System (MRDS) data in Arc-View Shape File Format</em>, for
+Spatial Data Delivery Project, U.S. Geol. Surv., Spokane, Wash. <a href="http://webgis.wr.usgs.gov/globalgis/metadata_qr/metadata/ore_deposits.htm" target="_blank">[HTML]</a></li>
+  <li> Hellerman and Rosenstein, <em>Normal monthly wind
+stess over the world ocean with error estimates</em>, <u>J.
+Phys. Oceanogr.</u>, <strong>13</strong>, 1093-1104,
+1983. </li>
+  <li>Kara et al, <em>Mixed layer depth variability over
+the global ocean</em>, <u>J. Geophys. Res.</u>, <strong>108</strong>(C3),
+3079, 2003, doi:10.1029/2000JC00736. <a href="http://www7320.nrlssc.navy.mil/nmld/nmld.html" target="_blank">[HTML]</a></li>
+  <li>Selin, N.E., D.J. Jacob, R.J. Park, R.M. Yantosca, S.
+Strode, L. Jaeglé, and D. Jaffe, <i>Chemical cycling and
+deposition of atmospheric mercury: Global constraints from observations</i>,
+    <u>J. Geophys. Res.</u>, <b>112</b>,
+D02308, doi:10.1029/2006JD007450, 2007. <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/publications/selin2007a.pdf" target="_blank">[PDF]</a></li>
+  <li>Strode, S., L. Jaeglé, N.E. Selin, D.J. Jacob, R.J. Park,
+R.M. Yantosca, R.P. Mason, and F. Slemr, <i>Air-sea exchange in
+the global mercury cycle</i>, <u>Glob. Biogeochem. Cycles</u>, <b>21</b>,
+GB1017, doi:10.1029/2006GB002766, 2007. <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/publications/strode2007.pdf" target="_blank">[PDF]</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16">GEIA_Hg0.geos.1x1.1995<br>
+GEIA_Hg2.geos.1x1.1995<br>
+GEIA_HgP.geos.1x1.1995</td>
+      <td>
+      <p align="justify">Anthropogenic emissions of Hg0
+(elemental mercury), Hg2 (divalent mercury), and HgP (particulate
+mercury) from GEIA 1995 inventory. Data are on the<a href="appendix_2.html#A2.5"> GMAO 1&deg; x 1&deg; grid</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16"> GEIA_Hg0.geos.1x1.2000<br>
+GEIA_Hg2.geos.1x1.2000<br>
+GEIA_HgP.geos.1x1.2000</td>
+      <td>Anthropogenic emissions of Hg0 (elemental mercury), Hg2
+(divalent mercury), and HgP (particulate mercury) from GEIA 1995
+inventory. Data are on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a>.</td>
+    </tr>
+    <tr>
+      <td class="courier16">Hg_land_reemission.geos.2x25<br>
+Hg_land_reemission.geos.4x5</td>
+      <td>
+      <p>Re-emission of Hg0 on the GMAO <a href="appendix_2.html#a2.3">2&deg;
+x 2.5&deg;</a> and <a href="appendix_2.html#A2.2">4&deg; x 5</a>&deg; horizontal
+grids. </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">Hg_natural.geos.2x25<br>
+Hg_natural.geos.4x5</td>
+      <td>Emissions of Hg0 from natural sources, on the GMAO <a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a> and <a href="appendix_2.html#A2.2">4&deg; x 5</a>&deg; horizontal
+grids. Based on Frank et al 1999 (<a href="#4.2.15">see
+citation above</a>). </td>
+    </tr>
+    <tr>
+      <td class="courier16">Hg_ocean.geos.2x25<br>
+Hg_ocean.geos.4x5</td>
+      <td>
+      <p>Oceanic emissions of Hg0 on the GMAO <a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a> and <a href="appendix_2.html#A2.2">4&deg; x 5</a>&deg; grids. These
+files will be read if switch <tt>LDYNOCEAN</tt><tt>=F</tt>
+in the input.geos file.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">ekman_upvel.geos.2x25<br>
+ekman_upvel.geos.4x5</td>
+      <td>
+      <p align="justify">Ekman upwelling velocity [cm/s]
+for the dynamic mercury ocean model, on the GMAO <a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a> and <a href="appendix_2.html#A2.2">4&deg; x 5</a>&deg; horizontal
+grids. These files will be read if switch <tt>LDYNOCEAN=T </tt>
+in the input.geos file.</p>
+      <p>The velocity is The ekman velocity is calculated as:</p>
+      <p> k (upward unit vector) dot (del operator) x (tau / rho
+/ f) </p>
+      <p>where</p>
+      <ul>
+        <li class="size16">rho is the density of sea water,</li>
+        <li class="size16">f is the coriolis parameter, and</li>
+        <li class="size16">tau is monthly global wind
+stress from Hellerman and Rosenstein 1983 (see citation above).</li>
+      </ul>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">mld.geos.2x25<br>
+mld.geos.4x5</td>
+      <td>Mixed layer depth [cm] for the dynamic mercury ocean
+model, on the GMAO <a href="appendix_2.html#A2.3">2&deg; x
+2.5&deg;</a> and <a href="appendix_2.html#A2.2">4&deg; x 5</a>&deg;
+horizontal grids. These files will be read if switch <tt>LDYNOCEAN=T </tt>
+in the input.geos file. Based on Kara et al 2003 (<a href="#4.2.15">see
+citation above</a>). </td>
+    </tr>
+    <tr>
+      <td class="courier16">modis_npp.geos.2x25<br>
+modis_npp.geos.4x5</td>
+      <td>MODIS net primary productivity files for the dynamic
+mercury ocean model, on the GMAO <a href="appendix_2.html#A2.3">2&deg;
+x 2.5&deg;</a> and <a href="appendix_2.html#A2.2">4&deg; x 5</a>&deg;
+horizontal grids. These files will be read if switch <tt>LDYNOCEAN=T </tt>
+in the input.geos file. Taken from Esaias (1996) (<a href="#4.2.15">see
+citation above</a>). </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.22"></a>4.2.22 The NEI2005_200910
+subdirectory</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>Emissions are distributed on 5 levels</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/EPA/NEI05_North_American_emissions" target="_blank">EPA/NEI05 North American Inventory</a></li>
+</ol>
+
+<table style="text-align: left; width: 100%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+
+  <tbody>
+    <tr>
+      <th style="vertical-align: top;">Files</th>
+      <th style="vertical-align: top;">Description</th>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">NEI2005.GEOS3.1x1.AVG.bpch</td>
+      <td style="vertical-align: top;">Emissions for NOx / SO2 / CO / VOC / NIT / BC / OC on 1&deg; x 1&deg; grid for GEOS3</td>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">NEI2005.GEOS4.1x1.AVG.bpch</td>
+      <td style="vertical-align: top;">Emissions for NOx / SO2 / CO / VOC / NIT / BC / OC  on 1&deg; x 1&deg; grid for GEOS4</td>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">NEI2005.GEOS5.1x1.AVG.bpch</td>
+      <td style="vertical-align: top;">Emissions for NOx / SO2 / CO / VOC / NIT / BC / OC on 1&deg; x 1&deg; grid for GEOS5</td>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">NEI2005.GEOS5.1t2x2t3.AVG.bpch</td>
+      <td style="vertical-align: top;">Emissions forNOx / SO2 / CO / VOC / NIT / BC / OC on 0.5&deg; x 0.667&deg; grid for GEOS5</td>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">usa.mex.mask.nei2005.geos.1x1</td>
+      <td style="vertical-align: top;">Mask to use NEI 2005 emissions over USA and MEXICO
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">usa.can.mask.nei2005.geos.1x1</td>
+      <td style="vertical-align: top;">Mask to use NEI 2005 emissions over USA and CANADA
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">usa.can.mex.mask.nei2005.geos.1x1</td>
+      <td style="vertical-align: top;">Mask to use NEI 2005 emissions over USA, MEXICO and CANADA</td>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">usa.mask.nei2005.geos.1x1</td>
+      <td style="vertical-align: top;">Mask to use NEI 2005 emissions over USA</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.23"></a>4.2.23 The SST_200508 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>The raw SST data from NOAA was converted into binary punch
+(bpch) file format by Rokjin Park (rjp<img src="../../../img/at_sign.gif" height="13" width="10">.snu.ac.kr).
+Rokjin Park also regridded these files to the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg; grid.</a></li>
+  <li>Binary punch files were created for each year (1985-2004),
+with each file containing 12 months of monthly-mean data.</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li class="size14">Reynolds, R.W., N.A. Rayner, T.M.
+Smith, D.C. Stokes, and W. Wang, 2001: <em>An Improved In Situ
+and Satellite SST Analysis for Climate</em>, J. Climate,
+submitted, 2001.</li>
+  
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16">SST.geos.1x1.1985<br>
+SST.geos.1x1.1986<br>
+SST.geos.1x1.1987<br>
+SST.geos.1x1.1988<br>
+SST.geos.1x1.1989<br>
+SST.geos.1x1.1990<br>
+SST.geos.1x1.1991<br>
+SST.geos.1x1.1992<br>
+SST.geos.1x1.1993<br>
+SST.geos.1x1.1994<br>
+SST.geos.1x1.1995<br>
+SST.geos.1x1.1996<br>
+SST.geos.1x1.1997<br>
+SST.geos.1x1.1998<br>
+SST.geos.1x1.1999<br>
+SST.geos.1x1.2000<br>
+SST.geos.1x1.2001<br>
+SST.geos.1x1.2002<br>
+SST.geos.1x1.2003<br>
+SST.geos.1x1.2004</td>
+      <td>
+      <p align="justify">NOAA OI.v2 sea surface
+temperatures on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a>. Each data file has 12 months of data. At
+present, years 1985-2004 are available.</p>
+      <p align="justify">The NOAA OI.v2 SST monthly fields
+are derived by a linear interpolation of the weekly optimum
+interpolation (OI) version 2 fields to daily fields then averaging the
+daily values over a month.</p>
+      <p>&nbsp; </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.24"></a>4.2.24
+The Streets_200607 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li class="size14">There are actually two types of data.
+The data files below marked <tt>Streets_XXX_FF_2000.generic.1x1</tt>
+are from the Streets SE Asia inventory. However, the CO in this
+inventory was too low over China. Therefore, we replace the CO over
+China with the CO from the file <tt>Streets_CO_FF_2001.generic.1x1</tt>.</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+
+<ol>
+
+  <li class="size14">GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Anthropogenic_emissions#David_Streets" target="_blank">David Streets regional inventory for China/SE Asia</a></li>
+  <li class="size14">Streets, D.G, Q. Zhang, L. Wang, K.
+He, J. Hao, Y. Wu, Y. Tang, and G.C. Carmichael, <em>Revisiting
+China's CO emissions after the Transport and Chemical Evolution over
+the Pacific (TRACE-P) mission: Synthesis of inventories, atmospheric
+modeling, and observations</em>, <u>J. Geophys. Res</u>, <strong>111</strong>,
+D14306, doi:10.1029/2006JD007118,
+2006.</li>
+
+  <li class="size14">Streets, D.G., T.C. Bond, G.R.
+Carmichael, S.D. Fernandes, Q. Fu, Z. Klimont, S.M. Nelson, N.Y. Tsai,
+M.Q. Wang, J-H. Woo, and K.F. Yarber, <em>An inventory of
+gaseous and primary aerosol emissions in Asia in the year 2000</em>,
+J. Geophys. Res, <strong>108</strong>, D21,
+doi:10.1029/2002JD003093, 2003.</li>
+  
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier14">China_mask.generic.1x1</td>
+      <td>
+      <p align="justify">China mask file for 2001
+emissions
+of CO, on the <a href="appendix_2.html#A2.7">generic 1&deg; x
+1&deg; grid</a>. </p>
+      <p align="justify">This masking file is meant to be
+used with:<br>
+      <tt>Streets_CO_FF_2000.generic.1x1</tt>, </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">Streets_CO_FF_2001.generic.1x1</td>
+      <td>
+      <p>CO emissions for 2000, over China only, on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>. </p>
+      <p> NOTE: This file "overwrites" the emissions in the file <tt>Streets_CO_FF_2000.generic.1x1</tt>
+over China only. </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">SE_Asia_mask.generic.1x1</td>
+      <td>
+      <p>SE Asia mask for 2000 emissions on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>. </p>
+      <p align="justify">This masking file is meant to be
+used with the emissions in the files named: <tt>Streets_XXX_FF_2000.generic.1x1</tt>,
+where XXX = NOx, SO2, NH3, CH4, CO2</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">Streets_CH4_FF_2000.generic.1x1</td>
+      <td>CH4 emissions for 2000 over SE Asia, on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>.
+Units are [kg CH4/yr].</td>
+    </tr>
+    <tr>
+      <td class="courier14">Streets_CO2_FF_2000.generic.1x1 </td>
+      <td>CO2 emissions for 2000 over SE Asia, on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>.
+. This file includes the large
+point source emissions. Units are [kg CO2/yr].</td>
+    </tr>
+    <tr>
+      <td class="courier14">Streets_CO_FF_2000.generic.1x1</td>
+      <td>CO emissions for 2000 over SE Asia, on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>. </td>
+    </tr>
+    <tr>
+      <td class="courier14">Streets_NH3_FF_2000.generic.1x1</td>
+      <td>NH3 emissions for 2000 over SE Asia on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>.
+Units are [kg NH3/yr].</td>
+    </tr>
+    <tr>
+      <td class="courier14">Streets_NOx_FF_2000.generic.1x1</td>
+      <td>NOx emissions for 2000 over SE Asia on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>.
+This file includes the large point source emissions. Units are [kg
+NO2/yr]. </td>
+    </tr>
+    <tr>
+      <td class="courier14">Streets_SO2_FF_2000.generic.1x1</td>
+      <td>SO2 emissions for 2000 over SE Asia on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>.
+This file includes the large point source emissions. Units are [kg
+NO2/yr].</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.25"></a>4.2.25
+The Streets_200803 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li class="size14">This is an older version of data
+in&nbsp;<a href="#4.2.19">Streets_200812 subdirectory</a>
+and now obsolete.</li>
+</ol>
+
+<p class="size18bi"><a name="4.2.26"></a>4.2.26
+The Streets_200812 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>The bpch files in this directory were created from 2 separate inventories (original resolution: 0.5&deg; x 0.5&deg; resolution):<br>
+    <ul>
+      <li class="size14"><strong>Inventory 1:</strong>
+Speciated VOC emissions (ACET,ALD2,ALK4,C2H6,C3H8,CH2O,ISOP,MEK,PRPE)
+for various sectors -- specially created for GEOS-Chem by D. Streets.<br>
+      </li>
+      <li class="size14"><strong>Inventory 2:</strong>
+Emissions for SO2, NOx, CO, total VOC, PM10, PM2.5, BC, and OC for
+various sectors. This was the Streets INTEX-B inventory.<br>
+      </li>
+    </ul>
+  </li>
+  <li class="size14">Even though Inventory 2 has total
+VOC, we cannot use this for GEOS-Chem. GEOS-Chem requires VOC's to be
+speciated into the various hydrocarbons
+(ACET,ALD2,ALK4,C2H6,C3H8,CH2O,ISOP,MEK,PRPE), so we use <strong>Inventory
+1</strong>.<br>
+  </li>
+  <li class="size14">IMPORTANT! Biofuel emiss. are not
+separated from the anthropogenic ones.</li></ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Anthropogenic_emissions#David_Streets" target="_blank">David Streets regional inventory for China/SE Asia</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier14">Streets_&lt;VOC&gt;_dob_2006.generic.1x1<br>
+Streets_&lt;VOC&gt;_dof_2006.generic.1x1<br>
+Streets_&lt;VOC&gt;_dop_2006.generic.1x1<br>
+Streets_&lt;VOC&gt;_ind_2006.generic.1x1<br>
+Streets_&lt;VOC&gt;_pow_2006.generic.1x1<br>
+Streets_&lt;VOC&gt;_tra_2006.generic.1x1</td>
+      <td>
+      <p>Files for speciated VOC's, taken from <strong>Inventory
+1</strong>, for each of the various emission sectors. </p>
+      <p>&lt;VOC&gt; = ACET, ALD2, ALK4, C2H6, C3H8,
+CH2O, ISOP, MEK, PRPE</p>
+      <p>Emission sectors: </p>
+      <ul>
+        <li>dob = domestic biofuel</li>
+        <li>dof = domestic fossil fuel</li>
+        <li>dop = domestic non-combustion</li>
+        <li>ind = industry</li>
+        <li>pow = power plants</li>
+        <li>tra = transportation</li>
+      </ul>
+      <p>Data is placed on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">Streets_&lt;SPEC&gt;_ind_2006.generic.1x1<br>
+Streets_&lt;SPEC&gt;_pow_2006.generic.1x1<br>
+Streets_&lt;SPEC&gt;_res_2006.generic.1x1<br>
+Streets_&lt;SPEC&gt;_tra_2006.generic.1x1</td>
+      <td>
+      <p>Files for the various species: </p>
+      <p>&lt;SPEC&gt; = (NOX,CO,SO2) </p>
+      <p> taken from <strong>Inventory 2</strong>,
+for each of the various emission sectors:</p>
+      <ul>
+        <li>ind = industry</li>
+        <li>pow = power plants</li>
+        <li>res = residential </li>
+        <li>tra = transportation</li>
+      </ul>
+      <p>Data is placed on the <a href="appendix_2.html#A2.7">generic
+1&deg; x 1&deg; grid</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">Streets_&lt;SPEC&gt;_2006.generic.1x1</td>
+      <td>
+      <p>Files including all sectors for each species from
+Inventory 1 and Inventory 2. </p>
+      <p class="size14bi">NOTE: These are not used in
+GEOS-Chem.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">SE_Asia_mask.generic.1x1</td>
+      <td>SE Asia mask for emissions on the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.27"></a>4.2.27 The TOMS_200906
+subdirectory</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>Data: <a href="http://acdb-ext.gsfc.nasa.gov/Data_services/merged/">http://acdb-ext.gsfc.nasa.gov/Data_services/merged/</a></li>
+</ol>
+
+<table style="text-align: left; width: 100%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+
+  <tbody>
+    <tr>
+      <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Files<br>
+      </th>
+      <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Description<br>
+      </th>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">TOMS_O3col_YYYY.geos.1x1<br>
+      </td>
+      <td style="vertical-align: top;">12 months of TOMS/SBUV data on
+the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg; grid</a> for years <br>
+YYYY= 1971 ... 2008 </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.2.28"></a>4.2.28
+The VISTAS_200811 subdirectory</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>NOx inventory from
+Visibility Improvement State and Tribal Association of the Southeast
+(VISTAS), which "is a collaborative effort of state governments, tribal
+governments, and various federal agencies established to initiate and
+coordinate activities associated with the management of regional haze,
+visibility and other air quality issues in the Southeastern United
+States."</li>
+</ol>
+
+<p><span class="size14">REFERENCES:</span></p>
+
+<ol>
+
+  <li>Data: <span class="size14"></span><a href="http://www.vistas-sesarm.org/index.asp">http://www.vistas-sesarm.org/index.asp</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier14">ARP-SeasonalVariation-YYYY-1.1x1<br>
+ARP-SeasonalVariation-YYYY-2.1x1<br>
+ARP-SeasonalVariation-YYYY-3.1x1<br>
+ARP-SeasonalVariation-YYYY-4.1x1<br>
+ARP-SeasonalVariation-YYYY-5.1x1<br>
+ARP-SeasonalVariation-YYYY-6.1x1<br>
+ARP-SeasonalVariation-YYYY-7.1x1<br>
+ARP-SeasonalVariation-YYYY-8.1x1<br>
+ARP-SeasonalVariation-YYYY-9.1x1<br>
+ARP-SeasonalVariation-YYYY-10.1x1<br>
+ARP-SeasonalVariation-YYYY-11.1x1<br>
+ARP-SeasonalVariation-YYYY-12.1x1</td>
+      <td>Ozone seasonal regulation factors on the <a href="appendix_2.html#A2.5">GMAO 1&deg; x 1&deg; grid</a>.</td>
+    </tr>
+    <tr>
+      <td class="courier14">Vistas-NOx-1.1x1<br>
+Vistas-NOx-2.1x1<br>
+Vistas-NOx-3.1x1<br>
+Vistas-NOx-4.1x1<br>
+Vistas-NOx-5.1x1<br>
+Vistas-NOx-6.1x1<br>
+Vistas-NOx-7.1x1<br>
+Vistas-NOx-8.1x1<br>
+Vistas-NOx-9.1x1<br>
+Vistas-NOx-10.1x1<br>
+Vistas-NOx-11.1x1<br>
+Vistas-NOx-12.1x1</td>
+      <td>NOx emissions on the <a href="appendix_2.html#A2.5">GMAO
+1&deg; x 1&deg; grid</a>.</td>
+    </tr>
+    <tr>
+      <td class="courier14">Vistas-Ratio-NOx-1.1x1<br>
+Vistas-Ratio-NOx-2.1x1<br>
+Vistas-Ratio-NOx-3.1x1<br>
+Vistas-Ratio-NOx-4.1x1<br>
+Vistas-Ratio-NOx-5.1x1<br>
+Vistas-Ratio-NOx-6.1x1<br>
+Vistas-Ratio-NOx-7.1x1<br>
+Vistas-Ratio-NOx-8.1x1<br>
+Vistas-Ratio-NOx-9.1x1<br>
+Vistas-Ratio-NOx-10.1x1<br>
+Vistas-Ratio-NOx-11.1x1<br>
+Vistas-Ratio-NOx-12.1x1</td>
+      <td><br>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">wkday_an_scalar.nei99.geos.1x1<br>
+wkend_an_scalar.nei99.geos.1x1</td>
+      <td>Weekend/weekday factors on the <a href="appendix_2.html#A2.5">GMAO&nbsp;1&deg;
+x 1&deg; grid</a>.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size20bi"><a name="4.2.29"></a>4.2.29 The volcano_SO2_200909 subdirectory</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Volcanic_SO2_emissions_from_Aerocom" target="_blank">Volcanic SO2 emissions from Aerocom</a></li>
+  <li>Data: <a href="http://www-lscedods.cea.fr/aerocom/AEROCOM_HC/volc/">http://www-lscedods.cea.fr/aerocom/AEROCOM_HC/volc/</a></li>
+</ol>
+
+<table style="text-align: left; width: 100%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+
+  <tbody>
+    <tr>
+      <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Files<br>
+      </th>
+      <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Description<br>
+      </th>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">YYYY/SO2_volc.erup.YYYYMM.generic.1x1<br>      </td>
+      <td style="vertical-align: top;">Monthly file of eruptive
+emissions on
+the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a><br>
+for years YYYY= 1995 ... 2007
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">YYYY/SO2_volc.nonerup.YYYYMM.generic.1x1<br>      </td>
+      <td style="vertical-align: top;">Monthly file of non-eruptive
+emissions on
+the <a href="appendix_2.html#A2.7">generic 1&deg; x 1&deg; grid</a><br>
+for years YYYY= 1995 ... 2007</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="4.3"></a>4.3
+The GEOS_2x2.5, GEOS_4x5, and GCAP_4x5 directories</p>
+
+<p align="justify">The <tt>GEOS_2x2.5</tt>, <tt>GEOS_4x5</tt>,
+and <tt>GCAP_4x5</tt> data directories contain (in
+general) the same data files for both the GEOS <a href="gc_a2.html#a2.2">2&deg; x 2.5&deg;</a> and <a href="appendix_2.html#A2.2">4&deg; x 5</a>&deg; grids. For
+purposes of clarity we will discuss them together as a group.</p>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="20%">Directory </th>
+      <th>Contents</th>
+    </tr>
+    <tr>
+      <td class="courier16" width="20%">GEOS_2x2.5</td>
+      <td>
+      <p align="justify">Contains data files at <a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a> horizontal
+resolution for <a href="appendix_3.html#A3.3">GEOS–3</a>,
+and <a href="appendix_3.html#A3.4">GEOS–4</a>, <a href="appendix_3.html#A3.5">GEOS–5</a> vertical grids.
+Data files are stored into various subdirectories of this root
+directory.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" width="20%">GEOS_4x5</td>
+      <td>
+      <p align="justify"> Contains data files for <a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a> horizontal
+resolution for <a href="appendix_3.html#A3.2">GCAP</a>, <a href="appendix_3.html#A3.3">GEOS–3</a>, and <a href="appendix_3.html#A3.4">GEOS–4</a>, <a href="appendix_3.html#A3.5">GEOS–5</a>
+vertical grids.
+Data files are stored into various subdirectories of this root
+directory.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">GCAP_4x5</td>
+      <td>
+      <p align="justify">Contains data files for <a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a> horizontal
+resolution for the <a href="appendix_3.html#A3.2">GCAP</a>
+vertical grid. Data files are stored into various subdirectories of
+this root directory.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p align="justify">The following extensions are used to
+denote different GCAP and GEOS model types:</p>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="20%">Extension</th>
+      <th width="15%">Model Type</th>
+      <th width="65%">Grid Type</th>
+    </tr>
+    <tr>
+      <td class="courier16">geos.2x25</td>
+      <td>any GEOS </td>
+      <td><a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>
+grid, surface data only (144 x 91)</td>
+    </tr>
+    <tr>
+      <td class="courier16">geos3.2x25</td>
+      <td><a href="appendix_4.html#A4.2">GEOS–3</a></td>
+      <td><a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>
+grid, <a href="appendix_3.html#A3.3">48 vertical levels</a>
+(met) or <a href="appendix_3.html#A3.3.1">30 vertical
+levels</a> (data) </td>
+    </tr>
+    <tr>
+      <td class="courier16">geos4.2x25 </td>
+      <td><a href="appendix_4.html#A4.3">GEOS–4</a></td>
+      <td><a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>
+grid, <a href="appendix_3.html#A3.4">55 vertical levels</a>
+(met) or <a href="appendix_3.html#A3.4.1">30 vertical
+levels</a> (data) </td>
+    </tr>
+    <tr>
+      <td class="courier16">geos5.2x25</td>
+      <td><a href="appendix_4.html#A4.4">GEOS–5</a></td>
+      <td><a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>
+grid, <a href="appendix_3.html#A3.5">72 vertical levels</a>
+(met) or <a href="appendix_3.html#A3.5.1">47 vertical
+levels</a> (data) </td>
+    </tr>
+    <tr>
+      <td class="courier16">gcap.4x5</td>
+      <td><a href="appendix_4.html#A4.1">GCAP</a></td>
+      <td><a href="appendix_2.html#A2.1">4&deg; x 5&deg;</a>
+grid, <a href="appendix_3.html#A3.2">23 vertical levels</a></td>
+    </tr>
+    <tr>
+      <td class="courier16">geos.4x5</td>
+      <td>any GEOS </td>
+      <td><a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>
+grid, surface only (72 x 46)</td>
+    </tr>
+    <tr>
+      <td class="courier16">geos3.4x5</td>
+      <td><a href="appendix_4.html#A4.2">GEOS–3</a></td>
+      <td><a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>
+grid, <a href="appendix_3.html#A3.3">48 vertical levels</a>
+(met) or <a href="appendix_3.html#A3.3.1">30 vertical
+levels</a> (data)</td>
+    </tr>
+    <tr>
+      <td class="courier16">geos4.4x5</td>
+      <td><a href="appendix_4.html#A4.3">GEOS–4</a></td>
+      <td><a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>
+grid, <a href="appendix_3.html#A3.4">55 vertical levels</a>
+(met) or <a href="appendix_3.html#A3.4.1">30 vertical
+levels</a> (data) </td>
+    </tr>
+    <tr>
+      <td class="courier16">geos5.4x5</td>
+      <td><a href="appendix_4.html#A4.4">GEOS–5</a></td>
+      <td><a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>
+grid, <a href="appendix_3.html#A3.5">72 vertical levels</a>
+(met) or <a href="appendix_3.html#A3.5.1">47 vertical
+levels</a> (data) </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>Files with a <tt>.geos*.2x25</tt> extension
+are located in subdirectories of <tt>GEOS_2x2.5.</tt></li>
+  <li>Files with a <tt>.geos*.4x5</tt> extension are
+located in subdirectories of <tt>GEOS_4x5.</tt></li>
+  <li>Files with a <tt>.gcap.4x5</tt> extension are
+located in subdirectories of <tt>GCAP_4x5.</tt></li>
+  <li> Each subdirectory of <tt>GEOS_2x2.5 </tt>, <tt>GEOS_4x5</tt>,
+and <tt>GCAP_4x5</tt> now contains a README file for
+further reference. </li>
+  <li>Assume that all files listed below are in <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2" target="_blank">binary
+punch (bpch) format</a> unless specified otherwise.</li>
+</ol>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="4.3.1"></a>4.3.1
+The C3H8_C2H6_200109/ subdirectories</p>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16"> C3H8_C2H6_ngas.geos.2x25<br>
+C3H8_C2H6_ngas.geos.4x5<br>
+C3H8_C2H6_ngas.gcap.4x5<br>
+      </td>
+      <td>
+      <p align="justify">Anthropogenic propane and ethane
+emissions computed from natural gas by James Wang and Yaping Xiao.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.2"></a>4.3.2
+The CH3I/ subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li class="size14">The CH3I simulation has not been used
+regularly in a couple of years. If you wish to work with this
+simulation then you will be responsible for bringing it up to the state
+of the science. </li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16">ch4_rice.geos.2x25<br>
+ch4_rice.geos.4x5</td>
+      <td>
+      <p align="justify">Monthly methane emissions from
+rice paddies for CH3I simulation (Fung et al, 1991)</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">ch4_rice.geos.2x25<br>
+ch4_wetl.geos.4x5</td>
+      <td>
+      <p align="justify">Monthly methane emissions from
+wetlands for CH3I simulation (Fung et al, 1991)</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">ocean_ch3i.geos.2x25<br>
+ocean_ch3i.geos.4x5</td>
+      <td>
+      <p align="justify">Aqueous concentrations of ocean
+CH3I</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">ocean_DOC.geos.4x5</td>
+      <td>
+      <p align="justify">Monthly mean values of Dissolved
+Organic Carbon (for CH3I simulation). </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16">ocean_npp.geos.2x25<br>
+ocean_npp.geos.4x5</td>
+      <td>
+      <p align="justify">Net Primary Productivity from the
+ocean (for CH3I simulation). </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16"> radswg.geos.[res]</td>
+      <td>
+      <p align="justify">Contains monthly averaged solar
+insolation at the ground (for CH3I simulation).</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.3"></a>4.3.3
+The CH4_200911 subdirectories</p>
+
+<p class="size14">NOTES:</p>
+
+<ol>
+
+  <li class="size14">This is an update of the now obsolete CH4_200202
+and CH4_200909 subdirectories</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/CH4_simulation" target="_blank">CH4 simulation</a></li>
+  <li>Termites and Soil Absorption: Regridded from 4x5 product described by Fung et. al. 1991</li>
+  <li>Coal, gas_oil, livestock, rice, waste, other: From EDGAR version 4 inventory (<a href="http://edgar.jrc.ec.europa.eu/index.php" target="_blank">http://edgar.jrc.ec.europa.eu/index.php</a>)</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left"> coal.2004.geos.2x25<br>
+gas_oil.2004.geos.2x25<br>
+livestock.2004.geos.2x25<br>
+other.2004.geos.2x25<br>
+rice.2004.geos.2x25<br>
+soilabs.2004.geos.2x25<br>
+termites.2004.geos.2x25<br>
+waste.2004.geos.2x25<br>
+      <br>
+ coal.2004.geos.4x5<br>
+
+gas_oil.2004.geos.4x5<br>
+
+livestock.2004.geos.4x5<br>
+
+other.2004.geos.4x5<br>
+
+rice.2004.geos.4x5<br>
+
+soilabs.2004.geos.4x5<br>
+
+termites.2004.geos.4x5<br>
+
+waste.2004.geos.4x5<br>
+      </td>
+      <td>
+      <p align="justify">Yearly methane emissions from coal mining, gas
+leakage and venting, livestock, rice
+paddies, soil absorption, termites, waste and other are included on <a href="appendix_2.html#A2.3">GMAO 2&deg; x 2.5&deg; grid</a> and <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg; grid</a>.<br>
+Units
+are molecules CH<sub>4</sub>/cm<sup>2</sup>/s.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span class="courier16">GWETTOP/GWETTOP.YYYY.geos4.2x25<br>
+GWETTOP/GWETTOP.YYYY.geos5.2x25<br>
+      <br>
+GWETTOP/GWETTOP.YYYY.geos4.4x5<br>
+
+GWETTOP/GWETTOP.YYYY.geos5.4x5</span><br>      </td>
+      <td style="vertical-align: top;">Monthly and annual mean soil
+wetness.<br>
+For GEOS4, the data are for the years YYYY=2000 ... 2006<br>
+For GEOS5, the data are for the years YYYY=2004 ... 2009<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span class="courier16">wetlands/Carbon_litter.geos.2x25<br>
+      <br>
+</span><span class="courier16">wetlands/Carbon_litter.geos.4x5</span><br>
+
+      </td>
+      <td style="vertical-align: top;">Carbon emissions from litter as
+calculated in a 20th century simulation by the LPJ Vegetation Model<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span class="courier16">wetlands/Carbon_soil.geos.2x25<br>
+      <br>
+</span><span class="courier16">wetlands/Carbon_soil.geos.4x5</span><br>
+
+      </td>
+      <td style="vertical-align: top;">Carbon emissions from soil as
+calculated in a 20th century simulation by the LPJ Vegetation Model</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span class="courier16">wetlands/Wet_frac.geos.2x25<br>
+      <br>
+</span><span class="courier16">wetlands/Wet_frac.geos.4x5</span><br>
+
+      </td>
+      <td style="vertical-align: top;">Wet fraction in each grid cell
+follows the map in Bergamaschi et. al. 2007<br>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" style="vertical-align: top;">wetlands/TSKIN.YYYY.geos4.2x25<br>
+wetlands/TSKIN.YYYY.geos5.2x25<br>
+      <br>
+wetlands/TSKIN.YYYY.geos4.4x5<br>
+
+wetlands/TSKIN.YYYY.geos5.4x5<br>
+      </td>
+      <td style="vertical-align: top;">Monthly and annual mean skin
+temperature<br>
+For GEOS4, the data are for the years YYYY=2000 ... 2006<br>
+For GEOS5, the data are for the years YYYY=2004 ... 2009<br>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.4"></a>4.3.4
+The EPA_NEI_200708/ subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li><span class="size14">These directories include
+the same data than <a href="#4.2.8">EPA_NEI_200708
+subdirectory</a> of GEOS_1x1 directory but at
+resolutions 4&deg; x 5&deg; and 2&deg; x 2.5&deg;.</span></li>
+</ol>
+
+<p class="size18bi"><a name="4.3.5"></a>4.3.5 The EPA_NEI_200806/
+subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>Mask file in
+this directory is the same than in </span><span class="size14"><a href="chapter_4.html#4.2.9">EPA_NEI_200806
+subdirectory</a> of GEOS_1x1 directory but at resolutions&nbsp;</span><span class="size14">4&deg; x 5&deg; and 2&deg; x 2.5&deg;.</span></li>
+  <li><span class="size14">The data are the same as <a href="#4.3.4">EPA_NEI_200708</a>,
+except for NOx (50% decrease over ozone season only from power plant
+and industry sectors) and CO (decrease of 60%). Base year for the
+updated NOx and CO is 2004, since they result from model comparison
+with ICARTT observations.</li>
+</ol>
+
+<p class="size18bi"><a name="4.3.6"></a>4.3.6 The MODIS_LAI_200911
+subdirectorues</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>This directory contains data from <a href="#4.2.18">GEOS_1x1/MODIS_LAI_200911</a>
+directory regridded on the GEOS-Chem grid 2&deg; x 2.5&deg; or 4&deg; x 5&deg;. Please
+refer to the description of <a href="chapter_4.html#4.2.18">GEOS_1x1/MODIS_LAI_200911</a>.</li>
+</ol>
+
+<p class="size18bi"><a name="4.3.7"></a>4.3.7
+The RnPbBe_200203/ subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li class="size14">Liu, H., D.J. Jacob, I. Bey, and R.M.
+Yantosca, <i>Constraints from <sup>210</sup>Pb and <sup>7</sup>Be
+on wet deposition and transporting a global threee-dimensional chemical
+tracer model driven by assimilated meteorological fields</i>, <u>J.
+Geophys. Res.</u>, <b>106</b>, 12,109 - 12,128,
+2001. <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/publications/liu2000.ps" target="_blank">[PS]</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16">7Be.Lal</td>
+      <td>
+      <p align="justify">Source of 7Be (Lal &amp;
+Peters. 1967, used for <sup>222</sup>Rn-<sup>210</sup>Pb-<sup>7</sup>Be
+simulations). File is in plain-text format.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.8"></a>4.3.8 The TOMS_200906 subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>This is an update of the now obsolete TOMS_200701 subdirectories</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+
+<blockquote>
+  <p class="size14">Data source and version:<br>
+--------------------------------<br>
+  <br>
+&nbsp;
+Date are taken from:<br>
+  <br>
+&nbsp; http://acdb-ext.gsfc.nasa.gov/Data_services/merged/index.html<br>
+  <br>
+&nbsp; Version 8 Merged Ozone Data Sets<br>
+&nbsp; Total Ozone Revision 05<br>
+&nbsp; DATA THROUGH: MAR 2009<br>
+&nbsp; LAST MODIFIED: 01 MAY 2009<br>
+  </p>
+  <p class="size14"> Resolution: 5 x 10 deg.<br>
+  <br>
+Contact person for the merged data product:<br>
+Dr. Richard Stolarski (Richard.S.Stolarski@nasa.gov)<br>
+Stacey Frith (Stacey.M.Frith@nasa.gov )</p>
+</blockquote>
+
+<table style="text-align: left; width: 100%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+
+  <tbody>
+    <tr>
+      <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Files<br>
+      </th>
+      <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Description<br>
+      </th>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span class="courier16">TOMS_O3col_YYYY.gcap.4x5 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span> </td>
+      <td style="vertical-align: top;">File containing 12 months of
+combined TOMS/SBUV gridded data on the <a href="appendix_2.html#A4.1">GCAP
+4&deg; x 5&deg; horizontal grid</a>.<br>
+Available years YYYY = 1971 - 2008. </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span class="courier16">TOMS_O3col_YYYY.geos.2x25</span>
+      </td>
+      <td style="vertical-align: top;">File containing 12 months of
+combined TOMS/SBUV gridded
+data on the <a href="appendix_2.html#A2.3">GMAO 2&deg; x 2.5&deg;
+horizontal grid</a>.<br>
+Available years YYYY = 1971 - 2008. </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span class="courier16">TOMS_O3col_YYYY.geos.4x5</span>
+      </td>
+      <td style="vertical-align: top;">File containing 12 months of
+combined TOMS/SBUV gridded
+data on the <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg;
+horizontal grid</a>.<br>
+Available years YYYY = 1971 - 2008. </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.9"></a>4.3.9
+The acetone_200108/ subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li class="size14">Jacob, D.J., B.D. Field, E. Jin, I.
+Bey, Q. Li, J.A. Logan, and R.M. Yantosca, <i>Atmospheric budget
+of acetone</i>, <u>Geophys. Res. Lett.</u>,
+10.1029/2001JD000694, 2002. <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/publications/jacob2001/paper.new.pdf" target="_blank">[PDF]</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">JO1D.geos.2x25<br>
+JO1D.geos.4x5<br>
+JO1D.gcap.4x5</td>
+      <td>
+      <p align="justify"> Monthly mean J(O1D) fields at
+the surface, used to compute emissions of biogenic acetone. Originally
+created by Brendan Field.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">resp.geos.2x25<br>
+resp.geos.4x5<br>
+resp.gcap.4x5</td>
+      <td>
+      <p align="justify">Monthly mean heterotrophic
+respiration fields, compute emissions of biogenic acetone. Originally
+created by Brendan Field.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.10"></a>4.3.10
+The aerosol_200106/ subdirectories</p>
+<p class="size14">NOTES:</p>
+<ol>
+  <li>These data are now obsolete.</li>
+</ol>
+<p class="size18bi"><a name="4.3.11"></a>4.3.11
+The aircraft_NOx_200202/ subdirectories</p>
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Aircraft_emissions#NOx" target="_blank">Aircraft NOx emissions inventory</a></li>
+  <li>Wang, Y., D.J. Jacob, and J.A. Logan, <em>Global
+simulation of tropospheric O3-NOx-hydrocarbon chemistry, 1. Model
+formulation</em>, <u>J. Geophys. Res.</u>, <strong>103</strong>/D9,
+10,713-10,726, 1998. <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/publications/wang1998a.pdf" target="_blank">[PDF]</a></li>
+
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">airjan.2x25<br>
+airfeb.2x25<br>
+airmar.2x25<br>
+airapr.2x25<br>
+airmay.2x25<br>
+airjun.2x25<br>
+airjul.2x25<br>
+airaug.2x25<br>
+airsep.2x25<br>
+airoct.2x25<br>
+airnov.2x25<br>
+airdec.2x25<br>
+      <br>
+airjan.4x5<br>
+airfeb.4x5<br>
+airmar.4x5<br>
+airapr.4x5<br>
+airmay.4x5<br>
+airjun.4x5<br>
+airjul.4x5<br>
+airaug.4x5<br>
+airsep.4x5<br>
+airoct.4x5<br>
+airnov.4x5<br>
+airdec.4x5</td>
+      <td>
+      <p align="justify">Monthly mean emissions of
+Aircraft NOx (based on Wang et al, 1998) for the <a href="appendix_2.html#A4.1">GCAP 4&deg; x 5&deg; grid</a> and
+the GMAO <a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>
+and <a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>
+grids.</p>
+      <p align="justify"> Units are kg NOx/4h. Files are
+in plain-text format.</p>
+      <p align="justify">&nbsp;</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.12"></a>4.3.12
+The ann_mean_trop_200202/ subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>These data are now obsolete. You should always use the dynamic tropopause option.</li>
+</ol>
+  
+<p class="size18bi"><a name="4.3.13"></a>4.3.13 The biofuel_200202/ subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Biofuel_emissions" target="_blank">Biofuel emissions</a></li>
+  <li>Yevich, R. and J. A. Logan, <i>An assesment of
+biofuel use and burning of agricultural waste in the developing world</i>,
+    <u>Global Biogeochem. Cycles</u>, 17 (4), 1095,
+doi:10.1029/2002GB001952, 2003. <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/publications/yevich2003.pdf" target="_blank">[PDF]</a></li>
+
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">biofuel.geos.2x25<br>
+biofuel.geos.4x5<br>
+biofuel.gcap.4x5</td>
+      <td>
+      <p align="justify"> Biofuel burning emissions (for
+the <a href="appendix_2.html#A4.1">GCAP 4&deg; x 5&deg; grid</a>
+and the GMAO <a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>
+and <a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>
+grids) from Jennifer Logan, Rose Yevich, and Bryan Duncan. </p>
+      <p align="justify">Revised version, Feb 2002, now
+includes emissions of 10 tracers:<br>
+NOx, CO, ALK4, ACET, MEK, ALD2, PRPE, C3H8, CH2O, C2H6</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.14"></a>4.3.14
+The biogenic_200203/ subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li class="size14bi">These biogenic emissions are more
+or less obsolete. You should use the MEGAN biogenic emissions.</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Biogenic_emissions" target="_blank">Biogenic emissions</a></li>
+  <li>Bey I., D. J. Jacob, R. M. Yantosca, J. A. Logan, B. Field,
+A. M. Fiore, Q. Li, H. Liu, L. J. Mickley, and M. Schultz, <em>Global
+modeling of tropospheric chemistry with assimilated meteorology: Model
+description and evaluation </em>, <u>J. Geophys. Res.</u>, <strong>106
+    </strong>, 23,073-23,096, 2001. <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/publications/bey2001a.pdf" target="_blank">[PDF]</a> </li>
+
+  <li>Wang, Y., D.J. Jacob, and J.A. Logan, <em>Global
+simulation of tropospheric O3-NOx-hydrocarbon chemistry, 1. Model
+formulation</em>, <u>J. Geophys. Res.</u>, <strong>103</strong>/D9,
+10,713-10,726, 1998. <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/publications/wang1998a.pdf" target="_blank">[PDF] </a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">isopemis.table</td>
+      <td>
+      <p align="justify">Isoprene emissions by Olson land
+type (cf Wang et al 1998, Bey et al 2001). File is in plain-text format.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">light.table</td>
+      <td>
+      <p align="justify">Polynomial coefficients for
+isoprene emissions (cf. Wang et al 1998). File is in plain-text format.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">monotemis.v4-13.table</td>
+      <td>
+      <p align="justify">Biogenic emissions of
+monoterpenes, with emissions from some landtypes modified. File is in
+plain-text format.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.15"></a>4.3.15
+The biomass_200110/ subdirectories</p>
+
+<p class="size14">NOTES on how the interannual BCPO, NH3,
+OCPO, SO2 biomass emissions files were created:</p>
+
+<blockquote>
+  <pre class="courier14">EC OC SO2 NH3<br>TRACERS 34 35 26 29<br>MW,g/mole 12. 12. 64. 17. <br>Grassland 4.8e-01 3.4e+00 3.5e-01 1.3e+00<br>Savanna 4.8e-01 3.4e+00 3.5e-01 1.3e+00<br>Tropic_F 6.6e-01 5.2e+00 5.7e-01 1.3e+00<br>xtraT_F 5.6e-01 9.7e+00 1.0e+00 1.4e+00<br>Boreal_F 5.6e-01 9.7e+00 1.0e+00 1.4e+00</pre>
+</blockquote>
+
+<p class="size14" align="justify">Units for
+emission factors: g of species/kg dry matter from Andreae &amp;
+Merlet (2001). </p>
+
+<p class="size14" align="justify">Use a gridded
+monthly dry biomass burned data constrained from satellite observations
+by Duncan et al. (2003) with emission factors above for 6 different
+surface vegetation types provided by Rose Yevich.</p>
+
+<p class="size14" align="justify">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Biogenic_emissions" target="_blank">Biomass burning emissions</a></li>
+  <li>Andreae, M.O. &amp; P. Merlet, <em>Emission of
+trace gases and aerosols from biomass burning</em>, <u>Global
+Biogeochem. Cycles</u>, <strong>15</strong>,
+955-966, 2001.</li>
+  <li>Duncan, B.N., R.V. Martin, A.C. Staudt, R. Yevich, J.A.
+Logan, <i>Interannual and Seasonal Variability of Biomass
+Burning Emissions Constrained by Satellite Observations</i>, <u>J.
+Geophys. Res.</u>, <strong>108</strong>(D2), 4040,
+doi:10.1029/2002JD002378, 2003. <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/publications/duncan2002a.pdf" target="_blank">[PDF]</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier14" align="left" valign="top">bioburn.interannual.geos.2x25.YYYY<br>
+bioburn.interannual.geos.4x5.YYYY<br>
+bioburn.interannual.gcap.4x5.YYYY</td>
+      <td valign="top">
+      <p align="justify">Biomass burning emissions for
+years 1996 to 2002 with interannual variability, compiled by Randall
+Martin. Revised version, October 2001, now includes emissions of 10
+tracers:</p>
+      <p align="justify">NOx, CO, ALK4, ACET, MEK, ALD2,
+PRPE, C3H8, CH2O, C2H6</p>
+      <p align="justify">Available years YYYY = 1996 to
+2002.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" align="left">bioburn.seasonal.geos.2x25<br>
+bioburn.seasonal.geos.4x5<br>
+bioburn.seasonal.gcap.4x5</td>
+      <td>
+      <p align="justify">Monthly mean (seasonal) biomass
+burning emissions from Jennifer Logan, Rose Yevich, and Amanda Staudt.
+Revised version, October 2001, now includes emissions of 10 tracers:</p>
+      <p align="justify">NOx, CO, ALK4, ACET, MEK, ALD2,
+PRPE, C3H8, CH2O, C2H6</p>
+      <p align="justify">Available years YYYY = 1996 to
+2002.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" align="left">bioburn.annual.geos.2x25<br>
+bioburn.annual.geos.4x5<br>
+bioburn.annual.gcap.4x5</td>
+      <td>
+      <p align="justify">Annual (sum of all months)
+biomass burning emissions from Jennifer Logan, Rose Yevich, and Amanda
+Staudt. Revised version, October 2001, now includes emissions of 10
+tracers:</p>
+      <p align="justify">NOx, CO, ALK4, ACET, MEK, ALD2,
+PRPE, C3H8, CH2O, C2H6</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" align="left">BCPO.bioburn.interannual.geos.2x25.YYYY<br>
+BCPO.bioburn.seasonal.geos.2x25<br>
+      <br>
+BCPO.bioburn.interannual.geos.4x5.YYYY<br>
+BCPO.bioburn.seasonal.geos.4x5<br>
+      <br>
+      <span class="courier14">BCPO.bioburn.interannual.gcap.4x5.YYYY<br>
+BCPO.bioburn.seasonal.gcap.4x5</span></td>
+      <td>
+      <p align="justify">Interannual and seasonal biomass
+emissions for hydrophobic black carbon (BCPO). Files were assembed by
+Rokjin Park.</p>
+      <p align="justify">Available years YYYY = 1996 to
+2003.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" align="left">NH3.bioburn.interannual.geos.2x25.YYYY<br>
+NH3.bioburn.seasonal.geos.2x25<br>
+      <br>
+NH3.bioburn.interannual.geos.4x5.YYYY<br>
+NH3.bioburn.seasonal.geos.4x5<br>
+      <br>
+NH3.bioburn.interannual.gcap.4x5.YYYY<br>
+NH3.bioburn.seasonal.gcap.4x5<br>
+      </td>
+      <td>
+      <p align="justify">Interannual and seasonal biomass
+emissions for NH3. Files were assembed by Rokjin Park.</p>
+      <p align="justify">Available years YYYY = 1996 to
+2002. </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" align="left">OCPO.bioburn.interannual.geos.2x25.YYYY<br>
+OCPO.bioburn.seasonal.geos.2x25<br>
+      <br>
+OCPO.bioburn.interannual.geos.4x5.YYYY<br>
+OCPO.bioburn.seasonal.geos.4x5<br>
+      <br>
+OCPO.bioburn.interannual.gcap.4x5.YYYY<br>
+OCPO.bioburn.seasonal.gcap.4x5<br>
+      </td>
+      <td>
+      <p align="justify">Interannual and seasonal biomass
+emissions for hydrophobic organic carbon (OCPO). Files were assembed by
+Rokjin Park.</p>
+      <p align="justify">Available years YYYY = 1996 to
+2002.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" align="left">SO2.bioburn.interannual.geos.2x25.YYYY<br>
+SO2.bioburn.seasonal.geos.2x25<br>
+      <br>
+SO2.bioburn.interannual.geos.4x5.YYYY<br>
+SO2.bioburn.seasonal.geos.4x5<br>
+      <br>
+SO2.bioburn.interannual.gcap.4x5.YYYY<br>
+SO2.bioburn.seasonal.gcap.4x5<br>
+      </td>
+      <td>
+      <p align="justify">Interannual and seasonal biomass
+emissions for SO2. Files were assembed by Rokjin Park.</p>
+      <p align="justify">Available years YYYY = 1996 to
+2002.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.16"></a>4.3.16
+The carbon_200411 subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>This an update of the now obsolete carbon_200404 subdirectory.</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Carbonaceous_aerosols" target="_blank">Carbonaceous aerosols</a></li>
+  <li>Park, R. J., D. J. Jacob, M. Chin and R. V. Martin, <em>Sources
+of carbonaceous aerosols over the United States and implications for
+natural visibility</em>, <u>J. Geophys. Res.</u>, <strong>108</strong>(D12),
+4355, doi:10.1029/2002JD003190, 2003. <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/publications/2002JD003190.pdf" target="_blank">[PDF]</a></li>
+
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left" valign="top">BCOC_TBond_biofuel.geos.2x25<br>
+BCOC_TBond_biofuel.geos.4x5</td>
+      <td valign="top">
+      <p align="justify">Emissions of black carbon and
+organic carbon aerosols from biofuels (baseline year: 2001), according
+to the Tami Bond et al (2004) inventory. Units are kg C/year.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">BCOC_TBond_biomass.geos.2x25<br>
+BCOC_TBond_biomass.geos.4x5</td>
+      <td>
+      <p align="justify">Emissions of black carbon and
+organic carbon aerosols from biomass burning for baseline year 2001,
+according to the Tami Bond et al (2004) inventory. Units are kg C/year.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">BCOC_TBond_fossil.geos.2x25<br>
+BCOC_TBond_fossil.geos.4x5</td>
+      <td>
+      <p align="justify">Emissions of black carbon and
+organic carbon aerosols from fossil fuels (baseline year: 2001),
+according to the Tami Bond et al (2004) inventory. Units are kg C/year.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">BCOC_anthsrce.geos.2x25<br>
+BCOC_anthsrce.geos.4x5</td>
+      <td>
+      <p align="justify">Monthly mean emissions (baseline
+year: 1998) of black carbon and elemental carbon from fossil fuels,
+according to the inventory of Cooke et al (1998), with seasonality
+imposed by R. Park (2004). Units are kg C/month.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">BCOC_biofuel.geos.2x25<br>
+BCOC_biofuel.geos.4x5</td>
+      <td>
+      <p align="justify">Monthly mean emissions (baseline
+year: 1998) of black carbon and elemental carbon from biofuels,
+according to the inventory of Cooke et al (1998), with seasonality
+imposed by R. Park (2004). Units are kg C/month.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">emis_fac.EC-OC.2x25<br>
+emis_fac.EC-OC.4x5</td>
+      <td>
+      <p align="justify">Emission factors that are used to
+compute the yield of black carbon and organic carbon from the GEOS–Chem
+biomass burning inventory. Contact: Rokjin Park (rjp<img src="../../../img/at_sign.gif" height="13" width="10">snu.ac.kr).</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">NVOC.geos.2x25<br>
+NVOC.geos.4x5</td>
+      <td>
+      <p align="justify">Emissions of non-volatile organic
+carbon (kg C/month). This is used for the secondary organic aerosol
+emissions. </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.17"></a>4.3.17 The carbon_200909
+subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>This subdirectory contains updates for Bond's inventory for
+biofuel and fossil emissions compared to carbon_200411</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Carbonaceous_aerosols" target="_blank">Carbonaceous aerosols</a></li>
+  <li>Bond, T.C. et al.: Historical emissions of black and organic
+carbon aerosol from energy-related combustion, 1850-2000, Global
+Biogeochem. Cycles, 21 GB2018, doi: 10.1029/2006GB002840, 2007.</li>
+
+</ol>
+
+<table style="text-align: left; width: 100%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+
+  <tbody>
+    <tr>
+      <th style="vertical-align: top;">Files</th>
+      <th style="vertical-align: top;">Description</th>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">BCOC_TBond_biofuel.2000.geos.2x25</td>
+      <td style="vertical-align: top;">Bond et al. 2007 biofuel emissions of EC and OC in [kg C/month].
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" style="vertical-align: top;">BCOC_TBond_fossil.2000.geos.2x25</td>
+      <td style="vertical-align: top;">Bond et al. 2007 biofuel emissions of EC and OC in [kg C/month].</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.18"></a>4.3.18
+The drydep_200203 subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Dry_deposition" target="_blank">Dry deposition</a></li>
+  <li>Jacob, D.J., and S.C. Wofsy, "Budgets of reactive nitrogen,
+hydrocarbons, and ozone over the Amazon forest during the wet season", <u>J.
+Geophys. Res.</u>, <strong>95</strong>, 16737-16754,
+1990.</li>
+  <li>Jacob, D.J., et al, "Deposition of ozone to tundra", <u>J.
+Geophys. Res.</u>, <strong>97</strong>, 16473-16479,
+1992.</li>
+  <li> Wesely, M.L, "Improved parameterizations for surface
+resistance to gaseous dry deposition in regional-scale numerical
+models", Environmental Protection Agency Report EPA/600/3-88/025,
+Research Triangle Park (NC), 1988.</li>
+  <li> Wesely, M. L., Parameterization of surface resistance to
+gaseous dry deposition in regional-scale numerical models. <u>Atmos.
+Environ.</u>, <strong>23</strong> 1293-1304, 1989.</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">drydep.coef</td>
+      <td>
+      <p align="justify">Polynomial coefficients for dry
+deposition (Wesely, 1989). File is in plain-text format.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">drydep.table</td>
+      <td>
+      <p align="justify">Olson land types and dry
+deposition resistances (Wesely, 1989; Jacob et al, 1990, 1992). File is
+in plain-text format. </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.19"></a>4.3.19
+The dust_200605/ subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Mineral_dust_aerosols" target="_blank">Mineral dust aerosols</a></li>
+  <li>Fairlie, T. D., D.J. Jacob, and R.J. Park, <i>The
+impact of transpacific transport of mineral dust in the United States</i>,
+    <u>Atmos. Environ.</u>, <strong>41</strong>,
+1251-1266, 2007. <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/publications/fairlie2007.pdf" target="_blank">[PDF]</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">dst_tibds.geos.2x25<br>
+dst_tibds.geos.4x5<br>
+dst_tibds.gcap.4x5</td>
+      <td>
+      <p align="justify">Time-invariant fields which are
+used as input by the DEAD dust emissions routines (cf. C. Zender).
+These have been converted to binary punch format by Duncan Fairlie and
+Bob Yantosca.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">dst_tvbds.geos.2x25<br>
+dst_tvbds.geos.4x5<br>
+dst_tvbds.gcap.4x5</td>
+      <td>
+      <p align="justify">Time-variant (e.g. monthly mean)
+fields which are used as input by the DEAD dust emissions routines (cf.
+C. Zender). These have been converted to binary punch format by Duncan
+Fairlie and Bob Yantosca. </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">GOCART_src_fn.geos.2x25 <br>
+GOCART_src_fn.geos.4x5<br>
+GOCART_src_fn.gcap.4x5</td>
+      <td>
+      <div align="justify">File containing the GOCART dust
+source function (i.e. frac of grid box suitable for mobilization).
+Supplied by Duncan Fairlie and converted to bpch format by Bob
+Yantosca.</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.20"></a>4.3.20
+The fossil_200104/ subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Anthropogenic_emissions#GEIA.2FPiccot" target="_blank">GEIA/Piccot anthropogenic emissions inventory</a></li>
+  <li>Bey I., D. J. Jacob, R. M. Yantosca, J. A. Logan, B. Field,
+A. M. Fiore, Q. Li, H. Liu, L. J. Mickley, and M. Schultz, <em>Global
+modeling of tropospheric chemistry with assimilated meteorology: Model
+description and evaluation </em>, <u>J. Geophys. Res.</u>, <strong>106
+    </strong>, 23,073-23,096, 2001. <a href="http://www.as.harvard.edu/ctm/publications/bey2001a.pdf" target="_blank">[PDF]</a> </li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">merge_nobiofuels.geos.2x25<br>
+merge_nobiofuels.geos.4x5<br>
+merge_nobiofuels.gcap.4x5<br>
+      </td>
+      <td>
+      <p align="justify">Anthropogenic emissions, with
+contributions from biofuels removed so as to avoid double-counting.
+Version released April 2001, by Jennifer Logan, Rose Yevich, and Amanda
+Staudt. Contains 10 emission species.</p>
+      <p align="justify">NOx, CO, ALK4, ACET, MEK, ALD2,
+PRPE, C3H8, CH2O, ETHE, SOx</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">MELD_N96_70_HC</td>
+      <td>
+      <p align="justify">File containing day of week scale
+factors for anthropogenic emissions for the <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg; grid</a> (a
+similar file is available for the <a href="appendix_2.html#A4.1">GCAP
+4&deg; x 5&deg; grid</a>). File is in plain-text format.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">MELD2x25</td>
+      <td>
+      <p align="justify">File containing day of week scale
+factors for anthropogenic emissions for the <a href="appendix_2.html#A2.3">GMAO 2&deg; x 2.5&deg; grid</a>.
+File is in plain-text format.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.21"></a>4.3.21
+The hydrogen_200704/ subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>Curci, G., G. Visconti, D.J. Jacob, and M.J. Evans, <i>Tropospheric
+fate of Tunguska generated nitrogen oxides, </i><u>Geophys.
+Res. Lett.</u>, <b>31</b>, L06123, 2004. <a href="../../publications/curci20033.pdf" target="_blank">[PDF]</a></li>
+  <li>Deutsch et al., <u>Nature</u>, <strong>445</strong>,
+163-167 (2007).</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">H2COyield.geos3.2x25<br>
+H2COyield.geos3.4x5<br>
+      <br>
+H2COyield.geos4.2x25<br>
+H2COyield.geos4.4x5<br>
+      </td>
+      <td>
+      <p align="justify">Files containing relative H2/CO
+yield from photochemical production. This has been archived monthly
+(PH2/PCO using the PRODLOSS diagnostic and turning H2 on as an active
+species) from a full chemistry simulation at 4x5, v7–03–03, year 2001,
+GEOS–3 met fields.</p>
+      <p align="justify">Data has been regridded to the <a href="appendix_3.html#A3.3">GEOS–3</a> <a href="appendix_2.html#A2.3">
+2&deg; x 2.5&deg;</a> grid and <a href="appendix_3.html#A3.4">GEOS–4</a> <a href="appendix_2.html#A2.3"> </a><a href="appendix_2.html#A2.3">2&deg; x
+2.5&deg;</a> and <a href="appendix_2.html#A2.2"> 4&deg; x 5&deg; </a>grids.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">Ocean_H2_annual.geos3.2x25<br>
+Ocean_H2_annual.geos3.4x5<br>
+      <br>
+Ocean_H2_annual.geos4.2x25<br>
+Ocean_H2_annual.geos4.4x5</td>
+      <td>
+      <p align="justify">Ocean H2 emissions are based on
+the N2 oceanic fixation rates determined by Curtis Deutsch (University
+of Washington) by assimilating observed nutrient distributions in the
+oceans (see citation above).</p>
+      <p align="justify">Data has been regridded to the <a href="appendix_3.html#A3.3">GEOS–3</a> <a href="appendix_2.html#A2.3">
+2&deg; x 2.5&deg;</a> grid and <a href="appendix_3.html#A3.4">GEOS–4</a> <a href="appendix_2.html#A2.3"> </a><a href="appendix_2.html#A2.3">2&deg; x
+2.5&deg;</a> and <a href="appendix_2.html#A2.2"> 4&deg; x 5&deg; </a>grids.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">stratO1D.geos3.2x25<br>
+stratO1D.geos3.4x5<br>
+      <br>
+stratO1D.geos4.2x25<br>
+stratO1D.geos4.4x5<br>
+      </td>
+      <td>
+      <p align="justify">The O1D fields were obtained from
+Gabriele Curci GEOS–Chem simulation in the stratosphere (GEOS–Chem
+v5–03).</p>
+      <p align="justify">Data has been regridded to the <a href="appendix_3.html#A3.3">GEOS–3</a> <a href="appendix_2.html#A2.3">
+2&deg; x 2.5&deg;</a> grid and <a href="appendix_3.html#A3.4">GEOS–4</a> <a href="appendix_2.html#A2.3"> </a><a href="appendix_2.html#A2.3">2&deg; x
+2.5&deg;</a> and <a href="appendix_2.html#A2.2"> 4&deg; x 5&deg; </a>grids.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.22"></a>4.3.22
+The leaf_area_index_200202/ subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>These data are now obsolete and will be removed in the near future. If you are using the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MEGAN_biogenic_emissions#MEGAN_in_GEOS-Chem_v8-02-04_and_later_versions" target="_blank">MEGAN v2.1 biogenic emissions</a>, you should also use the newer <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MODIS_leaf_area_indices" target="_blank">MODIS-derived LAI product</a>.</li>
+</ol>
+
+<p class="size18bi"><a name="4.3.23"></a>4.3.23 The
+leaf_area_index_200412 subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol><li>The leaf area indices in this directory were derived from
+the AVHRR satellite. However, these data are now obsolete and have been
+replaced by the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MODIS_leaf_area_indices" target="_blank">MODIS-derived leaf area index product</a>. </li><li>The AVHRR LAI should not be used with MEGAN v2.1 biogenic emissions (i.e in GEOS-Chem versions <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-04" target="_blank">v8-02-04</a> and higher). <a href="http://cybele.bu.edu/modismisr/products/avhrr/avhrrlaifpar.html" target="_blank">See this wiki post for more information.</a>.</li>
+</ol><p class="size18bi"><a name="4.3.24"></a>4.3.24
+The lightning_NOx_200709/ subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>All CTH (cloud top height) files in this directory are obsolete.
+They are replaced by the files in lightning_NOx_200907 subdirectories.</li>
+</ol>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li> GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Lightning_NOx_emissions" target="_blank">Lightning NOx emissions</a></li>
+  <li>Pickering et al. 1998, <u>J. Geophys. Res.</u> <strong>103</strong>,
+31,203-31,316.</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier14" align="left" valign="top">light_dist.dat.geos3</td>
+      <td>
+      <p align="justify">Vertical distribution of
+lightning NOx emissions, with a vertical resolution of 0.05 km.
+(Pickering, 1998). File is in plain-text format.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" align="left" valign="top">OTD-LIS-Local-Redist.CTH.v3.geos4.2x25<br>
+OTD-LIS-Local-Redist.CTH.v3.geos4.4x5 </td>
+      <td>
+      <p align="justify">File containing monthly spatial
+redistribution factors (computed via the OTD–LIS local method of Lee
+Murray (cf Bastien Sauvage) for lightning flashes computed from OTD–LIS
+satellite observations.</p>
+      <p align="justify"> This file is for the CTH (cloud
+top height) parameterization and GEOS–4 grids.<br>
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" align="left" valign="top">OTD-LIS-Local-Redist.CTH.v3.geos5.2x25<br>
+OTD-LIS-Local-Redist.CTH.v3.geos5.4x5</td>
+      <td>
+      <p align="justify">File containing monthly spatial
+redistribution factors (computed via the OTD–LIS local method of Lee
+Murray (cf Bastien Sauvage) for lightning flashes computed from OTD–LIS
+satellite observations. </p>
+      <p align="justify">This file is for the CTH (cloud
+top height) parameterization and GEOS–5 grids. </p>
+      <p align="justify"> <span class="size14bi">NOTE:
+This file was generated based on 3-years of GEOS-5 met data: 2005,
+2006, 2007. Also the shallow cloud inhibition trap was not invoked for
+the CTH parameterization (bmy, 2/21/08) </span><br>
+      </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">OTD-LIS-Local-Redist.CTH.v3.geos5.4x5.reprocessed_geos5_fix<br>
+OTD-LIS-Local-Redist.CTH.v3.geos5.2x25.reprocessed_geos5_fix</td>
+      <td>
+      <p align="justify">OTD/LIS redistribution for
+GEOS-5.1.0 "reprocessed"
+2008 met fields. This file was created by Lee Murray as soon as the
+2008 met fields were reprocessed. You cannot use this file for any
+other year. This was expedited for the NRT-ARCTAS code.&nbsp;This
+file
+will be replaced when all years of GEOS-5.1.0 "reprocessed" met fields
+become available.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14">OTD-LIS-Local-Redist.CTH.v3.geos5.4x5.reprocessed_geos5_fix.2004_2005_2008<br>
+OTD-LIS-Local-Redist.CTH.v3.geos5.2x25.reprocessed_geos5_fix.2004_2005_2008</td>
+      <td>
+      <p align="justify">OTD/LIS
+redistribution for GEOS-5.1.0 "reprocessed" for 2004, 2005, and 2008
+met fields.&nbsp;This file was created by Lee Murray as soon as
+these 3
+years became available.&nbsp; You cannot use this file for any
+other
+years. This was expedited in order to facilitate the 1-year benchmark
+for GEOS-Chem v8-02-01.&nbsp;This file will be replaced when all
+years
+of GEOS-5.1.0 "reprocessed" met fields become available.<span class="size14bi"></span></p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" align="left" valign="top">OTD-LIS-Local-Redist.MFLUX.v3.geos4.2x25<br>
+      <span class="courier14">OTD-LIS-Local-Redist.MFLUX.v3.geos4.4x5</span></td>
+      <td>
+      <p align="justify">File containing monthly spatial
+redistribution factors (computed via the OTD–LIS local method of Lee
+Murray (cf Bastien Sauvage) for lightning flashes computed from OTD–LIS
+satellite observations. </p>
+      <p align="justify">This file is for the MFLUX (cloud
+mass flux) parameterization and GEOS–4 grids. </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier14" align="left" valign="top">OTD-LIS-Local-Redist.PRECON.v3.geos4.4x5</td>
+      <td>
+      <p align="justify">File containing monthly spatial
+redistribution factors (computed via the OTD–LIS local method of Lee
+Murray (cf Bastien Sauvage) for lightning flashes computed from OTD–LIS
+satellite observations. </p>
+      <p align="justify"> This file is for the PRECON
+(convective precipitation parameterization and GEOS–4 grids.<br>
+      </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.25"></a>4.3.25 The
+lightning_NOx_200907/ subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Lightning_NOx_emissions" target="_blank">Lightning NOx emissions</a></li>
+  <li><a href="http://www.atmos-chem-phys.net/7/815/2007/acp-7-815-2007.pdf" target="_blank">Sauvage et al, 2007, ACP</a></li>
+</ol>
+
+<table style="text-align: left; width: 100%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+
+  <tbody>
+    <tr>
+      <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Files<br>
+      </th>
+      <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Description<br>
+      </th>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span class="courier14">OTD-LIS-Local-Redist.CTH.v4.geos4.2x25</span><br>
+      </td>
+      <td style="vertical-align: top;">OTD/LIS
+redistribution for GEOS-5.1.0 "reprocessed" met fields.<br>
+This file is for the CTH (cloud
+top height) parameterization and GEOS–4 grids.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><span class="courier14">OTD-LIS-Local-Redist.CTH.v4.geos5.2x25</span><br>
+      </td>
+      <td style="vertical-align: top;">OTD/LIS
+redistribution for GEOS-5.1.0 "reprocessed" met fields.<br>
+This file is for the CTH (cloud
+top height) parameterization and GEOS–5 grids.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.26"></a>4.3.26
+The pco_lco_200203/ subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>Schneider, H. R., D. B. A. Jones, G.-Y. Shi, and M. B.
+McElroy. Analysis of residual mean transport in the stratosphere. Part
+I: Model description and comparison with satellite data, submitted to <u>J.
+Geophys. Res.</u>, 1998.</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">COprod.gcap.4x5<br>
+COloss.gcap.4x5</td>
+      <td>
+      <p align="justify">Stratospheric P(CO) and L(CO)
+rates obtained from Hans Schneider's 2D model, regridded to the <a href="appendix_3.html#A3.2">GCAP</a> <a href="appendix_2.html#A4.1">4&deg;
+x 5&deg; grid</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">COprod.geos3.2x25<br>
+COprod.geos3.4x5<br>
+COloss.geos3.2x25<br>
+COloss.geos3.4x5 </td>
+      <td>
+      <p align="justify">Stratospheric P(CO) and L(CO)
+rates obtained from Hans Schneider's 2D model, regridded to the <a href="appendix_3.html#A3.3">GEOS–3</a> <a href="appendix_2.html#A2.3">
+2&deg; x 2.5&deg;</a> and <a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a> grids. </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">COprod.geos4.2x25<br>
+COprod.geos4.4x5<br>
+COloss.geos4.2x25<br>
+COloss.geos4.4x5</td>
+      <td>
+      <p align="justify">Stratospheric P(CO) and L(CO)
+rates obtained from Hans Schneider's 2D model, regridded to the <a href="appendix_3.html#A3.4">GEOS–4</a> <a href="appendix_2.html#A2.3">2&deg;
+x 2.5&deg;</a> and <a href="appendix_2.html#A2.2"> 4&deg; x 5&deg; </a>grids.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">COprod.geos5.2x25<br>
+COprod.geos5.4x5<br>
+COloss.geos5.2x25<br>
+COloss.geos5.4x5 </td>
+      <td>
+      <p align="justify">Stratospheric P(CO) and L(CO)
+rates obtained from Hans Schneider's 2D model, regridded to the <a href="appendix_3.html#A3.5">GEOS–5</a> <a href="appendix_2.html#A2.3">2&deg;
+x 2.5&deg;</a>, and <a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a> grids.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.27"></a>4.3.27
+The pnoy_200106/ subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>Schneider, H. R., D. B. A. Jones, G.-Y. Shi, and M. B.
+McElroy. Analysis of residual mean transport in the stratosphere. Part
+I: Model description and comparison with satellite data, submitted to <u>J.
+Geophys. Res.</u>, 1998.</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">pnoy_nox_hno3.gcap.4x5 </td>
+      <td>
+      <p align="justify">Contains P(NOy), [NO], [NO2],
+[NO3], and [HNO3] taken from the 2-D stratospheric model of Hans
+Schneider. Revised Version June 2001 by Bob Yantosca to correct some
+negative numbers in the original files.</p>
+      <p align="justify">These files are used for the NOy
+upper boundary flux condition for the <a href="appendix_3.html#A3.2">GCAP</a>
+      <a href="appendix_2.html#A2.3"> </a><a href="appendix_2.html#A2.1"> 4&deg; x 5&deg;</a> grid. </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">pnoy_nox_hno3.geos3.2x25<br>
+pnoy_nox_hno3.geos3.4x5</td>
+      <td>
+      <p align="justify"> Contains P(NOy), [NO], [NO2],
+[NO3], and [HNO3] taken from the 2-D stratospheric model of Hans
+Schneider. Revised Version June 2001 by Bob Yantosca to correct some
+negative numbers in the original files.</p>
+      <p align="justify">These files are used for the NOy
+upper boundary flux condition for the <a href="appendix_3.html#A3.3">GEOS–3</a>
+      <a href="appendix_2.html#A2.3"> </a><a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a> and <a href="appendix_2.html#A2.2"> 4&deg; x 5&deg; </a>grids.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">pnoy_nox_hno3.geos4.2x25<br>
+pnoy_nox_hno3.geos4.4x5</td>
+      <td>
+      <p align="justify"> Contains P(NOy), [NO], [NO2],
+[NO3], and [HNO3] taken from a 2-D stratospheric model (Schneider et
+al, 2000). Created January 2003.</p>
+      <p align="justify">These files are used for the NOy
+upper boundary flux condition for the <a href="appendix_3.html#A3.4">GEOS–4</a>
+      <a href="appendix_2.html#A2.3"> </a><a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a> and <a href="appendix_2.html#A2.2"> 4&deg; x 5&deg; </a>grids.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">pnoy_nox_hno3.geos5.2x25<br>
+pnoy_nox_hno3.geos5.4x5</td>
+      <td>Contains P(NOy), [NO], [NO2], [NO3], and [HNO3] taken
+from the 2-D stratospheric model of Hans Schneider. Revised Version
+June 2001 by Bob Yantosca to correct some negative numbers in the
+original files.
+      <p align="justify">These files are used for the NOy
+upper boundary flux condition for the <a href="appendix_3.html#A3.5">GEOS–5</a>
+      <a href="appendix_2.html#A2.3"> </a><a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a> and <a href="appendix_2.html#A2.2"> 4&deg; x 5&deg; </a>grids.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.28"></a>4.3.28 The scalefoss_200202/ subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>These directories are now obsolete,
+and are preserved here only for versions of GEOS-Chem prior to
+v8-01-04.&nbsp;They are superseded by the new scale factors from
+Aaron van Donkelaar in <a href="#4.2.1">anth_scale_factors_200905/</a>.</li>
+  <li>For more information, please see the GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Scale_factors_for_anthropogenic_emissions" target="_blank">Scale factors for anthropogenic emissions</a></li>
+
+</ol><p class="size18bi"><a name="4.3.29"></a>4.3.29
+The soil_NOx_200203/ subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Soil_NOx_emissions">Soil NOx emissions</a></li>
+  <li>Wang, Y., D.J. Jacob, and J.A. Logan, <em>Global
+simulation of tropospheric O3-NOx-hydrocarbon chemistry, 1. Model
+formulation</em>, <u>J. Geophys. Res.</u>, <strong>103</strong>/D9,
+10,713-10,726, 1998. <a href="http://www.as.harvard.edu/ctm/publications/wang1998a.pdf" target="_blank">[PDF]</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">climatprep2x25.dat<br>
+climatprep4x5.dat</td>
+      <td>
+      <p align="justify">Monthly soil precipitation for
+soil NOx emissions (Wang et al, 1998). File is in plain-text format.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">fert_scale.dat</td>
+      <td>
+      <p align="justify">Fertilizer NOx emissions (Wang et
+al, 1998). File is in plain-text format.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">soiltype.dat</td>
+      <td>
+      <p align="justify">Mapping from Olson land type to
+soil land type (Wang et al, 1998). File is in plain-text format.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.30"></a>4.3.30
+The stratOH_200203/ subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>These files are used by <tt>schem.f</tt> to
+prevent certain tracers from building up in the stratosphere.</li>
+<li>At some point this stratospheric chemistry scheme will be updated.</li>
+</ol>
+<p class="size18bi"><a name="4.3.31"></a>4.3.31
+The stratjv_200203/ subdirectories</p>
+
+<p class="size14">NOTES:</p>
+<ol>
+  <li>These files were generated with the obsolete SLOWJ photolysis scheme. </li>
+  <li>These files are used by <tt>schem.f</tt> to prevent certain tracers from building up in the stratosphere.</li>
+<li>At some point this stratospheric chemistry scheme will be updated.</li>
+</ol>
+
+<p class="size18bi"><a name="4.3.32"></a>4.3.32
+The sulfate_sim_200508/ subdirectories</p>
+
+<p class="size14" align="justify">REFERENCES:</p>
+<ol>
+  <li>GEOS-Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Sulfate_aerosols" target="_blank">Sulfate aerosols</a></li>
+  <li>Andreae, M.O. &amp; P. Merlet, <em>Emission of
+trace gases and aerosols from biomass burning</em>, <u>Global
+Biogeochem. Cycles</u>, <strong>15</strong>,
+955-966, 2001.</li>
+  <li>Duncan, B.N., R.V. Martin, A.C. Staudt, R. Yevich, J.A.
+Logan, <i>Interannual and Seasonal Variability of Biomass
+Burning Emissions Constrained by Satellite Observations</i>, <u>J.
+Geophys. Res.</u>, <strong>108</strong>(D2), 4040,
+doi:10.1029/2002JD002378, 2003. <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/publications/duncan2002a.pdf">[PDF]</a></li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">DMS_seawater.geos.2x25<br>
+DMS_seawater.geos.4x5<br>
+DMS_seawater.gcap.4x5 <br>
+      </td>
+      <td>
+      <p align="justify">Monthly average DMS seawater
+concentrations [nm/ML] on the<a href="appendix_2.html#A2.1">
+GCAP 4&deg; x 5&deg;</a>, <a href="appendix_2.html#A2.3">GMAO
+2&deg; x 2.5&deg;</a>, and <a href="appendix_2.html#A2.2">GMAO
+4&deg; x 5&deg;</a> grids. From Andreae.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">NH3_anthsrce.geos.2x25<br>
+NH3_anthsrce.geos.4x5<br>
+NH3_anthsrce.gcap.4x5<br>
+      </td>
+      <td>
+      <p align="justify">Binary punch file containing
+anthropogenic NH3 emissions for the year 1990 [kg N/month] on the<a href="appendix_2.html#A2.1"> GCAP 4&deg; x 5&deg;</a>, <a href="appendix_2.html#A2.3">GMAO 2&deg; x 2.5&deg;</a>, and <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg;</a> grids.
+From GEIA.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">NH3_biofuel.geos.2x25<br>
+NH3_biofuel.geos.4x5<br>
+NH3_biofuel.gcap.4x5<br>
+      </td>
+      <td>
+      <p align="justify">Binary punch files containing NH3
+biofuel burning emissions [kg NH3/month] on the<a href="appendix_2.html#A2.1"> GCAP 4&deg; x 5&deg;</a>, <a href="appendix_2.html#A2.3">GMAO 2&deg; x 2.5&deg;</a>, and <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg;</a> grids.
+From GEIA.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">NH3_natusrce.geos.2x25<br>
+NH3_natusrce.geos.4x5<br>
+NH3_natusrce.gcap.4x5</td>
+      <td>
+      <p align="justify">Binary punch files containing
+natural-source NH3 emissions for the year 1990 [kg N/month] on the<a href="appendix_2.html#A2.1"> GCAP 4&deg; x 5&deg;</a>, <a href="appendix_2.html#A2.3">GMAO 2&deg; x 2.5&deg;</a>, and <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg;</a> grids.
+From GEIA.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">NH3emis.monthly.geos.2x25<br>
+NH3emis.monthly.geos.4x5<br>
+NH3emis.monthly.gcap.4x5</td>
+      <td>
+      <p align="justify">Binary punch files containing
+anthropogenic NH3 emissions for the year 1990 [kg N/month] on the<a href="appendix_2.html#A2.1"> GCAP 4&deg; x 5&deg;</a>, <a href="appendix_2.html#A2.3">GMAO 2&deg; x 2.5&deg;</a>, and <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg;</a> grids.
+From GEIA.</p>
+      <p align="justify">NOTE: These files appear to be
+obsolete now.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">SST.geos.2x25<br>
+SST.geos.4x5<br>
+SST.gcap.4x5</td>
+      <td>
+      <p align="justify">Annual average monthly mean sea
+surface temperatures on the<a href="appendix_2.html#A2.1">
+GCAP 4&deg; x 5&deg;</a>, <a href="appendix_2.html#A2.3">GMAO
+2&deg; x 2.5&deg;</a>, and <a href="appendix_2.html#A2.2">GMAO
+4&deg; x 5&deg;</a> grids. From Mian Chin.</p>
+      <p class="size14bi" align="justify">NOTE:
+These files are superseded by the files contained w/in the SST_200508
+directory.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">aircraft.2x25.1992.apr<br>
+aircraft.2x25.1992.aug<br>
+aircraft.2x25.1992.dec<br>
+aircraft.2x25.1992.feb<br>
+aircraft.2x25.1992.jan<br>
+aircraft.2x25.1992.jul<br>
+aircraft.2x25.1992.jun<br>
+aircraft.2x25.1992.mar<br>
+aircraft.2x25.1992.may<br>
+aircraft.2x25.1992.nov<br>
+aircraft.2x25.1992.oct<br>
+aircraft.2x25.1992.sep<br>
+      <br>
+aircraft.4x5.1992.apr<br>
+aircraft.4x5.1992.aug<br>
+aircraft.4x5.1992.dec<br>
+aircraft.4x5.1992.feb<br>
+aircraft.4x5.1992.jan<br>
+aircraft.4x5.1992.jul<br>
+aircraft.4x5.1992.jun<br>
+aircraft.4x5.1992.mar<br>
+aircraft.4x5.1992.may<br>
+aircraft.4x5.1992.nov<br>
+aircraft.4x5.1992.oct<br>
+aircraft.4x5.1992.sep</td>
+      <td>
+      <p align="justify">SO2 emissions from aircraft on the<a href="appendix_2.html#A2.1"> GCAP 4&deg; x 5&deg;</a>, <a href="appendix_2.html#A2.3">GMAO 2&deg; x 2.5&deg;</a>, and <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg;</a> grids.</p>
+      <p align="justify">These are fuel burned in
+[kg/box/day], from AEAP for 1992. SO2 emission is calculated by
+assuming an emission index EI of 1.0, i.e., 1g of SO2 emitted per kg of
+fuel burned. It is also assumed that there is no diurnal variation of
+emission rate.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">shipSOx.geos.2x25<br>
+shipSOx.geos.4x5<br>
+shipSOx.gcap.4x5</td>
+      <td>
+      <p align="justify">SO2 emissions from ship exhaust,
+from Corbett et al. </p>
+      <p align="justify">The native resolution of the data
+is 2 x 2 degrees. These were regridded to the<a href="appendix_2.html#A2.1"> GCAP 4&deg; x 5&deg;</a>, <a href="appendix_2.html#A2.3">GMAO 2&deg; x 2.5&deg;</a>, and <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg;</a> grids by
+Becky Alexander.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">scalefoss.SOx.2x25.1998<br>
+scalefoss.SOx.4x5.1998</td>
+      <td>
+      <p align="justify">Fossil fuel scale factors used to
+scale up GEIA SOx emissions from the baseline year 1985 to 1998. From
+Rokjin Park.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">volcano.con.2x25<br>
+volcano.con.4x5</td>
+      <td>
+      <p align="justify">Non-eruptive volcanic SO2
+emission from GEIA in [Mg SO2/box/day] on the<a href="appendix_2.html#A2.1"> GCAP 4&deg; x 5&deg;</a>, <a href="appendix_2.html#A2.3">GMAO 2&deg; x 2.5&deg;</a>, and <a href="appendix_2.html#A2.2">GMAO 4&deg; x 5&deg;</a> grids.
+Text format. </p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">volcano.erup.1994.2x25<br>
+volcano.erup.1994.4x5</td>
+      <td>
+      <p align="justify">Eruptive volcanic SO2 emission
+from GEIA in [Mg SO2/box/day] on the<a href="appendix_2.html#A2.1">
+GCAP 4&deg; x 5&deg;</a>, <a href="appendix_2.html#A2.3">GMAO
+2&deg; x 2.5&deg;</a>, and <a href="appendix_2.html#A2.2">GMAO
+4&deg; x 5&deg;</a> grids. Text format. </p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p align="justify">In addition to the above files,
+monthly-mean oxidant files for the offline aerosol simulation are
+stored in the <tt>sulfate_sim_200508/offline</tt>
+subdirectory. A listing of these files follows:</p>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">JH2O2.geos3.2x25<br>
+JH2O2.geos3.4x5<br>
+      <br>
+JH2O2.geos4.2x25<br>
+JH2O2.geos4.4x5<br>
+      <br>
+JH2O2.geos5.2x25<br>
+JH2O2.geos5.4x5<br>
+      </td>
+      <td>
+      <p align="justify">Files containing J(H2O2) values (<tt>JV-MAP-$</tt>,
+tracer=3) saved out from 1-yr benchmark simulations done with GEOS–Chem
+v7–02–03.</p>
+      <p align="justify">Data is saved up to the
+tropopause only. Units are [s-1].</p>
+      <p align="justify">Files are provided for the <a href="appendix_3.html#A3.3">GEOS–3</a>, <a href="appendix_3.html#A3.4">GEOS–4</a>,
+and <a href="appendix_3.html#A3.5">GEOS–5</a> vertical grids
+at both <a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>
+and <a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>
+horizontal resolution.</p>
+      <p align="justify">For more information about how
+the individual files were created, contact Bob Yantosca.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">NO3.geos3.2x25<br>
+NO3.geos3.4x5<br>
+      <br>
+NO3.geos4.2x25<br>
+NO3.geos4.4x5<br>
+      <br>
+NO3.geos5.2x25<br>
+NO3.geos5.4x5</td>
+      <td>
+      <p align="justify">Files containing / NO3 values (<tt>CHEM-L=$</tt>,
+tracer=5) saved out from 1-yr benchmark simulations done with GEOS–Chem
+v7–02–03.</p>
+      <p align="justify">Units are [v/v] (mixing ratio).</p>
+      <p align="justify">Files are provided for the <a href="appendix_3.html#A3.3.1">GEOS–3</a>, <a href="appendix_3.html#A3.4.1">GEOS–4</a>, and <a href="appendix_3.html#A3.5.1">GEOS–5</a> vertical
+grids (reduced resolution) at <a href="appendix_2.html#A2.3">2&deg;
+x 2.5&deg;</a> and <a href="appendix_2.html#A2.2">4&deg; x
+5&deg;</a> horizontal resolution.</p>
+      <p align="justify">For more information about how
+the individual files were created, contact Bob Yantosca.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">O3.geos3.2x25<br>
+O3.geos3.4x5<br>
+      <br>
+O3.geos4.2x25<br>
+O3.geos4.4x5<br>
+      <br>
+O3.geos5.2x25<br>
+O3.geos5.4x5</td>
+      <td>
+      <p align="justify">Files containing O3 values (<tt>IJ-AVG-$</tt>,
+tracer=51) saved out from 1-yr benchmark simulations done with
+GEOS–Chem v7–02–03.</p>
+      <p align="justify">Units are [v/v] (mixing ratio).</p>
+      <p align="justify">Files are provided for the <a href="appendix_3.html#A3.3.1">GEOS–3</a>, <a href="appendix_3.html#A3.4.1">GEOS–4</a>, and <a href="appendix_3.html#A3.5.1">GEOS–5</a> vertical
+grids (reduced resolution) at <a href="appendix_2.html#A2.3">2&deg;
+x 2.5&deg;</a> and <a href="appendix_2.html#A2.2">4&deg; x
+5&deg;</a> horizontal resolution.</p>
+      <p align="justify">GEOS–3 and GEOS–4 data are saved
+on 30-level reduced grids.</p>
+      <p align="justify">For more information about how
+the individual files were created, contact Bob Yantosca.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">PH2O2.geos3.2x25<br>
+PH2O2.geos3.4x5 <br>
+      <br>
+PH2O2.geos4.2x25<br>
+PH2O2.geos4.4x5<br>
+      <br>
+PH2O2.geos5.2x25<br>
+PH2O2.geos5.4x5</td>
+      <td>
+      <p align="justify">Files containing P(H2O2) values (<tt>PORL-L=$</tt>,
+tracer=5) saved out from 1-yr benchmark simulations done with GEOS–Chem
+v7–02–03.</p>
+      <p align="justify">Data is saved up to the
+tropopause only. Units are [molec/cm3/s].</p>
+      <p align="justify">Files are provided for the <a href="appendix_3.html#A3.3.1">GEOS–3</a>, <a href="appendix_3.html#A3.4.1">GEOS–4</a>, and <a href="appendix_3.html#A3.5.1">GEOS–5</a> vertical
+grids (reduced resolution) at <a href="appendix_2.html#A2.3">2&deg;
+x 2.5&deg;</a> and <a href="appendix_2.html#A2.2">4&deg; x
+5&deg;</a> horizontal resolution.</p>
+      <p align="justify">For more information about how
+the individual files were created, contact Bob Yantosca.</p>
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">THNO3.geos3.2x25<br>
+THNO3.geos3.4x5<br>
+      <br>
+THNO3.geos4.2x25<br>
+THNO3.geos4.4x5<br>
+      <br>
+THNO3.geos5.2x25<br>
+THNO3.geos5.4x5</td>
+      <td>
+      <p align="justify">Files containing THNO3 (= HNO3 +
+NIT) values (<tt>IJ-AVG-$</tt>, tracer=7) saved out from
+1-yr benchmark simulations done with GEOS–Chem v7–02–03.</p>
+      <p align="justify">Files are provided for the <a href="appendix_3.html#A3.3.1">GEOS–3</a>, <a href="appendix_3.html#A3.4.1">GEOS–4</a>, and <a href="appendix_3.html#A3.5.1">GEOS–5</a> vertical
+grids (reduced resolution) at <a href="appendix_2.html#A2.3">2&deg;
+x 2.5&deg;</a> and <a href="appendix_2.html#A2.2">4&deg; x
+5&deg;</a> horizontal resolution.</p>
+      <p align="justify">For more information about how
+the individual files were created, contact Bob Yantosca.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.33"></a>4.3.33
+The tagged_CO_200106/ subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+<li>GEOS-Chem wiki: <a href="references:">Tagged CO simulation</a></li>
+</ol>
+
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">acetone.geos.2x25<br>
+acetone.geos.4x5</td>
+      <td>
+      <p align="justify">Monthly mean emissions of direct
+biogenic acetone and acetone from grasslands for the GMAO <a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a> and <a href="appendix_2.html#A2.2"> 4&deg; x 5&deg; grids</a>.</p>
+      <p align="justify">This data was archived from a
+1994 GEOS–Chem model simulation (GEOS–1)</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size18bi"><a name="4.3.34"></a>4.3.34
+The uvalbedo_200111/ subdirectories</p>
+
+<p class="size14">REFERENCES:</p>
+
+<ol>
+
+  <li>Herman, J.R. and E.A. Celarier, <em>Earth surface
+reflectivity climatology at 340-380 nm from TOMS data</em>, <u>J.
+Geophys. Res.</u>, <strong>102</strong>(D23),<br>
+28,003-28,011 (1997)</li>
+</ol>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+
+  <tbody>
+    <tr>
+      <th width="35%">Files</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td class="courier16" align="left">uvalbedo.geos.2x25<br>
+uvalbedo.geos.4x5<br>
+uvalbedo.gcap.4x5</td>
+      <td>
+      <p align="justify">Monthly mean UV albedoes (340 nm
+- 380 nm, from TOMS) for the <a href="appendix_2.html#A2.3">GMAO
+2&deg; x 2.5&deg;</a>, <a href="appendix_2.html#A2.2">GMAO
+4&deg; x 5&deg;</a>, and <a href="appendix_2.html#A4.1">GCAP
+4&deg; x 5&deg;</a> grids. These files are used for FAST–J photolysis</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size14bi" align="center"><a href="chapter_3.html">Previous</a>
+| <a href="chapter_5.html">Next</a> | <a href="chapter_4.html" target="_blank">Printable View
+(no frames)</a></p>
+
+</body></html>

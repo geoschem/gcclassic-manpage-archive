@@ -1,0 +1,886 @@
+<html>
+<head>
+<title>GEOS&ndash;Chem Online User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css">  <!-- Cascading style sheet for font declarations -->
+<style type="text/css">
+<!--
+th{ 
+	font-family      : Arial, Helvetica, sans-serif;  
+    font-weight      : bold; 
+	font-size        : 16px; 
+	text-align       : left;
+	background-color : #CCCCCC; 
+}
+td{ 
+	font-family      : Arial, Helvetica, sans-serif;  
+	font-size        : 16px; 
+	text-align       : left;
+}
+-->	
+</style> 
+</head>
+<body bgcolor="#FFFFFF">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script> <!-- JavaScript for breadcrumb links -->
+<p align="center" class="size20bi">GEOS&#150;Chem v8&#150;01&#150;01 Online User's Guide</p>
+<p align="center" class="size14bi"><A HREF="chapter_6.html">Previous</A> | <A HREF="chapter_8.html">Next</A> | <a href="chapter_7.html" target="_parent">Printable View (no frames)</a></p>
+<p align="center" class="size14bi"><span class="size16bi">For information about GEOS&#150;Chem &quot;beta&quot; releases <a href="appendix_8.html#A8.2"><br>
+v8&#150;01&#150;02</a>, <a href="appendix_8.html#A8.3">v8&#150;01&#150;03</a>, and <a href="appendix_8.html#A8.4">v8&#150;01&#150;04</a>, please see the Addenda section.</span></p>
+<p align="center"><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>  
+<p class="size24bi"><a name="7"></a>7. Coding and Debugging</p>
+<p align="center"><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size20bi"><a name="7.1"></a>7.1 Coding: Practice and Style </p>
+<p align="center"><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size18bi"><a name="7.1.1"></a>7.1.1 GEOS&#150;Chem program units</p>
+<p align="justify">The GEOS&#150;Chem source code is written in Fortran&#150;90 and contains three different types of program units:</p>
+<ol>
+  <li>
+    <p align="justify">Traditional subroutines and functions (<span class="courier16">*.f</span>). These are compiled individually. One subroutine or function is included per file.</p>
+  </li>
+  <li>
+    <p align="justify">Header files (<span class="courier16">*.h, CMN*</span>). These files are not compiled, but are inlined into other program units via the <span class="courier16">#include</span> C-preprocessor statement. This is a consistent way of importing global common blocks and parameters into several subroutines or functions at once.</p>
+  </li>
+  <li>
+    <p align="justify">Fortran-90 Modules (<span class="courier16">*_mod.f</span>). The module construct allows you to bundle several global variables and routines into one logical package, which can then be used by other program units. Also, with modules you may define dynamically allocatable arrays, which are necessary to conserve memory. Much of the newer GEOS&#150;Chem code has been written in module form.</p>
+    <p align="justify">Note:<span class="courier16"> tpcore_fvdas_mod.f90 </span>is the sole exception to the above-mentioned naming convention, since it ends with a <span class="courier16">*.f90</span> extension. This denotes that it is written in free-format Fortran-90 code. Module<span class="courier16"> tpcore_fvdas_mod.f90 </span>is third-party software from S-J Lin at GSFC.</p>
+  </li>
+</ol>
+<p align="justify"> The Makefile (cf. <A HREF="chapter_3.html#3.3">Chapter 3.3: Compiling the GEOS&#150;Chem source code</A>) that is provided with GEOS&#150;Chem determines the sequence in which individual program units will be compiled. The current order of compilation is as follows:</p>
+<ol>
+  <li>    Fortran-90 modules</li>
+  <li>    Subroutines and functions (except FAST&#150;J routines)</li>
+  <li>    Subroutines pertaining to FAST&#150;J photolysis code (if necessary) </li>
+</ol>
+<p align="justify"> In addition, the Fortran&#150;90 modules must themselves be compiled in the proper order. For example, if you have a Module B that makes reference to a Module A, then Module A must be compiled before Module B is compiled. Otherwise a compile-time error will result. To see the current compilation sequence for GEOS&#150;Chem modules, visit <A HREF="chapter_7.html#7.1.4">Chapter 7.1.4</A>. </p>
+<p align="center"><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size18bi"><a name="7.1.2"></a>7.1.2 Fortran Programming Style</p>
+<p align="justify">We have attempted to create <a href="appendix_7.html">a clear and consistent programming style for GEOS&#150;Chem subroutines and modules</a>. Some of our style points include:</p>
+<ul class="disc">
+  <li>
+    <p>Identification tag line for CVS archive</p>
+  </li>
+  <li>
+    <p>Routine header detailing original release date, most recent modification date, list of arguments as input/output, and modification history</p>
+  </li>
+  <li>
+    <p>References to other variables or routines contained within Fortran-90 modules</p>
+  </li>
+  <li>
+    <p>Use of <span class="courier16">IMPLICIT NONE</span> to force explicit declaration of all variables</p>
+  </li>
+  <li>
+    <p>Header files in-lined via the C-preprocessor <span class="courier16">#include</span> facility</p>
+  </li>
+  <li>
+    <p>Comments aligned with mode -- major sections denoted by <span class="courier16">!=====</span></p>
+  </li>
+  <li>
+    <p>Copious use of white space to enhance readability</p>
+  </li>
+  <li>
+    <p>Indentation of <span class="courier16">IF-THEN-ELSE</span> and <span class="courier16">DO-ENDDO</span> blocks</p>
+  </li>
+  <li>
+    <p>OpenMP parallel DO-loops</p>
+  </li>
+</ul>
+<p align="justify">When making upgrades to the code, it is good practice to block off the section that you are replacing with comments, and label that as<span class="courier16"> Prior to MM/DD/YY.</span> Then later on, when the upgraded code has been declared stable, you can remove the blocked-off section.</p>
+<p align="justify">For more information, please be sure to read <a href="appendix_7.html">Appendix 7: GEOS&#150;Chem Style Guide</a>, as well as the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability">floating point and math issues page </a>on the GEOS&#150;Chem wiki.</p>
+<p align="center"><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size18bi"><a name="7.1.3"></a>7.1.3 List of GEOS&#150;Chem Modules</p>
+<p align="justify"> The GEOS&#150;Chem distribution currently contains approximately 40 Fortran-90 modules. As discussed above, modules can be used to include both variables and routines into a single convienient package. A list of the current modules and their dependencies follows.</p>
+<table cellspacing="0" cellpadding="5" border="1" bordercolor="#000000" width="100%">
+  <tr valign="top">
+    <th>Module Name</th>
+    <th>Purpose</th>
+    <th>Other Modules Referenced</th>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">Kr85_mod.f</td>
+    <td  >Contains variables and routines used for the 85Kr simulation</td>
+    <td   class="courier16"><tt>diag_mod.f<br>error_mod.f<br>time_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">RnPbBe_mod.f</td>
+    <td  >Contains variables and routines used for the 222Rn-210Pb-7Be-10Be simulation</td>
+    <td   class="courier16"><tt>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>file_mod.f<br>grid_mod.f<br>logical_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracer_mod.f<br>tropopause_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">a3_read_mod.f</td>
+    <td  >Contains routines which unzip, open and read the GEOS-Chem A-3 fields from disk</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>logical_mod.f<br>time_mod.f<br>transfer_mod.f<br>unix_cmds_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">a6_read_mod.f</td>
+    <td  >Contains routines which unzip, open and read the GEOS-Chem A-6 fields from disk</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>logical_mod.f<br>pressure_mod.f<br>time_mod.f<br>transfer_mod.f<br>unix_cmds_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">acetone_mod.f</td>
+    <td  > Contains subroutines to emit the biogenic flux of acetone into the full chemistry simulation </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>grid_mod.f<br>time_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">aerosol_mod.f</td>
+    <td  >Contains routines which compute aerosol concentrations (kg/m3) and optical depths.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>comode_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>logical_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f<br>tropopause_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">aircraft_nox_mod.f</td>
+    <td  > Contains arrays and routines to compute aircraft NOx, emissions for the full chemistry simulation </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>pressure_mod.f<br>time_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">benchmark_mod.f</td>
+    <td  >Contains routines to save out tracer masses in kg for the 1-month fullchem and Rn-Pb-Be benchmark simulations.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>file_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">biofuel_mod.f</td>
+    <td  > Contains arrays and routines to compute monthly biofuel burning emissions for NOx, CO, ALK4, ACET, MEK, ALD2, PRPE, C3H8, CH2O, C2H6 CH4, and CH3I </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>epa_nei_mod.f<br>error_mod.f<br>future_emissions_mod.f<br>logical_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">biomass_mod.f</td>
+    <td  > Contains arrays and routines to compute monthly biomass burning emissions for NOx, CO, ALK4, ACET, MEK, ALD2, PRPE, C3H8, CH2O, C2H6 CH4, and CH3I </td>
+    <td   class="courier16"><tt>diag_mod.f<br>error_mod.f<br>gc_biomass_mod.f<br>gfed2_biomass_mod.f<br>logical_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">bpch2_mod.f</td>
+    <td  > Contains the routines used to read data from and write data to binary punch file format (v. 2.0) </td>
+    <td   class="courier16"><tt>error_mod.f<br>file_mod.f<br>julday_mod.f</tt></td>
+  </tr>
+  
+  <tr valign="top">
+    <td  class="courier16">bravo_mod.f</td>
+    <td  > Contains variables and routines to read the BRAVO mexican anthropogenic emission inventory.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>future_emissions_mod.f<br>grid_mod.f<br>logical_mod.f<br>regrid_1x1_mod.f<br>tracerid_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  
+  
+  <tr valign="top">
+    <td  class="courier16">c2h6_mod.f</td>
+    <td  > Contains the variables and routines used to perform a standalone simulation for ethane </td>
+    <td   class="courier16"><tt>biofuel_mod.f<br>biomass_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>geia_mod.f<br>global_oh_mod.f<br>grid_mod.f<br>logical_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">carbon_mod.f</td>
+    <td  >Contains variables and routines for carbon aerosol emissions and chemistry</td>
+    <td   class="courier16"><tt>biomass_mod.f<br>bpch2_mod.f<br>comode_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>drydep_mod.f<br>error_mod.f<br>file_mod.f<br>future_emissions_mod.f<br>global_no3_mod.f<br>global_o3_mod.f<br>global_oh_mod.f<br>grid_mod.f<br>logical_mod.f<br>megan_mod.f<br>pbl_mix_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f<br>tropopause_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">ch3i_mod.f</td>
+    <td  > Contains the variables and routines used to perform a standalone simulation for methyl iodide </td>
+    <td   class="courier16"> <tt>biofuel_mod.f<br>biomass_mod.f<br>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>diag_pl_mod.f<br>directory_mod.f<br>error_mod.f<br>grid_mod.f<br>logical_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f<br>uvalbedo_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">charpak_mod.f</td>
+    <td  > Contains selected routines from the CHARPAK package for string manipulation </td>
+    <td   class="courier16">none</td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">chemistry_mod.f</td>
+    <td  >Contains a driver program which selects the proper chemistry routine for the various GEOS&#150;Chem simulation types</td>
+    <td   class="courier16"><tt>acetone_mod.f<br>aerosol_mod.f<br>c2h6_mod.f<br>carbon_mod.f<br>ch3i_mod.f<br>dao_mod.f<br>drydep_mod.f<br>dust_mod.f<br>error_mod.f<br>global_ch4_mod.f<br>h2_hd_mod.f<br>hcn_ch3cn_mod.f<br>isoropia_mod.f<br>kr85_mod.f<br>logical_mod.f<br>mercury_mod.f<br>optdepth_mod.f<br>rpmares_mod.f<br>rnpbbe_mod.f<br>seasalt_mod.f<br>sulfate_mod.f<br>tagged_co_mod.f<br>tagged_ox_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">co2_mod.f</td>
+    <td  >Contains variables and routines used for the CO2 simulation</td>
+    <td   class="courier16"><tt>biomass_mod.f<br>bpch2_mod.f<br>diag04_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>time_mod.f<br>tracer_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">comode_mod.f</td>
+    <td  > Contains allocatable arrays for SMVGEAR that were previously contained in common blocks in header file "comode.h" </td>
+    <td   class="courier16"><tt>error_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">convection_mod.f</td>
+    <td  >Contains routines which select the proper convection code for GEOS&#150;1, GEOS&#150;STRAT, GEOS&#150;3 or GEOS&#150;4 met data sets</td>
+    <td   class="courier16">d<tt>dao_mod.f<br>diag_mod.f<br>error_mod.f<br>fvdas_convect_mod.f<br>gcap_convect_mod.f<br>grid_mod.f<br>logical_mod.f<br>ocean_mercury_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>wetscav_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">dao_mod.f</td>
+    <td  > Contains arrays that hold DAO met fields, as well as subroutines that compute, interpolate, or otherwise process DAO met field data </td>
+    <td   class="courier16"><tt>error_mod.f<br>grid_mod.f<br>logical_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">diag03_mod.f</td>
+    <td  >Contains arrays and routines for archiving the ND03 diagnostic&#151;Hg emissions, mass, and production.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>time_mod.f<br>tracerid_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">diag04_mod.f</td>
+    <td  >Contains arrays and routines for archiving the ND04 diagnostic -- CO2 emissions and fluxes</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>time_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">diag41_mod.f</td>
+    <td  >Contains arrays and routines for archiving the ND41diagnostic&#151;Afternoon PBL heights</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>pbl_mix_mod.f<br>time_mod.f</tt></td>
+  </tr>
+  
+  <tr valign="top">
+    <td  class="courier16">diag42_mod.f</td>
+    <td  > Contains arrays and routines for archiving the ND41 diagnostic -- Afternoon PBL heights.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>logical_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+
+  
+  
+  <tr valign="top">
+    <td  class="courier16">diag48_mod.f</td>
+    <td  >Contains variables and routines to save timeseries data at particular lat/lon locations.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>pbl_mix_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">diag49_mod.f</td>
+    <td  >Contains variables and routines to save instantaneous timeseries data to disk for a 3-D subset of the globe.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>pbl_mix_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">diag50_mod.f</td>
+    <td  >Contains variables and routines to save instantaneous timeseries data to disk for a 3-D subset of the globe.</td>
+    <td   class="courier16"> <tt>bpch2_mod.f<br>dao_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>pbl_mix_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>tropopause_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">diag51_mod.f</td>
+    <td  > Contains variables and routines to save timeseries data over the United States where the local time is between two user-defined limits. This is useful for comparing with sun-synchronous satellites such as GOME.</td>
+    <td   class="courier16"> <tt>bpch2_mod.f<br>dao_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>pbl_mix_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>tropopause_mod.f</tt></td>
+  </tr>
+
+  <tr valign="top">
+    <td  class="courier16">diag56_mod.f</td>
+    <td  > Contains arrays and routines for archiving the ND56 diagnostic -- lightning flash rates.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>time_mod.f</tt></td>
+  </tr>
+
+
+  <tr valign="top">
+    <td  class="courier16">diag_mod.f</td>
+    <td  > Contains declarations for allocatable arrays for use with GEOS&#150;Chem diagnostics and other routines </td>
+    <td   class="courier16">none</td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">diag_oh_mod.f</td>
+    <td  >Contains routines to compute the Mean OH diagnostic for a full chemistry simulation.</td>
+    <td   class="courier16"> <tt>comode_mod.f<br>error_mod.f<br>logical_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">diag_pl_mod.f</td>
+    <td  >Contains routines to compute chemical production for tracers. </td>
+    <td   class="courier16"> <tt>bpch2_mod.f<br>charpak_mod.f<br>comode_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">directory_mod.f</td>
+    <td  >Contains the directory path variables used by <br>
+      GEOS&#150;Chem</td>
+    <td   class="courier16">none</td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">drydep_mod.f</td>
+    <td  >Contains variables and routines to compute dry deposition velocities and frequencies</td>
+    <td   class="courier16"><tt>comode_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>logical_mod.f<br>pbl_mix_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">dust_dead_mod.f</td>
+    <td  >Contains routines and variables from Charlie Zender's DEAD dust mobilization model. Most routines are from Charlie Zender, but have been modified and/or cleaned up for inclusion into GEOS-Chem. </td>
+    <td   class="courier16"> <tt>bpch2_mod.f<br>dao_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>time_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">dust_mod.f</td>
+    <td  >Contains routines for computing dust aerosol emissions, chemistry, and optical depths.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>comode_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>drydep_mod.f<br>dust_dead_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>logical_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+
+  <tr valign="top">
+    <td  class="courier16">edgar_mod.f</td>
+    <td  > Contains variables and routines to read the EDGAR global anthropogenic emission inventory.</td>
+    <td   class="courier16"><p><tt>bpch2_mod.f<br>
+      directory_mod.f<br>
+      error_mod.f<br>
+        future_emissions_mod.f
+         grid_mod.f<br>
+          logical_mod.f<br>
+          regrid_1x1_mod.f<br>
+          time_mod.f
+      </tt></p></td>
+  </tr>
+
+
+  <tr valign="top">
+    <td  class="courier16">emep_mod.f</td>
+    <td  >Contains variables and routines to read the EMEP European anthropogenic emission inventory for CO, NOz, and some NMVOCs. The EMEP files come from Marion Auvray and Isabelle Bey at EPFL. </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>future_emissions_mod.f<br>grid_mod.f<br>logical_mod.f<br>regrid_1x1_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">emissions_mod.f</td>
+    <td  > Contains a driver program which selects the proper emissions subroutine for the various GEOS&#150;Chem simulation types. </td>
+    <td   class="courier16"><tt>biomass_mod.f<br>bravo_mod.f<br>c2h6_mod.f<br>carbon_mod.f<br>ch3i_mod.f<br>co2_mod.f<br>dust_mod.f<br>edgar_mod.f<br>emep_mod.f<br>epa_nei_mod.f<br>error_mod.f<br>global_ch4_mod.f<br>h2_hd_mod.f<br>hcn_ch3cn_mod.f<br>kr85_mod.f<br>logical_mod.f<br>mercury_mod.f<br>rnpbbe_mod.f<br>seasalt_mod.f<br>streets_anthro_mod.f<br>sulfate_mod.f<br>tagged_co_mod.f<br>time_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">epa_nei_mod.f</td>
+    <td  >Contains variables and routines to read the weekday/weekend emissions from the EPA/NEI emissions inventory.</td>
+    <td   class="courier16"> <tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>future_emissions_mod.f<br>grid_mod.f<br>logical_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">error_mod.f</td>
+    <td  > Contains error checking subroutines </td>
+    <td   class="courier16"><tt>ieee_arithmetic.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">file_mod.f</td>
+    <td  > Contains file unit numbers and I/O error trapping routines </td>
+    <td   class="courier16"><tt>error_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">future_emissions_mod.f</td>
+    <td  > Contains variables and routines for returning scale factors for IPCC A1 &amp; B1 emissions scenarios for future years such as 2030, 2050, etc.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">fvdas_convect_mod.f</td>
+    <td  >
+      <p>Contains routines (originally from NCAR) which perform shallow and deep convection for the GEOS&#150;4 met fields. These routines account for shallow and deep convection, updrafts, and downdrafts.</p></td>
+    <td   class="courier16"><tt>diag_mod.f<br>grid_mod.f<br>logical_mod.f<br>ocean_mercury_mod.f<br>pressure_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">gamap_mod.f</td>
+    <td  >Contains routines to create GAMAP &quot;tracerinfo.dat&quot; and &quot;diaginfo.dat&quot; files which are customized to each particular GEOS-Chem simulation.</td>
+    <td   class="courier16"><tt>diag03_mod.f<br>diag04_mod.f<br>diag41_mod.f<br>diag42_mod.f<br>diag48_mod.f<br>diag49_mod.f<br>diag50_mod.f<br>diag51_mod.f<br>diag56_mod.f<br>diag_pl_mod.f<br>drydep_mod.f<br>error_mod.f<br>file_mod.f<br>logical_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>wetscav_mod.f</tt></td>
+  </tr>
+
+  <tr valign="top">
+    <td  class="courier16">gc_biomass_mod.f</td>
+    <td  > Contains  arrays and routines to compute monthly biomass burning emissions for NOx, CO, ALK4, ACET, MEK, ALD2, PRPE,  C3H8, CH2O, C2H6, CH4, and CH3I.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>future_emissions_mod.f<br>grid_mod.f<br>logical_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+
+
+  <tr valign="top">
+    <td  class="courier16">gcap_convect_mod.f</td>
+    <td  >Contains routines (originally from GISS) which perform shallow and deep convection for the GCAP met fields.</td>
+    <td   class="courier16"><tt>dao_mod.f<br>diag_mod.f<br>grid_mod.f<br>pressure_mod.f</tt></td>
+  </tr>
+  
+  <tr valign="top">
+    <td  class="courier16">gcap_read_mod.f</td>
+    <td  > Contains subroutines that unzip, open, and read the  GCAP PHIS and LWI_GISS fields from disk.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>logical_mod.f<br>time_mod.f<br>transfer_mod.f<br>unix_cmds_mod.f</tt></td>
+  </tr>
+
+  
+  <tr valign="top">
+    <td  class="courier16">geia_mod.f</td>
+    <td  > Contains routines used to read and scale the GEIA/Piccot fossil fuel emissions for NOx, CO, and hydrocarbons </td>
+    <td   class="courier16"> <tt>bpch2_mod.f<br>directory_mod.f<br>file_mod.f<br>grid_mod.f<br>time_mod.f</tt></td>
+  </tr>
+  
+  <tr valign="top">
+    <td  class="courier16">gfed2_biomass_mod.f</td>
+    <td  > Contains  variables and routines to compute the GFED2 biomass burning emissions.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>future_emissions_mod.f<br>grid_mod.f<br>logical_mod.f<br>regrid_1x1_mod.f<br>time_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+
+  
+  <tr valign="top">
+    <td  class="courier16">global_ch4_mod.f</td>
+    <td  > Contains variables and routines for simulating CH4 chemistry in the troposphere </td>
+    <td   class="courier16"><tt>    bpch2_mod.f<br>
+    dao_mod.f<br>diag_mod.f<br>diag_oh_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>
+    pressure_mod.f<br>
+    time_mod.f<br>tracer_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">global_hno3_mod.f</td>
+    <td  >Contains variables and routines for reading in monthly mean HNO3 concentrations for the offline sulfate simulation</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>directory_mod.f<br>error_mod.f<br>tracer_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">global_no3_mod.f</td>
+    <td  >Contains variables and routines for reading in global monthly mean NO3 concentrations (used for the offline sulfate simulation)</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">global_nox_mod.f</td>
+    <td  > Contains variables and routines for reading the global monthly mean NOx concentration from disk (used for the offline sulfate simulation) </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>transfer_mod.f<br>unix_cmds_mod.f</tt></td>
+  </tr>
+
+  <tr valign="top">
+    <td  class="courier16">global_o1d_mod.f</td>
+    <td  > Contains variables and routines for reading the global monthly mean O1D stratospheric concentration from disk. This is used in the H2/HD simulation. The O1D fields were obtained from Gabriele  Curci GEOS-Chem simulation in the stratosphere (v5.03).</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+
+
+  <tr valign="top">
+    <td  class="courier16">global_o3_mod.f</td>
+    <td  >Contains variables and routines for reading the global monthly mean O3 concentration from disk </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">global_oh_mod.f</td>
+    <td  > Contains variables and routines for reading the global monthly mean OH concentration from disk </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">grid_mod.f</td>
+    <td  > Contains variables and routines for computing grid box longitudes, latitudes, and surface areas</td>
+    <td   class="courier16"><tt>error_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">gwet_read_mod.f</td>
+    <td  >Contains routines which unzip, open and read the GEOS-Chem GWET fields from disk.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>logical_mod.f<br>time_mod.f<br>transfer_mod.f<br>unix_cmds_mod.f</tt></td>
+  </tr>
+
+  <tr valign="top">
+    <td  class="courier16">h2_hd_mod.f</td>
+    <td  > Contains variables and routines used for the H2-HD simulation.</td>
+    <td   class="courier16"><tt>biofuel_mod.f<br>biomass_mod.f<br>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>drydep_mod.f<br>error_mod.f<br>geia_mod.f<br>global_nox_mod.f<br>global_o1d_mod.f<br>global_oh_mod.f<br>grid_mod.f<br>logical_mod.f<br>pressure_mod.f<br>tagged_co_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f<br>tropopause_mod.f</tt></td>
+  </tr>
+
+  <tr valign="top">
+    <td  class="courier16">hcn_ch3cn_mod.f</td>
+    <td  >Contains variables and routines that are used for the geographically tagged HCN/CH3CN simulation.</td>
+    <td   class="courier16"><tt>biomass_mod.f<br>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>geia_mod.f<br>global_oh_mod.f<br>grid_mod.f<br>logical_mod.f<br>pbl_mix_mod.f<br>time_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">i6_read_mod.f</td>
+    <td  >Contains routines which unzip, open and read the GEOS-Chem I-6 fields from disk</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>logical_mod.f<br>time_mod.f<br>transfer_mod.f<br>tropopause_mod.f<br>unix_cmds_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">input_mod.f</td>
+    <td  >
+      <p>Contains routines which read information from the new input.geos file and pass it to the various initialization routines of GEOS-Chem modules.</p>
+      <p>NOTE: This module needs to be compiled last, as it references many other modules.</p></td>
+    <td   class="courier16"><tt>benchmark_mod.f<br>biofuel_mod.f<br>biomass_mod.f<br>bpch2_mod.f<br>charpak_mod.f<br>diag03_mod.f<br>diag04_mod.f<br>diag41_mod.f<br>diag42_mod.f<br>diag48_mod.f<br>diag49_mod.f<br>diag50_mod.f<br>diag51_mod.f<br>diag56_mod.f<br>diag_oh_mod.f<br>diag_pl_mod.f<br>directory_mod.f<br>drydep_mod.f<br>error_mod.f<br>file_mod.f<br>future_emissions_mod.f<br>gamap_mod.f<br>grid_mod.f<br>julday_mod.f<br>logical_mod.f<br>mercury_mod.f<br>ocean_mercury_mod.f<br>planeflight_mod.f<br>restart_mod.f<br>time_mod.f<br>tpcore_bc_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f<br>transport_mod.f<br>unix_cmds_mod.f<br>upbdflx_mod.f<br>wetscav_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">isoropia_mod.f</td>
+    <td  >Contains the routines from the ISORROPIA package, which performs aerosol thermodynamical equilibrium</td>
+    <td   class="courier16"><tt>dao_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>global_hno3_mod.f<br>logical_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>tropopause_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">julday_mod.f</td>
+    <td  > Contains routines for converting YYYYMMDD and HHMMSS to/from astronomical Julian date. (This allows GEOS&#150;Chem to handle transitions such as end-of-month, end-of-year, and end-of-century in a consistent fashion.) </td>
+    <td   class="courier16">none</td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">lai_mod.f</td>
+    <td  >Reads and stores AVHRR LAI for calculating MEGAN biogenic VOC emissions.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>regrid_1x1_mod.f<br>time_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">lightning_nox_mod.f</td>
+    <td  >Contains variables and routines for emitting NOx from lightning into the atmosphere. The original code comes from the old GISS-II CTM's of Yuhang Wang, Gerry Gardner, &amp; Larry Horowitz. Cleaned up for inclusion into GEOS-Chem.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag56_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>logical_mod.f<br>pressure_mod.f<br>time_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+
+  <tr valign="top">
+    <td  class="courier16">lightning_nox_nl_mod.f</td>
+    <td  > Contains variables and routines for emitting NOx from lightning into the atmosphere.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag56_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>logical_mod.f<br>pressure_mod.f<br>time_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+
+
+  <tr valign="top">
+    <td  class="courier16">logical_mod.f</td>
+    <td  >Contains all of the logical switches used by GEOS-Chem.</td>
+    <td   class="courier16">none</td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">megan_mod.f</td>
+    <td  >Contains variables and routines specifying the algorithms that control the MEGAN inventory of biogenic emissions.</td>
+    <td   class="courier16"><tt>a3_read_mod.f<br>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>julday_mod.f<br>lai_mod.f<br>logical_mod.f<br>regrid_1x1_mod.f<br>time_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">mercury_mod.f</td>
+    <td  >Contains variables and routines for the GEOS&#150;Chem mercury simulation. </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag03_mod.f<br>diag_mod.f<br>directory_mod.f<br>drydep_mod.f<br>error_mod.f<br>global_o3_mod.f<br>global_oh_mod.f<br>grid_mod.f<br>logical_mod.f<br>ocean_mercury_mod.f<br>pbl_mix_mod.f<br>pressure_mod.f<br>regrid_1x1_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">ocean_mercury_mod.f</td>
+    <td  >Contains variables and routines needed to compute the oceanic flux of mercury. Original code by Sarah Strode at UWA/Seattle.</td>
+    <td   class="courier16"><tt>    bpch2_mod.f<br>
+    dao_mod.f<br>diag03_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>logical_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">optdepth_mod.f</td>
+    <td  > Contains routines to compute optical depths for GEOS&#150;1, GEOS&#150;STRAT, GEOS&#150;2, and GEOS&#150;3 met data sets </td>
+    <td   class="courier16"><tt>diag_mod.f<br></tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">pbl_mix_mod.f</td>
+    <td  >Contains routines and variables used to compute the planetary boundary layer (PBL) height and to mix tracers underneath the PBL top.</td>
+    <td   class="courier16"><tt>dao_mod.f<br>diag_mod.f<br>error_mod.f<br>grid_mod.f<br>logical_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">pjc_pfix_mod.f</td>
+    <td  > Contains variables and routines which implement the Philip Cameron-Smith pressure fixer for the new GEOS&#150;4/TPCORE transport code (contained in tpcore_fvdas_mod.f90).</td>
+    <td   class="courier16"><tt>error_mod.f<br>grid_mod.f<br>pressure_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">planeflight_mod.f</td>
+    <td  > Contains variables and routines which are used to "fly" a plane through the GEOS&#150;Chem model simulation. This is useful for comparing model results with aircraft observations. </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>comode_mod.f<br>dao_mod.f<br>error_mod.f<br>file_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracer_mod.f<br>tropopause_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">pressure_mod.f</td>
+    <td  > Contains variables and routines which specify the grid box pressures for both hybrid or pure-sigma models. This is necessary for running GEOS&#150;Chem with the new fvDAS meteorology.</td>
+    <td   class="courier16"><tt>error_mod.f<br></tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">regrid_1x1_mod.f</td>
+    <td  >Does online regridding of data on the GEOS-Chem 1&deg; x 1&deg; grid to 1&deg; x 1&deg;, 2&deg; x 2.5&deg;, or 4&deg; x 5&deg; GEOS or GCAP grids.</td>
+    <td   class="courier16"><tt>charpak_mod.f<br>error_mod.f<br>grid_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">restart_mod.f</td>
+    <td  > Contains variables and routines which are used to read and write GEOS&#150;Chem restart files, which contain tracer concentrations in [v/v] mixing ratio. </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>charpak_mod.f<br>dao_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>logical_mod.f<br>time_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">rpmares_mod.f</td>
+    <td  >Contains variables and routines to compute aerosol thermodynamic equilibrium</td>
+    <td   class="courier16"><tt>dao_mod.f<br>error_mod.f<br>global_hno3_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>tropopause_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">seasalt_mod.f</td>
+    <td  >Contains arrays and routines for performing either a coupled chemistry/aerosol run or an offline seasalt aerosol simulation. The original code taken from Mian Chin's GOCART model and was modified accordingly for GEOS&#150;Chem. <br>
+    </td>
+    <td   class="courier16"><tt>dao_mod.f<br>diag_mod.f<br>drydep_mod.f<br>error_mod.f<br>grid_mod.f<br>logical_mod.f<br>pbl_mix_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+
+  <tr valign="top">
+    <td  class="courier16">streets_anthro_mod.f</td>
+    <td  > Contains variables and routines to read the David Streets et al Asian anthropogenic emissions.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>future_emissions_mod.f<br>grid_mod.f<br>logical_mod.f<br>regrid_1x1_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+
+
+  <tr valign="top">
+    <td  class="courier16">sulfate_mod.f</td>
+    <td  > Contains the sulfate chemistry routines from Mian Chin's GOCART model and updated routines. </td>
+    <td   class="courier16"> <tt>biomass_mod.f<br>bpch2_mod.f<br>bravo_mod.f<br>comode_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>drydep_mod.f<br>edgar_mod.f<br>epa_nei_mod.f<br>error_mod.f<br>file_mod.f<br>future_emissions_mod.f<br>global_hno3_mod.f<br>global_no3_mod.f<br>global_oh_mod.f<br>grid_mod.f<br>isoropia_mod.f<br>logical_mod.f<br>pbl_mix_mod.f<br>pressure_mod.f<br>regrid_1x1_mod.f<br>seasalt_mod.f<br>streets_anthro_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f<br>tropopause_mod.f<br>uvalbedo_mod.f<br>wetscav_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">tagged_co_mod.f</td>
+    <td  > Contains variables and routines used for the geographically tagged CO simulation </td>
+    <td   class="courier16"><tt>biofuel_mod.f<br>biomass_mod.f<br>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>diag_pl_mod.f<br>directory_mod.f<br>error_mod.f<br>geia_mod.f<br>global_nox_mod.f<br>global_oh_mod.f<br>grid_mod.f<br>logical_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f<br>tropopause_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">tagged_ox_mod.f</td>
+    <td  >Contains variables and routines to perform a tagged Ox simulation. P(Ox) and L(Ox) rates need to be archived from a full chemistry simulation before you can run w/ Tagged Ox.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>diag_pl_mod.f<br>directory_mod.f<br>drydep_mod.f<br>error_mod.f<br>grid_mod.f<br>logical_mod.f<br>pbl_mix_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f<br>tropopause_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">time_mod.f</td>
+    <td  > Contains routines for computing date & time variables </td>
+    <td   class="courier16"><tt>charpak_mod.f<br>error_mod.f<br>grid_mod.f<br>julday_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">toms_mod.f</td>
+    <td  > Contains variables and routines for reading the EP-TOMS O3 column data from disk (for use w/ the FAST&#150;J photolysis routines)</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>time_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">tpcore_bc_mod.f</td>
+    <td  > Contains variables and routines to read and write boundary conditions from a global simulation. These are needed for TPCORE transport for nested grid 1 x 1 simulations. </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>grid_mod.f<br>logical_mod.f<br>time_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">tpcore_fvdas_mod.f90</td>
+    <td  > Contains the TPCORE transport subroutine package by S-J Lin, for GEOS&#150;4/fvDAS met fields. This new TPCORE can parallelize under both the OpenMP and MPI standards.</td>
+    <td   class="courier16">none</td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">tpcore_mod.f</td>
+    <td  > Contains the TPCORE transport subroutine package by S-J Lin, version 7.1. Also contains the pressure fixer routines for TPCORE from M. Prather (in versions 4.21 and higher). </td>
+    <td   class="courier16"><tt>dao_mod.f<br>diag_mod.f<br>global_ch4_mod.f<br>grid_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">tpcore_window_mod.f</td>
+    <td  > Contains the TPCORE transport subroutine package by S-J Lin, version 7.1, modified for nested-grid simulations by Yuxuan Wang.</td>
+    <td   class="courier16"><tt>dao_mod.f<br>diag_mod.f<br>global_ch4_mod.f<br>grid_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">tracer_mod.f</td>
+    <td  >Contains the GEOS-Chem tracer array STT plus various other related quantities. TRACER_MOD also contains inquiry functions that can be used to determine the type of GEOS-Chem simulation.</td>
+    <td   class="courier16"><tt>error_mod.f<br></tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">tracerid_mod.f</td>
+    <td  >Contains variables and routines used to identify tracers, emission species, biomass burning species, and biofuel burning species</td>
+    <td   class="courier16"><tt>charpak_mod.f<br>error_mod.f<br>logical_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">transfer_mod.f</td>
+    <td  > Contains routines to compute cast data from REAL*4 to REAL*8 precision, and also to regrid GEOS&#150;3 data from 48 vertical levels to 30 vertical levels. </td>
+    <td   class="courier16"><tt>error_mod.f<br>grid_mod.f<br>pressure_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">transport_mod.f</td>
+    <td  >Contains routines which select the proper transport routines for GEOS&#150;Chem global and window simulations.</td>
+    <td   class="courier16"><tt>dao_mod.f<br>diag_mod.f<br>error_mod.f<br>grid_mod.f<br>logical_mod.f<br>pjc_pfix_mod.f<br>pressure_mod.f<br>time_mod.f<br>tpcore_bc_mod.f<br>tpcore_fvdas_mod.f<br>tpcore_mod.f<br>tpcore_window_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">tropopause_mod.f</td>
+    <td  >Contains routines and variables for reading and returning the value of the annual mean tropopause.</td>
+    <td   class="courier16"><tt>    bpch2_mod.f<br>
+    comode_mod.f<br>dao_mod.f<br>directory_mod.f<br>error_mod.f<br>logical_mod.f<br>pressure_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">unix_cmds_mod.f</td>
+    <td  > Contains Unix command strings which are used for unzipping of meteorological data files </td>
+    <td   class="courier16">none</td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">upbdflx_mod.f</td>
+    <td  >Contains subroutines which impose stratospheric boundary conditions on O3 and NOy </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>directory_mod.f<br>error_mod.f<br>logical_mod.f<br>pressure_mod.f<br>tagged_ox_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f<br>transfer_mod.f<br>tropopause_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">uvalbedo_mod.f</td>
+    <td >Contains variables and routines for reading the UV Albedo data from disk (for use w/ the FAST&#150;J photolysis routines). </td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>directory_mod.f<br>error_mod.f<br>transfer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">wetscav_mod.f</td>
+    <td > Contains arrays for used in the wet scavenging of tracer in cloud updrafts, rainout, and washout </td>
+    <td   class="courier16"><tt>dao_mod.f<br>diag_mod.f<br>error_mod.f<br>logical_mod.f<br>ocean_mercury_mod.f<br>pressure_mod.f<br>time_mod.f<br>tracerid_mod.f<br>tracer_mod.f</tt></td>
+  </tr>
+  <tr valign="top">
+    <td  class="courier16">xtra_read_mod.f</td>
+    <td >Contains routines that unzip, open, and read the GEOS-Chem XTRA (avg 3-hour) met fields from disk.</td>
+    <td   class="courier16"><tt>bpch2_mod.f<br>dao_mod.f<br>diag_mod.f<br>directory_mod.f<br>error_mod.f<br>file_mod.f<br>logical_mod.f<br>time_mod.f<br>transfer_mod.f<br>unix_cmds_mod.f</tt></td>
+  </tr>
+</table>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size18bi"><a name="7.1.4"></a>7.1.4 Compilation Sequence for GEOS&#150;Chem F90 modules</p>
+<p align="justify">In Fortran-90, modules must be compiled in the proper order. If Module B references Module A, then Module A must be compiled before Module B is compiled, otherwise a compile-time error will result. Bob Yantosca (email: yantosca<img src="../../../img/at_sign.gif" width="10" height="13">seas.harvard.edu) has determined the order in which GEOS&#150;Chem modules must be compiled. Make sure that the following code fragment is listed in your Makefile:</p>
+<blockquote>
+  <pre class="courier16">MODS =                    \<br>charpak_mod.o             \<br>error_mod.o               \<br>logical_mod.o             \<br>directory_mod.o           \<br>unix_cmds_mod.o           \<br>tracer_mod.o              \<br>julday_mod.o              \<br>file_mod.o                \<br>grid_mod.o                \<br>time_mod.o                \<br>bpch2_mod.o               \<br>regrid_1x1_mod.o          \<br>pressure_mod.o            \<br>transfer_mod.o            \<br>future_emissions_mod.o    \<br>lai_mod.o                 \<br>tracerid_mod.o            \<br>benchmark_mod.o           \<br>comode_mod.o              \<br>diag_mod.o                \<br>dao_mod.o                 \<br>tropopause_mod.o          \<br>pbl_mix_mod.o             \<br>diag03_mod.o              \<br>diag04_mod.o              \<br>diag41_mod.o              \<br>diag42_mod.o              \<br>diag48_mod.o              \<br>diag49_mod.o              \<br>diag50_mod.o              \<br>diag51_mod.o              \<br>diag56_mod.o              \<br>diag_oh_mod.o             \<br>diag_pl_mod.o             \<br>ocean_mercury_mod.o       \<br>drydep_mod.o              \<br>bravo_mod.o               \<br>edgar_mod.o               \<br>emep_mod.o                \<br>epa_nei_mod.o             \<br>streets_anthro_mod.o      \<br>geia_mod.o                \<br>global_ch4_mod.o          \<br>global_hno3_mod.o         \<br>global_no3_mod.o          \<br>global_nox_mod.o          \<br>global_oh_mod.o           \<br>global_o1d_mod.o          \<br>global_o3_mod.o           \<br>uvalbedo_mod.o            \<br>RnPbBe_mod.o              \<br>Kr85_mod.o                \<br>acetone_mod.o             \<br>aerosol_mod.o             \<br>aircraft_nox_mod.o        \<br>biofuel_mod.o             \<br>gc_biomass_mod.o          \<br>gfed2_biomass_mod.o       \<br>biomass_mod.o             \<br>c2h6_mod.o                \<br>ch3i_mod.o                \<br>a3_read_mod.o             \<br>a6_read_mod.o             \<br>i6_read_mod.o             \<br>gcap_read_mod.o           \<br>gwet_read_mod.o           \<br>xtra_read_mod.o           \<br>megan_mod.o               \<br>carbon_mod.o              \<br>lightning_nox_mod.o       \<br>optdepth_mod.o            \<br>planeflight_mod.o         \<br>restart_mod.o             \<br>rpmares_mod.o             \<br>isoropia_mod.o            \<br>wetscav_mod.o             \<br>seasalt_mod.o             \<br>sulfate_mod.o             \<br>hcn_ch3cn_mod.o           \<br>tagged_co_mod.o           \<br>tagged_ox_mod.o           \<br>h2_hd_mod.o               \<br>gcap_convect_mod.o        \<br>fvdas_convect_mod.o       \<br>convection_mod.o          \<br>pjc_pfix_mod.o            \<br>dust_dead_mod.o           \<br>dust_mod.o                \<br>co2_mod.o                 \<br>mercury_mod.o             \<br>toms_mod.o                \<br>tpcore_bc_mod.o           \<br>tpcore_fvdas_mod.o        \<br>tpcore_mod.o              \<br>tpcore_window_mod.o       \<br>transport_mod.o           \<br>upbdflx_mod.o             \<br>chemistry_mod.o           \<br>emissions_mod.o           \<br>gamap_mod.o               \<br>input_mod.o</pre>
+</blockquote>
+<p align="justify">The Unix make utility will compile each module in the order it is listed above. This will ensure that GEOS&#150;Chem is compiled correctly. </p>
+<p align="justify"> If you should add another module to the GEOS&#150;Chem source code, you must also make sure that it is compiled after any other modules it may reference.  
+<p align="center"><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size20bi"><a name="7.1.5"></a>7.1.5 OpenMP parallel loop directives </p>
+<p align="justify">If you are a veteran GEOS&#150;Chem user, you may remember seeing some parallel DO-loops in various subroutines which looked similar to this: </p>
+<blockquote>
+  <PRE>Column   1         2         3         4
+1234567890123456789012345678901234567890
+C$DOACROSS SHARE( A )
+C$&        LOCAL( I, J ) 
+C$&        MP_SCHEDTYPE=DYNAMIC
+      DO J = 1, JJPAR
+      DO I = 1, IIPAR
+         A(I,J) = A(I,J) * 2.0
+      ENDDO
+      ENDDO
+</pre>
+</blockquote>
+<p align="justify"> The above fragment of code instructs GEOS&#150;Chem to split up the multiplication of the A array by 2 among several processors (as was specified by the <span class="courier16">MP_SET_NUMTHREADS</span> environment variable). Each processor receives a specific array element <span class="courier16">A(I,J)</span> to work with -- different processors get different elements. Therefore, each processor needs to have its own copies of I and J. In other words, <span class="courier16">I</span> and <span class="courier16">J</span> must be declared <span class="courier16">LOCAL</span> for the parallelization. The entire <span class="courier16">A</span> array, on the other hand, can remain available for access by all the processors, since the elements of A will be modified one at a time. Therefore, A must be declared <span class="courier16">SHARE</span>d for the parallelization. The scheduling type in the above example is <span class="courier16">DYNAMIC</span>. This means that each processor will grab a new element of A as soon as it is finished with the current one. This results in a non-sequential processing of the array elements.  
+<p align="justify"> The major drawback of the <span class="courier16">C$DOACROSS</span> parallel loop commands is that this syntax is only supported on the SGI platform. It is not possible to port GEOS&#150;Chem to other platforms using <span class="courier16">C$DOACROSS</span> parallel loops. 
+<p align="justify"> In the late 1990's, a new open standard for parallel computing named <A HREF="http://www.openmp.org" target="_blank">OpenMP</A> was developed by several compiler vendors, including Sun, SGI, Compaq, and Microsoft. The resulting standard allows parallel processing source code (written in either Fortran or C) to be ported between different platforms with minimal effort. As of version 4.17, all GEOS&#150;Chem parallel DO loops have been converted to the new OpenMP standard.  
+<p align="justify"> Here is the same DO loop as in the above example written using OpenMP parallel directives: 
+     
+<blockquote>
+  <PRE>Column   1         2         3         4
+1234567890123456789012345678901234567890
+!$OMP PARALLEL DO
+!$OMP+SHARED( A )
+!$OMP+PRIVATE( I, J )
+!$OMP+SCHEDULE( DYNAMIC )
+      DO J = 1, JJPAR
+      DO I = 1, IIPAR
+         A(I,J) = A(I,J) * 2.0
+      ENDDO
+      ENDDO
+!$OMP END PARALLEL DO</pre>
+</blockquote>
+<p align="justify">The idea is the same as before. The syntactic differences are:</p>
+<ol>
+  <li>
+    <p><span class="courier16">C$DOACROSS</span> is now written as <span class="courier16">!$OMP PARALLEL DO</span></p>
+  </li>
+  <li>
+    <p><span class="courier16">SHARE( A )</span> is now written as <span class="courier16">SHARED( A )</span></p>
+  </li>
+  <li>
+    <p><span class="courier16">LOCAL( I, J )</span> is now written as <span class="courier16">PRIVATE( I, J )</span></p>
+  </li>
+  <li>
+    <p><span class="courier16">MP_SCHEDTYPE=DYNAMIC</span> is now written as <span class="courier16">SCHEDULE( DYNAMIC )</span></p>
+  </li>
+  <li>
+    <p>The continuation character <span class="courier16">C$&</span> is now written as <span class="courier16">!OMP+</span></p>
+  </li>
+  <li>
+    <p>You may add an optional <span class="courier16">!$OMP END PARALLEL DO</span> at the end of the loop</p>
+  </li>
+</ol>
+<p align="justify"> You may also have noticed that the first column in each line of the <span class="courier16">C$DOACROSS</span> and <span class="courier16">!$OMP PARALLEL DO</span> directives begin with a legal Fortran comment character (either <span class="courier16">C</span> or <span class="courier16">!</span>). This is by design. In order to invoke the parallel procesing commands, you must turn on a specific switch in your makefile (this is <span class="courier16">-mp</span> for SGI; check your compiler manual for other platforms). If you do not specify multiprocessor compilation, then the parallel processing directives will be considered as Fortran comments, and the associated DO-loops will be executed on one processor only. Also, since GEOS&#150;Chem uses the traditional &quot;fixed-form&quot; Fortran style, the <span class="courier16">!$OMP</span> commands must begin at column 1. Otherwise a syntax error will result at compile time. 
+<p align="justify"> It should be noted that OpenMP commands are not the same as MPI (message passing interface). With OpenMP directives, you are able to split a job among several processors on the same machine. You are NOT able to split a job among several processors on different machines. Therefore, OpenMP is not suitable for Beowulf-style architectures. We are working on porting GEOS&#150;Chem to distributed style architectures. </p>
+<p align="justify">For more information about OpenMP, consult the web site <A HREF="http://www.openmp.org" target="_blank" >OpenMP.org</A>. Also, there is a very good online tutorial at <A HREF="http://scv.bu.edu/SCV/Tutorials/OpenMP/" TARGET="_blank">Boston University's Scientific Computing and Visualization</A> department.</p>
+<p align="center"><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size20bi"><a name="7.2"></a> 7.2 GEOS&#150;Chem Debugging</p>
+<p align="justify"> GEOS&#150;Chem is an evolving model. <A HREF="../../../geos_versions.html" TARGET="_blank">New features and functionalities</A> are constantly being added to it by <A HREF="../../../geos_people.html" TARGET="_blank">a rapidly increasing group of users</A>. As with any software project, mistakes are inevitable.</p>
+<p align="justify"> Most of the bugs you you will encounter when working on GEOS&#150;Chem will fall into one of two categories:</p>
+<ol>
+  <li>
+    <p align="justify">True bugs: typos, omissions, reading the wrong file, or other outright mistakes. </p>
+  </li>
+  <li>
+    <p align="justify">Design limitation bugs: that is, writing code in such a way that will make it difficult or impossible to extend the functionality of the model at some future time. </p>
+  </li>
+</ol>
+<p align="justify">Bugs of the first category are, in general, easily rectified. The fixes to these bugs typically involve either correcting a misspelled word or updating an incorrect numerical value.</p>
+<p align="justify">Bugs belonging to the second category can be rather pernicious. In almost all instances, you will find that the model is working fine -- that is, until you try to add in a new chemistry simulation, diagnostic, or third-party routine. Then you may find that a major modification to the structure of GEOS&#150;Chem is necessary before the new code can be successfully interfaced.</p>
+<p align="justify">GEOS&#150;Chem is a combination of several different indivdual pieces: emissions, chemistr and deposition routines from Harvard, transport and convection routines fro GSFC, photolysis from UC Irvine, etc. Therefore, the structure of GEOS&#150;Chem was (and still is) largely defined by the structure of the individual pieces from which it was created. It is not always possible to deviate from this set structure without having to rewrite entire sections of source code.</p>
+<p align="center"><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size18bi"><a name="7.2.1"></a> 7.2.1 Recent fixes</p>
+<p align="justify"> Between each release, bugs are being fixed:</p>
+<ul>
+  <li>
+    <p align="justify">For the most recent fixes, look at the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Bugs_and_fixes" target="_blank">Bugs and Fixes</a> page on the GEOS&#150;Chem wiki. It is the most up-to-date document for bugs. For each of them, you will find a description, how to fix it and which version of GEOS&#150;Chem includes the fix.</p>
+  </li>
+  <li>
+    <p align="justify">For known bugs that are not fixed yet, please visit <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Outstanding_issues_yet_to_be_resolved" target="_blank">Outstanding Issues Yet To Be Resolved</a> on the wiki. </p>
+  </li>
+</ul>
+<p align="justify">If you are developing code for GEOS&#150;Chem, check the <a href="chapter_7.html#7.1">Coding: Practice and Style</a> section, as well as the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability" target="_blank">Floating point page </a>on the GEOS&#150;Chem wiki. These pages may help you resolve some common issues. </p>
+<p align="center"><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size18bi"><a name="7.2.2"></a> 7.2.2 Debugging Tips</p>
+<p align="justify"> Here are some steps you can take to try to diagnose a particular GEOS&#150;Chem error.</p>
+<blockquote>
+  <table width="95%" border="0" cellpadding="3" cellspacing="3">
+    <tr  valign="top">
+      <td width="4%">1.</td>
+      <td>
+        <p align="justify">Turn on diagnostic ND70 in the file <span class="courier16">input.geos</span>. This will cause debugging messages (via routine <span class="courier16">debug_msg</span> contained in <span class="courier16">error_mod.f</span>) to be written to the log file after operations such as transport, chemistry, emissions, dry deposition, etc. are called from the main program. In this way, you should be able to identify in which operation the error occurred. </p>
+        <p align="justify">NOTE: <span class="courier16">debug_msg</span> will cause the text to be flushed to disk after it is printed. Most Unix systems feature buffered I/O; that is, the contents of a file or screen output are not updated until an internal buffer (usually 16K of memory) is filled up. If you don't flush the error message to disk, then the last output to the log file may not accurately indicate the location at which the error occurred. Therefore, we recommend using <span class="courier16">debug_msg</span> instead of a standard Fortran WRITE or PRINT* statement.</p></td>
+    </tr>
+    <tr  valign="top">
+      <td width="4%">&nbsp;</td>
+      <td></td>
+    </tr>
+    <tr  valign="top">
+      <td width="4%">2.</td>
+      <td>
+        <p align="justify">It may also be necessary to include additional debug statements into <span class="courier16">main.f</span> or other routines. This may be done by calling subroutine <span class="courier16">debug_msg</span> as follows</p>
+        <blockquote>
+          <pre>CALL DEBUG_MSG( '### after routine X' )</pre>
+        </blockquote>
+        <p align="justify"> By adding several of these debug statements, you should be able to track down the particular place at which the error is occurring. </p></td>
+    </tr>
+    <tr  valign="top">
+      <td width="4%">&nbsp;</td>
+      <td></td>
+    </tr>
+    <tr  valign="top">
+      <td width="4%">3.</td>
+      <td>
+        <p align="justify">If you suspect a that problem with one of the meteorological field input files could be causing GEOS&#150;Chem to die with an unexplained error, then look for the following line in <span class="courier16">main.f</span>: </p>
+        <blockquote>
+          <pre>! Update dynamic timestep 
+CALL SET_CT_DYN( INCREMENT = .TRUE. )</pre>
+        </blockquote>
+        <p align="justify"> and, immediately below, insert the following subroutine call: </p>
+        <blockquote>
+          <pre>### Debug
+CALL MET_FIELD_DEBUG</pre>
+        </blockquote>
+        <p align="justify">This will cause GEOS&#150;Chem to print out the minimum, maximum, and sum of each meteorological field at the top of the dynamic loop. You can then examine this output to determine if the data range of a particular field is invalid. </p></td>
+    </tr>
+    <tr  valign="top">
+      <td width="4%">&nbsp;</td>
+      <td></td>
+    </tr>
+    <tr  valign="top">
+      <td width="4%">4.</td>
+      <td>
+        <p align="justify">If you want to just print out the minimum and maximum value of an array variable that is not included in <span class="courier16">met_field_debug</span>, then simply add the following line of code: </p>
+        <blockquote>
+          <pre>PRINT*, '### Min, Max: ', MINVAL( X ), MAXVAL( X )
+CALL FLUSH( 6 )</pre>
+        </blockquote>
+        <p align="justify"> where X is the name of the variable. </p>
+        <p align="justify"> If you want to print out the sum of X instead of the min and max, add this line of code: </p>
+        <blockquote>
+          <pre>PRINT*, '### Sum of X : ', SUM( X )
+CALL FLUSH( 6 )</pre>
+        </blockquote>
+        <p align="justify"> Here we also have to call the Fortran routine <span class="courier16">FLUSH(6)</span>, which ensures that the output (in this case, to the screen, unit #6), will be immediately written to disk. </p></td>
+    </tr>
+    <tr  valign="top">
+      <td width="4%">&nbsp;</td>
+      <td></td>
+    </tr>
+    <tr  valign="top">
+      <td width="4%">5.</td>
+      <td>
+        <p align="justify">It is a good idea to periodically compile your code with array-out-of-bounds error checking. This will make sure that all of the arrays are being accessed with indices whose values fall within the specified array dimensions. </p>
+        <p align="justify"> For example, if you have the following situation in your code: </p>
+        <blockquote>
+          <pre>REAL*8 :: A(10), B(10)
+...
+DO I = 1, 10
+   B(I) = A(I+1)
+ENDDO</pre>
+        </blockquote>
+        <p align="justify"> then the code will try to access the 11th element of the A array. But since A only has 10 elements, the code will try to access the next contiguous memory location, which may belong to a different variable altogether. Therefore, a "junk" value will be copied into the 10th element of the B array.</p></td>
+    </tr>
+    <tr  valign="top">
+      <td width="4%">&nbsp;</td>
+      <td></td>
+    </tr>
+    <tr  valign="top">
+      <td width="4%">6.</td>
+      <td>
+        <p align="justify">To invoke array-out-of-bounds checking in your code, make clean, and then make sure you the appropriate line in your Makefile: </p>
+        <blockquote>
+          <pre>FFLAGS = f90 -cpp -64 -O3 -OPT:reorg_common=off -C   (SGI   )
+FFLAGS = f90 -cpp -convert big_endian -tune host -C  (Compaq)
+FF     = pgf90 -Mpreprocess -byteswapio -Mbounds     (Linux )
+FFLAGS = f90 -xpp=cpp -O4 -xarch=v9 -C               (Sparc )</pre>
+        </blockquote>
+        <p align="justify">Then recompile your code as usual. This will build the array-out-of-bounds checking into your executable. Any errors will be detected at runtime, and you should get error output such as: </p>
+        <blockquote>
+          <pre>lib-4964: WARNING 
+Subscript is out of range for dimension 1 for array 
+'A' at line 8 in procedure 'MAIN__', 
+diagnosed by '__f90_bounds_check'.</pre>
+        </blockquote>
+        <p align="justify">The above error was generated on the SGI platform; Alpha and Linux compilers should give similar errors. </p>
+        <p align="justify">NOTE: Once you have located and fixed the offending array statement, you should recompile to make an executable without the array-out-of-bounds checking built in. The error checking is thorough, but it can cause your code to slow down noticeably. Therefore, it is only recommended to use array-out-of-bounds checking in debugging runs and not in production runs.</p></td>
+    </tr>
+    <tr  valign="top">
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</blockquote>
+<p align="justify"></p>
+<p align="center"><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size18bi"><a name="7.2.3"></a> 7.2.3 Using a debugger</p>
+<p align="justify" >If you have access to a debugger, you should spend a little bit of time learning how to use it, at least the basic usage. Knowing how to:</p>
+<ul>
+  <li>    examine data when a program stops</li>
+  <li>    navigate the stack when a program stops</li>
+  <li>    set breakpoints, </li>
+</ul>
+<p align="justify" >will save you a lot of time when debugging a program.</p>
+<p align="justify" >To use a debugger, you typically need to compile  your code with a flag that tells the compiler to generate symbolic debug information. This is usually done with <strong>-g</strong>. You also need to switch off any optimization flag, since they can &quot;rewrite&quot; your code and you may not be able to access all variables. For example, GEOS-Chem is compiled with the following flags on IFORT when using a debugger:</p>
+<blockquote>
+<pre>FFLAGS = -cpp -w  -noalign -convert big_endian <strong>-g</strong></pre>
+</blockquote>
+<p >instead of:</p>
+<blockquote>
+<pre>FFLAGS = -cpp -w <strong>-O2 -auto</strong> -noalign -convert big_endian</pre>
+</blockquote>
+<p>These two lines are already in the Makefile.ifort (and similar ones in Makefile.sparc too), so you just need to uncomment the one you need.</p>
+<p align="center"><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>  
+<p align="center"><span class="size14bi"><A HREF="chapter_6.html">Previous</A> | <A HREF="chapter_8.html">Next</A> | <a href="chapter_7.html" target="_parent">Printable View (no frames)</a></span> </p>
+</BODY>
+</HTML>

@@ -1,0 +1,2289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS-Chem User's Guide</title>
+
+
+<link rel="stylesheet" type="text/css" href="../../gc.css"><!-- Cascading style sheet for font declarations --> 
+<style type="text/css">
+li { 
+	font-family      : Arial, Helvetica, sans-serif;
+ 	font-size        : 14px;
+}
+tr { 
+	vertical-align   : top;
+	text-align       : left;
+}
+th { 
+	font-family      : Arial, Helvetica, sans-serif; 
+    font-weight      : bold; 
+	font-size        : 16px; 
+	text-align       : left;
+	background-color : #CCCCCC 
+}	
+</style></head><body bgcolor="#ffffff">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script> <!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&ndash;Chem v9&ndash;02 Online User's Guide</p>
+<p class="size14bi" align="center"><a href="appendix_3.html">Previous</a> | <a href="appendix_5.html">Next</a> | <a href="appendix_4.html" target="_parent">Printable View (no frames)</a></p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+<p class="size24bi">Appendix 4: GEOS&ndash;Chem Meteorological Fields</p>
+<p align="justify">We compare the meteorological data products that GEOS&ndash;Chem reads from disk.</p>
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+<p class="size20bi"><a name="GCAP" id="GCAP"></a>A4.1 GCAP fields used by GEOS&ndash;Chem</p>
+<p class="size14">NOTES about GCAP met fields:</p>
+<ol>
+  <li>A3 fields are 3-hour time averages, centered on 01:30 04:30 07:30 ... 22:30 GMT</li>
+  <li>A6 fields are 6-hour time averages, centered on 00:00 06:00 12:00 18:00 GMT</li>
+  <li>I6 fields are 6-hour instantaneous fields, centered on 00:00 06:00 12:00 18:00 GMT</li>
+  <li>Constant fields are time-invariant</li>
+  <li>Please see the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GCAP" target="_new">GCAP page on the GEOS-Chem Wiki</a> for more information.</li>
+</ol>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody><tr> 
+    <th width="10%">Field</th>
+	<th width="10%">Type</th>
+    <th width="10%">Dimension</th>
+    <th width="50%">Quantity</th>
+    <th width="20%">Units</th>
+  </tr>
+  <tr> 
+    <td  width="10%">ALBEDO</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Surface albedo</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td  width="10%">PREACC</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Total precipitation</td>
+    <td width="20%">mm day<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">PRECON</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Convective precipitation</td>
+    <td width="20%">mm day<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">TS</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Surface temprature</td>
+    <td width="20%">K</td>
+  </tr>
+  <tr> 
+    <td  width="10%">MOLENGTH</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Monin-Obhukov length</td>
+    <td width="20%">m</td>
+  </tr>
+  <tr> 
+    <td  width="10%">USTAR</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Friction velocity</td>
+    <td width="20%">m s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">PBL</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Boundary layer height</td>
+    <td width="20%">m</td>
+  </tr>
+  <tr> 
+    <td  width="10%">RADSWG</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Incident radiation at ground</td>
+    <td width="20%">W m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">SNICE</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Fraction of box covered w/ snow, land, or ocean ice</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td  width="10%">OICE</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Ocean or lake ice fraction</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td  width="10%">USS</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Zonal wind at 10m above surface</td>
+    <td width="20%">m s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">VSS</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Meridional wind at 10m above the surface</td>
+    <td width="20%">m s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">SOIL</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Volumetric water content</td>
+    <td width="20%">m<sup>3</sup> m<sup>-3</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">SNOWD</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Snow depth</td>
+    <td width="20%">m</td>
+  </tr>
+  <tr> 
+    <td  width="10%">PARDIR</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Direct photosynthetically-active radiation</td>
+    <td width="20%">W m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">PARDIF</td>
+    <td  width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Diffuse photosynthetically-active radiation</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr> 
+    <td  width="10%">T</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Temperature</td>
+    <td width="20%">K</td>
+  </tr>
+  <tr> 
+    <td  width="10%">U</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Zonal wind</td>
+    <td width="20%">m s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">V</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Meridional wind</td>
+    <td width="20%">m s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">OPTDEPTH</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Optical depth</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td  width="10%">CLDF</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Cloud fraction</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td  width="10%">Q</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Specific humidity</td>
+    <td width="20%">kg kg<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">MOISTQ</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Tendency of Q w/r/t precipitation</td>
+    <td width="20%">g kg<sup>-1</sup> day<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">UPDE</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Convective updraft flux</td>
+    <td width="20%">Pa s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">DNDE</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Convective downdraft flux</td>
+    <td width="20%">Pa s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">ENTRAIN</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Convective entrainment</td>
+    <td width="20%">Pa s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">DETRAINE</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Convective detrainment</td>
+    <td width="20%">Pa s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">UPDN</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Convective updraft flux (non-entraining plume)</td>
+    <td width="20%">Pa s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">DNDN</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Convective downdraft flux (non-entraining plume)</td>
+    <td width="20%">Pa s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">DETRAINN</td>
+    <td  width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Convective detrainment (non-entraining plume)</td>
+    <td width="20%">Pa s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr> 
+    <td  width="10%">PS</td>
+    <td  width="10%">I6</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Surface pressure</td>
+    <td width="20%">hPa</td>
+  </tr>
+  <tr> 
+    <td  width="10%">SLP</td>
+    <td  width="10%">I6</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Sea-level pressure</td>
+    <td width="20%">hPa</td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr> 
+    <td  width="10%">PHIS</td>
+    <td  width="10%">Constant</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Surface geopotential heights</td>
+    <td width="20%">m<sup>-2</sup> s<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td  width="10%">LWI</td>
+    <td  width="10%">Constant</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Land fraction</td>
+    <td width="20%">1</td>
+  </tr>
+</tbody></table>
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+<p class="size20bi"><a name="GEOS-4" id="GEOS-4"></a>A4.2 GEOS&ndash;4 fields used by GEOS&ndash;Chem</p>
+<p class="size14">NOTES for GEOS&ndash;4 fields:</p>
+<ol>
+  <li>A-3 fields are 3-hour time-averages, centered on 01:30, 04:30, 07:30, ... 22:30 GMT.</li>
+  <li>A-6 fields are 6-hour time-averages, centered on 00:00, 06:00, 12:00, and 18:00 GMT.</li>
+  <li>I-6 fields are 6-hour instantaneous data at 00:00, 06:00, 12:00, and 18:00 GMT.</li>
+  <li>The air temperature at 2 meters is used as a proxy for the surface air temperature.</li>
+  <li>Skin temperature is the temperature of the ground (or ocean) surface.</li>
+  <li>Please see the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GMAO_GEOS-4" target="_new">GEOS&ndash;4 page on the GEOS-Chem Wiki</a> for more information.</li>
+</ol>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody><tr> 
+    <th width="10%">Field</th>
+	<th width="10%">Type</th>
+	<th width="10%">Dimension</th>
+	<th width="50%">Quantity</th>
+	<th width="20%">Units</th>
+  </tr>
+  <tr> 
+    <td width="10%">LWI</td>
+    <td width="10%">I6</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Land-water-ice flags</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td  width="10%">PHIS</td>
+    <td  width="10%">I6</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Surface geopotential heights</td>
+    <td width="20%">m<sup>2</sup> s<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">PS</td>
+    <td width="10%">I6</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Surface pressure</td>
+    <td width="20%">hPa</td>
+  </tr>
+  <tr> 
+    <td width="10%">SLP</td>
+    <td width="10%">I6</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Sea level pressure</td>
+    <td width="20%">hPa</td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th> 
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr> 
+    <td width="10%">CLDTOT</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">3-D cloud fraction (conv + large scale)</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td width="10%">HKBETA</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Hack overshoot parameter</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td width="10%">HKETA</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Hack convective mass flux</td>
+    <td width="20%">kg m<sup>-2 </sup>s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">MOISTQ</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Tendency in specific humidity</td>
+    <td width="20%">g kg<sup>-1</sup> day<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">OPTDEPTH</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Grid box optical depth</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td width="10%">Q</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Specific humidity </td>
+    <td width="20%">g kg<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">T</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Temperature</td>
+    <td width="20%">K</td>
+  </tr>
+  <tr> 
+    <td width="10%">U</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Zonal wind </td>
+    <td width="20%">m s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">V</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Meridional wind </td>
+    <td width="20%">m s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">ZMEU</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Zhang-McFarlane updraft entrainment</td>
+    <td width="20%">Pa s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">ZMMD</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Zhang-McFarlane downdraft mass flux</td>
+    <td width="20%">Pa s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">ZMMU</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Zhang-McFarlane updraft mass flux</td>
+    <td width="20%">Pa s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th> 
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr> 
+    <td width="10%">ALBEDO</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Surface albedo (visible)</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td width="10%">CLDFRC</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Column cloud fraction at ground</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td width="10%">GWETTOP</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Top soil wetness </td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td width="10%">HFLUX</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Sensible heat flux</td>
+    <td width="20%">W m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">LAI</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Leaf area indices</td>
+    <td width="20%">%</td>
+  </tr>
+  <tr> 
+    <td width="10%">PARDF</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Photosynthetically active diffuse radiation</td>
+    <td width="20%">W m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">PARDR</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Photosynthetically active direct radiation</td>
+    <td width="20%">W m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">PBLH</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Planetary boundary layer depth</td>
+    <td width="20%">m</td>
+  </tr>
+  <tr>    
+    <td width="10%">PREACC</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Total precipitation at ground</td>
+    <td width="20%">mm day<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td height="22" width="10%">PRECON</td>
+    <td height="22" width="10%">A3</td>
+    <td height="22" width="10%">2-D</td>
+    <td height="22" width="50%">Convective precipitation at ground</td>
+    <td height="22" width="20%">mm day<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">RADLWG</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Longwave (IR) radiation emanating from the ground</td>
+    <td width="20%">W m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">RADSWG</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Solar insolation (shortwave) reaching the ground</td>
+    <td width="20%">W m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">SNOW</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Snow depth (equivalent water)</td>
+    <td width="20%">mm H2O</td>
+  </tr>
+  <tr> 
+    <td width="10%">T2M</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Air temperature at 2 meter elevation</td>
+    <td width="20%">K</td>
+  </tr>
+  <tr> 
+    <td width="10%">TSKIN</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Skin temperature (ground T or sea surface T)</td>
+    <td width="20%">K</td>
+  </tr>
+  <tr> 
+    <td width="10%">U10M</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">UWND at  10 m altitude</td>
+    <td width="20%">m s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">USTAR</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Friction velocity</td>
+    <td width="20%">m s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">V10M</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">VWND at 10 m altitude</td>
+    <td width="20%">m s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">Z0M</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Roughness height</td>
+    <td width="20%">m</td>
+  </tr>
+</tbody></table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="GEOS-5" id="GEOS-5"></a>A4.3 GEOS&ndash;5 fields used by GEOS&ndash;Chem</p>
+<p class="size14">NOTES about GEOS&ndash;5 met fields:</p>
+<ol>
+  <li>A3 fields are 3-hour time averages, centered on 01:30 04:30 07:30 ... 22:30 GMT</li>
+  <li>A6 fields are 6-hour time averages, centered on 00:00 06:00 12:00 18:00 GMT</li>
+  <li>I6 fields are 6-hour instantaneous fields, centered on 00:00 06:00 12:00 18:00 GMT</li>
+  <li>NOTE: Relative Humidity in the GEOS&ndash;5 "raw data files" is labeled as "percent" but is actually "fraction" (unitless). </li>
+  <li>Please see the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_GEOS-5_met_fields" target="_new">GEOS&ndash;5 page on the GEOS-Chem Wiki</a> for more information.</li>
+</ol>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tbody><tr> 
+    <th width="10%">Field</th>
+	<th width="10%">Type</th>
+	<th width="10%">Dimension</th>
+	<th width="50%">Quantity</th>
+	<th width="20%">Units</th>
+  </tr>
+  <tr> 
+    <td width="10%">ALBEDO</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Surface albedo</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td width="10%">CLDTOT</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Column cloud fraction</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr>
+      <td>EFLUX</td>
+      <td>A3</td>
+      <td>2-D<</td>
+      <td>Latent heat flux</td>
+      <td>W m<sup>-2</sup></td>
+    </tr>
+<tr> 
+    <td width="10%">EVAP</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Evapotranspiration flux</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr>
+      <td>FRLAKE</td>
+      <td>A3</td>
+      <td>2-D</td>
+      <td>Fraction of lake</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>FRLAND</td>
+      <td>A3</td>
+      <td>2-D</td>
+      <td>Fraction of land</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>FRLANDIC</td>
+      <td>A3</td>
+      <td>2-D</td>
+      <td>Fraction of land ice</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>FROCEAN</td>
+      <td>A3</td>
+      <td>2-D</td>
+      <td>Fraction of ocean</td>
+      <td>1</td>
+    </tr>
+<tr> 
+    <td width="10%">GRN</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Greenness index</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td width="10%">GWETROOT</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Root zone soil wetness</td>
+    <td width="20%">1</td>
+  </tr>
+  <tr> 
+    <td width="10%">GWETTOP</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Top soil wetness</td>
+    <td width="20%">1</td>
+  </tr>
+  
+  <tr> 
+    <td width="10%">HFLUX</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Sensible heat flux</td>
+    <td width="20%">W m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">LAI</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Leaf area index</td>
+    <td width="20%">m<sup>2</sup> m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">LWGNET</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Net longwave radiation at ground</td>
+    <td width="20%">W m<sup>-2</sup></td>
+  </tr>
+  <tr>
+    <td>LWTUP</td>
+    <td>A3</td>
+    <td>2-D</td>
+    <td>Outgoing longwave radiation</td>
+    <td>W m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">PARDF</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Diffuse photosnythetically-active radiation</td>
+    <td width="20%">W m<sup>-2</sup></td>
+  </tr>
+  <tr>
+    <td>LWTUP</td>
+    <td>A3</td>
+    <td>2-D</td>
+    <td>Outgoing longwave radiation</td>
+    <td>W m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">PARDR</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Direct photosynthetically-active radiation</td>
+    <td width="20%">W m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">PBLH</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Planetary boundary layer thickness</td>
+    <td width="20%">m</td>
+  </tr>
+  <tr>
+      <td>PRECANV</td>
+      <td>A3</td>
+      <td>2-D</td>
+      <td>Anvil precipitation</td>
+      <td>kg m<sup>-2 </sup>s<sup>-1 </sup></td>
+    </tr>
+<tr> 
+    <td width="10%">PRECCON</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Total convective precipitation at the ground</td>
+    <td width="20%">kg m<sup>-2 </sup>s<sup>-1 </sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">PRECTOT</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Total precipitation at the ground</td>
+    <td width="20%">kg m<sup>-2 </sup>s<sup>-1 </sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">PRECSNO</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Total snow precipitation at the ground</td>
+    <td width="20%">kg m<sup>-2 </sup>s<sup>-1 </sup></td>
+  </tr>
+  <tr>
+      <td>QV2M</td>
+      <td>A3</td>
+      <td>2-D</td>
+      <td>Specific humidity at 2m</td>
+      <td>kg kg<sup>-1 </sup></td>
+    </tr>
+<tr> 
+    <td width="10%">SNOMAS</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Snow depth (H2O equivalent)</td>
+    <td width="20%">m</td>
+  </tr>
+  <tr> 
+    <td width="10%">SNODP</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Snow depth (geometric)</td>
+    <td width="20%">m</td>
+  </tr>
+  <tr> 
+    <td width="10%">SWGNET</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Net shortwave radiation at ground</td>
+    <td width="20%">W m<sup>-2</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">T2M</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Temperature at 2m above ground</td>
+    <td width="20%">K</td>
+  </tr>
+  <tr> 
+    <td width="10%">TROPP</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Tropopause pressure</td>
+    <td width="20%">hPa</td>
+  </tr>
+  <tr> 
+    <td width="10%">TSKIN</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Ground (skin) temperature</td>
+    <td width="20%">K</td>
+  </tr>
+  <tr> 
+    <td width="10%">U10M</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Zonal wind at 10m above ground</td>
+    <td width="20%">m/s</td>
+  </tr>
+  <tr> 
+    <td width="10%">USTAR</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Friction velocity</td>
+    <td width="20%">m/s</td>
+  </tr>
+  <tr> 
+    <td width="10%">V10M</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Meridional wind at 10m above ground</td>
+    <td width="20%">m/s</td>
+  </tr>
+  <tr> 
+    <td width="10%">Z0M</td>
+    <td width="10%">A3</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Roughness height</td>
+    <td width="20%">m</td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th> 
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr>
+      <td>DQRCON</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Precipitation from convective processes</td>
+      <td>kg m<sup>-2</sup> s<sup>-1</sup></td>
+    </tr>
+    <tr>
+      <td>DQRLSC</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Precipitation from large-scale processes</td>
+      <td>kg m<sup>-2</sup> s<sup>-1</sup></td>
+    </tr>
+    <tr>
+      <td>DTRAIN</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Detrainment mass flux</td>
+      <td>kg m<sup>-2</sup> s<sup>-2</sup></td>
+    </tr>
+    <tr>
+      <td>QL</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Water mixing ratio</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>QI</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Ice mixing ratio</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>OPTDEPTH</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Overall grid-box optical depth</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>TAUCLI</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Grid-box optical depth, ice-path</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>TAUCLW</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Grid-box optical depth, water-path</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>CLOUD</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Cloud fraction</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>PV</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Ertel potential vorticity</td>
+      <td>K  m<sup>2  </sup>kg<sup>-1</sup> s<sup>-1</sup></td>
+    </tr>
+    <tr>
+      <td>OMEGA
+      </td>
+      <td>A6
+      </td>
+      <td>3-D
+      </td>
+      <td>Vertical pressure velocity
+      </td>
+      <td>Pa s<sup>-1</sup></td>
+    </tr>
+    <tr>
+      <td>QV</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Specific humidity</td>
+      <td>kg kg<sup>-1</sup></td>
+    </tr>
+    <tr>
+      <td>RH</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Relative Humidity</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>T
+      </td>
+      <td>A6
+      </td>
+      <td>3-D
+      </td>
+      <td>Temperature
+      </td>
+      <td>K
+      </td>
+    </tr>
+    <tr>
+      <td>U</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Zonal wind</td>
+      <td>m s<sup>-1</sup></td>
+    </tr>
+    <tr>
+      <td>V</td>
+      <td>A6</td>
+      <td>3-D</td>
+      <td>Meridional wind</td>
+      <td>m s<sup>-1</sup></td>
+    </tr>
+<tr> 
+    <td width="10%">DQIDTMST</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Tendency of QV in ice processes</td>
+    <td width="20%">kg kg<sup>-1</sup> s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">DQLDTMST</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Tendency of QV in moist processes</td>
+    <td width="20%">kg kg<sup>-1</sup> s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">DQVDTMST</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Tendency of QV in vapor processes</td>
+    <td width="20%">kg kg<sup>-1</sup> s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">MOISTQ</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Overall tendency of QV</td>
+    <td width="20%">kg kg<sup>-1</sup> s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">CMFMC</td>
+    <td width="10%">A6</td>
+    <td width="10%">3-D</td>
+    <td width="50%">Convective mass flux</td>
+    <td width="20%">kg kg<sup>-1</sup> s<sup>-1</sup></td>
+  </tr>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th> 
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr> 
+    <td width="10%">LWI</td>
+    <td width="10%">I6</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Land/water/ice flags</td>
+    <td width="20%">m s<sup>-1</sup></td>
+  </tr>
+  <tr> 
+    <td width="10%">PS</td>
+    <td width="10%">I6</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Surface pressure</td>
+    <td width="20%">hPa</td>
+  </tr>
+  <tr> 
+    <td width="10%">SLP</td>
+    <td width="10%">I6</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Sea-level pressure</td>
+    <td width="20%">hPa</td>
+  </tr>
+  <tr> 
+    <td width="10%">TO3</td>
+    <td width="10%">I6</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Total ozone column</td>
+    <td width="20%">Dobsons</td>
+  </tr>
+  <tr> 
+    <td width="10%">TTO3</td>
+    <td width="10%">I6</td>
+    <td width="10%">2-D</td>
+    <td width="50%">Tropospheric ozone column</td>
+    <td width="20%">Dobsons</td>
+  </tr>
+</tbody></table>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="GEOS-FP" id="GEOS-FP"></a>A4.4 GEOS&ndash;FP fields used by GEOS&ndash;Chem</p>
+<p>Notes about GEOS&ndash;FP met fields:</p>
+<ol>
+  <li>A1 fields are 1-hr time-averaged fields with timestamps (i.e. center of averaging period): 00:30, 01:30, 02:30 ... 23:30 GMT</li>
+  <li>A3 fields are 3-hr time-averaged fields with timestamps (i.e. center of averaging period): 01:30, 04:30, 07:30, 10:30, 13:30, 16:30, 
+    19:30, 22:30 GMT</li>
+  <li>I3 fields 3-hr instantaneous fields with timestamps: 00:00, 03:00, 06:00, 09:00, 12:00, 15:00, 18:00, 21:00 GMT.</li>
+  <li>Constant fields are time-invariant.</li>
+  <li>For more information about the GEOS&ndash;FP raw data, please see the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-FP" target="_new">GEOS&ndash;FP 
+    page on the GEOS&ndash;Chem wiki</a>.</li>
+  <li>For detailed information about how the individual GEOS&ndash;FP fields were regridded, 
+    see the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_GEOS-FP_met_fields" target="_new">List 
+      of GEOS&ndash;FP met fields page on the GEOS&ndash;Chem wiki</a>.</li>
+</ol>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tr bgcolor="#CCCCCC"> 
+    <th width="10%">Field</th>
+    <th width="10%">Type</th>
+    <th width="10%">Dimension</th>
+    <th width="50%">Units</th>
+    <th width="20%">Quantity</th>
+  </tr>
+  <tr valign="top"> 
+    <td>FRLAKE </td>
+    <td>Constant</td>
+    <td>2-D</td>
+    <td>Fraction of lake type in grid box </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td height="32">FRLAND </td>
+    <td height="32">Constant</td>
+    <td height="32">2-D</td>
+    <td height="32">Fraction of land type in grid box </td>
+    <td height="32">1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>FRLANDIC </td>
+    <td>Constant</td>
+    <td>2-D</td>
+    <td>Fraction of land ice type in grid box </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>FROCEAN </td>
+    <td>Constant</td>
+    <td>2-D</td>
+    <td>Fraction of ocean in grid box </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>PHIS</td>
+    <td>Constant</td>
+    <td>2-D</td>
+    <td>Surface geopotential </td>
+    <td>m<sup>2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr valign="top"> 
+    <td>ALBEDO </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface albedo </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>CLDTOT </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Total cloud fraction </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>EFLUX </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Latent heat flux (positive upward) </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>EVAP </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface evaporation </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>FRSEAICE </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of sea ice </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>FRSNO </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fractional snow-covered area </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>GRN </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Vegetation greenness fraction </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>GWETROOT </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Root zone soil wetness </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>GWETTOP </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Top  soil wetness</td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>HFLUX </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Sensible heat flux (positive upward) </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>LAI </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Leaf area index </td>
+    <td>m<sup>2</sup> m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>LWGNT </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface net downward longwave flux </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>LWI </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Land/water/ice flags </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>LWTUP </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Upward longwave flux at top of atmosphere (TOA) </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PARDF </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface downward PAR diffuse flux </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PARDR </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface downward PAR beam flux </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PBLH </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Planetary boundary layer height above surface </td>
+    <td>m </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PRECANV </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface precipitation flux from anvils </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PRECCON </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface precipitation flux from convection </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PRECLSC </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface precipitation flux from large-scale </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PRECSNO </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface snowfall flux </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PRECTOT </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Total surface precipitation flux </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>QV2M </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Specific humidity at 2 m above the displacement height </td>
+    <td>kg kg<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top">
+    <td>Q850</td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Specific humidity at 850 hPa</td>
+    <td>kg kg<sup>-1</sup></td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE00 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has &lt; 10% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE10 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 10-20% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE20 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 20-30% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE30 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 30-40% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE40 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 40-50% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE50 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 50-60% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE60 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 60-70% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE70 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 70-80% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE80 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 80-90% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE90 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has &gt; 90% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SLP </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Sea level pressure </td>
+    <td>hPa </td>
+  </tr>
+  <tr valign="top"> 
+    <td>SNODP </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Snow depth </td>
+    <td>m </td>
+  </tr>
+  <tr valign="top"> 
+    <td>SNOMAS </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Snow mass </td>
+    <td>kg m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>SWGDN </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface incident shortwave flux </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>SWGNT </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Net surface downward shortwave flux </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>TO3 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Total column ozone</td>
+    <td>Dobsons</td>
+  </tr>
+  <tr valign="top">
+    <td>TROPPT </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>T based tropopause pressure </td>
+    <td>hPa </td>
+  </tr>
+  <tr valign="top"> 
+    <td>TS </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface skin temperature </td>
+    <td>K </td>
+  </tr>
+  <tr valign="top"> 
+    <td>T2M </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Temperature 2 m above displacement height </td>
+    <td>K </td>
+  </tr>
+  <tr valign="top"> 
+    <td>U10M </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Eastward wind 10 m above displacement height </td>
+    <td>m s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>USTAR </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Friction velocity </td>
+    <td>m s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>V10M </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Northward wind 10 m above displacement height </td>
+    <td>m s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>Z0M </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Roughness length, momentum </td>
+    <td>m </td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr valign="top"> 
+    <td>CLOUD </td>
+    <td>A3cld</td>
+    <td>3-D</td>
+    <td>Total cloud fraction in grid box </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>QI</td>
+    <td>A3cld</td>
+    <td>3-D</td>
+    <td>Cloud ice mixing ratio</td>
+    <td>kg kg<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>QIAN </td>
+    <td>A3cld</td>
+    <td>3-D</td>
+    <td>Cloud ice mixing ratio &ndash; anvils </td>
+    <td>kg kg<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>QILS </td>
+    <td>A3cld</td>
+    <td>3-D</td>
+    <td>Cloud ice mixing ratio &ndash; large-scale </td>
+    <td>kg kg<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>QL</td>
+    <td>A3cld</td>
+    <td>3-D</td>
+    <td>Cloud liquid water mixing ratio</td>
+    <td>kg kg<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>QLAN</td>
+    <td>A3cld</td>
+    <td>3-D</td>
+    <td>Cloud liquid water mixing ratio &ndash; anvil</td>
+    <td>kg kg<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>QLLS</td>
+    <td>A3cld</td>
+    <td>3-D</td>
+    <td>Cloud liquid water mixing ratio &ndash; large-scale</td>
+    <td>kg kg<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>TAUCLI </td>
+    <td>A3cld</td>
+    <td>3-D</td>
+    <td>In-cloud ice cloud optical thickness (visible band) </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>TAUCLW </td>
+    <td>A3cld</td>
+    <td>3-D</td>
+    <td>In-cloud liquid cloud optical thickness (visible band) </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>OPTDEPTH </td>
+    <td>A3cld</td>
+    <td>3-D</td>
+    <td>Total in-cloud optical depth (visible band) </td>
+    <td>1</td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr valign="top"> 
+    <td>DTRAIN </td>
+    <td>A3dyn</td>
+    <td>3-D</td>
+    <td>Detrainment cloud mass flux </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>OMEGA </td>
+    <td>A3dyn</td>
+    <td>3-D</td>
+    <td>Vertical pressure velocity </td>
+    <td>Pa s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>RH </td>
+    <td>A3dyn</td>
+    <td>3-D</td>
+    <td>Relative humidity </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>U </td>
+    <td>A3dyn</td>
+    <td>3-D</td>
+    <td>Eastward component of wind </td>
+    <td>m s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>V </td>
+    <td>A3dyn</td>
+    <td>3-D</td>
+    <td>Northward component of wind </td>
+    <td>m s<sup>-1</sup> </td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr valign="top"> 
+    <td>DQRCU </td>
+    <td>A3mstC</td>
+    <td>3-D</td>
+    <td>Precipitation production rate &ndash; convective </td>
+    <td>kg kg<sup>-1</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>DQRLSAN </td>
+    <td>A3mstC</td>
+    <td>3-D</td>
+    <td>Precipitation production rate &ndash; large-scale + anvil </td>
+    <td>kg kg<sup>-1</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>REEVAPCN </td>
+    <td>A3mstC</td>
+    <td>3-D</td>
+    <td>Evaporation of precipitating convective condensate </td>
+    <td>kg kg<sup>-1</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>REEVAPLS(AN)</td>
+    <td>A3mstC</td>
+    <td>3-D</td>
+    <td>Evaporation of precipitating LS + anvil condensate </td>
+    <td>kg kg<sup>-1</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr valign="top">
+    <td>CMFMC </td>
+    <td>A3mstE</td>
+    <td>3-D</td>
+    <td>Upward moist convective mass flux </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup></td>
+  </tr>
+  <tr valign="top"> 
+    <td>PFICU </td>
+    <td>A3mstE</td>
+    <td>3-D</td>
+    <td>Downward flux of ice precipitation &ndash; convective </td>
+    <td>kg m<sup>-2</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PFILSAN </td>
+    <td>A3mstE</td>
+    <td>3-D</td>
+    <td>Downward flux of ice precip &ndash; large-scale + anvil </td>
+    <td>kg m<sup>-2</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PFLCU </td>
+    <td>A3mstE</td>
+    <td>3-D</td>
+    <td>Downward flux of liquid precipitation &ndash; convective </td>
+    <td>kg m<sup>-2</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PFLLSAN </td>
+    <td>A3mstE</td>
+    <td>3-D</td>
+    <td>Downward flux of liquid precip &ndash; large-scale + anvil </td>
+    <td>kg m<sup>-2</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr valign="top"> 
+    <td>PS </td>
+    <td>I3</td>
+    <td>2-D</td>
+    <td>Surface pressure </td>
+    <td>Pa </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PV </td>
+    <td>I3</td>
+    <td>3-D</td>
+    <td>Ertel potential vorticity </td>
+    <td>K m<sup>2</sup> kg<sup>-1</sup> s<sup>-1</sup> </td>
+  <tr valign="top"> 
+    <td>QV </td>
+    <td>I3</td>
+    <td>3-D</td>
+    <td>Specific humidity </td>
+    <td>kg kg<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>T </td>
+    <td>I3</td>
+    <td>3-D</td>
+    <td>Air temperature </td>
+    <td>K </td>
+  </tr>
+</table>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="MERRA" id="MERRA"></a>A4.5 MERRA fields used by GEOS&ndash;Chem</p>
+<p>Notes about MERRA met fields:</p>
+<ol>
+  <li>A1 fields are 1-hr time-averaged fields with timestamps (i.e. center of averaging period): 00:30, 01:30, 02:30 ... 23:30 GMT</li>
+  <li>A3 fields are 3-hr time-averaged fields with timestamps (i.e. center of averaging period): 01:30, 04:30, 07:30, 10:30, 13:30, 16:30, 
+    19:30, 22:30 GMT</li>
+  <li>I6 fields 6-hr instantaneous fields with timestamps: 00:00, 06:00, 12:00, 
+    18:00 GMT.</li>
+  <li>Constant fields are time-invariant.</li>
+  <li>For more information about the MERRA raw data, please see the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MERRA" target="_new">MERRA 
+    post on the GEOS&ndash;Chem wiki</a>.</li>
+  <li>For detailed information about how the individual MERRA fields were regridded, 
+    see the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/List_of_MERRA_met_fields" target="_new">List 
+      of MERRA met fields post on the GEOS&ndash;Chem wiki</a>.</li>
+  <li> For more information about the native MERRA grids, see the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MERRA#MERRA_grid_structure" title="MERRA" target="_new">MERRA 
+    grid structure post on the GEOS&ndash;Chem wiki</a>.</li>
+</ol>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="95%">
+  <tr bgcolor="#CCCCCC"> 
+    <th width="10%">Field</th>
+    <th width="10%">Type</th>
+    <th width="10%">Dimension</th>
+    <th width="50%">Units</th>
+    <th width="20%">Quantity</th>
+  </tr>
+  <tr valign="top"> 
+    <td>FRLAKE </td>
+    <td>Constant</td>
+    <td>2-D</td>
+    <td>Fraction of lake type in grid box </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td height="32">FRLAND </td>
+    <td height="32">Constant</td>
+    <td height="32">2-D</td>
+    <td height="32">Fraction of land type in grid box </td>
+    <td height="32">1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>FRLANDIC </td>
+    <td>Constant</td>
+    <td>2-D</td>
+    <td>Fraction of land ice type in grid box </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>FROCEAN </td>
+    <td>Constant</td>
+    <td>2-D</td>
+    <td>Fraction of ocean in grid box </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>PHIS</td>
+    <td>Constant</td>
+    <td>2-D</td>
+    <td>Surface geopotential </td>
+    <td>m<sup>2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr valign="top"> 
+    <td>ALBEDO </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface albedo </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>CLDTOT </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Total cloud fraction </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>EFLUX </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Latent heat flux (positive upward) </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>EVAP </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface evaporation </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>FRSEAICE </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of sea ice </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>FRSNO </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fractional snow-covered area </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>GRN </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Vegetation greenness fraction </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>GWETROOT </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Root zone soil wetness </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>GWETTOP </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Top soil wetness</td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>HFLUX </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Sensible heat flux (positive upward) </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>LAI </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Leaf area index </td>
+    <td>m<sup>2</sup> m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>LWGNT </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface net downward longwave flux </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>LWI </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Land/water/ice flags </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>LWTUP </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Upward longwave flux at top of atmosphere (TOA) </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PARDF </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface downward PAR diffuse flux </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PARDR </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface downward PAR beam flux </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PBLH </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Planetary boundary layer height above surface </td>
+    <td>m </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PRECANV </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface precipitation flux from anvils </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PRECCON </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface precipitation flux from convection </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PRECLSC </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface precipitation flux from large-scale </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PRECSNO </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface snowfall flux </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PRECTOT </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Total surface precipitation flux </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>QV2M </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Specific humidity at 2 m above the displacement height </td>
+    <td>kg kg<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE00 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has &lt; 10% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE10 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 10-20% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE20 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 20-30% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE30 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 30-40% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE40 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 40-50% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE50 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 50-60% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE60 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 60-70% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE70 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 70-80% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE80 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has 80-90% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SEAICE90 </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Fraction of grid box that has &gt; 90% sea ice coverage </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>SLP </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Sea level pressure </td>
+    <td>hPa </td>
+  </tr>
+  <tr valign="top"> 
+    <td>SNODP </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Snow depth </td>
+    <td>m </td>
+  </tr>
+  <tr valign="top"> 
+    <td>SNOMAS </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Snow mass </td>
+    <td>kg m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>SWGDN </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface incident shortwave flux </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>SWGNT </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Net surface downward shortwave flux </td>
+    <td>W m<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>TROPPT </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>T based tropopause pressure </td>
+    <td>hPa </td>
+  </tr>
+  <tr valign="top"> 
+    <td>TS </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Surface skin temperature </td>
+    <td>K </td>
+  </tr>
+  <tr valign="top"> 
+    <td>T2M </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Temperature 2 m above displacement height </td>
+    <td>K </td>
+  </tr>
+  <tr valign="top"> 
+    <td>U10M </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Eastward wind 10 m above displacement height </td>
+    <td>m s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>USTAR </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Friction velocity </td>
+    <td>m s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>V10M </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Northward wind 10 m above displacement height </td>
+    <td>m s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>Z0M </td>
+    <td>A1</td>
+    <td>2-D</td>
+    <td>Roughness length, momentum </td>
+    <td>m </td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr valign="top"> 
+    <td>CLOUD </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Total cloud fraction in grid box </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>CMFMC </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Upward moist convective mass flux </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>DQRCU </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Precipitation production rate &ndash; convective </td>
+    <td>kg kg<sup>-1</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>DQRLSAN </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Precipitation production rate &ndash; large-scale + anvil </td>
+    <td>kg kg<sup>-1</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>DQIDTMST </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Ice tendency from moist physics </td>
+    <td>kg kg<sup>-1</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>DQLDTMST </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Liquid water tendency from moist physics </td>
+    <td>kg kg<sup>-1</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>DQVDTMST </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Water vapor tendency from moist physics </td>
+    <td>kg kg<sup>-1</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>DTRAIN </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Detrainment cloud mass flux </td>
+    <td>kg m<sup>-2</sup> s<sup>-2</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>MOISTQ </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Overall tendency of QV </td>
+    <td>g kg<sup>-1</sup> day<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>OPTDEPTH </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Total in-cloud optical depth (visible band) </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>PFICU </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Downward flux of ice precipitation &ndash; convective </td>
+    <td>kg m<sup>-2</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PFILSAN </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Downward flux of ice precip &ndash; large-scale + anvil </td>
+    <td>kg m<sup>-2</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PFLCU </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Downward flux of liquid precipitation &ndash; convective </td>
+    <td>kg m<sup>-2</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PFLLSAN </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Downward flux of liquid precip &ndash; large-scale + anvil </td>
+    <td>kg m<sup>-2</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>QI </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Cloud ice mixing ratio </td>
+    <td>kg kg<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>QL </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Cloud liquid water mixing ratio </td>
+    <td>kg kg<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>QV </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Specific humidity </td>
+    <td>kg kg<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>REEVAPCN </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Evaporation of precipitating convective condensate </td>
+    <td>kg kg<sup>-1</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>REEVAPLS </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Evaporation of precipitating large-scale + anvil condensate </td>
+    <td>kg kg<sup>-1</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>T </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Air temperature </td>
+    <td>K </td>
+  </tr>
+  <tr valign="top"> 
+    <td>TAUCLI </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>In-cloud ice cloud optical thickness (visible band) </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>TAUCLW </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>In-cloud liquid cloud optical thickness (visible band) </td>
+    <td>1</td>
+  </tr>
+  <tr valign="top"> 
+    <td>U </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Eastward component of wind </td>
+    <td>m s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>V </td>
+    <td>A3</td>
+    <td>3-D</td>
+    <td>Northward component of wind </td>
+    <td>m s<sup>-1</sup> </td>
+  </tr>
+  <tr> 
+    <th height="10" width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="10%">&nbsp;</th>
+    <th width="50%">&nbsp;</th>
+    <th width="20%">&nbsp;</th>
+  </tr>
+  <tr valign="top"> 
+    <td>OMEGA </td>
+    <td>I6</td>
+    <td>3-D</td>
+    <td>Vertical pressure velocity </td>
+    <td>Pa s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PS </td>
+    <td>I6</td>
+    <td>2-D</td>
+    <td>Surface pressure </td>
+    <td>hPa </td>
+  </tr>
+  <tr valign="top"> 
+    <td>PV </td>
+    <td>I6</td>
+    <td>3-D</td>
+    <td>Ertel potential vorticity </td>
+    <td>K m<sup>2</sup> kg<sup>-1</sup> s<sup>-1</sup> </td>
+  </tr>
+  <tr valign="top"> 
+    <td>RH </td>
+    <td>I6</td>
+    <td>3-D</td>
+    <td>Relative humidity </td>
+    <td>1</td>
+  </tr>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+<p class="size14bi" align="center"><a href="appendix_3.html">Previous</a> | <a href="appendix_5.html">Next</a> | <a href="appendix_4.html" target="_parent">Printable View (no frames)</a></p>
+</body></html>

@@ -1,0 +1,1320 @@
+<HTML>
+<HEAD>
+<TITLE>GEOS&#150;CHEM User's Guide</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="FF0000" HLINK="#FFFF00">
+<CENTER>
+  <P><font face="Arial, Helvetica, sans-serif" size="2"><b>GEOS&#150;CHEM v6&#150;02&#150;05 
+    User's Guide<br>
+    Contact: Bob Yantosca (<A HREF="mailto:bmy@io.harvard.edu">bmy@io.harvard.edu</A>)</b></font></P>
+  </CENTER>
+
+<P><HR>
+<P> <A NAME="A4"></a><font face="Arial, Helvetica, sans-serif" size="+1"><b>Appendix 
+  4: GEOS&#150;CHEM Meteorological Fields</b></font>
+<P><HR>
+<P> <A NAME="A4.1"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>A4.1 
+  GEOS&#150;1 fields used by GEOS&#150;CHEM<br>
+  <br>
+  </b></font>
+<TABLE VALIGN=TOP CELLSPACING=3 CELLPADDING=3 BORDER=0 width="95%">
+  <TR VALIGN=TOP align="left"> 
+    <TH width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Field</font></TH>
+    <TH width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Type</font></TH>
+    <TH width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Dimension</font></TH>
+    <TH width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Quantity</font></TH>
+    <TH width="20%"><font face="Arial, Helvetica, sans-serif" size="2">Units</font></TH>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">ALBD</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      albedo</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">LWI</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Land-water-ice 
+      flags</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">PHIS</font></TD>
+    <TD width="10%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      geopotential heights</font></TD>
+    <TD width="20%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">m<sup>2 
+      </sup>/ s<sup>2</sup></font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PS</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      pressure</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mb</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">SPHU</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Specific 
+      humidity</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">g H<sub>2</sub>O 
+      / kg air</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">TMPU</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Temperature</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">K</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">UWND</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Zonal 
+      wind</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">VWND</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Meridional 
+      wind</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="50%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="20%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">CLDMAS</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Cloud 
+      mass flux</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">kg / m<sup>2</sup> 
+      / 600s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">CLMOSW</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Shortwave 
+      maximum overlap cloud fraction</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">Unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">CLROSW</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Shortwave 
+      random overlap cloud fraction</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">DTRAIN</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Cloud 
+      detrainment</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">kg / m<sup>2</sup> 
+      / 600s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">MOISTQ</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Tendency 
+      in SPHU field</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">g H<sub>2</sub>O 
+      / kg air / day</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="50%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="20%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">CLDFRC</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Column 
+      cloud fraction at ground</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">HFLUX</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Sensible 
+      heat flux</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">W/m<sup>2</sup></font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PBL</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Planetary 
+      boundary layer depth</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mb</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PREACC</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Total 
+      precipitation at ground</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mm H<sub>2</sub>O 
+      / day</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PRECON</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Convective 
+      precipitation at ground</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mm H<sub>2</sub>O 
+      / day</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">RADSWG</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Shortwave 
+      (solar) radiation reaching the ground</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">W / m<sup>2</sup></font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">TS</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      air temperature</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">K</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">U10M</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">UWND at 
+      10 m altitude</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">USTAR</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Friction 
+      velocity</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">V10M</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">VWND at 
+      10 m altitude</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Z0</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Roughness 
+      height</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m</font></TD>
+  </TR>
+</TABLE>
+
+<P><HR WIDTH="85%">
+<p> <B><font face="Arial, Helvetica, sans-serif" size="2">NOTES for GEOS&#150;1 fields:</font></B> 
+</p>
+<ol>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">I-6 fields contain instantaneous 
+    ("snapshot") data, at 00, 06, 12, and 18 GMT. GEOS&#150;CHEM linearly interpolates 
+    these to intermediate times. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">A-6 fields contain 6-hour 
+    average data, centered at 00, 06, 12, and 18 GMT. For example, an A-6 
+    data field at 06 GMT is an average between 03 GMT and 09 GMT. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">A-3 fields contain 3-hour 
+    average data, ended at 00, 03, 06, 09, 12, 15, 18, and 21 GMT. For example, 
+    an A-3 data field at 03 GMT is an average from 00 GMT to 03 GMT. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">The PHIS field (surface 
+    geopotential heights) is temporally invariant, so we only use data for January 
+    1, 1994. Also, the PHIS field is only needed by the full chemistry simulation 
+    with SMVGEAR.<br>
+    <br>
+    </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Cloud optical depth 
+    is computed as a function of CLMOSW, CLROSW, and temperature. </font> </li>
+</ol>
+<P><HR>
+<P> <A NAME="A4.2"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>A4.2 
+  GEOS&#150;STRAT fields used by GEOS&#150;CHEM<br>
+  <br>
+  </b></font>
+<TABLE VALIGN=TOP CELLSPACING=3 CELLPADDING=3 BORDER=0 width="99%">
+  <TR VALIGN=TOP align="left"> 
+    <TH width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Field</font></TH>
+    <TH width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Type</font></TH>
+    <TH width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Dimension</font></TH>
+    <TH width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Quantity</font></TH>
+    <TH width="20%"><font face="Arial, Helvetica, sans-serif" size="2">Units</font></TH>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">ALBD</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      albedo</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">LWI</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Land-water-ice 
+      flags</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PHIS</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      geopotential heights</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m<sup>2 
+      </sup>/ s<sup>2</sup></font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PS</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      pressure</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mb</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">SPHU</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Specific 
+      humidity</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">g H<sub>2</sub>O 
+      / kg air</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">TMPU</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Temperature</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">K</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">UWND</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Zonal 
+      wind</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">VWND</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Meridional 
+      wind</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="50%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="20%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">CLDMAS</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Cloud 
+      mass flux</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">kg / m<sup>2</sup> 
+      /600s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">CLMOSW</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Shortwave 
+      maximum overlap cloud fraction</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">Unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">CLROSW</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Shortwave 
+      random overlap cloud fraction</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">DTRAIN</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Cloud 
+      detrainment</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">kg / m<sup>2 
+      </sup>/ 600s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">MOISTQ</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Tendency 
+      in SPHU field</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">g H<sub>2</sub>O 
+      / kg air / day</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="50%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="20%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">HFLUX</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Sensible 
+      heat flux</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">W/m<sup>2</sup></font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PBL</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Planetary 
+      boundary layer depth</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mb</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PREACC</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Total 
+      precipitation at ground</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mm H<sub>2</sub>O 
+      / day</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PRECON</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Convective 
+      precipitation at ground</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mm H<sub>2</sub>O 
+      / day</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">RADSWG</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Shortwave 
+      (solar) radiation reaching the ground</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">W / m<sup>2</sup></font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">TS</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      air temperature</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">K</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">U10M</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">UWND at 
+      10 m altitude</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">USTAR</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Friction 
+      velocity</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">V10M</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">VWND at 
+      10 m altitude</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Z0</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Roughness 
+      height</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m</font></TD>
+  </TR>
+</TABLE>
+
+<P><HR WIDTH="85%">
+<p> <B><font face="Arial, Helvetica, sans-serif" size="2">NOTES for GEOS&#150;STRAT 
+  fields:</font></B> </p>
+<ol>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">I-6, A-6, and A-3 designations 
+    are the same as for the GEOS&#150;1 fields listed above. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">The A-3 CLDFRC field 
+    was not archived in GEOS&#150;STRAT. This field is computed online from the 
+    A-6 CLMOSW and CLROSW fields. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;STRAT A-3 fields 
+    were originally archived at 6 hour temporal resolution. These were interpolated 
+    to 3 hour temporal resolution here at Harvard, in order to be consistent with 
+    the GEOS&#150;1 fields. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">The A-3 HFLUX (Sensible 
+    Heat Flux) field was not archived in GEOS&#150;STRAT from December 1, 1995 to February 
+    12, 1997. For this time period, use GEOS&#150;1 HFLUX fields from 1994. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">The A-3 U10M and V10M( 
+    winds at 10 m altitude) fields were not archived in GEOS&#150;STRAT from December 
+    1, 1995 to February 12, 1997. For this time period, we interpolate UWND 
+    and VWND to 10 meters altitude in the code, using the log law. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Cloud optical depth 
+    is computed as a function of CLMOSW, CLROSW, and temperature, just as in GEOS&#150;1. 
+    </font></li>
+</ol>
+<P><HR>
+<P> <A NAME="A4.3"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>A4.3 
+  GEOS&#150;3 fields used by GEOS&#150;CHEM<br>
+  <br>
+  </b></font>
+<TABLE VALIGN=TOP CELLSPACING=3 CELLPADDING=3 BORDER=0 width="99%">
+  <TR VALIGN=TOP align="left"> 
+    <TH width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Field</font></TH>
+    <TH width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Type</font></TH>
+    <TH width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Dimension</font></TH>
+    <TH width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Quantity</font></TH>
+    <TH width="20%"><font face="Arial, Helvetica, sans-serif" size="2">Units</font></TH>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">ALBD</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      albedo</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">LWI</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Land-water-ice 
+      flags</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">PHIS</font></TD>
+    <TD width="10%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD height="23" width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD height="23" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      geopotential heights</font></TD>
+    <TD height="23" width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m<sup>2 
+      </sup>/ s<sup>2</sup></font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PS</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      pressure</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mb</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">SLP</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Sea level 
+      pressure</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mb</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">TROPP</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Tropospheric 
+      top pressure</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mb</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">RH</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Relative 
+      humidity</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">%</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">SPHU</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Specific 
+      humidity</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">g H<sub>2</sub>O 
+      / kg air</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">TKE</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Turbulent 
+      kinetic energy</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m<sup>2</sup> 
+      / s<sup>2</sup></font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">TMPU</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Temperature</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">K</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">UWND</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Zonal 
+      wind</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">VWND</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Meridional 
+      wind</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="50%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="20%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">CLDMAS</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Cloud 
+      mass flux</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">kg / m<sup>2</sup> 
+      / 600s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">CLDTOT</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">3D cloud 
+      fraction (conv + large scale)</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">DTRAIN</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Cloud 
+      detrainment</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">kg / m<sup>2</sup> 
+      / 600s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">KH</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Eddy diffusion 
+      coefficient</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">MOISTQ</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Tendency 
+      in SPHU Field</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">g H<sub>2</sub>O 
+      / kg air / day</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">TAUCLD</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">In-cloud 
+      optical depth</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">OPTDEPTH</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Grid box 
+      optical depth</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="10%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="50%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+    <TD width="20%"><FONT FACE="Arial,Helvetica" SIZE=-1> 
+      <HR>
+      </FONT></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">CLDFRC</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Column 
+      cloud fraction at ground</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">HFLUX</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Sensible 
+      heat flux</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">W / m<sup>2</sup></font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PBL</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Planetary 
+      boundary layer depth</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mb</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PREACC</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Total 
+      precipitation at ground</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mm H<sub>2</sub>O 
+      / day</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PRECON</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Convective 
+      precipitation at ground</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mm H<sub>2</sub>O 
+      / day</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">RADSWG</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Shortwave 
+      (solar) radiation reaching the ground</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">W / m<sup>2</sup></font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">TS</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      temperature</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">K</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">U10M</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">UWND at 
+      10 m altitude</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">USTAR</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Friction 
+      velocity</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD height="2" width="10%"><font face="Arial, Helvetica, sans-serif" size="2">V10M</font></TD>
+    <TD height="2" width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD height="2" width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD height="2" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">VWND 
+      at 10 m altitude</font></TD>
+    <TD height="2" width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m 
+      / s</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Z0</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></TD>
+    <TD width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></TD>
+    <TD width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Roughness 
+      height</font></TD>
+    <TD width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m</font></TD>
+  </TR>
+</TABLE>
+
+<P><HR WIDTH="85%">
+<p> <B><font face="Arial, Helvetica, sans-serif" size="2">NOTES for GEOS&#150;3 fields:</font></B> 
+</p>
+<ol>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">I-6, A-6, and A-3 designations 
+    are the same as for the GEOS&#150;1 fields listed above. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">The following fields 
+    are only contained in the 1998 GEOS&#150;3 dataset provided to us from Arlindo 
+    da Silva: RH, TKE, KH. These fields are also currently ignored by GEOS&#150;CHEM, 
+    but may be used at a later date. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">The following GEOS&#150;3 
+    fields are available only for the years 2000 and 2001: SLP, TROPP. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">The GEOS&#150;3 ALBD field 
+    for 2000 and 2001 is an average of the direct-beam visible albedo (ALBVISDR) 
+    and the diffuse-beam visible albedo (ALBVISDF). This results in a visible 
+    albedo field comparable to that in GEOS&#150;1 or GEOS&#150;STRAT. NOTE: Visible 
+    albedo is not used for photolysis code; we use UV albedoes from observed TOMS 
+    data. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">The GEOS&#150;3 CLDTOT field 
+    now supersedes the GEOS&#150;1/GEOS&#150;STRAT GEOS&#150;STRAT CLMOSW and CLROSW fields. 
+    CLDTOT is the total cloud fraction of both convective and large-scale clouds. 
+    </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">For 2000 and 2001 data, 
+    GEOS&#150;3 optical depths are stored in the OPTDEPTH field. This field has 
+    been interpolated from pressure coordinates to sigma coordinates, and is the 
+    total optical depth in a grid box. TAUCLD is just the in-cloud optical 
+    depth. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">For 1998 data, GEOS&#150;3 
+    optical depths need to be computed as the product of TAUCLD and CLDTOT. 
+    This will produce grid box optical depths similar to the OPTDEPTH field for 
+    data from 2000 and 2001, as described above. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">For 2000 and 2001 GEOS&#150;3 
+    fields, the surface temperature is not taken from the TGROUND met field, since 
+    TGROUND is the temperature of the ground and not of the air. The surface 
+    temperature for these years has been taken from the first level of the 3-D 
+    temperature field TMPU. This correction has not yet been applied to 
+    the data set from Arlindo da Silva for 1998. </font> </li>
+</ol>
+<P><HR>
+<P> <A NAME="A4.4"></a> <font face="Arial, Helvetica, sans-serif"><b><font size="2">A4.4 
+  GEOS&#150;4 fields used by GEOS&#150;CHEM<br>
+  </font></b></font><font face="Arial, Helvetica, sans-serif" size="2"><b><br>
+  </b></font> 
+<FONT FACE="Arial,Helvetica" SIZE=-1></font> 
+<table valign=TOP cellspacing=3 cellpadding=3 border=0 width="99%">
+  <tr valign=TOP align="left"> 
+    <th width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Field</font></th>
+    <th width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Type</font></th>
+    <th width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Dimension</font></th>
+    <th width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Quantity</font></th>
+    <th width="20%"><font face="Arial, Helvetica, sans-serif" size="2">Units</font></th>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">LWI</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Land-water-ice 
+      flags</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">PHIS</font></td>
+    <td width="10%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></td>
+    <td height="23" width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td height="23" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      geopotential heights</font></td>
+    <td height="23" width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m<sup>2 
+      </sup>/ s<sup>2</sup></font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PS</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      pressure</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mb</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">SLP</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">I-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Sea level 
+      pressure</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mb</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial,Helvetica" size=-1> 
+      <hr>
+      </font></td>
+    <td width="10%"><font face="Arial,Helvetica" size=-1> 
+      <hr>
+      </font></td>
+    <td width="10%"><font face="Arial,Helvetica" size=-1> 
+      <hr>
+      </font></td>
+    <td width="50%"><font face="Arial,Helvetica" size=-1> 
+      <hr>
+      </font></td>
+    <td width="20%"><font face="Arial,Helvetica" size=-1> 
+      <hr>
+      </font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">CLDTOT</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">3D cloud 
+      fraction (conv + large scale)</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">HKBETA</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Hack overshoot 
+      parameter</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">HKETA</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Hack convective 
+      mass flux</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">kg / m2 
+      / s</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">MOISTQ</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Tendency 
+      in specific humidity</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">g H2O 
+      / kg air / day </font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">OPTDEPTH</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Grid box 
+      optical depth</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Q</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Specific 
+      humidity </font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">g H2O 
+      / kg air</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">T</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Temperature</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">K</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">U</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Zonal 
+      wind </font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">V</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Meridional 
+      wind </font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">ZMEU</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Zhang-McFarlane 
+      updraft entrainment</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">Pa / s</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">ZMMD</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Zhang-McFarlane 
+      downdraft mass flux</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">Pa / s</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">ZMMU</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-6</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">3D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Zhang-McFarlane 
+      updraft mass flux</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">Pa / s</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial,Helvetica" size=-1> 
+      <hr>
+      </font></td>
+    <td width="10%"><font face="Arial,Helvetica" size=-1> 
+      <hr>
+      </font></td>
+    <td width="10%"><font face="Arial,Helvetica" size=-1> 
+      <hr>
+      </font></td>
+    <td width="50%"><font face="Arial,Helvetica" size=-1> 
+      <hr>
+      </font></td>
+    <td width="20%"><font face="Arial,Helvetica" size=-1> 
+      <hr>
+      </font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">ALBEDO</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Surface 
+      albedo (visible)</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">CLDFRC</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Column 
+      cloud fraction at ground</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">GWETTOP</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Top soil 
+      wetness </font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">unitless</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">HFLUX</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Sensible 
+      heat flux</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">W / m<sup>2</sup></font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">LAI</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Leaf area 
+      indices </font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">%</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PARDF</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Photosynthetically 
+      active diffuse radiation</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">W / m2</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PARDR</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Photosynthetically 
+      active direct radiation</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">W / m2</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PBLH</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Planetary 
+      boundary layer depth</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">PREACC</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Total 
+      precipitation at ground</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mm H<sub>2</sub>O 
+      / day</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%" height="22"><font face="Arial, Helvetica, sans-serif" size="2">PRECON</font></td>
+    <td width="10%" height="22"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%" height="22"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%" height="22"><font face="Arial, Helvetica, sans-serif" size="2">Convective 
+      precipitation at ground</font></td>
+    <td width="20%" height="22"><font face="Arial, Helvetica, sans-serif" size="2">mm 
+      H<sub>2</sub>O / day</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">RADLWG</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Longwave 
+      (IR) radiation emanating from the ground</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">W / m<sup>2</sup></font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">RADSWG</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Solar 
+      Insolation (shortwave) reaching the ground</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">W / m<sup>2</sup></font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">SNOW</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Snow depth 
+      (equivalent water)</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">mm H2O</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">T2M</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Air temperature 
+      at 2 meter elevation</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">K</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">TSKIN</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Skin temperature 
+      (ground T or sea surface T)</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">K</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">U10M</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">UWND at 
+      10 m altitude</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">USTAR</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Friction 
+      velocity</font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m / s</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td height="2" width="10%"><font face="Arial, Helvetica, sans-serif" size="2">V10M</font></td>
+    <td height="2" width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td height="2" width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td height="2" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">VWND 
+      at 10 m altitude</font></td>
+    <td height="2" width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m 
+      / s</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">Z0M</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">A-3</font></td>
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2D</font></td>
+    <td width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Roughness 
+      height </font></td>
+    <td width="20%"><font face="Arial, Helvetica, sans-serif" size="2">m</font></td>
+  </tr>
+</table>
+<p>
+<hr width="85%">
+<p> <b><font face="Arial, Helvetica, sans-serif" size="2">NOTES for GEOS&#150;4 
+  fields:</font></b> </p>
+<ol>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;4 I-6 fields 
+    contain instantaneous ("snapshot") data, at 00, 06, 12, and 18 GMT. GEOS&#150;CHEM 
+    linearly interpolates these to intermediate times. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;4 A-6 fields 
+    (<b>a_llk_03 dataset</b>) contain 6-hour average data, centered at 03, 09, 
+    15, and 21 GMT. For example, an A-6 data field timestamped 03 GMT is an average 
+    between 00 GMT and 06 GMT. <br>
+    <br>
+    </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;4 A-6 fields 
+    (<b>a_llk_04 dataset</b>) contain 6-hour average data, centered at 00, 06, 
+    12, and 18 GMT. For example, an A-6 data field timestamped 06 GMT is an average 
+    between 03 GMT and 09 GMT.</font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;4 A-3 fields 
+    contain 3-hour average data, centered at 01:30, 04:30, 07:30, 10:30, 13:30, 
+    16:30, 19:30, and 22:30 GMT. For example, an A-3 data field timestamped 01:30 
+    GMT is an average from 00 GMT to 03 GMT. </font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">In </font><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;1</font><font face="Arial, Helvetica, sans-serif" size="2">, 
+    GEOS&#150;STRAT, and, GEOS&#150;3, specific humidity was an I-6 field; in 
+    GEOS-4 it is an A-6 field.</font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">In </font><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;1</font><font face="Arial, Helvetica, sans-serif" size="2">, 
+    GEOS&#150;STRAT, and, GEOS&#150;3, temperature was an I-6 field; in GEOS-4 
+    it is an A-6 field.<br>
+    <br>
+    </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">In </font><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;1</font><font face="Arial, Helvetica, sans-serif" size="2">, 
+    GEOS&#150;STRAT, and, GEOS&#150;3, zonal wind was an I-6 field; in GEOS-4 
+    it is an A-6 field.<br>
+    <br>
+    </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">In </font><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;1</font><font face="Arial, Helvetica, sans-serif" size="2">, 
+    GEOS&#150;STRAT, and, GEOS&#150;3, meridional wind was an I-6 field; in GEOS-4 
+    it is an A-6 field.<br>
+    <br>
+    </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">In </font><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;1</font><font face="Arial, Helvetica, sans-serif" size="2">, 
+    GEOS&#150;STRAT, and, GEOS&#150;3, surface albedo was an I-6 field; in GEOS-4 
+    it is an A-3 field.</font><br>
+    <br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">The air temperature 
+    at 2 meters is used as a proxy for the surface air temperature. <br>
+    </font><br>
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">Skin temperature is 
+    the temperature of the ground (or ocean) surface. This is required for the 
+    new isoprene emissions mechanism which is currently under development.</font></li>
+</ol>
+<p>
+<FONT FACE="Arial,Helvetica" SIZE=-1>
+<P> 
+<HR>
+<P> 
+  <CENTER>
+    <A HREF="geos_chem_a3.html"><font face="Arial, Helvetica, sans-serif">[Return 
+    to Appendix 3]</font></A><font face="Arial, Helvetica, sans-serif"> | <A HREF="geos_chem_a5.html">[Go 
+    on to Appendix 5]</A></font> 
+  </CENTER>
+</font> 
+</BODY>
+</HTML>

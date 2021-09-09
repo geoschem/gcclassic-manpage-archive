@@ -1,0 +1,57 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS-Chem Online User's Guide</title>
+<meta name="description" contents="Information about the GEOS-Chem tropospheric chemistry model">
+<meta name="keywords" contents="Atmospheric Chemistry,Computer Models,GEOS-Chem,Harvard/GEOS-CTM,GEOS-CTM,GEOS,DAO,Tropospheric Chemistry">
+<link rel="stylesheet" href="../../../gc.css" type="text/css">
+<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="OpenOffice.org 3.2  (Linux)">
+<meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+<meta name="GENERATOR" content="OpenOffice.org 3.2  (Linux)">
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<div style="width:1000px; margin:auto;">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+
+<h2 align="center">GEOS-Chem v11-01 Online User's Guide</h2>
+<h5 align="center"><a href="chapter_15.html">Previous</a> | <a href="chapter_0.html">Next</a> | <a href="chapter_16.html" target="_parent">Printable View (no frames)</a></h5>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<h1>16. High Performance GEOS-Chem</h1>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<p align="justify">High Performance GEOS-Chem (GCHP) is a hybrid version of the standard GEOS-Chem code (GEOS-Chem Classic) that includes an additional software layer consisting of the <a href="http://www.earthsystemmodeling.org/" target="_blank">Earth System Model Framework (ESMF)</a> and <a href="http://www.mcs.anl.gov/research/projects/mpi/" target="_blank">Message Passing Interface (MPI) parallelization</a> libraries. It enables distributed memory execution in high-performance computing (HPC) environments. This will facilitate global GEOS-Chem simulations at extremely fine horizontal resolution (e.g. 0.25&deg;).</p>
+
+<p>GCHP has the following advantages over the GEOS-Chem Classic model:</p>
+<ul class="disc">
+	<li>
+	  <p><strong>Multi-node architecture:</strong> As GCHP uses MPI rather than OpenMP for parallelization, it can be run on an arbitrary number of cores, and over an arbitrary number of machines.</p>
+	</li> 
+	<li>
+	  <p><strong>Ultra-fine resolution global simulations:</strong> Without the memory limits of a single-machine architecture, the only limit on GCHP is the resolution of your input data.</p>
+	</li> 
+	<li>
+	  <p><strong>No more polar singularity:</strong> GCHP uses the "cubed-sphere" geometry for all operations, leveraging the GFDL FV-cubed (FV3) transport core. This avoids the polar singularity inherent to regular lat-lon grids.</p>
+	</li> 
+	<li>
+	  <p><strong>HEMCO used for all inputs:</strong> Every initial and boundary condition is now read from NetCDF files through HEMCO. This means that all data, including met data, can be regridded on the fly.</p>
+	</li> 
+	<li>
+	  <p><strong>Grid-independent compile process:</strong> Grid resolution is set at run time, and no recompilation is required.</p>
+	</li> 
+</ul>
+
+<p align="justify">For more information about GCHP, including how to download the publicly available GCHP Dev Kit, please visit the main <a href="http://wiki.geos-chem.org/GEOS-Chem_HP" target="_blank">GEOS-Chem HP development</a> wiki page.
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h5 align="center"><a href="chapter_15.html">Previous</a> | <a href="chapter_0.html">Next</a> | <a href="chapter_16.html" target="_parent">Printable View (no frames)</a></h5>
+
+</div>
+</body>
+</html>
+

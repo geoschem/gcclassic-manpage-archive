@@ -1,0 +1,375 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS&#8211;Chem User's Guide</title>
+
+<link rel="stylesheet" type="text/css" href="../../../gc.css">
+<!-- Cascading style sheet for font declarations -->
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&#8211;Chem
+v8&#8211;02&#8211;01 Online User's Guide</p>
+<p class="size14bi" align="center"><a href="chapter_2.html">Previous</a> | <a href="chapter_4.html">Next</a> | <a href="chapter_3.html" target="_parent">Printable View
+(no frames)</a></p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size24bi"><a name="3"></a>3.
+Compilation </p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="3.1"></a>3.1
+Overview</p>
+<p align="justify">The GEOS-Chem source code consists of
+226 files. To compile such a code the <a href="chapter_3.html#3.3"><em>make</em></a>
+utility is used, which facilitates code maintenance and testing.
+Details about the code can be found in <a href="chapter_7.html#7.1">Chapter
+7, Coding: Practice and Style</a>. More information about <em>make
+</em>and Makefile is readily available on the web.</p>
+<p align="justify">A script to call <em>make</em>
+with the correct Makefile is provided in the Code directory. The script
+<tt>build</tt> can be used interactively or submitted to a
+batch queue system. To have more control over the compilation (e.g.,
+name of the log file), you can wrap <tt>build</tt> into a
+script of your own as explained in <a href="chapter_3.html#3.4">Chapter
+3.4</a>. But before compiling, you must choose between a set of
+available options, as described in the next section. </p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="3.2"></a>3.2
+Setting the C-preprocessor switches</p>
+<p align="justify"> Before compiling the GEOS&#8211;Chem model,
+you must set the proper C-preprocessor switches to tell the compiler
+which options you would like compiled into the GEOS&#8211;Chem executable.
+These switches are located in header file <tt>define.h</tt>,
+and are as follows:</p>
+<blockquote>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+<tbody>
+<tr>
+<th align="left" bgcolor="#cccccc" valign="top">Met
+Fields </th>
+<td align="left" bgcolor="#cccccc" valign="top">&nbsp;</td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">GCAP</td>
+<td align="left" valign="top">Use GISS met
+fields for <a href="appendix_4.html#A4.1">GCAP</a>
+simulation (<a href="appendix_3.html#A3.2">23 layer</a>,
+<a href="appendix_2.html#A2.1">4° x 5°</a>)</td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">GEOS_3</td>
+<td align="left" valign="top">Use <a href="appendix_4.html#A4.2">GEOS&#8211;3</a> met fields (<a href="appendix_3.html#A3.3">48 layer</a>, 1998&#8211;2001 )</td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">GEOS_4</td>
+<td align="left" valign="top">Use <a href="appendix_4.html#A4.3">GEOS&#8211;4</a> met fields (<a href="appendix_3.html#A3.4">55 layer</a>, hybrid,
+1985&#8211;2006)</td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">GEOS_5</td>
+<td align="left" valign="top">Use <a href="appendix_4.html#A4.4">GEOS&#8211;5</a> met fields (<a href="appendix_3.html#A3.5">72 layer</a>, hybrid,
+2005&#8211;present)</td>
+</tr>
+<tr>
+<td><span class="courier16">IN_CLOUD_OD</span></td>
+<td>To use re-processed GEOS-5 met fields (temporary
+option before all GEOS-5 met fields are re-processed)</td>
+</tr>
+<tr>
+<th align="left" bgcolor="#cccccc" valign="top">Grids
+</th>
+<th align="left" bgcolor="#cccccc" valign="top">&nbsp;
+</th>
+</tr>
+<tr>
+<td><span class="courier16">GRID05x0666</span></td>
+<td>Use <a href="appendix_2.html#A.2.6.1">0.5
+° x 0.667 ° grid</a></td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">GRID1x1</td>
+<td align="left" valign="top">Use <a href="appendix_2.html#A2.5">1° x 1° grid</a> </td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">NESTED_CH</td>
+<td align="left" valign="top">Use China/SE
+Asia nested grid (<a href="appendix_2.html#A2.5.1">GEOS&#8211;3</a>
+or <a href="appendix_2.html#A2.6.1">GEOS&#8211;5</a>)</td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">NESTED_NA</td>
+<td align="left" valign="top">Use N.
+American nested-grid (<a href="appendix_2.html#A2.5.2">GEOS&#8211;3</a>
+or <a href="appendix_2.html#A2.6.2">GEOS&#8211;5)</a></td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">GRID1x125</td>
+<td align="left" valign="top">Use <a href="appendix_2.html#A2.4">1° x 1.25°</a> grid </td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">GRID2x25</td>
+<td align="left" valign="top">Use <a href="appendix_2.html#A2.3">2° x 2.5°</a> grid</td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">GRID4x5</td>
+<td align="left" valign="top">Use <a href="appendix_2.html#A2.2">4° x 5°</a> grid</td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">GRIDREDUCED</td>
+<td align="left" valign="top">
+<p>Reduce the number of vertical levels on the fly: </p>
+<ul>
+<li>Use 30-level GEOS&#8211;3 grid</li>
+<li>Use 30-level GEOS&#8211;4 grid </li>
+<li>Use 47-level GEOS&#8211;5 grid </li>
+</ul>
+</td>
+</tr>
+<tr>
+<th align="left" bgcolor="#cccccc" valign="top">Compilers
+</th>
+<th align="left" bgcolor="#cccccc" valign="top">&nbsp;
+</th>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">COMPAQ</td>
+<td align="left" valign="top">Compile for
+HP/Compaq Alpha </td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">IBM_AIX</td>
+<td align="left" valign="top">Compile for
+IBM/AIX </td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">LINUX_PGI</td>
+<td align="left" valign="top">Compile for
+Linux with <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#PGI_Compiler" target="_blank">PGI compiler</a></td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">LINUX_IFORT</td>
+<td align="left" valign="top">Compile for
+Linux with <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#IFORT_Compiler" target="_blank">Intel Fortran Compiler</a> (IFORT 9.x
+or 10.x) </td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">SGI_MIPS</td>
+<td align="left" valign="top">Compile for
+SGI Origin with <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#SGI-MIPS_Compiler" target="_blank">MIPSpro compiler</a></td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">SPARC</td>
+<td align="left" valign="top">Compile for <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#Sun_Studio_Compiler" target="_blank">SunStudio compiler</a> (versions 11
+and 12)</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p align="justify">The C-Preprocessor Switches in define.h
+take the form of:</p>
+<blockquote>
+<pre>!#define GEOS_1 'GEOS_1'</pre>
+</blockquote>
+<p align="justify">The quotes are necessary to facilitate
+compilation on the Linux platforms.</p>
+<p align="justify">In order to activate a particular
+switch, simply remove the comment character (exclamation mark) from the
+first column of the line. To de-activate a switch, simply place a
+comment character (exclamation mark) in the first column of the line.</p>
+<p align="justify">Note that you may only select one
+particular met field type (<tt>GCAP, GEOS_3, GEOS_4, GEOS_5</tt>),
+one particular grid type (<tt>GRID1x1, GRID1x125, GRID2x25,
+GRID4x5</tt>), and one particular compiler.</p>
+<p align="justify">If you have selected <tt>GRID1x1</tt>,
+then you must also select one of either <tt>NESTED_CH</tt>
+or <tt>NESTED_NA.</tt> This will select either the
+China/SE Asia or North America 1° x 1° nested grid region.</p>
+<p>If you have selected <tt>GRID05x0666</tt>, then
+you must also select
+<tt>NESTED_CH</tt>.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="3.3"></a>3.3
+Compiling the GEOS&#8211;Chem source code</p>
+<p align="justify"> Once you are satisfied that the
+C-preprocessor switches in the define.h header file are set properly
+for the type of simulation that you want to perform, you can proceed to
+compile the code.</p>
+<p align="justify">At present, GEOS&#8211;Chem ships with 6
+makefiles, which are used to build the executable via the Unix make
+utility. The makefiles are named as follows:</p>
+<blockquote>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+<tbody>
+<tr>
+<th align="left" bgcolor="#cccccc" valign="top">Makefile
+</th>
+<th align="left" bgcolor="#cccccc" valign="top">Compiler
+&amp; Platform </th>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">Makefile.compaq</td>
+<td align="left" valign="top">for HP/Compaq
+Alpha </td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">Makefile.ibm</td>
+<td align="left" valign="top">for IBM/AIX </td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">Makefile.pgi</td>
+<td align="left" valign="top">for Linux
+with <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#PGI_Compiler" target="_blank">PGI compiler</a></td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">Makefile.ifort</td>
+<td align="left" valign="top">for Linux
+platform with <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#IFORT_Compiler" target="_blank">Intel Fortran Compiler</a> (IFORT 9.x
+or 10.x)</td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">Makefile.sgi</td>
+<td align="left" valign="top">for SGI
+Origin </td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top">Makefile.sparc</td>
+<td align="left" valign="top">for <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#Sun_Studio_Compiler" target="_blank">SunStudio compiler</a> (versions 11
+and 12) </td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p align="justify">NOTES:
+</p>
+<ul class="disc">
+<li>
+<p align="justify">We recommend updating from Intel
+Fortran Compiler (IFORT) Version 9 to Version 10. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#Comparison_between_IFORT_9.1_and_IFORT_10.1" target="_blank">Version 10 optimizes better for multi-core
+chipsets and produces code that is faster than Version 9</a>. </p>
+</li>
+<li>
+<p align="justify">We also recommend that PGI compiler
+users migrate to Intel Fortran Compiler (IFORT) Version 10. </p>
+</li>
+<li>At present, GEOS&#8211;Chem has some issues with Intel Fortran Compiler (IFORT) Version 11. We are currently investigating... </li>
+</ul>
+<p align="justify">For your convenience, GEOS&#8211;Chem now
+ships with a Perl script named <tt>build</tt>, which
+compiles the model using the proper Makefile for your operating system.
+To compile the GEOS&#8211;Chem model, simply type:</p>
+<p align="justify">To select a particular compilation
+option type: </p>
+<blockquote>
+<pre>build [option-name]</pre>
+</blockquote>
+<p align="justify">By default, the Makefile will create a
+multi-processor GEOS&#8211;Chem executable (the name will be the same as <i>option-name</i>).
+This is adequate for most applications.</p>
+<p align="justify">The available options for build are:</p>
+<blockquote>
+<table style="width: 907px; height: 68px;" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+<tbody>
+<tr>
+<td class="courier16" align="left" valign="top">geos</td>
+<td align="left" valign="top">Compile
+GEOS&#8211;Chem w/ FAST-J photolysis (Default)</td>
+</tr>
+<tr>
+<td class="courier16" align="left" valign="top" width="15%">clean</td>
+<td align="left" valign="top">Removes all
+pre-compiled executables and object files</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+
+<p align="justify"> However, for testing purposes,
+it may be desirable to create a single-processor GEOS&#8211;Chem executable.
+This is possible and only involves a bit of extra effort.</p>
+<p align="justify">If you look near the very top of the
+Makefile (for now let's assume the SGI version), you will see the
+following lines:<br></p>
+<blockquote><pre># F90 compiler options<br>FFLAGS = f90 -cpp -64 -O3 -OPT:reorg_common=off<br><br># F90 Options -- multiprocessor<br>F90 = $(FFLAGS) -mp -Dmultitask<br><br># F90 Options -- single processor<br>#F90 = $(FFLAGS)</pre>
+</blockquote>
+<p align="justify">If instead you would like to build a
+single-processor executable, then follow these steps:</p>
+<ol class="size16">
+<li>
+<p align="justify">Type <span class="courier16">build clean</span>. This will remove
+all previously compiled object files.</p>
+</li>
+<li>
+<p align="justify">Add a comment character (#) in
+front of the F90 in the "F90 Options -- Multiprocessor" line near the
+top of the Makefile.</p>
+</li>
+<li>
+<p align="justify">Remove the comment character (#)
+from the F90 in the "F90 Options -- Single Processor" line near the top
+of the Makefile.</p>
+</li>
+<li>
+<p align="justify">Type <span class="courier16">build geos</span>.</p>
+</li>
+</ol>
+<p align="justify">You may also add extra F90 compiler
+options to either the single processor or multi-processor compilation
+lines in the Makefile. For example, to check for array-out-of-bounds
+errors in the multi-processor compile option (for SGI), then add a -C
+to the Fortran compiler options line:</p>
+<blockquote>
+<pre>FFLAGS = f90 -cpp -64 -O3 -OPT:reorg_common=off -C</pre>
+</blockquote>
+<p>Similarly, to check for array-out-of-bounds errors with Intel
+Fortran Compiler Version 9, add a <span class="courier16">-CB</span> to the Fortran compiler options,
+such as:</p>
+<blockquote>
+<pre>FFLAGS = -cpp -w -O2 -auto -noalign -convert big_endian -CB</pre>
+</blockquote>
+<p align="justify">For more information about subscript
+error checking, please see <a href="chapter_7.html#7.2">Chapter
+7.2, GEOS&#8211;Chem debugging tips</a>.
+</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="3.4"></a>3.4
+Compiling the GEOS&#8211;Chem Source Code with Unix Shell Scripts</p>
+<p align="justify">It is possible to write a shell script
+to compile the GEOS&#8211;Chem code, such as the following:</p>
+<blockquote>
+<pre>#!/bin/tcsh -f    # Script definition line
+cd Code.v8-02-01  # your code dir
+rm -f log         # clear log file
+build geos &gt; log  # build the code
+exit(0)           # exit normally</pre>
+</blockquote>
+<p align="justify">which can then be submitted to either
+the LSF or PBS batch queue system (depending on which queue system is
+used on your computers).</p>
+<p align="justify">You can even write one script to both
+compile and run the GEOS&#8211;Chem model:</p>
+<blockquote>
+<pre>#!/bin/tcsh -f           # Script definition line
+cd Code.v8-02-01         # your code dir
+rm -f log                # clear log file
+build geos &gt; log         # build the code
+mv geos ../run.v8-02-01  # move executable to run dir
+cd ../run.v8-02-01       # change to run dir
+geos &gt;&gt; log              # run code; append to log file
+exit(0)                  # exit normally</pre>
+</blockquote>
+<p align="justify">Likewise, this script may also be
+submitted to the LSF or PBS batch queue systems.</p>
+<p class="size16i" align="justify">Non-Harvard
+users: ask your local computer guru about how to submit batch jobs on
+your own system.</p>
+<p align="justify">Bob Yantosca has written a convenient
+Perl script named <a href="../../testrun/index.html">TESTRUN</a>
+that allows you to compile and run the GEOS&#8211;Chem model automatically. A
+nice feature of TESTRUN is that it renames the log and binary punch
+files, so that successive model runs do not conflict with each other.
+TESTRUN is compatible with LSF, PBS, and SGE batch queue systems.</p>
+<p align="justify">For more information on running the
+GEOS&#8211;Chem model, see <a href="chapter_6.html">Chapter 6,
+Running GEOS&#8211;Chem</a>.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p align="center"><span class="size14bi"><a href="chapter_2.html">Previous</a> | <a href="chapter_4.html">Next</a> | <a href="chapter_3.html" target="_parent">Printable View
+(no frames)</a></span> </p>
+</body></html>

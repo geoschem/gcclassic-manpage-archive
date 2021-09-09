@@ -1,0 +1,1198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html><head><title>GEOS-Chem Online User's Guide</title>
+
+<link rel="stylesheet" type="text/css" href="../../../gc.css"></head><body bgcolor="#ffffff">
+
+<script type="text/javascript" src="../../../geos_backlinks.js"></script> <!-- JavaScript for breadcrumb links -->
+
+<p class="size20bi" align="center">GEOS-Chem v10-01 Online User's Guide</p>
+
+<p class="size14bi" align="center"><a href="appendix_2.html">Previous</a> | <a href="appendix_4.html">Next</a> | <a href="appendix_3.html" target="_parent">Printable View (no frames)</a><br><span class="size16bi"></span></p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+
+<p class="size24bi">Appendix 3: GEOS-Chem Vertical Grids</p>
+
+<p align="justify">In this Appendix, we  compare the vertical grids of the <a href="http://wiki.geos-chem.org/Overview_of_GMAO_met_data_products" target="_blank">met fields </a>that GEOS-Chem reads as input.</p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+
+<p class="size20bi"><a name="Comparison" id="Comparison"></a>A3.1 Comparison of GCAP, GEOS-3, 
+
+GEOS-4, and GEOS-5/GEOS-FP/MERRA vertical grids</p>
+
+<p align="center"><img src="../../../img/levels3km.png" alt="Levels up to 3 km" height="467" width="700"><br>GCAP, GEOS-3, GEOS-4, and GEOS-5 vertical levels, up to 3 km<br>(Solid lines are edges, dotted lines are centers) </p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="75%"></p>  
+
+<p align="center"><img src="../../../img/levels10km.png" alt="Levels up to 10 km" height="467" width="700"><br>GCAP, GEOS-3, GEOS-4, and GEOS-5 vertical levels, up to 10 km</p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="75%"></p>  
+
+<p align="center"><img src="../../../img/levels32km.png" alt="Levels up to 32 km" height="467" width="700"><br>GCAP, GEOS-3, GEOS-4, and GEOS-5 vertical levels, up to 32 km</p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="75%"></p>  
+
+<p align="center"><img src="../../../img/levels80km.png" alt="Levels up to 80 km" height="467" width="700"><br>GCAP, GEOS-3, GEOS-4, and GEOS-5 vertical levels, up to 80 km</p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+
+<p class="size20bi"><a name="GCAP" id="GCAP"></a>A3.2 GCAP vertical grid </p>
+
+<p align="justify">The native vertical resolution of the <a href="appendix_4.html#GCAP">GCAP 
+
+  meteorological fields</a> (which come from the GISS-II GCM) is 23 hybrid 
+
+  sigma-pressure levels, extending from the surface up to 0.002 hPa.</p>
+
+<p align="justify">We computed the pressures and altitudes listed below assuming 
+
+  a surface pressure of 1013.25 hPa. Altitudes are approximations based on the 
+
+  US Standard Atmosphere. This shall suffice for purposes of illustration.</p>
+
+<pre>GCAP Native Vertical Grid (23 layers)
+
+
+
+  L     Sig Edge      Sig Mid    Altitude     Pressure
+
+      (unitless)   (unitless)        (km)        (hPa)
+
+========================================================
+
+        0.000000                    89.247        0.002
+
+ 23                  0.000000       77.507        0.017
+
+        0.000000                    73.489        0.031
+
+ 22                  0.000000       66.346        0.088
+
+        0.000000                    62.725        0.145
+
+ 21                  0.000000       57.209        0.303
+
+        0.000000                    54.014        0.461
+
+ 20                  0.000000       48.400        0.960
+
+        0.000000                    45.215        1.460
+
+ 19                  0.000000       39.712        3.045
+
+        0.000000                    36.651        4.630
+
+ 18                  0.000000       33.388        7.315
+
+        0.000000                    31.209       10.000
+
+ 17                  0.000000       28.959       13.900
+
+        0.000000                    27.300       17.800
+
+ 16                  0.000000       25.141       24.700
+
+        0.000000                    23.543       31.600
+
+ 15                  0.000000       21.439       43.900
+
+        0.000000                    19.876       56.200
+
+ 14                  0.000000       18.387       71.200
+
+        0.000000                    17.187       86.200
+
+ 13                  0.000000       16.154      101.600
+
+        0.000000                    15.265      117.000
+
+ 12                  0.000000       14.431      133.500
+
+        0.000000                    13.690      150.000
+
+ 11                  0.000000       12.825      171.737
+
+        0.000000                    12.056      193.473
+
+ 10                  0.000000       11.192      220.903
+
+        0.000000                    10.421      248.332
+
+  9                  0.000000        9.524      284.042
+
+        0.000000                     8.721      319.752
+
+  8                  0.000000        7.580      377.198
+
+        0.000000                     6.578      434.645
+
+  7                  0.000000        5.424      509.687
+
+        0.000000                     4.401      584.730
+
+  6                  0.000000        3.509      657.185
+
+        0.000000                     2.692      729.641
+
+  5                  0.000000        2.098      786.052
+
+        0.000000                     1.536      842.463
+
+  4                  0.000000        1.215      876.103
+
+        0.000000                     0.903      909.743
+
+  3                  0.000000        0.692      933.032
+
+        0.000000                     0.485      956.321
+
+  2                  0.000000        0.344      972.365
+
+        0.000000                     0.206      988.408
+
+  1                  0.000000        0.099     1000.829
+
+        0.000000                    -0.006     1013.250
+
+</pre>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+
+<p class="size20bi"><a name="GEOS-4" id="GEOS-4"></a>A3.3 GEOS-4 vertical grids</p>
+
+<p align="justify">The native vertical resolution of <a href="appendix_4.html#GEOS-4">GEOS-4 meteorological fields</a>
+
+is 55 hybrid eta levels, extending from the surface up to 0.01 hPa. The
+
+first 14 levels from the surface upward are pure sigma levels; the rest
+
+are fixed pressure levels.</p>
+
+<p align="justify">To conserve memory, you have the option of running   GEOS-Chem a <a href="#GEOS-4_reduced">reduced vertical resolution 
+
+  of 30 eta levels</a>. GEOS-Chem will combine  eta levels above  
+
+~50 hPa on-the-fly.</p>
+
+<p align="justify">We computed the pressures and altitudes listed below assuming 
+
+  a surface pressure of 1013.25 hPa. Altitudes are approximations based on the 
+
+  US Standard Atmosphere. This shall suffice for purposes of illustration.</p>
+
+
+
+<p align="left"><img src="../../../img/black_rule.jpg" height="2" width="10%"></p>  
+
+<p class="size18bi"><a name="GEOS-4_native" id="GEOS-4_native"></a>A3.3.1 GEOS-4 native vertical grid</p>
+
+<pre class="courier16">GEOS-4 Native Vertical Grid (55 hybrid pressure-sigma layers)
+
+
+
+  L     Eta Edge      Eta Mid     Altitude     Pressure
+
+      (unitless)   (unitless)        (km)        (hPa)
+
+========================================================
+
+        0.000000                    80.581        0.010
+
+ 55                  0.000005       78.146        0.015
+
+        0.000010                    76.357        0.020
+
+ 54                  0.000016       74.594        0.026
+
+        0.000022                    73.180        0.033
+
+ 53                  0.000030       71.812        0.040
+
+        0.000037                    70.657        0.048
+
+ 52                  0.000046       69.440        0.057
+
+        0.000055                    68.392        0.066
+
+ 51                  0.000067       67.243        0.078
+
+        0.000078                    66.245        0.089
+
+ 50                  0.000093       65.115        0.105
+
+        0.000108                    64.130        0.120
+
+ 49                  0.000128       63.004        0.140
+
+        0.000148                    62.021        0.159
+
+ 48                  0.000173       60.902        0.185
+
+        0.000199                    59.924        0.211
+
+ 47                  0.000232       58.816        0.245
+
+        0.000265                    57.846        0.279
+
+ 46                  0.000308       56.752        0.322
+
+        0.000350                    55.794        0.365
+
+ 45                  0.000405       54.717        0.420
+
+        0.000460                    53.773        0.476
+
+ 44                  0.000529       52.716        0.546
+
+        0.000599                    51.788        0.617
+
+ 43                  0.000687       50.754        0.706
+
+        0.000775                    49.844        0.795
+
+ 42                  0.000886       48.835        0.907
+
+        0.000996                    47.946        1.019
+
+ 41                  0.001135       46.962        1.160
+
+        0.001274                    46.092        1.301
+
+ 40                  0.001446       45.134        1.476
+
+        0.001619                    44.286        1.651
+
+ 39                  0.001834       43.355        1.868
+
+        0.002048                    42.529        2.085
+
+ 38                  0.002312       41.627        2.353
+
+        0.002576                    40.825        2.620
+
+ 37                  0.002900       39.951        2.948
+
+        0.003224                    39.173        3.276
+
+ 36                  0.003619       38.328        3.677
+
+        0.004013                    37.574        4.077
+
+ 35                  0.004492       36.759        4.562
+
+        0.004971                    36.030        5.047
+
+ 34                  0.005548       35.244        5.632
+
+        0.006126                    34.539        6.217
+
+ 33                  0.006818       33.782        6.918
+
+        0.007510                    33.101        7.620
+
+ 32                  0.008336       32.372        8.456
+
+        0.009162                    31.716        9.293
+
+ 31                  0.010141       31.015       10.285
+
+        0.011120                    30.383       11.277
+
+ 30                  0.012287       29.701       12.460
+
+        0.013455                    29.085       13.643
+
+ 29                  0.014844       28.423       15.050
+
+        0.016232                    27.824       16.457
+
+ 28                  0.017878       27.180       18.124
+
+        0.019523                    26.596       19.792
+
+ 27                  0.021467       25.971       21.761
+
+        0.023410                    25.402       23.730
+
+ 26                  0.025699       24.794       26.049
+
+        0.027987                    24.240       28.368
+
+ 25                  0.030673       23.648       31.089
+
+        0.033358                    23.108       33.810
+
+ 24                  0.036499       22.531       36.993
+
+        0.039641                    22.004       40.175
+
+ 23                  0.043326       21.438       43.910
+
+        0.047012                    20.920       47.644
+
+ 22                  0.051326       20.364       52.016
+
+        0.055641                    19.855       56.388
+
+ 21                  0.060682       19.309       61.496
+
+        0.065723                    18.807       66.603
+
+ 20                  0.071600       18.269       72.558
+
+        0.077477                    17.773       78.512
+
+ 19                  0.084313       17.243       85.439
+
+        0.091149                    16.753       92.366
+
+ 18                  0.099191       16.222      100.515
+
+        0.107234                    15.731      108.663
+
+ 17                  0.116695       15.198      118.250
+
+        0.126157                    14.706      127.837
+
+ 16                  0.137287       14.170      139.115
+
+        0.148418                    13.674      150.393
+
+ 15                  0.161513       13.134      163.661
+
+        0.174608                    12.633      176.930
+
+ 14                  0.190061       12.086      192.587
+
+        0.205513                    11.578      208.244
+
+ 13                  0.223772       11.021      226.745
+
+        0.242032                    10.504      245.246
+
+ 12                  0.263587        9.936      267.087
+
+        0.285142                     9.409      288.927
+
+ 11                  0.310561        8.830      314.683
+
+        0.335980                     8.291      340.439
+
+ 10                  0.365938        7.700      370.793
+
+        0.395895                     7.148      401.146
+
+  9                  0.431179        6.541      436.898
+
+        0.466464                     5.975      472.650
+
+  8                  0.508017        5.351      514.754
+
+        0.549571                     4.768      556.857
+
+  7                  0.598479        4.125      606.413
+
+        0.647387                     3.523      655.968
+
+  6                  0.695218        2.969      704.433
+
+        0.743050                     2.443      752.898
+
+  5                  0.786601        1.986      797.026
+
+        0.830152                     1.549      841.154
+
+  4                  0.866492        1.197      877.974
+
+        0.902831                     0.857      914.795
+
+  3                  0.929330        0.615      941.644
+
+        0.955828                     0.378      968.494
+
+  2                  0.970469        0.249      983.328
+
+        0.985110                     0.122      998.163
+
+  1                  0.992555        0.058     1005.706
+
+        1.000000                    -0.006     1013.250 </pre>
+
+
+
+<p align="left"><img src="../../../img/black_rule.jpg" height="2" width="10%"></p>  
+
+<p class="size18bi"><a name="GEOS-4_reduced" id="GEOS-4_reduced"></a>A3.3.2 GEOS-4 reduced vertical grid</p>
+
+<pre>GEOS-4 Reduced Vertical Grid (30 hybrid pressure-sigma layers
+
+
+
+  L     Eta Edge     Eta Mid     Altitude     Pressure
+
+      (unitless)   (unitless)        (km)        (hPa)
+
+========================================================
+
+        0.000000                    80.581        0.010
+
+ 30                  0.000028       72.180        0.038
+
+        0.000055                    68.392        0.066
+
+ 29                  0.000127       63.053        0.139
+
+        0.000199                    59.924        0.211
+
+ 28                  0.000399       54.834        0.414
+
+        0.000599                    51.788        0.617
+
+ 27                  0.001109       47.135        1.134
+
+        0.001619                    44.286        1.651
+
+ 26                  0.002816       40.166        2.864
+
+        0.004013                    37.574        4.077
+
+ 25                  0.006588       34.024        6.685
+
+        0.009162                    31.716        9.293
+
+ 24                  0.014342       28.654       14.542
+
+        0.019523                    26.596       19.792
+
+ 23                  0.023755       25.307       24.080
+
+        0.027987                    24.240       28.368
+
+ 22                  0.033814       23.020       34.272
+
+        0.039641                    22.004       40.175
+
+ 21                  0.047641       20.836       48.282
+
+        0.055641                    19.855       56.388
+
+ 20                  0.066559       18.727       67.450
+
+        0.077477                    17.773       78.512
+
+ 19                  0.084313       17.243       85.439
+
+        0.091149                    16.753       92.366
+
+ 18                  0.099191       16.222      100.515
+
+        0.107234                    15.731      108.663
+
+ 17                  0.116695       15.198      118.250
+
+        0.126157                    14.706      127.837
+
+ 16                  0.137287       14.170      139.115
+
+        0.148418                    13.674      150.393
+
+ 15                  0.161513       13.134      163.661
+
+        0.174608                    12.633      176.930
+
+ 14                  0.190061       12.086      192.587
+
+        0.205513                    11.578      208.244
+
+ 13                  0.223772       11.021      226.745
+
+        0.242032                    10.504      245.246
+
+ 12                  0.263587        9.936      267.087
+
+        0.285142                     9.409      288.927
+
+ 11                  0.310561        8.830      314.683
+
+        0.335980                     8.291      340.439
+
+ 10                  0.365938        7.700      370.793
+
+        0.395895                     7.148      401.146
+
+  9                  0.431179        6.541      436.898
+
+        0.466464                     5.975      472.650
+
+  8                  0.508017        5.351      514.754
+
+        0.549571                     4.768      556.857
+
+  7                  0.598479        4.125      606.413
+
+        0.647387                     3.523      655.968
+
+  6                  0.695218        2.969      704.433
+
+        0.743050                     2.443      752.898
+
+  5                  0.786601        1.986      797.026
+
+        0.830152                     1.549      841.154
+
+  4                  0.866492        1.197      877.974
+
+        0.902831                     0.857      914.795
+
+  3                  0.929330        0.615      941.644
+
+        0.955828                     0.378      968.494
+
+  2                  0.970469        0.249      983.328
+
+        0.985110                     0.122      998.163
+
+  1                  0.992555        0.058     1005.706
+
+        1.000000                    -0.006     1013.250
+
+</pre>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+
+<p class="size20bi"><a name="GEOS-5" id="GEOS-5"></a>A3.4 GEOS-5 vertical grids</p>
+
+<p align="justify">The native vertical resolution of <a href="appendix_4.html#GEOS-5">GEOS-5 
+
+  meteorological fields</a> is 72 hybrid eta levels, extending from the surface 
+
+  up to 0.01 hPa. The first 31 levels from the surface upward are pure sigma levels; 
+
+  the rest are fixed pressure levels.</p>
+
+<p align="justify">In order to minimize the amount of memory, you can run  GEOS-Chem with a <a href="#GEOS-5_reduced">reduced vertical resolution 
+
+  of 47 eta levels</a>. This option combines eta levels above  
+
+~80 hPa.</p>
+
+<p align="justify">We computed the pressures and altitudes listed below assuming 
+
+  a surface pressure of 1013.25 hPa. Altitudes are approximations based on the 
+
+  US Standard Atmosphere. This shall suffice for purposes of illustration.</p>
+
+
+
+<p align="left"><img src="../../../img/black_rule.jpg" height="2" width="10%"></p>  
+
+<p class="size18bi"><a name="GEOS-5_native" id="GEOS-5_native"></a>A3.4.1 GEOS-5 native vertical grid</p>
+
+<pre>GEOS-5 Native Vertical Grid (72 hybrid pressure-sigma levels)
+
+
+
+  L     Eta Edge      Eta Mid     Altitude     Pressure
+
+      (unitless)   (unitless)        (km)        (hPa)
+
+========================================================
+
+        0.000000                    80.581        0.010
+
+ 72                  0.000005       78.146        0.015
+
+        0.000010                    76.357        0.020
+
+ 71                  0.000016       74.594        0.026
+
+        0.000022                    73.180        0.033
+
+ 70                  0.000030       71.812        0.040
+
+        0.000037                    70.657        0.048
+
+ 69                  0.000046       69.440        0.057
+
+        0.000055                    68.392        0.066
+
+ 68                  0.000067       67.243        0.078
+
+        0.000078                    66.245        0.089
+
+ 67                  0.000093       65.115        0.105
+
+        0.000108                    64.130        0.120
+
+ 66                  0.000128       63.004        0.140
+
+        0.000148                    62.021        0.159
+
+ 65                  0.000173       60.902        0.185
+
+        0.000199                    59.924        0.211
+
+ 64                  0.000232       58.816        0.245
+
+        0.000265                    57.846        0.279
+
+ 63                  0.000308       56.752        0.322
+
+        0.000350                    55.794        0.365
+
+ 62                  0.000405       54.717        0.420
+
+        0.000460                    53.773        0.476
+
+ 61                  0.000529       52.716        0.546
+
+        0.000599                    51.788        0.617
+
+ 60                  0.000687       50.754        0.706
+
+        0.000775                    49.844        0.795
+
+ 59                  0.000886       48.835        0.907
+
+        0.000996                    47.946        1.019
+
+ 58                  0.001135       46.962        1.160
+
+        0.001274                    46.092        1.301
+
+ 57                  0.001446       45.134        1.476
+
+        0.001619                    44.286        1.651
+
+ 56                  0.001834       43.355        1.868
+
+        0.002048                    42.529        2.085
+
+ 55                  0.002312       41.627        2.353
+
+        0.002576                    40.825        2.620
+
+ 54                  0.002900       39.951        2.948
+
+        0.003224                    39.173        3.276
+
+ 53                  0.003619       38.328        3.677
+
+        0.004013                    37.574        4.077
+
+ 52                  0.004492       36.759        4.562
+
+        0.004971                    36.030        5.047
+
+ 51                  0.005548       35.244        5.632
+
+        0.006126                    34.539        6.217
+
+ 50                  0.006818       33.782        6.918
+
+        0.007510                    33.101        7.620
+
+ 49                  0.008336       32.372        8.456
+
+        0.009162                    31.716        9.293
+
+ 48                  0.010141       31.015       10.285
+
+        0.011120                    30.382       11.277
+
+ 47                  0.012287       29.701       12.460
+
+        0.013455                    29.085       13.643
+
+ 46                  0.014844       28.423       15.050
+
+        0.016232                    27.824       16.457
+
+ 45                  0.017878       27.180       18.124
+
+        0.019523                    26.596       19.792
+
+ 44                  0.021467       25.971       21.761
+
+        0.023410                    25.402       23.730
+
+ 43                  0.025699       24.794       26.049
+
+        0.027987                    24.240       28.368
+
+ 42                  0.030673       23.648       31.089
+
+        0.033358                    23.108       33.810
+
+ 41                  0.036499       22.531       36.993
+
+        0.039641                    22.004       40.175
+
+ 40                  0.043326       21.438       43.910
+
+        0.047011                    20.920       47.644
+
+ 39                  0.051326       20.364       52.016
+
+        0.055641                    19.855       56.388
+
+ 38                  0.060682       19.309       61.496
+
+        0.065723                    18.807       66.603
+
+ 37                  0.071600       18.269       72.558
+
+        0.077477                    17.773       78.512
+
+ 36                  0.084313       17.243       85.439
+
+        0.091149                    16.753       92.366
+
+ 35                  0.099191       16.222      100.514
+
+        0.107233                    15.731      108.663
+
+ 34                  0.116695       15.198      118.250
+
+        0.126157                    14.706      127.837
+
+ 33                  0.137287       14.170      139.115
+
+        0.148418                    13.674      150.393
+
+ 32                  0.161513       13.134      163.661
+
+        0.174608                    12.633      176.930
+
+ 31                  0.190061       12.086      192.587
+
+        0.205513                    11.578      208.244
+
+ 30                  0.223772       11.021      226.745
+
+        0.242032                    10.504      245.246
+
+ 29                  0.263587        9.936      267.087
+
+        0.285142                     9.409      288.927
+
+ 28                  0.309854        8.846      313.966
+
+        0.334566                     8.320      339.005
+
+ 27                  0.353349        7.943      358.038
+
+        0.372133                     7.582      377.070
+
+ 26                  0.390927        7.237      396.112
+
+        0.409720                     6.905      415.155
+
+ 25                  0.428528        6.585      434.212
+
+        0.447337                     6.277      453.269
+
+ 24                  0.466153        5.980      472.335
+
+        0.484970                     5.692      491.401
+
+ 23                  0.503795        5.413      510.475
+
+        0.522620                     5.142      529.550
+
+ 22                  0.541449        4.879      548.628
+
+        0.560278                     4.623      567.706
+
+ 21                  0.579115        4.375      586.793
+
+        0.597953                     4.132      605.880
+
+ 20                  0.616790        3.896      624.967
+
+        0.635628                     3.665      644.054
+
+ 19                  0.654471        3.439      663.146
+
+        0.673314                     3.219      682.239
+
+ 18                  0.685878        3.074      694.969
+
+        0.698442                     2.932      707.699
+
+ 17                  0.711006        2.792      720.429
+
+        0.723570                     2.654      733.160
+
+ 16                  0.736134        2.517      745.890
+
+        0.748698                     2.382      758.621
+
+ 15                  0.761265        2.249      771.354
+
+        0.773832                     2.118      784.088
+
+ 14                  0.786400        1.988      796.822
+
+        0.798967                     1.860      809.556
+
+ 13                  0.809021        1.759      819.743
+
+        0.819075                     1.659      829.929
+
+ 12                  0.826616        1.584      837.570
+
+        0.834157                     1.510      845.211
+
+ 11                  0.841698        1.436      852.852
+
+        0.849239                     1.363      860.493
+
+ 10                  0.856781        1.290      868.135
+
+        0.864323                     1.218      875.776
+
+  9                  0.871864        1.146      883.418
+
+        0.879406                     1.075      891.059
+
+  8                  0.886948        1.004      898.701
+
+        0.894489                     0.934      906.342
+
+  7                  0.902031        0.864      913.984
+
+        0.909573                     0.795      921.626
+
+  6                  0.917116        0.726      929.268
+
+        0.924658                     0.657      936.911
+
+  5                  0.932200        0.589      944.553
+
+        0.939743                     0.521      952.195
+
+  4                  0.947285        0.454      959.837
+
+        0.954828                     0.387      967.480
+
+  3                  0.962370        0.320      975.122
+
+        0.969913                     0.254      982.765
+
+  2                  0.977456        0.189      990.408
+
+        0.984999                     0.123      998.051
+
+  1                  0.992500        0.058     1005.650
+
+        1.000000                    -0.006     1013.250</pre>
+
+
+
+<p align="left"><img src="../../../img/black_rule.jpg" height="2" width="10%"></p>  
+
+<p class="size18bi"><a name="GEOS-5_reduced" id="GEOS-5_reduced"></a>A3.4.2 GEOS-5 reduced vertical grid</p>
+
+<pre>GEOS-5 Reduced Vertical Grid (47 hybrid pressure-sigma levels)
+
+
+
+  L     Eta Edge     Eta Mid     Altitude     Pressure
+
+      (unitless)   (unitless)        (km)        (hPa)
+
+========================================================
+
+        0.000000                    80.581        0.010
+
+ 47                  0.000028       72.180        0.038
+
+        0.000055                    68.392        0.066
+
+ 46                  0.000127       63.053        0.139
+
+        0.000199                    59.924        0.211
+
+ 45                  0.000399       54.834        0.414
+
+        0.000599                    51.788        0.617
+
+ 44                  0.001109       47.135        1.134
+
+        0.001619                    44.286        1.651
+
+ 43                  0.002816       40.166        2.864
+
+        0.004013                    37.574        4.077
+
+ 42                  0.006588       34.024        6.685
+
+        0.009162                    31.716        9.293
+
+ 41                  0.014342       28.654       14.542
+
+        0.019523                    26.596       19.792
+
+ 40                  0.023755       25.307       24.080
+
+        0.027987                    24.240       28.368
+
+ 39                  0.033814       23.020       34.272
+
+        0.039641                    22.004       40.175
+
+ 38                  0.047641       20.836       48.282
+
+        0.055641                    19.855       56.388
+
+ 37                  0.066559       18.727       67.450
+
+        0.077477                    17.773       78.512
+
+ 36                  0.084313       17.243       85.439
+
+        0.091149                    16.753       92.366
+
+ 35                  0.099191       16.222      100.514
+
+        0.107233                    15.731      108.663
+
+ 34                  0.116695       15.198      118.250
+
+        0.126157                    14.706      127.837
+
+ 33                  0.137287       14.170      139.115
+
+        0.148418                    13.674      150.393
+
+ 32                  0.161513       13.134      163.661
+
+        0.174608                    12.633      176.930
+
+ 31                  0.190061       12.086      192.587
+
+        0.205513                    11.578      208.244
+
+ 30                  0.223772       11.021      226.745
+
+        0.242032                    10.504      245.246
+
+ 29                  0.263587        9.936      267.087
+
+        0.285142                     9.409      288.927
+
+ 28                  0.309854        8.846      313.966
+
+        0.334566                     8.320      339.005
+
+ 27                  0.353349        7.943      358.038
+
+        0.372133                     7.582      377.070
+
+ 26                  0.390927        7.237      396.112
+
+        0.409720                     6.905      415.155
+
+ 25                  0.428528        6.585      434.212
+
+        0.447337                     6.277      453.269
+
+ 24                  0.466153        5.980      472.335
+
+        0.484970                     5.692      491.401
+
+ 23                  0.503795        5.413      510.475
+
+        0.522620                     5.142      529.550
+
+ 22                  0.541449        4.879      548.628
+
+        0.560278                     4.623      567.706
+
+ 21                  0.579115        4.375      586.793
+
+        0.597953                     4.132      605.880
+
+ 20                  0.616790        3.896      624.967
+
+        0.635628                     3.665      644.054
+
+ 19                  0.654471        3.439      663.146
+
+        0.673314                     3.219      682.239
+
+ 18                  0.685878        3.074      694.969
+
+        0.698442                     2.932      707.699
+
+ 17                  0.711006        2.792      720.429
+
+        0.723570                     2.654      733.160
+
+ 16                  0.736134        2.517      745.890
+
+        0.748698                     2.382      758.621
+
+ 15                  0.761265        2.249      771.354
+
+        0.773832                     2.118      784.088
+
+ 14                  0.786400        1.988      796.822
+
+        0.798967                     1.860      809.556
+
+ 13                  0.809021        1.759      819.743
+
+        0.819075                     1.659      829.929
+
+ 12                  0.826616        1.584      837.570
+
+        0.834157                     1.510      845.211
+
+ 11                  0.841698        1.436      852.852
+
+        0.849239                     1.363      860.493
+
+ 10                  0.856781        1.290      868.135
+
+        0.864323                     1.218      875.776
+
+  9                  0.871864        1.146      883.418
+
+        0.879406                     1.075      891.059
+
+  8                  0.886948        1.004      898.701
+
+        0.894489                     0.934      906.342
+
+  7                  0.902031        0.864      913.984
+
+        0.909573                     0.795      921.626
+
+  6                  0.917116        0.726      929.268
+
+        0.924658                     0.657      936.911
+
+  5                  0.932200        0.589      944.553
+
+        0.939743                     0.521      952.195
+
+  4                  0.947285        0.454      959.837
+
+        0.954828                     0.387      967.480
+
+  3                  0.962370        0.320      975.122
+
+        0.969913                     0.254      982.765
+
+  2                  0.977456        0.189      990.408
+
+        0.984999                     0.123      998.051
+
+  1                  0.992500        0.058     1005.650
+
+        1.000000                    -0.006     1013.250</pre>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="MERRA" id="MERRA"></a>A3.5 MERRA vertical grids</p>
+
+<p align="justify">MERRA is not a new data product, but a 30-year reanalysis done 
+
+  with the GMAO GEOS-5 GCM (version 5.2.0). For more information, please 
+
+  see our <a href="http://wiki.geos-chem.org/MERRA" target="_blank">MERRA 
+
+  page on the GEOS-Chem wiki</a>.</p>
+
+<p align="justify">In the vertical, the   <a href="appendix_4.html#MERRA">MERRA 
+
+  meteorological fields</a> have 72 hybrid eta levels, extending from the surface 
+
+  up to 0.01 hPa. The first 31 levels from the surface upward are pure sigma levels; 
+
+  the rest are fixed pressure levels.</p>
+
+<p align="justify">To conserve memory, you have the option of running   GEOS-Chem with a <a href="#MERRA_reduced">reduced vertical resolution 
+
+  of 47 eta levels</a>. GEOS-Chem will combine  eta levels above  
+
+~80 hPa on-the-fly.</p>
+
+<p align="left"><img src="../../../img/black_rule.jpg" height="2" width="10%"></p>
+
+<p class="size18bi"><a name="MERRA_native" id="MERRA_native"></a>A3.5.1 MERRA native vertical grid</p>
+
+<p align="justify">The native vertical resolution of the <a href="appendix_4.html#MERRA">MERRA 
+
+  meteorological fields</a> is identical to the <a href="#GEOS-5_native">GEOS-5 72-layer 
+
+  native grid</a>.</p>
+
+
+
+<p align="left"><img src="../../../img/black_rule.jpg" height="2" width="10%"></p>
+
+<p class="size18bi"><a name="MERRA_reduced" id="MERRA_reduced"></a>A3.5.2 MERRA reduced vertical grid</p>
+
+<p align="justify">The reduced vertical resolution of the <a href="appendix_4.html#MERRA">MERRA 
+
+  meteorological fields</a> is identical to the <a href="#GEOS-5_reduced">GEOS-5 
+
+  47-layer reduced grid</a>.</p>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="GEOS-FP" id="GEOS-FP"></a>A3.6 GEOS-FP vertical grids</p>
+
+<p align="justify"> GMAO recently released its  GEOS-FP meteorological data product, which has ultrafine  horizontal resolution (0.25&deg; x 0.3125&deg;). For more information, please see our   <a href="http://wiki.geos-chem.org/GEOS-FP" target="_blank">GEOS-FP 
+
+  page on the GEOS-Chem wiki</a>.</p>
+
+<p align="justify">In the vertical, the  <a href="appendix_4.html#GEOS-FP">GEOS-FP 
+
+  meteorological fields</a> have 72 hybrid eta levels, extending from the surface 
+
+  up to 0.01 hPa. The first 31 levels from the surface upward are pure sigma levels; 
+
+  the rest are fixed pressure levels. </p>
+
+<p align="justify">To conserve memory, you have the option of running   GEOS-Chem with a <a href="#GEOS-5_reduced">reduced vertical resolution 
+
+  of 47 eta levels</a>. GEOS-Chem will combine  eta levels above  
+
+  ~80 hPa on-the-fly.</p>
+
+<p align="left"><img src="../../../img/black_rule.jpg" height="2" width="10%"></p>
+
+<p class="size18bi"><a name="GEOS-FP_native" id="GEOS-FP_native"></a>A3.6.1 GEOS-FP native vertical grid</p>
+
+<p align="justify">The native vertical resolution of the <a href="appendix_4.html#GEOS-FP">GEOS-FP meteorological fields</a> is identical to the <a href="#GEOS-5_native">GEOS-5 72-layer 
+
+  native grid</a>.</p>
+
+
+
+<p align="left"><img src="../../../img/black_rule.jpg" height="2" width="10%"></p>
+
+<p class="size18bi"><a name="GEOS-FP_reduced" id="GEOS-FP_reduced"></a>A3.6.2 GEOS-FP reduced vertical grid</p>
+
+<p align="justify">The reduced vertical resolution of the <a href="appendix_4.html#GEOS-FP">GEOS-FP meteorological fields</a> is identical to the <a href="#GEOS-5_reduced">GEOS-5 
+
+  47-layer reduced grid</a>.</p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+
+<p class="size14bi" align="center"><a href="appendix_2.html">Previous</a> | <a href="appendix_4.html">Next</a> | <a href="appendix_3.html" target="_parent">Printable View (no frames)</a></p>
+
+</body></html>
+

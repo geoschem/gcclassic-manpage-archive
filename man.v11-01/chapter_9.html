@@ -1,0 +1,200 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS-Chem User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css">
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<div style="width:1000px; margin:auto;">
+<script type="text/javascript" src="../../geos_backlinks.js"></script><!-- JavaScript for breadcrumb links -->
+
+<h2 align="center">GEOS-Chem v11-01 Online User's Guide</h2>
+<h5 align="center"><a href="chapter_8.html">Previous</a> | <a href="chapter_10.html">Next</a> | <a href="chapter_9.html" target="_parent">Printable View (no frames)</a></h5>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h1>9. GEOS-Chem Components</h1>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<p>The table below lists major components in GEOS-Chem, their source code module filenames, and links to relevant pages on the GEOS-Chem wiki.</p>
+<blockquote>
+<p class="red"><strong>IMPORTANT:</strong> Running GEOS-Chem with the recommended time steps for transport and chemistry from <a href="http://www.geosci-model-dev.net/9/1683/2016/gmd-9-1683-2016.html" target="_blank"><em>S. Philip et al (2016)</em></a> has been shown to increase run times w/r/t GEOS-Chem v10-01 by approximately a factor of 2.  To speed up GEOS-Chem simulations, users may choose to:
+  </p>
+<ul class="disc">
+  <li class="red"><strong>RUN WITH COARSER TIMESTEPS FOR FASTER TURNAROUND AND LOWER ACCURACY</strong>    
+  <ul class="circle">
+    <li>Please see <a href="http://wiki.geos-chem.org/GEOS-Chem_Input_Files" target="_blank">our <em>GEOS-Chem Input Files</em> wiki page</a> for specific recommendations.<br/><br/></li>
+  </ul>
+  </li>
+  <li class="red"><strong>SELECT ONE OF THE MECHANISMS IN WHICH DETAILED STRATOSPHERIC CHEMISTRY IS OMITTED</strong>
+    <ul class="circle">
+      <li>These are: Tropchem, SOA, SOA-SVPOA.</li>
+    </ul>
+  </li>
+</ul>
+</blockquote>
+<table width="95%" border="1" cellspacing="0" cellpadding="10" align="center">
+  <tbody>
+    <tr valign="top">
+      <th bgcolor="#CCCCCC" width="15%" scope="col">Operation</th>
+      <th bgcolor="#CCCCCC" width="30%" scope="col">Modules</th>
+      <th bgcolor="#CCCCCC" width="55%" scope="col">Wiki Pages</th>
+    </tr>
+    <tr valign="top">
+      <td>Aerosol thermodynamical equilibrium</td>
+      <td><tt>isoropiaII_mod.F90<br>
+        isoropiaII_code.F90</tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/Aerosol_thermodynamical_equilibrium" target="_blank">Aerosol thermodynamical equilibrium</a></li>
+        <li><a href="http://wiki.geos-chem.org/ISORROPIA_II" target="_blank">ISORROPIA II</a></li>
+      </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>Boundary layer mixing</td>
+      <td><tt>pbl_mix_mod.F90<br>
+        vdiff_mod.F90</tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/Boundary_layer_mixing" target="_blank">Boundary layer mixing</a></li>
+        </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>Chemistry</td>
+      <td><tt>flexchem_mod.F90<br>
+        KPP/Standard/gckpp_*.F90<br>
+        KPP/Tropchem/gckpp_*.F90<br>
+        etc.</tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/FlexChem" target="_blank">FlexChem</a></li>
+        <li><a href="http://wiki.geos-chem.org/GEOS-Chem_chemistry_mechanisms" target="_blank">GEOS-Chem chemistry mechanisms</a></li>
+        <li><a href="http://wiki.geos-chem.org/GEOS-Chem_chemistry_mechanisms#Specialty_simulations" target="_blank">Specialty simulations</a></li>
+        <li><a href="http://wiki.geos-chem.org/Linking_GEOS-Chem_to_CMAQ" target="_blank">Linking GEOS-Chem to CMAQ</a></li>
+      </ul>        </td>
+    </tr>
+    <tr valign="top">
+      <td>Cloud convection</td>
+      <td><tt>convection_mod.F90<br>
+        fvdas_convect_mod.F90<br>
+        gcap_convect_mod.F90<br></tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/Cloud_convection" target="_blank">Cloud convection</a></li>
+        </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>Diagnostics</td>
+      <td><tt>diagnostics_mod.F90<br>
+      diag3.F<br>
+      diag*.F</tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/List_of_diagnostics_for_v11-01" target="_blank">List of diagnostics for v11-01</a></li>
+        <li><a href="http://wiki.geos-chem.org/The_HEMCO_User's_Guide#Diagnostics" target="_blank">Saving diagnostics to netCDF output w/ HEMCO</a></li>
+      </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>Dry deposition</td>
+      <td><tt>drydep_mod.F90</tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/Dry_deposition" target="_blank">Dry deposition</a></li>
+        <li><a href="http://wiki.geos-chem.org/Leaf_area_indices_in_GEOS-Chem" target="_blank">Leaf area indices in GEOS-Chem</a></li>
+        <li><a href="http://wiki.geos-chem.org/Olson_land_map" target="_blank">Olson land map</a></li>
+      </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>Emissions</td>
+      <td>Various modules in:<br>
+        <tt>HEMCO/Core/<br>
+        HEMCO/Extensions/<br>
+        HEMCO/Interfaces/</tt></td>
+      <td><ul class="disc">
+        <li><a href="http://wiki.geos-chem.org/HEMCO" target="_blank">HEMCO</a></li>
+        <li><a href="http://wiki.geos-chem.org/The_HEMCO_User's_Guide" target="_blank">The HEMCO User's Guide</a>
+          <li><a href="http://wiki.geos-chem.org/HEMCO_examples" target="_blank">HEMCO Examples</a></li>
+        <li><a href="http://wiki.geos-chem.org/HEMCO_data_directories" target="_blank">HEMCO data directories</a></li>
+        <li><a href="http://wiki.geos-chem.org/Preparing_data_files_for_use_with_HEMCO" target="_blank">Preparing data files for use with HEMCO</a></li>
+        <li><a href="http://wiki.geos-chem.org/Implementation_of_HEMCO_in_GEOS-Chem" target="_blank">Implementation of HEMCO in GEOS-Chem</a></li>
+        <li><a href="http://wiki.geos-chem.org/Interfacing_HEMCO_into_GEOS-Chem" target="_blank">Interfacing HEMCO into GEOS-Chem</a></li>
+        </ul>
+        See also: <a href="http://www.geosci-model-dev.net/7/1409/2014/gmd-7-1409-2014.html" target="_blank"><em>HEMCO v1.0: a versatile, ESMF-compliant component for calculating emissions in atmospheric models</em> (Keller et al., 2014, GMD)</a>
+</td>
+    </tr>
+    <tr valign="top">
+      <td>Geospatial grid definitions</td>
+      <td><tt>gc_grid_mod.F90<br>
+        pressure_mod.F90</tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/GEOS-Chem_horizontal_grids" target="_blank">GEOS-Chem horizontal grids</a></li>
+        <li><a href="http://wiki.geos-chem.org/GEOS-Chem_vertical_grids" target="_blank">GEOS-Chem vertical grids</a></li>
+      </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>Met fields</td>
+      <td><tt>a3_read_mod.F90<br>
+        a6_read_mod.F90<br>
+        i6_read_mod.F90<br>
+        merra_a1_read_mod.F90<br>
+        merra_a3_read_mod.F90<br>
+        merra_i6_read_mod.F90<br>
+        geosfp_read_mod.F90<br>
+        merra2_read_mod.F90</tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/Overview_of_GMAO_met_data_products" target="_blank">Overview of GMAO met data products</a></li>
+        <li><a href="http://wiki.geos-chem.org/Version_history_of_GMAO_met_data_products" target="_blank">Version history of GMAO met data products</a></li>
+        <li><a href="http://wiki.geos-chem.org/GMAO_GEOS-4" target="_blank">GMAO-GEOS-4</a></li>
+        <li><a href="http://wiki.geos-chem.org/GEOS-5" target="_blank">GMAO GEOS-5</a></li>
+        <li><a href="http://wiki.geos-chem.org/MERRA" target="_blank">GMAO MERRA</a></li>
+        <li><a href="http://wiki.geos-chem.org/GEOS-FP" target="_blank">GMAO GEOS-FP</a></li>
+        <li><a href="http://wiki.geos-chem.org/MERRA-2" target="_blank">GMAO MERRA-2</a></li>
+      </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>Photolysis</td>
+      <td><tt>fast_jx_mod.F90</tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/Photolysis_mechanism" target="_blank">FAST-JX v7.0 photolysis mechanism</a></li>
+        </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>Species database</td>
+      <td><tt>species_mod.F90<br>
+        species_database_mod.F90<br>
+        state_chm_mod.F90</tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/GEOS-Chem_species_database" target="_blank">GEOS-Chem species database</a></li>
+        <li><a href="http://wiki.geos-chem.org/Physical_properties_of_GEOS-Chem_species" target="_blank">Physical properties of GEOS-Chem species</a></li>
+        <li><a href="http://wiki.geos-chem.org/Species_indexing_in_GEOS-Chem" target="_blank">Species and tracer indexing in GEOS-Chem</a></li>
+        </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>Transport</td>
+      <td><tt>tpcore_fvdas_mod.f90</tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/Advection_scheme_TPCORE" target="_blank">Advection scheme TPCORE</a></li>
+      </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>Tropopause</td>
+      <td><tt>chemgrid_mod.F90</tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/Dynamic_tropopause" target="_blank">Dynamic tropopause</a></li>
+        </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>Wet deposition</td>
+      <td><tt>wetscav_mod.F90</tt></td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/Wet_deposition" target="_blank">Wet depositon</a></li>
+      </ul></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h5 align="center"><a href="chapter_8.html">Previous</a> | <a href="chapter_10.html">Next</a> | <a href="chapter_9.html" target="_parent">Printable View (no frames)</a></h5>
+
+</div>
+</body>
+</html>

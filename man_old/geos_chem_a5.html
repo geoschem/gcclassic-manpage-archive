@@ -1,0 +1,270 @@
+<HTML>
+<HEAD>
+<TITLE>GEOS&#150;CHEM User's Guide</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="FF0000" HLINK="#FFFF00">
+<CENTER>
+  <p><font face="Arial, Helvetica, sans-serif" size="2"><b>GEOS&#150;CHEM v6&#150;02&#150;05 
+    User's Guide<br>Contact: Bob Yantosca (<A HREF="mailto:bmy@io.harvard.edu">bmy@io.harvard.edu</A>)</b></font></p>
+  </CENTER>
+
+<P><HR>
+<P> <A NAME="A5"></a><font face="Arial, Helvetica, sans-serif" size="+1"><b>Appendix 
+  5: GEOS&#150;CHEM Diagnostics</b></font></P><hr>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> This documentation 
+  is also contained in the comments to source code file <font face="Courier New, Courier, mono">diag1.f</font>. 
+  CATEGORY is the 8-character name used by <A HREF="http://www-as.harvard.edu/chemistry/trop/gamap/" TARGET="_parent">GAMAP</A> 
+  to reference a particular diagnostic field.</font></p>
+<PRE> FLAG  DIM'S    QUANTITY                                   UNITS         CATEGORY
+ ---- --------  --------                                   -----         --------
+ ND01 (I,J,L,3) RADON 222 - LEAD 210 - BERYLLIUM 7 SOURCE  [kg/s]        RN-SRCE<br>
+ ND02 (I,J,L,3) RADON 222 - LEAD 210 - BERYLLIUM 7 DECAY   [kg/s]        RN-DECAY
+
+ ND03   ----    Free Diagnostic    
+ ND04   ----    Free Diagnostic  
+ 
+ ND05           PROD/LOSS for SULFATE CHEMISTRY QUANTITIES<br>       (I,J,L)    P(SO2) from DMS + OH                     [kg S]        PL-SUL-$<br>       (I,J,L)    P(SO2) from DMS + NO3                    [kg S]        PL-SUL-$<br>       (I,J,L)    Total P(SO2)                             [kg S]        PL-SUL-$<br>       (I,J,L)    P(MSA) from DMS                          [kg S]        PL-SUL-$<br>       (I,J,L)    P(SO4) gas phase                         [kg S]        PL-SUL-$<br>       (I,J,L)    P(SO4) aqueous phase                     [kg S]        PL-SUL-$<br>       (I,J,L)    Total P(SO4)                             [kg S]        PL-SUL-$<br>       (I,J,L)    L(OH) by DMS                             [kg OH]       PL-SUL-$<br>       (I,J,L)    L(NO3) by DMS                            [kg NO3]      PL-SUL-$<br>       (I,J,L)    L(H2O2)                                  [kg H2O2]     PL-SUL-$<br>
+ ND06  (I,J)    DESERT DUST EMISSIONS                      [kg]          DUSTSRCE
+
+ ND07           SOURCES OF BLACK CARBON &amp; ORGANIC CARBON    
+       (I,J)      BLACK CARBON from anthro sources         [kg]          BC-ANTH
+       (I,J)      BLACK CARBON from biomass burning        [kg]          BC-BIOB
+       (I,J)      BLACK CARBON from biofuels               [kg]          BC-BIOF
+       (I,J,L)    Hydrophilic BC from Hydrophobic BC       [kg]          PL-BC=$
+       (I,J)      ORGANIC CARBON from anthro sources       [kg]          OC-ANTH
+       (I,J)      ORGANIC CARBON from biomass burning      [kg]          OC-BIOB
+       (I,J)      ORGANIC CARBON from biofuels             [kg]          OC-BIOF
+       (I,J)      ORGANIC CARBON from biogenic sources     [kg]          OC-BIOG
+       (I,J)      Hydrophilic OC from Hydrophobic OC       [kg]          PL-OC=$
+
+ ND08  (I,J)    SEA SALT EMISSIONS                         [kg]          SALTSRCE
+
+ ND09   ----    Free Diagnostic 
+ ND10   ----    Free Diagnostic 
+ 
+ ND11           ACETONE SOURCES & SINKS
+      (I,J)       Acetone source from MONOTERPENES         [at C/cm2/s]  ACETSRCE
+      (I,J)       Acetone source from METHYL BUTENOL       [at C/cm2/s]  ACETSRCE
+      (I,J)       Acetone source from DIRECT EMISSION      [at C/cm2/s]  ACETSRCE
+      (I,J)       Acetone source from DRY LEAF MATTER      [at C/cm2/s]  ACETSRCE
+      (I,J)       Acetone source from GRASSLANDS           [at C/cm2/s]  ACETSRCE
+      (I,J)       Acetone source from OCEANS               [at C/cm2/s]  ACETSRCE
+      (I,J)       Acetone sink   from OCEANS               [at C/cm2/s]  ACETSRCE
+
+ 
+ ND12 (I,J)     FRACTION OF BOUNDARY LAYER OCCUPIED BY     [unitless]    EMDIS-BL
+ 		LEVEL L (for new emissions in "setemis.f")
+  
+ ND13           TROPOSPHERIC SULFUR EMISSIONS                   
+      (I,J)      DMS                                       [kg S/s]      DMS-BIOG
+      (I,J,L)    Aircraft SO2             (1 <= L <= ND13) [kg S/s]      SO2-AC-$
+      (I,J,L)    Anthro SO2               (1 <= L <= 2   ) [kg S/s]      SO2-AN-$
+      (I,J)      Biomass SO2                               [kg S/s]      SO2-BIOB
+      (I,J,L)    Non-eruptive volcano SO2 (1 <= L <= ND13) [kg S/s]      SO2-NV-$   
+      (I,J,L)    Eruptive     volcano SO2 (1 <= L <= ND13) [kg S/s]      SO2-EV-$    
+      (I,J,L)    Anthro SO4               (1 <= L <= 2   ) [kg S/s]      SO4-AN-$
+  
+ ND14 (I,J,L,N) UPWARD MASS FLUX DUE TO WET CONVECTION     [kg/s]        CV-FLX-$
+                ( 1 <= L <= ND14 )
+  
+ ND15 (I,J,L,N) MASS CHANGE DUE TO BOUNDARY-LAYER MIXING   [kg/s]        TURBMC-$
+                ( 1 <= L <= ND15 )
+  
+ ND16 (I,J,L)   AREAL FRACTION OF LARGE-SCALE PRECIP       [unitless]    WD-FRC-$
+      (I,J,L)   AREAL FRACTION OF CONVECTIVE  PRECIP       [unitless]    WD-FRC-$
+                ( 1 <= L <= ND16 )
+  
+ ND17 (I,J,L,4) RAINOUT FRACTION IN LARGE-SCALE PRECIP     [unitless]    WD-LSR-$
+      (I,J,L,4) RAINOUT FRACTION IN CONVECTIVE  PRECIP     [unitless]    WD-CVR-$
+                ( 1 <= L <= ND17 )
+  
+ ND18 (I,J,L,4) WASHOUT FRACTION IN LARGE-SCALE PRECIP     [unitless]    WD-LSW-$
+      (I,J,L,4) WASHOUT FRACTION IN CONVECTIVE  PRECIP     [unitless]    WD-CVW-$
+                ( 1 <= L <= ND18 )
+  
+ ND19   ----    Free Diagnostic 
+  
+ ND20 (I,J,L,2) SAVE O3 PROD/LOSS RATES TO DISK            [molec/cm3/s] 
+                ( 1 <= L <= LLTROP )
+  
+ ND21 (I,J,L,3) CLOUD OPTICAL DEPTHS AND CLOUD FRACTIONS   [unitless]    OD-MAP-$
+                ( 1 <= L <= ND21 )
+  
+ ND22 (I,J,L,6) J-VALUES: NO2, HNO3, H2O2, CH2O, OH, O3    [s^-1]        JV-MAP-$
+                ( 1 <= L <= ND22 )
+  
+ ND23   ----    METHYL CHLOROFORM (CH3CCl3) LIFETIME       [years]
+  
+ ND24 (I,J,L,N) EASTWARD  MASS FLUX BY TRANSPORT           [kg/s]        EW-FLX-$
+                ( 1 <= L <= ND24 )
+  
+ ND25 (I,J,L,N) NORTHWARD MASS FLUX BY TRANSPORT           [kg/s]        NS-FLX-$ 
+                ( 1 <= L <= ND25 )
+  
+ ND26 (I,J,L,N) UPWARD MASS FLUX BY TRANSPORT              [kg/s]        UP-FLX-$
+                ( 1 <= L <= ND26 )
+  
+ ND27 (I,J,3)   STRATOSPHERIC INFLUX of NOX, OX, HNO3      [kg/s]        STRT-FLX
+  
+ ND28 (I,J,10)  BIOMASS BURNING EMISSIONS:                 [molec/cm2/s] BIOBSRCE
+ 		         NOX,  CO,   ALK4, ACET, MEK,
+ 		         ALD2, PRPE, C3H8, CH2O, C2H6
+  
+ ND29           TROPOSPHERIC CO EMISSIONS                                
+      (I,J)      Anthropogenic                             [molec/cm2/s] CO--SRCE
+      (I,J)      Biomass                                   [molec/cm2/s] CO--SRCE
+      (I,J)      Biofuel                                   [molec/cm2/s] CO--SRCE
+      (I,J)      CO produced from monoterpenes             [molec/cm2/s] CO--SRCE
+      (I,J)      CO produced from methanol                 [molec/cm2/s] CO--SRCE
+  
+ ND30 (I,J)     PLOT LAND MAP FOR GEOS&#150;CHEM                [integers]    LANDMAP
+  
+ ND31 (I,J)     SURFACE PRESSURE - PTOP                    [hPa]         PS-PTOP
+  
+ ND32           TROPOSPHERIC NOx EMISSIONS                   
+      (I,J,L)    Aircraft       ( 1 <= L <= LAIREMS )      [molec/cm2/s] NOX-AC-$
+      (I,J,L)    Anthropogenic  ( 1 <= L <= NOXEXTENT )    [molec/cm2/s] NOX-AN-$
+      (I,J)      Biomass                                   [molec/cm2/s] NOX-BIOB
+      (I,J)      Biofuel                                   [molec/cm2/s] NOX-BIOF
+      (I,J)      Fertilization                             [molec/cm2/s] NOX-FERT
+      (I,J,L)    Lightning      ( 1 <= L <= LCONVM  )      [molec/cm2/s] NOX-LI-$
+      (I,J)      Soils                                     [molec/cm2/s] NOX-SOIL      
+      (I,J)      Upper Boundary                            [molec/cm2/s] NOX-STRT
+  
+ ND33 (I,J,N)   ATMOSPHERIC SUM OF TRACER (1000mb-10mb)    [kg]          TROPO-AV
+  
+ ND34 (I,J,10)  BIOFUEL BURNING EMISSIONS:                 [molec/cm2/s] BIOFSRCE
+                 NOx,  CO,   ALK4, ACET, MEK, 
+                 ALD2, PRPE, C3H8, CH2O, C2H6
+     
+ ND35 (I,J,N)   TRACER AT 500 MBAR ( L = 9 )               [v/v]         500-AVRG
+  
+ ND36 (I,J,9)   ANTHROPOGENIC EMISSIONS (for NSRCX == 3)   [molec/cm2/s] ANTHSRCE
+                 NOx, CO,   ALK4, ACET, 
+                 MEK, ALD2, PRPE, C3H8, C2H6 
+                 OR CH3I EMISSIONS (for NSRCX == 2)        [ng/m2/s]     CH3ISRCE
+  
+ ND37 (I,J,L,4) FRACTION OF TRACER SCAVENGED BY CLOUD
+                UPDRAFTS IN MOIST CONVECTION               [unitless]    MC-FRC-$
+ 		        ( 1 <= L <= ND37 )
+  
+ ND38 (I,J,L,N) LOSS OF TRACER IN MOIST CONVECTION         [kg/s]        WETDCV-$
+                ( 1 <= L <= ND38 )
+  
+ ND39 (I,J,L,N) LOSS OF TRACER IN AEROSOL WET DEPOSITION   [kg/s]        WETDLS-$
+                ( 1 <= L <= ND39 )
+  
+ ND40   ----    Free diagnostic                                          
+  
+ ND41 (I,J)     AFTERNOON PBL DEPTH (1200-1600 LT)         [m]           PBLDEPTH
+  
+ ND42   ----    Free Diagnostic
+  
+ ND43 (I,J,L,2) OH CONCENTRATIONS (from SMVGEAR) and       [molec/cm3/s] CHEM-L=$
+                NO CONCENTRATIONS (from SMVGEAR)           [v/v]         CHEM-L=$
+                ( 1 <= L <= ND43 )
+  
+ ND44 (I,J,M)   DRYDEP FLUXES                              [molec/cm2/s] DRYD-FLX
+      (I,J,M)   DRYDEP VELOCITIES                          [cm/s]        DRYD-VEL
+ 		        ( M = NUMDEP )
+  
+ ND45 (I,J,L,N) TRACER CONCENTRATION, AVERAGED BETWEEN     [v/v]         IJ-AVG-$
+                OTH_HR1 and OTH_HR2 (from "input.geos") 
+                ( 1 <= L <= ND45 )
+  
+ ND46 (I,J,5)   BIOGENIC EMISSIONS of ISOP, PRPE, ACET,    [molec/cm2/s] BIOGSRCE
+                MONOTERPENES
+  
+ ND47 (I,J,L,N) DAILY (24-h) AVERAGE TRACER CONCENTRATIONS [v/v]         IJ-24H-$ 
+                ( 1 <= L <= ND47 )
+  
+ ND48 (I,J,L,N) TIME SERIES AT N = NNSTA LOCATIONS                       TIME-SER 
+                FOR MS = 0, store tracer concentrations    [v/v]
+                FOR MS = 1, store the following
+                N = 1, store O3   RURAL                    [molec/cm3]
+                N = 2, store OH   RURAL                    [molec/cm3]
+                N = 3, store NOy  RURAL                    [molec/cm3]
+                N = 4, store Drydep Vel for NO2            [cm/s]
+                N = 5, store Drydep Vel for O3             [cm/s]
+                N = 6, store Drydep Vel for PAN            [cm/s]
+                N = 7, store Drydep Vel for HNO3           [cm/s]
+                N = 8, store Drydep Vel for H2O2           [cm/s]
+                N = 9, store NO   RURAL                    [molec/cm3]
+                (get I,J,L,MS,N from "inptr.ctm")
+  
+ ND49 (I,J,L,N) 3-D INSTANTANEOUS TRACER TIMESERIES        [v/v]         TIME-SER
+                SAVED IN BINARY PUNCH FILE FORMAT
+                (get I,J,L,N from "timeseries.dat")
+  
+ ND50 (I,J,L,N) 3-D 24-h AVERAGE TRACER TIMESERIES         [v/v]         TIME-SER
+                SAVED IN BINARY PUNCH FILE FORMAT
+                (get I,J,L,N from "timeseries.dat")
+  
+ ND51 (I,J,L,N) 3-D 1-4pm AVERAGE TRACER TIMESERIES        [v/v]         TIME-SER
+                SAVED IN BINARY PUNCH FILE FORMAT             
+                (get I,J,L,N from "timeseries.dat")
+  
+ ND52   ----    Free Diagnostic  
+ ND53   ----    Free Diagnostic 
+ ND54   ----    Free Diagnostic 
+  
+ ND55           TROPOPAUSE DIAGNOSTICS 
+      (I,J)      Tropopause level number                   [unitless]    TR-PAUSE
+      (I,J)      Tropopause height                         [km]          TR-PAUSE
+      (I,J)      Tropopause pressure                       [mb]          TR-PAUSE
+  
+ ND60   ----    Free Diagnostic
+  
+ ND61   ----    Free Diagnostic 
+  
+ ND62 (I,J,N)   INSTANTANEOUS COLUMN MIXING RATIO          [v/v]         INST-MAP
+  
+ ND63   ----    Free Diagnostic
+  
+ ND65 (I,J,L,N) PRODUCTION & LOSS OF SELECTED              [molec/cm3/s] PORL-L=$
+ 				CHEMCIAL SPECIES (see "prodloss.dat")  
+  
+ ND66           DAO 3-D FIELDS ( 1 <= L <= ND66 )                        DAO-3D-$
+      (I,J,L)    UWND   : U-winds                          [m/s]         
+      (I,J,L)    VWND   : V-winds                          [m/s]
+      (I,J,L)    TMPU   : Temperature                      [K]
+      (I,J,L)    SPHU   : Specific humidity                [g H20/kg air]   
+      (I,J,L)    CLDMAS : Convective Mass Flux             [kg/m2/s] 
+  
+ ND67           DAO SURFACE FIELDS                                       DAO-FLDS
+      (I,J)      HFLUX  : sensible heat flux from surface  [W/m2]  
+      (I,J)      RADSWG : solar radiation @ ground         [W/m2]  
+      (I,J)      PREACC : total precip. @ ground           [mm/day] 
+      (I,J)      PRECON : conv.  precip. @ ground          [mm/day] 
+      (I,J)      TS     : surface air temperature          [K]    
+      (I,J)      RADSWT : solar radiation @ atm. top       [W/m2]  
+      (I,J)      USTAR  : friction velocity                [m/s]   
+      (I,J)      Z0     : surface roughness height         [m]    
+      (I,J)      PBL    : planetary boundary layer depth   [hPa]  
+      (I,J)      CLDFRC : column cloud fraction            [0 - 1]  
+      (I,J)      U10M   : U-winds @ 10 meters altitude     [m/s]   
+      (I,J)      V10M   : V-winds @ 10 meters altitude     [m/s]   
+      (I,J)      PS-PBL : DAO Boundary Layer Top Pressure  [hPa]
+      (I,J)      ALBD   : DAO Surface Albedo               [unitless]
+      (I,J)      PHIS   : DAO Geopotential Heights         [m]         
+      (I,J)      CLTOP  : DAO Cloud Top Height             [levels]
+      (I,J)      TROPP  : DAO Tropopause pressure          [hPa] 
+      (I,J)      SLP    : DAO Sea Level pressure           [hPa]
+  
+ ND68           GRID BOX QUANTITIES ( 1 <= L <= ND68 )                   BXHGHT-$
+      (I,J,L)    BXHEIGHT : (grid box heights)             [m] 
+      (I,J,L)    AD       :(air mass in grid box)          [kg]
+      (I,J,L)    AVGW     : mixing ratio of water vapor    [v/v]
+      (I,J,L)    N_AIR    : Air number density             [molec air/cm3]
+  
+ ND69 (I,J)     DXYP     : grid box surface areas          [m2]          DXYP
+   
+ ND70  ----     TURN ON DEBUG OUTPUT STATEMENTS            --            ----</PRE>
+<P><HR><P>
+<CENTER>
+    <A HREF="geos_chem_a4.html"><font face="Arial, Helvetica, sans-serif" size="2">[Return 
+    to Appendix 4]</font></A><font face="Arial, Helvetica, sans-serif" size="2"> 
+    | <A HREF="geos_chem_a6.html">[Go on to Appendix 6]</A></font> 
+  </CENTER>
+</BODY>
+</HTML>

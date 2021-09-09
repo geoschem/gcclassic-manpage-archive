@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>GEOS&#150;Chem User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css"> <!-- Style sheet for font declarations -->
+</head>
+<body bgcolor="#FFFFFF">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script> <!-- JavaScript for breadcrumb links -->
+<p align="center" class="size20bi">GEOS&#150;Chem v8&#150;01&#150;01 Online User's Guide</p>
+<p align="center" class="size14bi"><a href="chapter_1.html">Previous</a> | <a href="chapter_3.html">Next</a> | <a href="chapter_2.html" target="_parent">Printable View (no frames)</a></p>
+<p align="center" class="size14bi"><span class="size16bi">For information about GEOS&#150;Chem &quot;beta&quot; releases <a href="appendix_8.html#A8.2"><br>
+v8&#150;01&#150;02</a>, <a href="appendix_8.html#A8.3">v8&#150;01&#150;03</a>, and <a href="appendix_8.html#A8.4">v8&#150;01&#150;04</a>, please see the Addenda section.</span></p>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size24bi"><a name="2"></a>2. Installation</p>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size20bi"><a name="2.1"></a>2.1 &quot;Public&quot; vs &quot;beta&quot; GEOS&#150;Chem versions</p>
+<p align="justify">When we have many updates which need to be added into the GEOS&#150;Chem standard code, it is often expedient for us to split these among several &quot;beta&quot; GEOS&#150;Chem versions. This allows us to test each internal version individually with the usual <a href="../../../geos_benchmark.html" target="_blank">1-month benchmark</a> simulation. After iterating through several &quot;beta&quot; 
+versions, when the code has attained stability, we will then announce a public GEOS&#150;Chem version release with the customary fanfare. The GEOS&#150;Chem User Guide (i.e. this document) is modified for each public version, but not for each &quot;beta&quot; version.  To do so would probably lead to mass confusion among our user base.</p>
+<p align="justify">Bob Yantosca and Philippe Le Sager will announce each GEOS&#150;Chem internal version release via the GEOS&#150;Chem website or email list. You may then obtain the &quot;beta&quot; version and begin using it. However, please note some aspects of each &quot;beta&quot; version may not be covered in the online documentation.</p>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size20bi"><a name="2.2"></a>2.2 Obtaining the GEOS&#150;Chem Source Code </p>
+<p align="justify"> The first step is to obtain the current public version of the GEOS&#150;Chem model. The most recent GEOS&#150;Chem release is available for download from the <a href="../../../geos_gatekeeper.html" target="_blank">GEOS&#150;Chem 
+  Source Code and Data Files</a> page. You may also download data and input files for the GEOS&#150;Chem model from this site.</p>
+<p align="justify"> The current 
+  GEOS&#150;Chem source code and benchmark simulation output are contained in a GNU-zipped TAR file (i.e. the extension is <tt>*.tar.gz</tt>), which is also known as "tarball" format. To unzip the file, type:</p>
+<blockquote>
+  <pre>gunzip GEOS&#150;Chem.v8&#150;01&#150;01-public.stdrun.tar.gz</pre>
+</blockquote>
+<p align="justify"> and 
+  to extract the files, type: 
+<blockquote>
+  <pre>tar xvf GEOS&#150;Chem.v8-01&#150;01-public.stdrun.tar</pre>
+</blockquote>
+<p align="justify">This will create a directory named v8&#150;01&#150;01, which is further divided into subdirectories:</p>
+<blockquote>
+<table border="1" cellspacing="0" cellpadding="5" bordercolor="#000000" width="85%">
+  <tr> 
+    <th align="left" valign="top" bgcolor="#CCCCCC" width="30%">Directory
+    <th align="left" valign="top" bgcolor="#CCCCCC">Description
+  </tr>
+  <tr> 
+    <td align="left" valign="top" class="courier16">Code.v8-01-01</td>
+    <td align="left" valign="top">Directory containing the GEOS&#150;Chem source code</td>
+  </tr>
+  <tr> 
+    <td align="left" valign="top" class="courier16">IDL</td>
+    <td align="left" valign="top">Directory containing IDL code to process benchmark output</td>
+  </tr>
+  <tr> 
+    <td align="left" valign="top" class="courier16">runs/v8-01-01</td>
+	<td align="left" valign="top">Contains the run directories for the various met field types </td>
+  </tr>
+  <tr> 
+    <td align="left" valign="top" class="courier16">runs/v8-01-01/geos4<br>runs/v8-01-01/geos5</td>
+    <td align="left" valign="top">Contains output from v8&#150;01&#150;01 full-chemistry benchmark simulations done with <a href="appendix_4.html#A4.3">GEOS&#150;4</a> and <a href="appendix_4.html#A4.4">GEOS&#150;5 </a>met fields. </td>
+  </tr>
+</table>
+</blockquote>
+<p align="justify">Each GEOS&#150;Chem version is benchmarked with a <a href="../../../geos_benchmark.html" target="_blank">standard full-chemistry simulation</a> so that the results of a given version may be compared to the results of the prior version. In this way, errors in coding, emissions, or chemistry mechanisms may be readily discerned. </p>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size20bi"><a name="2.3"></a>2.3 Obtaining the GEOS&#150;Chem run directories</p>
+<p align="justify">TAR files containing sample GEOS&#150;Chem run directories are stored on the GEOS&#150;Chem download page. To install the 4&deg; x 5&deg; run directories, type the following at the Unix prompt:</p>
+<blockquote>
+<pre>gunzip GEOS-Chem.v8-01-01-public.rundir4x5.tar.gz
+tar xvf GEOS-Chem.v8-01-01-public.rundir4x5.tar</pre>
+</blockquote>
+<p align="justify">This will create 4&deg; x 5&deg; run directories named:</p>
+<blockquote> 
+<pre>/run/v8-01-01.gcap.4x5
+/run.v8-01-01.geos3.4x5 
+/run.v8-01-01.geos4.4x5
+/run.v8-01-01.geos5.4x5</pre>
+</blockquote>
+<p align="justify">which will store input files and a restart file for the 4&deg; x 5&deg; <a href="appendix_3.html#A3.2">GCAP</a>, <a href="appendix_3.html#A3.3">GEOS&#150;3</a>, <a href="appendix_3.html#A3.4">GEOS&#150;4</a>, and <a href="appendix_3.html#A3.5">GEOS&#150;5</a> grids. The input files assume that you want to perform a full-chemistry simulation. You can modify the input files to specify other types of GEOS&#150;Chem simulations; see <a href="chapter_5.html">Chapter  5</a> for more details.</p>
+<p align="justify">To install the 2&deg; x 2.5&deg; run directories, you can follow the same procedure listed above. (If you have just extracted the 4&deg; x 5&deg; run directories, make sure to rename them or move them to a new directory so that the extraction of the 2&deg; x 2.5&deg; directories won't overwrite them). Type the following at the Unix prompt:</p>
+<blockquote>
+<pre>gunzip GEOS-Chem.v8-01-01-public.rundir2x25.tar.gz
+tar xvf GEOS-Chem.v8-01-01-public.rundir2x25.tar</pre>
+</blockquote>
+<p align="justify"> This will extract directories named</p>
+<blockquote> 
+<pre>/run.v8&#150;01&#150;01.geos3.2x25 
+/run.v8&#150;01&#150;01.geos4.2x25
+/run.v8&#150;01&#150;01.geos5.2x25</pre>
+</blockquote>
+<p align="justify">these directories will contain input files and restart files for the 2&deg; x 2.5&deg; <a href="appendix_3.html#A3.3">GEOS&#150;3</a>, <a href="appendix_3.html#A3.4">GEOS&#150;4</a>, and <a href="appendix_3.html#A3.5">GEOS&#150;5</a> grids. As with the 4&deg; x 5&deg; directories, the input files are preset to select a full-chemistry simulation.</p>
+<p align="justify">GEOS&#150;Chem restart files are provided in order to provide you with a set of initial conditions that you can start your model runs with. However, it is highly recommended that  you not use these restart files for any of your production runs. Rather, you will probably want to generate your own restart file by spinning up the model for at least a year.</p>
+<p align="justify">If you need a restart file for an offline simulation (e.g. offline aerosol, mercury, tagged CO, etc), you can use the GAMAP routine <tt>make_restart.pro</tt> to create a &quot;fake&quot; restart file. You can also ask the other members of the GEOS&#150;Chem Mailing List if they have a restart file for the particular type of simulation that you are trying to do.</p>
+<p align="justify">NOTE: If you are using GEOS&#150;Chem with secondary aerosol tracers, then you will also need to create a <tt>restart_aprod_gprod.YYYYMMDD</tt> file. This can be done with GAMAP routines <tt>regridh_restart.pro</tt>, <tt>regridv_restart.pro</tt> and <tt>rewrite_agprod.pro.</tt> <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GAMAP_tips_and_tricks#Renaming_and_Regridding_APROD.2FGPROD_restart_files" target="_blank">Please see the GEOS&#150;Chem wiki page for more information</a>.</p>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size20bi"><a name="2.4"></a>2.4 Obtaining the GEOS&#150;Chem data directories</p> 
+<p align="justify">You may now download all of the files in the GEOS&#150;Chem data directories from the data server ftp.as.harvard.edu. If you do not have an account on this machine, please contact our systems administrator Jack Yatteau.</p> 
+<p align="justify">To download the <a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a> data directories, you may use anonymous FTP:</p> 
+<blockquote> 
+<pre>ftp ftp.as.harvard.edu
+cd pub/geos-chem/data/GEOS_4x5</pre>
+</blockquote>
+<p align="justify">and then you can download each of the individual subdirectories which contain the various GEOS&#150;Chem 4&deg; x 5&deg; input files.</p>
+<p align="justify">Likewise, to extract the <a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a> data directories, type the following at the Unix prompt:</p>
+<blockquote> 
+<pre>ftp ftp.as.harvard.edu
+cd pub/geos-chem/data/GEOS_2x2.5</pre>
+</blockquote>
+<p align="justify">and then you can download each of the individual subdirectories which contain the various GEOS&#150;Chem 2&deg; x 2.5&deg; input files.</p>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p align="center" class="size14bi"><a href="chapter_1.html">Previous</a> | <a href="chapter_3.html">Next</a> | <a href="chapter_2.html" target="_parent">Printable View (no frames)</a></p>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS-Chem User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css">
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<div style="width:1000px; margin:auto;">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+
+<h2 align="center">GEOS-Chem v11-01 Online User's Guide</h2>
+<h5 align="center"><a href="chapter_2.html">Previous</a> | <a href="chapter_4.html">Next</a> | <a href="chapter_3.html" target="_parent">Printable View (no frames)</a></h5>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h1>3. The netCDF Library</h1>
+
+<p><img src="../../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h2><a name="Overview" id="Overview"></a>3.1 A brief introduction to netCDF</h2>
+<p>GEOS-Chem   reads and writes data using the netCDF file format. NetCDF is a self-describing file format that can store data fields as well as the relevant &quot;metadata&quot;, or information about the contents of the file. Types of metadata include descriptive names, units, horizontal and vertical, coordinates, file creation date/time, file history, etc.</p>
+<p>The <a href="http://www.unidata.ucar.edu/software/netcdf/docs/faq.html" target="_blank">netCDF frequently asked questions (FAQ) </a>guide gives this short overview of netCDF:</p>
+<blockquote>
+<p>NetCDF (network Common Data Form) is a set of interfaces for array-oriented data access and a <a href="http://www.unidata.ucar.edu/software/netcdf/docs/copyright.html" target="_blank">freely</a> distributed collection of data access libraries for C, Fortran, C++,   Java, and other languages. The netCDF libraries support a   machine-independent format for representing scientific data. Together,   the interfaces, libraries, and format support the creation, access, and   sharing of scientific data.</p>
+<p>NetCDF data is:</p>
+<ul>
+  <li><em>Self-Describing</em>. A netCDF file includes information about the data it contains.</li>
+  <li><em>Portable</em>. A netCDF file can be accessed by computers with different ways of storing integers, characters, and floating-point numbers.</li>
+  <li><em>Scalable</em>. A small subset of a large dataset may be accessed efficiently.</li>
+  <li><em>Appendable</em>. Data may be appended to a properly structured netCDF file without copying the dataset or redefining its structure.</li>
+  <li><em>Sharable</em>. One writer and multiple readers may simultaneously access the same netCDF file.</li>
+  <li><em>Archivable</em>. Access to all earlier forms of netCDF data will be supported by current and future versions of the software.</li>
+ </ul>
+</blockquote>
+<p>There are two commonly-used major versions of netCDF in use today:</p>
+<ul>
+  <li>netCDF-3, aka &quot;netCDF classic&quot;.</li>
+  <li>netCDF-4</li>
+</ul>
+<p>The major difference between the two versions is that netCDF-4 relies on the HDF5 library &quot;under the hood&quot; whereas netCDF-3 does not. For this reason, netCDF-4 can be used to store more data per file than netCDF-3.</p>
+<p>A netCDF installation contains library files (ending in <tt>.a</tt>) , which hold compiled utility routines meant to be called from programs written in C or Fortran. In netCDF-4.1 and prior versions, the C-language library file (<tt>libnetcdf.a</tt>) and the Fortran-language library file (<tt>libnetcdff.a</tt>) were always installed into the same folder by default. But starting with netCDF-4.2, the netCDF Fortran libraries now must be built from a separate distribution package. Because of this new configuration, you might find that the <tt>libnetcdff.a</tt> (Fortran) and <tt>libnetcdf.a</tt> (C) library files are stored in separate folders on your system. Ask your IT staff for more information about how netCDF is installed on your system.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h2><a name="Libraries" id="Libraries"></a>3.2 Loading the netCDF libraries on your system</h2>
+<p>If you are going to use GEOS-Chem on a shared computer system,  chances are that your IT staff will have already installed one or more netCDF library versions that you can use. For users that do not  have the netCDF libraries intstalled on their system, the GEOS-Chem Support Team has constructed the <tt>GEOS-Chem-Libraries</tt> installer package. See the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Installing_libraries_for_GEOS-Chem" target="_new">Installing libraries for GEOS-Chem</a> wiki page for detailed instructions. Quick links to subsections of that wiki page are included below:</p>
+
+<ul>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Installing_libraries_for_GEOS-Chem#Check_to_see_if_netCDF_is_already_installed_on_your_system" target="_blank">Check to see if netCDF is already installed on your system</a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Installing_libraries_for_GEOS-Chem#Build_your_own_netCDF_libraries_if_your_system_doesn.27t_have_them" target="_blank">Build your own netCDF libraries if your system doesn't have them</a></li>
+  <ul class="circle">
+      <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Installing_libraries_for_GEOS-Chem#Downloading_the_GEOS-Chem-Libraries_installer_package" target="_blank">Downloading the GEOS-Chem-Libraries installer package</a></li>
+      <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Installing_libraries_for_GEOS-Chem#Building_the_netCDF-4_library" target="_blank">Building the netCDF-4 library</a></li>
+   </ul>
+<li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Installing_libraries_for_GEOS-Chem#Setting_environment_variables_for_GEOS-Chem" target="_blank">Setting environment variables for GEOS-Chem</a></li>
+  <ul class="circle">
+      <li><span class="red"><b>IMPORTANT:</b></span> This is a vital step. Otherwise, you will get errors during the compilation process.</li>
+  </ul>
+</ul>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h5 align="center"><a href="chapter_2.html">Previous</a> | <a href="chapter_4.html">Next</a> | <a href="chapter_3.html" target="_parent">Printable View (no frames)</a></h5>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,765 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS-;Chem User's Guide</title>
+ <link rel="stylesheet" type="text/css" href="../../../gc.css"><!-- Cascading style sheet for font declarations --></head><body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&ndash;Chem v9&ndash;01&ndash;01 Online 
+  User's Guide</p>
+
+<p class="size14bi" align="center"><a href="chapter_2.html">Previous</a>
+| <a href="chapter_4.html">Next</a> | <a href="chapter_3.html" target="_parent">Printable View
+(no frames)</a></p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size24bi"><a name="3"></a>3. Compilation </p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="3.1"></a>3.1 Overview</p>
+<p align="justify">Once you have <a href="chapter_2.html#2.2">downloaded the GEOS&ndash;Chem source code directory</a>, you can begin the process of compiling GEOS&ndash;Chem. During this process, your Fortran-90 compiler will create a binary executable file from the instructions contained in the various source code modules and files. You can then place the executable file into a <a href="chapter_2.html#2.3">GEOS&ndash;Chem run directory</a> and start a simulation.</p>
+<p align="justify">The compilation process involves the following steps:</p>
+<ol>
+  <li>Selecting the proper <strong>C&ndash;preprocessor switches</strong> in the <tt>define.h</tt> file (see <a href="#3.4">Chapter  3.4</a>)</li>
+  <li>Invoking the <strong>GNU Make utility</strong> with the proper options (see <a href="#3.5">Chapter 3.5</a>)</li>
+</ol>
+<p align="justify"><a href="http://www.gnu.org/software/make/" target="_new">GNU Make</a> manages the entire compilation process. A series of scripts called <strong>Makefiles</strong> (see <a href="#3.3">Chapter 3.3</a>) directs GNU Make to compile the GEOS&ndash;Chem source code files in the proper order and with the proper options. These makefiles are placed throughout the GEOS&ndash;Chem source code directory.</p>
+<p align="justify">For more information about the GEOS&ndash;Chem source code and makefiles, please see:</p>
+<ul>
+  <li>Chapter 7: <a href="chapter_7.html" align="justify">Coding: Practice and Style</a>.</li>
+  <li>GEOS&ndash;Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Makefile_Structure" target="_new" align="justify">GEOS&ndash;Chem Makefile Structure</a></li>
+</ul>
+<p align="justify">NOTE: In general, executables cannot be easily swapped between computers (unless they are identical systems). If you want to move GEOS&ndash;Chem to a different computer, you will more than likely have to recompile it on that system.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="3.2"></a>3.2 Source code directory structure</p>
+<p align="justify">The <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Support_Team" target="_new">GEOS&ndash;Chem Support Team</a> has subdivided the <a href="chapter_2.html#2.1">GEOS&#150;Chem source code directory</a> into several subdirectories. This was done for the following reasons:</p>
+<ol>
+  <li><p align="justify">To facilitate the installation of 3rd-party software packages such as:</p>
+    <ul>
+      <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/KPP_solvers_FAQ" title="KPP solvers FAQ" target="_new">KPP chemical solver</a></li>
+      <li> Aerosol microphysics codes (e.g. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/TOMAS_aerosol_microphysics" title="TOMAS aerosol microphysics" target="_new">TOMAS</a>, <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/APM_aerosol_microphysics" target="_new">APM</a>) </li>
+      <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/ISORROPIA_II" title="ISORROPIA II" target="_new">ISORROPIA II</a></li>
+      <li> Terrestrial models (e.g. CASA, <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Global_Terrestrial_Mercury_Model" title="Global Terrestrial Mercury Model" target="_new">Global Terrestrial Mercury Model</a>) , etc.</li>
+    </ul>
+    <p align="justify"> into GEOS&ndash;Chem.  Our guiding principle is that all 3rd-party   software packages should be cleanly separatable from the mainline GEOS&ndash;Chem code.  This will allow the 3rd-party software packages to be updated without having an impact on the rest of the GEOS&ndash;Chem code.</p>
+  </li>
+  <li>
+    <p align="justify">To simplify the maintenace of the GEOS&ndash;Chem code files. Without subdirectories, there would have been hundreds of source code files in a single directory, and it woud have been very difficult to keep track of them all.</p>
+  </li>
+</ol>
+
+
+<p align="justify">The current directory structure is:</p>
+<table width="100%" border="1" bordercolor="#000000" cellspacing="0" cellpadding="5">
+  <tr>
+    <th scope="col" bgcolor="#CCCCCC" width="35%">Directory</th>
+    <th scope="col" bgcolor="#CCCCCC">Description</th>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01</tt></td>
+    <td><p>Main level GEOS&ndash;Chem directory </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/Headers</tt></td>
+    <td><p>Directory containing <tt>*.h</tt> and <tt>CMN*</tt> include files </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/GeosUtil</tt></td>
+    <td><p align="justify">Directory containing various utility modules for GEOS&ndash;Chem: </p>
+      <ul>
+        <li><tt>bpch2_mod.f</tt></li>
+        <li><tt>charpak_mod.f</tt></li>
+        <li><tt>directory_mod.f</tt></li>
+        <li><tt>error_mod.f</tt></li>
+        <li><tt>file_mod.f</tt></li>
+        <li><tt>grid_mod.f</tt></li>
+        <li><tt>ifort_errmsg.f</tt></li>
+        <li><tt>julday_mod.f</tt></li>
+        <li><tt>linux_err.c</tt></li>
+        <li><tt>pressure_mod.f</tt></li>
+        <li><tt>regrid_1x1_mod.f</tt></li>
+        <li><tt>time_mod.f</tt></li>
+        <li><tt>transfer_mod.f</tt></li>
+        <li><tt>unix_cmds_mod.f</tt></li>
+      </ul>
+    <p align="justify">This will build these modules into a separate library, which will allow   these modules to be called from code in other subdirectories.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/GeosCore</tt></td>
+    <td><p align="justify">Directory containing regular <tt>*.f</tt> and <tt>*.f90</tt> source code files</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/GeosTomas</tt></td>
+    <td><p align="justify">Directory containing parallel copies of GEOS&ndash;Chem source code files (<tt>*.f</tt>, <tt>*.f90</tt>) that were modified for the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/TOMAS_aerosol_microphysics" target="_new">TOMAS aerosol microphysics</a> package. </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/ISOROPIA</tt></td>
+    <td><p align="justify">Directory containing the unmodified <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/ISORROPIA_II" target="_new">ISORROPIA II</a> source code files from Thanos Nenes and Havala Pye: </p>
+      <ul>
+        <li><tt>isorropiaIIcode.f</tt></li>
+        <li><tt> isrpia.inc</tt></li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/KPP</tt></td>
+    <td><p align="justify">Main-level directory for the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/KPP_solvers_FAQ" target="_new">KPP solver</a></p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/KPP/int</tt></td>
+    <td><p align="justify">Directory containing KPP integrator files (i.e. rosenbrock, radau, runge-kutta, lsodes) </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/KPP/SOA</tt></td>
+    <td><p>Directory containing KPP source code files for 59 tracer simulation (with <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Secondary_organic_aerosols" target="_new">secondary organic aerosols</a>) </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/KPP/isoprene</tt></td>
+    <td><p align="justify">Directory containing KPP source code files for the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/New_isoprene_scheme" target="_new">Caltech isoprene scheme</a>. <br>
+        <em>NOTE: THIS NEEDS TESTING!</em></p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/KPP/standard</tt></td>
+    <td><p align="justify">Directory containing KPP source code files for 43 tracer simulation (without secondary organic aerosols) </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/doc</tt></td>
+    <td><p align="justify">Directory where automatic documentation is built </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/lib</tt></td>
+    <td><p align="justify">Directory where library (<tt>*.a</tt>) files will be created </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/mod</tt></td>
+    <td><p align="justify">Directory where module (<tt>*.mod</tt>) files will be sent </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/bin</tt></td>
+    <td><p align="justify">Directory where executable (<tt>geos</tt>, <tt>geostomas</tt>) files will be sent </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/help</tt></td>
+    <td><p align="justify">Directory containing GEOS-Chem help screen</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/obsolete</tt></td>
+    <td><p align="justify">Directory where obsolete source code files are placed for future reference if need be</p></td>
+  </tr>  
+</table>
+<p align="justify">In the text below, we shall often omit the top-level <tt>Code.v9-01-01</tt> directory and refer to files by their subdirectory only, such as:</p>
+<ul>
+  <li><tt align="justify">Headers/define.h</tt>, </li>
+  <li><tt align="justify">GeosCore/dao_mod.f</tt></li>
+  <li><tt align="justify">ISOROPIA/isoropiaII_code.f</tt>, etc.</li>
+</ul>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="3.3"></a>3.3 GEOS&ndash;Chem Makefiles</p>
+  
+<p align="justify">The GEOS&ndash;Chem compilation process is managed by <strong>makefiles</strong> located throughout the <a href="chapter_2.html#2.2">source code directory</a>. Makefiles direct the <a href="http://www.gnu.org/software/make/" target="_new">GNU Make utility</a> to execute the various compilation commands in  the proper sequence.</p>
+<p>In general there are 2 types of makefiles: </p>
+<ul>
+  <li>
+    <p align="justify"><strong>"Router" makefiles</strong>: Makefiles that tell GNU Make to look at makefiles in other directories.</p>
+  </li>
+  <li>
+    <p align="justify"><strong>"Regular" makefiles</strong>: Makefiles that are used by GNU Make to compile source code programs..</p>
+  </li>
+</ul>
+<p align="justify">The  top-level source code directory (<tt>Code.v9-01-01</tt>) contains a &quot;router&quot; makefile, which  calls down to the   &quot;regular&quot; makefiles in the various <a href="#3.2">subdirectories</a>. In each subdirectory, the &quot;regular&quot; makefile tells GNU Make how to compile the source code files. When the source code in all subdirectories has been compiled, the top-level Makefile tells GNU Make to create the GEOS-Chem executable file.</p>
+<p align="justify">Here is a list of makefiles used by GEOS&ndash;Chem:</p>
+<table width="100%" border="1" bordercolor="#000000" cellspacing="0" cellpadding="5">
+  <tr>
+    <th scope="col" bgcolor="#CCCCCC" width="40%">Directory</th>
+    <th scope="col" bgcolor="#CCCCCC">Description</th>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/Makefile</tt></td>
+    <td><p align="justify">Main-level router makefile; calls down to makefiles in other subdirectories </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/Makefile_header.mk</tt></td>
+    <td><p align="justify">Makefile fragment that defines compilation and linking commands      for the IFORT, PGI, Sun/Studio, and XLF compilers.    These commands are common to the makefiles in all subdirectories.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/GeosCore/Makefile</tt></td>
+    <td><p align="justify">Makefile to build the GEOS&ndash;Chem code.  Also calls up to makefiles    in the other subdirctories to build 3rd-party codes (e.g. KPP). </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/GeosTomas/Makefile</tt></td>
+    <td><p align="justify">Makefile to build the GEOS&ndash;Chem code with <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/TOMAS_aerosol_microphysics" title="TOMAS aerosol microphysics" target="_new">TOMAS aerosol microphysics</a> routines. </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/GeosUtil/Makefile</tt></td>
+    <td><p align="justify">Makefile to build the GEOS&ndash;Chem utility modules.</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/KPP/Makefile</tt></td>
+    <td><p align="justify">Router makefile for KPP.  Calls down to makefiles in subdirectories to build the KPP solver code. </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/KPP/isoprene/Makefile</tt></td>
+    <td><p align="justify">Makefile that builds the KPP solver for GEOS-Chem simulations with the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/New_isoprene_scheme" title="New isoprene scheme" target="_new">Caltech isoprene scheme</a>. </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/KPP/SOA/Makefile</tt></td>
+    <td><p align="justify">Makefile that builds the KPP solver for the GEOS-Chem 59 tracer simulation</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/KPP/standard/Makefile</tt></td>
+    <td><p align="justify">Makefile that builds the KPP solver for the GEOS-Chem 43 tracer simulation</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/doc/Makefile</tt></td>
+    <td><p align="justify">Makefile that builds GEOS&ndash;Chem documentation files with LaTeX.    Documentation files will be produced in both <tt>*.pdf</tt> and <tt>*.ps</tt> formats. </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><tt>Code.v9-01-01/help/Makefile</tt></td>
+    <td><p align="justify">Makefile that displays the GEOS-Chem help screen </p></td>
+  </tr>
+ 
+</table>  
+  
+<p align="justify">You will usually not have to modify any of these makefiles, unless you are adding new code into GEOS&ndash;Chem. If you need to modify makefiles, then  the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Support_Team" target="_new">GEOS&ndash;Chem Support Team</a> will be happy to assist you.</p>
+<p align="justify">Each makefile controls several compilation options. We shall present a detailed discussion of these options in  <a href="#3.5">Chapter 3.5</a>.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="3.4"></a>3.4 Setting the C&ndash;preprocessor switches</p>
+<p align="justify">Before compiling the GEOS&ndash;Chem model, you must set the proper C&ndash;preprocessor switches to inform the Fortran-90 compiler which scientific options you would like compiled into the GEOS&ndash;Chem executable.</p>
+
+<p align="justify" class="size18bi"><a name="3.4.1"></a>3.4.1 What is the C&ndash;preprocessor?</p>
+<p align="justify">The C&ndash;preprocesor (or CPP for short) is a feature of the C and C++ programming languages that allows you to compile blocks of code only if  certain conditions are met. For example, let's say you have two blocks of code, Block A and Block B. If you set a certain switch in the code, then Block A will get compiled into the executable but Block B will not. When you run the executable, it will behave as if Block B had never existed. If you set a different switch, then Block B will be compiled but Block A will not, and the executable will behave as if Block A had never existed.</p>
+<p align="justify">All modern Fortran compilers have inherited the  C&ndash;preprocessor feature.  Some Fortran compilers even call it the &quot;Fortran preprocessor&quot; (FPP). Therefore, even though GEOS&ndash;Chem is written in Fortran-90, we can still incorporate   C&ndash;preprocesor commands into the source code.</p>
+<p align="justify">With the    C&ndash;preprocessor, you can design software to handle many different conditions, such as multiple compilers/platform combinations, different file formats, and the like. At compilation time, you can direct the C&ndash;preprocessor to only choose the options relevant to the particular computer system you are running on.   Options that are not relevant to your system will  be ignored. This is a standard programming technique.</p>
+<p align="justify">The C&ndash;preprocessor statments take the form of <tt>#define</tt> and <tt>#if - #endif</tt> statements. A simple example from GEOS&ndash;Chem is:</p>
+<blockquote>
+<pre>#if   defined( GEOS_3 )
+      WRITE( 6, '(a)' ) 'Using GMAO GEOS-3 met fields'
+#elif defined( GEOS_4 )
+      WRITE( 6, '(a)' ) 'Using GMAO GEOS-4 met fields'
+#elif defined( GEOS_5 )
+      WRITE( 6, '(a)' ) 'Using GMAO GEOS-5 met fields'
+#elif defined( MERRA )
+      WRITE( 6, '(a)' ) 'Using GMAO MERRA met fields'
+#elif defined( GCAP  )
+      WRITE( 6, '(a)' ) 'Using GCAP/GISS met fields'
+#endif</pre>
+</blockquote>
+
+<p align="justify">Here the <tt>#elif</tt> tag stands for &quot;else if&quot;. An <tt>#else</tt> tag is also allowed.</p>
+<p align="justify">If we have <tt>#defined</tt> the <tt>GEOS_5</tt> C&ndash;preprocessor switch (see <a href="#3.4.2">Chapter 3.4.2</a>), then  GEOS&ndash;Chem will be compiled for use with the <a href="appendix_4.html#A4.4">GEOS&ndash;5 met fields</a>. The block of code that prints out the message <tt>"Using GMAO GEOS-5 met fields"</tt> will be built into the exectuable, and all other print statements will be ignored.</p>
+<p align="justify">C&ndash;preprocessor statements must be placed into the first column of a Fortran source code file, or else you may encounter a syntax error.</p>
+<p align="justify"><span class="size18bi"><a name="3.4.2"></a>3.4.2 Selecting the proper C&ndash;preprocessor switches for your simulation</span></p>
+<p>GEOS&ndash;Chem uses C&ndash;preprocessor switches to select  various options, including:</p>
+<ol>
+  <li>The <a href="appendix_4.html">meteorological fields</a> that GEOS&ndash;Chem will use</li>
+  <li>The <a href="appendix_2.html">horizontal</a> and <a href="appendix_3.html">vertical grids</a> for the GEOS&ndash;Chem simulation</li>
+  <li>The type of compiler you will use to create the GEOS&ndash;Chem executable</li>
+  <li>Options  for special simulations (e.g. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Mercury" target="_new">mercury</a>)</li>
+</ol>
+<p>These switches are located in header file <tt>Headers/define.h</tt>, and are as follows: </p>
+<blockquote>
+  <table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="90%" valign="top">
+      <tr>
+        <th align="left" bgcolor="#cccccc" valign="top">Met
+Fields </th>
+        <td align="left" bgcolor="#cccccc" valign="top">&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">GCAP</td>
+        <td align="left" valign="top">Use GISS met
+fields for <a href="appendix_4.html#A4.1">GCAP</a>
+simulation (<a href="appendix_3.html#A3.2">23 layer</a>, <a href="appendix_2.html#A2.1">4&deg; x 5&deg;</a>)</td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">GEOS_3</td>
+        <td align="left" valign="top">Use <a href="appendix_4.html#A4.2">GEOS&ndash;3</a> met fields (<a href="appendix_3.html#A3.3.1">48 layer</a>, 1998&ndash;2001 )</td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">GEOS_4</td>
+        <td align="left" valign="top">Use <a href="appendix_4.html#A4.3">GEOS&ndash;4</a> met fields (<a href="appendix_3.html#A3.4.1">55 layer</a>, hybrid,
+1985&ndash;2006)</td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">GEOS_5</td>
+        <td align="left" valign="top">Use <a href="appendix_4.html#A4.4">GEOS&ndash;5</a> met fields (<a href="appendix_3.html#A3.5.1">72 layer</a>, hybrid,
+2005&ndash;present)</td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">MERRA</td>
+        
+      <td align="left" valign="top">Use <a href="appendix_4.html#A4.5">MERRA</a> 
+        met fields (72 layer, hybrid, 1979-2010)</td>
+      </tr>
+      
+      <tr>
+        <th align="left" bgcolor="#cccccc" valign="top">Grids </th>
+        <th align="left" bgcolor="#cccccc" valign="top">&nbsp; </th>
+      </tr>
+      <tr>
+        <td><span class="courier16">GRID05x0666</span></td>
+        <td>Use <a href="appendix_2.html#A.2.6.1">0.5
+&deg; x 0.667 &deg; grid</a></td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">GRID1x1</td>
+        <td align="left" valign="top">Use <a href="appendix_2.html#A2.5">1&deg; x 1&deg; grid</a> </td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">NESTED_CH</td>
+        <td align="left" valign="top">Use China/SE
+Asia nested grid (<a href="appendix_2.html#A2.5.1">GEOS&ndash;3</a>
+or <a href="appendix_2.html#A2.6.1">GEOS&ndash;5</a>)</td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">NESTED_NA</td>
+        <td align="left" valign="top">Use N.
+American nested-grid (<a href="appendix_2.html#A2.5.2">GEOS&ndash;3</a> or <a href="appendix_2.html#A2.6.2">GEOS&ndash;5</a>)        </td>
+      </tr>
+      <tr>
+        <td class="courier16" valign="top">NESTED_EU<br>
+        </td>
+        <td>Use European nested grid (<a href="appendix_2.html#A2.6.2">GEOS&ndash;5</a> only)</td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">GRID1x125</td>
+        <td align="left" valign="top">Use <a href="appendix_2.html#A2.4">1&deg; x 1.25&deg;</a> grid (<a href="appendix_4.html#A4.3">GEOS&ndash;4</a> only)</td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">GRID2x25</td>
+        <td align="left" valign="top">Use <a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a> grid</td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">GRID4x5</td>
+        <td align="left" valign="top">Use <a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a> grid</td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">GRIDREDUCED</td>
+        <td align="left" valign="top">
+        <p>Reduce the number of vertical levels on the fly: </p>
+        <ul>
+          <li>Use the <a href="appendix_3.html#A3.3.2">30-level GEOS&ndash;3 grid</a></li>
+          <li>Use the <a href="appendix_3.html#A3.4.2">30-level GEOS&ndash;4 grid</a></li>
+          <li>Use the <a href="appendix_3.html#A3.5.2">47-level GEOS&ndash;5 grid</a></li>
+          <li>Use the <a href="appendix_3.html#A3.6.2">47-level MERRA grid</a></li>         
+        </ul>
+        </td>
+      </tr>
+      <tr>
+        <th align="left" bgcolor="#cccccc" valign="top">Compilers </th>
+        <th align="left" bgcolor="#cccccc" valign="top">&nbsp; </th>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">IBM_AIX</td>
+        <td align="left" valign="top">Compile for
+IBM/AIX </td>
+      </tr>
+      <tr>
+        <td class="courier16" valign="top">IBM_XLF<br>
+        </td>
+        <td style="vertical-align: top;"><p>Compile for IBM/XLF Fortran <br>
+            <span class="size14bi">(NOTE: GEOS&ndash;Chem has not been tested with the XLF compiler yet. Beta testers are welcome!) </span></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">LINUX_PGI</td>
+        <td align="left" valign="top">Compile for
+Linux with <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#PGI_Compiler" target="_blank">PGI compiler</a></td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">LINUX_IFORT</td>
+        <td align="left" valign="top">Compile for
+Linux with <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#IFORT_Compiler" target="_blank">Intel Fortran Compiler</a> (IFORT 9.x
+or 10.x) </td>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">SPARC</td>
+        <td align="left" valign="top">Compile for <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#Sun_Studio_Compiler" target="_blank">SunStudio compiler</a> (versions 11
+and 12)</td>
+      </tr>
+      <tr>
+        <th align="left" bgcolor="#cccccc" valign="top">Other options</th>
+        <th align="left" bgcolor="#cccccc" valign="top">&nbsp; </th>
+      </tr>
+      <tr>
+        <td class="courier16" align="left" valign="top">GTMM_Hg</td>
+        <td align="left" valign="top"><p align="justify">Compile for a mercury simulation using the online <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Global_Terrestrial_Mercury_Model" target="_new">Global Terrestrial Mercury Model</a> (a.k.a. GTMM). GTMM is turned off by default in order to save compilation time. For more information about using GTMM in a GEOS&ndash;Chem mercury simulation, please see this <a href="files/GTMM_manual.pdf" target="_blank">PDF</a>.</p></td>
+      </tr>
+  </table>
+</blockquote>
+
+<p align="justify">&nbsp;</p>
+<p align="justify">The C&ndash;preprocessor switches in <tt>Headers/define.h</tt> take the form of:</p>
+<blockquote><pre>!#define GEOS_5 'GEOS_5'</pre></blockquote>
+<p align="justify">etc. (The quotes are necessary to facilitate compilation on the Linux platforms). In order to activate a particular switch, simply remove the comment character (exclamation mark) from the first column of the line. To de-activate a switch, simply place a comment character (exclamation mark) in the first column of the line.</p>
+<p align="justify">Please take note of  the following:</p>
+<ol>
+  <li>
+    <p align="justify">When you change any of the C&ndash;preprocessor switches, you should issue a <tt>make realclean</tt> command (see <a href="#3.5.1">Chapter 3.5.1</a>).  This will remove all previously-created compiler output files (e.g. <tt>*.o</tt>, <tt>*.mod</tt>) and executables. After doing make realclean, you can compile GEOS&ndash;Chem with whichever options you choose.</p>
+  </li>
+  <li>
+    <p align="justify">You may only select one particular met field type (<tt>GCAP, GEOS_3, GEOS_4, GEOS_5</tt>),
+    one particular grid type (<tt>GRID1x1, GRID1x125, GRID2x25, GRID4x5</tt>), and one particular compiler.</p>
+  </li>
+  <li><p align="justify">If you have selected <tt>GRID1x1</tt>, then you must also select one of either <tt>NESTED_CH</tt>
+  or <tt>NESTED_NA.</tt> This will select either the China/SE Asia or North America 1&deg; x 1&deg; nested grid region.</p></li>
+  <li>
+  <p align="justify">If you have selected <tt>GRID05x0666</tt>, then you must also select <tt>NESTED_CH,</tt> <tt>NESTED_NA</tt>, or <tt>NESTED_EU</tt>. This will select the proper 0.5&deg; x 0.666&deg; nested grid region (<a href="appendix_2.html#A2.6.1">China/SE Asia</a>, <a href="appendix_2.html#A2.6.2">North America</a>, or <a href="appendix_2.html#A2.6.3">Europe</a>)</p></li>
+</ol>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="3.5"></a>3.5 Compiling the GEOS&ndash;Chem source code</p>
+
+<p align="justify"> Once you have properly set the <a href="#3.4.2">C&ndash;preprocessor switches</a> in the <tt>Headers/define.h</tt> header file for the type of simulation that you want to perform, you can compile the GEOS&ndash;Chem code.</p>
+
+<p align="justify">To compile the code, you need to be in the <tt>Code.v9-01-01</tt> top-level directory. There are a large choice of compilation options available. The list of options can be printed to the screen by typing:</p> 
+<blockquote><pre>make help</pre></blockquote>
+<p align="justify" class="size18bi"><a name="3.5.1"></a>3.5.1 Makefile options</p>
+<p align="justify">Here is a description of all available make options for GEOS&ndash;Chem:</p>
+<blockquote>
+  <table width="90%" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+    <tr>
+      <th colspan="2" style="text-align: center; background-color: rgb(153, 153, 153); vertical-align: middle;">Targets<br>
+      </th>
+    </tr>
+    <tr>
+      <th align="left" bgcolor="#cccccc" valign="top"width="20%">Target name</th>
+      <th style="vertical-align: top; text-align: left; background-color: rgb(204, 204, 204);">Description </th>
+    </tr>
+    <tr>
+      <td class="courier16" style="vertical-align: top;">all</td>
+      <td style="vertical-align: top;"> Default target (synonym for "lib exe")
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" style="vertical-align: top;">lib</td>
+      <td style="vertical-align: top;">Builds all GEOS-Chem source code (synonym for "libkpp libutil libcore")
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" style="vertical-align: top;">libcore</td>
+      <td style="vertical-align: top;">Only builds GEOS-Chem objects &amp; libraries in <tt>GeosCore</tt> subdir
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" style="vertical-align: top;">libutil
+      </td>
+      <td style="vertical-align: top;">Only builds GEOS-Chem objects &amp; libraries in <tt>GeosUtil</tt> subdir
+      </td>
+    </tr>
+    <tr>
+      <td class="courier16" style="vertical-align: top;">libkpp</td>
+      <td style="vertical-align: top;">Only builds GEOS-Chem objects &amp; libraries in <tt>KPP</tt> subdir
+      </td>
+    </tr><tr>
+        <td class="courier16" style="vertical-align: top;">exe</td>
+        <td style="vertical-align: top;">Build GEOS-Chem executable</td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">clean</td>
+        <td style="vertical-align: top;">Removes <tt>*.o</tt>, <tt>*.mod</tt> files in source code subdirs only</td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">realclean</td>
+        <td style="vertical-align: top;">Removes all <tt>*.o</tt>, <tt>*.mod</tt>, <tt>lib*.a</tt>, <tt>*.tex</tt>, <tt>*.ps</tt>, <tt>*.pdf</tt> files everywhere</td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">doc</td>
+        <td style="vertical-align: top;">Builds GEOS-Chem documentation (<tt>*.ps</tt>, <tt>*.pdf</tt>) with ProTeX in <tt>doc</tt> subdir</td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">docclean</td>
+        <td style="vertical-align: top;">Removes <tt>*.tex</tt>, <tt>*.ps</tt>, <tt>*.pdf</tt> from the <tt>doc</tt> subdir</td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">help</td>
+        <td style="vertical-align: top;">Displays this help screen</td>
+      </tr>
+      <tr>
+        <th colspan="2" rowspan="1" style="vertical-align: top; background-color: rgb(153, 153, 153); text-align: center;">Special targets for TOMAS aerosol microphysics<br>
+        </th>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">tomas</td>
+        <td style="vertical-align: top;">Build GEOS-Chem + <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/TOMAS_aerosol_microphysics" target="_new">TOMAS</a> code (synonym for "libtomas exetomas")
+        </td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">libtomas</td>
+        <td style="vertical-align: top;">Only builds GEOS-Chem + TOMAS objects &amp; libraries
+        </td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">exetomas</td>
+        <td style="vertical-align: top;">Only builds GEOS-Chem + TOMAS executable
+        </td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">cleantomas</td>
+        <td style="vertical-align: top;">Removes <tt>*.o *.mod</tt> files in GeosTomas directory only
+        </td>
+      </tr>
+<tr>
+        <th colspan="2" style="vertical-align: middle; background-color: rgb(153, 153, 153); text-align: center;">Optional flags<br>
+        </th>
+    </tr>
+      <tr>
+        <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Flag name<br>
+        </th>
+        <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Description</th>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">COMPILER=___</td>
+        <td style="vertical-align: top;">Choice of the compiler. Options: <tt>ifort pgi sun xlf</tt> (default is <tt>ifort</tt>)</td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">HDF5=yes</td>
+        <td style="vertical-align: top;">Enables writing diagnostic timeseries output to HDF5 files (default is no)
+        </td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">DEBUG=yes</td>
+        <td style="vertical-align: top;">Compiles GEOS-Chem for use w/ a debugger (default is no)
+        </td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">BOUNDS=yes</td>
+        <td style="vertical-align: top;">Turns on subscript-array checking (for debugging purposes) (default is no)
+        </td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">OMP=[yes|no]</td>
+        <td style="vertical-align: top;">Turns OpenMP parallelization on/off (default is yes)</td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">IPO=yes</td>
+        <td style="vertical-align: top;">Turns on optmization options <tt>-ipo -static</tt> (default is no) (<tt>ifort</tt> only) </td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">TRACEBACK=yes</td>
+        <td style="vertical-align: top;">Turns on <tt>-traceback option</tt> (default is no) (ifort only) </td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">NONUMA=yes</td>
+        <td style="vertical-align: top;">Turns on <tt>-mp=nonuma</tt> option (<tt>pgi</tt> only)</td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">CHEM=___</td>
+        <td style="vertical-align: top;">Specifies which simulation is done. Options: <tt>standard</tt>, <tt>SOA</tt>, <tt>ISOP</tt> (default is standard).
+        </td>
+      </tr>
+      <tr>
+        <td class="courier16" style="vertical-align: top;">KPPSOLVER=___</td>
+        <td style="vertical-align: top;">Specifies the integrator used w/ KPP:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Options: lsodes radau5 rosenbrock runge_kutta (default is rosenbrock)</td>
+      </tr>
+      <tr>
+        <th colspan="2" style="vertical-align: top; background-color: rgb(153, 153, 153); text-align: center;">Make option<br>
+        </th>
+      </tr>
+      <tr>
+        <th style="vertical-align: top; background-color: rgb(204, 204, 204);">Option name<br>
+        </th>
+        <th style="vertical-align: top; background-color: rgb(204, 204, 204); text-align: left;">Description<br>
+        </th>
+      </tr>
+      <tr>
+        <td style="vertical-align: top;"class="courier16">-jN</td>
+        <td style="vertical-align: top;"><tt>-j</tt> enables you to compile GEOSChem using N processors simultaneously.          This will shorten the total compilation time. <em><strong>(RECOMMENDED!)</strong></em></td>
+      </tr>
+</table>
+</blockquote>
+<p align="justify">When starting with a new version of GEOS&ndash;Chem, you should always start with</p>
+<blockquote><pre>make realclean</pre></blockquote>
+<p align="justify">This will make sure to clear out any precompiled files and executables (if any have been left in the source code directory inadvertently).</p>
+<p align="justify">The default target is <tt>all</tt>.  This option, which will cause GNU Make to compile the GEOS&ndash;Chem source code and create the executable file, will be selected if you type either</p>
+<blockquote><pre>make</pre></blockquote>
+<p align="justify">or</p>
+<blockquote><pre>make all</pre></blockquote>
+<p align="justify"><span class="size18bi"><a name="3.5.2"></a>3.5.2 Optional flags and defaults</span></p>
+<p align="justify">To build GEOS&ndash;Chem, you need to specify one of the makefile targets listed above (see <a href="#3.5.1">Chapter 3.5.1</a>), plus optional flags.</p>
+<p align="justify">Several of the optional flags have default settings:</p>
+<ol>
+  <li>The default compiler is the <strong><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Intel_Fortran_Compiler" target="_new">Intel Fortran Compiler</a></strong> (ifort)</li>
+  <li>The default NOx-Ox-HC-aerosol chemistry (aka &quot;full-chemistry) simulation is  <strong>&quot;standard&quot;</strong> (43 advected tracers, no secondary organic aerosols)</li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/KPP_solvers_FAQ" target="_new">The KPP chemical solver</a> will will use the <strong>Rosenbrock integrator</strong> by default</li>
+  <li>HDF5 diagnostic files (for ND50, ND51, ND51b timeseries) will be turned off by default</li>
+  <li><a href="chapter_7.html#7.1.5" target="_new">OpenMP parallelization</a> is turned on</li>
+</ol>
+<p align="justify">Finally, any of the optional flags can be specified in one of two ways:</p>
+<ol>
+  <li>
+    <p align="justify"><strong>As a command-line argument to the GNU Make utility</strong>:<br>
+    For example, if we want to use the PGI compiler instead of the Intel Fortran Compiler, we could type:</p>
+    <blockquote><pre>make COMPILER=pgi ...</pre></blockquote>
+  </li>
+  <li>
+    <p align="justify"><strong>As an Unix environment variable:</strong><br>
+    If you want to use the PGI compiler, but do not wish to keep typing <tt>COMPILER=pgi</tt> every time you call <a href="http://www.gnu.org/software/make/" target="_new">GNU Make</a>, you could type this instead:</p>
+<blockquote>
+  <pre>setenv COMPILER pgi
+make ...</pre></blockquote>
+  </li>
+</ol>
+<p align="justify">For clarity, we shall use command-line arguments in the examples below.</p>
+<p align="justify"><span class="size18bi"><a name="3.5.3"></a>3.5.3 Examples</span></p>
+<p align="justify">To build the GEOS&ndash;Chem executable with all defaults (<a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Intel_Fortran_Compiler" target="_new">Intel Fortran Compiler</a>, 43-tracer full-chemistry mechanism, <a href="chapter_7.html#7.1.5" target="_new">OpenMP parallelization</a> turned on) one can simply type: </p>
+<blockquote><pre>make -j4</pre></blockquote>
+<p align="justify">Here we have used the <tt>-j4 </tt>option to split the compilation among 4 processors (assuming you have  this many processors available to you).  This reduces the total compilation time drastically!</p>
+<p align="justify">If you wanted to select a different compiler (e.g. PGI), but keep all of the other defaults, type:</p>
+<blockquote>
+  <pre>make -j4 COMPILER=pgi</pre></blockquote>
+<p align="justify">Depending on your PGI compiler setup, you may also have to add the PGI option <tt>NONUMA=yes.</tt></p>
+<p align="justify">If you wish to turn off the parallelization (e.g. for debugging purposes), you can type:</p>
+<blockquote><pre>make -j4 OMP=no</pre></blockquote>
+<p align="justify">To invoke the Intel Fortran Compiler's  <tt>-traceback</tt> debugging option (which prints the list of routines that were being called at the point when the run died), type:</p>
+<blockquote><pre>make -j4 TRACEBACK=yes</pre></blockquote>
+<p align="justify">If you want to test for<a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Common_GEOS-Chem_error_messages#Segmentation_Fault" target="_new"> array-out-of-bounds errors</a>, then type: </p>
+<blockquote><pre>make -j4 BOUNDS=yes</pre></blockquote>
+<p align="justify">If you wish to use a debugger (like Totalview) to debug a multi-processor GEOS&ndash;Chem simulation, type:</p>
+<blockquote>
+  <pre>make -j4 DEBUG=yes</pre></blockquote>
+<p align="justify">If you wish to use a debugger (like Totalview) to debug a single-processor GEOS&ndash;Chem simulation, type:</p>
+<blockquote>
+ <pre>make -j4 DEBUG=yes OMP=no</pre></blockquote>
+<p align="justify">If you wish to compile the code and build the executable in two separate steps, you may type: </p>
+<blockquote><pre>make lib
+make exe</pre></blockquote>
+<p align="justify">To automatically generate the GEOS&ndash;Chem Reference Guide documentation in PostScript and PDF formats, type: </p>
+<blockquote><pre>make doc</pre></blockquote>
+<p align="justify">To remove all compiler-produced files (i.e. <tt>*.o</tt>, <tt>*.mod</tt>) and executable files from the source code directories (but not from the mod, lib, bin directories), type: </p>
+<blockquote><pre>make clean</pre></blockquote>
+<p align="justify">And to remove everything and start over from scratch, type: </p>
+<blockquote><pre>make realclean</pre></blockquote>
+<p align="justify">Please note:</p>
+<ol>
+  <li>
+    <p align="justify">On some systems, the <a href="http://www.gnu.org/software/make/" target="_new">GNU Make</a> command will be called <tt>gmake</tt> instead of <tt>make</tt>.</p>
+  </li>
+  <li>
+    <p align="justify">We recommend updating your compiler to <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Intel_Fortran_Compiler" target="_new">Intel
+      Fortran Compiler</a> (IFORT)  Version 11.1.058 or higher versions.  <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Intel_Fortran_Compiler#Timing_results:_IFORT_11_vs._IFORT_10" target="_new">Version 11 produces similar results to Version 10</a>.</p>
+  </li>
+  <li>
+    <p align="justify">We also recommend that PGI compiler
+      users migrate to Intel Fortran Compiler (IFORT) Version 11.</p>
+  </li>
+  <li>
+    <p align="justify">If you wish to compile GEOS&ndash;Chem with the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/TOMAS_aerosol_microphysics" target="_new">TOMAS aerosol microphysics option</a>, you must be in the <tt>GeosTomas</tt> directory before invoking the <tt>make</tt> command. For more information on how to compile GEOS&ndash;Chem with the TOMAS microphysics option, see the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/TOMAS_aerosol_microphysics#Building_GEOS-Chem_with_TOMAS" target="_new">Building GEOS-Chem with TOMAS wiki page</a>.</p>
+  </li>
+  <li>
+    <p align="justify">For more information about debugging array-out-of-bounds errors, please see <a href="chapter_7.html#7.2">Chapter
+      7.2, GEOS&ndash;Chem debugging tips</a>.</p>
+  </li>
+</ol>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="3.6"></a>3.6 Advanced compilation techniques</p>
+<p align="justify">Here we describe a couple of methods by which you may partially automate the compilation process.</p>
+
+<p class="size18bi"><a name="3.6.1"></a>3.6.1 Compiling GEOS&ndash;Chem with from  Unix shell scripts</p>
+
+
+<p align="justify">It is possible to write a shell script
+ to compile the GEOS&ndash;Chem code, such as the following:</p>
+
+<blockquote>
+  <pre>#!/bin/tcsh -f    # Script definition line
+cd Code.v9-01-01  # your code dir
+rm -f log         # clear log file
+make -j4 > log    # build the code
+exit(0)           # exit normally</pre>
+</blockquote>
+<p align="justify">You can then run this script interactively, or submit it to the queueing system on your computer cluster.</p>
+
+<p class="size18bi"><a name="3.6.2"></a>3.6.2 Compiling GEOS&ndash;Chem with a run-directory  Makefile</p>
+
+<p align="justify">The  GNU Make utility is a powerful and flexible software development tool. With a little effort, you can design a Makefile that can be placed into your <a href="chapter_2.html#2.3">GEOS&ndash;Chem run directory</a> that will create a GEOS&ndash;Chem executable and start a simulation. Here is an example:</p>
+<blockquote>
+  <pre># This makefile is a &quot;router&quot; makefile.  It calls the Makefile
+# in the GEOS-Che code directory (with various user-supplied options) 
+# to build and run the GEOS-Chem model.<br>
+# Define variables
+SHELL   = /bin/sh
+
+# Make the development version "Code" the default directory
+ifndef GEOSDIR
+GEOSDIR = /home/bmy/Code.v9-01-01
+endif
+
+# Date string DDDHHMM a la "trun"
+DATE = `date +%j%H%M`
+
+#=============================================================================
+# Makefile targets: type "make help" for a complete list!
+#=============================================================================
+
+.PHONY: all geos clean realclean doc docclean help logclean
+
+geos:
+	@$(MAKE) -C $(GEOSDIR) 
+	cp -f $(GEOSDIR)/bin/geos .
+	rm -f log.$(DATE)
+	./geos > log.$(DATE) &
+	tail -f log.$(DATE)
+
+clean:
+	@$(MAKE) -C $(GEOSDIR) clean
+	rm -f log*
+
+realclean:
+	@$(MAKE) -C $(GEOSDIR) realclean
+	rm -f log*
+
+doc:
+	@$(MAKE) -C $(GEOSDIR) doc
+
+docclean: 
+	@$(MAKE) -C $(GEOSDIR) docclean
+
+help:
+	@$(MAKE) -C $(GEOSDIR) help</pre>
+</blockquote>
+<p align="justify">At the heart of this Makefile are two important blocks of code, the first being:</p>
+<blockquote><pre># Make the development version "Code" the default directory
+ifndef GEOSDIR
+GEOSDIR = /home/bmy/Code.v9-01-01
+endif
+
+# Date string DDDHHMM a la "trun"
+DATE = `date +%j%H%M`</pre>
+</blockquote>
+<p align="justify">This block defines the location of the <a href="chapter_2.html#2.2">GEOS&ndash;Chem source code directory</a>, which is saved in a variable called <tt>GEOSDIR</tt>.  If a value for <tt>GEOSDIR</tt> is not passed as a command-line argument, then  <tt>GEOSDIR</tt> will be set to <tt>/home/bmy/Code.v9-01-01</tt> (you can edit this location for your own setup).  Also, a default date/time string is saved in the variable <tt>DATE</tt>. This date/time string will be appended to the GEOS&ndash;Chem log file output.</p>
+<p align="justify">The second block of code is used to compile and run the GEOS&ndash;Chem code:</p>
+<blockquote><pre>geos:
+	@$(MAKE) -C $(GEOSDIR) 
+	cp -f $(GEOSDIR)/bin/geos .
+	rm -f log.$(DATE)
+	./geos > log.$(DATE) &
+	tail -f log.$(DATE)</pre>
+</blockquote>
+<p align="justify">The lines:</p>
+<blockquote><pre>	@$(MAKE) -C $(GEOSDIR) 
+	cp -f $(GEOSDIR)/bin/geos .</pre>
+</blockquote>
+
+<p align="justify">tell <a href="http://www.gnu.org/software/make/" target="_new">GNU Make</a> to call down to the &quot;router&quot; makefile in the GEOS&ndash;Chem source code directory /home/bmy/Code.v9-01-01. GNU Make will  compile GEOS&ndash;Chem and create the executable file <tt>/home/bmy/Code.v9-01-01/bin/geos</tt>. This file is then copied to the run directory.</p>
+<p align="justify">The next 3 lines:</p>
+<blockquote>	
+  <pre>	rm -f log.$(DATE)
+	./geos > log.$(DATE) &
+	tail -f log.$(DATE)</pre>
+</blockquote>
+
+<p align="justify">removes the log file (if it already exists), runs the GEOS&ndash;Chem executable (thus starting the simulation), and follows the log file output wit the Unix <tt>tail -f</tt> command.</p>
+<p align="justify">For more information, please see:</p>
+<ul>
+  <li><a href="http://www.gnu.org/software/make/manual/make.html" target="_new" align="justify">GNU Make manua</a>l</li>
+  <li>Chapter 6: <a href="chapter_6.html" align="justify">Running GEOS&ndash;Chem</a></li>
+</ul>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p align="center"><span class="size14bi"><a href="chapter_2.html">Previous</a>
+| <a href="chapter_4.html">Next</a> | <a href="chapter_3.html" target="_parent">Printable View
+(no frames)</a></span> </p>
+
+</body></html>

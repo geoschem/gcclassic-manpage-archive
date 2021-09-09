@@ -1,0 +1,1089 @@
+<HTML>
+<HEAD>
+<TITLE>GEOS&#150;CHEM User's Guide</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="FF0000" HLINK="#FFFF00">
+<CENTER>
+  <p><font face="Arial, Helvetica, sans-serif" size="2"><b>GEOS&#150;CHEM v6&#150;02&#150;05 
+    User's Guide<br>
+    Contact: Bob Yantosca (<A HREF="mailto:bmy@io.harvard.edu">bmy@io.harvard.edu</A>)</b></font></p>
+  </CENTER>
+
+<P><HR>
+<P> <A NAME="3"></a><font face="Arial, Helvetica, sans-serif" size="+1"><b>3. 
+  Coding: Practice and Style</b></font>
+<P>
+<HR>
+<P> <A NAME="3.1"></a><b><font face="Arial, Helvetica, sans-serif" size="2">3.1 
+  GEOS&#150;CHEM program units</font></b>
+<p ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">The GEOS&#150;CHEM 
+  source code is written in Fortran&#150;90 and contains three different types 
+  of program units: </font></p>
+<blockquote>
+<table width="95%" border="0" cellpadding="3" cellspacing="3">
+  <tr> 
+    <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">1.</font></td>
+    <td width="96%"><font face="Arial, Helvetica, sans-serif" size="2">Traditional 
+      subroutines and functions (<font face="Courier New, Courier, mono" size="2">*.f</font>). 
+      These are compiled individually. One subroutine or function is included 
+      per file. </font></td>
+  </tr>
+  <tr> 
+    <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">2.</font></td>
+    <td width="96%"><font face="Arial, Helvetica, sans-serif" size="2">Header 
+      files (<font face="Courier New, Courier, mono" size="2">*.h, CMN*</font>). 
+      These files are not compiled, but are inlined into other program units via 
+      the <font face="Courier New, Courier, mono" size="2">#include</font> C-preprocessor 
+      statement. This is a consistent way of importing global common blocks 
+      and parameters into several subroutines or functions at once. </font></td>
+  </tr>
+  <tr> 
+    <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">3.</font></td>
+    <td width="96%">
+        <p><font face="Arial, Helvetica, sans-serif" size="2">Fortran-90 Modules 
+          (<font face="Courier New, Courier, mono" size="2">*_mod.f</font>). The 
+          module construct allows you to bundle several global variables and routines 
+          into one logical package, which can then be used by other program units. 
+          Also, with modules you may define dynamically allocatable arrays, which 
+          are necessary to conserve memory. Much of the newer GEOS&#150;CHEM code 
+          has been written in module form. </font></p>
+        <p><font face="Arial, Helvetica, sans-serif" size="2">Note: <font face="Courier New, Courier, mono">tpcore_fvdas_mod.f90</font> 
+          is the sole exception to the above-mentioned naming convention, since 
+          it ends with a <font face="Courier New, Courier, mono">*.f90</font> 
+          extension. This denotes that it is written in free-format Fortran-90 
+          code. Module <font face="Courier New, Courier, mono">tpcore_fvdas_mod.f90</font> 
+          is third-party software from S-J Lin at GSFC.</font></p>
+      </td>
+  </tr>
+</table>
+</blockquote>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> The Makefile 
+  (cf. <A HREF="geos_chem_2.html#2.5">Section 2.5: Compiling the GEOS&#150;CHEM 
+  source code</A>) that is provided with GEOS&#150;CHEM determines the sequence 
+  in which individual program units will be compiled. The current order of compilation 
+  is as follows: </font></p>
+<blockquote>
+  <table width="95%" border="0" cellpadding="3" cellspacing="3">
+    <tr> 
+      <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">1.</font></td>
+      <td width="96%"><font face="Arial, Helvetica, sans-serif" size="2">Fortran-90 
+        modules </font></td>
+    </tr>
+    <tr> 
+      <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">2.</font></td>
+      <td width="96%"><font face="Arial, Helvetica, sans-serif" size="2">Subroutines 
+        and functions (except FAST-J, SLOW-J) </font></td>
+    </tr>
+    <tr> 
+      <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">3.</font></td>
+      <td width="96%"><font face="Arial, Helvetica, sans-serif" size="2">Subroutines 
+        pertaining to FAST-J photolysis code (if necessary) </font></td>
+    </tr>
+    <tr> 
+      <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">4</font></td>
+      <td width="96%"><font size="2" face="Arial, Helvetica, sans-serif">Subroutines 
+        pertaining to SLOW-J photolysis code (if necessary) </font></td>
+    </tr>
+    <tr> 
+      <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">5</font></td>
+      <td width="96%"><font size="2" face="Arial, Helvetica, sans-serif">Subroutines 
+        for Bryan Duncan's CO-OH parameterization (if necessary) </font></td>
+    </tr>
+  </table>
+</blockquote>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> In addition, 
+  the Fortran&#150;90 modules must themselves be compiled in the proper order. 
+  For example, if you have a Module B that makes reference to a Module A, then 
+  Module A must be compiled before Module B is compiled. Otherwise a compile-time 
+  error will result. To see the current compilation sequence for GEOS&#150;CHEM 
+  modules, visit <A HREF="geos_chem_3.html#3.3">Section 3.3</A>.</font> </p>
+<P><HR>
+<p> <A NAME="3.2"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>3.2 
+  Fortran Programming Style</b></font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> We have 
+  attempted to create a clear and consistent programming style for GEOS&#150;CHEM 
+  subroutines and modules. Some of our style points include:</font></p>
+<UL>
+</UL>
+<ul>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Identification 
+    tag line for RCS archive </font> </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Routine header 
+    detailing original release date, most recent modification date, list of arguments 
+    as input/output, and modification history </font> </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> References 
+    to other variables or routines contained within Fortran-90 modules </font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Use of <font face="Courier New, Courier, mono" size="2">IMPLICIT 
+    NONE</font> to force explicit declaration of all variables </font> </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Header files in-lined 
+    via the C-preprocessor <font face="Courier New, Courier, mono" size="2">#include</font> 
+    facility </font> </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Comments aligned with 
+    code -- major sections denoted by <font face="Courier New, Courier, mono" size="2">!=====</font></font> 
+  </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Copious use 
+    of white space to enhance readability </font> </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Indentation of <font face="Courier New, Courier, mono" size="2">IF-THEN-ELSE</font> 
+    and <font face="Courier New, Courier, mono" size="2">DO-ENDDO</font> blocks 
+    </font> </li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> OpenMP parallel 
+    DO-loops </font></li>
+</ul>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> When making 
+  upgrades to the code, it is good practice to block off the section that you 
+  are replacing with comments, and label that as <font face="Courier New, Courier, mono" size="2">Prior 
+  to MM/DD/YY</font>. Then later on, when the upgraded code has been declared 
+  stable, you can remove the blocked-off section. </font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">For more 
+  information, please be sure to read the <a href="../../../documentation/manual_v6/geos_chem_style.html">GEOS&#150;CHEM 
+  style guide</a>.</font></p>
+<HR>
+<P> <A NAME="3.3"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>3.3 
+  List of GEOS&#150;CHEM Modules</b></font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> The GEOS&#150;CHEM 
+  distribution currently contains approximately 40 Fortran-90 modules. As discussed 
+  above, modules can be used to include both variables and routines into a single 
+  convienient package. A list of the current modules and their dependencies follows.</font> 
+  <br>
+  <br>
+<TABLE HALIGN=CENTER VALIGN=TOP CELLSPACING=8 CELLPADDING=8 BORDER=0>
+  <TR VALIGN=TOP> 
+    <TH align="left"> 
+      <div align="left"><font face="Arial, Helvetica, sans-serif" size="2">Module 
+        Name</font></div>
+    </TH>
+    <TH align="left"> 
+      <div align="left"><font face="Arial, Helvetica, sans-serif" size="2">Purpose</font></div>
+    </TH>
+    <TH align="left"> 
+      <div align="left"><font face="Arial, Helvetica, sans-serif" size="2">Other 
+        Modules Referenced</font></div>
+    </TH>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">Kr85_mod.f</font></td>
+    <td align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines used for the 85Kr simulation</font> </td>
+    <td align="left"> 
+      <p><font face="Courier New, Courier, mono" size="2"> diag_mod.f<br>
+        error_mod.f<br>
+        time_mod.f<br>
+        </font></p>
+    </td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">RnPbBe_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines used for the 222Rn-210Pb-7Be-10Be simulation</font> 
+    </TD>
+    <TD align="left"> 
+      <p><font face="Courier New, Courier, mono" size="2"> diag_mod.f<BR>
+        dao_mod.f<BR>
+        file_mod.f<br>
+        grid_mod.f<br>
+        time_mod.f </font><font face="Courier New, Courier, mono" size="2"><BR>
+        pressure_mod.f </font> </p>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">a3_read_mod.f</font></TD>
+    <TD align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      routines which unzip, open and read the GEOS-CHEM A-3 fields from disk</font></TD>
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+      dao_mod.f<br>
+      diag_mod.f <br>
+      error_mod.f<br>
+      file_mod.f <br>
+      time_mod.f<br>
+      transfer_mod.f</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">a6_read_mod.f</font></TD>
+    <TD align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      routines which unzip, open and read the GEOS-CHEM A-6 fields from disk</font></TD>
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+      dao_mod.f<br>
+      diag_mod.f <br>
+      error_mod.f<br>
+      file_mod.f <br>
+      time_mod.f<br>
+      transfer_mod.f</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">acetone_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      subroutines to emit the biogenic flux of acetone into the full chemistry 
+      simulation</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2"> bpch2_mod.f<br>
+      diag_mod.f<BR>
+      dao_mod.f<br>
+      error_mod.f <br>
+      grid_mod.f<br>
+      time_mod.f <BR>
+      transfer_mod.f</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">aircraft_nox_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      arrays and routines to compute aircraft NOx, emissions for the full chemistry 
+      simulation</font> </TD>
+    <TD align="left"><font face="Courier New, Courier, mono" size="2"> bpch2_mod.f<br>
+      dao_mod.f <BR>
+      diag_mod.f<br>
+      error_mod.f <BR>
+      file_mod.f<br>
+      grid_mod.f<BR>
+      pressure_mod.f</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">biofuel_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      arrays and routines to compute monthly biofuel burning emissions for NOx, 
+      CO, ALK4, ACET, MEK, ALD2, PRPE, C3H8, CH2O, C2H6 CH4, and CH3I</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2"> bpch2_mod.f<br>
+      dao_mod.f <BR>
+      diag_mod.f<br>
+      error_mod.f<br>
+      tracerid_mod.f <BR>
+      transfer_mod.f</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">biomass_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      arrays and routines to compute monthly biomass burning emissions for NOx, 
+      CO, ALK4, ACET, MEK, ALD2, PRPE, C3H8, CH2O, C2H6 CH4, and CH3I</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+      dao_mod.f <BR>
+      diag_mod.f<BR>
+      error_mod.f<br>
+      grid_mod.f <BR>
+      time_mod.f<br>
+      tracerid_mod.f<BR>
+      transfer_mod.f</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">bpch2_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      the routines used to read data from and write data to binary punch file 
+      format (v. 2.0)</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">error_mod.f<br>
+      </font><font face="Courier New, Courier, mono" size="2">file_mod.f<BR>
+      julday_mod.f</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">c2h6_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      the variables and routines used to perform a standalone simulation for ethane</font> 
+    </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2"> bpch2_mod.f<BR>
+      biomass_mod.f<BR>
+      biofuel_mod.f<br>
+      dao_mod.f <BR>
+      diag_mod.f<BR>
+      geia_mod.f<BR>
+      global_oh_mod.f<br>
+      grid_mod.f<br>
+      time_mod.f <br>
+      tracerid_mod.f <BR>
+      transfer_mod.f</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">carbon_mod.f</font></TD>
+    <TD align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      variables and routines for carbon aerosol emissions and chemistry</font></TD>
+    <TD align="left"> 
+      <p><font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+        dao_mod.f<br>
+        diag_mod.f<br>
+        drydep_mod.f<br>
+        error_mod.f<br>
+        grid_mod.f<br>
+        pressure_mod.f<br>
+        time_mod.f<br>
+        tracerid_mod.f<br>
+        transfer_mod.f </font> </p>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">ch3i_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      the variables and routines used to perform a standalone simulation for methyl 
+      iodide</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2"> bpch2_mod.f<BR>
+      biomass_mod.f<BR>
+      biofuel_mod.f<BR>
+      dao_mod.f<BR>
+      diag_mod.f<br>
+      error_mod.f <br>
+      grid_mod.f<br>
+      time_mod.f <br>
+      tracerid_mod.f<BR>
+      transfer_mod.f<BR>
+      uvalbedo_mod.f</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">charpak_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      selected routines from the CHARPAK package for string manipulation</font> 
+    </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">none</font> 
+    </TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">chemistry_mod.f</font></td>
+    <td align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      a driver program which selects the proper chemistry routine for the various 
+      GEOS&#150;CHEM simulation types</font></td>
+    <td align="left"> 
+      <p><font face="Courier New, Courier, mono" size="2">acetone_mod.f<br>
+        c2h6_mod.f<br>
+        carbon_mod.f <br>
+        ch3i_mod.f<br>
+        dao_mod.f<br>
+        drydep_mod.f<br>
+        dust_mod.f <br>
+        error_mod.f </font><font face="Courier New, Courier, mono" size="2"><br>
+        global_ch4_mod.f<br>
+        Kr85_mod.f <br>
+        optdepth_mod.f<br>
+        planeflight_mod.f<br>
+        RnPbBe_mod.f<br>
+        rpmares_mod.f<br>
+        tagged_co_mod.f<br>
+        tagged_ox_mod.f<br>
+        time_mod.f<br>
+        tracerid_mod.f<br>
+        seasalt_mod.f <br>
+        sulfate_mod.f</font></p>
+    </td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">comode_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      allocatable arrays for SMVGEAR that were previously contained in common 
+      blocks in header file "comode.h"</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">error_mod.f</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">convection_mod.f</font></TD>
+    <TD align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      routines which select the proper convection code for GEOS&#150;1, GEOS&#150;STRAT, 
+      GEOS&#150;3 or GEOS&#150;4 met data sets</font></TD>
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">dao_mod.f<br>
+      diag_mod.f<br>
+      fvdas_convect_mod.f<br>
+      grid_mod.f<br>
+      pressure_mod.f<br>
+      time_mod.f <br>
+      wetscav_mod.f</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">dao_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      arrays that hold DAO met fields, as well as subroutines that compute, interpolate, 
+      or otherwise process DAO met field data</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2"> error_mod.f<br>
+      grid_mod.f<br>
+      time_mod.f <BR>
+      pressure_mod.f</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">diag51_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines to generate save timeseries data over the United 
+      States where the local time is between two user-defined limits</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2"> bpch2_mod.f<BR>
+      dao_mod.f<br>
+      error_mod.f <BR>
+      file_mod.f<br>
+      grid_mod.f<br>
+      pressure_mod.f<br>
+      time_mod.f<br>
+      tracerid_mod.f</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">diag_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      declarations for allocatable arrays for use with GEOS&#150;CHEM diagnostics 
+      and other routines</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">none</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">drydep_mod.f</font></TD>
+    <TD align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      variables and routines to compute dry deposition velocities and frequencies</font></TD>
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">comode_mod.f<br>
+      dao_mod.f<br>
+      diag_mod.f<br>
+      error_mod.f<br>
+      file_mod.f<br>
+      grid_mod.f<br>
+      pressure_mod.f<br>
+      time_mod.f<br>
+      tracerid_mod.f</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">dust_dead_mod.f</font></TD>
+    <TD align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      routines and variables from Charlie Zender's DEAD dust mobilization model. 
+      Most routines are from Charlie Zender, but have been modified and/or cleaned 
+      up for inclusion into GEOS-CHEM. </font></TD>
+    <TD align="left"> 
+      <p><font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+        dao_mod.f<br>
+        error_mod.f <br>
+        grid_mod.f<br>
+        time_mod.f <br>
+        transfer_mod.f</font></p>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">dust_mod.f</font></TD>
+    <TD align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      routines for computing dust aerosol emissions, chemistry, and optical depths.</font></TD>
+    <TD align="left"> 
+      <p><font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+        comode_mod.f<br>
+        dao_mod.f<br>
+        diag_mod.f <br>
+        drydep_mod.f<br>
+        dust_dead_mod.f<br>
+        file_mod.f <br>
+        grid_mod.f </font><font face="Courier New, Courier, mono" size="2"><br>
+        error_mod.f<br>
+        pressure_mod.f<br>
+        time_mod.f<br>
+        tracerid_mod.f<br>
+        transfer_mod.f</font></p>
+    </TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">emissions_mod.f</font></td>
+    <td align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      a driver program which selects the proper emissions subroutine for the various 
+      GEOS&#150;CHEM simulation types.</font> </td>
+    <td align="left"> <font face="Courier New, Courier, mono" size="2">c2h6_mod.f<br>
+      carbon_mod.f<br>
+      ch3i_mod.f<br>
+      dust_mod.f<br>
+      error_mod.f <br>
+      global_ch4_mod.f<br>
+      Kr85_mod.f <br>
+      RnPbBe_mod.f<br>
+      seasalt_mod.f <br>
+      sulfate_mod.f <br>
+      tagged_co_mod.f</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">error_mod.f</font></td>
+    <td align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      error checking subroutines</font> </td>
+    <td align="left"> <font face="Courier New, Courier, mono" size="2">none</font> 
+    </td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">file_mod.f</font></td>
+    <td align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      file unit numbers and I/O error trapping routines</font> </td>
+    <td align="left"> <font face="Courier New, Courier, mono" size="2">error_mod.f</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">fvdas_convect_mod.f</font></td>
+    <td align="left"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Contains routines 
+        (originally from NCAR) which perform shallow and deep convection for the 
+        GEOS&#150;4 met fields. These routines account for shallow and deep convection, 
+        updrafts, and downdrafts.</font></p>
+    </td>
+    <td align="left"><font face="Courier New, Courier, mono" size="2">diag_mod.f<br>
+      grid_mod.f <br>
+      pressure_mod.f</font></td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">geia_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      routines used to read and scale the GEIA/Piccot fossil fuel emissions for 
+      NOx, CO, and hydrocarbons</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">bpch2_mod.f<BR>
+      file_mod.f<br>
+      grid_mod.f<br>
+      time_mod.f </font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">global_ch4_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines for simulating CH4 chemistry in the troposphere</font> 
+    </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">bpch2_mod.f<BR>
+      dao_mod.f<br>
+      diag_mod.f<BR>
+      error_mod.f <BR>
+      file_mod.f<br>
+      grid_mod.f <BR>
+      pressure_mod.f<br>
+      time_mod.f <BR>
+      transfer_mod.f</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">global_hno3_mod.f</font></TD>
+    <TD align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      variables and routines for reading in monthly mean HNO3 concentrations for 
+      the offline sulfate simulation</font></TD>
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+      dao_mod.f<br>
+      error_mod.f<br>
+      transfer_mod.f </font></TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">global_no3_mod.f</font></td>
+    <td align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      variables and routines for reading in global monthly mean NO3 concentrations 
+      (used for the offline sulfate simulation)</font></td>
+    <td align="left"><font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+      error_mod.f<br>
+      transfer_mod.f </font></td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">global_nox_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines for reading the global monthly mean NOx concentration 
+      from disk (used for the offline sulfate simulation)</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+      error_mod.f<br>
+      transfer_mod.f </font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">global_oh_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines for reading the global monthly mean OH concentration 
+      from disk</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+      error_mod.f <br>
+      transfer_mod.f</font></TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">grid_mod.f</font></td>
+    <td align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines for computing grid box longitudes, latitudes, and 
+      surface areas</font></td>
+    <td align="left"> <font face="Courier New, Courier, mono" size="2">error_mod.f</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">gwet_read_mod.f</font></td>
+    <td align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      routines which unzip, open and read the GEOS-CHEM GWET fields from disk.</font></td>
+    <td align="left"> 
+      <p><font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+        dao_mod.f<br>
+        diag_mod.f <br>
+        error_mod.f<br>
+        file_mod.f<br>
+        time_mod.f<br>
+        </font></p>
+    </td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">i6_read_mod.f</font></td>
+    <td align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      routines which unzip, open and read the GEOS-CHEM I-6 fields from disk</font></td>
+    <td align="left"><font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+      dao_mod.f<br>
+      diag_mod.f <br>
+      error_mod.f<br>
+      file_mod.f <br>
+      time_mod.f<br>
+      transfer_mod.f</font></td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">julday_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      routines for converting YYYYMMDD and HHMMSS to/from astronomical Julian 
+      date. (This allows GEOS&#150;CHEM to handle transitions such as end-of-month, 
+      end-of-year, and end-of-century in a consistent fashion.)</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">none</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">lightning_nox_mod.f</font></TD>
+    <TD align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      variables and routines for emitting NOx from lightning into the atmosphere. 
+      The original code comes from the old GISS-II CTM's of Yuhang Wang, Gerry 
+      Gardner, &amp; Larry Horowitz. Cleaned up for inclusion into GEOS-CHEM.</font></TD>
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">dao_mod.f<br>
+      diag_mod.f<br>
+      error_mod.f <br>
+      file_mod.f<br>
+      grid_mod.f<br>
+      pressure_mod.f</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">optdepth_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      routines to compute optical depths for GEOS&#150;1, GEOS&#150;STRAT, GEOS&#150;2, 
+      and GEOS&#150;3 met data sets</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">diag_mod.f</font> 
+    </TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">phis_read_mod.f</font></td>
+    <td align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      routines which unzip, open and read the GEOS-CHEM PHIS fields (geopotential 
+      heights) from disk</font></td>
+    <td align="left"><font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+      dao_mod.f<br>
+      diag_mod.f <br>
+      error_mod.f<br>
+      file_mod.f <br>
+      time_mod.f<br>
+      transfer_mod.f</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">pjc_pfix_mod.f</font></td>
+    <td align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines which implement the Philip Cameron-Smith pressure 
+      fixer for the new GEOS&#150;4/TPCORE transport code (contained in <font face="Courier New, Courier, mono">tpcore_fvdas_mod.f90</font>).</font></td>
+    <td align="left"> <font face="Courier New, Courier, mono" size="2">error_mod.f<br>
+      grid_mod.f<br>
+      pressure_mod.f </font></td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">planeflight_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines which are used to "fly" a plane through the GEOS&#150;CHEM 
+      model simulation. This is useful for comparing model results with aircraft 
+      observations. </font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2"> bpch2_mod.f<BR>
+      comode_mod.f<br>
+      dao_mod.f<br>
+      error_mod.f <BR>
+      file_mod.f<br>
+      time_mod.f <BR>
+      pressure_mod.f</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">pressure_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines which specify the grid box pressures for both hybrid 
+      or pure-sigma models. This is necessary for running GEOS&#150;CHEM with 
+      the new fvDAS meteorology. (dsa, bmy, 8/27/02) </font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">error_mod.f</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">restart_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines which are used to read and write GEOS&#150;CHEM restart 
+      files, which contain tracer concentrations in [v/v] mixing ratio. </font> 
+    </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2"> bpch2_mod.f<br>
+      charpak_mod.f <br>
+      dao_mod.f <br>
+      error_mod.f <BR>
+      file_mod.f<br>
+      grid_mod.f <BR>
+      time_mod.f</font></TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">rpmares_mod.f</font></td>
+    <td align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      variables and routines to compute aerosol thermodynamic equilibrium</font></td>
+    <td align="left"> <font face="Courier New, Courier, mono" size="2">dao_mod.f<br>
+      error_mod.f<br>
+      global_hno3_mod.f<br>
+      time_mod.f<br>
+      tracerid_mod.f </font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">seasalt_mod.f</font></td>
+    <td align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      arrays and routines for performing either a coupled chemistry/aerosol run 
+      or an offline seasalt aerosol simulation. The original code taken from Mian 
+      Chin's GOCART model and was modified accordingly for GEOS&#150;CHEM. </font><br>
+    </td>
+    <td align="left"> 
+      <p><font face="Courier New, Courier, mono" size="2">dao_mod.f<br>
+        diag_mod.f<br>
+        drydep_mod.f<br>
+        error_mod.f<br>
+        grid_mod.f<br>
+        pressure_mod.f<br>
+        time_mod.f<br>
+        tracerid_mod.f</font></p>
+    </td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">sulfate_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      the sulfate chemistry routines from Mian Chin's GOCART model </font> </TD>
+    <TD align="left"> 
+      <p><font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+        comode_mod.f</font><font face="Courier New, Courier, mono" size="2"><BR>
+        dao_mod.f<BR>
+        diag_mod.f<br>
+        drydep_mod.f<br>
+        error_mod.f<BR>
+        file_mod.f<br>
+        grid_mod.f <br>
+        global_no3_mod.f<br>
+        global_oh_mod.f<BR>
+        pressure_mod.f</font><font face="Courier New, Courier, mono" size="2"><br>
+        time_mod.f <br>
+        tracerid_mod.f<br>
+        transfer_mod.f<br>
+        uvalbedo_mod.f<br>
+        wetscav_mod.f</font></p>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">tagged_co_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines used for the geographically tagged CO simulation</font> 
+    </TD>
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">biofuel_mod.f<br>
+      biomass_mod.f <br>
+      bpch2_mod.f<br>
+      dao_mod.f <BR>
+      diag_mod.f<BR>
+      error_mod.f<br>
+      geia_mod.f<br>
+      grid_mod.f <BR>
+      global_oh_mod.f<BR>
+      global_nox_mod.f<BR>
+      global_ch4_mod.f<br>
+      time_mod.f <BR>
+      pressure_mod.f<BR>
+      transfer_mod.f</font></TD>
+  </TR>
+  <TR VALIGN=TOP>
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">tagged_ox_mod.f</font></TD>
+    <TD align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      variables and routines to perform a tagged Ox simulation. P(Ox) and L(Ox) 
+      rates need to be archived from a full chemistry simulation before you can 
+      run w/ Tagged Ox.</font></TD>
+    <TD align="left"> 
+      <p><font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+        dao_mod.f<br>
+        diag_mod.f<br>
+        drydep_mod.f<br>
+        error_mod.f<br>
+        grid_mod.f<br>
+        pressure_mod.f <br>
+        time_mod.f<br>
+        tracerid_mod.f <br>
+        transfer_mod.f</font></p>
+      </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">time_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      routines for computing date & time variables</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2"> charpak_mod.f<br>
+      error_mod.f<br>
+      grid_mod.f<br>
+      julday_mod.f</font></TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">toms_mod.f</font></td>
+    <td align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines for reading the EP-TOMS O3 column data from disk 
+      (for use w/ the FAST-J photolysis routines)</font></td>
+    <td align="left"> <font face="Courier New, Courier, mono" size="2"> bpch2_mod.f<br>
+      error_mod.f<br>
+      time_mod.f<br>
+      transfer_mod.f</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">tpcore_bc_mod.f</font></td>
+    <td align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines to read and write boundary conditions from a global 
+      simulation. These are needed for TPCORE transport for nested grid 1 x 1 
+      simulations. </font></td>
+    <td align="left"> <font face="Courier New, Courier, mono" size="2"> bpch2_mod.f<br>
+      error_mod.f <br>
+      file_mod.f<br>
+      grid_mod.f <br>
+      time_mod.f</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">tpcore_fvdas_mod.f90</font></td>
+    <td align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      the TPCORE transport subroutine package by S-J Lin, for GEOS&#150;4/fvDAS 
+      met fields. This new TPCORE can parallelize under both the OpenMP and MPI 
+      standards.</font></td>
+    <td align="left"> <font face="Courier New, Courier, mono" size="2"> none</font></td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">tpcore_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      the TPCORE transport subroutine package by S-J Lin, version 7.1. Also contains 
+      the pressure fixer routines for TPCORE from M. Prather (in versions 4.21 
+      and higher).</font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2"> dao_mod.f<BR>
+      diag_mod.f<BR>
+      global_ch4_mod.f<br>
+      grid_mod.f<br>
+      pressure_mod.f<br>
+      time_mod.f </font></TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">tpcore_window_mod.f</font></td>
+    <td align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      the TPCORE transport subroutine package by S-J Lin, version 7.1, modified 
+      for nested-grid simulations by Yuxuan Wang.</font></td>
+    <td align="left"> <font face="Courier New, Courier, mono" size="2"> dao_mod.f<br>
+      diag_mod.f<br>
+      grid_mod.f <br>
+      global_ch4_mod.f<br>
+      grid_mod.f<br>
+      pressure_mod.f <br>
+      time_mod.f </font></td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">tracerid_mod.f</font></TD>
+    <TD align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      variables and routines used to identify tracers, emission species, biomass 
+      burning species, and biofuel burning species</font></TD>
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">charpak_mod.f<br>
+      error_mod.f </font></TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">transfer_mod.f</font></td>
+    <td align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      routines to compute cast data from <font face="Courier New, Courier, mono" size="2">REAL*4</font> 
+      to <font face="Courier New, Courier, mono" size="2">REAL*8</font> precision, 
+      and also to regrid GEOS&#150;3 data from 48 vertical levels to 30 vertical 
+      levels.</font> </td>
+    <td align="left"> <font face="Courier New, Courier, mono" size="2">error_mod.f<br>
+      grid_mod.f <br>
+      pressure_mod.f</font> </td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left"><font face="Courier New, Courier, mono" size="2">transport_mod.f</font></td>
+    <td align="left"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+      routines which select the proper transport routines for GEOS&#150;CHEM global 
+      and window simulations.</font></td>
+    <td align="left"> 
+      <p><font face="Courier New, Courier, mono" size="2">dao_mod.f<br>
+        error_mod.f<br>
+        pjc_pfix_mod.f </font><font face="Courier New, Courier, mono" size="2"><br>
+        pressure_mod.f<br>
+        time_mod.f<br>
+        tpcore_mod.f<br>
+        tpcore_bc_mod.f<br>
+        tpcore_fvdas_mod.f90<br>
+        tpcore_window_mod.f </font></p>
+    </td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">upbdflx_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      subroutines which impose stratospheric boundary conditions on O3 and NOy</font> 
+    </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2"> bpch2_mod.f<br>
+      dao_mod.f<br>
+      error_mod.f<BR>
+      pressure_mod.f<br>
+      time_mod.f<br>
+      tagged_ox_mod.f<br>
+      tracerid_mod.f <BR>
+      transfer_mod.f</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">uvalbedo_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      variables and routines for reading the UV Albedo data from disk (for use 
+      w/ the FAST-J photolysis routines). </font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">bpch2_mod.f<br>
+      error_mod.f<BR>
+      transfer_mod.f</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left"><font face="Courier New, Courier, mono" size="2">wetscav_mod.f</font></TD>
+    <TD align="left"> <font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+      arrays for used in the wet scavenging of tracer in cloud updrafts, rainout, 
+      and washout </font> </TD>
+    <TD align="left"> <font face="Courier New, Courier, mono" size="2">dao_mod.f<br>
+      diag_mod.f <br>
+      error_mod.f<br>
+      pressure_mod.f<br>
+      time_mod.f<br>
+      tracerid_mod.f </font></TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="3.4"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>3.4 
+  Compilation Sequence for GEOS&#150;CHEM F90 modules</b></font>
+<P><font face="Arial, Helvetica, sans-serif" size="2">In Fortran-90, modules 
+  must be compiled in the proper order. If Module B references Module A, 
+  then Module A must be compiled before Module B is compiled, otherwise a compile-time 
+  error will result. </font><font face="Arial, Helvetica, sans-serif" size="2"><A HREF="mailto:bmy@io.harvard.edu">Bob 
+  Yantosca</A> has determined the order in which GEOS&#150;CHEM modules must be compiled. 
+  Make sure that the following code fragment is listed in your Makefile: <br>
+  <br>
+  </font> 
+<blockquote>
+<table width="95%" border="0">
+  <tr>
+      <td valign="top"> 
+        <pre>MODS =                    \
+charpak_mod.o             \<br>error_mod.o               \<br>julday_mod.o              \<br>file_mod.o                \<br>grid_mod.o                \<br>time_mod.o                \<br>bpch2_mod.o               \<br>pressure_mod.o            \<br>transfer_mod.o            \<br>tracerid_mod.o            \<br>comode_mod.o              \<br>diag_mod.o                \<br>dao_mod.o                 \<br>drydep_mod.o              \<br>geia_mod.o                \<br>global_ch4_mod.o          \<br>global_hno3_mod.o         \<br>global_no3_mod.o          \<br>global_nox_mod.o          \<br>global_oh_mod.o           \<br>uvalbedo_mod.o            \<br>RnPbBe_mod.o              \<br>Kr85_mod.o                \<br>acetone_mod.o             \<br>aircraft_nox_mod.o        \<br>biofuel_mod.o             \<br>biomass_mod.o             \<br>c2h6_mod.o                \<br>carbon_mod.o              \<br>ch3i_mod.o                \<br>a3_read_mod.o             \<br>a6_read_mod.o             \<br>i6_read_mod.o             \<br>phis_read_mod.o           \<br>gwet_read_mod.o           \<br>diag51_mod.o              \<br>lightning_nox_mod.o       \<br>optdepth_mod.o            \<br>planeflight_mod.o         \<br>restart_mod.o             \<br>rpmares_mod.o             \<br>wetscav_mod.o             \<br>sulfate_mod.o             \<br>tagged_co_mod.o           \<br>tagged_ox_mod.o           \<br>fvdas_convect_mod.o       \<br>convection_mod.o          \<br>pjc_pfix_mod.o            \<br>dust_dead_mod.o           \<br>dust_mod.o                \<br>seasalt_mod.o             \<br>toms_mod.o                \<br>tpcore_bc_mod.o           \<br>tpcore_fvdas_mod.o        \<br>tpcore_mod.o              \<br>tpcore_window_mod.o       \<br>transport_mod.o           \<br>upbdflx_mod.o             \<br>chemistry_mod.o           \<br>emissions_mod.o</pre>
+    </td>
+  </tr>
+</table>
+</blockquote>
+<P><font face="Arial, Helvetica, sans-serif" size="2">The Unix make utility will 
+  compile each module in the order it is listed above. This will ensure 
+  that GEOS&#150;CHEM is compiled correctly. </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> If you should 
+  add another module to the GEOS&#150;CHEM source code, you must also make sure that 
+  it is compiled after any other modules it may reference. </font> 
+<P> 
+<HR>
+<P><A NAME="3.5"></a><b><font face="Arial, Helvetica, sans-serif" size="2">3.5 
+  OpenMP parallel loop directives</font></b>
+<p><font face="Arial, Helvetica, sans-serif" size="2">If you are a veteran 
+  GEOS&#150;CHEM user, you may remember seeing some parallel DO-loops in various subroutines 
+  which looked similar to this: </font></p>
+<blockquote>
+<PRE>Column   1         2         3         4
+1234567890123456789012345678901234567890
+C$DOACROSS SHARE( A )
+C$&        LOCAL( I, J ) 
+C$&        MP_SCHEDTYPE=DYNAMIC
+      DO J = 1, JJPAR
+      DO I = 1, IIPAR
+         A(I,J) = A(I,J) * 2.0
+      ENDDO
+      ENDDO
+</PRE>
+</blockquote> 
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">The above 
+  fragment of code instructs GEOS&#150;CHEM to split up the multiplication of the A 
+  array by 2 among several processors (as was specified by the<font face="Courier New, Courier, mono" size="2"> 
+  MP_SET_NUMTHREADS</font> environment variable). Each processor receives 
+  a specific array element <font face="Courier New, Courier, mono" size="2">A(I,J)</font> 
+  to work with -- different processors get different elements. Therefore, 
+  each processor needs to have its own copies of I and J. In other words, 
+  I and J must be declared <font face="Courier New, Courier, mono" size="2">LOCAL</font> 
+  for the parallelization. The entire <font face="Courier New, Courier, mono" size="2">A</font> 
+  array, on the other hand, can remain available for access by all the processors, 
+  since the elements of <font face="Courier New, Courier, mono" size="2">A</font> 
+  will be modified one at a time. Therefore, A must be declared <font face="Courier New, Courier, mono" size="2">SHARE</font>d 
+  for the parallelization. The scheduling type in the above example is <font face="Courier New, Courier, mono" size="2">DYNAMIC</font>. 
+  This means that each processor will grab a new element of <font face="Courier New, Courier, mono" size="2">A</font> 
+  as soon as it is finished with the current one. This results in a non-sequential 
+  processing of the array elements. </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+  The major drawback of the <font face="Courier New, Courier, mono" size="2">C$DOACROSS</font> 
+  parallel loop commands is that this syntax is only supported on the SGI platform. 
+  It is not possible to port GEOS&#150;CHEM to other platforms using <font face="Courier New, Courier, mono" size="2">C$DOACROSS</font> 
+  parallel loops. </font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> In the late 
+  1990's, a new open standard for parallel computing named <A HREF="http://www.openmp.org" target="_blank">OpenMP</A> 
+  was developed by several compiler vendors, including Sun, SGI, Compaq, and Microsoft. 
+  The resulting standard allows parallel processing source code (written in either 
+  Fortran or C) to be ported between different platforms with minimal effort. 
+  <B>As of version 4.17, all GEOS&#150;CHEM parallel DO loops have been converted 
+  to the new OpenMP standard.</B> </font> 
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Here 
+  is the same DO loop as in the above example written using OpenMP parallel directives: 
+  </font> 
+<blockquote>
+<PRE>Column   1         2         3         4
+1234567890123456789012345678901234567890
+!$OMP PARALLEL DO
+!$OMP+SHARED( A )
+!$OMP+PRIVATE( I, J )
+!$OMP+SCHEDULE( DYNAMIC )
+      DO J = 1, JJPAR
+      DO I = 1, IIPAR
+         A(I,J) = A(I,J) * 2.0
+      ENDDO
+      ENDDO
+!$OMP END PARALLEL DO
+</PRE>
+</blockquote> 
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">The idea 
+  is the same as before. The syntactic differences are:<br>
+  </font>
+<blockquote>
+  <table width="95%" border="0" cellpadding="3" cellspacing="3">
+    <tr> 
+      <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">1.</font></td>
+      <td width="96%"><font face="Courier New, Courier, mono" size="2">C$DOACROSS</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+        is now written as <font face="Courier New, Courier, mono" size="2">!$OMP 
+        PARALLEL DO</font></font> </td>
+    </tr>
+    <tr> 
+      <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">2.</font></td>
+      <td width="96%"> <font face="Courier New, Courier, mono" size="2">SHARE( 
+        A )</font><font face="Arial, Helvetica, sans-serif" size="2"> is now 
+        written as <font face="Courier New, Courier, mono" size="2">SHARED( A 
+        )</font></font> </td>
+    </tr>
+    <tr> 
+      <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">3.</font></td>
+      <td width="96%"><font face="Courier New, Courier, mono" size="2">LOCAL( 
+        I, J )</font><font face="Arial, Helvetica, sans-serif" size="2"> is now 
+        written as <font face="Courier New, Courier, mono" size="2">PRIVATE( I, 
+        J )</font></font> </td>
+    </tr>
+    <tr> 
+      <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">4.</font></td>
+      <td width="96%"><font face="Courier New, Courier, mono" size="2">MP_SCHEDTYPE=DYNAMIC</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+        is now written as <font face="Courier New, Courier, mono" size="2">SCHEDULE( 
+        DYNAMIC )</font></font> </td>
+    </tr>
+    <tr> 
+      <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">5.</font></td>
+      <td width="96%"><font face="Arial, Helvetica, sans-serif" size="2">The 
+        continuation character <font face="Courier New, Courier, mono" size="2">C$&</font> 
+        is now written as <font face="Courier New, Courier, mono" size="2">!OMP+</font></font> 
+      </td>
+    </tr>
+    <tr>
+      <td width="4%" align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">6.</font></td>
+      <td width="96%"><font face="Arial, Helvetica, sans-serif" size="2">You 
+        may add an optional <font face="Courier New, Courier, mono" size="2">!$OMP 
+        END PARALLEL DO</font> at the end of the loop </font></td>
+    </tr>
+  </table>
+</blockquote>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">You 
+  may also have noticed that the first column in each line of the <font face="Courier New, Courier, mono" size="2">C$DOACROSS</font> 
+  and <font face="Courier New, Courier, mono" size="2">!$OMP PARALLEL DO</font> 
+  directives begin with a legal Fortran comment character (either <font face="Courier New, Courier, mono" size="2">C</font> 
+  or <font face="Courier New, Courier, mono" size="2">!</font>). This is 
+  by design. In order to invoke the parallel procesing commands, you must 
+  turn on a specific switch in your makefile (this is <font face="Courier New, Courier, mono" size="2">-mp</font> 
+  for SGI; check your compiler manual for other platforms). If you do not 
+  specify multiprocessor compilation, then the parallel processing directives 
+  will be considered as Fortran comments, and the associated DO-loops will be 
+  executed on one processor only. Also, since GEOS&#150;CHEM uses the traditional 
+  &quot;fixed-form&quot; Fortran style, the <font face="Courier New, Courier, mono" size="2">!$OMP</font> 
+  commands must begin at column 1. Otherwise a syntax error will result 
+  at compile time. </font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> It should 
+  be noted that OpenMP commands are not the same as MPI (message passing interface). 
+  With OpenMP directives, you are able to split a job among several processors 
+  on the same machine. You are NOT able to split a job among several processors 
+  on different machines. Therefore, OpenMP is not suitable for Beowulf-style 
+  architectures. In 2003 we will look at the feasibility of porting GEOS&#150;CHEM 
+  to an MPI environment. This may not be realized for quite some time, however.</font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">For more 
+  information about OpenMP, consult the web site <A HREF="http://www.openmp.org" target="_blank" >OpenMP.org</A>. 
+  Also, there is a very good online tutorial at <A HREF="http://scv.bu.edu/SCV/Tutorials/OpenMP/" TARGET="_blank">Boston 
+  University's Scientific Computing and Visualization</A> department. </font> 
+<P>
+<HR>
+<P> 
+  <CENTER>
+    <A HREF="geos_chem_2.html"><font face="Arial, Helvetica, sans-serif" size="2">[Return 
+    to Chapter 2]</font></A><font face="Arial, Helvetica, sans-serif" size="2"> 
+    | <A HREF="geos_chem_4.html">[Go on to Chapter 4]</A></font> 
+  </CENTER>
+</BODY>
+</HTML>

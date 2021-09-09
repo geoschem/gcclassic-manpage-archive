@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS&#8211;Chem User's Guide</title>
+
+  
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="../../../gc.css"><!-- Style sheet for font declarations --></head><body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script><!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&#8211;Chem v8&#8211;03&#8211;01 Online User's
+Guide</p>
+
+<p class="size14bi" align="center"><a href="chapter_1.html">Previous</a>
+| <a href="chapter_3.html">Next</a> | <a href="chapter_2.html" target="_parent">Printable View (no frames)</a></p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size24bi"><a name="2"></a>2. Installation</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="2.1"></a>2.1 "Public" vs "beta" GEOS&#8211;Chem
+versions</p>
+
+<p align="justify">When we have many updates which need to be added
+into the GEOS-Chem standard code, it is often expedient for us to split
+these among several "beta" GEOS-Chem versions. This allows us to test
+each internal version individually with the usual <a href="../../../geos_benchmark.html" target="_blank">1-month benchmark</a>
+simulation. For some GEOS-Chem versions (especially those with updates
+that need to be tested over a longer time period), we will also perform
+a <a href="../../../geos_benchmark.html">1-year benchmark</a> simulation.
+After iterating through several "beta" versions, when the
+code has attained stability, we will then announce a public GEOS&#8211;Chem
+version release with the customary fanfare. The GEOS&#8211;Chem User Guide
+(i.e. this document) is modified for each public version, but not for
+each "beta" version. To do so would probably lead to mass confusion
+among our user base.</p>
+
+<p align="justify">Bob Yantosca and Claire Carouge
+will announce each GEOS&#8211;Chem beta version release via the GEOS&#8211;Chem
+website or email list. You may then obtain the "beta" version and begin
+using it. However, please note some aspects of each "beta" version may
+not be covered in the online documentation.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="2.2"></a>2.2 Obtaining the GEOS&#8211;Chem
+Source Code </p>
+
+<p align="justify">From version 8-03-01, there are two possibilities
+for obtaining the GEOS&#8211;Chem source code and run directory:</p>
+
+<ul>
+
+  <li>use <a href="http://git-scm.com/">Git</a> to clone the public
+repository for GEOS&#8211;Chem</li>
+  <li>download a tarball file over the network</li>
+</ul>
+
+<p>We recommend users to use Git for obtaining the GEOS&#8211;Chem source
+code
+and run directory as well as maintaining their own local version of
+GEOS-Chem.</p>
+
+<p class="size18bi" align="justify"><span class="size18bi"><a name="2.2.1"></a></span>2.2.1 Dowloading a tarball file
+</p>
+
+<p align="justify">The most recent GEOS&#8211;Chem release is
+available for download from the <a href="../../../geos_gatekeeper.html" target="_blank">GEOS&#8211;Chem Source Code and Data Files</a> page. You may
+also download data and input files for the GEOS&#8211;Chem model from this
+site.</p>
+
+The current GEOS&#8211;Chem source code and benchmark simulation output are
+contained in a GNU-zipped TAR file (i.e. the extension is <tt>*.tar.gz</tt>),
+which is also known as "tarball" format. To unzip the file, type:
+<blockquote>
+  <pre>gunzip GEOS&#8211;Chem.v8&#8211;03&#8211;01-public.stdrun.tar.gz</pre>
+</blockquote>
+
+<p align="justify"> and to extract the files, type: </p>
+
+<blockquote> tar xvf GEOS&#8211;Chem.v8-03&#8211;01-public.stdrun.tar</blockquote>
+
+  
+<p align="justify">Downloading the tarball file will create a directory named v8&#8211;03&#8211;01 (or <tt>LOCAL_DIR_NAME</tt>),
+which is further divided into subdirectories:</p>
+
+  
+<blockquote>
+    <table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="85%">
+      <tbody>
+        <tr>
+          <th align="left" bgcolor="#cccccc" valign="top" width="30%">Directory
+          </th>
+          <th align="left" bgcolor="#cccccc" valign="top">Description </th>
+        </tr>
+        <tr>
+          <td class="courier16" align="left" valign="top">Code.v8-03-01</td>
+          <td align="left" valign="top">Directory containing the
+GEOS&#8211;Chem source code</td>
+        </tr>
+        <tr>
+          <td class="courier16" align="left" valign="top">IDL</td>
+          <td align="left" valign="top">Directory containing IDL code
+to process benchmark output</td>
+        </tr>
+        <tr>
+          <td class="courier16" align="left" valign="top">runs/v8-03-01</td>
+          <td align="left" valign="top">Contains the run directories
+for the various met field types </td>
+        </tr>
+        <tr>
+          <td class="courier16" align="left" valign="top">runs/v8-03-01/geos5</td>
+          <td align="left" valign="top">Contains output from v8&#8211;03&#8211;01
+full-chemistry benchmark simulations done with&nbsp; <a href="appendix_4.html#A4.4">GEOS&#8211;5 </a>met fields. </td>
+        </tr>
+      </tbody>
+    </table>
+  </blockquote>
+
+  
+<p align="justify">Each GEOS&#8211;Chem version is benchmarked with a <a href="../../../geos_benchmark.html" target="_blank">standard
+full-chemistry simulation</a>
+so that the results of a given version may be compared to the results
+of the prior version. In this way, errors in coding, emissions, or
+chemistry mechanisms may be readily discerned.</p>
+<p align="justify">NOTE: The tarball method will be discontinued in the near future.</p>
+<p align="justify"><span class="size18bi"><a name="2.2.2"></a>2.2.2
+Clone the repository with Git</span></p>
+
+<p align="justify">To clone the public GEOS&#8211;Chem source code
+repository, you simply have to type:</p>
+
+<blockquote>
+  <pre>git clone git://git.as.harvard.edu/bmy/GEOS-Chem/ LOCAL-DIR-NAME</pre>
+</blockquote>
+
+<p align="justify">where <tt>LOCAL-DIR-NAME</tt> is the name you chose
+for your local directory to contain GEOS-Chem. Cloning the repository
+will simply create a directory (in fact a Git local repository)
+containing the last version of GEOS-Chem.</p>
+
+<p align="justify">NOTE: For users located at Harvard, you need to
+access the public repository from behind the firewall. The path to the
+repository is different. Please refer to the <a href="http://wiki.geos-chem.org/Using_Git_with_GEOS-Chem" target="_blank">GEOS-Chem wiki page for Git</a> for more information.<span style="font-style: italic;"><span style="font-weight: bold;">
+</span></span></p>
+
+<span style="font-style: italic;"><span style="font-weight: bold;"></span></span>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="2.3"></a>2.3 Obtaining the GEOS&#8211;Chem run
+directories</p>
+
+<p>Each of the GEOS-Chem run directories is saved as a separate Git repository,
+rather than putting them into a single repository.  This is because some of
+the files (i.e. restart files) can be very large.
+</p>
+<p>The download options are:
+</p>
+
+<pre>  git clone git://git.as.harvard.edu/bmy/GEOS-Chem-rundirs/DIRECTORY-OPTION LOCAL-DIR-NAME<br></pre>
+<p>where <tt>DIRECTORY-OPTION</tt> may be one of the following:
+</p>
+<table style="text-align: left; width: 75%; height: 113px;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 35%;"><tt>2x2.5/geos4/SOA</tt></td>
+      <td style="vertical-align: top;">2 x 2.5 GEOS-4 fullchem w/ SOA simulation</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>2x2.5/geos4/dicarbonyls</tt></td>
+      <td style="vertical-align: top;">2 x 2.5 GEOS-4 fullchem w/ dicarbonyls option</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>2x2.5/geos4/isoprene</tt></td>
+      <td style="vertical-align: top;">2 x 2.5 GEOS-4 fullchem w/ Caltech isoprene scheme</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>2x2.5/geos4/standard</tt></td>
+      <td style="vertical-align: top;">2 x 2.5 GEOS-4 fullchem standard (43 tracers)</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table style="text-align: left; width: 75%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 35%;"><tt>2x2.5/geos5/SOA</tt></td>
+      <td style="vertical-align: top;">2 x 2.5 GEOS-5 fullchem w/ SOA simulation</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>2x2.5/geos5/dicarbonyls</tt></td>
+      <td style="vertical-align: top;">2 x 2.5 GEOS-5 fullchem w/ dicarbonyls option</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>2x2.5/geos5/isoprene</tt></td>
+      <td style="vertical-align: top;">2 x 2.5 GEOS-5 fullchem w/ Caltech isoprene scheme</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>2x2.5/geos5/standard</tt></td>
+      <td style="vertical-align: top;">2 x 2.5 GEOS-5 fullchem standard (43 tracers)</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table style="text-align: left; width: 75%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 35%;"><tt>4x5/geos4/SOA</tt></td>
+      <td style="vertical-align: top;">4 x 5   GEOS-4 fullchem w/ SOA simulation</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>4x5/geos4/dicarbonyls</tt></td>
+      <td style="vertical-align: top;">4 x 5   GEOS-4 fullchem w/ dicarbonyls option</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>4x5/geos4/isoprene</tt></td>
+      <td style="vertical-align: top;">4 x 5   GEOS-4 fullchem w/ Caltech isoprene scheme</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>4x5/geos4/standard</tt></td>
+      <td style="vertical-align: top;">4 x 5   GEOS-4 fullchem standard (43 tracers)</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<table style="text-align: left; width: 75%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 35%;"><tt>4x5/geos5/SOA</tt></td>
+      <td style="vertical-align: top;">4 x 5   GEOS-5 fullchem w/ SOA simulation</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>4x5/geos5/dicarbonyls</tt></td>
+      <td style="vertical-align: top;">4 x 5   GEOS-5 fullchem w/ dicarbonyls option</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>4x5/geos5/isoprene</tt></td>
+      <td style="vertical-align: top;">4 x 5   GEOS-5 fullchem w/ Caltech isoprene scheme</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;"><tt>4x5/geos5/standard</tt></td>
+      <td style="vertical-align: top;">4 x 5   GEOS-5 fullchem standard (43 tracers)</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+
+
+<table style="text-align: left; width: 75%;" border="1" cellpadding="5" cellspacing="0" bordercolor="#000000">
+  <tbody>
+    <tr>
+      <td style="vertical-align: top; width: 35%;"><tt>benchmark</tt></td>
+      <td style="vertical-align: top;">4 x 5   GEOS-5 1-month benchmark simulation
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p align="justify"><tt>LOCAL-DIR-NAME</tt> is the name you chose
+for your local directory to contain GEOS-Chem.</p>
+<p align="justify">GEOS&#8211;Chem restart files are provided in order to
+provide you with a set of initial conditions that you can start your
+model runs with. However, it is highly recommended that you not use
+these restart files for any of your production runs. Rather, you will
+probably want to generate your own restart file by spinning up the
+model for at least a year.</p>
+
+
+<p align="justify">If you need a restart file for an offline simulation
+(e.g. offline aerosol, mercury, tagged CO, etc), you can use the GAMAP
+routine <tt>make_restart.pro</tt> to create a "fake" restart file. You
+can also ask the other members of the GEOS&#8211;Chem Mailing List if they
+have a restart file for the particular type of simulation that you are
+trying to do.</p>
+
+<p align="justify">NOTE: If you are using GEOS&#8211;Chem with secondary
+aerosol tracers, then you will also need to create a <tt>soaprod.YYYYMMDD</tt>
+file. This can be done with GAMAP routines <tt>regridh_restart.pro</tt>,
+<tt>regridv_restart.pro</tt> and <tt>rewrite_agprod.pro</tt> or
+directly from GEOS-chem. <a href="http://wiki.geos-chem.org/Secondary_organic_aerosols#The_SOA_restart_file" target="_blank">Please see the GEOS&#8211;Chem wiki page for more information</a>.<br>
+</p>
+<p align="justify">NOTE: For users located at Harvard, you need to
+access the public repository from behind the firewall. The path to the
+repository is different. Please refer to the <a href="http://wiki.geos-chem.org/Using_Git_with_GEOS-Chem" target="_blank">GEOS-Chem wiki page for Git</a> for more information.</p>
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="2.4"></a>2.4 Obtaining the GEOS&#8211;Chem data
+directories</p>
+
+<p align="justify">You may now download all of the files from one of
+the GEOS&#8211;Chem data archives:</p>
+
+<ol>
+
+  <li class="size16"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data#Primary_download_site" target="_blank">Harvard archive</a><span class="courier16">
+(ftp.as.harvard.edu)</span></li>
+  <li class="size16"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data#Alternative_download_site" target="_blank">Dalhousie archive</a><span class="courier16">
+(ucis.rain.dal.ca)</span></li>
+</ol>
+
+<p align="justify">The Dalhousie archive is not as comprehensive as the
+Harvard archive. However, the Dalhousie archive stores data files for
+the various nested grids and global 1&deg; x 1.25&deg; grids that are not
+available on the Harvard archive.</p>
+
+<p align="justify">We recommend using the Unix <tt>wget</tt> utility
+for downloading data. The appropriate command to download data from the
+Harvard data archive is:</p>
+
+<blockquote>
+  <pre>wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/DIRECTORY_NAME/"</pre>
+</blockquote>
+
+<p align="justify">And to download data from the Dalhousie data
+archive, use this command:</p>
+
+<blockquote>
+  <pre>wget -r -nH "ftp://ucis.rain.dal.ca/DIRECTORY_NAME/"</pre>
+</blockquote>
+
+<p align="justify">Please see the following links for more information:
+</p>
+
+<ol>
+
+  <li>Chapter 4: <a href="http://acmg.seas.harvard.edu/geos/doc/man_claire/chapter_4.html">GEOS&#8211;Chem
+data directories</a></li>
+  <li>GEOS&#8211;Chem wiki: <a href="http://wiki.geos-chem.org/Downloading_GEOS-Chem_source_code_and_data" target="_blank" align="justify">Downloading GEOS&#8211;Chem data directories</a></li>
+  <li>GEOS&#8211;Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data#Using_wget_to_download_files" target="_blank">Using <tt>wget</tt> to download data</a></li>
+</ol>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size14bi" align="center"><a href="chapter_1.html">Previous</a>
+| <a href="chapter_3.html">Next</a> | <a href="chapter_2.html" target="_parent">Printable View (no frames)</a></p>
+
+</body></html>

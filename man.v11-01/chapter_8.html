@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS-Chem User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css">
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<div style="width:1000px; margin:auto;">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+
+<h2 align="center">GEOS-Chem v11-01 Online User's Guide</h2>
+<h5 align="center"><a href="../man/chapter_7.html">Previous</a> | <a href="../man/chapter_9.html">Next</a> | <a href="../man/chapter_8.html" target="_parent">Printable View (no frames)</a></h5>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h1>8. Coding and Debugging</h1>
+
+<p>In this chapter we  provide guidelines and resources for developing GEOS-Chem source code routines, debugging GEOS-Chem, and using Git version control software.</p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h2><a name="Coding" id="Coding"></a>8.1 Coding: Practice and Style</h2>
+
+<p>GEOS-Chem source code is written in Fortran 90. <p>Files with the <tt>.F90</tt> extension are free-format Fortran-90 layout while files with the <tt>.F</tt> extension are 72-character fixed format Fortran 77 layout. Each file falls into one of two categories:</p>
+
+<ol>
+  <li><p><strong>Traditional subroutines and functions (<span class="courier16">*.F</span> and <span class="courier16">*.F90</span> files)</strong>: Each of these files contains one subroutine or function. The majority of these subroutines and functions come from third-party packages (e.g. FAST-J and SMVGEAR).</p></li>
+
+  <li><p><strong>Fortran-90 modules (<span class="courier16">*_mod.F</span> and <span class="courier16">*_mod.F90</span> files)</strong>: Each of these files bundles global variables, subroutines, and functions into a coherent package that can be shared by other program units. Modules may contain dynamically allocatable arrays, which are more memory-efficient than the older Fortran 77 common blocks. Most GEOS-Chem source code files are now  modules.</p></li>
+</ol>
+
+<p>We strive for a clear and consistent programming style for all GEOS-Chem subroutines and modules. Some of our style points include:</p>
+
+<ul class="disc">
+  <li><p>Header lists of arguments and modification history in <a href="http://wiki.geos-chem.org/Automatic_documentation_with_protex" target="_blank">ProTeX format</a> for all modules, subroutines, and functions to enable automated documentation generation</p></li>
+  <li><p>References to other variables or routines contained within modules</p></li>
+  <li><p>Use of <tt>IMPLICIT NONE</tt> to force explicit declaration of all variables</p></li>
+  <li><p>Comments aligned with mode -- major sections denoted by <tt>!=====</tt></p></li>
+  <li><p>Copious use of white space to enhance readability</p></li>
+  <li><p>Indentation of <tt>IF-THEN-ELSE</tt> and <tt>DO-ENDDO</tt> blocks</p></li>
+  <li><p>OpenMP parallel DO-loops</p></li>
+  <li><p>Use of <a href="http://wiki.geos-chem.org/Derived_type_objects_used_by_GEOS-Chem" target="_blank">Fortran derived type objects</a> to efficiently pass data between subroutines</p></li>
+</ul>
+
+<p>We ask that you strive to maintain these style points as you develop GEOS-Chem. For more information on GEOS-Chem coding style, please read the <a href="http://wiki.geos-chem.org/GEOS-Chem_coding_style_guide" target="_blank">GEOS-Chem coding style guide</a>.</p>
+
+<p>In addition, when making upgrades to the code, we recommend blocking off the section that you are replacing with comment characters (<tt>!</tt>), and labeling it with text Prior to MM/DD/YY. You can remove the blocked off section once your modified code has been declared stable.</p>
+
+<p>Note that GEOS-Chem uses OpenMP parallelization to gain computational advantage by using several CPUs. OpenMP parallel loop directive syntax is different for <tt>*.F90</tt> and <tt>*.F</tt> files and parallelization bugs can be difficult to detect. Please read the <a href="http://wiki.geos-chem.org/Parallelizing_GEOS-Chem#MPI" target="_blank">Parallelizing GEOS-Chem</a> wiki page to learn how to correctly implement OpenMP parallel loops. For more information about OpenMP parallelization, please visit the OpenMP web page: <a href="http://www.openmp.org" target="_blank">openmp.org</a>.</p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h2><a name="Debugging" id="Debugging"></a>8.2 Debugging GEOS-Chem </h2>
+
+<p>The GEOS-Chem model evolves constantly. Our rapidly increasing user base frequently submits updates and new features for inclusion into the standard GEOS-Chem repository.  As with any software project, mistakes are inevitable.<p> The bugs you may encounter (or inadvertently create) when working on GEOS-Chem fall into two categories:</p>
+
+<ol>
+  <li><p>True bugs, including typos, omissions, reading the wrong file, or other outright mistakes.</p></li>
+  <li><p>Design limitation bugs, defined as code written in such a way that precludes future expansion.</p></li>
+</ol>
+
+<p>You can usually rectify the bugs of the first category easily once you find where they are. Fixing these usually means correcting incorrect syntax, updating an incorrect numerical value, or reading from the proper file. When diagnosing these types of bugs, we recommend that you first look at all log files generated during your run to identify the problem area. For GEOS-Chem v11-01, this includes checking the <tt>HEMCO.log</tt> file which will help you determine if the issue is related to reading an emissions inventory. You may enable more detailed output to the log files by turning on ND70 in <tt>input.geos</tt> and setting both <tt>WARNINGS</tt> and <tt>VERBOSE</tt> to 3 in <tt>HEMCO_Config.rc</tt>, and then rerunning with debug compiler flags (<tt>TRACEBACK=y FPE=y BOUNDS=y DEBUG=y</tt>).</p>
+
+<p>Design limitation bugs are trickier to address. You may find that your simulation works perfectly&mdash;until you try to add in a new species, reaction, offline chemistry simulation, diagnostic, or third-party code package. You may have to invest significant time and effort in modifying GEOS-Chem before it finally does what you want.</p>
+
+<p>For help with debugging, please see the following GEOS-Chem wiki pages:</p>
+
+<ul class="disc">
+  <li><a href="http://wiki.geos-chem.org/Common_GEOS-Chem_error_messages" target="_blank"> Common GEOS-Chem error messages</a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_coding_and_debugging#GEOS-Chem_debugging_tips" target="_blank"> GEOS-Chem debugging tips</a></li>
+  <li><a href="http://wiki.geos-chem.org/Debugging_with_the_GEOS-Chem_unit_tester" target="_blank"> Debugging with the GEOS-Chem unit tester</a></li>
+  <li><a href="http://wiki.geos-chem.org/Bugs_and_fixes" target="_blank"> Recent GEOS-Chem bugs and fixes</a></li>
+  <li><a href="http://wiki.geos-chem.org/Machine_issues_and_portability" target="_blank">Machine issues and portability</a></li>
+  <li><a href="http://wiki.geos-chem.org/Currently_unresolved_issues_in_GEOS-Chem" target="_blank">Currently unresolved issues in GEOS-Chem</a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_coding_and_debugging#Reporting_GEOS-Chem_bugs_to_the_GEOS-Chem_Support_Team" target="_blank"> Reporting GEOS-Chem bugs</a></li>
+</ul>
+
+<p>In addition, browsing recent changes to the code and past bug fixes may help you troubleshoot your own issues encountered while developing GEOS-Chem v11-01. For a list of all GEOS-Chem bug fixes and updates in v11-01, please see the <a href="http://wiki.geos-chem.org/GEOS-Chem_v11-01" target="_blank">GEOS-Chem v11-01</a> wiki page. For a complete history of GEOS-Chem updates, see the <a href="http://wiki.geos-chem.org/GEOS-Chem_versions_under_development" target="_blank">GEOS-Chem versions under development</a> wiki page. You can also look at the Git history of your code. See the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Using_Git_with_GEOS-Chem#Viewing_the_revision_history" target="_blank">Using Git with GEOS-Chem</a> wiki page for resources on how to do this.</p>
+
+<p>If you find a bug in GEOS-Chem v11-01, please alert the GEOS-Chem Support Team so that we may fully address it. </p>
+
+<p>If you have a problem and cannot arrive at a solution even after exhausting the resources in the GEOS-Chem User's Manual and the GEOS-Chem wiki, you may reach out the GEOS-Chem Support Team for help. Contact information for the GEOS-Chem Support Team is located on the <a href="http://wiki.geos-chem.org/GEOS-Chem_Support_Team" target="_blank">GEOS-Chem Support Team</a> wiki page. We request that you read the <a href="http://wiki.geos-chem.org/GEOS-Chem_Support_Team%23Responsibilities_of_the_GEOS-Chem_User_Community" target="_blank">Responsibilities of the GEOS-Chem User Community</a> wiki post prior to contacting us to ensure that we are the most appropriate group to help you with your problem.</p>
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<h2><a name="UsingGit" id="UsingGit"></a>8.3 Using Git with GEOS-Chem</h2>
+
+<p>Git is a distributed revision control system that is freely distributed under the GNU General Public License version 2. You may use Git to obtain copies of the GEOS-Chem source code repository and to develop GEOS-Chem software under version control.</p>
+
+<p>Please see the <a href="http://wiki.geos-chem.org/Version_control_with_Git" target="_blank">Version control with Git</a>, <a href="http://wiki.geos-chem.org/Using_Git_with_GEOS-Chem" target="_blank">Using Git with GEOS-Chem</a>, and the <a href="http://wiki.geos-chem.org/Using_Git_with_GAMAP" target="_blank">Using Git with GAMAP</a> wiki pages for more information about using Git with GEOS-Chem. Quick links to subsections of these wiki pages are included below: </p>
+
+<ul class="disc">
+  <li><em>Version control with Git </em>:
+<ul>
+      <li><a href="http://wiki.geos-chem.org/Version_control_with_Git#Why_use_Git.3F" target="_blank">Why use Git?</a></li>
+      <li><a href="http://wiki.geos-chem.org/Version_control_with_Git#Advantages_of_using_Git" target="_blank">Advantages of using Git</a></li>
+      <li><a href="http://wiki.geos-chem.org/Version_control_with_Git#Obtaining_and_installing_Git" target="_blank">Obtaining and installing Git</a></li>
+    </ul>
+  </li>
+  <li><em>Using Git with GEOS-Chem</em>:
+<ul class="disc">
+      <li><a href="http://wiki.geos-chem.org/Using_Git_with_GEOS-Chem#Viewing_the_revision_history" target="_blank">Viewing the revision history</a></li>
+      <li><a href="http://wiki.geos-chem.org/Using_Git_with_GEOS-Chem#Making_revisions" target="_blank">Making revisions</a></li>
+      <li><a href="http://wiki.geos-chem.org/Using_Git_with_GEOS-Chem#Getting_updates_from_the_remote_repository" target="_blank">Getting updates from the remote repository</a></li>
+      <li><a href="http://wiki.geos-chem.org/Using_Git_with_GEOS-Chem#Advanced_Git_usage" target="_blank">Advanced Git usage</a></li>
+    </ul>
+  </li>
+  <li><em>Using Git with GAMAP</em>:
+<ul class="disc">
+      <li><a href="http://wiki.geos-chem.org/Using_Git_with_GAMAP#Viewing_the_revision_history" target="_blank">Viewing the revision history</a></li>
+      <li><a href="http://wiki.geos-chem.org/Using_Git_with_GAMAP#Making_revisions" target="_blank">Making revisions</a></li>
+      <li><a href="http://wiki.geos-chem.org/Using_Git_with_GAMAP#Getting_updates_from_the_remote_repository" target="_blank">Getting updates from the remote repository</a></li>
+    </ul>
+  </li>
+</ul>
+  
+<p> You can also find out more about Git by visiting the Git web page: <a href="http://www.git-scm.com" target="_blank">http://www.git-scm.com</a>.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h5 align="center"><a href="chapter_7.html">Previous</a> | <a href="chapter_9.html">Next</a> | <a href="chapter_8.html" target="_parent">Printable View (no frames)</a></h5>
+
+</div>
+</body>
+</html>

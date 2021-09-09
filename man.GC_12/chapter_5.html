@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS-Chem User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css">
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<div style="width:1000px; margin:auto;">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script><!-- JavaScript for breadcrumb links -->
+
+<h2 align="center">GEOS-Chem Online User's Guide</h2>
+<h5 align="center"><a href="chapter_4.html">Previous</a> | <a href="chapter_6.html">Next</a> | <a href="chapter_5.html" target="_parent">Printable View (no frames)</a></h5>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h1>5. GEOS-Chem Source Code Directory</h1>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<p>The GEOS-Chem source code directory contains the Makefile and Fortran-90 source code files (i.e. <tt>*.F, *.F90</tt> files). Compiling the source code with a Fortran compiler  creates the GEOS-Chem executable <tt>geos</tt>.</p>
+
+<p>The GEOS-Chem source code directory is kept in the following Git repository on Github.com:</p>
+
+<blockquote><tt>https://github.com/geoschem/geos-chem</tt></blockquote>
+
+<p>All official releases of the  GEOS-Chem code shall originate from this repository. You can download the  latest stable version of GEOS-Chem (currently 12.0.0) by means of the  <tt>git clone</tt> command by typing the following at the command line:</p>
+
+<blockquote>
+  <p><tt>git clone https://github.com/geoschem/geos-chem Code.X.Y.Z<br>
+    cd Code.X.Y.Z</tt><tt><br>
+    git checkout master</tt></p>
+  <p><em>NOTE: We recommend using the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_12#Current_stable_version" target="_blank">current version number </a>(i.e. X.Y.Z) in the code-directory name<tt>.</tt> For more information about what the digits in the GEOS-Chem version number mean, <a href="http://wiki.geos-chem.org/GEOS-Chem_version_numbering_system" target="_blank">please follow this link</a>.</em></p>
+</blockquote>
+
+<p>This will create an exact copy (or clone) of the official GEOS-Chem repository to your local disk space in a directory named <tt>Code.X.Y.Z</tt>. Using <tt>Code.X.Y.Z</tt> as your local repository name is optional and you may specify a different directory name if you wish. When you clone the source code you will always get the most recent state of the repository, meaning the latest GEOS-Chem version or bug fix patch.</p>
+<p>You can download as many copies of the GEOS-Chem source code as you wish. For example, you might want to keep a clean  source code directory and then have one or more  source code directories that you use for development or debugging. Alternatively, you may use Git version control to keep all of your work in different branches of a single clone of the repository. For detailed information about Git and downloading the GEOS-Chem source code, please visit the following GEOS-Chem wiki pages:</p>
+<ul class="disc">
+  <li><a href="http://wiki.geos-chem.org/Using_Git_with_GEOS-Chem" target="_blank">Using Git with GEOS-Chem</a>  </li>
+  <li><a href="http://wiki.geos-chem.org/Version_control_with_Git" target="_blank">Version control with Git</a></li>
+</ul>
+<p>You will also need to create a GEOS-Chem run directory for the simulation(s) that you wish to perform. See <a href="chapter_6.html">Chapter 6 </a>for more information.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h5 align="center"><a href="chapter_4.html">Previous</a> | <a href="chapter_6.html">Next</a> | <a href="chapter_5.html" target="_parent">Printable View (no frames)</a></h5>
+
+</div>
+</body>
+</html>

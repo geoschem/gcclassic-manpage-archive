@@ -1,0 +1,692 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS-Chem User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css"><!-- Style sheet for font declarations -->
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script><!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&ndash;Chem v9&ndash;02 Online User's Guide</p>
+
+<p class="size14bi" align="center"><a href="chapter_1.html">Previous</a>
+| <a href="chapter_3.html">Next</a> | <a href="chapter_2.html" target="_parent">Printable View (no frames)</a></p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size24bi">2. Installation</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="WhatYouNeed" id="WhatYouNeed"></a>2.1 What you need to download before you can run GEOS&ndash;Chem</p>
+<p align="justify">When setting up GEOS&ndash;Chem on your
+  system, you will need to install the
+  following components:</p>
+<ol>
+  <li>
+    <p align="justify">The <strong>GEOS&ndash;Chem source code directory</strong>. This is the directory where the Fortran-90 source code files (i.e. <tt>*.F, *.F90</tt> files) and Makefiles reside. Your Fortran compiler will create an executable from these source code files.</p>
+  </li>
+  <li>
+    <p align="justify">A <strong>GEOS&ndash;Chem run directory</strong>. Here is where you will run the compiled  GEOS&ndash;Chem executable. Each run directory contains:</p>
+    <ul>
+      <li>Various  input files that you can modify in order to select different options for your GEOS&ndash;Chem simulation</li>
+      <li>Files that define the GEOS&ndash;Chem's  chemical and photolysis mechanisms</li>
+      <li>&quot;Restart files&quot; that hold the initial conditions for your GEOS&ndash;Chem  simulation</li>
+    </ul>
+    <p align="justify">You can  find a complete description of the run directory contents in  <a href="chapter_5.html">Chapter 5</a>.  </p>
+  </li>
+  <li>
+    <p align="justify">The <strong>GEOS&ndash;Chem shared data directories</strong>. This is the directory tree where the following types of data are stored:</p>
+    <ul>
+      <li><a href="appendix_4.html">Meteorological data</a> (a.k.a. the &quot;met fields) used to drive GEOS&ndash;Chem</li>
+      <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Emissions_overview" target="_new">Emissions</a> inventories for GEOS&ndash;Chem</li>
+      <li>Scale factors to used to scale emissions from a base year to a given year</li>
+      <li>Oxidant (OH, O3) concentrations for both full-chemistry and <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Offline_chemistry_simulations" target="_new">offline simulations</a></li>
+      <li>IPCC future scenarios (for <a href="http://acmg.seas.harvard.edu/gcap/" target="_new">GCAP</a> simulatons)</li>
+      <li>Other GEOS&ndash;Chem specific data files.</li>
+    </ul>
+    <p align="justify">You can find a detailed description of the GEOS&ndash;Chem shared data directories in <a href="chapter_4.html">Chapter 4</a>.</p>
+  </li>
+    <li>
+    <p align="justify"><strong>A netCDF library installation. </strong>Starting with GEOS&ndash;Chem  v9&ndash;01&ndash;03, the model can read data files in netCDF format.  Eventually, we shall replace all of GEOS&ndash;Chem's input and output files from binary punch file format to netCDF format. We are doing this as part of our <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Grid-independent_GEOS-Chem" target="_new">Grid-Independent GEOS&ndash;Chem project</a>, which seeks to interface GEOS&ndash;Chem with the NASA GEOS&ndash;5 GCM. </p>
+  </li>
+</ol>
+<p align="justify">The GEOS&ndash;Chem <a href="#DownCode">source code directory</a> and <a href="#DownRun">run directories</a> are small enough to download directly to your own disk space in your Unix  account. You can download these with the  <a href="chapter_8.html">Git version control software</a>. You may also download our <a href="#NetCDF"> <tt>GEOS-Chem-Libraries</tt> netCDF installer</a> via Git, as described below.</p>
+<p align="justify">On the other hand, the <a href="#DownData">GEOS&ndash;Chem shared data directories</a> contain many large files that probably cannot all fit into your own personal disk quota. Therefore, you (or your sysadmin) should  download the shared data directories to a common disk space where all GEOS&ndash;Chem users in your group  can access them. The volume of data contained in the shared data directories precludes using Git; you must instead download these files via FTP, wget, or similar file transfer programs.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="DownCode" id="DownCode"></a>2.2 Downloading the GEOS&ndash;Chem Source Code </p>
+
+<p align="justify">The GEOS&ndash;Chem &quot;standard&quot; source code is kept in a Git repository at Harvard:</p>
+<blockquote><pre>git://git.as.harvard.edu/bmy/GEOS-Chem/</pre></blockquote>
+<p align="justify">All official releases of the  GEOS&ndash;Chem &quot;standard&quot; code shall originate from this repository.</p>
+<p align="justify">You can download the directory containing the latest GEOS&ndash;Chem source code version by means of the <tt>git clone</tt> command. Type:</p>
+
+<blockquote>
+  <pre>git clone git://git.as.harvard.edu/bmy/GEOS-Chem  Code.v9-02</pre>
+</blockquote>
+
+<p align="justify">This will create an exact copy (or &quot;clone&quot;) of the official GEOS&ndash;Chem repository to your local disk space, in a directory named <tt>Code.v9-02</tt>. (You can choose a different name than <tt>Code.v9-02</tt> if you wish.)</p>
+<p align="justify">NOTE: When you clone, you will always get the most recent state of the repository. (i.e. the latest GEOS&ndash;Chem version or &quot;bug fix&quot; 
+patch). If you wish to download an older version of GEOS&ndash;Chem (say v8&ndash;03&ndash;01) with Git, <a href="chapter_8.html#Revert">please follow these instructions</a>.</p>
+<p align="justify">Please see <a href="chapter_3.html">Chapter 3</a> for instructions on how to compile the GEOS&ndash;Chem source code into an executable file.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="DownRun" id="DownRun"></a>2.3 Downloading the GEOS&ndash;Chem run
+directories</p>
+<p align="justify"> As mentioned <a href="#WhatYouNeed">above</a>, the GEOS&ndash;Chem 
+  run directory is where you will run the <a href="chapter_3.html">compiled executable file</a>. The run directory contains several input files that you can modify in 
+  order to select the various options for your GEOS&ndash;Chem simulation. </p>
+<p align="justify">We have compiled a collection of GEOS&ndash;Chem run directories, grouped by <a href="appendix_4.html">meteorological data type</a>, <a href="appendix_2.html">horizontal resolution</a>, and <a href="appendix_1.html">simulation type</a>. These run directories are  stored as individual Git repositories. This allows you to only download the particular run directories that you need.</p>
+<p>You can use the Git clone command to download the run directories to your local disk space. The command will take the form:</p>
+<blockquote><pre>git clone git://git.as.harvard.edu/bmy/GEOS-Chem-rundirs/DIR-OPTION LOCAL-DIR-NAME</pre></blockquote>
+<p align="justify"><tt>LOCAL-DIR-NAME</tt> is the name you chose for your local directory to contain GEOS&ndash;Chem</p>
+<p align="justify"><tt>DIR-OPTION</tt> may be one of the following:</p>
+<p></p>
+
+<table border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" width="80%">
+   <tr>
+      <th valign="top" width="35%"; bgcolor="#cccccc">DIR_OPTION<br>
+    0.25 x 0.3125 GEOS&ndash;FP simlulations</th>
+      <th valign="top" bgcolor="#cccccc">Description</th>  
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>0.25x0.3125/NA/standard</tt></td>
+     <td valign="top">0.25 x 0.3125 GEOS&ndash;FP <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_nested_grid_simulations" target="_new">nested grid simulation</a> for <a href="appendix_2.html#GMAO_025_NA">North America</a></td>
+   </tr>  
+</table>
+<br>
+
+<table border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" width="80%">
+   <tr>
+      <th valign="top" width="35%"; bgcolor="#cccccc">DIR_OPTION<br>
+    0.5 x 0.666 GEOS&ndash;5 simlulations</th>
+      <th valign="top" bgcolor="#cccccc">Description</th>  
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>0.5x0.666/NA/Hg</tt></td>
+     <td valign="top">0.5 x 0.666 GEOS&ndash;5 nested-grid
+     offline <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Mercury"
+     target="_new">mercury simulation</a> for <a href="appendix_2.html#GMAO_05_NA">North America</a></td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>0.5x0.666/NA/standard</tt></td>
+     <td valign="top">0.5 x 0.666 GEOS&ndash;5 nested grid simulation for <a href="appendix_2.html#GMAO_05_NA">North America</a></td>
+   </tr>  
+</table>
+<br>
+<table border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" width="80%">
+   <tr>
+      <th valign="top" width="35%"; bgcolor="#cccccc">DIR_OPTION<br>
+    2 x 2.5 GEOS&ndash;4 simlulations</th>
+      <th valign="top" bgcolor="#cccccc">Description</th>  
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>2x2.5/geos4/CO2_run</tt></td>
+     <td valign="top">2 x 2.5 GEOS&ndash;4 offline <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/CO2_simulation" target="_new">CO2 simulation</a></td>
+   </tr>  
+   <tr>
+     <td valign="top" width="35%"><tt>2x2.5/geos4/SOA</tt></td>
+     <td valign="top">2 x 2.5 GEOS&ndash;4 fullchem w/ <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Secondary_organic_aerosols" target="_new">SOA simulation</a></td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>2x2.5/geos4/dicarbonyls</tt></td>
+     <td valign="top">2 x 2.5 GEOS&ndash;4 fullchem w/ <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Dicarbonyls_simulation" target="_new">dicarbonyls option</a></td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>2x2.5/geos4/standard</tt></td>
+     <td valign="top">2 x 2.5 GEOS&ndash;4 fullchem standard (66 tracers)</td>
+   </tr>
+</table>
+<br>
+<table border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" width="80%">
+<tr>
+      <th valign="top" width="35%"; bgcolor="#cccccc"> DIR_OPTION<br>
+    2 x 2.5 GEOS&ndash;5 simulations</th>
+      <th valign="top" bgcolor="#cccccc">Description</th>  
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>2x2.5/geos5/CO2_run</tt></td>
+     <td valign="top">2 x 2.5 GEOS&ndash;5 offline CO2 simulation</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>2x2.5/geos5/Hg</tt></td>
+     <td valign="top">2 x 2.5 GEOS&ndash;5 offline Hg simulation</td>
+   </tr>  
+   <tr>
+     <td valign="top" width="35%"><tt>2x2.5/geos5/SOA</tt></td>
+     <td valign="top">2 x 2.5 GEOS&ndash;5 fullchem w/ SOA simulation</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>2x2.5/geos5/dicarbonyls</tt></td>
+     <td valign="top">2 x 2.5 GEOS&ndash;5 fullchem w/ dicarbonyls option</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>2x2.5/geos5/standard</tt></td>
+     <td valign="top">2 x 2.5 GEOS&ndash;5 fullchem standard (66 tracers)</td>
+   </tr>
+</table>
+<br>
+<table border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" width="80%">
+   <tr>
+      <th valign="top" width="35%"; bgcolor="#cccccc">DIR_OPTION<br>
+        
+     2 x 2.5 GEOS&ndash;FP simulations</th>
+      <th valign="top" bgcolor="#cccccc">Description</th>  
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>2x2.5/geosfp/SOA</tt></td>
+     <td valign="top">2 x 2.5 GEOS&ndash;FP fullchem standard (66 tracers)</td>
+   </tr
+   ><tr>
+     <td valign="top" width="35%"><tt>2x2.5/geosfp/standard</tt></td>
+     <td valign="top">2 x 2.5 GEOS&ndash;FP fullchem w/ SOA simulation</td>
+   </tr>  
+ </table>
+<br>
+<table border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" width="80%">
+   <tr>
+      <th valign="top" width="35%"; bgcolor="#cccccc">DIR_OPTION<br>
+     4 x 5 GEOS&ndash;4 simulations</th>
+      <th valign="top" bgcolor="#cccccc">Description</th>  
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos4/SOA</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;4 fullchem w/ SOA simulation</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos4/dicarbonyls</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;4 fullchem w/ dicarbonyls option</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos4/standard</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;4 fullchem standard (66 tracers)</td>
+   </tr>
+</table>
+<br>
+<table border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" width="80%">
+   <tr>
+      <th valign="top" width="35%"; bgcolor="#cccccc">DIR_OPTION<br>
+     4 x 5 GEOS&ndash;5 simulations</th>
+      <th valign="top" bgcolor="#cccccc">Description</th>  
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos5/APM</tt></td>
+     <td valign="top">4 x 5  GEOS&ndash;5 fullchem w/ <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/APM_aerosol_microphysics" target="_new">APM aerosol microphysics option</a></td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos5/Hg</tt></td>
+     <td valign="top">4 x 5  GEOS&ndash;5 offline Hg simulation</td>
+   </tr> 
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos5/Hg_GTMM</tt></td>
+     <td valign="top">4 x 5  GEOS&ndash;5 offline Hg simulation with <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Global_Terrestrial_Mercury_Model" target="_new">GTMM option</a></td>
+   </tr>  
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos5/Hg_tagged</tt></td>
+     <td valign="top">4 x 5  GEOS&ndash;5 offline <a href="appendix_1.html#Hg">tagged Hg simulation</a></td>
+   </tr> 
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos5/POPs</tt></td>
+     <td valign="top">4 x 5  GEOS&ndash;5
+     offline <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/POPs_simulation" target="_new">POPs simulation</a></td>
+   </tr> 
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos5/RnPbBe</tt></td>
+     <td valign="top">4 x 5  GEOS&ndash;5
+     offline <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Rn-Pb-Be_simulation" target="_new">Rn-Pb-Be simulation</a></td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos5/SOA</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;5 fullchem w/ SOA simulation</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos5/SOA_SVPOA</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;5 fullchem w/ SOA simulation + <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Secondary_organic_aerosols#SOA_simulation_with_semi-volatile_POA" target="_new">semivolatile POA option</a></td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos5/dicarbonyls</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;5 fullchem w/ dicarbonyls option</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geos5/standard</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;5 fullchem standard (66 tracers)</td>
+   </tr>
+   <tr>
+     <td valign="top"><tt>4x5/geos5/TOMAS12</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;5 fullchem standard (66 tracers) + 12-bin <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/TOMAS_aerosol_microphysics">TOMAS microphysics</a></td>
+   </tr>
+   <tr>
+     <td valign="top"><tt>4x5/geos5/TOMAS15</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;5 fullchem standard (66 tracers)  + 15-bin <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/TOMAS_aerosol_microphysics">TOMAS microphysics</a></td>
+   </tr>
+   <tr>
+     <td valign="top"><tt>4x5/geos5/TOMAS30</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;5 fullchem standard (66 tracers)  + 30-bin <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/TOMAS_aerosol_microphysics">TOMAS microphysics</a></td>
+   </tr>
+   <tr>
+     <td valign="top"><tt>4x5/geos5/TOMAS40</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;5 fullchem standard (66 tracers)  + 40-bin <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/TOMAS_aerosol_microphysics">TOMAS microphysics</a></td>
+   </tr>
+</table>
+<br>
+<table border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" width="80%">
+   <tr>
+      <th valign="top" width="35%"; bgcolor="#cccccc">DIR_OPTION<br>        
+     4 x 5 GEOS&ndash;FP simulations</th>
+      <th valign="top" bgcolor="#cccccc">Description</th>  
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geosfp/Hg</tt></td>
+     <td valign="top">4 x 5  GEOS&ndash;FP offline Hg simulation</td>
+   </tr> 
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geosfp/RnPbBe</tt></td>
+     <td valign="top">4 x 5  GEOS&ndash;FP offline Rn-Pb-Be simulation</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geosfp/SOA</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;FP fullchem w/ SOA simulation</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geosfp/SOA_SVPOA</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;FP fullchem w/ SOA simulation + semivolatile POA option</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/geosfp/standard</tt></td>
+     <td valign="top">4 x 5 GEOS&ndash;FP fullchem standard (66 tracers)</td>
+   </tr>  
+ </table>
+<br>
+<table border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" width="80%">
+   <tr>
+      <th valign="top" width="35%"; bgcolor="#cccccc">DIR_OPTION<br>
+        
+     4 x 5 MERRA simulations</th>
+      <th valign="top" bgcolor="#cccccc">Description</th>  
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/merra/Hg</tt></td>
+     <td valign="top">4 x 5  MERRA offline Hg simulation</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/merra/Hg_GTMM</tt></td>
+     <td valign="top">4 x 5  MERRA offline Hg simulation with GTMM option</td>
+   </tr>  
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/merra/RnPbBe</tt></td>
+     <td valign="top">4 x 5  MERRA offline Rn-Pb-Be simulation</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/merra/SOA</tt></td>
+     <td valign="top">4 x 5 MERRA fullchem w/ SOA simulation</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/merra/SOA_SVPOA</tt></td>
+     <td valign="top">4 x 5 MERRA fullchem w/ SOA simulation + semivolatile POA option</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/merra/dicarbonyls</tt></td>
+     <td valign="top">4 x 5 MERRA fullchem w/ dicarbonyls option</td>
+   </tr>
+   <tr>
+     <td valign="top" width="35%"><tt>4x5/merra/standard</tt></td>
+     <td valign="top">4 x 5 MERRA fullchem standard (66 tracers)</td>
+   </tr>
+</table>
+<br>
+<table border="1" cellpadding="5" cellspacing="0" bordercolor="#000000" width="80%">
+   <tr>
+     <th valign="top" width="35%" bgcolor="#cccccc">DIR_OPTION<br>
+       1-month benchmark results<th valign="top" bgcolor="#cccccc">Description
+   </tr>
+
+<tr>
+      <td valign="top" width="35%"><tt>benchmark_1mon/VERSION</tt></td>
+      <td valign="top"><p align="justify">Run directory used for the
+      final 4 x 5 GEOS&ndash;5 1-month benchmark simulation
+      for VERSIONS:</p>
+       <ul>
+          <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-01" target="_new"> v9&ndash;01&ndash;01</a></li>
+          <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-02" target="_new">v9&ndash;01&ndash;02</a></li>
+          <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-01-03" target="_new">v9&ndash;01&ndash;03</a></li>
+        </ul>
+      <p align="justify">The run directory contains the following types of files:</p>
+        <ol>
+          <li>Initial conditions (a.k.a. restart files)</li>
+          <li><a href="chapter_5.html#InputFiles">Input files</a> used to select the various GEOS&ndash;Chem options</li>
+          <li><a href="chapter_5.html#OutFiles">Output files</a> from the simulation</li>
+          <li>IDL plotting code for creating the validation plots</li>
+          <li>Validation plots in PostScript format</li>
+        </ol>
+      <p align="justify">NOTE: 1-month benchmark output files
+      for <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-02" target="_new">GEOS&ndash;Chem v9&ndash;02</a> and later versions
+      are available for download via anonymous FTP from <tt>ftp://ftp.as.harvard.edu/gcgrid/geos-chem/1mo_benchmarks/</tt>. 
+      Complete 1-month benchmark run directories for these versions are available on request by contacting the <a href="mailto:geos-chem-support@g.harvard.edu" target="_new">GEOS&ndash;Chem Support Team</a>. </p></td>
+    </tr>
+</table>
+<p align="justify">Please note:</p>
+<ul>
+  <li>
+    <p align="justify">In each run directory, we provide a GEOS&ndash;Chem restart file that you can use to initialize your simulation. However, it is highly recommended that you not use
+    these restart files for any of your production runs. Rather, you will
+    probably want to generate your own restart file by spinning up the
+    model for at least a year.</p></li>
+  <li><p align="justify">If you need a restart file for an offline simulation
+    (e.g. offline aerosol, mercury, tagged CO, etc), you can use the GAMAP
+    routine <tt>make_restart.pro</tt> to create a "fake" restart file. You
+    can also ask the other members of the GEOS&ndash;Chem Mailing List if they
+    have a restart file for the particular type of simulation that you are
+    trying to do.</p></li>
+  <li> When you clone, you will always get the most recent state of the repository.  If, you wish to download the run directories for an older version of GEOS&ndash;Chem (say v8&ndash;03&ndash;01) with Git, <a href="chapter_8.html#Revert">please follow these instructions</a>. </li>
+</ul>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="DownData" id="DownData"></a>2.4 Downloading the GEOS&ndash;Chem shared data
+directories</p>
+
+<p align="justify">The <a href="chapter_4.html">GEOS&ndash;Chem shared data directories</a> contain the various <a href="appendix_4.html">met fields</a>, emissions, and other data that GEOS&ndash;Chem will read in during the course of a simulation. You must download the  shared data directories via FTP or a similar utility (e.g. <a href="http://www.gnu.org/software/wget/" target="_new">wget</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/fireftp/" target="_new">FireFTP</a>, <a href="http://www.vandyke.com/products/securefx/index.html" target="_new">SecureFX</a>, etc.) The large volume of data makes it impossible to track this directory structure with Git.</p>
+<p align="justify">If your research group consists of several GEOS&ndash;Chem users, then perhaps someone (i.e. your sysadmin or local IT guru) has already downloaded the GEOS&ndash;Chem shared directory structure to a common disk space on your servers. Nevertheless, you should still check to make sure that you have the most recent data directories and subdirectories. See <a href="chapter_4.html">Chapter 4</a> for complete details about the contents of the GEOS&ndash;Chem shared data directories.</p>
+<p class="size18bi" align="justify"><a name="Archives" id="Archives"></a>2.4.1 Data archives </p>
+<p align="justify">You may download the GEOS&ndash;Chem shared data directories from one of two archives:</p>
+<ol>
+  <li class="size16"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data#Primary_download_site" target="_new">Harvard archive</a><span class="courier16"> (ftp.as.harvard.edu)</span></li>
+  <li class="size16"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data#Alternative_download_site" target="_new">Dalhousie archive</a><span class="courier16"> (rain.ucis.dal.ca)</span></li>
+</ol>
+<p align="justify">The Dalhousie archive is not as comprehensive as the Harvard archive. However, the Dalhousie archive stores data files for the various nested grids and global 1&deg; x 1.25&deg; grids that are not available on the Harvard archive.</p>
+<p align="justify">For those of you who are interested in using GEOS&ndash;Chem with the GCAP data, please contact <a href="mailto:mickley@fas.harvard.edu" target="_new">Loretta Mickley</a> for more information. </p>
+<p align="justify" class="size18bi"><a name="Instructions" id="Instructions"></a>2.4.2 Downloading instructions</p>
+<p align="justify">We recommend that you use the <a href="http://www.gnu.org/software/wget/" target="_new">GNU wget</a> utility to download the GEOS&ndash;Chem shared data directories. Wget allows you to download the directories and subdirectories in one fell swoop. The wget commands take the form of:</p>
+<blockquote>
+  <pre>wget -r -nH "ftp://ftp.as.harvard.edu/gcgrid/geos-chem/data/DIRECTORY_NAME/"</pre>
+</blockquote>
+<p align="justify">where <tt>DIRECTORY_NAME</tt> is the name of the directory you want to download. Please see our wiki page on <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data#Using_wget_to_download_files" target="_new">how to download data with wget</a> for more information.</p>
+<p align="justify">You can also download the shared data directories via anonymous FTP:</p>
+<blockquote>
+  <pre>ftp ftp.as.harvard.edu
+cd gcgrid/geos-chem/data/GEOS_0.25x0.3125_CH
+cd gcgrid/geos-chem/data/GEOS_0.25x0.3125_NA
+cd gcgrid/geos-chem/data/GEOS_0.5x0.666_CH
+cd gcgrid/geos-chem/data/GEOS_0.5x0.666_NA
+cd gcgrid/geos-chem/data/GEOS_1x1
+cd gcgrid/geos-chem/data/GEOS_2x2.5
+cd gcgrid/geos-chem/data/GEOS_4x5
+cd gcgrid/geos-chem/GEOS_MEAN
+cd gcgrid/geos-chem/GEOS_NATIVE
+cd gcgrid/gcap/GCAP_4x5</pre>
+</blockquote>
+<p align="justify">However, for those of you who are located at Harvard, you do not need to download this data, as it is 
+  available on the Harvard internal filesystem, in directories:</p>
+<blockquote>
+  <pre>/as/data/geos/GEOS_0.25x0.3125_CH
+/as/data/geos/GEOS_0.25x0.3125_NA
+/as/data/geos/GEOS_0.5x0.666_CH
+/as/data/geos/GEOS_0.5x0.666_CH
+/as/data/geos/GEOS_1x1
+/as/data/geos/GEOS_2x2.5
+/as/data/geos/GEOS_4x5
+/as/data/geos/GEOS_MEAN
+/as/data/geos/GEOS_NATIVE
+/as/data/gcap/GCAP_4x5</pre>
+</blockquote>
+
+<p align="justify">If you wish to  download data from the Dalhousie data archive, use this command:</p>
+
+<blockquote>
+  <pre>wget -r -nH "ftp://rain.ucis.dal.ca/ctm/DIRECTORY_NAME/"</pre>
+</blockquote>
+
+<p align="justify">Please see the following links for more information:</p>
+
+<ol>
+  <li>Chapter 4: <a href="chapter_4.html">GEOS&ndash;Chem
+data directories</a></li>
+  <li>GEOS&ndash;Chem wiki: <a href="http://wiki.geos-chem.org/Downloading_GEOS-Chem_source_code_and_data" target="_new" align="justify">Downloading GEOS&ndash;Chem data directories</a></li>
+  <li>GEOS&ndash;Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data#Using_wget_to_download_files" target="_new">Using <tt>wget</tt> to download data</a></li>
+</ol>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="NetCDF" id="NetCDF"></a>2.5 Installing netCDF with the GEOS-Chem-Libraries package</p>
+
+<p align="justify"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v9-02" target="_new">GEOS&ndash;Chem v9&ndash;02</a>  requires that you have a netCDF library installation on your your computer system.  In order to facilitate building the netCDF library, the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Support_Team" title="GEOS-Chem Support Team" target="_new">GEOS-Chem Support Team</a> has constructed the <tt>GEOS-Chem-Libraries</tt> installer package.  With GEOS-Chem-Libraries, you can build one of the following sets of libraries:</p>
+<blockquote>
+  <table width="80%" border="1" cellspacing="0" cellpadding="5" bordercolor="#000000">
+    <tr>
+      <th width="35%"bgcolor="#cccccc">Either netCDF 4.2</th>
+      <th bgcolor="#cccccc">or  netCDF classic</th>
+    </tr>
+    <tr>
+      <td>netcdf&ndash;4.2</td>
+      <td>netCDF &quot;CLASSIC&quot;. This lacks the advanced features of netCDF&ndash;4.2, and is more or less identical to netCDF&ndash;3.6.</td>
+    </tr>
+    <tr>
+      <td>zlib&ndash;1.2.6 
+(netcdf&ndash;4.2 depends on this)</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>hdf5&ndash;1.8.8      (netcdf&ndash;4.2 depends on this)</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</blockquote>
+<p align="justify"><em><strong>We recommend that you try to build the netCDF-4.2 library first, since this a more  recent netCDF version.</strong></em> The netCDF-4.2 library is 100% backwards compatible with older netCDF-3 files.  Also, many data files (e.g. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-FP" title="GEOS-5.7.2" target="_new">GEOS&ndash;FP "raw" data</a>)   are now starting to be distributed in the newer netCDF-4 format.  If   you have problems building netCDF-4.2 then you can try to build the   netCDF classic library, which has a simpler installation process. </p>
+<p>Please note the following: </p>
+<ol>
+  <li>
+    <p align="justify">If you are one of several GEOS-Chem users at your   institution, and if you run GEOS&ndash;Chem on a common machine or cluster,   then only one person (typically your IT guru) would have to install   these libraries for GEOS&ndash;Chem.</p>
+  </li>
+  <li>
+    <p align="justify">Any recent version of netCDF (version 3.0 or higher) may be   used with GEOS&ndash;Chem.  However, we recommend all GEOS-Chem users to build   either netCDF&ndash;4.2 or netCDF CLASSIC with the <tt>GEOS-Chem-Libraries</tt> installer so that GEOS&ndash;Chem will be able to <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Installing_libraries_for_GEOS-Chem#More_about_nc-config_and_nf-config" title="" target="_new">automatically determine the proper library linking commands</a>.</p>
+  </li>
+</ol>
+<p class="size18bi"><a name="DownNetCDF" id="DownNetCDF"></a>2.5.1 Downloading the GEOS-Chem-Libraries installer package</p>
+<p>You can use the <a href="chapter_8.html">Git source-code management software</a> to download the GEOS-Chem-Libraries installer package onto your system.  Type:</p>
+<blockquote><pre>git clone git://git.as.harvard.edu/bmy/GEOS-Chem-Libraries</pre></blockquote>
+<p>and then change into the GEOS-Chem-Libraries directory: </p>
+<blockquote><pre>cd GEOS-Chem-Libraries</pre></blockquote>
+<p>In this directory you will find the following files and subdirectories:</p>
+<blockquote>
+<table width="80%" border="1" cellspacing="0" cellpadding="5" bordercolor="#000000">
+  <tr>
+    <th bgcolor="#cccccc">File or Directory</th>
+    <th bgcolor="#cccccc">Description</th>
+  </tr>
+  <tr>
+    <td class="courier16">README</td>
+    <td>File describing the contents of GEOS-Chem-Libraries and how to build the netCDF libraries</td>
+  </tr>
+  <tr>
+    <td class="courier16">GNUmakefile</td>
+    <td>Main-level makefile.  This calls down to the master GNUmakefile in the src/ sub-directory. </td>
+  </tr>
+  <tr>
+    <td class="courier16">opt/</td>
+    <td>Default directory where libraries will be installed (if you do not choose an alternate directory)</td>
+  </tr>
+  <tr>
+    <td class="courier16">src/</td>
+    <td>Directory containing netCDF and related library distributions.</td>
+  </tr>
+</table>
+</blockquote>
+<p class="size18bi"><a name="Inst42" id="Inst42"></a>2.5.2 Installing netCDF&ndash;4.2</p>
+<p align="justify">Follow these instructions to install the netCDF&ndash;4.2 library and  the libraries on which it depends.</p>
+<p class="size18bi"><a name="Build42" id="Build42"></a>2.5.2.1 Building the netCDF&ndash;4.2 library</span></p>
+<p>To build the netCDF-4.2 library (and the dependent ZLIB and HDF5 libraries) using the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Intel_Fortran_Compiler" title="Intel Fortran Compiler" target="_new">Intel Fortran Compiler</a> (<tt>ifort</tt>), type one of the following commands:</p>
+<blockquote>
+  <pre>make PREFIX=root_library_dir                         # If you have the Intel C compilers
+
+make PREFIX=root_library_dir GCC=yes                 # If you don't have the Intel C compilers</pre></blockquote>
+<p>To build the libraries for the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#PGI_Compiler" title="Machine issues & portability" target="_new">PGI compiler</a>, type one of the following commands:</p>
+<blockquote>
+  <pre>make COMPILER=pgi PREFIX=root_library_dir            # If you have the PGI C compilers
+
+make COMPILER=pgi PREFIX=root_library_dir GCC=yes    # If you don't have the PGI C compilers</pre></blockquote>
+<p>Makefile options:</p>
+<blockquote>
+  <table width="80%" border="1" cellspacing="0" cellpadding="5" bordercolor="#000000">
+    <tr>
+      <th bgcolor="#cccccc">Option</th>
+      <th bgcolor="#cccccc">Description</th>
+    </tr>
+    <tr valign="top">
+      <td class="courier16">COMPILER</td>
+      <td><p align="justify">This option is used to pick the compiler that you wish to use to build netCDF&ndash;4.2 and the related libraries.  At present, you may select either <tt>ifort</tt> or <tt>pgi</tt>.  If you omit the <tt>COMPILER</tt> option, the default value of <tt>ifort</tt> will be selected. </p></td>
+    </tr>
+    <tr valign="top">
+      <td class="courier16">PREFIX</td>
+      <td><p align="justify">This option is used to set <tt>root_library_dir</tt>, which is the full path name of the directory into which the netCDF&ndash;4.2   and related libraries will be installed.  If you omit the <tt>PREFIX</tt> option, then <tt>root_library_dir</tt> will be automatically set to one of these default values:</p>
+        <blockquote>
+      <pre>GEOS-Chem-Libraries/opt/ifort/nc4/  # If COMPILER=ifort
+GEOS-Chem-Libraries/opt/pgi/nc4/    # If COMPILER=pgi</pre></blockquote>
+          <p align="justify">If you do not have sysadmin privileges, then you can use the <tt>PREFIX</tt> option to set <tt>root_library_dir</tt> to a directory in your home space, such as <tt>/home/YOUR_USER_ID/lib</tt> (or you may install them in one of the default paths listed above).    You can then ask your sysadmin to move the libraries to a common space on your machine (or cluster) where all users may access them.</p>
+      </td>
+    </tr>
+    <tr valign="top">
+      <td class="courier16">GCC</td>
+      <td><p align="justify">If you do not have the Intel C/C++ compilers (<tt>icc</tt>, <tt>icpc</tt>) or PGI C/C++ compilers (<tt>pgcc</tt>, <tt>pgcpp</tt>) installed on your system, then you can tell the <tt>GEOS-Chem-Libraries</tt> installer to use the GNU C/C++ compilers (<tt>gcc</tt>, <tt>g++</tt>) instead.  Otherwise, you can omit this option. </p></td>
+    </tr>
+  </table>
+</blockquote>
+<p align="justify">The libraries take approximately 20 minutes (or longer) to build.  If   the library installation process is successful, you will see this   confirmation screen: </p>
+<blockquote>
+<pre>-------+---------+-------------------------------------  
+Config | Install |             Package  
+-------+---------+------------------------------------- 
+  ok   |   ok    | zlib-1.2.6     
+  ok   |   ok    | hdf5-1.8.8     
+  ok   |   ok    | netcdf-4.2     
+  ok   |   ok    | netcdf-fortran-4.2
+-------+---------+-------------------------------------</pre>
+</blockquote>
+<p align="justify">This tells you that the netCDF-4.2 and its related libraries were installed properly. </p>
+<p class="size18bi"><a name="Paths42" id="Paths42">2.5.2.2 netCDF-4.2 library paths</a>
+<p align="justify">The netCDF-4.2 (and related libraries) will be installed into the following paths. <a href="#DownNetCDF">As described above</a>, you may use the <tt>PREFIX=root_library_dir</tt> option to set the value of <tt>root_library_dir</tt>.</p>
+<blockquote>
+<pre>root_library_dir/bin           # nc-config, nf-config, ncdump, ncgen, etc.  
+root_library_dir/include       # Include files (*.h)  
+root_library_dir/lib           # Library file (libz.a)  
+root_library_dir/share         # Manual pages &amp; documentation</pre>
+</blockquote>
+<p align="justify">Now that you have installed netCDF&ndash;4.2, you may skip ahead to <a href="#Link">Chapter 2.5.4: Telling GEOS&ndash;Chem where to find the netCDF libraries</a>.
+<p class="size18bi"><a name="InstCls" id="InstCls"></a>2.5.3 Installing netCDF CLASSIC</p>
+<p align="justify">If you have problems installing the netCDF&ndash;4.2 libraries on your system, try installing netCDF classic instead.   Follow these instructions:</p>
+<p class="size18bi"><a name="BuildCls" id="BuildCls"></a>2.5.3.1 Building netCDF CLASSIC</p>
+<p>To build the netCDF CLASSIC libraries (which lacks the advanced features of netCDF-4.2) using the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Intel_Fortran_Compiler" target="_new">Intel Fortran Compiler</a> (<tt>ifort</tt>), type one of the following commands:</p>
+<blockquote>
+  <pre>make CLASSIC=yes PREFIX=root_library_dir                        # If you have the Intel C compilers
+
+make CLASSIC=yes PREFIX=root_library_dir GCC=yes                # If you don't have the Intel C compilers</pre></blockquote>
+<p align="justify">To build the netCDF "CLASSIC" libraries for the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_%26_portability#PGI_Compiler" target="_new">PGI compiler</a>, type: </p>
+<blockquote>
+  <pre>make CLASSIC=yes COMPILER=pgi PREFIX=root_library_dir           # If you have the PGI C compilers:
+
+make CLASSIC=yes COMPILER=pgi PREFIX=root_library_dir GCC=yes   # If you don't have the PGI C compilers</pre></blockquote>
+<p>Makefile options:</p>
+<blockquote>
+  <table width="80%" border="1" cellspacing="0" cellpadding="5" bordercolor="#000000">
+    <tr>
+      <th bgcolor="#cccccc">Option</th>
+      <th bgcolor="#cccccc">Description</th>
+    </tr>
+    <tr valign="top">
+      <td class="courier16">COMPILER</td>
+      <td><p align="justify">This option is used to pick the compiler that you wish to use to build netCDF CLASSIC. At present, you may select either <tt>ifort</tt> or <tt>pgi</tt>.  If you omit the <tt>COMPILER</tt> option, the default value of <tt>ifort</tt> will be selected. </p></td>
+    </tr>
+    <tr valign="top">
+      <td class="courier16">PREFIX</td>
+      <td><p align="justify">This option is used to set <tt>root_library_dir</tt>, which is the full path name of the directory into which netCDF CLASSIC will be installed.  If you omit the <tt>PREFIX</tt> option, then <tt>root_library_dir</tt> will be automatically set to one of these default values:</p>
+        <blockquote>
+          <pre>GEOS-Chem-Libraries/opt/ifort/nc_classic/  # If COMPILER=ifort
+GEOS-Chem-Libraries/opt/pgi/nc_classic/    # If COMPILER=pgi</pre>
+        </blockquote>
+        <p align="justify">If you do not have sysadmin privileges, then you can use the <tt>PREFIX</tt> option to set <tt>root_library_dir</tt> to a directory in your home space, such as <tt>/home/YOUR_USER_ID/lib</tt> (or you may install them in one of the default paths listed above).    You can then ask your sysadmin to move the libraries to a common space on your machine (or cluster) where all users may access them.</p></td>
+    </tr>
+    <tr valign="top">
+      <td class="courier16">GCC</td>
+      <td><p align="justify">If you do not have the Intel C/C++ compilers (<tt>icc</tt>, <tt>icpc</tt>) or PGI C/C++ compilers (<tt>pgcc</tt>, <tt>pgcpp</tt>) installed on your system, then you can tell the <tt>GEOS-Chem-Libraries</tt> installer to use the GNU C/C++ compilers (<tt>gcc</tt>, <tt>g++</tt>) instead.  Otherwise, you can omit this option. </p></td>
+    </tr>
+  </table>
+</blockquote>
+<p align="justify">The netCDF CLASSIC library takes several minutes to build.  If the library installation process is successful, you will see this confirmation screen:</p>
+<blockquote><pre>-------+---------+-------------------------------------
+Config | Install |             Package
+-------+---------+-------------------------------------
+  --   |   --    | zlib-1.2.6
+  --   |   --    | hdf5-1.8.8
+  ok   |   ok    | netcdf-4.2 (netCDF classic)
+  ok   |   ok    | netcdf-fortran-4.2 (netCDF classic)
+-------+---------+-------------------------------------</pre></blockquote>
+<p>This tells you that the netCDF CLASSIC library was installed   properly.  The ZLIB and HDF5 libraries are not needed for netCDF   CLASSIC, and are therefore not built. </p>
+<p class="size18bi"><a name="PathsCls" id="PathsCls"></a>2.5.3.2 netCDF CLASSIC library paths</p>
+<p align="justify">The netCDF CLASSIC libraries will be installed into the following paths. <a href="#Inst42">As described above</a>, you may use the <tt>PREFIX</tt> option to set the value of root_library_dir. </p>
+<blockquote><pre>root_library_dir/bin        # nc-config, nf-config, ncdump, ncgen programs
+root_library_dir/include    # Include files (*.h)
+root_library_dir/lib        # Library files (*.a)
+root_library_dir/share      # Manual pages &amp; documentation</pre></blockquote>
+<p class="size18bi"><a name="Link" id="Link"></a>2.5.4 Telling GEOS-Chem where to find the netCDF libraries</p>
+<p align="justify">Now that you have successfully built the netCDF (and related) libraries with the <tt>GEOS-Chem-Libraries</tt> installer, you must tell GEOS-Chem where to find the relevant library,   include, and executable files.  The easiest way to do this is to set   environment variables in your setup files:</p>
+<blockquote>
+  <table width="80%" border="1" cellspacing="0" cellpadding="5" bordercolor="#000000">
+    <tr>
+      <th width="20%" bgcolor="#cccccc">Setup file</th>
+      <th bgcolor="#cccccc">Unix shell</th>
+    </tr>
+    <tr valign="top">
+      <td class="courier16">.cshrc</td>
+      <td><p align="justify">If you use C-shell (<tt>csh</tt>) or T-shell (<tt>tcsh</tt>)</p></td>
+    </tr>
+    <tr valign="top">
+      <td class="courier16">.profile</td>
+      <td><p align="justify">If you use Bourne shell (<tt>sh</tt>), or if you use a Macintosh</p></td>
+    </tr>
+    <tr valign="top">
+      <td class="courier16">.bashrc</td>
+      <td>If you use Bourne-again shell (<tt>bash</tt>)</td>
+    </tr>
+  </table>
+</blockquote>
+<p>There are three environment variables that you need to set:</p>
+<blockquote>
+  <table width="80%" border="1" cellspacing="0" cellpadding="5" bordercolor="#000000">
+    <tr>
+      <th width="20%" bgcolor="#cccccc">Variable</th>
+      <th bgcolor="#cccccc">Description</th>
+    </tr>
+    <tr valign="top">
+      <td class="courier16">GC_BIN</td>
+      <td><p align="justify">Specifies the location of the executable files (e.g. <tt>nc-config</tt>, <tt>nf-config</tt>, <tt>ncdump</tt>, etc.) </p></td>
+    </tr>
+    <tr valign="top">
+      <td class="courier16">GC_INCLUDE</td>
+      <td><p align="justify">Specifies the location of include files (<tt>*.h</tt>, <tt>*.inc</tt>) and module files (<tt>*.mod</tt>) for the netCDF (and HDF5) libraries </p></td>
+    </tr>
+    <tr valign="top">
+      <td class="courier16">GC_LIB</td>
+      <td>Specifies the location of library files (<tt>*.a</tt>)</td>
+    </tr>
+  </table>
+</blockquote>
+<p class="size18bi"><a name="csh" id="csh"></a>2.5.4.1 With csh or tcsh</p>
+<p>If you use C-shell (<tt>csh</tt>) or T-shell (<tt>tcsh</tt>), then add the following lines to your <tt>.cshrc</tt> file:</p>
+<blockquote><pre>setenv ROOT_LIBRARY_DIR root_library_dir
+setenv GC_BIN           $(ROOT_LIBRARY_DIR)/bin
+setenv GC_INCLUDE       $(ROOT_LIBRARY_DIR)/include
+setenv GC_LIB           $(ROOT_LIBRARY_DIR)/lib</pre></blockquote>
+<p align="justify">where <tt>root_library_dir</tt> is the directory into which you installed the libraries, <a href="#Inst42">as described above</a>.  Then to accept the changes, type <tt>source ~/.cshrc</tt> at the Unix prompt. </p>
+<p><span class="size18bi"><a name="bash" id="bash"></a>2.5.4.2 With sh or bash</span></p>
+<p>If you use Bourne-shell (<tt>sh</tt>), then add the following lines to your <tt>.profile</tt> file.  If you use Bourne-Again shell (<tt>bash</tt>), then add these same lines to your <tt>.bashrc</tt> file.</p>
+<blockquote><pre>ROOT_LIBRARY_DIR=root_library_dir
+GC_BIN=$ROOT_LIBRARY_DIR/bin
+GC_INCLUDE=$ROOT_LIBRARY_DIR/include
+GC_LIB=$ROOT_LIBRARY_DIR/lib
+export GC_BIN
+export GC_INCLUDE
+export GC_LIB</pre></blockquote>
+<p>where <tt>root_library_dir</tt> is the directory into which you installed the libraries, as described above.  Then to accept the changes, type <tt>source ~/.profile</tt> or <tt>source ~/.bashrc</tt> at the Unix prompt.</p>
+<p class="size18bi"><a name="MoreInfo" id="MoreInfo"></a>2.5.5 For more information</p>
+<p align="justify">Please see our<em> <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Installing_libraries_for_GEOS-Chem" target="_new">Installing libraries for GEOS&ndash;Chem</a></em><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Installing_libraries_for_GEOS-Chem" target="_new"> page on the GEOS&ndash;Chem wiki</a> for more detailed information about the <tt>GEOS-Chem-Libraries</tt> installer program. On this page we give an overview of the individual library files that are generated and the commands used to link to them. You will find this useful if you need to write other Fortran data processing software requiring netCDF file I/O.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size14bi" align="center"><a href="chapter_1.html">Previous</a>
+| <a href="chapter_3.html">Next</a> | <a href="chapter_2.html" target="_parent">Printable View (no frames)</a></p>
+
+</body></html>

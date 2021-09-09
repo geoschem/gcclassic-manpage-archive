@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS-Chem Online User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css">
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<div style="width:1000px; margin:auto;">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+
+<h2 align="center">GEOS-Chem Online User's Guide</h2>
+<h5 align="center"><a href="chapter_12.html">Previous</a> | <a href="chapter_14.html">Next</a> | <a href="chapter_13.html" target="_parent">Printable View (no frames)</a></h5>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h1>13. GEOS-Chem Diagnostics</h1>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h2><a name="Generating" id="Generating"></a>13.1 Generating diagnostic output</h2>
+
+<p>GEOS-Chem can archive diagnostics to disk in one of two formats:</p>
+<ol>
+  <li>
+    <p><a href="http://acmg.seas.harvard.edu/gamap/doc/Chapter_6.html#6.2" target="_blank"><strong>Binary punch file format.</strong></a> These diagnostics will be turned on by default, in order to provide backwards compatibility with older versions. For a complete listing of available diagnostics, please see <a href="http://wiki.geos-chem.org/List_of_diagnostics_archived_to_bpch_format" target="_blank">our <em>List of diagnostics archived to bpch format</em> wiki page</a>.</p>
+  </li>
+  <li>
+    <p><a href="http://wiki.geos-chem.org/Preparing_data_files_for_use_with_HEMCO%23The_COARDS_netCDF_standard" target="_blank"><strong>COARDS-compliant netCDF file format.</strong></a> These diagnostics, which use the de-facto standard for atmospheric and climate model output, will eventually replace the binary punch diagnostics.  For a complete listing of all diagnostics in netCDF format, please see <a href="http://wiki.geos-chem.org/List_of_diagnostics_archived_to_netCDF_format" target="_blank">our <em>List of diagnostics archived to netCDF format</em> wiki page</a>.  </p>
+  </li>
+</ol>
+<p>NOTE: At this time not all diagnostics (such as the satellite timeseries diagnostics ND51) have  been implemented in netCDF format. These diagnostics will still be available in bpch format in the current version of GEOS-Chem.<p>To activate the netCDF diagnostics, compile your code with e.g.
+<blockquote><tt>make -j8 NC_DIAG=y</tt></blockquote>
+<p>You can also archive emissions and other quantities computed by  <a href="http://wiki.geos-chem.org/HEMCO" target="_blank">HEMCO</a> directly to  <a href="http://wiki.geos-chem.org/Preparing_data_files_for_use_with_HEMCO" target="_blank">COARDS-compliant netCDF files.</a> For more information, please see <a href="http://wiki.geos-chem.org/The_HEMCO_User's_Guide%23Diagnostics" target="_blank"><em>The HEMCO User's Guide</em>: Diagnostics</a> wiki page.
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+<h2><a name="Analyzing" id="Analyzing"></a>13.2 Analyzing diagnostic output</h2>
+
+<p>For many years, GEOS-Chem users have relied on the <a href="http://acmg.seas.harvard.edu/gamap/" target="_blank">GAMAP package</a> to visualize and analyze GEOS-Chem diagnostic output.  While GAMAP is still used today (e.g. to create plots from each GEOS-Chem 1-month and 1-year benchmark), we have started to  migrate away from GAMAP for the following reasons:</p>
+<ol>
+  <li>
+    <p>GAMAP requires the Interactive Data Language (IDL), which is proprietary software.  The cost of an IDL site license is now prohibitive for many GEOS-Chem user groups.</p>
+  </li>
+  <li>
+    <p>GAMAP was developed many years ago for the binary punch file format. Its capacities for netCDF file I/O are less developed.</p>
+  </li>
+  <li>
+    <p>GAMAP is not able to read or regrid data on cubed-sphere grids.  It is therefore incompatible with the diagnostic output produced by <a href="chapter_16.html"> GEOS-Chem with the High Performance option (aka GCHP)</a>.</p>
+  </li>
+</ol>
+<p>For these reasons, we have begun to use open-source data analysis packages written in the Python language.  These packages, which are free to use, are mature and have well-established user communities. Being open-source, these Python packages can be implemented on cloud-computing environments (such as the Amazon EC2 cloud) very easily.</p>
+<p>The most popular of these packages are:</p>
+<ul>
+  <li><strong>cartopy</strong>: Plots data on world maps</li>
+  <li><strong>matplotlib</strong>: Implements MATLAB-style plotting options in Python</li>
+  <li><strong>xarray</strong>: Reads geospatial data from netCDF files into objects for easy manipulation</li>
+  <li><strong>xbpch</strong>: Rreads data from &quot;binary punch&quot; format files (very similar to xarray)</li>
+  </ul>
+<p>We recommend that you take <a href="https://github.com/geoschem/GEOSChem-python-tutorial" target="_blank">the excellent interactive tutorial created by Jiawei Zhuang</a>, which will walk you through the steps of analyzing and plotting GEOS-Chem diagnostic data in Python.</p>
+
+
+
+
+
+<p align="center"><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h5 align="center"><a href="chapter_12.html">Previous</a> | <a href="chapter_14.html">Next</a> | <a href="chapter_13.html" target="_parent">Printable View (no frames)</a></h5>
+
+</div>
+</body>
+</html>
+

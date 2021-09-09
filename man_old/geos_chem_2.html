@@ -1,0 +1,645 @@
+<HTML>
+<HEAD>
+<TITLE>GEOS&#150;CHEM User's Guide</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="FF0000" HLINK="#FFFF00">
+<CENTER>
+  <p><font face="Arial, Helvetica, sans-serif" size="2"><B>GEOS&#150;CHEM v6&#150;02&#150;05 
+    User's Guide<br>Contact: Bob Yantosca (<A HREF="mailto:bmy@io.harvard.edu">bmy@io.harvard.edu</A>)</B></font></p>
+</CENTER>
+
+<P><HR>
+<P> <A NAME="2"></a><font face="Arial, Helvetica, sans-serif" size="+1"><b>2. 
+  Installation and Compilation</b></font>
+<P><HR>
+<P> <A NAME="2.1"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>2.1 
+  Obtaining the GEOS&#150;CHEM Source Code</b></font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> The first 
+  step is to obtain the current version of the GEOS&#150;CHEM model. The most 
+  recent GEOS&#150;CHEM release is available for download from the <A HREF="../../../documentation/geos_gatekeeper.html" target="_blank">GEOS&#150;CHEM 
+  Source Code and Data Files</A> page. You may also download data and input files 
+  for the GEOS&#150;CHEM model from this site. For security reasons, the site 
+  is password protected. Contact Bob Yantosca (<A HREF="mailto:bmy@io.harvard.edu">bmy@io.harvard.edu</A>) 
+  to get the current password. </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> The current 
+  GEOS&#150;CHEM source code and benchmark simulation output are contained in a GNU-zipped 
+  TAR file (i.e. the extension is <font face="Courier New, Courier, mono" size="2">*.tar.gz</font>), 
+  which is also known as "tarball" format. To unzip the file, type: </font> 
+<blockquote>
+  <p> <font face="Courier New, Courier, mono" size="2">gunzip GEOS&#150;CHEM.v6&#150;02&#150;05.stdrun.tar.gz 
+    </font> </p>
+</blockquote>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">and 
+  to extract the files, type: </font>
+<blockquote>
+  <p><font face="Courier New, Courier, mono" size="2">tar xvf GEOS&#150;CHEM.v6&#150;02&#150;05.stdrun.tar</font></p>
+</blockquote>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">This will 
+  create a directory named <font face="Courier New, Courier, mono" size="2">geos.v6&#150;02&#150;05<font face="Arial, Helvetica, sans-serif" size="2">, 
+  which is further divided into subdirectories:</font></font><br>
+  <br>
+  </font>
+<blockquote>
+  <table border="0" cellspacing="3" cellpadding="3" width="98%">
+    <tr> 
+      <td align="left" valign="top" width="40%"><font face="Courier New, Courier, mono" size="2">Code.v6&#150;02&#150;05</font></td>
+      <td align="left" valign="top" width="566"><font face="Arial, Helvetica, sans-serif" size="2">Directory 
+        containing the GEOS&#150;CHEM source code</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="40%"><font face="Courier New, Courier, mono" size="2">IDL</font></td>
+      <td align="left" valign="top" width="566"><font face="Arial, Helvetica, sans-serif" size="2">Directory 
+        containing IDL code to process benchmark output</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="40%"><font face="Courier New, Courier, mono" size="2">runs/geos.v6&#150;02&#150;05</font></td>
+      <td align="left" valign="top" width="566"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+        <font face="Courier New, Courier, mono">run.fullchem</font> and <font face="Courier New, Courier, mono">run.Rn-Pb-Be</font> 
+        directories.</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="40%"><font face="Courier New, Courier, mono" size="1">runs/geos.v6&#150;02&#150;05/run.fullchem</font></td>
+      <td align="left" valign="top" width="566"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+        output from v5&#150;07&#150;08 full-chemistry benchmark simulation.</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="40%"><font face="Courier New, Courier, mono" size="1">runs/geos.v6&#150;02&#150;05/run.Rn-Pb-Be</font></td>
+      <td align="left" valign="top" width="566"><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+        output from v5&#150;07&#150;08 radionuclide (Radon-Lead-Beryllium) benchmark simulation.</font></td>
+    </tr>
+  </table>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Each GEOS&#150;CHEM 
+  version is benchmarked with a <a href="../../../documentation/geos_benchmark.html" target="_blank">standard 
+  full-chemistry simulation</a> so that the results of a given version may be 
+  compared to the results of the prior version. In this way, errors in coding, 
+  emissions, or chemistry mechanisms may be readily discerned. Also, for GEOS&#150;CHEM 
+  versions which may alter the convection or transport routines, a radionuclide 
+  (Radon-Lead-Beryllium) benchmark will also be performed. The output files from 
+  the benchmark runs as well as PostScript plots are provided in the <font face="Courier New, Courier, mono" size="2">run.fullchem</font> 
+  and <font face="Courier New, Courier, mono" size="2">run.Rn-Pb-Be</font> subdirectories 
+  of the <font face="Courier New, Courier, mono" size="2">geos.v6&#150;02&#150;05 
+  </font>directory.</font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">For non-Harvard 
+  GEOS&#150;CHEM users: you should attempt to perform both full-chemistry and radionuclide 
+  benchmark simulations on your own platform. This will help you to determine 
+  if GEOS&#150;CHEM is working correctly at your location.</font><br>
+  <br>
+<HR>
+<P> <A NAME="2.2"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>2.2 
+  Obtaining the GEOS&#150;CHEM run directories</b></font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> TAR files 
+  containing sample GEOS&#150;CHEM run directories are stored on the GEOS&#150;CHEM download 
+  page. To install the 4 x 5 run directories, type the following at the Unix prompt:</font> 
+<blockquote>
+  <p> <font face="Courier New, Courier, mono" size="2">gunzip GEOS&#150;CHEM.v6&#150;02&#150;05.rundir4x5.tar.gz<br>
+    tar xvf GEOS&#150;CHEM.v6&#150;02&#150;05.rundir4x5.tar</font></p>
+  </blockquote>
+<p><font face="Arial, Helvetica, sans-serif" size="2">This will create 4 x 5 
+  run directories named:</font></p>
+<blockquote> 
+  <p><font face="Courier New, Courier, mono" size="2">/run.v6&#150;02&#150;05.geos1 
+    /run.v6&#150;02&#150;05.geoss<br>
+    </font><font face="Courier New, Courier, mono" size="2">/run.v6&#150;02&#150;05.geos3 
+    /run.v6-02-05.geos4</font></p>
+  </blockquote>
+<p><font face="Arial, Helvetica, sans-serif" size="2">which will store input files 
+  and a restart file for the 4 x 5 <a href="geos_chem_a3.html#A3.2">GEOS&#150;1</a>, 
+  <a href="geos_chem_a3.html#A3.3">GEOS&#150;STRAT</a>, <a href="geos_chem_a3.html#A3.4">GEOS&#150;3</a> 
+  and <a href="geos_chem_a3.html#A3.5">GEOS&#150;4</a> grids. The input files 
+  assume that you want to perform a full-chemistry simulation. You can modify 
+  the input files to specify other types of GEOS&#150;CHEM simulations; see <a href="geos_chem_5.html">Section 
+  5</a> for more details. </font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="2">To install the 2 x 2.5 
+  run directories, you can follow the same procedure listed above. (If you have 
+  just extracted the 4 x 5 run directories, make sure to rename them or move them 
+  to a new directory so that the extraction of the 2 x 2.5 directories won't overwrite 
+  them). Type the following at the Unix prompt:</font></p>
+<blockquote>
+  <p><font face="Courier New, Courier, mono" size="2">gunzip GEOS&#150;CHEM.v6&#150;02&#150;05.rundir2x25.tar.gz<br>
+    tar xvf GEOS&#150;CHEM.v6&#150;02&#150;05.rundir2x25.tar</font></p>
+</blockquote>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">This will 
+  extract directories named</font> 
+<blockquote> 
+  <p><font face="Courier New, Courier, mono" size="2">/run.v6&#150;02&#150;05.geos1 
+    /run.v6&#150;02&#150;05.geoss<br>
+    </font><font face="Courier New, Courier, mono" size="2">/run.v6&#150;02&#150;05.geos3 
+    /run.v6-01-05.geos4</font> </p>
+  </blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">these directories 
+  will contain input files and restart files for the 2 x 2.5 <a href="geos_chem_a3.html#A3.2">GEOS&#150;1</a>, 
+  <a href="geos_chem_a3.html#A3.3">GEOS&#150;STRAT</a>, <a href="geos_chem_a3.html#A3.4">GEOS&#150;3</a> 
+  and <a href="geos_chem_a3.html#A3.5">GEOS&#150;4</a> grids. As with the 4 x 
+  5 directories, the input files are preset to select a full-chemistry simulation.</font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> GEOS&#150;CHEM 
+  restart files are provided in order to provide you with a set of initial conditions 
+  that you can start your model runs with. However, it is highly recommended that 
+  you not use these restart files for any of your production runs. Rather, you 
+  will probably want to generate your own restart file by spinning up the model 
+  for at least a year. </font> 
+<P><HR>
+<P> <A NAME="2.3"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>2.3 
+  Obtaining the GEOS&#150;CHEM data directories</b></font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">You may now 
+  download all of the files in the GEOS&#150;CHEM data directories from the data 
+  server <font face="Courier New, Courier, mono">geos.as.harvard.edu</font>. If 
+  you do not have an account on this machine, please contact our systems administrator 
+  Jack Yatteau. </font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">To download 
+  the 4 x 5 data directories, you may use <font face="Courier New, Courier, mono">ftp</font> 
+  or <font face="Courier New, Courier, mono">sftp</font>:</font> 
+<P>
+<blockquote> 
+  <p><font face="Courier New, Courier, mono" size="2">ftp geos.as.harvard.edu<br>
+    cd /geos/data/GEOS_4x5</font></p>
+  </blockquote>
+  
+<p><font face="Arial, Helvetica, sans-serif" size="2">and then you can download 
+  each of the individual subdirectories which contain the various GEOS&#150;CHEM 
+  4 x 5 input files.</font></p>
+<p><font face="Arial, Helvetica, sans-serif" size="2">Likewise, to extract the 
+  2 x 2.5 data directories, type the following at the Unix prompt:</font></p>
+<blockquote> 
+  <p> 
+  <p><font face="Courier New, Courier, mono" size="2">ftp geos.as.harvard.edu<br>
+    cd /geos/data/GEOS_2x2.5</font></p>
+</blockquote>
+
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">and then 
+  you can download each of the individual subdirectories which contain the various 
+  GEOS&#150;CHEM 2 x 2.5 input files. </font>
+<P><HR>
+<P> <A NAME="2.4"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>2.4 
+  Setting the C-preprocessor switches</b></font>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Before compiling 
+  the GEOS&#150;CHEM model, you must set the proper C-preprocessor switches to tell 
+  the compiler which options you would like compiled into the GEOS&#150;CHEM executable. 
+  These switches are located in header file define.h, and are as follows:</font><br>
+  <br>
+<blockquote>
+  <table border="0" cellspacing="0" cellpadding="0" width="98%">
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">GEOS_1</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        GEOS&#150;1 met fields (20 layer, 1985-1995 )</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">GEOS_STRAT</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        GEOS&#150;STRAT met fields (26 layer, 1996-1997 )</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">GEOS_3</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        GEOS&#150;3 met fields (48 layer, 1998-2001 )</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">GEOS_4</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        GEOS&#150;4 met fields (55 layer, hybrid, 1999-)</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font face="Courier New, Courier, mono" size="2">A_LLK_03</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        GEOS&#150;4 obsolete &quot;a_llk_03&quot; data set for 2003</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117">&nbsp;</td>
+      <td align="left" valign="top" width="632">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">GRID1x1</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        1 x 1 grid (for nested grids)</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">GRID2x25</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        2 x 2.5 grid</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">GRID4x5</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        4 x 5 grid</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">GRID30LEV</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        30-level GEOS-3 or GEOS-4 vertical grid</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117">&nbsp;</td>
+      <td align="left" valign="top" width="632">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">FULLCHEM</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        full SMVGEAR chemistry mechanism</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">LGEOSCO</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        Bryan Duncan's CO chem w/ parameterized OH</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117">&nbsp;</td>
+      <td align="left" valign="top" width="632">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">LFASTJ</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        FAST-J photolysis code from UC Irvine</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">LSLOWJ</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Use 
+        traditional SLOW-J photolysis code</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117">&nbsp;</td>
+      <td align="left" valign="top" width="632">&nbsp;</td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font face="Courier New, Courier, mono" size="2">COMPAQ</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Compile 
+        for HP/Compaq Alpha </font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font face="Courier New, Courier, mono" size="2">IBM_AIX</font></td>
+      <td align="left" valign="top" width="632"><font face="Courier New, Courier, mono" size="2">Compile 
+        for IBM/AIX </font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">LINUX_PGI</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Compile 
+        for Linux with PGI compiler</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">LINUX_IFC</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Compile 
+        for Linux with 32-bit Intel IFC compiler</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">LINUX_EFC</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Compile 
+        for Linux with 64-bit Intel EFC compiler</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font size="2" face="Courier New, Courier, mono">SGI_MIPS</font></td>
+      <td align="left" valign="top" width="632"><font size="2" face="Courier New, Courier, mono">Compile 
+        for SGI Origin with MIPSpro compiler</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="117"><font face="Courier New, Courier, mono" size="2">SPARC</font></td>
+      <td align="left" valign="top" width="632"><font face="Courier New, Courier, mono" size="2">Compile 
+        for Sun/Sparc </font></td>
+    </tr>
+  </table>
+  <font size="2" face="Courier New, Courier, mono"> </font></blockquote>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">The 
+  C-Preprocessor Switches in <font face="Courier New, Courier, mono" size="2">define.h</font> 
+  take the form of: </font> 
+<blockquote>
+  <p><font face="Courier New, Courier, mono" size="2">!#define GEOS_1 'GEOS_1'</font> 
+  </p>
+</blockquote>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">The quotes 
+  are necessary to facilitate compilation on the Linux platforms.</font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">In order 
+  to activate a particular switch, simply remove the comment character (exclamation 
+  mark) from the first column of the line. To de-activate a switch, simply place 
+  a comment character (exclamation mark) in the first column of the line. </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Note that 
+  you may only select one particular met field type (<font face="Courier New, Courier, mono" size="2">GEOS_1, 
+  GEOS_STRAT, GEOS_3, GEOS_4</font>), one particular grid type (<font face="Courier New, Courier, mono" size="2">GRID1x1, 
+  GRID2x25, GRID4x5</font>), and one particular chemical mechanism (<font face="Courier New, Courier, mono" size="2">FULLCHEM, 
+  LGEOSCO</font>). </font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Also, there 
+  are two different versions of GEOS&#150;4 met field data. Data produced before 
+  January 1, 2004 are known as the &quot;Version 3&quot; or <font face="Courier New, Courier, mono">a_llk_03 
+  </font>data. Data produced on or after January 1, 2004 are known as the &quot;Version 
+  4&quot; or <font face="Courier New, Courier, mono">a_flk_04</font> (first-look) 
+  and <font face="Courier New, Courier, mono">a_llk_04</font> (late-look) data. 
+  There are some minor scientific differences between the two data sets. However, 
+  a more significant difference is that the timestamps of the 6-hour averaged 
+  3-D fields in the two data sets differ by 3 hours. If you are using the GEOS&#150;4 
+  &quot;Version 3&quot; data set, then you must uncomment the <font face="Courier New, Courier, mono">a_llk_03</font> 
+  flag in the <font face="Courier New, Courier, mono">define.h</font> file.</font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> If you will 
+  be running a simulation which requires photolysis, you must pick one of either 
+  <font face="Courier New, Courier, mono" size="2">LFASTJ</font> or <font size="2" face="Courier New, Courier, mono">LSLOWJ</font>. 
+  If your simulation does not require photolysis, you may leave both <font face="Courier New, Courier, mono" size="2">LFASTJ</font> 
+  and <font size="2" face="Courier New, Courier, mono">LSLOWJ</font> deactivated. 
+  </font> 
+<P><HR>
+<P> <A NAME="2.5"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>2.5 
+  Compiling the GEOS&#150;CHEM source code</b></font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Once you 
+  are satisfied that the C-preprocessor switches in the <font face="Courier New, Courier, mono" size="2">define.h</font> 
+  header file are set properly for the type of simulation that you want to perform, 
+  you can proceed to compile the code.</font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> At present, 
+  GEOS&#150;CHEM ships with 7 makefiles, which are used to build the executable 
+  via the Unix make utility. The makefiles are named as follows:</font> 
+<blockquote>
+  <table border="0" cellspacing="0" cellpadding="0" width="90%">
+    <tr> 
+      <td align="left" valign="top" width="29%"><font size="2" face="Courier New, Courier, mono">Makefile.compaq<var> 
+        </var></font></td>
+      <td align="left" valign="top" width="3%">&nbsp;</td>
+      <td align="left" valign="top" width="68%"><font face="Arial, Helvetica, sans-serif" size="2">for 
+        HP/Compaq Alpha </font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="29%"><font face="Courier New, Courier, mono" size="2">Makefile.ibm</font></td>
+      <td align="left" valign="top" width="3%">&nbsp;</td>
+      <td align="left" valign="top" width="68%"><font face="Arial, Helvetica, sans-serif" size="2">for 
+        IBM/AIX </font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="29%"><font size="2" face="Courier New, Courier, mono">Makefile.pgi</font></td>
+      <td align="left" valign="top" width="3%">&nbsp;</td>
+      <td align="left" valign="top" width="68%"><font face="Arial, Helvetica, sans-serif" size="2">for 
+        Linux with PGI compiler (e.g. Linux Boxes)</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="29%"><font size="2" face="Courier New, Courier, mono">Makefile.ifc</font></td>
+      <td align="left" valign="top" width="3%">&nbsp;</td>
+      <td align="left" valign="top" width="68%"><font face="Arial, Helvetica, sans-serif" size="2">for 
+        Linux platform with IFC compiler (e.g. Linux boxes)</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="29%"><font size="2" face="Courier New, Courier, mono">Makefile.efc</font></td>
+      <td align="left" valign="top" width="3%">&nbsp;</td>
+      <td align="left" valign="top" width="68%"><font face="Arial, Helvetica, sans-serif" size="2">for 
+        Linux platform with EFC compiler (e.g Itanium)</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="29%"><font size="2" face="Courier New, Courier, mono">Makefile.sgi</font></td>
+      <td align="left" valign="top" width="3%">&nbsp;</td>
+      <td align="left" valign="top" width="68%"><font face="Arial, Helvetica, sans-serif" size="2">for 
+        SGI Origin </font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="29%"><font face="Courier New, Courier, mono" size="2">Makefile.sparc</font></td>
+      <td align="left" valign="top" width="3%">&nbsp;</td>
+      <td align="left" valign="top" width="68%"><font face="Arial, Helvetica, sans-serif" size="2">for 
+        Sun/SPARC</font></td>
+    </tr>
+  </table>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">NOTES:</font>
+<ul>
+  <li><font face="Arial, Helvetica, sans-serif" size="2"> Sun compilers expect 
+    Fortran source code file names to end in the extension <font face="Courier New, Courier, mono" size="2">.F</font> 
+    instead of the usual <font face="Courier New, Courier, mono" size="2">.f</font>. 
+    Bob Yantosca has a Perl script which named <font face="Courier New, Courier, mono" size="2">f2F</font> 
+    which can be used to rename the source code files. At some point in the future 
+    we may rename all of the GEOS&#150;CHEM source code files to end in <font face="Courier New, Courier, mono" size="2">.F</font>.<br>
+    <br>
+    </font></li>
+  <li><font face="Arial, Helvetica, sans-serif" size="2">The SGI Altix machines 
+    (with Itanium chips) run the Linux operating system. However, you must use 
+    the 64-bit EFC compiler in order to compile GEOS&#150;CHEM on this type of 
+    machine. This is a slightly different compiler than the 32-bit IFC compiler, 
+    which is normally used for Linux boxes.</font></li>
+</ul>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">For your 
+  convenience, GEOS&#150;CHEM now ships with a Perl script named <font face="Courier New, Courier, mono">build</font>, 
+  which compiles the model using the proper Makefile for your operating system. 
+  To compile the GEOS&#150;CHEM model, simply type:</font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">To select 
+  a particular compilation option type: </font> 
+<blockquote> 
+    
+  <table border="0" cellspacing="0" cellpadding="0" width="98%">
+    <tr> 
+      <td align="left" valign="top" width="27%"><font size="2" face="Courier New, Courier, mono">buil<var>d 
+        [option-name]</var> </font></td>
+      <td align="left" valign="top" width="2%">&nbsp;</td>
+      <td align="left" valign="top" width="71%"><font face="Arial, Helvetica, sans-serif" size="2">for 
+        any platform</font></td>
+    </tr>
+  </table>
+  </blockquote>
+<p><font face="Arial, Helvetica, sans-serif" size="2">where allowable Makefile 
+  option-names are: </font> </p>
+<blockquote>
+  <table border="0" cellspacing="0" cellpadding="0" width="98%">
+    <tr> 
+      <td align="left" valign="top" width="15%"><font size="2" face="Courier New, Courier, mono">geos</font></td>
+      <td align="left" valign="top" width="2%">&nbsp;</td>
+      <td align="left" valign="top" width="83%"><font face="Arial, Helvetica, sans-serif" size="2">Compile 
+        GEOS&#150;CHEM w/ FAST-J photolysis (Default)</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="15%"><font size="2" face="Courier New, Courier, mono">geos_sj</font></td>
+      <td align="left" valign="top" width="2%">&nbsp;</td>
+      <td align="left" valign="top" width="83%"><font face="Arial, Helvetica, sans-serif" size="2">Compile 
+        GEOS&#150;CHEM w/ SLOW-J photolysis (mostly obsolete)</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="15%"><font size="2" face="Courier New, Courier, mono">geosco</font></td>
+      <td align="left" valign="top" width="2%">&nbsp;</td>
+      <td align="left" valign="top" width="83%"><font face="Arial, Helvetica, sans-serif" size="2">Compile 
+        GEOS&#150;CHEM w/ parameterized CO-OH chemistry</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="15%"><font face="Courier New, Courier, mono" size="2">clean</font></td>
+      <td align="left" valign="top" width="2%">&nbsp;</td>
+      <td align="left" valign="top" width="83%"><font face="Arial, Helvetica, sans-serif" size="2">Removes 
+        all pre-compiled executables and object files</font></td>
+    </tr>
+  </table>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Note that 
+  <font face="Courier New, Courier, mono">geos_sj</font> (GEOS&#150;CHEM with 
+  SLOW&#150;J photolysis) is now more or less obsolete; however, there may be 
+  a special instance when you want to compile with this option. Likewise, <font face="Courier New, Courier, mono">geosco</font> 
+  should only be used if you are running GEOS&#150;CHEM with parametericed CO 
+  and OH chemistry (cf. Bryan Duncan).</font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">By default, 
+  the Makefile will create a multi-processor GEOS&#150;CHEM executable (the name 
+  will be the same as <i><font face="Courier New, Courier, mono" size="2">option-name</font></i>). 
+  This is adequate for most applications. However, for testing purposes, it may 
+  be desirable to create a single-processor GEOS&#150;CHEM executable. This is 
+  possible and only involves a bit of extra effort. </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> If you look 
+  near the very top of the Makefile (for now let's assume the SGI version), you 
+  will see the following lines: </font> 
+<blockquote> 
+  <p><font face="Courier New, Courier, mono" size="2"># F90 compiler options<br>
+    FFLAGS = f90 -cpp -64 -O3 -OPT:reorg_common=off</font></p>
+  <p><font face="Courier New, Courier, mono" size="2"># F90 Options -- multiprocessor<br>
+    F90 = $(FFLAGS) -mp -Dmultitask <br>
+    <br>
+    # F90 Options -- single processor<br>
+    #F90 = $(FFLAGS)</font> </p>
+</blockquote>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">If instead 
+  you would like to build a single-processor executable, then follow these steps: 
+  <br>
+  <br>
+  </font> 
+<blockquote>
+  <table border="0" cellspacing="3" cellpadding="3" width="98%">
+    <tr> 
+      <td align="left" valign="top" width="25"><font face="Arial, Helvetica, sans-serif" size="2">1.</font></td>
+      <td align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">Type<font face="Courier New, Courier, mono"> 
+        build clean</font>. This will remove all previously compiled object files.</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="25"><font face="Arial, Helvetica, sans-serif" size="2">2.</font></td>
+      <td align="left" valign="top"> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">Add a </font><font face="Arial, Helvetica, sans-serif" size="2">comment 
+          character (#) in front of the FF in the &quot;F90 Options -- Multiprocessor&quot; 
+          line near the top of the Makefile.</font></p>
+        </td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="25"><font face="Arial, Helvetica, sans-serif" size="2">3.</font></td>
+      <td align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">Remove 
+        the comment character (#) from the FF in the &quot;F90 Options -- Single 
+        Processor&quot; line near the top of the Makefile. </font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="25"><font face="Arial, Helvetica, sans-serif" size="2">4.</font></td>
+      <td align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">Type 
+        <font size="2"> <font face="Courier New, Courier, mono"> build<var> [option-name]</var></font></font> 
+        with the appropriate Makefile option (see above).</font></td>
+    </tr>
+  </table>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> You may 
+  also add extra F90 compiler options to either the single processor or multi-processor 
+  compilation lines in the Makefile. For example, to also add subscript error 
+  checking to the multi-processor compile option (for SGI), then add a <font face="Courier New, Courier, mono" size="2">-C</font> 
+  to the Fortran compiler options line:</font> 
+<blockquote> 
+  <p><font face="Courier New, Courier, mono" size="2">FFLAGS = f90 -cpp -64 -O3 
+    -OPT:reorg_common=off -C</font></p>
+</blockquote>
+  
+<p><font face="Arial, Helvetica, sans-serif" size="2">For more information about 
+  subscript error checking, please see Section 6.5.1, <a href="geos_chem_6.html#6.5.1">GEOS&#150;CHEM 
+  debugging tips</a>. </font> 
+<P><HR>
+<P> <A NAME="2.6"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>2.6 
+  Compiling the GEOS&#150;CHEM Source Code with Unix Shell Scripts</b></font>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">It is possible 
+  to write a shell script to compile the GEOS&#150;CHEM code, such as the following:<br>
+  <br>
+  </font> 
+<blockquote>
+  <table border="0" cellspacing="0" cellpadding="0" width="98%">
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">#!/bin/tcsh 
+        -f</font></td>
+      <td align="left" valign="top" width="444"><font face="Courier New, Courier, mono" size="2"># 
+        script definition line</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">cd 
+        Code.v6&#150;02&#150;05</font></td>
+      <td align="left" valign="top" width="444"><font face="Courier New, Courier, mono" size="2"># 
+        your code dir</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">rm 
+        -f log</font></td>
+      <td align="left" valign="top" width="444"><font face="Courier New, Courier, mono" size="2"># 
+        clear log file</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">build 
+        geos > log</font></td>
+      <td align="left" valign="top" width="444"><font face="Courier New, Courier, mono" size="2"># 
+        build code</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">exit(0)</font></td>
+      <td align="left" valign="top" width="444"><font face="Courier New, Courier, mono" size="2"># 
+        exit normally</font></td>
+    </tr>
+  </table>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">which can 
+  then be submitted to either the LSF or PBS batch queue system (depending on 
+  which queue system is used on your computers).</font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> You can 
+  even write one script to both compile and run the GEOS&#150;CHEM model:</font>
+<blockquote>
+  <table border="0" cellspacing="0" cellpadding="0" width="98%">
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">#!/bin/tcsh 
+        -f</font></td>
+      <td align="left" valign="top" width="403"><font face="Courier New, Courier, mono" size="2"># 
+        script definition line</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">cd 
+        Code.v6&#150;02&#150;05</font></td>
+      <td align="left" valign="top" width="403"><font face="Courier New, Courier, mono" size="2"># 
+        your code dir</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">rm 
+        -f log</font></td>
+      <td align="left" valign="top" width="403"><font face="Courier New, Courier, mono" size="2"># 
+        clear log file</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">build 
+        geos > log</font></td>
+      <td align="left" valign="top" width="403"><font face="Courier New, Courier, mono" size="2"># 
+        build code</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">mv 
+        geos ../run.v6&#150;02&#150;05</font></td>
+      <td align="left" valign="top" width="403"><font face="Courier New, Courier, mono" size="2"># 
+        move exec file </font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">cd 
+        ../run.v6&#150;02&#150;05</font></td>
+      <td align="left" valign="top" width="403"><font face="Courier New, Courier, mono" size="2"># 
+        change dir</font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">geos 
+        >> log</font></td>
+      <td align="left" valign="top" width="403"><font face="Courier New, Courier, mono" size="2"># 
+        append output to log file </font></td>
+    </tr>
+    <tr> 
+      <td align="left" valign="top" width="50%"><font face="Courier New, Courier, mono" size="2">exit(0)</font></td>
+      <td align="left" valign="top" width="403"><font face="Courier New, Courier, mono" size="2"># 
+        exit normally </font></td>
+    </tr>
+  </table>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Likewise, 
+  this script may also be submitted to the LSF or PBS batch queue systems. </font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">(Non-Harvard 
+  users: ask your local computer guru about how to submit batch jobs on your own 
+  system.) </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Bob Yantosca 
+  has compiled a convenient package of shell scripts named <A HREF="../../../documentation/manual_v6/geos_testrun.html" TARGET="_blank">TESTRUN</A>, 
+  which allows you to compile and run the GEOS&#150;CHEM model automatically. 
+  A nice feature of TESTRUN is that it renames the log and binary punch files, 
+  so that successive model runs do not conflict with each other. TESTRUN is compatible 
+  with both LSF and PBS batch queue systems. </font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> For more 
+  information on running the GEOS&#150;CHEM model, see <A HREF="geos_chem_6.html">Section 
+  6, Running GEOS&#150;CHEM</A>. </font> 
+<P><HR>
+<P> 
+  <CENTER>
+    <A HREF="geos_chem_1.html"><font face="Arial, Helvetica, sans-serif" size="2">[Return 
+    to Chapter 1]</font></A><font face="Arial, Helvetica, sans-serif" size="2"> 
+    | <A HREF="geos_chem_3.html">[Go on to Chapter 3]</A></font> 
+  </CENTER>
+</BODY>
+</HTML>

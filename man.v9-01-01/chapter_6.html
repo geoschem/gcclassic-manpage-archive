@@ -1,0 +1,2137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS-Chem Online User's Guide</title>
+  <link rel="stylesheet" type="text/css" href="../../../gc.css">
+  <style type="text/css">
+.orange {
+  color: #ff6600;
+}
+th {
+  font-family: Arial,Helvetica,sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
+  background-color: #cccccc;
+}
+.green {
+  color: #009900;
+}
+.purple {
+  color: #cc33cc;
+}
+
+</style><!-- Cascading style sheet for font declarations --></head><body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&ndash;Chem
+v9&ndash;01&ndash;01 Online User's Guide</p>
+
+<p class="size14bi" align="center"><a href="chapter_5.html">Previous</a>
+| <a href="chapter_7.html">Next</a> | <a href="chapter_6.html" target="_parent">Printable View
+(no frames)</a></p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size24bi"><a name="6"></a>6.
+Running the GEOS&ndash;Chem Model </p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi" align="justify"><a name="6.1"></a>6.1
+Input File Checklists for GEOS&ndash;Chem Model Simulations</p>
+
+<p align="justify">After you have completed the following steps:</p>
+<ol>
+  <li>Downloaded the GEOS&ndash;Chem source code (see <a href="chapter_2.html#2.2">Chapter  2.2</a>)</li>
+  <li>Downloaded the GEOS&ndash;Chem run directories (see <a href="chapter_2.html#2.3">Chapter 2.3</a>)</li>
+  <li>Downloaded the GEOS&ndash;Chem shared data directories (see <a href="chapter_2.html#2.4">Chapter 2.4</a>)</li>
+  <li>Compiled the GEOS&ndash;Chem source code into an executable file (see <a href="chapter_3.html">Chapter 3</a>)</li>
+</ol>
+<p align="justify">you may start a GEOS&ndash;Chem simulation. The first thing you
+  will want to do is to ensure that all of the <a href="chapter_5.html">input files in your run
+  directory</a> are set correctly for the type of GEOS&ndash;Chem simulation that
+  you want to do. Here follows some convenient checklists that you may
+  use as a guide before starting your model runs.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="6.1.1"></a>6.1.1
+Checklist for NOx&ndash;Ox&ndash;Hydrocarbon&ndash;aerosol chemistry simulation with
+SMVGEAR or KPP</p>
+
+<p align="justify">There are several options for the chemistry
+mechanism used for a NOx&ndash;Ox&ndash;Hydrocarbon&ndash;aerosol chemistry simulation:
+the standard mechanism, <span style="color: rgb(204, 51, 204);">a new mechanism for Isoprene</span>, <span style="color: rgb(255, 102, 0);">the mechanism
+to simulate secondary organic aerosols</span> and <span style="color: rgb(0, 153, 0);">the mechanism to simulate
+dicarbonyls</span>. Following is a quick check list of how
+various options should be set in the input.geos file for each of these
+options.</p>
+
+<p class="size16bi">Simulation Menu: </p>
+
+<blockquote>
+  <p>Specify the starting and ending times of the model run, as
+well as data and run directories, etc.</p>
+</blockquote>
+
+<p class="size16bi">Tracer Menu:
+</p>
+
+<blockquote>
+  <pre>Type of simulation      : 3<br>Number of Tracers       : 43</pre>
+  <p>And then list the tracer names, molecular weights, and
+constituent species as described in <a href="chapter_5.html#5.2.1.2">Chapter
+5.2.1.2</a>.</p>
+  <p class="orange">To include secondary organic aerosol
+tracers, increase the number of transported tracers to <strong>59</strong>. A list of the tracer names can be found <a href="appendix_1.html#A1.1">HERE</a>.</p>
+  <p class="green">To include dicarbonyl chemistry,
+increase the number of transported tracers to <strong>75</strong>. A list of the tracer names can be found <a href="appendix_1.html#A1.1">HERE</a>.
+</p>
+  <p class="purple">To run the new chemistry for
+isoprene, increase the number of transported tracers to <strong>54</strong>. A list of
+the tracer names can
+be found <a href="appendix_1.html#A1.1">HERE</a>. </p>
+</blockquote>
+
+<p class="size16bi">Aerosol Menu:</p>
+
+<blockquote>
+  <pre>Online SULFATE AEROSOLS : T
+Online CRYST/AQ AEROSOLS: F
+Online CARBON AEROSOLS  : T
+Online 2dy ORG AEROSOLS : F
+Online DUST AEROSOLS    : T
+ =&gt; Use DEAD emissions? : T
+Online SEASALT AEROSOLS : T
+ =&gt; SALA radius bin [um]: 0.1 0.5
+ =&gt; SALC radius bin [um]: 0.5 4.0
+Online dicarb. chem.    : F</pre>
+  <p class="orange" align="justify">If you have
+included the secondary organic aerosols in the Tracer Menu, you must
+switch the 4th entry:</p>
+  <pre class="orange">Online 2dy ORG AEROSOLS : T</pre>
+  <p class="green">If you have included the dicarbonyl
+chemistry, you must switch the 4th and 11th entries:</p>
+  <pre class="green">Online 2dy ORG AEROSOLS : T
+Online dicarb. chem.    : T</pre>
+  <p align="justify">Also, if you turn off any of the
+other aerosol types (sulfate, carbon, dust, seasalt), then GEOS&ndash;Chem
+will read these from disk as monthly mean quantities instead of
+carrying them as transported tracers.</p>
+  <p align="justify">The crystalline sulfur and aqueous
+aerosols have not been implemented into GEOS&ndash;Chem at this point. They
+will be added into a future version.</p>
+</blockquote>
+
+<p class="size16bi">Transport Menu:</p>
+
+<blockquote>
+  <pre>Turn on Transport       : T
+ =&gt; Use Flux Correction?: F
+ =&gt; Fill Negative Values: T
+ =&gt; IORD, JORD, KORD    : 3 3 7
+Transport Timestep [min]: 30
+Use strat O3/NOy BC's   : T</pre>
+  <p align="justify">Set the  transport timestep to 30
+min (<a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>), 15
+min (<a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>),
+or 10 min (<a href="appendix_2.html#A2.5">1&deg; x 1&deg;</a> or higher resolution).
+Also you should not use FLUX correction since that is more
+computationally expensive. </p>
+  <p align="justify">You should also turn on the flux for O3 and
+    NOy from the stratosphere. </p>
+</blockquote>
+
+<p class="size16bi">Convection Menu:
+</p>
+
+<blockquote>
+  <pre>Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+ => Use non-local PBL?  : T
+Convect Timestep (min)  : 30</pre>
+  <p>The convection timestep should be the same as the transport
+timestep. </p>
+</blockquote>
+
+<p class="size16bi">Chemistry Menu:
+</p>
+
+<blockquote>
+  <pre>Turn on Chemistry?      : T
+Chemistry Timestep [min]: 60
+Read and save CSPEC_FULL: T
+USE solver coded by KPP : F</pre>
+  <p align="justify">The SMVGEAR II and KPP chemical solvers are 
+computationally expensive. We suggest using a chemistry timestep double the transport
+time step (this is known as<a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new"> Strang operator splitting</a>).</p>
+  <p align="justify"><strong>We recommend that you turn on the reading and  saving of CSPEC restart files by setting  LSVCSPEC to T.</strong> If you are going to be splitting your GEOS&ndash;Chem simulation into several different stages (so that you can fit each stage into queue system time limits), then this will ensure that the chemical species concentrations (in the CSPEC array) will be preserved when then the next run stage begins.</p>
+  <p align="justify">You can switch from SMVGEAR II to any solver
+    provided by KPP by turning LKPP to T. Note: Using Rosenbrock provided
+    by KPP provides a better scalability of GEOS&ndash;Chem than using SMVGEAR II on several processors.</p>
+</blockquote>
+
+<p class="size16bi">Deposition Menu:
+</p>
+
+<blockquote>
+  <pre>Turn on Dry Deposition? : T
+Turn on Wet Deposition? : T</pre>
+  <p align="justify">Dry deposition will be done on every chemistry timestep (typically 60 minutes). </p>
+  <p align="justify">Wet deposition will be done on every transport timestep, which is typically 30 min (<a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>), 15 min (<a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>), or 10 min (<a href="appendix_2.html#A2.5">1&deg; x 1&deg;</a>). Therefore
+    you do not have to list timesteps for these operations here.</p>
+</blockquote>
+
+<p class="size16bi">Emissions Menu:
+</p>
+
+<blockquote>
+  <pre>%%% EMISSIONS MENU %%%  :
+Turn on emissions?      : T
+Emiss timestep (min)    : 60 
+Include anthro emiss?   : T
+ => Scale 1985 to year  : -1
+ => Use EMEP emissions? : T
+ => Use BRAVO emissions?: T
+ => Use EDGAR emissions?: T
+ => Use STREETS emiss?  : T
+ => Use CAC emissions?  : T
+ => Use NEI2005 emiss?  : T
+Use EPA/NEI99 (anth+bf)?: F
+    w/ ICARTT modif.?   : F
+    w/ VISTAS NOx emis? : F
+Include biofuel emiss?  : T
+Include biogenic emiss? : T
+ => Use MEGAN inventory?: T
+ => Use PCEEA model?    : F
+ => Use MEGAN for MONO? : T
+ => Isoprene scaling    : 1
+Include biomass emiss?  : T
+ => Seasonal biomass?   : T
+ => Scaled to TOMSAI?   : F
+ => Use GFED2 biomass?  :---
+    => monthly GFED2?   : T 
+    => 8-day GFED2?     : F 
+    => 3-hr GFED2?      : F
+    => synoptic GFED2?  : F
+Individual NOx sources  :---
+ => Use aircraft NOx?   : T
+ => Use lightning NOx?  : T
+    => Spat-seas constr?: T
+ => Use soil NOx        : T
+ => Use fertilizer NOx  : T
+NOx scaling             : 1
+Use ship SO2 emissions? :---
+ => global EDGAR ?      : T
+ => global ICOADS ?     : T
+ => EMEP over EUROPE ?  : T
+ => ship SO2 Corbett ?  : F
+ => ship SO2 Arctas ?   : T
+Use COOKE BC/OC (N. Am.): F   
+Use AVHRR-derived LAI?  : F
+Use MODIS-derived LAI?  : T</pre>
+  <p align="justify">For a typical
+NOx&ndash;Ox&ndash;hydrocarbon&ndash;aerosol chemistry simulation simulation, you will
+want to turn on all of these different emission types, including the
+regional inventories (NEI05 for the USA, BRAVO for Mexico, STREETS
+for South-East Asia, EMEP for Europe). </p>
+  <p align="justify"><span class="size16bi">Also, if you are not using the non-local PBL scheme, the emission timestep
+should be the same as the chemistry timestep, which is suggested to be
+double the transport timestep</span>. This is because emission rates
+are passed to SMVGEAR, which treats them as reactions with net
+production. So the emissions should be called at the same frequency as
+the chemistry.</p>
+  <p align="justify" class="size16bi">If you using the non-local PBL scheme, the emission rates are passed to the PBL scheme, so the emission timestep should be the same as the convection timestep.</span>  </p>
+</blockquote>
+
+<p class="size16bi">Output Menu:
+</p>
+
+<blockquote>
+  <pre>%%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH
+Schedule output for JAN : 3000000000000000000000000000000
+Schedule output for FEB : 30000000000000000000000000000
+Schedule output for MAR : 3000000000000000000000000000000
+Schedule output for APR : 300000000000000000000000000000
+Schedule output for MAY : 3000000000000000000000000000000
+Schedule output for JUN : 300000000000000000000000000000
+Schedule output for JUL : 3000000000000000000000000000000
+Schedule output for AUG : 3000000000000000000000000000000
+Schedule output for SEP : 300000000000000000000000000000
+Schedule output for OCT : 3000000000000000000000000000000
+Schedule output for NOV : 300000000000000000000000000000
+Schedule output for DEC : 3000000000000000000000000000000</pre>
+  <p align="justify">Most of the time you will probably be
+interested in generating monthly mean diagnostic output. To do this,
+simply make sure that the first day of the each month has a "3" listed
+there. </p>
+  <p align="justify">For example, the above menu settings will direct GEOS&ndash;Chem to write the monthly-mean diagnostic output from January to disk at 0h GMT on Feb 1st, etc.</p>
+</blockquote>
+
+<p class="size16bi">Diagnostic Menu:</p>
+
+<blockquote>
+  <p align="justify">Here is a list of some of the more
+important diagnostics that you can save out for a typical GEOS&ndash;Chem
+NOx&ndash;Ox&ndash;hydrocarbon&ndash;aerosol chemistry simulation. (NOTE: we are assuming
+a simulation with the 47-level "reduced" GEOS&ndash;5 or MERRA met fields. For GEOS&ndash;4
+you can use "30" instead of "
+47".)</p>
+  <pre>%%% DIAGNOSTIC MENU %%% :
+Binary punch file name  : ctm.bpch
+Diagnostic Entries ---&gt; : L Tracers to print out for each diagnostic
+...
+ND05: Sulfate prod/loss : 47 all
+ND06: Dust aer source   : 1  all
+ND07: Carbon aer source : 47 all
+ND08: Seasalt aer source: 1  all
+...
+ND11: Acetone sources   : 47 all 
+...
+ND13: Sulfur sources    : 47 all
+...<br>ND21: Optical depths    : 47 all
+ND22: J-Values          : 47 1 7 8 20 99    
+      =&gt; JV time range  :    11 13
+ND24: E/W transpt flx   : 47 all
+ND25: N/S transpt flx   : 47 all
+ND26: U/D transpt flx   : 47 all
+...<br>ND28: Biomass emissions : 1  1 4 5 9 10 11 18 19 20 21 26 30 34 35
+ND29: CO sources        : 1  all
+...
+ND31: Surface pressure  : 48 all
+ND32: NOx sources       : 1  all
+...
+ND34: Biofuel emissions : 1  1 4 5 9 10 11 18 19 20 21
+...
+ND36: Anthro emissions  : 1  1 4 5 9 10 18 19 21
+...<br>ND38: Cld Conv scav loss: 47 all
+ND39: Wetdep scav loss  : 47 7 8 20 24 26 27 28 29 30 31 32 34 35 36 37 38 39 40 41 42 43
+...<br>ND43: Chem OH,NO,HO2,NO2: 47 all
+ ==&gt; OH/HO2 time range  :     0 24
+ ==&gt; NO/NO2 time range  :    10 14
+ND44: Drydep flx/vel    : 1  1 2 3 7 8 15 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43
+ND45: Tracer Conc's     : 47 all
+ ==&gt; ND45 Time range    :    0 24
+ND46: Biogenic emissions: 1  all
+...
+ND68: Airmass/Boxheight : 47 all
+ND69: Surface area      : 1  all</pre>
+  <p>For more information about the Diagnostic Menu, refer to <a href="chapter_5.html#5.2.1.13">Chapter 5.2.1.13</a>.</p>
+</blockquote>
+
+<p class="size16bi">Prod &amp; Loss Menu: </p>
+
+<blockquote>
+  <p>This diagnostic is not compatible with KPP. It LKPP and ND65 are
+both turned on, the run will stop with an error asking you to change at
+least one of the option.</p>
+  <pre>%%% PROD &amp; LOSS MENU %%%:
+Turn on P/L (ND65) diag?: T
+# of levels for ND65    : 47
+Save O3 P/L (ND20)?     : F
+Number of P/L families  : 4 
+1st chemical family     : POX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3
+2nd chemical family     : LOX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3
+3rd chemical family     : PCO: CO
+4th chemical family     : LCO: CO</pre>
+<p align="justify">We recommend that you save the
+chemical production and loss of at least the Ox family tracer and CO
+tracer. You can denote which species constitute each family. It is
+possible to define additional tracers here.</p>
+  <p align="justify">If you also wish to archive the P(Ox)
+and L(Ox) rates for a future offline tagged Ox simulation, then you can
+set the SAVE O3 P/L (ND20)? switch to T and specify the number of
+levels to save to disk.</p>
+  <p align="justify">For more information about the Prod
+&amp; Loss Menu, refer to <a href="chapter_5.html#5.2.1.22">Chapter
+5.2.1.22</a>. </p>
+</blockquote>
+
+<p class="size16bi" align="justify">Input files</p>
+
+<blockquote>
+  <p> Make sure you have properly set up the following input files: </p>
+  <ul>
+    <li><tt>globchem.dat.</tt> (See <a href="chapter_5.html#5.3.2">Chapter 5.3.2</a>)</li>
+    <li><tt>ratj.d</tt>. (See <a href="chapter_5.html#5.4.1">Chapter 5.4.1</a>)</li>
+    <li><tt>jv_spec.dat</tt>. (See <a href="chapter_5.html#5.4.3">Chapter 5.4.3</a>)</li>
+	<li><tt>mglob.dat</tt> (See <a href="chapter_5.html#5.3.1">Chapter 5.3.1</a>).</li>
+  </ul>
+</blockquote>
+
+<p class="size16bi">Restart files:</p>
+
+<blockquote>
+<p>You need need at least one restart file for all of the simulations.
+Make sure that the number of species in the restart file is equal to
+the number of tracers you want to run. For this you can use the gamap
+routine from the GAMAP package.</p>
+<p> Also, for <span style="color: rgb(255, 102, 0);">SOA</span> and <span style="color: rgb(0, 153, 0);">dicarbonyl</span> simulations, you need a <tt>soaprod.YYYYMMDDhh</tt> restart file. Refer to <a href="chapter_5#5.5.1">Chapter 5.5.1</a> for more information.</p>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="6.1.2"></a>6.1.2
+Checklist for Radon&ndash;Lead&ndash;Beryllium simulation</p>
+
+<p>Here is a quick checklist of how various options should be set
+in theinput.geos file for a Radon&ndash;Lead&ndash;Beryllium simulation.</p>
+
+<p class="size16bi">Simulation Menu:</p>
+
+<blockquote>
+  <p align="justify">Specify the starting and ending times of the model run, as well as data and run directories, etc.</p>
+</blockquote>
+
+<p class="size16bi">Tracer Menu:</p>
+
+<blockquote>
+  <pre>Type of simulation      : 1
+Number of Tracers       : 3
+Tracer Entries -------&gt; : TR#  Name  g/mole Tracer Members; () = emitted 
+Tracer #1               : 1    Rn    222.0
+Tracer #2               : 2    Pb    210.0
+Tracer #3               : 3    Be7   7.0</pre>
+  <p align="justify">Specify each tracer and its molecular weight here.</p>
+</blockquote>
+
+<p class="size16bi">Aerosol Menu:</p>
+
+<blockquote> The Radon&ndash;Lead&ndash;Beryllium simulation does not use any
+of the sulfate, carbon, etc. tracers, so you can set all of the
+switches in the AEROSOL MENU section to F (false).</blockquote>
+
+<p class="size16bi">Transport Menu:</p>
+
+<blockquote>
+  <pre>Turn on Transport       : T
+ =&gt; Use Flux Correction?: F
+ =&gt; Fill Negative Values: T
+ =&gt; IORD, JORD, KORD    : 3 3 7
+Transport Timestep [min]: 30
+Use strat O3/NOy BC's   : F</pre>
+  <p align="justify">Set the transport timestep to 30
+min (<a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>), 15
+min (<a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>),
+or 10 min (<a href="appendix_2.html#A2.5">1&deg; x 1&deg;</a>).
+Also you should not use FLUX correction since that is more
+computationally expensive. </p>
+  <p align="justify">You should also turn on the flux of O3 and
+    NOy from the stratosphere, because we are not performing a
+    simulation that includes Ozone or NOy species.</p>
+</blockquote>
+
+<p class="size16bi">Convection Menu:</p>
+
+<blockquote>
+  <pre>Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+ => Use non-local PBL?  : F
+Convect Timestep (min)  : 30</pre>
+  <p align="justify">Set the convection timestep to the same value as the transport timestep. The non-local PBL scheme does not support the Radon&ndash;Lead&ndash;Beryllium simulation at the moment. </p>
+</blockquote>
+
+<p class="size16bi">Chemistry Menu:</p>
+
+<blockquote>
+  <pre>Turn on Chemistry?      : T
+Chemistry Timestep [min]: 60</pre>
+  <p align="justify">The chemistry timestep should be double the
+transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a> condition). Also, the other
+chemistry options do
+not have any effect on the Radon&ndash;Lead&ndash;Beryllium simulation.</p>
+</blockquote>
+
+<p class="size16bi">Deposition Menu:</p>
+
+<blockquote>
+  <pre>Turn on Dry Deposition? : T
+Turn on Wet Deposition? : T</pre>
+  <p align="justify">Dry deposition will be done on every chemistry timestep. Wet deposition will be done on every transport
+    timestep. Therefore you do not have to list timesteps for these
+  operations here.</p>
+</blockquote>
+
+<p class="size16bi">Emissions Menu:</p>
+
+<blockquote>
+  <pre>Turn on emissions?      : T
+Emiss timestep (min)    : 60</pre>
+  <p align="justify">The emission timestep should be double the
+transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a>). The rest of the switches in the emissions menu will not have any affect on the Radon&ndash;Lead&ndash;Beryllium simulation, so you can set them all to F (false).</p>
+</blockquote>
+
+<p class="size16bi">Output Menu:</p>
+
+<blockquote>
+  <p>Schedule days for diagnostic output as described above in <a href="#6.1.1">Chapter 6.1.1</a>.</p>
+</blockquote>
+
+<p class="size16bi">Diagnostic Menu:</p>
+
+<blockquote>
+  <p align="justify">Here is a list of some of the more
+important diagnostics that you can save out for a typical GEOS&ndash;Chem
+Radon&ndash;Lead&ndash;Beryllium simulation. (Here we are assuming a 47&ndash;level
+GEOS-5 simulation.)</p>
+  <pre>%%% DIAGNOSTIC MENU %%% :
+Binary punch file name  : ctm.bpch
+Diagnostic Entries ---&gt; : L  Tracers to print out for each diagnostic
+ND01: Rn/Pb/Be source   : 47 all
+ND02: Rn/Pb/Be decay    : 47 all
+...
+ND24: E/W transpt flx   : 47 1 2 3
+ND25: N/S transpt flx   : 47 1 2 3
+ND26: U/D transpt flx   : 47 1 2 3
+...
+ND31: Surface pressure  : 48 1
+...
+ND38: Cld Conv scav loss: 47 1 2 3
+ND39: Wetdep scav loss  : 47 1 2 3
+...<br>ND44: Drydep flx/vel    : 1  all<br>ND45: Tracer Conc's     : 47 all<br> --&gt; ND45 Time range    :    0 24<br>...<br>ND68: Airmass/Boxheight : 47 all<br>ND69: Surface area      : 1  all</pre>
+  <p>For more information about the Diagnostic Menu, refer to <a href="chapter_5.html#5.2.1.15">Chapter 5.2.1.15</a>.</p>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"> <a name="6.1.3"></a>6.1.3
+Checklist for Total Ox and Tagged Ox simulations</p>
+
+<p align="justify">Here is a quick checklist of how
+various options should be set in theinput.geos file for a typical
+tagged Ox simulation.</p>
+
+<p class="size16bi">Simulation Menu:</p>
+
+<blockquote>
+  <p align="justify">Specify the starting and ending times
+of the model run, as well as data and run directories, etc.</p>
+</blockquote>
+
+<p class="size16bi">Tracer Menu:</p>
+<blockquote>
+<p align="justify">If you wish to run the total Ox simulation, you need to carry 2 tracers: Total Ox and Stratospherically produced Ox. Specfify these in the TRACER MENU section as follows:</p>
+  <pre>%%% TRACER MENU %%%     :
+Type of simulation      : 6
+Number of Tracers       : 2 
+Tracer Entries -------&gt; : TR#   Name     g/mole  Tracer Members; () = emitted
+Tracer #1               : 1     Ox       48.0
+Tracer #2               : 2     OxStrt   48.0</pre>
+<p align="justify">If you wish to run with all of the geographically-tagged Ox tracers, then your TRACER MENU should look like this:</p>
+  <pre>%%% TRACER MENU %%%     :
+Type of simulation      : 6
+Number of Tracers       : 13 
+Tracer Entries -------&gt; : TR#   Name     g/mole  Tracer Members; () = emitted
+Tracer #1               : 1     Ox       48.0
+Tracer #2               : 2     OxUT     48.0
+Tracer #3               : 3     OxMT     48.0
+Tracer #4               : 4     OxROW    48.0
+Tracer #5               : 5     OxPacBL  48.0
+Tracer #6               : 6     OxNABL   48.0
+Tracer #7               : 7     OxAtlBL  48.0 <br>Tracer #8               : 8     OxEurBL  48.0
+Tracer #9               : 9     OxAfrBL  48.0
+Tracer #10              : 10    OxAsBL   48.0
+Tracer #11              : 11    OxStrat  48.0
+Tracer #12              : 12    OxInit   48.0
+Tracer #13              : 13    OxUSA    48.0</pre>
+</blockquote>
+
+<p class="size16bi">Aerosol Menu:</p>
+<blockquote>
+  <p align="justify">The tagged Ox simulation does not use
+any of the sulfate, carbon, etc. tracers, so you can set all of the
+switches in the <tt>AEROSOL MENU</tt> section to <tt>F</tt>
+(false).</p>
+</blockquote>
+
+<p class="size16bi">Transport Menu:</p>
+
+<blockquote>
+  <pre>Turn on Transport       : T
+ => Use Flux Correction?: F
+ => Fill Negative Values: T
+ =&gt; IORD, JORD, KORD    : 3 3 7
+Transport Timestep [min]: 30
+Use strat O3/NOy BC's   : T</pre>
+  <p align="justify">Set the  transport timestep to  30
+min (<a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>), 15
+min (<a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>),
+or 10 min (<a href="appendix_2.html#A2.5">1&deg; x 1&deg;</a>).
+Also you should not use flux correction since that is more
+computationally expensive. </p>
+  <p align="justify">You should also turn on the flux of O3 and
+    NOy from the stratosphere. We need to account for Ox
+    which is transported down from the stratosphere.</p>
+</blockquote>
+
+<p class="size16bi">Convection Menu:</p>
+
+<blockquote>
+  <pre>Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+ =&gt; Use non-local PBL?  : F
+Convect Timestep (min)  : 30</pre>
+  <p align="justify">Set the  convection timestep to the same value as the transport timestep. </p>
+</blockquote>
+
+<p class="size16bi">Chemistry Menu:</p>
+
+<blockquote>
+  <pre>Turn on Chemistry?      : T
+Chemistry Timestep [min]: 60</pre>
+  <p align="justify">The chemistry timestep should be double the
+transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a>). Also, the other
+chemistry options do
+not have any effect on the tagged Ox simulation.</p>
+</blockquote>
+
+<p class="size16bi">Deposition Menu:</p>
+
+<blockquote>
+  <pre>Turn on Dry Deposition? : T
+Turn on Wet Deposition? : F</pre>
+  <p align="justify">Dry deposition will be done every on
+chemistry timestep. Wet deposition is not done for the tagged Ox
+simulation (because Ox is not water-soluble).</p>
+</blockquote>
+
+<p class="size16bi">Emissions Menu:</p>
+
+<blockquote>
+  <pre>Turn on emissions?      : T
+Emiss timestep (min)    : 60</pre>
+  <p align="justify">The emission timestep should be double the
+transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a>). The rest of the
+switches in the
+emissions menu will not have any affect on the tagged Ox simulation, so
+you can set them all to <tt>F</tt> (false).</p>
+</blockquote>
+
+<p class="size16bi">Output Menu:</p>
+
+<blockquote> Schedule days for diagnostic output as described
+above in <a href="#6.1.1">Chapter 6.1.1</a>.</blockquote>
+
+<p class="size16bi">Diagnostic Menu:</p>
+
+<blockquote>
+  <p align="justify">Here is a list of some of the more
+important diagnostics that you can save out for a typical GEOS&ndash;Chem
+tagged Ox simulation. (Here we assume a 47-layer GEOS&ndash;5 simulation.)</p>
+  <pre>%%% DIAGNOSTIC MENU %%% :
+Binary punch file name  : ctm.bpch
+Diagnostic Entries ---&gt; : L  Tracers to print out for each diagnostic<br>...<br>ND24: E/W transpt flx   : 47 all
+ND25: N/S transpt flx   : 47 all
+ND26: U/D transpt flx   : 47 all
+...
+ND31: Surface pressure  : 1  all
+...
+ND36: Anthro emissions  : 0  1 4 5 9 10 18 19 21
+...
+ND44: Drydep flx/vel    : 1  all
+ND45: Tracer Conc's     : 47 all
+  ==&gt; ND45 Time range   :    0 24
+...
+ND68: Airmass/Boxheight : 47 all
+ND69: Surface area      : 1  all</pre>
+  <p>For more information about the Diagnostic Menu, refer to <a href="chapter_5.html#5.2.1.15">Chapter 5.2.1.15</a>.</p>
+</blockquote>
+
+<p class="size16bi">Prod &amp; Loss Menu:</p>
+
+<blockquote>
+<p align="justify" class="size16bi">IMPORTANT NOTE! The Total Ox and Tagged Ox simulations will not work unless you switch on the  PROD &amp; LOSS diagnostic!</p>
+<p align="justify">For the Ox simulation, the number of production &amp; loss families is TWICE the number of advected tracers. Therefore, if you are using the Total Ox simulation, you should have 4 prod &amp; loss families:</p>
+<pre>%%% PROD &amp; LOSS MENU %%%:
+Turn on P/L (ND65) diag?: T
+# of levels for ND65    : 38
+Save O3 P/L (ND20)?     : F
+Number of P/L families  : 26
+Prod/Loss Family #1     : POx:      Ox
+Prod/Loss Family #2     : POxUT:    OxStrt
+Prod/Loss Family #3     : LOx:      Ox
+Prod/Loss Family #4     : LOxStrt:  OxStrt</pre>
+
+<p align="justify">If, on the other hand, you are using the full tagged Ox simulation, then you should have 26 prod &amp; loss families:</p>
+  <pre>%%% PROD &amp; LOSS MENU %%%:
+Turn on P/L (ND65) diag?: T
+# of levels for ND65    : 47
+Save O3 P/L (ND20)?     : F
+Number of P/L families  : 26
+Prod/Loss Family #1     : POx:      Ox
+Prod/Loss Family #2     : POxUT:    OxUT
+Prod/Loss Family #3     : POxMT:    OxMt
+Prod/Loss Family #4     : POxROW:   OxROW
+Prod/Loss Family #5     : POxPacBL: OxPacBL
+Prod/Loss Family #6     : POxNABL:  OxNABL
+Prod/Loss Family #7     : POxAtlBL: OxAtlBL
+Prod/Loss Family #8     : POxEurBL: OxEurBL
+Prod/Loss Family #9     : POxAfrBL: OxAfrBL
+Prod/Loss Family #10    : POxAsBL:  OxAsBL
+Prod/Loss Family #11    : POxStrat: OxStrat
+Prod/Loss Family #12    : POxInit:  OxInit
+Prod/Loss Family #13    : POxUSA:   OxUSA
+Prod/Loss Family #14    : LOx:      Ox
+Prod/Loss Family #15    : LOxUT:    OxUT
+Prod/Loss Family #16    : LOxMT:    OxMt
+Prod/Loss Family #17    : LOxROW:   OxROW
+Prod/Loss Family #18    : LOxPacBL: OxPacBL
+Prod/Loss Family #19    : LOxNABL:  OxNABL
+Prod/Loss Family #20    : LOxAtlBL: OxAtlBL
+Prod/Loss Family #21    : LOxEurBL: OxEurBL
+Prod/Loss Family #22    : LOxAfrBL: OxAfrBL
+Prod/Loss Family #23    : LOxAsBL:  OxAsBL
+Prod/Loss Family #24    : LOxStrat: OxStrat
+Prod/Loss Family #25    : LOxInit:  OxInit
+Prod/Loss Family #26    : LOxUSA:   OxUSA</pre>
+  <p align="justify">The order of the production and loss families
+should be the same as for the advected tracers (i.e. total <tt>Ox</tt>
+first, then <tt>OxUT</tt>, then <tt>OxMT</tt>,
+etc).</p>
+  <p align="justify">If you are running  GEOS&ndash;5 or MERRA simulation with 47 levels, then typically the P(Ox) and L(Ox) data will be saved on 38 levels. The number of levels for ND65 also determines the size of the arrays used in the Total Ox and Tagged Ox simulation. This is why we use specify 38 levels in the text above.</p>
+  <p align="justify">For more information about the Prod
+&amp; Loss Menu, refer to <a href="chapter_5.html#5.2.1.22">Chapter
+5.2.1.22</a>. </p>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="6.1.4"></a>
+6.1.4 Checklist for Tagged CO simulation</p>
+
+<p align="justify">Here is a quick checklist of how
+various options should be set in theinput.geos file for a typical
+tagged CO simulation. </p>
+<p align="justify">NOTE: in current practice, the number of tagged
+  CO tracers can vary widely depending on which geographical regions are
+  of interest. The example below describes how to set up the <tt>input.geos</tt>
+  file for the current "standard" 17 tagged CO tracer simulation.</p>
+
+<p class="size16bi">Simulation Menu:</p>
+
+<blockquote>
+  <p align="justify">Specify the starting and ending times
+of the model run, as well as data and run directories, etc.</p>
+</blockquote>
+
+<p class="size16bi">Tracer Menu:</p>
+
+<blockquote>
+  <pre>%%% TRACER MENU %%%     :
+Type of simulation      : 7
+Number of Tracers       : 17
+Tracer Entries -------&gt; : TR#   Name    g/mole Tracer Members; () = emitted
+Tracer #1               : 1     CO      28.0   (CO)
+Tracer #2               : 2     COus    28.0
+Tracer #3               : 3     COeur   28.0
+Tracer #4               : 4     COasia  28.0
+Tracer #5               : 5     COoth   28.0
+Tracer #6               : 6     CObbam  28.0
+Tracer #7               : 7     CObbaf  28.0
+Tracer #8               : 8     CObbas  28.0
+Tracer #9               : 9     CObboc  28.0
+Tracer #10              : 10    CObbeu  28.0
+Tracer #11              : 11    CObbna  28.0
+Tracer #12              : 12    COch4   28.0
+Tracer #13              : 13    CObiof  28.0
+Tracer #14              : 14    COisop  28.0
+Tracer #15              : 15    COmono  28.0
+Tracer #16              : 16    COmeoh  28.0
+Tracer #17              : 17    COacet  28.0</pre>
+  <p align="justify">Note that the first tracer is total
+CO and is just named <tt>CO</tt>. The other tagged CO
+tracers are named accordingly to reflect which geographical region they
+are emitted from. </p>
+</blockquote>
+
+<p class="size16bi">Aerosol Menu:</p>
+
+<blockquote>
+  <p align="justify">The tagged CO simulation does not use
+any of the sulfate, carbon, etc. tracers, so you can set all of the
+switches in the <tt>AEROSOL MENU</tt> section to <tt>F</tt>
+(false).</p>
+</blockquote>
+
+<p class="size16bi">Transport Menu:</p>
+
+<blockquote>
+  <pre>Turn on Transport       : T
+ =&gt; Use Flux Correction?: F
+ =&gt; Fill Negative Values: T
+ =&gt; IORD, JORD, KORD    : 3 3 7
+Transport Timestep [min]: 30
+Use strat O3/NOy BC's   : F</pre>
+  <p align="justify">Set the  transport timestep to 30
+min (<a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>), 15
+min (<a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>),
+or 10 min (<a href="appendix_2.html#A2.5">1&deg; x 1&deg;</a>).
+Also you should not use flux correction since that is more
+computationally expensive. </p>
+  <p align="justify">You should also turn OFF the flux of O3 and
+    NOy from the stratosphere, because  the tagged CO run has no
+    need of these.</p>
+</blockquote>
+
+<p class="size16bi">Convection Menu:</p>
+
+<blockquote>
+  <pre>Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+ =&gt; Use non-local PBL?  : T
+Convect Timestep (min)  : 30</pre>
+  <p align="justify">Set the convection timestep to the same value as the transport timestep. </p>
+</blockquote>
+
+<p class="size16bi">Chemistry Menu:</p>
+
+<blockquote>
+  <pre>Turn on Chemistry?      : T
+Chemistry Timestep [min]: 60</pre>
+  <p align="justify">We recommend that you set the  chemistry timestep to  double the
+transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a> condition). </p>
+  <p align="justify">The other options in the CHEMISTRY MENU do
+    not have any effect on the tagged CO simulation, so you can turn them all off.</p>
+</blockquote>
+
+<p class="size16bi">Deposition Menu:</p>
+
+<blockquote>
+  <pre>Turn on Dry Deposition? : T
+Turn on Wet Deposition? : F</pre>
+  <p align="justify">CO will dry-deposit to the surface, so you must turn dry deposition on to account for this.</p>
+  <p align="justify">You can turn off wet deposition. CO is not water soluble.</p>
+</blockquote>
+
+<p class="size16bi">Emissions Menu:</p>
+
+<blockquote>
+  <pre>Turn on emissions?      : T
+Emiss timestep (min)    : 60</pre>
+  <p align="justify">We recommend that you set the  emission timestep to  double the
+transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a> condition). The rest of the
+switches in the
+emissions menu will not have any affect on the tagged CO simulation, so
+you can set them all to <tt>F</tt> (false).</p>
+</blockquote>
+
+<p class="size16bi">Output Menu:</p>
+
+<blockquote>
+  <p align="justify">Schedule days for diagnostic output
+as described above in <a href="#6.1.1">Chapter 6.1.1</a>.</p>
+</blockquote>
+
+<p class="size16bi">Diagnostic Menu:</p>
+
+<blockquote>
+  <p align="justify">Here is a list of some of the more
+important diagnostics that you can save out for a typical GEOS&ndash;Chem
+tagged CO simulation. (Here we assume a 47-layer GEOS&ndash;5 simulation.)</p>
+  <pre>%%% DIAGNOSTIC MENU %%% :
+Binary punch file name  : ctm.bpch
+Diagnostic Entries ---&gt; : L  Tracers to print out for each diagnostic
+ND24: E/W transpt flx   : 47 all
+ND25: N/S transpt flx   : 47 all
+ND26: U/D transpt flx   : 47 all
+ND28: Biomass emissions : 1  4
+ND29: CO sources        : 1  all
+ND31: Surface pressure  : 48 all
+ND34: Biofuel emissions : 1  4
+ND36: Anthro emissions  : 0  4
+ND45: Tracer Conc's     : 47 all
+  ==&gt; ND45 Time range   :    0 24
+ND68: Airmass/Boxheight : 47 all
+ND69: Surface area      : 1  all</pre>
+  <p>For more information about the Diagnostic Menu, refer to <a href="chapter_5.html#5.2.1.15">Chapter 5.2.1.15</a>.</p>
+</blockquote>
+
+<p class="size16bi">Prod &amp; Loss Menu:</p>
+
+<blockquote>
+  <pre>%%% PROD &amp; LOSS MENU %%%:
+Turn on P/L (ND65) diag?: T
+# of levels for ND65    : 47
+Save O3 P/L (ND20)?     : F<br>Number of P/L families  : 22
+Prod/Loss Family #1     : LCO: CO
+Prod/Loss Family #2     : PCOus: COus
+Prod/Loss Family #3     : PCOeur: COeur
+Prod/Loss Family #4     : PCOasia: COasia
+Prod/Loss Family #5     : PCOoth: COoth
+Prod/Loss Family #6     : PCObbam: CObbam
+Prod/Loss Family #7     : PCObbaf: CObbaf
+Prod/Loss Family #8     : PCObbas: CObbas
+Prod/Loss Family #9     : PCObboc: CObboc
+Prod/Loss Family #10    : PCObbeu: CObbeuP
+Prod/Loss Family #11    : PCObbna: CObbna
+Prod/Loss Family #12    : PCOch4: COch4
+Prod/Loss Family #13    : PCObiof: CObiof
+Prod/Loss Family #14    : PCOisop: COisop
+Prod/Loss Family #15    : PCOmono: COmono
+Prod/Loss Family #16    : PCOmeoh: COmeoh
+Prod/Loss Family #17    : PCOacet: COacet
+Prod/Loss Family #18    : PISOP: ISOP
+Prod/Loss Family #19    : PCH4: CH4
+Prod/Loss Family #20    : PCH3OH: CH3OH
+Prod/Loss Family #21    : PMONO: MONO
+Prod/Loss Family #22    : PACET: ACET</pre>
+  <p align="justify">For the tagged CO simulation, you
+must define the following production and loss families:</p>
+  <ul class="disc">
+    <li>Loss of total CO by OH (LCO)</li>
+    <li>Production of each of the tagged CO tracers</li>
+    <li>Production of CO from Isoprene (PISOP)</li>
+    <li>Production of CO from CH4 (PCH4)</li>
+    <li>Production of CO from methanol (PCH3OH)</li>
+    <li>Production of CO from monoterpenes (PMONO)</li>
+    <li>Production of CO from Acetone (PACET)</li>
+  </ul>
+  <p>For more information about the Prod &amp; Loss menu, see
+  <a href="chapter_5.html#5.2.1.22">Chapter 5.2.1.22</a>.
+  </p>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="6.1.5"></a>
+6.1.5 Checklist for H2&ndash;HD simulation</p>
+
+<p align="justify">Here is a quick checklist of how
+various options should be set in theinput.geos file for a typical H2
+-HD simulation.</p>
+
+<p class="size16bi">Simulation Menu:</p>
+
+<blockquote>
+  <p align="justify">Specify the starting and ending times
+of the model run, as well as data and run directories, etc.</p>
+</blockquote>
+
+<p class="size16bi">Tracer Menu:</p>
+
+<blockquote>
+  <pre>%%% TRACER MENU %%%     :
+Type of simulation      : 13
+Number of Tracers       : 2
+Tracer Entries -------&gt; : TR#  Name  g/mole Tracer Members; () = emitted
+Tracer #1               : 1    H2    2.0
+Tracer #2               : 2    HD    3.0 </pre>
+  <p align="justify">Specify each tracer and its molecular weight here.</p>
+</blockquote>
+
+<p class="size16bi">Aerosol Menu:</p>
+
+<blockquote>
+  <p align="justify">The H2-HD simulation does not use any
+of the sulfate, carbon, etc. tracers, so you can set all of the
+switches in the <tt>AEROSOL MENU</tt> section to <tt>F</tt>
+(false).</p>
+</blockquote>
+
+<p class="size16bi">Transport Menu:</p>
+
+<blockquote>
+  <pre>Turn on Transport       : T
+ =&gt; Use Flux Correction?: F
+ =&gt; Fill Negative Values: T
+ =&gt; IORD, JORD, KORD    : 3 3 7
+Transport Timestep [min]: 30
+Use strat O3/NOy BC's   : T</pre>
+  <p align="justify">Set the transport timestep should be 30
+min (<a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>), 15
+min (<a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>),
+or 10 min (<a href="appendix_2.html#A2.5">1&deg; x 1&deg;</a>).
+Also you should not use flux correction since that is more
+computationally expensive.</p>
+  <p align="justify">You should turn on the switch labeled <tt>Use Strat/NOy BC's</tt>. This will turn on the stratospheric boundary conditions for the  H2-HD simulation.</p>
+</blockquote>
+
+<p class="size16bi">Convection Menu:</p>
+
+<blockquote>
+  <pre>Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+ =&gt; Use non-local PBL?  : F
+Convect Timestep (min)  : 30</pre>
+  <p align="justify">Set the convection timestep to the same value as the  transport timestep. The H2&ndash;HD simulation is not supported by the non-local PBL scheme. </p>
+</blockquote>
+
+<p class="size16bi">Chemistry Menu:</p>
+
+<blockquote>
+  <pre>Turn on Chemistry?      : T
+Chemistry Timestep [min]: 60</pre>
+  <p align="justify">We recommend that you set the chemistry timestep to double the
+transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a> condition).</p>
+  <p align="justify">The other options in the CHEMISTRY MENU do
+    not have any effect on the H2-HD simulation, so you can turn them off.</p>
+</blockquote>
+
+<p class="size16bi">Deposition Menu:</p>
+
+<blockquote>
+  <pre>Turn on Dry Deposition? : T
+Turn on Wet Deposition? : T</pre>
+  <p align="justify">Turn on dry and wet deposition. These operations will be done
+every on chemistry timestep.</p>
+</blockquote>
+
+<p class="size16bi">Emissions Menu:</p>
+
+<blockquote>
+  <pre>Turn on emissions?      : T
+Emiss timestep (min)    : 60</pre>
+  <p align="justify">We recommend that you set the emission timestep to double the
+transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a> condition). </p>
+  <p align="justify">The rest of the
+    switches in the EMISSIONS MENU will not have any affect
+    on the H2-HD simulation, so you can turn them all off.</p>
+</blockquote>
+
+<p class="size16bi">Output Menu:</p>
+
+<blockquote> Schedule days for diagnostic output as described
+above in <a href="#6.1.1">Chapter 6.1.1</a>.</blockquote>
+
+<p class="size16bi">Diagnostic Menu:</p>
+
+<blockquote>
+  <p align="justify">Here is a list of some of the more
+important diagnostics that you can save out for a typical GEOS&ndash;Chem
+H2-HD simulation. (Here we assume a GEOS&ndash;5 47-layer simulation.) </p>
+  <pre>%%% DIAGNOSTIC MENU %%% :
+Binary punch file name  : ctm.bpch
+Diagnostic Entries ---&gt; : L   Tracers to print out for each diagnostic
+ND10: H2 prod/loss/emiss: 47  all
+ND24: E/W transpt flx   : 47  all
+ND25: N/S transpt flx   : 47  all
+ND26: U/D transpt flx   : 47  all
+ND28: Biomass emissions : 1   4
+ND29: CO sources        : 1   all
+ND31: Surface pressure  : 48  all
+ND34: Biofuel emissions : 1   4
+ND36: Anthro emissions  : 0   4
+ND45: Tracer Conc's     : 47  all
+ ==&gt; ND45 Time range    :     0 24
+ND68: Airmass/Boxheight : 47  all
+ND69: Surface area      : 1   all</pre>
+  <p>For more information about the Diagnostic Menu, refer to <a href="chapter_5.html#5.2.1.15">Chapter 5.2.1.15</a>.</p>
+</blockquote>
+
+<p class="size16bi">Prod &amp; Loss Menu:</p>
+
+<blockquote>
+  <pre>%%% PROD &amp; LOSS MENU %%%:
+Turn on P/L (ND65) diag?: F</pre>
+  <p>For the H2-HD simulation, production and loss of H2 and
+Deuterium are archived with the ND10 diagnostic. </p>
+  <p>For more information about the Prod &amp; Loss menu, see
+  <a href="chapter_5.html#5.2.1.22">Chapter 5.2.1.22</a>.
+  </p>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="6.1.6"></a>6.1.6
+Checklist for offline aerosol chemistry simulation</p>
+
+<p align="justify">Here is a quick checklist of how
+various options should be set in theinput.geos file for a offline
+aerosol simulation, including secondary organic aerosols. </p>
+
+<p class="size16bi">Simulation Menu:</p>
+
+<blockquote>
+  <p align="justify">Specify the starting and ending times
+of the model run, as well as data and run directories, etc.</p>
+</blockquote>
+
+<p class="size16bi">Tracer Menu:</p>
+
+<blockquote>
+  <pre>Type of simulation      : 10
+Number of Tracers       : 29
+Tracer Entries -------&gt; : TR#  Name   g/mole Tracer Members; () = emitted
+Tracer #1               : 1    DMS    62.00
+Tracer #2               : 2    SO2    64.00
+Tracer #3               : 3    SO4    96.00
+Tracer #4               : 4    MSA    96.00
+Tracer #5               : 5    NH3    17.00
+Tracer #6               : 6    NH4    18.00
+Tracer #7               : 7    NIT    62.00
+Tracer #8               : 8    H2O2   34.00
+Tracer #9               : 9    BCPI   12.00
+Tracer #10              : 10   OCPI   12.00
+Tracer #11              : 11   BCPO   12.00
+Tracer #12              : 12   OCPO   12.00
+Tracer #13              : 13   ALPH   136.23
+Tracer #14              : 14   LIMO   136.23
+Tracer #15              : 15   ALCO   142.00
+Tracer #16              : 16   SOG1   150.00
+Tracer #17              : 17   SOG2   160.00<br>Tracer #18              : 18   SOG3   220.00
+Tracer #19              : 19   SOG4   130.00
+Tracer #20              : 20   SOA1   150.00
+Tracer #21              : 21   SOA2   160.00
+Tracer #22              : 22   SOA3   220.00
+Tracer #23              : 23   SOA4   130.00
+Tracer #24              : 24   DST1   29.00
+Tracer #25              : 25   DST2   29.00
+Tracer #26              : 26   DST3   29.00<br>Tracer #27              : 27   DST4   29.00
+Tracer #28              : 28   SALA   36.00
+Tracer #29              : 29   SALC   36.00</pre>
+  <p align="justify">The tracers above consist of sulfate,
+carbon, mineral dust, sea salt, and secondary organic aerosols. You do
+not have to use all 23 tracers; you may define any subset of these as
+you wish. You must also set the appropriate flags <tt>T</tt>
+or <tt>F</tt> in the <tt>AEROSOL MENU</tt>
+(described below).</p>
+</blockquote>
+
+<p class="size16bi">Aerosol Menu:</p>
+
+<blockquote>
+  <pre>Online SULFATE AEROSOLS : T
+Online CRYST/AQ AEROSOLS: F
+Online CARBON AEROSOLS  : T
+Online 2dy ORG AEROSOLS : T
+Online DUST AEROSOLS    : T
+ =&gt; Use DEAD emissions? : T
+Online SEASALT AEROSOLS : T
+ =&gt; SALA radius bin [um]: 0.1 0.5
+ =&gt; SALC radius bin [um]: 0.5 4.0
+Online dicarb. chem.    : F</pre>
+</blockquote>
+
+<ul class="disc">
+
+  <li>
+    <p align="justify">If you do NOT wish to include
+sulfate aerosols (<tt>DMS, SO2, SO4, MSA, NH3, NH4, NIT</tt>),
+then set the <tt>ONLINE SULFATE AEROSOLS</tt> line to <tt>F</tt>
+(false). Also remove the lines for these tracers from the TRACER MENU
+above.</p>
+  </li>
+  <li>
+    <p align="justify">At this point, crystallline sulfur
+and aqueous aerosols have not been fully implemented into GEOS&ndash;Chem.
+Therefore for the time being, set <tt>ONLINE CRYST/AQ AEROSOLS</tt>
+to <tt>F</tt> (false).</p>
+  </li>
+  <li>
+    <p align="justify">If you do NOT wish to include
+carbonaceous aerosols (<tt>BCPI, BCPO, OCPI, OCPO</tt>),
+then set the <tt>ONLINE CARBON AEROSOLS</tt> line to <tt>F</tt>
+(false). Also remove the lines for these tracers from the <tt>TRACER
+MENU</tt> above.</p>
+  </li>
+  <li>
+    <p align="justify">If you do NOT wish to include
+secondary organic aerosols (<tt>ALPH, LIMO, ALCO, SOG1, SOG2,
+SOG3, SOA4, SOA1, SOA2, SOA3, SOA4</tt>), then set the <tt>ONLINE 2dy
+ORG AEROSOLS</tt> line to <tt>F</tt> (false). Also
+remove the lines for these tracers from the <tt>TRACER MENU</tt>
+above.</p>
+  </li>
+  <li>
+    <p align="justify">If you do NOT wish to include
+seasalt aerosols (<tt>SALA, SALC</tt>), then set the <tt>ONLINE
+SEASALT AEROSOLS</tt> line to <tt>F</tt> (false).
+Also remove the lines for these tracers from the TRACER MENU above.</p>
+  </li>
+  <li>
+    <p align="justify">If you do not wish to include
+mineral dust aerosols (<tt>DST1, DST2, DST3, DST4</tt>),
+then set the <tt>ONLINE DUST AEROSOLS</tt> line to <tt>F</tt>
+(false). Also remove the lines for these tracers from the <tt>TRACER
+MENU</tt> above.</p>
+  </li>
+  <li>
+    <p align="justify">NOTE: You may define the limits of
+the accumulation and coarse mode sea salt aerosol radius bins (in
+variables <tt>SALA_REDGE_um</tt> and <tt>SALC_REDGE_um</tt>)
+as you wish. However, the recommended values of 0.1&ndash;0.5 and 0.5&ndash;4
+microns, respectively, were chosen in order to conform to the
+cross-sections and other optical settings as defined in the FAST&ndash;J
+input file <span class="courier16">jv_spec.dat</span>. Therefore,
+unless you use the recommended
+values, you will not be able to archive aerosol optical depths for
+these aerosol types with the ND21, ND48, ND49, ND50, and ND51
+diagnostics.</p>
+  </li>
+  <li>
+    <p>NOTE: The dicarbonyl chemistry is only implemented for
+fullchem simulations. So the <tt>ONLINE DICARB. CHEM.</tt>
+line should
+be set to F</p>
+  </li>
+</ul>
+
+<p class="size16bi">Transport Menu:</p>
+
+<blockquote>
+  <pre>Turn on Transport       : T
+ =&gt; Use Flux Correction?: F
+ =&gt; Fill Negative Values: T
+ =&gt; IORD, JORD, KORD    : 3 3 7
+Transport Timestep [min]: 30
+Use strat O3/NOy BC's   : F</pre>
+  <p align="justify">Set the  transport timestep to 30
+min (<a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>), 15
+min (<a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>),
+or 10 min (<a href="appendix_2.html#A2.5">1&deg; x 1&deg;</a>).
+Also you should not use flux correction since that is more
+computationally expensive. </p>
+  <p align="justify">Turn off the flux of O3 and
+    NOy from the stratosphere, since the offline aerosol simulation does
+    not use these tracers.</p>
+</blockquote>
+
+<p class="size16bi">Convection Menu:</p>
+
+<blockquote>
+  <pre>Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+ =&gt; Use non-local PBL?  : T
+Convect Timestep (min)  : 30</pre>
+  <p align="justify">Set the  convection timestep to the same value as the transport timestep. </p>
+</blockquote>
+
+<p class="size16bi">Chemistry Menu:</p>
+
+<blockquote>
+  <pre>Turn on Chemistry?      : T
+Chemistry Timestep [min]: 60</pre>
+  <p align="justify">We recommend that you set the chemistry timestep to  double the
+transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a> condition). </p>
+  <p align="justify">The other chemistry options do
+    not have any effect on the offline aerosols chemistry simulation.</p>
+</blockquote>
+
+<p class="size16bi">Deposition Menu:</p>
+
+<blockquote>
+  <pre>Turn on Dry Deposition? : T
+Turn on Wet Deposition? : T</pre>
+  <p align="justify">Turn on both dry and wet deposition. Both of these operations will be done on every chemistry timestep.</p>
+</blockquote>
+
+<p class="size16bi">Emissions Menu:</p>
+
+<blockquote>
+  <pre>%%% EMISSIONS MENU %%%  :
+Turn on emissions?      : T
+Emiss timestep (min)    : 60 
+Include anthro emiss?   : T
+ => Scale 1985 to year  : -1
+ => Use EMEP emissions? : T
+ => Use BRAVO emissions?: T
+ => Use EDGAR emissions?: T
+ => Use STREETS emiss?  : T
+ => Use CAC emissions?  : T
+ => Use NEI2005 emiss?  : T
+Use EPA/NEI99 (anth+bf)?: F
+    w/ ICARTT modif.?   : F
+    w/ VISTAS NOx emis? : F
+Include biofuel emiss?  : T
+Include biogenic emiss? : T
+ => Use MEGAN inventory?: T
+ => Use PCEEA model?    : F
+ => Use MEGAN for MONO? : T
+ => Isoprene scaling    : 1
+Include biomass emiss?  : T
+ => Seasonal biomass?   : T
+ => Scaled to TOMSAI?   : F
+ => Use GFED2 biomass?  :---
+    => monthly GFED2?   : T 
+    => 8-day GFED2?     : F 
+    => 3-hr GFED2?      : F
+    => synoptic GFED2?  : F
+Individual NOx sources  :---
+ => Use aircraft NOx?   : T
+ => Use lightning NOx?  : T
+    => Spat-seas constr?: T
+ => Use soil NOx        : T
+ => Use fertilizer NOx  : T
+NOx scaling             : 1
+Use ship SO2 emissions? :---
+ => global EDGAR ?      : T
+ => global ICOADS ?     : T
+ => EMEP over EUROPE ?  : T
+ => ship SO2 Corbett ?  : F
+ => ship SO2 Arctas ?   : T
+Use COOKE BC/OC (N. Am.): F   
+Use AVHRR-derived LAI?  : F
+Use MODIS-derived LAI?  : T</pre>
+  <p align="justify">We recommend that you set the emissions timestep to double the
+chemistry timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting condition</a>). </p>
+  <p align="justify">You will typically
+    want to include
+    anthropogenic, biomass, biogenic, and biofuel emissions for the aerosol
+    tracers. You can turn off the sources of NOx emissions; these will have
+    no effect on the aerosol simulation. You may also include SO2 emissions
+    from ship exhaust. </p>
+</blockquote>
+
+<p class="size16bi">Output Menu:</p>
+
+<blockquote>
+  <p align="justify">Schedule days for diagnostic output
+as described above in <a href="#6.1.1">Chapter 6.1.1</a>.</p>
+</blockquote>
+
+<p class="size16bi">Diagnostic Menu:</p>
+
+<blockquote> Here is a list of some of the more important
+diagnostics that you can save out for a typical GEOS&ndash;Chem offline
+aerosol chemistry simulation. (Here we assume a GEOS&ndash;5 47-layer
+simulation.)
+  <pre>%%% DIAGNOSTIC MENU %%% :
+Binary punch file name  : ctm.bpch
+Diagnostic Entries ---&gt; : L   Tracers to print out for each diagnostic
+...
+ND05: Sulfate prod/loss : 47  all
+ND06: Dust aer source   : 1   all
+ND07: Carbon aer source : 47  all
+ND08: Seasalt aer source: 1   all
+...
+ND13: Sulfur sources    : 0   all
+...
+ND21: Optical depths    : 47  all
+ND22: J-Values          : 47  all
+      -- JV time range  :     11  13
+ND24: E/W transpt flx   : 47  all
+ND25: N/S transpt flx   : 47  all
+ND26: U/D transpt flx   : 47  all
+...
+ND28: Biomass emissions : 0   1 4 5 9 10 11 18 19 20 21 26 30 34 35
+...
+ND31: Surface pressure  : 48  all
+...
+ND34: Biofuel emissions : 0   1 4 5 9 10 11 18 19 20 21
+...
+ND36: Anthro emissions  : 0   1 4 5 9 10 18 19 21
+...
+ND38: Cld Conv scav loss: 47  all
+ND39: Wetdep scav loss  : 47  all
+...
+ND44: Drydep flx/vel    : 1   all
+ND45: Tracer Conc's     : 47  all
+  ==&gt; ND45 Time range   :     0 24
+ND46: Biogenic emissions: 0   all
+...
+ND68: Airmass/Boxheight : 47  all
+ND69: Surface area      : 1   all</pre>
+  <p align="justify">For more information about the
+Diagnostic Menu, refer to <a href="chapter_5.html#5.2.1.15">Chapter
+5.2.1.15</a>.</p>
+</blockquote>
+
+<p class="size16bi">Other files:</p>
+<blockquote>
+<p>In order to use the aerosol and dust optical depth diagnostics
+(ND21, ND48, ND49, ND50, ND51), then GEOS&ndash;Chem must read in the
+chemistry mechanism and photolysis files. </p>
+
+<ul class="disc">
+  <li>
+    <p align="justify">Make sure you are using the proper <tt>globchem.dat</tt>
+and <tt>chemga.dat</tt> files. For more information, refer
+to <a href="chapter_5.html#5.3.2">Chapter 5.3.2</a>
+and <a href="chapter_5.html#5.3.3">Chapter 5.3.3</a>.</p>
+  </li>
+  <li>
+    <p align="justify">Make sure that you have the proper <tt>ratj.d</tt>
+file. For more information, refer to <a href="chapter_5.html#5.4.1">Chapter
+5.4.1</a>.</p>
+  </li>
+</ul>
+</blockquote>
+
+<p class="size16bi">Creating your own oxidant files for an
+offline aerosol simulation</p>
+
+<blockquote>
+<p class="size16">Thanks to Eric Sofen (U. Washington) for
+compiling this information! </p>
+
+<blockquote>
+  <p class="size14i" align="justify">NOTE: this
+assumes a GEOS4 30-level simulation. </p>
+  <p align="justify">The
+JH2O2, PH2O2, O3, and NO3 bpch files must extend only up to the
+tropopause. When you extract the data from the bpch file that is
+produced by a full chemistry simulation, these files will be either 22
+or 30 vertical levels and the tropopause extends up to 17 levels. Use
+the routine <tt>/gamap2/regridding/trop_cut.pro</tt> to
+remove these upper levels. </p>
+  <p align="justify">THNO3 is a full 30 levels, and
+consists of HNO3+NIT. </p>
+  <p align="justify">OH
+needs to be 55 levels. 22 levels will come from the full-chem
+simulation, then this gets paired with the stratospheric data from the
+current OH file in the data directories (e.g. <tt>.../data/GEOS_4x5/stratOH_200203/stratOH.geos4.4x5</tt>).
+This is done using IDL routine <tt>gamap2/regridding/merge_o3.pro</tt>.
+Bob said of this IDL code, "NOTE, this file is somewhat hardwired, be
+prepared to dive in &amp; tinker w/ it accordingly." </p>
+  <p align="justify">You'll
+also need to modify the GEOS-Chem code so that it looks for your new
+oxidant files (or, I suppose, overwrite the existing ones). This
+requires making changes in <tt>sulfate_mod.f</tt>, <tt>global_no3_mod.f</tt>,
+and <tt>global_hno3_mod.f</tt>. The easiest way to change
+where the model looks for OH is in the <tt>input.geos</tt>
+file.</p>
+</blockquote>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="6.1.7"></a>6.1.7
+Checklist for Total Hg and Tagged Hg simulations</p>
+<p class="size16bi">Simulation Menu:</p>
+<blockquote><p align="justify">Specify the starting and ending times of the model run, as well as data and run directories, etc.</p></blockquote>
+<p class="size16bi">Tracer Menu:</p>
+<blockquote>
+  <pre>%%% TRACER MENU %%%     : 
+Type of simulation      : 11
+Number of Tracers       : 21 
+Tracer Entries -------> : TR# Name       g/mole Tracer Members; () = emitted
+Tracer #1               : 1   Hg0        201.0
+Tracer #2               : 2   Hg2        201.0
+Tracer #3               : 3   HgP        201.0
+Tracer #4               : 4   Hg0_an_na  201.0
+Tracer #5               : 5   Hg0_an_eu  201.0
+Tracer #6               : 6   Hg0_an_as  201.0
+Tracer #7               : 7   Hg0_an_rw  201.0
+Tracer #8               : 8   Hg0_oc     201.0
+Tracer #9               : 9   Hg0_ln     201.0
+Tracer #10              : 10  Hg0_nt     201.0
+Tracer #11              : 11  Hg2_an_na  201.0
+Tracer #12              : 12  Hg2_an_eu  201.0
+Tracer #13              : 13  Hg2_an_as  201.0
+Tracer #14              : 14  Hg2_an_rw  201.0
+Tracer #15              : 15  Hg2_oc     201.0
+Tracer #16              : 16  Hg2_ln     201.0
+Tracer #17              : 17  Hg2_nt     201.0
+Tracer #18              : 18  HgP_an_na  201.0
+Tracer #19              : 19  HgP_an_eu  201.0
+Tracer #20              : 20  HgP_an_as  201.0
+Tracer #21              : 21  HgP_an_rw  201.0</pre>
+  <p align="justify">Tracers 1-3 are global totals of <tt>Hg0, Hg2, HgP.</tt></p>
+  <p align="justify">Tracers 4-21   are geographically tagged tracers of <tt>Hg0, Hg2, HgP</tt> as These are named accordingly to reflect which geographical region they are emitted from.  </p>
+  <p align="justify">If you wish to set up a simulation with only the total Hg tracers, then:</p>
+  <ol>
+    <li>List  Tracers 1-3 in the <tt>input.geos</tt> file</li>
+    <li>Omit Tracers 4-21 from the <tt>input.geos</tt> file</li>
+    <li>You also have the option to run with the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Global_Terrestrial_Mercury_Model" target="_new">Global Terrestrial Mercury Model</a> option (if you have compiled GEOS&ndash;Chem with the GTMM_Hg <a href="chapter_3.html#3.4">C&ndash;preprocessor switch</a>). </li>
+    <li>For more information about the Global model, please refer to this <a href="files/GTMM_manual.pdf" target="_new">document</a>.</li>
+  </ol>
+  <p align="justify">If you wish to set up a simulation with the tagged tracers, then </p>
+  <ol>
+    <li>Specify Tracers 1-21 in the <tt>input.geos</tt> file</li>
+    <li>NOTE: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Global_Terrestrial_Mercury_Model" target="_new">The Global Terrestrial Mercury Model</a> is not enabled for tagged simulation. GTMM can be used when running the total tracers only.</li>
+  </ol>
+</blockquote>
+<p class="size16bi">Aerosol Menu:</p>
+<blockquote>
+  <p align="justify">The tagged mercury simulation does not use any of the sulfate, carbon, etc. tracers, so you can set all of the switches in the <tt>AEROSOL MENU</tt> section to <tt>F</tt> (false).</p>
+</blockquote>
+<p class="size16bi">Transport Menu:</p>
+<blockquote>
+  <pre>Turn on Transport       : T
+ => Use Flux Correction?: F
+ => Fill Negative Values: T
+ => IORD, JORD, KORD    : 3 3 7
+Transport Timestep [min]: 30
+Use strat O3/NOy BC's   : F</pre>
+  <p align="justify">Set the transport timestep to 30
+    min (<a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>), 15
+    min (<a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>),
+    or 10 min (<a href="appendix_2.html#A2.5">1&deg; x 1&deg;</a>).
+    Also you should not use flux correction since that is more
+    computationally expensive. </p>
+  <p align="justify">You should also turn on the flux of O3 and
+    NOy from the stratosphere, because the mercury simulation does not have need of these.</p>
+</blockquote>
+<p class="size16bi">Convection Menu:</p>
+<blockquote>
+  <pre>Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+ => Use non-local PBL?  : F
+Convect Timestep (min)  : 30</pre>
+  <p align="justify">Set the convection timestep to the same value as the transport timestep.</p>
+</blockquote>
+<p class="size16bi">Chemistry Menu:</p>
+<blockquote>
+  <pre>Turn on Chemistry?      : T
+Chemistry Timestep [min]: 60</pre>
+  <p align="justify">We recommend that you set the  chemistry timestep to be double the transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a> condition). </p>
+</blockquote>
+<p class="size16bi" align="justify">Mercury Menu: </p>
+<blockquote>
+  <pre align="justify">%%% MERCURY MENU %%%    :
+Use anthro Hg emiss for : 2000
+Error check tag/tot Hg? : F
+Use dynamic ocean Hg?   : T
+Preindustrial sim?      : F
+Ocean Hg restart file   : ocean.totHg.YYYYMMDDhh
+Use GTMM soil model?    : F
+GTMM Hg restart file    : GTM.totHg.YYYYMMDDhh</pre>
+  <p align="justify">Whenever you use the dynamic ocean, you need to specify an ocean restart file. </p>
+  <p align="justify">For more information about the GTMM model, please refer to this <a href="files/GTMM_manual.pdf" target="_new">document</a>.</p>
+</blockquote>
+<p class="size16bi">Deposition Menu:</p>
+<blockquote>
+  <pre>Turn on Dry Deposition? : T
+Turn on Wet Deposition? : T</pre>
+  <p align="justify">Both dry and wet deposition will be done every on chemistry timestep. </p>
+</blockquote>
+<p class="size16bi">Emissions Menu:</p>
+<blockquote>
+  <pre>Turn on emissions?      : T
+Emiss timestep (min)    : 60</pre>
+  <p align="justify">We recommend that you set the  emissions timestep to  double the transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a> condition). </p>
+  <p align="justify">The rest of the
+    switches in the emissions menu will not have any affect on the tagged mercury simulation, so you can set them all to <tt>F</tt> (false).</p>
+</blockquote>
+<p class="size16bi">Output Menu:</p>
+<blockquote>
+  <p align="justify">Schedule days for diagnostic output as described above in <a href="chapter_6.html#6.1.1">Chapter 6.1.1</a>.</p>
+</blockquote>
+<p class="size16bi">Diagnostic Menu:</p>
+<blockquote>
+  <p align="justify">Here is a list of some of the more important diagnostics that you can save out for a typical GEOS&ndash;Chem tagged mercury simulation. </p>
+  <pre>%%% DIAGNOSTIC MENU %%% : 
+Binary punch file name  : ctm.bpch
+Diagnostic Entries ---&gt; : L  Tracers to print out for each diagnostic
+...
+ND03: Hg emissions, P/L : 47  all
+...
+ND24: E/W transpt flx   : 47  all
+ND25: N/S transpt flx   : 47  all
+ND26: U/D transpt flx   : 47  all
+...
+ND31: Surface pressure  : 48  all
+...
+ND38: Cld Conv scav loss: 47  all
+ND39: Wetdep scav loss  : 47  all
+...
+ND44: Drydep flx/vel    : 1   all
+ND45: Tracer Conc's     : 47  all
+ ==> ND45 Time range    :     0 24
+ ...
+ND68: Airmass/Boxheight : 47  all
+ND69: Surface area      : 1   all</pre>
+  <p align="justify">For more information about the Diagnostic Menu, refer to <a href="chapter_5.html#5.2.1.15">Chapter 5.2.1.13</a>.</p>
+</blockquote>
+<p class="size16bi">Prod &amp; Loss Menu:</p>
+<blockquote>
+  <pre>%%% PROD & LOSS MENU %%%:
+Turn on P/L (ND65) diag?: F
+# of levels for ND65    : 30
+Save O3 P/L (ND20)?     : F
+Number of P/L families  : 0</pre>
+  <p align="justify">Production &amp; loss of tagged mercury tracers are handled in the ND03 diagnostic, so you can turn off all the switches in the Prod &amp; Loss Menu as shown above.</p>
+  <p align="justify">For more information about the Prod &amp; Loss Menu, refer to <a href="chapter_5.html#5.2.1.22">Chapter 5.2.1.19</a>.</p>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="6.1.8"></a>6.1.8 Checklist for a CH4 offline simulation</p>
+<p align="justify">Here is a quick checklist of how
+various options should be set in theinput.geos file for a typical CH4 simulation. </p>
+
+
+<p class="size16bi">Simulation Menu:</p>
+
+
+<blockquote>
+  <p>Specify the start and end times of the model run, as
+well as data and run directories, etc.</p>
+</blockquote>
+
+
+<p class="size16bi">Tracer Menu:</p>
+
+
+<blockquote>
+  <pre>%%% TRACER MENU %%%     :
+Type of simulation      : 9
+Number of Tracers       : 12
+Tracer Entries -------&gt; : TR# Name       g/mole Tracer Members; () = emitted
+Tracer #1               : 1   CH4_tot     16.0   CH4
+Tracer #2               : 2   CH4_ga      16.0   CH4
+Tracer #3               : 3   CH4_co      16.0   CH4
+Tracer #4               : 4   CH4_ef      16.0   CH4
+Tracer #5               : 5   CH4_wa      16.0   CH4
+Tracer #6               : 6   CH4_bf      16.0   CH4
+Tracer #7               : 7   CH4_ri      16.0   CH4
+Tracer #8               : 8   CH4_oa      16.0   CH4
+Tracer #9               : 9   CH4_bb      16.0   CH4
+Tracer #10              : 10  CH4_wl      16.0   CH4
+Tracer #11              : 11  CH4_sa      16.0   CH4
+Tracer #12              : 12  CH4_on      16.0   CH4</pre>
+  <p align="justify">Tracers 1 is global total of <tt>CH4.</tt> Tracers 2-12 are tagged tracers for each type of emission and are named accordingly.</p>
+  <p align="justify">It is also possible to run a
+simulation with just the global total tracer <tt>CH4_tot.</tt></p>
+</blockquote>
+
+
+<p class="size16bi">Aerosol Menu:</p>
+
+
+<blockquote>
+  <p align="justify">The CH4 simulation does
+not use any of the sulfate, carbon, etc. tracers, so you can set all of
+the switches in the <tt>AEROSOL MENU</tt> section to <tt>F</tt>
+(false).</p>
+</blockquote>
+
+
+<p class="size16bi">Transport Menu:</p>
+
+
+<blockquote>
+  <pre>Turn on Transport       : T
+ =&gt; Use Flux Correction?: F
+ =&gt; Fill Negative Values: T
+ =&gt; IORD, JORD, KORD    : 3 3 7
+Transport Timestep [min]: 30
+Use strat O3/NOy BC's   : F</pre>
+  <p align="justify">Set the timestep should be 30
+min (<a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>), 15
+min (<a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>),
+or 10 min (<a href="appendix_2.html#A2.5">1&deg; x 1&deg;</a>).Also you should not select the flux correction option since this option is more
+  computationally expensive. </p>
+  <p align="justify">The stratospheric flux
+    boundary conditions can be turned off, because the CH4 simulation has no need of these.</p>
+</blockquote>
+
+
+<p class="size16bi">Convection Menu:</p>
+
+
+<blockquote>
+  <pre>Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+ =&gt; Use non-local PBL?  : F
+Convect Timestep (min)  : 30</pre>
+The convection timestep should be the same as the transport timestep.</blockquote>
+
+
+<p class="size16bi">Chemistry Menu:</p>
+
+
+<blockquote>
+  <pre>Turn on Chemistry?      : T
+Chemistry Timestep [min]: 1440</pre>
+  <p align="justify">The
+chemistry timestep for methane must be 1440 min (24 hours). The first
+chemistry calculation occurs at the beginning of the second day of the
+run. Other chemistry options have no effect on the methane simulation.</p>
+  <p align="justify">It is recommended to turn KPP off (F) to save memory.</p>
+</blockquote>
+
+
+<p class="size16bi" align="justify">Methane Menu: </p>
+
+
+<blockquote>
+  <pre align="justify">Compute CH4 budget?     : F
+Use Gas &amp; Oil emis?     : T
+Use Coal Mine emis?     : T
+Use Livestock emis?     : T
+Use Waste emis?         : T
+Use Biofuel emis?       : T
+Use Rice emis?          : T
+Use Ot. Anthro emis?    : T
+Use Biomass emis?       : T
+Use Wetlands emis?      : T
+Use Soil Absorption?    : T
+Use Ot. Natural emis?   : T</pre>
+  <p align="justify">This
+menu allows you to turn on/off the individual emission categories for
+CH4. The CH4 budget computation is thought to be unreliable. If you
+want to use it anyway, it only works for full month simulations. I.e.
+you have to start the simulation on the first day of a month and end on
+a last day of a month.</p>
+</blockquote>
+
+
+<p class="size16bi">Deposition Menu:</p>
+
+
+<blockquote>
+  <pre>Turn on Dry Deposition? : F
+Turn on Wet Deposition? : F</pre>
+  <p align="justify">Methane is not subject to deposition, so you can turn these off.</p>
+</blockquote>
+
+
+<p class="size16bi">Emissions Menu:</p>
+
+
+<blockquote>
+  <pre>Turn on emissions?      : T
+Emiss timestep (min)    : 60</pre>
+  <p align="justify">We recommend that you set the  emissions timestep to double the transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a> condition). </p>
+  <p align="justify">The rest of the switches in the emissions menu will not have any effect on the tagged methane simulation, so you can set them all to <tt>F</tt> (false).</p>
+</blockquote>
+
+
+<p class="size16bi">Output Menu:</p>
+
+
+<blockquote>
+  <p align="justify">Schedule days for diagnostic output
+as described above in <a href="chapter_6.html#6.1.1">Chapter 6.1.1</a>.</p>
+</blockquote>
+
+
+<p class="size16bi">Diagnostic Menu:</p>
+
+
+<blockquote>
+  <p align="justify">Here is a list of more
+important diagnostics that you can save to output for a typical GEOS&ndash;Chem
+methane simulation. </p>
+  <pre>%%% DIAGNOSTIC MENU %%% :
+Binary punch file name  : ctm.bpch
+Diagnostic Entries ---&gt; : L  Tracers to print out for each diagnostic
+...
+ND19: CH4 loss          : 47  all
+...
+ND24: E/W transpt flx   : 47  all
+ND25: N/S transpt flx   : 47  all
+ND26: U/D transpt flx   : 47  all
+...
+ND31: Surface pressure  : 48  all
+...
+ND45: Tracer Conc's     : 47  all
+ ==&gt; ND45 Time range    :     0 24
+...
+ND58: CH4 Emissions     : 1   all
+ND60: Wetland Fraction  : 1   all
+ND68: Airmass/Boxheight : 47  all
+ND69: Surface area      : 1   all</pre>
+  <p align="justify">For more information about the
+Diagnostic Menu, refer to <a href="chapter_5.html#5.2.1.15">Chapter
+5.2.1.13</a>.</p>
+</blockquote>
+
+
+<p class="size16bi">Prod &amp; Loss Menu:</p>
+<blockquote>
+  <pre>%%% PROD &amp; LOSS MENU %%%:
+Turn on P/L (ND65) diag?: F
+# of levels for ND65    : 30
+Save O3 P/L (ND20)?     : F
+Number of P/L families  : 0</pre>
+  <p align="justify">Loss of methane tracers are handled in the ND19 diagnostic, so you can turn off
+all the switches in the Prod &amp; Loss Menu as shown above.</p>
+  <p align="justify">For more information about the Prod
+&amp; Loss Menu, refer to <a href="chapter_5.html#5.2.1.22">Chapter
+5.2.1.22</a>.</p></blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="6.1.9"></a>6.1.9 Checklist for Total CO2 and Tagged CO2 simulations</p>
+<p align="justify">Here is a quick checklist of how various options should be set in the <tt>input.geos</tt> file for a typical CO<sub>2</sub> simulation.</p>
+<p class="size16bi">Simulation Menu:</p>
+<blockquote>
+  <p align="justify">Specify the starting and ending times of the model run, as well as data and run directories, etc.</p>
+</blockquote>
+<p class="size16bi">Tracer Menu:</p>
+<blockquote>
+  <pre>%%% TRACER MENU %%%     :
+Type of simulation      : 12
+Number of Tracers       : 1 
+Tracer Entries -------  : TR#  Name  g/mole Tracer Members; () = emitted
+Tracer #1               : 1    CO2    44.0</pre>
+  <p align="justify">More source tracers can be used if desired for example in the alternate selection, where emission from 1) Total CO<sub>2</sub>;
+    2) Fossil
+    Fuel (land) and cement manufacture, 3) Ocean exchange, 4) Balanced Biosphere; 5) Biomass Burning Emissions; 6) Biofuel Burning Emissions; 7) Net Terrestrial Exchange; 8) Ship Emissions; 9) Aviation Emissions; 10) Chemical Source; 11) Chemical Source surface correction. NOTE: If the restart file and input.geos do not have the same number of tracers, the run will crash before completion.</p>
+  <pre>Type of simulation      : 12
+Number of Tracers       : 10
+Tracer Entries -------> : TR#  Name  g/mole Tracer Members; () = emitted
+Tracer #1               : 1    CO2    44.0
+Tracer #2               : 2    CO2    44.0
+Tracer #3               : 3    CO2    44.0
+Tracer #4               : 4    CO2    44.0
+Tracer #5               : 5    CO2    44.0
+Tracer #6               : 6    CO2    44.0
+Tracer #7               : 7    CO2    44.0
+Tracer #8               : 8    CO2    44.0
+Tracer #9               : 9    CO2    44.0
+Tracer #10              : 10   CO2    44.0
+Tracer #11              : 11   CO2    44.0</pre>
+  <p align="justify">Configuration  
+    for a full tagged-CO<sub>2</sub> run is shown below (appropriate
+    selections at the end of the CO<sub>2</sub> menu are also required).
+    Tracers 1-11 are as above. Tracer 12 is the background including only
+    Fossil Fuel CO<sub>2</sub>. Tracers 13-52 are for 40 geographical
+    regions, tracer 53 is shipping and tracer 54 is aviation. Remember,
+    if the restart file and <tt>input.geos</tt> do not have the same number of
+    tracers, the run will crash before completion.</p>
+  <pre>Type of simulation      : 12
+Number of Tracers       : 52
+Tracer Entries -------> : TR#  Name  g/mole Tracer Members; () = emitted
+Tracer #1               : 1    CO2    44.0 
+Tracer #2               : 2    CO2    44.0
+..
+Tracer #53              : 53   CO2    44.0
+Tracer #54              : 54   CO2    44.0</pre>
+</blockquote>
+<p class="size16bi">Transport Menu:</p>
+<blockquote>
+  <pre>Turn on Transport       : T
+ => Use Flux Correction?: F
+ => Fill Negative Values: T
+ => IORD, JORD, KORD    : 3 3 7
+Transport Timestep [min]: 15
+Use strat O3/NOy BC's   : F</pre>
+  <p align="justify">Se the transport
+    timestep to 30 min (<u><a href="appendix_2.html#A2.2">4&deg;
+      x 5&deg;</a></u>), 15 min (<u><a href="appendix_2.html#A2.3">2&deg;
+        x 2.5&deg;</a></u>), or 10 min (<u><a href="appendix_2.html#A2.5">1&deg;
+          x 1</a></u>&deg;). Also you should not use flux correction since
+    that is more computationally expensive.</p>
+</blockquote>
+<p class="size16bi">Convection Menu:</p>
+<blockquote>
+  <pre>Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+Convect Timestep (min)  : 15</pre>
+  <p align="justify">Set the  convection timestep to the same value as the transport timestep.</p>
+</blockquote>
+<p class="size16bi">Chemistry Menu:</p>
+<blockquote>
+  <pre>Turn on Chemistry?      : T
+Chemistry Timestep [min]: 30</pre>
+  <p align="justify">We recommend that you set the  emissions timestep to double the transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang operator splitting</a> condition). </p>
+  <p align="justify">The rest of the switches in the emissions menu will not have any effect on the tagged methane simulation, so you can set them all to <tt>F</tt> (false).</p>
+</blockquote>
+<p class="size16bi">Emissions Menu:</p>
+<blockquote>
+  <pre>Turn on emissions?      : T
+Emiss timestep (min)    : 30</pre>
+  <p align="justify">We recommend that you set the  emission timestep to  double the transport timestep (this is the <u><a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_new">Strang 
+    operator splitting</a></u> condition). </p>
+  <p align="justify">Only the GFED switches in the EMISSIONS MENU can affect the
+  simulation. They must be consistent with the choice made in the <tt>CO2 MENU</tt>, for the sake of redundancy.  The rest of the switches in the emissions menu will not have any affect on the CO<sub>2</sub> simulation, so you can set them all to F (false).</p>
+</blockquote>
+<p class="size16bi">CO<sub>2</sub> Menu:</p>
+<blockquote>
+  <pre>%%% CO2 SIM MENU %%%    :
+Fossil Fuel Emissions   :---
+  Generic FF emissions  : F
+  Annual FF emissions   : F
+  Monthly FF emissions  : T
+3-D Chemical Oxid Source: F
+Biomass Burn emissions  :---
+  Seasonal only biomass : F
+  GFED2 monthly biomass : F
+  GFED2 8-day biomass   : T
+Biofuel emissions       : T
+Terrestrial Exchange    :---
+  CASA daily avg NEP    : F
+  CASA diurnal cycle NEP: T
+  Net Ter Ex original   : F
+  Net Ter Ex climatology: T
+Ocean Exchange          :---
+  Takahashi 1997        : F
+  Takahashi 2009 annual : F
+  Takahashi 2009 monthly: T
+Ship & Plane Emissions  :---
+  EDGAR ship emissions  : F
+  ICOADS ship emissions : T
+  Aviation emissions 3-D: T
+Tagged CO2 runs         :---
+  Save Fossil CO2 Bkgrd : F
+  Tag Bios/Ocean CO2 reg: F
+  Tag Land FF CO2 reg   : F
+  Tag Global Ship CO2   : F
+  Tag Global Plane CO2  : F</pre>
+  <p align="justify">The above CO<sub>2</sub> menu configuration is the default for a single tracer run. Other options like the chemical source can be selected by the user. </p>
+  <p align="justify">The tagged tracer options have not been selected. A standard tagged tracer configuration is available in the code for 2x2.5 but this can be customized by the user or set up for other resolutions by modification of the code and the Regions_land.dat and Regions_ocean.dat files, which reside in the run directory.</p>
+</blockquote>
+<p class="size16bi">Output Menu:</p>
+<blockquote>
+  <p  align="justify">Schedule days for diagnostic output as described above in <a href="chapter_6.html#6.1.1">Chapter 6.1.1</a>.</p>
+</blockquote>
+<p class="size16bi">Diagnostic Menu:</p>
+<blockquote>
+  <p align="justify">The only diagnostic here which is unique to the CO<sub>2</sub> simulation is ND04, the CO<sub>2</sub>. Sources 1-7, and 10 are 2-D (surface level) and sources 8-10 are 3-D with all model levels.</p>
+  <pre>%%% DIAGNOSTIC MENU %%% :<br>ND04: CO2 Sources       :  1   1 2 3 4 5 6 7 8 9 10</pre>
+  <p align="justify">For more information about the Diagnostic Menu, refer to <a href="chapter_5.html#5.2.1.15">Chapter
+    5.2.1.15</a>.</p>
+</blockquote>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="6.2"></a>6.2 Running a Regular GEOS&ndash;Chem Job </p>
+
+<p align="justify"> The following section describes how to run the GEOS&ndash;Chem model for either the LSF, PBS or SGE batch queue systems. However, you may want to use the <a href="../testrun/index.html" target="_new">TESTRUN</a> package, which will automatically compile and run GEOS&ndash;Chem code via your local batch queue system.</p>
+
+<p align="justify">Also, it is STRONGLY RECOMMENDED to
+test your simulation with a short (1-day or 2-day) run before
+submitting a very long-term GEOS&ndash;Chem simulation. A shorter run will
+make it easier to detect errors or problems without tying up precious
+computer time.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="6.2.1"></a>6.2.1
+Interactive jobs (no queue system) </p>
+
+<p align="justify">The most basic way to run geos is to
+type the executable name at the shell prompt (do not do it, keep
+reading):</p>
+
+<blockquote>
+  <pre>geos</pre>
+</blockquote>
+
+<p align="justify">However default outputs are printed to
+the screen! So you will need to redirect outputs to files. For example,
+a typical Linux (bash) redirection would be: </p>
+
+<blockquote>
+  <pre>geos 1&gt;gc.log 2&gt;gc.error &amp;</pre>
+</blockquote>
+
+<p align="justify">The <tt>&amp;</tt> is
+for the code to run in the background. The 1 (standard output) and 2
+(error output) can be combined in the same file:</p>
+
+<blockquote>
+  <pre>geos 1&gt;gc.log 2&gt;&amp;1</pre>
+</blockquote>
+
+<p align="justify">or</p>
+
+<blockquote>
+  <pre>geos &gt;&amp; gc.log</pre>
+</blockquote>
+
+<p align="justify">Double check the syntax, it depends on
+your shell (see<a href="http://www.freebsdwiki.net/index.php/Redirection#Redirection_in_sh_compared_to_tcsh" target="_new"> here </a>for a more detailed
+discussion about redirection). This is basically it. You will have a
+log file that will help understanding what went wrong. </p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="6.2.2"></a>6.2.2
+LSF Batch Queue System</p>
+
+<p align="justify">If your platform uses the LSF batch
+queue system, you can use the following commands to submit, delete, and
+check the status of GEOS&ndash;Chem jobs: </p>
+
+<blockquote>
+  <pre>bman              # prints LSF man pages to stdout <br>bsub or submit    # submit a batch jobs to a queue <br>bkill             # kill batch jobs <br>bjobs             # Lists all jobs currently running <br>bqueues           # Lists available batch queues <br>bhist             # shows history list of submitted jobs <br>lsload            # shows % of each machine's resources that <br>                  #  is currently utilized </pre>
+</blockquote>
+
+<p align="justify">Perhaps the best way to submit batch
+jobs to the queues is to write a simple job script, such as:</p>
+
+<blockquote>
+  <pre>#!/bin/tcsh -f # Script definition line<br>cd /scratch/bmy/run.v8&ndash;03&ndash;01 # cd to your run dir<br>rm -f log # clear pre-existing log files <br>time geos &gt; log # time job; pipe output to log file <br>exit(0) # exit normally</pre>
+</blockquote>
+
+<p align="justify">and then save that to a file named job.
+To submit the job script to the queue system, pick a queue in which to
+run the GEOS&ndash;Chem, and type:</p>
+
+<blockquote>
+  <pre> bsub -q <var>queue-name job</var></pre>
+</blockquote>
+
+<p align="justify">at the Unix prompt. You can check the
+status of the run by looking at the log file. LSF should also email you
+when your job is done, or if for any reason it dies prematurely.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="6.2.3"></a>6.2.3
+PBS Batch Queue System</p>
+
+<p align="justify">If your platform uses the PBS batch
+queue system, you can use the following commands to submit, delete, and
+check the status of GEOS&ndash;Chem jobs:</p>
+
+<blockquote>
+  <pre>qsub              # submits a PBS job <br>qstat -Q          # list all available batch queues <br>qstat -a @machine # list all PBS jobs that are running on 'machine'<br>qstat -f <i>jobid</i>    # list information about PBS Job <i>jobid</i> <br>qdel <i>jobid</i>        # Kills PBS Job <i>jobid</i><br>xpbs              # Graphical user interface for PB</pre>
+</blockquote>
+
+<p align="justify">Then create a simple GEOS&ndash;Chem job
+script (named job), similar to the above example for LSF: </p>
+
+<blockquote>
+  <pre>#!/bin/tcsh -f    # Script definition line<br>cd run.v8&ndash;03&ndash;01   # cd to your run dir<br>rm -f log         # clear pre-existing log files <br>time geos &gt; log   # time job; pipe output to log file <br>exit(0)           # exit normally</pre>
+</blockquote>
+
+<p align="justify">and then submit this with the qsub
+command: </p>
+
+<blockquote>
+  <pre>qsub -q <i>queue-name</i> -o <i>output-file-name</i> job</pre>
+</blockquote>
+
+<p align="justify">at the Unix prompt.</p>
+
+<p align="justify">The job status command <tt>qstat
+-f <i>jobid</i></tt> sometimes provides a little too
+much information. Bob Yantosca has written a script called <tt>pbstat</tt>
+(this is already installed at Harvard) which condenses the output you
+get from <tt>qstat -f <i>jobid</i></tt>. If
+you type <tt>pbstat</tt> at the Unix prompt, you will
+output similar to:</p>
+
+<blockquote>
+<pre> --------------------------------------------------------
+ PBS Job ID number : 10929.sol
+ Job owner : pip@sol
+ Job name : run.sh
+ Job started on : Sun Aug 10 17:22:21 2003
+ Job status : Running
+ PBS queue and server : q4x64 on amalthea
+ Job is running on : hera/0*4 (R12K processors)
+ # of CPUs being used : 4 (max allowed is 4)
+ CPU utilization : 394% (ideal max is 400%)
+ Elapsed walltime : 22:14:43 (max allowed is 64:00:00)
+ Elapsed CPU time : 76:20:40
+ Memory usage : 10475844kb (max allowed is 1700Mb)
+ VMemory usage : 8244704kb</pre>
+</blockquote>
+<p align="justify">This allows you to obtain information
+about your run much more easily. If you type pbstat all, you will
+obtain information about every job which is running. If you type pbstat
+userid , then you will get information about all of the jobs that user
+userid is running.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi" align="justify"><a name="6.2.4"></a>6.2.4
+SGE&nbsp;Batch Queue System</p>
+
+<p align="justify">If your platform uses the SGE batch
+queue system, you can use the following commands to submit, delete, and
+check the status of GEOS&ndash;Chem jobs:</p>
+
+<blockquote>
+  <pre>qsub                # submits a PBS job
+qconf -spl          # list all available batch queues
+qstat -f            # list execution queues and shows the status
+                    #  of all your jobs on the current cluster
+qstat -f -j<i> jobid</i>   # list information about SGE Job <i>jobid</i>
+qdel <i>jobid</i>          # Kills PBS Job <i>jobid</i>
+qmon                # Graphical user interface for PB</pre>
+</blockquote>
+
+<p align="justify">Then create a simple GEOS&ndash;Chem job
+script (named job), similar to the above example for PBS: </p>
+
+<blockquote>
+  <pre>#!/bin/tcsh -f      # Script definition line
+cd run.v8&ndash;03&ndash;01     # cd to your run dir
+rm -f log           # clear pre-existing log files
+time geos &gt; log     # time job; pipe output to log file
+exit(0)             # exit normally</pre>
+</blockquote>
+
+<p align="justify">and then submit this with the qsub
+command: </p>
+
+<blockquote>
+  <pre>qsub -pe <span style="font-style: italic;">queue-name NCPUs</span> -o <i>output-file-name</i> job</pre>
+</blockquote>
+
+<p align="justify">at the Unix prompt.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="6.3"></a>6.3
+Error output</p>
+
+<p align="justify">Here we shall provide some general
+information on GEOS&ndash;Chem errors. For more up-to-date information about
+specific GEOS&ndash;Chem errors and their solutions, please be sure to
+consult the following resources:</p>
+
+<ul>
+
+  <li>Chapter  7.2: <a href="chapter_7.html#7.2">Debugging GEOS&ndash;Chem</a></li>
+  <li>GEOS&ndash;Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Common_GEOS-Chem_error_messages" target="_new">Common GEOS&ndash;Chem error messages</a></li>
+  <li>GEOS&ndash;Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Machine_issues_&amp;_portability" target="_new">Machine issues and portability</a></li>
+  <li>GEOS&ndash;Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Outstanding_issues_yet_to_be_resolved" target="_new">Outstanding issues</a></li>
+  <li>GEOS&ndash;Chem wiki: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Bugs_and_fixes" target="_new">Bugs and fixes</a></li>
+</ul>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="6.3.1"></a>6.3.1
+I/O (input/output) errors</p>
+
+<p align="justify">Almost all of the GEOS&ndash;Chem code
+  supports I/O error trapping. In other words, if an error occurs while
+  reading from a file or writing to a file, the run will stop and an
+  appropriate error message will be displayed. Many of the error messages
+  have the following format:</p>
+<blockquote>
+  <pre>=============================================================== <br>I/O Error Number 4001 in file unit 10 <br>Encountered in routine read_bpch2:3 <br>===============================================================</pre>
+</blockquote>
+
+<p align="justify">This means that an error (#4001) has
+occurred while reading from logical file unit 10. The routine where the
+error occurred is routine READ_BPCH2 (which happens to belong to <tt>bpch2_mod.f</tt>).
+The string read_bpch2:3 indicates that the third error trap within
+READ_BPCH2 was where the error occurred. If you grep for the string <tt>read_bpch2:3</tt>
+in <tt>bpch2_mod.f</tt>, you will be taken to the
+offending line of code.</p>
+
+<p align="justify">In general, Fortran I/O errors fall
+into 3 classes:</p>
+
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="80%">
+
+  <tbody>
+    <tr>
+      <th width="20%">Error number </th>
+      <th>Meaning</th>
+    </tr>
+    <tr>
+      <td width="20%">Greater than 0</td>
+      <td>An I/O error has occurred. Something went wrong during
+reading or writing.</td>
+    </tr>
+    <tr>
+      <td width="20%">Equal to 0</td>
+      <td>The file was read or written normally. No I/O error has
+occurred.</td>
+    </tr>
+    <tr>
+      <td width="20%">Less than 0</td>
+      <td>The end-of-file was reached normally.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p align="justify">For Fortran I/O errors greater than
+zero, the error numbers may be used to deduce the nature of the error.
+For example, if you compile GEOS&ndash;Chem with the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Intel_Fortran_Compiler" target="_new">Intel Fortran Compiler</a>, the code
+will die with error #29 if it tries to read a file that is not on disk
+(i.e. a "file-not-found" error). However, if you compile GEOS&ndash;Chem with
+the a different compiler, then the same "file-not-found" error will cause the
+code to die with a different error number. The number that corresponds to each error
+depends on the compiler that you are using. Therefore, you should check
+your compiler documentation for a list of the error codes.</p>
+<p align="justify">Also be sure to visit the <a href="http://wiki.seas.harvard.edu/geos-chem/" target="_new">GEOS&#150;Chem wiki</a> for the latest information about bugs and fixes! </p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size18bi"><a name="6.3.2"></a>6.3.2
+Other errors</p>
+
+<p align="justify">Other kind of errors may occur. For a
+more detailled discussion about catching and debugging them, visit the <a href="chapter_7.html#7.2">GEOS-Chem Debugging</a> page.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size14bi" align="center"><a href="chapter_5.html">Previous</a>
+| <a href="chapter_7.html">Next</a> | <a href="chapter_6.html" target="_parent">Printable View
+(no frames)</a></p>
+
+</body></html>

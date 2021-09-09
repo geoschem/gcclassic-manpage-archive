@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS-Chem User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css">
+</head>
+
+<body style="background-color: rgb(255, 255, 255)">
+<div style="width:1000px; margin:auto;">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+
+<h2 align="center">GEOS-Chem Online User's Guide</h2>
+<h5 align="center"><a href="chapter_10.html">Previous</a> | <a href="chapter_12.html">Next</a> | <a href="chapter_10.html" target="_parent">Printable View (no frames)</a></h5>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h1>11. Meteorological Fields</h1>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+
+<p>You can use several different assimilated meteorological data products to drive GEOS-Chem simulations. For more information, please consult the following GEOS-Chem wiki resources:</p>
+<table width="95%" border="1" cellspacing="0" cellpadding="10" align="center">
+  <tbody>
+    <tr>
+      <th scope="col" bgcolor="#CCCCCC" width="20%">Met data product</th>
+      <th scope="col" bgcolor="#CCCCCC" width="80%">Wiki Documentation</th>
+    </tr>
+    <tr valign="top">
+      <td>Overview</td>
+      <td><ul>
+        <li><a href="http://wiki.geos-chem.org/Overview_of_GMAO_met_data_products" target="_blank">Overview of GMAO met data products</a></li>
+        <li><a href="http://wiki.geos-chem.org/Version_history_of_GMAO_met_data_products" target="_blank">Version history of GMAO met data products</a></li>
+      </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>GMAO MERRA-2</td>
+      <td><ul class="disc">
+        <li><a href="http://wiki.geos-chem.org/MERRA-2" target="_blank">MERRA-2 overview</a></li>
+        <li><a href="http://wiki.geos-chem.org/List_of_MERRA-2_met_fields" target="_blank">List of MERRA-2 met fields used by GEOS-Chem</a></li>
+        <li><a href="http://wiki.geos-chem.org/MERRA-2_implementation_details" target="_blank">MERRA-2 implementation details</a></li>
+      </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>GMAO GEOS-FP<br>(aka GEOS-5 "forward processing")</td>
+      <td><ul class="disc">
+        <li><a href="http://wiki.geos-chem.org/GEOS-FP" target="_blank">GEOS-FP overview</a></li>
+        <li><a href="http://wiki.geos-chem.org/List_of_GEOS-FP_met_fields" target="_blank">List of GEOS-FP met fields used by GEOS-Chem</a></li>
+        <li><a href="http://wiki.geos-chem.org/GEOS-FP_implementation_details" target="_blank">GEOS-FP implementation details</a></li>
+        </ul></td>
+    </tr>
+    <tr valign="top">
+      <td>GMAO MERRA<br>
+        GMAO GEOS-5<br>
+        GMAO GEOS-4</td>
+      <td><p>These have been de-supported in GEOS-Chem 12.0.0 (aka v11-02-final), per request of NASA/GMAO.</p>
+      <blockquote>
+        <p><em>Dear GEOS-Chem user: </em></p>
+        <p><em>I write address some confusion about the different GEOS meteorological datasets produced by NASA GMAO and used by GEOS-Chem. </em></p>
+        <p><em>The two main data archives that you should use for your GEOS-Chem simulations are: </em></p>
+        <ol>
+          <li><em>The operational data stream from the GEOS Forward Processing  (0.25&deg; x 0.3125&deg;, 72 levels) starting in 2012, which should be called <a href="http://wiki.geos-chem.org/GEOS-FP" title="GEOS-FP">GEOS-FP</a>;</em></li>
+          <li><em>The consistent <a href="http://wiki.geos-chem.org/MERRA-2" title="MERRA-2">MERRA-2</a> reanalysis for 1979-present (0.5&deg; x 0.625&deg;, 72 levels).</em></li>
+        </ol>
+        <p><em>GEOS-Chem also supports older GEOS data sets including <a href="http://wiki.geos-chem.org/GMAO_GEOS-4" title="GMAO GEOS-4">GEOS-4</a>, <a href="http://wiki.geos-chem.org/GEOS-5" title="GEOS-5">GEOS-5</a>, and <a href="http://wiki.geos-chem.org/MERRA" title="MERRA">MERRA</a>.  These are of inferior quality and GMAO does not want us to use them.   They can still be useful to characterize model transport errors or the  effects of different met fields for the same year, but should not be   used for any other applications. </em></p>
+        <p><em>For more information see the GEOS-Chem narrative description at <a rel="nofollow" href="http://geos-chem.org/geos_chem_narrative.html">http://geos-chem.org/geos_chem_narrative.html</a></em></p>
+        <p><em>Daniel Jacob<br>
+          02 Jun 2017 </em></p>
+      </blockquote></td>
+    </tr>  
+  </tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>  
+
+<h5 align="center"><a href="chapter_10.html">Previous</a> | <a href="chapter_12.html">Next</a> | <a href="chapter_10.html" target="_parent">Printable View (no frames)</a></h5>
+
+</div>
+</body>
+</html>

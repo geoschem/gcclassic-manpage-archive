@@ -1,0 +1,141 @@
+<HTML>
+<HEAD>
+<TITLE>GEOS&#150;CHEM User's Guide</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="FF0000" HLINK="#FFFF00">
+<CENTER>
+  <p><font face="Arial, Helvetica, sans-serif" size="2"><b>GEOS&#150;CHEM v6&#150;02&#150;05 
+    User's Guide<br>Contact: Bob Yantosca (<A HREF="mailto:bmy@io.harvard.edu">bmy@io.harvard.edu</A>)</b></font></p>
+  </CENTER>
+<P><HR>
+<P> <A NAME="A5"></a> <font face="Arial, Helvetica, sans-serif" size="+1"><b>Appendix 
+  6: GEOS&#150;CHEM List of Chemical Species</b></font></P><hr>
+<P><font face="Arial, Helvetica, sans-serif" size="2">The following is a list 
+  of chemical species (active + inactive) in the current GEOS&#150;CHEM chemical 
+  mechanism file <A HREF="geos_chem_5.html#5.3.3">globchem.dat</A>. These species 
+  are used in the full chemistry simulation via SMVGEAR II. Many of these species 
+  are short-lived, and do not have to be transported as <A HREF="geos_chem_a1.html#A1.3">GEOS&#150;CHEM 
+  tracers</A>. </font> 
+<P><font face="Arial, Helvetica, sans-serif" size="2">For more information and 
+  documentation, please visit the <a href="../../../documentation/geos_mech.html" target="_blank">GEOS&#150;CHEM 
+  chemistry mechanism page</a>.</font>
+<PRE>Species
+Code name  Chemical formula        Real name or description
+---------  ----------------        ------------------------
+A3O2       CH3CH2CH2OO             primary RO2 from C3H8
+ACET       CH3C(O)CH3              Acetone
+ACHO       C6H5CHO                 Benzaldehyde
+ACTA       CH3COOH                 Acetic acid
+ALD2       CH3CHO                  Acetaldehyde
+ALK4       RH                      C4,5 alkanes
+ATO2                               RO2 from Acetone
+B3O2       CH3CH(OO)CH3            secondary RO2 from C3H8
+C2H6       C2H6                    Ethane
+C3H8       C3H8                    Propane
+CH4        CH4                     Methane
+CO         CO                      Carbon monoxide
+CO2        CO2                     Carbon dioxide
+DMS        CH3SCH3                 Dimethyl sulfide
+EOH        C2H5OH                  Ethanol
+ETO2       C2H5OO                  Ethylperoxy radical
+ETP        C2H5OOH                 Peroxide from ETO2
+GCO3       HOCH2C(O)OO             hydroxy peroxyacetyl radical
+GLCO3      HCOHC(O)OO              Peroxyacyl from GLYX
+GLP        HCOHC(O)OOH             Peroxide from GLCO3
+GLPAN      HCOHC(O)OONO2           Peroxyacylnitrate from GLCO3
+GLYC       HOCH2CHO                Glycolaldehyde (Hydroxyacetaldehyde)
+GLYX       CHOCHO                  Glyoxal
+GP         HOCH2C(O)OOH            Peroxide from GCO3
+GPAN       HOCH2C(O)OONO2          Peroxyacylnitrate from GCO3
+GRCO3      RC(O)OO                 family of peroxyacyl radicals
+GRPAN      RC(O)OONO2              family of peroxyacylnitrates
+GR3O2      ROO (primary R)         family of primary RO2 radicals
+GRO2       ROO (sec/ter R)         Family of secondary/tertiary RO2 radicals
+H          H                       Hydrogen atom
+H2         H2                      Hydrogen molecule
+H2O        H2O                     Water vapor
+H2O2       H2O2                    Hydrogen peroxide
+HAC        CH2(OH)C(O)CH3          Hydroxyacetone
+HCOOH      HCOOH                   Formic acid
+HNO2       HNO2                    Nitrous acid
+HNO3       HNO3                    Nitric acid
+HNO4       HNO4                    Pernitric acid
+HO2        HO2                     Hydroperoxyl radical
+IALD       HOCH2C(CH3)=CHCHO       hydroxy carbonyl alkenes from isoprene
+IAO2                               RO2 from isoprene oxidation products
+IAP                                Peroxide from IAO2
+INO2       INO2                    
+INPN                               Peroxide from ISNO2 (??)
+ISNO3      RNOx                    Stable organic nitrate
+ISN1                               RO2 from ISN2
+ISN2       CH2=C(CH3)CH(ONO2)CH2OH isoprene nitrate 
+ISNP                               Peroxide from ISN1
+INPN                               Peroxide from ISN2
+ISOP       C5H8                    Isoprene
+IY                                 Family of reactive iodine species
+KO2                                RO2 from >C3 ketones
+MACR       CHOC(CH2)CH3            Methacrolein
+MAN2                               RO2 from MACR+NO3
+MAO3                               Peroxyacyl from MVK and MACR
+MAOP                               Peroxide from MAO3
+MAP        CH3C(O)OOH              Peroxyacetic acid
+MCO3       CH3CO3                  Peroxyacetyl radical
+MEK        RC(O)R                  >C3 ketones
+MGLY       CH3COCHO                Methylglyoxal
+MNO3       CH3NO3                  Methylnitrate
+MO2        CH3OO                   Methylperoxy radical
+MOH        CH3OH                   Methanol
+MP         CH3OOH                  Methylhydroperoxide
+MRO2                               RO2 from MACR+OH
+MRP                                Peroxide from MRO2
+MSA        CH3SO3H                 Methane sulfionic acid
+MVK        H2CCHC(O)CH3            Methylvinylketone
+N2         N2                      Nitrogen molecule
+N2O5       N2O5                    Dinitrogen pentoxide
+NH2        NH2                     Ammonia radical
+NO         NO                      Nitric oxide
+NO2        NO2                     Nitrogen dioxide
+NO3        NO3                     Nitrate radical
+O          O                       Oxygen atom (3P)
+O2         O2                      Oxygen molecule
+O2CH2OH    O2CH2OH                 produced by CH2O+HO2
+O3         O3                      Ozone
+OH         OH                      Hydroxyl radical
+PAN        CH3C(O)OONO2            Peroxyacetylnitrate
+PMN        CH2=C(CH3)C(O)OONO2     Peroxymethacryloyl nitrate (MPAN)
+PO2        HOC3H6O2                RO2 from propene
+PP         HOC3H6OOH               Peroxide from PO2
+PPN        CH3CH2C(O)OONO2         Peroxypropionylnitrate
+PRN1                               RO2 from propene+NO3
+PRPE       C3H6                    Propene
+PRPN                               Peroxide from PRN1
+R4N1                               RO2 from R4N2
+R4N2       RO2NO                   C4,5 alkylnitrates
+R4O2                               RO2 from ALK4
+R4P                                Peroxide from R4O2
+RA3P                               Peroxide from A3O2
+RB3P                               Peroxide from B3O2
+RCHO       RCHO                    >C2 aldehydes
+RCO3       CH3CH2C(O)OO            Peroxypropionyl radical
+RCOOH      RCOOH                   >C2 organic acids
+RIO1                               RO2 from isoprene oxidation products
+RIO2                               RO2 from isoprene      
+RIP                                Peroxide from RIO2
+ROH        ROH                     >C2 alcohols
+RP         CH3CH2C(O)OOH           Peroxide from RCO3
+SO2        SO2                     Sulfur Dioxide
+SO4        SO4                     Sulfate
+VRO2                               RO2 from MVK+OH
+VRP                                Peroxide from VRO2
+</PRE>
+<P>
+<HR>
+<P> 
+  <CENTER>
+    <A HREF="geos_chem_a5.html"><font face="Arial, Helvetica, sans-serif" size="2">[Return 
+    to Appendix 5]</font></A><font face="Arial, Helvetica, sans-serif" size="2"> 
+    | <A HREF="../../../documentation/geos_versions_old.html">[Go on to Appendix 
+    7]</A></font> 
+  </CENTER>
+</BODY>
+</HTML>

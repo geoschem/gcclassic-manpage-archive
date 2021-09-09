@@ -1,0 +1,414 @@
+<html>
+<head>
+<title>GEOS&ndash;Chem Online User's Guide</title>
+<meta name="description" Contents="Information about the GEOS&#150;Chem tropospheric chemistry model">
+<meta name="keywords" Contents="Atmospheric Chemistry,Computer Models,GEOS&#150;Chem,Harvard/GEOS-CTM,GEOS-CTM,GEOS,DAO,Tropospheric Chemistry">
+<link rel="stylesheet" href="../../../gc.css" type="text/css"> 
+<style type="text/css">
+<!--
+.style1 {font-weight: bold}
+-->
+</style>
+<head>
+<body bgcolor="#FFFFFF">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script> <!-- JavaScript for breadcrumb links -->
+<p align="center" class="size20bi">GEOS&#150;Chem v8&#150;01&#150;01 Online User's Guide</p>
+<p align="center" class="size14bi"><a href="appendix_6.html">Previous</a> | <a href="chapter_1.html">Next</a> | <a href="appendix_8.html" target="_parent">Printable View (no frames)</a></p>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size24bi"><a name="A8"></a>Appendix 8: Addenda to GEOS&#150;Chem Online User's Guide</p>
+<p align="justify">In this section we will post additions and corrections to the GEOS&#150;Chem Online User's Guide.</p>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size18bi"><a name="A8.1"></a>A8.1: Addenda to v8&#150;01&#150;01</p>
+<p align="justify">After the release of v8&#150;01&#150;01, some minor bugs and issues were discovered. Most of these involve numerical errors (i.e. computations that result in NaN's or underflow conditions). Other minor bugs are only relevant to a particular type of offline simulation. In any case, most of these issues have simple fixes. </p>
+<p align="justify">Please see the following GEOS&#150;Chem wiki pages for information about the following issues, and how to resolve them.</p>
+<p align="justify" class="size16i">NOTE: These issues have now all been standardized in the <a href="#A8.2">GEOS&#150;Chem beta v8&#150;01&#150;02</a>. </p>
+<p align="justify" class="size16bi">Fixes for the full-chemistry simulation: </p>
+<ul>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Bugs_and_fixes#Too_many_levels_in_photolysis_code" target="_blank">&quot;Too many levels&quot; error in photolysis code</a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Bugs_and_fixes#Mis-labeling_of_SOA_quantities_in_carbon_mod.f" target="_blank">Confusing comments corrected in routine SOA_PARA in carbon_mod.f</a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Bugs_and_fixes#Numerical_noise_bug_in_upbdflx_mod.f" target="_blank">Numerical underflow in upbdflx_mod.f</a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Bugs_and_fixes#Problem_w.2F_ND65_diagnostic_and_dynamic_tropopause" target="_blank">Problem with  ND65 diagnostic and variable tropopause</a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Common_GEOS-Chem_error_messages#Negative_tracer_found_in_WETDEP" target="_blank">Negative tracer concentration in WETDEP routine </a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-5_issues#Small_negative_RH_value_in_20060206.a6.2x25_file" target="_blank">Negative relative humidity from met fields causing negative tracer</a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Aerosol_thermodynamical_equilibrium#Run_dies_in_RPMARES_unexpectedly" target="_blank">Run dies in RPMARES unexpectedly </a></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Aerosol_thermodynamical_equilibrium#RPMARES" target="_blank">Error in sulfate_mod.f caused by switching from ISORROPIA to RPMARES</a></li>
+</ul>
+<p class="size16bi">Fixes for offline simulations:</p>
+<ul>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Outstanding_issues_yet_to_be_resolved#Out_of_bounds_error_for_tagged_co_mod.f" target="_blank">Array-out-of-bounds error in tagged_co_mod.f</a></li>
+  <li> <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Outstanding_issues_yet_to_be_resolved#Wrong_MERGE.O3_filename_specified_in_v8-01-01" target="_blank">Wrong MERGE.O3 filename specified (this is an issue for offline Hg chemistry)</a></li>
+</ul>
+<p class="size16bi"><a name="A8.1.1"></a>Creating your own oxidant files for an offline aerosol simulation (cf. <a href="chapter_6.html#6.1.6">Section 6.1.6</a>)</p>
+<p class="size16">Thanks to Eric Sofen (U. Washington) for compiling this information! </p>
+<blockquote>
+  <p align="justify" class="size14i">NOTE: this assumes a GEOS4 30-level simulation. </p>
+  <p align="justify">The JH2O2, PH2O2, O3, and NO3 bpch files must extend only up to the tropopause. When you extract the data from the bpch file that is produced by a full chemistry simulation, these files will be either 22 or 30 vertical levels and the tropopause extends up to 17 levels. Use the routine <tt>/gamap2/regridding/trop_cut.pro</tt> to remove these upper levels. </p>
+  <p align="justify">THNO3 is a full 30 levels, and consists of HNO3+NIT. </p>
+  <p align="justify">OH needs to be 55 levels. 22 levels will come from the full-chem simulation, then this gets paired with the stratospheric data from the current OH file in the data directories (e.g. <tt>.../data/GEOS_4x5/stratOH_200203/stratOH.geos4.4x5</tt>). This is done using IDL routine <tt>gamap2/regridding/merge_o3.pro</tt>. Bob said of this IDL code, "NOTE, this file is somewhat hardwired, be prepared to dive in &amp; tinker w/ it accordingly." </p>
+  <p align="justify">You'll also need to modify the GEOS-Chem code so that it looks for your new oxidant files (or, I suppose, overwrite the existing ones). This requires making changes in <tt>sulfate_mod.f</tt>, <tt>global_no3_mod.f</tt>, and <tt>global_hno3_mod.f</tt>. The easiest way to change where the model looks for OH is in the <tt>input.geos</tt> file.</p>
+</blockquote>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size18bi"><a name="A8.2" id="A8.2"></a>A8.2: Addenda for beta release v8&#150;01&#150;02</p>
+<p align="justify" class="size16bi">Chapter 1 </p>
+<p align="justify"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_versions_under_development#v8-01-02" target="_blank">GEOS&#150;Chem v8&#150;01&#150;02</a> includes the following revisions over <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_versions_under_development#v8-01-01" target="_blank">GEOS&#150;Chem v8&#150;01&#150;01</a>:</p>
+<ul>
+  <li>
+    <p class="size16" align="justify">All of the  minor bug fixes and updates originally published in the<a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_versions_under_development#Post-release_patches" target="_blank"> v8&#150;01&#150;01 &quot;post-release&quot; patches</a> (plus a few more extra updates!) have now been standardized. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Previous_issues_now_resolved_in_v8-01-02" target="_blank">See this wiki page for a complete listing</a>.</p>
+  </li>
+  <li>
+    <p class="size16" align="justify">Modifications for the GEOS&#150;5 nested-grid simulation have been added. At this point only the China simulation has been tested. Further modifications will be needed for the North America and/or Europe simulations (users will be  responsible for submitting these modifications to us).</p>
+  </li>
+  <li>
+    <p class="size16" align="justify">Minor modifications for the GEOS&#150;3 North America nested grid simulation. These were done to facilitate the FAA-ULS project.</p>
+  </li>
+</ul>
+<p align="justify" class="size16bi">Chapter 2</p>
+<p align="justify">You may obtain the GEOS&#150;Chem v8&#150;01&#150;02 source code and benchmark simulation package via anonymous FTP from:</p>
+<blockquote>
+<pre>ftp ftp.as.harvard.edu
+cd pub/geos-chem/beta_releases
+get GEOS-Chem.v8-01-02-beta.stdrun.tar.gz</pre>
+</blockquote>
+<p align="justify">If you are interested in running the GEOS-5 0.5&deg; x 0.666&deg; nested-grid simulation over China, you may download sample run directories for this simulation from: </p>
+<blockquote>
+<pre>ftp ftp.as.harvard.edu
+cd pub/geos-chem/beta_releases
+get GEOS5-05x066-Nested-China.rundir.tar.gz</pre>
+</blockquote>
+<p align="justify" class="size16bi">Chapter 3</p>
+<p align="justify">GEOS&#150;Chem v8&#150;01&#150;02 adds some new  C-preprocessor switches in <tt>define.h</tt>:</p>
+<blockquote>
+  <table cellspacing="0" cellpadding="5" width="90%" border="1" bordercolor="#000000">
+    <tr>
+      <th align="left" valign="top" bgcolor="#CCCCCC">Switch
+    <th align="left" valign="top" bgcolor="#CCCCCC">Function    
+    </tr>
+    <tr>
+      <td align="left" valign="top" class="courier16">GRID05x0666</td>
+      <td align="left" valign="top"><div align="justify">Selects the  GEOS&#150;5 0.5 x 0.666 grid. This option must always be used in conjunction with either <tt>NESTED_CH</tt> (nested China simulation) or <tt>NESTED_NA</tt> (nested N. America simulation). </div></td>
+    </tr>
+    <tr>
+      <td align="left" valign="top" class="courier16">IN_CLOUD_OD</td>
+      <td align="left" valign="top"><p align="justify"> If you are using GEOS&#150;5 met fields that were reprocessed to   correctly regrid the in-cloud optical depth and cloud fraction fields, then be sure to activate the <tt>IN_CLOUD_OD</tt> switch. This will cause  FAST-J to interpret the optical depth correctly. </p>
+      <p align="justify">Leaving <tt>IN_CLOUD_OD</tt> deactivated commented will cause <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-5_issues#GEOS-5_update_and_clarification" target="_blank">a &quot;quick fix&quot; (i.e. multiplying the optical depth  by the cloud fracton</a>) to be applied, which should be a good enough fix  in the meantime.</p>
+      <p align="justify" class="size14bi">NOTE: As of November 2008, the GEOS&#150;5 met fields have not yet been reprocessed. For the time being, you should leave <tt>IN_CLOUD_OD</tt> deactivated.</p></td>
+    </tr>
+  </table>
+</blockquote>
+<p align="justify" class="size16bi">Chapter 4</p>
+<p align="justify">You may obtain the data directories for the GEOS&#150;5 0.5 x 0.666 nested grid China simulation (i.e. emissions files and met field files) from</p>
+<blockquote>
+<pre>ftp ftp.as.harvard.edu
+cd pub/geos-chem/data/GEOS_0.5x0.666_CH</pre>
+</blockquote>
+<p>Met fields for year <tt>YYYY</tt> and month <tt>MM</tt> are stored in the subdirectories: <tt>GEOS_5/YYYY/MM</tt></p>
+<p>Emissions and other data are stored in the following subdirectories:</p>
+<blockquote>
+<pre>C3H8_C2H6_200109/         MEGAN_200510/
+Streets_200607/           TOMS_200701/
+acetone_200108/           aircraft_NOx_200202/
+ann_mean_trop_200202/     biofuel_200202/
+biogenic_200203/          biomass_200110/
+carbon_200411/            drydep_200203/
+dust_200605/              fastj_200203/
+fossil_200104/            leaf_area_index_200202/
+leaf_area_index_200412/   lightning_NOx_200203/
+lightning_NOx_200709/     pco_lco_200203/
+pnoy_200106/              scalefoss_200202/
+soil_NOx_200203/          stratOH_200203/
+stratjv_200203/           sulfate_sim_200210/
+sulfate_sim_200508/       tagged_CO_200106/<br>uvalbedo_200111/
+</pre>
+</blockquote>
+<p><a href="chapter_4.html">Chapter 4</a> contains a full description of the data contained in these directories. Also, in each of these subdirectories you will find a <tt>README</tt> file which describes how the data was  regridded to the  GEOS&#150;5 0.5 x 0.666 China nested grid.</p>
+<p align="justify" class="size16bi">Chapter 5</p>
+<p align="justify">Here are sample input.geos files for  the GEOS&#150;Chem 0.5 x 0.666 nested-grid China simuation:</p>
+<ul>
+  <li><p align="justify"><tt><a href="../../man.v8-01-04/input.geos.china_05x066_BC4x5">input.geos.china_05x066_BC4x5:</a></tt> Use this file to run GEOS-Chem at 4 x 5 resolution to save out the boundary conditions for the nested grid trasnport routine.</p>
+  </li>
+  <li><p align="justify"><tt><a href="../../man.v8-01-04/doc/man/files/input.geos.china_05x0666">input.geos.china_05x0666</a>:</tt> Use this file to run a nested grid China simulation at  0.5 x 0.666 resolution.</p>
+  </li>
+</ul>
+<p align="justify">The following switches should be set in the <tt>input.geos.china_05x0666_BC4x5</tt> file:</p>
+<blockquote>
+<pre>%%% NESTED GRID MENU %%%: 
+Save TPCORE 4x5 BC's    : T
+TPCORE 4x5 BC directory : ./BC_4x5
+4x5 BC timestep [min]   : 180
+LL box of 4x5 BC region :  51  21
+UR box of 4x5 BC region :  67  37
+1x1 offsets I0_W, J0_W  :   3   3</pre>
+</blockquote>
+
+
+<p align="justify">This will tell GEOS&#150;Chem to save out the 4x5 boundary conditions with the proper settings. </p>
+<p align="justify">Also note that the following switches should be set in the <tt>input.geos.china_05x0666</tt> file: </p>
+<blockquote>
+<pre>%%% EMISSIONS MENU %%%
+    ...
+=> Use EMEP emissions? : F
+=> Use BRAVO emissions?: F
+    ...
+=> Use lightning NOx   : T
+   => Scale glb flrate?: T
+   => OTD reg redist?  : F
+   => OTD loc redist?  : T
+   => Use CTH param?   : T
+   ...
+%%% NESTED GRID MENU %%%:  
+Save TPCORE 4x5 BC's    : F
+TPCORE 4x5 BC directory : ./BC_4x5/
+4x5 BC timestep [min]   : 180
+LL box of 4x5 BC region :  51  21
+UR box of 4x5 BC region :  67  37
+1x1 offsets I0_W, J0_W  :   3   3
+</pre>
+</blockquote>
+<p align="justify"> Because the nested grid domain lies over China, we don't need to use the EMEP (European) or BRAVO (Mexican) emission datasets, so the switches that toggle these options may be set to F. Also, OTD&#150;LIS redistribution factors for the lightning (CTH option) have now been computed by Lee Murray, so we can select that option in the Lightning NOx menu.</p>
+<p align="justify">You may obtain a TAR file with run directories for the GEOS5 0.5 x 0.666 nested grid simulation from:</p>
+<blockquote>
+<pre>ftp ftp.as.harvard.edu
+cd pub/geos-chem/beta_releases/
+GEOS5-05x066-Nested-China.rundir.tar.gz</pre>
+</blockquote>
+<p align="justify"><span class="size16bi">Appendix 2</span></p>
+<p align="justify">The GEOS&#150;5 0.5 x 0.666 China nested grid has longitude centers at:</p>
+<blockquote>
+<pre>  70.000  70.667  71.333  72.000  72.667  73.333  74.000  74.667
+  75.333  76.000  76.667  77.333  78.000  78.667  79.333  80.000
+  80.667  81.333  82.000  82.667  83.333  84.000  84.667  85.333
+  86.000  86.667  87.333  88.000  88.667  89.333  90.000  90.667
+  91.333  92.000  92.667  93.333  94.000  94.667  95.333  96.000
+  96.667  97.333  98.000  98.667  99.333 100.000 100.667 101.333
+ 102.000 102.667 103.333 104.000 104.667 105.333 106.000 106.667
+ 107.333 108.000 108.667 109.333 110.000 110.667 111.333 112.000
+ 112.667 113.333 114.000 114.667 115.333 116.000 116.667 117.333
+ 118.000 118.667 119.333 120.000 120.667 121.333 122.000 122.667
+ 123.333 124.000 124.667 125.333 126.000 126.667 127.333 128.000
+ 128.667 129.333 130.000 130.667 131.333 132.000 132.667 133.333
+ 134.000 134.667 135.333 136.000 136.667 137.333 138.000 138.667
+ 139.333 140.000 140.667 141.333 142.000 142.667 143.333 144.000
+ 144.667 145.333 146.000 146.667 147.333 148.000 148.667 149.333
+</pre>
+</blockquote>
+<p align="justify">and latitude centers at:</p>
+<blockquote>
+<pre> -11.000 -10.500 -10.000  -9.500  -9.000  -8.500  -8.000  -7.500
+  -7.000  -6.500  -6.000  -5.500  -5.000  -4.500  -4.000  -3.500
+  -3.000  -2.500  -2.000  -1.500  -1.000  -0.500   0.000   0.500
+   1.000   1.500   2.000   2.500   3.000   3.500   4.000   4.500
+   5.000   5.500   6.000   6.500   7.000   7.500   8.000   8.500
+   9.000   9.500  10.000  10.500  11.000  11.500  12.000  12.500
+  13.000  13.500  14.000  14.500  15.000  15.500  16.000  16.500
+  17.000  17.500  18.000  18.500  19.000  19.500  20.000  20.500
+  21.000  21.500  22.000  22.500  23.000  23.500  24.000  24.500
+  25.000  25.500  26.000  26.500  27.000  27.500  28.000  28.500
+  29.000  29.500  30.000  30.500  31.000  31.500  32.000  32.500
+  33.000  33.500  34.000  34.500  35.000  35.500  36.000  36.500
+  37.000  37.500  38.000  38.500  39.000  39.500  40.000  40.500
+  41.000  41.500  42.000  42.500  43.000  43.500  44.000  44.500
+  45.000  45.500  46.000  46.500  47.000  47.500  48.000  48.500
+  49.000  49.500  50.000  50.500  51.000  51.500  52.000  52.500
+  53.000  53.500  54.000  54.500  55.000
+</pre>
+</blockquote>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size18bi"><a name="A8.3" id="A8.3"></a>A8.3: Addenda for beta release v8&#150;01&#150;03</p>
+<p align="justify" class="size16bi">Chapter 1</p>
+<p align="justify"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_versions_under_development#v8-01-03" target="_blank">GEOS&#150;Chem v8&#150;01&#150;03</a> includes the following revisions over <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_versions_under_development#v8-01-02" target="_blank">GEOS&#150;Chem v8&#150;01&#150;02</a>:</p>
+<ul>
+  <li>
+    <p class="size16" align="justify">The existing version of TPCORE in GEOS&#150;Chem has been replaced with <a href="http://www.as.harvard.edu/ctm/geos/wiki_docs/advection/tpcore_fvdas.pdf" target="_blank">a version based on the GMI model</a>. This was done in order to rectify the &quot;polar overshoot&quot; problem in the stratosphere. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Previous_issues_now_resolved_in_v8-01-03#TPCORE_replaced_with_version_based_on_GMI_model" target="_blank">(Click here for more info)</a></p>
+  </li>
+  <li>
+    <p class="size16" align="justify">Various  fixes for the diagnostics were implemented, including:</p>
+    <ul>
+      <li>
+        <p>Fix to ensure consistency between the ND51 satellite diagnostic and the <tt>ctm.bpch</tt> file. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Previous_issues_now_resolved_in_v8-01-03#Output_of_ND51_does_not_match_output_in_the_ctm.bpch_file" target="_blank">(Click here for more info)</a></p>
+      </li>
+	  <li>
+	    <p>Fixes in <tt>diag3.f</tt> in the ND22 (J-values) and ND34 (biofuel emissions) diagnostics. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Previous_issues_now_resolved_in_v8-01-03#Bug_fixes_in_diag3.f" target="_blank">(Click here for more info)</a></p>
+	  </li>
+      <li> The locations of calls to routines DIAG_2PM, DIAG1, DIAG41, DIAG42 ( which archive monthly mean or daily mean diagnostics) in the main driver program main.f have been moved to ensure better consistency with the timeseries diagnostics routines. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Previous_issues_now_resolved_in_v8-01-03#Change_of_location_of_calls_to_diagnostics_in_main.f" target="_blank">(Click here for more info)</a>
+      </li>
+    </ul>
+ </li>
+</ul>
+<p align="justify" class="size16bi">CAVEAT: The repositioning of the calls to diagnostic routines described above may affect the concentrations for certain tracers, especially dust and sea salt aerosols. If you are comparing results from GEOS&#150;Chem v8-01-03 to older versions then you may need to keep this in mind. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Previous_issues_now_resolved_in_v8-01-03#The_impact_of_the_reordering_of_the_diagnostics" target="_blank">Please see this wiki post for more information. </a></p>
+<p align="justify" class="size16bi">Chapter 2</p>
+
+<p align="justify">You may obtain the GEOS&#150;Chem v8&#150;01&#150;03 source code and benchmark simulation package via anonymous FTP from:</p>
+<blockquote>
+  <pre>ftp ftp.as.harvard.edu
+cd pub/geos-chem/beta_releases
+get GEOS-Chem.v8-01-03-beta.stdrun.tar.gz</pre>
+</blockquote>
+<p align="justify" class="size16bi">Chapter 3 </p>
+<p align="justify">GEOS&#150;Chem v8&#150;01&#150;03 now contains a new feature: <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Automatic_documentation_with_protex" target="_blank">the ability to generate automatic documentation (with Protex)</a> directly from the documentation headers in certain source code files. At present, the only files that contain Protex-ready documentation are <tt>tpcore_fvdas_mod.f90</tt> and <tt>pjc_pfix_mod.f</tt>. However, as time allows, this will be expanded to other GEOS&#150;Chem source code files.</p>
+<p align="justify">Before you can generate the automatic documentation, you must first make sure that you have the LaTeX utilities (e.g. <tt>latex</tt>, <tt>dvips</tt>, <tt>dvipdf</tt>) installed on your system. These usually come standard with most versions of Linux nowadays. A copy of the Protex script is included in the <tt>Code.v8-01-03/doc</tt> subdirectory for your convienience.</p>
+<p align="justify">To build the documentation file, simply type:</p>
+<blockquote>
+<pre>cd Code.v8-01-03
+make doc</pre>
+</blockquote>
+<p align="justify">This will cause the <tt>*.tex</tt>, <tt>*.ps</tt>, and <tt>*.pdf</tt> files to be created in the <tt>Code.v8-01-03/doc</tt> subdirectory.</p>
+<p align="justify">If you wish to remove the <tt>*.tex</tt>, <tt>*.ps</tt>, and <tt>*.pdf</tt> files from the <tt>Code.v8-01-03/doc</tt> subdirectly, simply type:</p>
+<blockquote>
+<pre>cd Code.v8-01-03
+make docclean</pre>
+</blockquote>
+<p align="justify" class="size16bi">Chapter 5</p>
+<p align="justify">Claire Carouge and Bob Yantosca have<a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Previous_issues_now_resolved_in_v8-01-03#ND22_.28J-value.29_diagnostic" target="_blank"> implemented a fix into <tt>diag3.f</tt> for the ND22 (J-value) diagnostic</a> such that there is now a test for the name of each tracer. As a side-effect of this fix, you may no longer type all into the <tt>input.geos</tt> file. You must explicitly list each tracer number. For example, you may type:</p>
+<blockquote>
+<pre>ND22: J-Values          : 47   1 7 8 20 99              
+      => JV time range  :      11 13</pre>
+</blockquote>
+<p align="justify">Likewise as a result of <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Previous_issues_now_resolved_in_v8-01-03#ND34_.28biofuel_emissions.29_diagnostic" target="_blank">the fix that was made for the ND34 diagnostic</a>, you must explicitly declare the tracer numbers for which you wish to archive biofuel emissions. For example, use this line in <tt>input.geos</tt>:</p>
+<blockquote>
+<pre>ND34: Biofuel emissions :  1   1 4 5 9 10 11 18 19 20 21</pre>
+</blockquote>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p class="size18bi"><a name="A8.4" id="A8.4"></a>A8.4: Addenda for beta release v8&#150;01&#150;04</p>
+<p class="size16bi">Chapter 1</p>
+<p align="justify">GEOS&#150;Chem v8&#150;01&#150;04 is our &ldquo;Emissions&rdquo; release. This version standardizes several new emissions features that users have submitted to us over the past several months. Also incorporated are the anthropogenic scale factors for years 1985-2005 from Aaron van Donkelaar.</p>
+<p> NOTE: <strong>Boldfaced items </strong>are new to v8&#150;01&#150;04!</p>
+<p><u>Emissions Inventories turned on in the v8&#150;01&#150;04 1-month benchmark runs:</u></p>
+<ul>
+  <li> EDGAR emissions (with ship emissions)</li>
+  <li><strong>    EMEP 2005 (European) regional emissions (w/ ship emissions)    </strong></li>
+  <li>BRAVO (Mexican) regional emissions</li>
+  <li><strong> CAC (Canadian) regional emissions</strong></li>
+  <li> EPA/NEI99 (USA) regional emissions
+    <ul>
+      <li class="style1"> with ICARTT modification</li>
+      <li><strong> with California fix</strong></li>
+      <li><strong> with new mask to account for overlap with BRAVO &amp; CAC</strong></li>
+    </ul>
+  </li>
+  <li> David Streets 2001 (China/SE Asia) regional emissions</li>
+  <ul>
+    <li><strong> with monthly NOx-CO variations</strong></li>
+  </ul>
+  <li> GFED2 monthly mean emissions</li>
+  <li><strong> ARCTAS SO2 ship emissions</strong></li>
+</ul>
+<p><u>Scalings &amp; Mechanisms updates in v8-01-04, used in 1-month benchmarkruns:</u></p>
+<ul>
+  <li class="style1"> Anthropogenic annual scale factors from A. van Donkelaar (NOx-CO-SOx) </li>
+  <li class="style1">Updated MEGAN isoprene annual emission factors</li>
+  <li class="style1"> Ship NOx are emitted as 10*O3 + HNO3</li>
+  <li><span class="style1"> Global NOx daily variations based on EDGAR</span></li>
+</ul>
+<p><u>Other emissions options not used in 1-month benchmark runs, but which are new to GEOS-Chem v8-01-04:</u></p>
+<ul>
+  <li class="style1"> David Streets 2006 (China/SE Asia) regional emissions</li>
+  <li class="style1">monthly VISTAS NOx emissions with EPA's Acid Rain Program (ARP) ozone regulation scaling (USA)</li>
+  <li class="style1">8-day-average GFED2 biomass emissions</li>
+  <li class="style1">3-hour GFED2 biomass emissions</li>
+  <li class="style1">3-hour synoptic GFED2 biomass emissions</li>
+</ul>
+<p align="justify">We are in the process of preparing a detailed document describing the emissions. In the meantime, for more information, please see:</p>
+<ul>
+  <li> <a href="http://wiki.seas.harvard.edu/geos-chem/images/Anth_emiss_gc_v8-01-04.pdf" target="_blank">GEOS&#150;Chem Anthropogenic Sources (by Philippe Le Sager) </a> on the GEOS&#150;Chem wiki</li>
+  <li>The <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Overview" target="_blank">Overview Page</a> on the GEOS&#150;Chem wiki</li>
+  <li>the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Anthropogenic_emissions" target="_blank">Anthropogenic Emissions</a> page on the GEOS&#150;Chem wiki</li>
+</ul>
+<p class="size16bi">Chapter 2</p>
+<p align="justify">You may obtain the GEOS&#150;Chem v8&#150;01&#150;04 source code and benchmark simulation package via anonymous FTP from:</p>
+<blockquote>
+  <pre>ftp ftp.as.harvard.edu
+cd pub/geos-chem/beta_releases
+get GEOS-Chem.v8-01-04-beta.stdrun.tar.gz</pre>
+</blockquote>
+<p align="justify">If you are interested in running the GEOS&#150;5 0.5&deg; x 0.666&deg; nested-grid simulation over China, you may download sample run directories for this simulation from: </p>
+<blockquote>
+  <pre>ftp ftp.as.harvard.edu
+cd pub/geos-chem/beta_releases
+get GEOS5-05x066-Nested-China.rundir.tar.gz</pre>
+</blockquote>
+<p class="size16bi">Chapter 4</p>
+<p align="justify">You must obtain the new emissions data files from the following directories.  (NOTE: some of these directories have subdirectories, please make sure to download everything. We recommend using 3rd-party FTP software such as Mozilla's FireFTP.)</p>
+<blockquote>
+<pre>ftp ftp.as.harvard.edu
+cd pub/geos-chem/data/GEOS_1x1<br>
+anth_scale_factors_200811/
+ARCTAS_SHIP_2008/
+CAC_200801/
+EMEP_200806/
+EPA_NEI_200806/<br>GFED2_200601/      (New data: years 2006, 2007)<br>GFED2_8day_200712/<br>GFED2_3hr_200901/
+Streets_200812/<br>VISTAS_200811/</pre>
+</blockquote>
+<p class="size16bi">Chapter 5</p>
+<p align="justify">In <span class="courier16">input.geos</span>, you now need to turn on O3 and HNO3 as active chemical species. This is done by bracketing them with parentheses in the TRACER MENU section. This is necessary to implement some of the new ship emissions. </p>
+<blockquote>
+<pre>Tracer #2               :   2   Ox      48.0   (O3)   NO2   2NO3  
+...
+Tracer #7               :   7   HNO3    63.0   (HNO3)</pre>
+</blockquote>
+<p align="justify">The <span class="courier16">globchem.dat</span> chemical mechanism file must also be modified accordingly. We need to add EMISSION reactions for O3 and HNO3 so that SMVGEAR will recognize these as emission species. This is done as follows:</p>
+<blockquote>
+<pre>A    0 0.00E+00  0.0E+00      0 0     0.00     0.     0.         
+      EMISSION      +                                                     
+=1.000O3            +                   +                   +             
++                   +                   +                   +             
++                   +                   +                   +             
++                   +                   +                   +
+A    0 0.00E+00  0.0E+00      0 0     0.00     0.     0.         
+      EMISSION      +                                                     
+=1.000HNO3          +                   +                   +             
++                   +                   +                   +             
++                   +                   +                   +             
++                   +                   +                   +</pre>
+</blockquote>
+<p align="justify">If you are using the versions of <span class="courier16">input.geos</span> and <span class="courier16">globchem.dat</span> that shipped with the standard run TAR file then you will be OK. You can make sure you have the correct <span class="courier16">globchem.dat</span> file by checking the header to see if it there is a sentence which says:</p>
+<blockquote><pre>(1) Now includes emissions rxn for HNO3 and O3</pre>
+</blockquote>
+
+<p align="justify">There is one further modification in <span class="courier16">input.geos</span>.  The new  EMISSIONS MENU is listed below. Many of the options are the same as before, but this also reflects the new emissions options that were added in v8&#150;01&#150;04.</p>
+<blockquote>
+  <pre>%%% EMISSIONS MENU %%%  :
+Turn on emissions?      : T
+Emiss timestep (min)    : 60
+Include anthro emiss?   : T
+ => Scale to (1985-2005): -1
+ => Use EMEP emissions? : T
+ => Use BRAVO emissions?: T 
+ => Use EDGAR emissions?: T
+ => Use STREETS emiss?  : T
+ => Use CAC emissions?  : T
+Use EPA/NEI99 (anth+bf)?: T
+    w/ ICARTT modif.?   : T
+    w/ VISTAS NOx emis? : F
+Include biofuel emiss?  : T
+Include biogenic emiss? : T
+ => Use MEGAN inventory?: T
+Include biomass emiss?  : T
+ => Seasonal biomass?   : F
+ => Scaled to TOMSAI?   : F
+ => Use GFED2 biomass?  : ---
+    => monthly GFED2?   : T 
+    => 8-day GFED2?     : F 
+    => 3-hr GFED2?      : F
+    => synoptic GFED2?  : F
+Individual NOx sources  :---
+ => Use aircraft NOx?   : T
+ => Use lightning NOx   : T
+    => Scale glb flrate?: T
+    => OTD reg redist?  : F
+    => OTD loc redist?  : T
+    => Use CTH param?   : T
+    => Use MFLUX param? : F
+    => Use PRECON param?: F
+ => Use soil NOx        : T
+Use SHIP emissions      :---
+ => global EDGAR ?      : T
+ => EMEP over EUROPE ?  : T
+ => ship SO2 Colbert ?  : F
+ => ship SO2 Arctas ?   : T
+Use AVHRR-derived LAI?  : F</pre>
+</blockquote>
+<p>For more information about which options these switches toggle, please see <a href="http://wiki.seas.harvard.edu/geos-chem/images/Anth_emiss_gc_v8-01-04.pdf" target="_blank">this document on the GEOS&#150;Chem wiki</a>. </p>
+<p><img src="../../../img/black_rule.jpg" width="100%" height="2"></p>
+<p align="center" class="size14bi"><a href="appendix_6.html">Previous</a> | <a href="chapter_1.html">Next</a> | <a href="appendix_8.html" target="_parent">Printable View (no frames)</a></p>
+</body>
+</html>

@@ -1,0 +1,948 @@
+<HTML>
+<HEAD>
+<TITLE>GEOS&#150;CHEM User's Guide</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="FF0000" HLINK="#FFFF00">
+<CENTER>
+  <p><font face="Arial, Helvetica, sans-serif" size="2"><b>GEOS&#150;CHEM v6&#150;02&#150;05 
+    User's Guide<br>Contact: Bob Yantosca (<A HREF="mailto:bmy@io.harvard.edu">bmy@io.harvard.edu</A>)</b></font></p>
+  </CENTER>
+<hr>
+<P><A NAME="A1"></a><font face="Arial, Helvetica, sans-serif" size="+1"><b>Appendix 
+  1: GEOS&#150;CHEM Tracers, by Simulation</b></font></P>
+<hr>
+<P><A NAME="A1.1"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>A1.1 
+  Rn-Pb-Be simulations (NSRCX = 1)<br>
+  <br>
+  </b></font> 
+<TABLE VALIGN=TOP CELLSPACING=3 CELLPADDING=3 BORDER=0 width="80%">
+  <TR VALIGN=TOP> 
+    <TH align="left" width="5%"> 
+      <div align="left"><font face="Arial, Helvetica, sans-serif" size="2">#</font></div>
+    </TH>
+    <TH width="15%" align="left"> 
+      <div align="left"><font face="Arial, Helvetica, sans-serif" size="2">Name</font></div>
+    </TH>
+    <TH align="left" width="65%"> 
+      <div align="left"><font face="Arial, Helvetica, sans-serif" size="2">Description</font></div>
+    </TH>
+    <TH align="left" width="15%"> 
+      <div align="left"><font face="Arial, Helvetica, sans-serif" size="2">g/mole</font></div>
+    </TH>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">1</font></TD>
+    <TD width="15%" align="left"><font face="Arial, Helvetica, sans-serif" size="2">Rn222</font></TD>
+    <TD align="left" width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Radon-222 
+      isotope</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">222</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">2</font></TD>
+    <TD width="15%" align="left"><font face="Arial, Helvetica, sans-serif" size="2">Pb210</font></TD>
+    <TD align="left" width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Lead-210 
+      isotope</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">210</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">3</font></TD>
+    <TD width="15%" align="left"><font face="Arial, Helvetica, sans-serif" size="2">Be7</font></TD>
+    <TD align="left" width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Beryllium-7 
+      isotope</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">7</font></TD>
+  </TR>
+</TABLE>
+
+<br>
+<hr>
+<P> <A NAME="A1.2"></a><font face="Arial, Helvetica, sans-serif"><b><font size="2">A1.2 
+  CH3I simulations (NSRCX = 2)<br>
+  <br>
+  </font></b></font>
+<TABLE VALIGN=TOP CELLSPACING=3 CELLPADDING=3 BORDER=0 width="80%">
+  <TR VALIGN=TOP> 
+    <TH align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">#</font></TH>
+    <TH align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">Name</font></TH>
+    <TH align="left" width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Description</font></TH>
+    <TH width="15%" align="left"><FONT FACE="Arial,Helvetica" SIZE=-1>g/mole</FONT></TH>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">1</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CH3I-oc</font></TD>
+    <TD align="left" width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Methyl 
+      iodide from oceans</font></TD>
+    <TD width="15%" align="left"><FONT FACE="Arial,Helvetica" SIZE=-1>141.939</FONT></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">2</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CH3I-bb</font></TD>
+    <TD align="left" width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Methyl 
+      iodide from biomass burning</font></TD>
+    <TD width="15%" align="left"><FONT FACE="Arial,Helvetica" SIZE=-1>141.939</FONT></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">3</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CH3I-bf</font></TD>
+    <TD align="left" width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Methyl 
+      iodide from biofuel burning</font></TD>
+    <TD width="15%" align="left"><FONT FACE="Arial,Helvetica" SIZE=-1>141.939</FONT></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">4</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CH3I-rc</font></TD>
+    <TD align="left" width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Methyl 
+      iodide from rice paddies</font></TD>
+    <TD width="15%" align="left"><FONT FACE="Arial,Helvetica" SIZE=-1>141.939</FONT></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">5</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CH3I-wl</font></TD>
+    <TD align="left" width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Methyl 
+      iodide from wetlands</font></TD>
+    <TD width="15%" align="left"><FONT FACE="Arial,Helvetica" SIZE=-1>141.939</FONT></TD>
+  </TR>
+</TABLE>
+
+<br>
+<hr>
+<P><A NAME="A1.3"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>A1.3 
+  NOx-Ox-hydrodcarbon simulations (NSRCX = 3)<br>
+  <br>
+  </b></font> 
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> The tracers 
+  listed below are in general either long-lived (and must be transported in the 
+  model), or are "families" consisting of two or more molecules. For a complete 
+  list of all of the chemical species used in the SMVGEAR chemistry mechanism, 
+  please consult <A HREF="geos_chem_a6.html">Appendix 6</A>. </font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Also, tracers 
+  in <i>ITALICS</i> are carried as atoms C instead of molecules tracer. We assign 
+  to these a molecular weight of 12 g/mole. The number of moles C per moles tracer 
+  is listed below.</font></p>
+<TABLE VALIGN=TOP CELLSPACING=3 CELLPADDING=3 BORDER=0 width="80%">
+  <TR VALIGN=TOP> 
+    <TH align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">#</font></TH>
+    <TH align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">Name</font></TH>
+    <TH align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Description</font></TH>
+    <TH align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">g/mole</font></TH>
+    <TH align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">mole 
+      C/<BR>
+      mole tracer</font></TH>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">1</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">NOx</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">NO 
+      + NO2+ NO3 + HNO2</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">2</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">Ox</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">O3 
+      + NO2 + 2NO3</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">48</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">3</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">PAN</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Peroxyacetyl 
+      Nitrate</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">121</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">4</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CO</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Carbon 
+      Monoxide</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><i><font face="Arial, Helvetica, sans-serif" size="2">5</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">ALK4</font></i></TD>
+    <TD align="left" width="50%"><i><font face="Arial, Helvetica, sans-serif" size="2">Lumped 
+      >= C4 Alkanes</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">12</font></i></TD>
+    <TD align="left" width="14%"><i><font face="Arial, Helvetica, sans-serif" size="2">4</font></i></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><i><font face="Arial, Helvetica, sans-serif" size="2">6</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">ISOP</font></i></TD>
+    <TD align="left" width="50%"><i><font face="Arial, Helvetica, sans-serif" size="2">Isoprene</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">12</font></i></TD>
+    <TD align="left" width="14%"><i><font face="Arial, Helvetica, sans-serif" size="2">5</font></i></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">7</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">HNO3</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Nitric 
+      Acid</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">63</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">8</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">H2O2</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Hydrogen 
+      Peroxide</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">34</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><i><font face="Arial, Helvetica, sans-serif" size="2">9</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">ACET</font></i></TD>
+    <TD align="left" width="50%"><i><font face="Arial, Helvetica, sans-serif" size="2">Acetone</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">12</font></i></TD>
+    <TD align="left" width="14%"><i><font face="Arial, Helvetica, sans-serif" size="2">3</font></i></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><i><font face="Arial, Helvetica, sans-serif" size="2">10</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">MEK</font></i></TD>
+    <TD align="left" width="50%"><i><font face="Arial, Helvetica, sans-serif" size="2">Methyl 
+      Ethyl Ketone</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">12</font></i></TD>
+    <TD align="left" width="14%"><i><font face="Arial, Helvetica, sans-serif" size="2">4</font></i></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><i><font face="Arial, Helvetica, sans-serif" size="2">11</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">ALD2</font></i></TD>
+    <TD align="left" width="50%"><i><font face="Arial, Helvetica, sans-serif" size="2">Acetaldehyde</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">12</font></i></TD>
+    <TD align="left" width="14%"><i><font face="Arial, Helvetica, sans-serif" size="2">2</font></i></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">12</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">RCHO</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Lumped 
+      Aldehyde >= C3</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">58</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">13</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">MVK</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Methyl 
+      Vinyl Ketone</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">70</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">14</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">MACR</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Methacrolein</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">70</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">15</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">PMN</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Peroxymethacroyl 
+      Nitrate</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">147</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">16</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">PPN</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Lumped 
+      Peroxymethacroyl Nitrate</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">135</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">17</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">R4N2</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Lumped 
+      Alkyl Nitrate</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">119</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><i><font face="Arial, Helvetica, sans-serif" size="2">18</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">PRPE</font></i></TD>
+    <TD align="left" width="50%"><i><font face="Arial, Helvetica, sans-serif" size="2">Lumped 
+      >= C3 Alkenes</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">12</font></i></TD>
+    <TD align="left" width="14%"><i><font face="Arial, Helvetica, sans-serif" size="2">3</font></i></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><i><font face="Arial, Helvetica, sans-serif" size="2">19</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">C3H8</font></i></TD>
+    <TD align="left" width="50%"><i><font face="Arial, Helvetica, sans-serif" size="2">Propane</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">12</font></i></TD>
+    <TD align="left" width="14%"><i><font face="Arial, Helvetica, sans-serif" size="2">3</font></i></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">20</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CH2O</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Formaldehyde</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">30</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><i><font face="Arial, Helvetica, sans-serif" size="2">21</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">C2H6</font></i></TD>
+    <TD align="left" width="50%"><i><font face="Arial, Helvetica, sans-serif" size="2">Ethane</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">12</font></i></TD>
+    <TD align="left" width="14%"><i><font face="Arial, Helvetica, sans-serif" size="2">2</font></i></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">22</font></TD>
+    <TD align="left" width="15%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">N2O5</font></TD>
+    <TD align="left" width="50%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">Dinitrogen 
+      Pentoxide</font></TD>
+    <TD align="left" width="15%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">105</font></TD>
+    <TD align="left" width="14%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">23</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">HNO4</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Pernitric 
+      Acid</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">79</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">24</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">MP</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Methyl 
+      Hydro Peroxide</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">48</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font size="2" face="Arial, Helvetica, sans-serif">25</font></TD>
+    <TD align="left" width="15%"><font size="2" face="Arial, Helvetica, sans-serif">DMS</font></TD>
+    <TD align="left" width="50%"><font size="2" face="Arial, Helvetica, sans-serif">Dimethyl 
+      Sulfate</font></TD>
+    <TD align="left" width="15%"><font size="2" face="Arial, Helvetica, sans-serif">62</font></TD>
+    <TD align="left" width="14%"><font size="2" face="Arial, Helvetica, sans-serif">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font size="2" face="Arial, Helvetica, sans-serif">26</font></TD>
+    <TD align="left" width="15%"><font size="2" face="Arial, Helvetica, sans-serif">SO2</font></TD>
+    <TD align="left" width="50%"><font size="2" face="Arial, Helvetica, sans-serif">Sulfur 
+      Dioxide</font></TD>
+    <TD align="left" width="15%"><font size="2" face="Arial, Helvetica, sans-serif">64</font></TD>
+    <TD align="left" width="14%"><font size="2" face="Arial, Helvetica, sans-serif">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%" height="23"><font size="2" face="Arial, Helvetica, sans-serif">27</font></TD>
+    <TD align="left" width="15%" height="23"><font size="2" face="Arial, Helvetica, sans-serif">SO4</font></TD>
+    <TD align="left" width="50%" height="23"><font size="2" face="Arial, Helvetica, sans-serif">Sulfate</font></TD>
+    <TD align="left" width="15%" height="23"><font size="2" face="Arial, Helvetica, sans-serif">96</font></TD>
+    <TD align="left" width="14%" height="23"><font size="2" face="Arial, Helvetica, sans-serif">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font size="2" face="Arial, Helvetica, sans-serif">28</font></TD>
+    <TD align="left" width="15%"><font size="2" face="Arial, Helvetica, sans-serif">MSA</font></TD>
+    <TD align="left" width="50%"><font size="2" face="Arial, Helvetica, sans-serif">Methyl 
+      Sulfionic Acid</font></TD>
+    <TD align="left" width="15%"><font size="2" face="Arial, Helvetica, sans-serif">96</font></TD>
+    <TD align="left" width="14%"><font size="2" face="Arial, Helvetica, sans-serif">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font size="2" face="Arial, Helvetica, sans-serif">29</font></TD>
+    <TD align="left" width="15%"><font size="2" face="Arial, Helvetica, sans-serif">NH3</font></TD>
+    <TD align="left" width="50%"><font size="2" face="Arial, Helvetica, sans-serif">Ammonia</font></TD>
+    <TD align="left" width="15%"><font size="2" face="Arial, Helvetica, sans-serif">17</font></TD>
+    <TD align="left" width="14%"><font size="2" face="Arial, Helvetica, sans-serif">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font size="2" face="Arial, Helvetica, sans-serif">30</font></TD>
+    <TD align="left" width="15%"><font size="2" face="Arial, Helvetica, sans-serif">NH4</font></TD>
+    <TD align="left" width="50%"><font size="2" face="Arial, Helvetica, sans-serif">Ammonium</font></TD>
+    <TD align="left" width="15%"><font size="2" face="Arial, Helvetica, sans-serif">18</font></TD>
+    <TD align="left" width="14%"><font size="2" face="Arial, Helvetica, sans-serif">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font size="2" face="Arial, Helvetica, sans-serif">31</font></TD>
+    <TD align="left" width="15%"><font size="2" face="Arial, Helvetica, sans-serif">NIT</font></TD>
+    <TD align="left" width="50%"><font size="2" face="Arial, Helvetica, sans-serif">Sulfur 
+      Nitrates</font></TD>
+    <TD align="left" width="15%"><font size="2" face="Arial, Helvetica, sans-serif">62</font></TD>
+    <TD align="left" width="14%"><font size="2" face="Arial, Helvetica, sans-serif">-</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><i><font face="Arial, Helvetica, sans-serif" size="2">32</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">BCPI</font></i></TD>
+    <TD align="left" width="50%"><i><font face="Arial, Helvetica, sans-serif" size="2">Hydrophilic 
+      black carbon aerosol</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">12</font></i></TD>
+    <TD align="left" width="14%"><i><font face="Arial, Helvetica, sans-serif" size="2">1</font></i></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><i><font face="Arial, Helvetica, sans-serif" size="2">33</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">OCPI</font></i></TD>
+    <TD align="left" width="50%"><i><font face="Arial, Helvetica, sans-serif" size="2">Hydrophilic 
+      organic carbon aerosol</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">12</font></i></TD>
+    <TD align="left" width="14%"><i><font face="Arial, Helvetica, sans-serif" size="2">1</font></i></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><i><font face="Arial, Helvetica, sans-serif" size="2">34</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">BCPO</font></i></TD>
+    <TD align="left" width="50%"><i><font face="Arial, Helvetica, sans-serif" size="2">Hydrophobic 
+      black carbon aerosol</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">12</font></i></TD>
+    <TD align="left" width="14%"><i><font face="Arial, Helvetica, sans-serif" size="2">1</font></i></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><i><font face="Arial, Helvetica, sans-serif" size="2">35</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">OCPO</font></i></TD>
+    <TD align="left" width="50%"><i><font face="Arial, Helvetica, sans-serif" size="2">Hydrophobic 
+      organic carbon aerosol</font></i></TD>
+    <TD align="left" width="15%"><i><font face="Arial, Helvetica, sans-serif" size="2">12</font></i></TD>
+    <TD align="left" width="14%"><i><font face="Arial, Helvetica, sans-serif" size="2">1</font></i></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">36</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">DST1</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Dust 
+      aerosol, <i>Reff</i> = 0.7 microns</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">29</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2"></font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">37</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">DST2</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Dust 
+      aerosol, Reff = 1.4 microns</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">29</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2"></font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">38</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">DST3</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Dust 
+      aerosol, Reff = 2.4 microns</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">29</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2"></font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">39</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">DST4</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Dust 
+      aerosol, Reff = 4.5 microns</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">29</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2"></font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">40</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">SALA</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Accumulation 
+      mode sea salt aerosol <br>
+      (Reff = 0.1 &#150; 2.5 microns)</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">36</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2"></font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">41</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">SALC</font></TD>
+    <TD align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Coarse 
+      </font><font face="Arial, Helvetica, sans-serif" size="2">mode sea salt 
+      aerosol <br>
+      (Reff = 2.5 &#150; 10 microns)</font></TD>
+    <TD align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">36</font></TD>
+    <TD align="left" width="14%"><font face="Arial, Helvetica, sans-serif" size="2"></font></TD>
+  </TR>
+</TABLE>
+
+<br>
+<hr>
+<P><A NAME="A1.4"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>A1.4 
+  HCN simulations (NSRCX = 4)<br>
+  <br>
+  </b></font> 
+<TABLE VALIGN=TOP CELLSPACING=3 CELLPADDING=3 BORDER=0 width="80%">
+  <TR VALIGN=TOP align="left"> 
+    <TH width="5%"><font face="Arial, Helvetica, sans-serif" size="2">#</font></TH>
+    <TH width="15%"><font face="Arial, Helvetica, sans-serif" size="2">Name</font></TH>
+    <TH width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Description</font></TH>
+    <TH width="15%"><font face="Arial, Helvetica, sans-serif" size="2">g/mole</font></TH>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">1</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">HCN</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Hydrogen 
+      Cyanide</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">27</font></TD>
+  </TR>
+</TABLE>
+
+<br>
+<hr>
+<P><A NAME="A1.5"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>A1.5 
+  CO with parameterized OH simulations (NSRCX = 5)<br>
+  <br>
+  </b></font> 
+<TABLE HALIGN=CENTER VALIGN=TOP CELLSPACING=3 CELLPADDING=3 BORDER=0 width="80%">
+  <TR VALIGN=TOP align="left"> 
+    <TH width="5%"><font face="Arial, Helvetica, sans-serif" size="2">#</font></TH>
+    <TH width="15%"><font face="Arial, Helvetica, sans-serif" size="2">Name</font></TH>
+    <TH width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Description</font></TH>
+    <TH width="15%"><font face="Arial, Helvetica, sans-serif" size="2">g/mole</font></TH>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">1</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CO</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Carbon 
+      Monoxide</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+</TABLE>
+
+<br>
+<hr>
+<P><A NAME="A1.6"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>A1.6 
+  Tagged Ox simulations (NSRCX = 6)<br>
+  <br>
+  </b></font> 
+<table valign=TOP cellspacing=3 cellpadding=3 border=0 width="80%">
+  <tr valign=TOP align="left"> 
+    <th width="5%"><font face="Arial, Helvetica, sans-serif" size="2">#</font></th>
+    <th width="15%"><font face="Arial, Helvetica, sans-serif" size="2">Name</font></th>
+    <th width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Description</font></th>
+    <th width="15%"><font face="Arial, Helvetica, sans-serif" size="2">g/mole</font></th>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">1</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">Ox</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Total 
+      Ox (O3 + NO2 + 2NO3)</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">2</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OxUT</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ox produced 
+      in the upper troposphere (above 350 hPa)</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">3</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OxMT</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ox produced 
+      in the middle troposphere (PBL top &#150; 350 hPa)</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">4</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OxROW</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ox produced 
+      in the rest of the world</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">5</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OxPcBL</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ox produced 
+      in the Pacific Ocean boundary layer</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">6</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OxNABL</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ox produced 
+      in the North American boundary layer</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">7</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OxAtBL</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ox produced 
+      in the Atlantic Ocean boundary layer</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">8</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OxEuBL</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ox produced 
+      in the European boundary layer</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">9</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OxAfBL</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ox produced 
+      in the African boundary layer</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">10</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OxAsBl</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ox produced 
+      in the Asian boundary layer</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">11</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OxStrt</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ox produced 
+      in the stratosphere</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">12</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OxInit</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ox from 
+      the initial condition</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+  <tr valign=TOP align="left"> 
+    <td width="5%"><font face="Arial, Helvetica, sans-serif" size="2">13</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OxUSA</font></td>
+    <td width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ox produced 
+      over the United States (surface - tropopause)</font></td>
+    <td width="15%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+  </tr>
+</table>
+<br>
+<hr>
+<P><A NAME="A1.7"></a><FONT FACE="Arial,Helvetica" SIZE=-1></font>
+<FONT FACE="Arial,Helvetica" SIZE=-1>
+<p><font face="Arial, Helvetica, sans-serif"><b>A1.7 Tagged CO simulations (NSRCX 
+  = 7)</b></font></p>
+<p><font face="Arial, Helvetica, sans-serif">NOTE: Several GEOS&#150;CHEM users 
+  have customized the tagged CO simulation to their own purposes. Listed below 
+  are two such simulations. The &quot;standard&quot; Tagged CO simulation is the 
+  simulation that &quot;ships&quot; with GEOS&#150;CHEM. The IAPS Tagged CO simulation 
+  is the simulation which was used to provide daily forecasts during the ITCT 
+  2k2 mission in Spring 2002.</font></p>
+</font><A NAME="A1.7.1"></a><font face="Arial, Helvetica, sans-serif"><b><font size="2">A1.7.1 
+"Standard" Tagged CO<br>
+<br>
+</font></b></font><FONT FACE="Arial,Helvetica" SIZE=-1> 
+<TABLE VALIGN=TOP CELLSPACING=3 CELLPADDING=3 BORDER=0 width="80%">
+  <TR VALIGN=TOP align="left"> 
+    <TH width="5%"><font face="Arial, Helvetica, sans-serif" size="2">#</font></TH>
+    <TH width="15%"><font face="Arial, Helvetica, sans-serif" size="2">Name</font></TH>
+    <TH width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Description</font></TH>
+    <TH width="15%"><font face="Arial, Helvetica, sans-serif" size="2">g/mole</font></TH>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">1</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CO</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Total 
+      CO</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">2</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">COus</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      US fossil fuel emissions</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">3</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">COeur</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      European fossil fuel emissions</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">4</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">COasia</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      Asian fossil fuel emissions</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">5</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">COoth</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      fossil fuel emissions -- rest of world</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">6</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CObbAm</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      South American biomass burning</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">7</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CObbAf</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      African biomass burning</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">8</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CObbAs</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      SE Asian biomass burning</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">9</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CObbOc</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      Oceania biomass burning</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">10</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CObbEu</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      European biomass burning</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">11</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CObbNA</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      North American biomass burning</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">12</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">COch4</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO chemically 
+      produced from methane oxidation</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">13</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CObiof</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      biofuel burning (whole world)</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">14</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">COisop</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO chemically 
+      produced from isoprene oxidation</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">15</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">COmono</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO chemically 
+      produced from monoterpenes oxidation</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">16</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">COmeoh</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO chemically 
+      produced from methanol oxidation</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">17</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">COacet</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO chemically 
+      produced from acetone oxidation</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+</TABLE>
+</font> 
+<p><A NAME="A1.7.2"></a><font face="Arial, Helvetica, sans-serif"><b><font size="2">A1.7.2 
+  Tagged CO for NOAA ITCT2K2 forecasts w/ the IAPS chemical forecasting system</font></b></font><br>
+</p>
+<TABLE VALIGN=TOP CELLSPACING=3 CELLPADDING=3 BORDER=0 width="80%">
+  <TR VALIGN=TOP align="left"> 
+    <TH height="23" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">#</font></TH>
+    <TH height="23" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">Name</font></TH>
+    <TH height="23" width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Description</font></TH>
+    <TH height="23" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">g/mole</font></TH>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">1</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CO</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Total 
+      CO</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">2</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">COffAs</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      Asian Fossil Fuel</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">3</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">COffEu</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      European Fossil Fuel</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">4</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">COffNa</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      North American Fossil Fuel</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">5</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">CObbAs</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">CO from 
+      Asian Biomass Burning</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">28</font></TD>
+  </TR>
+</TABLE>
+
+<br>
+<hr>
+<P><A NAME="A1.8"></a> <b><font face="Arial, Helvetica, sans-serif" size="2">A1.8 
+  Offine sulfate-aersosol simulations (NSRCX = 10)<br>
+  <br>
+  </font></b> 
+<FONT FACE="Arial,Helvetica" SIZE=-1>
+<TABLE HALIGN=CENTER VALIGN=TOP CELLSPACING=3 CELLPADDING=3 BORDER=0 width="80%">
+  <TR VALIGN=TOP align="left"> 
+    <TH width="5%"><font face="Arial, Helvetica, sans-serif" size="2">#</font></TH>
+    <TH width="15%"><font face="Arial, Helvetica, sans-serif" size="2">Name</font></TH>
+    <TH width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Description</font></TH>
+    <TH width="15%"><font face="Arial, Helvetica, sans-serif" size="2">g/mole</font></TH>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">1</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">DMS</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Dimethyl 
+      sulfide</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">62</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">2</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">SO2</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Sulfur 
+      dioxide </font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">64</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">3</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">SO4</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Sulfate</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">96</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">4</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">MSA</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Methane 
+      Sulfionic Acid</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">96</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">5</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">NH3</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ammonia</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">17</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">6</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">NH4</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Ammonium</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">18</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">7</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">NIT</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Sulfur 
+      Nitrates</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">62</font></TD>
+  </TR>
+  <TR VALIGN=TOP align="left"> 
+    <TD width="5%"><font face="Arial, Helvetica, sans-serif" size="2">8</font></TD>
+    <TD width="15%"><font face="Arial, Helvetica, sans-serif" size="2">H2O2</font></TD>
+    <TD width="65%"><font face="Arial, Helvetica, sans-serif" size="2">Hydrogen 
+      Peroxide</font></TD>
+    <TD width="15%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">34</font></p>
+    </TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">9</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">BCPI</font></td>
+    <td align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Hydrophilic 
+      black carbon aerosol</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">12</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">10</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OCPI</font></td>
+    <td align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Hydrophilic 
+      organic carbon aerosol</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">12</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">11</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">BCPO</font></td>
+    <td align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Hydrophobic 
+      black carbon aerosol</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">12</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">12</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">OCPO</font></td>
+    <td align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Hydrophobic 
+      organic carbon aerosol</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">12</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">13</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">DST1</font></td>
+    <td align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Dust 
+      aerosol, Reff = 0.7 microns</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">29</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">14</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">DST2</font></td>
+    <td align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Dust 
+      aerosol, Reff = 1.4 microns</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">29</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">15</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">DST3</font></td>
+    <td align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Dust 
+      aerosol, Reff = 2.4 microns</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">29</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">16</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">DST4</font></td>
+    <td align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Dust 
+      aerosol, Reff = 4.5 microns</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">29</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">17</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">SALA</font></td>
+    <td align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Accumulation 
+      mode sea salt aerosol <br>
+      (Reff = 0.1 &#150; 2.5 microns)</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">36</font></td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left" width="5%"><font face="Arial, Helvetica, sans-serif" size="2">18</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">SALC</font></td>
+    <td align="left" width="50%"><font face="Arial, Helvetica, sans-serif" size="2">Coarse 
+      mode sea salt aerosol <br>
+      (Reff = 2.5 &#150; 10 microns)</font></td>
+    <td align="left" width="15%"><font face="Arial, Helvetica, sans-serif" size="2">36</font></td>
+  </tr>
+</TABLE>
+</font> <br>
+<hr>
+<br>
+<FONT FACE="Arial,Helvetica" SIZE=-1></font><FONT FACE="Arial,Helvetica" SIZE=-1> 
+<P> 
+  <CENTER>
+    <A HREF="geos_chem_8.html"><font face="Arial, Helvetica, sans-serif">[Return 
+    to Chapter 8]</font></A><font face="Arial, Helvetica, sans-serif"> | <A HREF="geos_chem_a2.html">[Go 
+    on to Appendix 2]</A></font> 
+  </CENTER>
+</font> 
+</BODY>
+</HTML>

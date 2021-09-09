@@ -1,0 +1,1633 @@
+<HTML>
+<HEAD>
+<TITLE>GEOS&#150;CHEM User's Guide</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="FF0000" HLINK="#FFFF00">
+<CENTER>
+  <p><font face="Arial, Helvetica, sans-serif" size="2"><b>GEOS&#150;CHEM v6&#150;02&#150;05 
+    User's Guide<br>
+    Contact: Bob Yantosca (<A HREF="mailto:bmy@io.harvard.edu">bmy@io.harvard.edu</A>)</b></font></p>
+  </CENTER>
+
+<P><HR>
+<P> <A NAME="4"></a><font face="Arial, Helvetica, sans-serif" size="+1"><b>4. 
+  GEOS&#150;CHEM Shared Data Directories</b></font></P>
+<hr>
+<P ALIGN=JUSTIFY><a name="4.1"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1 
+  The <font face="Courier New, Courier, mono">/geos/data/GEOS_2x2.5 </font>and 
+  <font face="Courier New, Courier, mono">/geos/data/GEOS_4x5</font> directories</b></font></P>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">The GEOS&#150;CHEM 
+  model will read input files from two different directories: the <B>data directory</B> 
+  and the <B>run directory</B>. In this section we describe the <b>data directory</b>. 
+  (See <a href="geos_chem_5.html">Chapter 5</a> for a full description of the 
+  files which are included in the <b>run directory</b>.)</font></P>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">he <b>data 
+  directory</b> contains globally-accessible, read-only data files (such as anthropogenic 
+  emissions &amp; scale factors, biomass burning emissions, leaf area indices, 
+  etc).</font> </P>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">On the Harvard 
+  internal filesystem, the data directories are stored under the names:</font>
+<blockquote>
+  <p><font face="Courier New, Courier, mono" size="2">/data/ctm/GEOS_2x2.5</font></p>
+  <p><font face="Courier New, Courier, mono" size="2">/data/ctm/GEOS_4x5</font></p>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">However, 
+  the same data can also be downloaded by users outside Harvard from our data 
+  server<font face="Courier New, Courier, mono"> geos.as.harvard.edu</font> (using 
+  <font face="Courier New, Courier, mono">ncftp</font> or <font face="Courier New, Courier, mono">scp</font>) 
+  , under the directory names:</font></P>
+<blockquote>
+  <p><font face="Courier New, Courier, mono" size="2">/geos/data/GEOS_2x2.5</font></p>
+  <p><font face="Courier New, Courier, mono" size="2">/geos/data/GEOS_4x5</font></p>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">where:</font><br>
+</P>
+  <blockquote>
+  <table width="95%" border="0">
+    <tr align="left" valign="top"> 
+      <td width="33%"><font face="Arial, Helvetica, sans-serif" size="2"><font face="Courier New, Courier, mono" size="2">/geos/data/GEOS_2x2.5</font></font></td>
+      <td width="2%">&nbsp;</td>
+      <td width="65%"> 
+        <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">Contains 
+          data files for 2 x 2.5 <a href="geos_chem_a3.html#A3.2">GEOS&#150;1</a>, 
+          <a href="geos_chem_a3.html#A3.3">GEOS&#150;STRAT</a>, <a href="geos_chem_a3.html#A3.4">GEOS&#150;3</a>, 
+          and <a href="geos_chem_a3.html#A3.5">GEOS&#150;4</a> grids. Data files 
+          are stored into various subdirectories of this root directory.</font></p>
+      </td>
+    </tr>
+    <tr align="left" valign="top">
+      <td width="33%">&nbsp;</td>
+      <td width="2%">&nbsp;</td>
+      <td width="65%">&nbsp;</td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="33%" height="55"><font face="Arial, Helvetica, sans-serif" size="2"><font face="Courier New, Courier, mono" size="2">/geos/data/GEOS_4x5</font></font></td>
+      <td width="2%" height="55">&nbsp;</td>
+      <td width="65%" height="55"> 
+        <P Align=justify> <font face="Arial, Helvetica, sans-serif" size="2">Contains 
+          data files for 4 x 5 <a href="geos_chem_a3.html#A3.2">GEOS&#150;1</a>, 
+          <a href="geos_chem_a3.html#A3.3">GEOS&#150;STRAT</a>, <a href="geos_chem_a3.html#A3.4">GEOS&#150;3</a>, 
+          and <a href="geos_chem_a3.html#A3.5">GEOS&#150;4</a> grids. Data files 
+          are partitioned into various subdirectories of this root directory.</font></P>
+      </td>
+    </tr>
+  </table>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">(If you do 
+  not have access to the data server geos.as.harvard.edu, please contact Jack 
+  Yatteau, email: jhy at io dot harvard dot edu.)</font> </P>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">The following 
+  extensions are used to denote different GEOS model types:</font><br>
+</P>
+  <blockquote>
+  <table width="95%" border="0">
+    <tr align="left" valign="top"> 
+      <td width="20%"><font face="Courier New, Courier, mono" size="2">geos.2x25 
+        </font></td>
+      <td width="20%"><font face="Courier New, Courier, mono" size="2">GEOS</font></td>
+      <td width="63%"><font face="Arial, Helvetica, sans-serif" size="2">2 x 
+        2.5 grid, surface data only (144 x 91)</font></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="20%"><font face="Courier New, Courier, mono" size="2">geos1.2x25 
+        </font></td>
+      <td width="17%"><font face="Courier New, Courier, mono" size="2">GEOS&#150;1</font></td>
+      <td width="63%"><font face="Arial, Helvetica, sans-serif" size="2">2 x 
+        2.5 grid, 20 vertical levels</font></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="20%"><font face="Courier New, Courier, mono" size="2">geoss.2x25 
+        </font></td>
+      <td width="17%"><font face="Courier New, Courier, mono" size="2">GEOS&#150;STRAT</font></td>
+      <td width="63%"><font face="Arial, Helvetica, sans-serif" size="2">2 x 
+        2.5 grid, 26 vertical levels</font></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="20%"><font face="Courier New, Courier, mono" size="2">geos3.2x25 
+        </font></td>
+      <td width="17%"><font face="Courier New, Courier, mono" size="2">GEOS&#150;3</font></td>
+      <td width="63%"><font face="Arial, Helvetica, sans-serif" size="2">2 x 
+        2.5 grid, 48 vertical levels</font></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="20%"><font face="Courier New, Courier, mono" size="2">geos4.2x25 
+        </font></td>
+      <td width="17%"><font face="Courier New, Courier, mono" size="2">GEOS&#150;4</font></td>
+      <td width="63%"><font face="Arial, Helvetica, sans-serif" size="2">2 x 
+        2.5 grid, 55 vertical levels</font></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="20%"><font face="Courier New, Courier, mono" size="2">&nbsp;<BR>&nbsp;</font></td>
+      <td width="17%"><font face="Courier New, Courier, mono" size="2">&nbsp;<BR>&nbsp;</font></td>
+      <td width="63%"><font face="Courier New, Courier, mono" size="2">&nbsp;<BR>&nbsp;</font></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="20%"><font face="Courier New, Courier, mono" size="2">geos.4x5</font></td>
+      <td width="17%"><font face="Courier New, Courier, mono" size="2">GEOS</font></td>
+      <td width="63%"><font face="Arial, Helvetica, sans-serif" size="2">4 x 
+        5 grid, surface only (72 x 46)</font></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="20%"><font face="Courier New, Courier, mono" size="2">geos1.4x5</font></td>
+      <td width="17%"><font face="Courier New, Courier, mono" size="2">GEOS&#150;1</font></td>
+      <td width="63%"><font face="Arial, Helvetica, sans-serif" size="2">4 x 
+        5 grid, 20 vertical levels</font></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="20%"><font face="Courier New, Courier, mono" size="2">geoss.4x5</font></td>
+      <td width="17%"><font face="Courier New, Courier, mono" size="2">GEOS&#150;STRAT</font></td>
+      <td width="63%"><font face="Arial, Helvetica, sans-serif" size="2">4 x 
+        5 grid, 26 vertical levels</font></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="20%"><font face="Courier New, Courier, mono" size="2">geos3.4x5</font></td>
+      <td width="17%"><font face="Courier New, Courier, mono" size="2">GEOS&#150;3</font></td>
+      <td width="63%"><font face="Arial, Helvetica, sans-serif" size="2">4 x 
+        5 grid, 48 vertical levels</font></td>
+    </tr>
+    <tr align="left" valign="top"> 
+      <td width="20%"><font face="Courier New, Courier, mono" size="2">geos4.4x5</font></td>
+      <td width="17%"><font face="Courier New, Courier, mono" size="2">GEOS&#150;4</font></td>
+      <td width="63%"><font face="Arial, Helvetica, sans-serif" size="2">4 x 
+        5 grid, 55 vertical levels</font></td>
+    </tr>
+  </table>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Files with 
+  a <font face="Courier New, Courier, mono" size="2">2x25</font> extension are 
+  located in subdirectories of <font face="Courier New, Courier, mono" size="2">/geos/data/GEOS_2x2.5<font face="Arial, Helvetica, sans-serif" size="2">.</font></font></font> 
+<P><font face="Arial, Helvetica, sans-serif" size="2">Files with a <font face="Courier New, Courier, mono" size="2">4x5</font> 
+  extension are located in subdirectories of <font face="Courier New, Courier, mono" size="2">/geos/data/GEOS_4x5</font>. 
+  </font> 
+<P><font face="Arial, Helvetica, sans-serif" size="2">Files that are grid-independent 
+  are typically located in subdirectories of both <font face="Courier New, Courier, mono" size="2">/geos/data/GEOS_2x2.5</font> 
+  and <font face="Courier New, Courier, mono" size="2">/geos/data/GEOS_4x5</font>.</font> </P>
+<P><font face="Arial, Helvetica, sans-serif" size="2"> Each subdirectory of <font face="Courier New, Courier, mono" size="2">/geos/data/GEOS_2x2.5</font> 
+  and <font size="2" face="Courier New, Courier, mono">/geos/data/GEOS_4x5</font> 
+  now contains a README file for further reference. </font></P>
+<HR>
+<P> <A NAME="4.1.1"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.1 
+  The <font face="Courier New, Courier, mono" size="2">C3H8_C2H6_200109/</font> 
+  subdirectories</b><br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP>
+    <TD width="40%"> <font face="Courier New, Courier, mono" size="2">C3H8_C2H6_ngas.geos.2x25<BR>
+      C3H8_C2H6_ngas.geos.4x5</font></TD>
+  <TD>
+      <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica" SIZE=-1> <font face="Arial, Helvetica, sans-serif">Anthropogenic 
+        propane and ethane emissions computed from natural gas by James Wang and 
+        Yaping Xiao.</font></FONT> 
+    </TD>
+ </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.2"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.2 
+  The <font face="Courier New, Courier, mono" size="2">CH3I/</font> subdirectories<br>
+  <br>
+  </b></font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD width="40%"> <font face="Courier New, Courier, mono" size="2"> ch4_rice.geos.2x25<BR>
+      ch4_rice.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Monthly methane emissions from rice paddies for CH3I simulation (Fung 
+        et al, 1991)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%"> <font face="Courier New, Courier, mono" size="2">ch4_rice.geos.2x25<BR>
+      ch4_wetl.geos.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Monthly methane emissions from wetlands for CH3I simulation (Fung et al, 
+        1991)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%"> <font face="Courier New, Courier, mono" size="2"> ocean_ch3i.geos.2x25<BR>
+      ocean_ch3i.geos.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Aqueous concentrations of ocean CH3I (contact: <A HREF="mailto:martin.schultz@dkrz.de">Martin 
+        Schultz</A>) </font>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%"><font face="Courier New, Courier, mono" size="2">ocean_DOC.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Monthly mean values of Dissolved Organic Carbon (for CH3I simulation). 
+        Contact: <A HREF="mailto:martin.schultz@dkrz.de">Martin Schultz</A>) </font>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%"> <font face="Courier New, Courier, mono" size="2"> ocean_npp.geos.2x25<BR>
+      ocean_npp.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Net Primary Productivity from the ocean (for CH3I simulation). Contact: 
+        <A HREF="mailto:martin.schultz@dkrz.de">Martin Schultz</A>. </font>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%"> <font face="Courier New, Courier, mono" size="2">radswg.geos.[res]</font> 
+    </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Contains monthly averaged solar insolation at the ground (for CH3I simulation).</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.3"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.3 
+  The <font face="Courier New, Courier, mono" size="2">CH4_200202/</font> subdirectories</b><br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%" height="205"> <font face="Courier New, Courier, mono" size="2">CH4emis.geos.4x5.1988<BR>
+      CH4emis.geos.4x5.1989<BR>
+      CH4emis.geos.4x5.1990<BR>
+      CH4emis.geos.4x5.1991<BR>
+      CH4emis.geos.4x5.1992<BR>
+      CH4emis.geos.4x5.1993<BR>
+      CH4emis.geos.4x5.1994<BR>
+      CH4emis.geos.4x5.1995<BR>
+      CH4emis.geos.4x5.1996<BR>
+      CH4emis.geos.4x5.1997<BR>
+      CH4emis.geos.4x5.1998</font> </TD>
+    <TD height="205"> 
+      <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica" SIZE=-1> <font face="Arial, Helvetica, sans-serif">Methane 
+        emissions data from Fung et al, 1991. Yearly emissions from animals, 
+        coal mining, gas leakage, gas venting are included, as well as monthly 
+        emissions from rice paddies. Units are molecules CH<SUB>4</SUB>/cm<SUP>2</SUP>/s.</font></FONT> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.4"></a><font face="Arial, Helvetica, sans-serif"><b><font size="2">4.1.4 
+  The <font face="Courier New, Courier, mono" size="2">RnPbBe_200203/</font> subdirectories<br>
+  <br>
+  </font></b></font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD width="40%"><font face="Courier New, Courier, mono" size="2">7Be.Lal</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Source of 7Be (Lal &amp; Peters. 1967, used for <sup>222</sup>Rn-<sup>210</sup>Pb-<sup>7</sup>Be 
+        simulations)</font> 
+    </TD>
+  <TR VALIGN=TOP> 
+    <TD width="40%"><font face="Courier New, Courier, mono" size="2">tracer.moments</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Land fractions per grid box for the 222Rn - 210Pb - 7Be simulation. 
+        (Liu et al, 2000)</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.5"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.5 
+  The <font face="Courier New, Courier, mono" size="2">acetone_200108/</font> 
+  subdirectories<br>
+  <br>
+  </b></font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">JO1D.geos.2x25<BR>
+      JO1D.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Monthly 
+        mean J(O1D) fields at the surface, used to compute emissions of biogenic 
+        acetone. From Brendan Field.</font>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">resp.geos.2x25<BR>
+      resp.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Monthly 
+        mean heterotrophic respiration fields, compute emissions of biogenic acetone. 
+        From Brendan Field.</font>
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.6"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.6 
+  The <font face="Courier New, Courier, mono" size="2">aerosol_200106/</font> 
+  subdirectories<br>
+  <br>
+  </b></font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">aerosol.geos1.2x25<BR>
+      aerosol.geos1.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 3-D 
+        monthly mean aerosol fields from Mian Chin, on the 20-layer GEOS&#150;1 
+        vertical grid.</font> 
+    </TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">aerosol.geos3.2x25<br>
+      aerosol.geos3.4x5</font> </td>
+    <td> 
+      <p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 3-D 
+        monthly mean aerosol fields from Mian Chin, on the 48-layer GEOS&#150;3 
+        vertical grid.</font> 
+    </td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">aerosol.geos4.2x25<BR>
+      aerosol.geos4.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 3-D 
+        monthly mean aerosol fields from Mian Chin, on the 55-layer GEOS&#150;4 
+        vertical grid.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2"> 
+      aerosol.geoss.2x25.1996<BR>
+      aerosol.geoss.4x5.1996</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 3-D 
+        monthly mean aerosol fields for 1996 from Mian Chin, on the 26-layer GEOS&#150;STRAT 
+        vertical grid.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2"> 
+      aerosol.geoss.2x25.1997<BR>
+      aerosol.geoss.4x5.1997</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 3-D 
+        monthly mean aerosol fields for 1997 from Mian Chin, on the 26-layer GEOS&#150;STRAT 
+        vertical grid.</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P align=justify> <font face="Arial, Helvetica, sans-serif" size="2"><b>NOTE:</b> 
+  GEOS&#150;CHEM v6&#150;02&#150;05 now allows you to perform on-line emissions 
+  and chemistry for the carbon and sea-salt tracers instead of reading these monthly 
+  mean fields from disk. </font></P>
+<P align=justify><font face="Arial, Helvetica, sans-serif" size="2">If the logical 
+  switch <font face="Courier New, Courier, mono">LCARB = T</font> (see the <a href="geos_chem_5.html#5.2.3">input.geos</a> 
+  file), then emissions and chemistry will be done online for the Hydrophilic 
+  and Hydrophobic Black Carbon and Organic Carbon tracers. If <font face="Courier New, Courier, mono">LCARB 
+  = F</font>, then these quantities will not be carried as tracers and instead 
+  monthly mean concentrations will be read from disk.</font></P>
+<P align=justify><font face="Arial, Helvetica, sans-serif" size="2">If the logical 
+  switch <font face="Courier New, Courier, mono">LSSALT = T</font> (see the <a href="geos_chem_5.html#5.2.3">input.geos</a> 
+  file), then emissions and chemistry will be done online for the accumulation 
+  mode and coarse mode sea salt aerosol tracers. If <font face="Courier New, Courier, mono">LSSALT 
+  = F</font>, then these quantities will not be carried as tracers and instead 
+  monthly mean concentrations will be read from disk.</font></P>
+<P>
+<HR>
+<P> <A NAME="4.1.7"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.7 
+  The <font face="Courier New, Courier, mono" size="2">aircraft_NOx_200202/</font> 
+  subdirectories</b><br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">airjan.2x25<BR>
+      airfeb.2x25<BR>
+      airmar.2x25<BR>
+      airapr.2x25<BR>
+      airmay.2x25<BR>
+      airjun.2x25<BR>
+      airjul.2x25<BR>
+      airaug.2x25<BR>
+      airsep.2x25<BR>
+      airoct.2x25<BR>
+      airnov.2x25<BR>
+      airdec.2x25<BR>
+      airjan.4x5<BR>
+      airfeb.4x5<BR>
+      airmar.4x5<BR>
+      airapr.4x5<BR>
+      airmay.4x5<BR>
+      airjun.4x5<BR>
+      airjul.4x5<BR>
+      airaug.4x5<BR>
+      airsep.4x5<BR>
+      airoct.4x5<BR>
+      airnov.4x5<BR>
+      airdec.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica" SIZE=-1> <font face="Arial, Helvetica, sans-serif">Monthly 
+        mean emissions of Aircraft NOx, in kg NOx/4h. Based on Wang et al, 
+        1998.</font></FONT> 
+    </TD>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.8"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.8 
+  The <font size="2" face="Courier New, Courier, mono">ann_mean_trop_200202/</font> 
+  subdirectories</b><br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"> <font face="Courier New, Courier, mono" size="2">ann_mean_trop.geos1.2x25<BR>
+      ann_mean_trop.geos1.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Annual 
+        mean tropopause heights (in model levels) and flags for the ND27 diagnostic 
+        (cross-tropopause fluxes) for the GEOS&#150;1 grid.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD> <font face="Courier New, Courier, mono" size="2">ann_mean_trop.geoss.2x25<BR>
+      ann_mean_trop.geoss.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Annual 
+        mean tropopause heights (in model levels) and flags for the ND27 diagnostic 
+        (cross-tropopause fluxes) for the GEOS&#150;STRAT grid. </font> 
+    </TD>
+  </TR>
+  <tr valign=TOP> 
+    <td height="46"> <font face="Courier New, Courier, mono" size="2">ann_mean_trop.geos3.2x25<br>
+      ann_mean_trop.geos3.4x5</font> </td>
+    <td height="46"> 
+      <p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Annual 
+        mean tropopause heights (in model levels) and flags for the ND27 diagnostic 
+        (cross-tropopause fluxes) for the GEOS&#150;3 grid.</font> 
+    </td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD> <font face="Courier New, Courier, mono" size="2">ann_mean_trop.geos4.2x25<BR>
+      ann_mean_trop.geos4.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Annual 
+        mean tropopause heights (in model levels) and flags for the ND27 diagnostic 
+        (cross-tropopause fluxes) for the GEOS&#150;4 grid.</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.9"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.9 
+  The <font face="Courier New, Courier, mono" size="2">biofuel_200202/</font> 
+  subdirectories</b><br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"> <font face="Courier New, Courier, mono" size="2"> 
+      biofuel.geos.2x25<BR>
+      biofuel.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Biofuel burning emissions from Jennifer Logan, Rose Yevich, and Bryan 
+        Duncan. Binary punch file format. Revised version, Feb 2002, 
+        now includes emissions of 10 tracers (NOx, CO, ALK4, ACET, MEK, ALD2, 
+        PRPE, C3H8, CH2O, C2H6). The emissions of ACET, C2H6, and C3H8 are 
+        now given in Tg C instead of Tg tracer, in order to be consistent with 
+        the way the code reads them in from disk. These files supersede 
+        the files in biofuel_20007/, biofuel_200104/, and biofuel_obsolete. </font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.10"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.10 
+  The <font face="Courier New, Courier, mono" size="2">biogenic_200203/</font> 
+  subdirectories</b><br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">isopemis.table</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Isoprene emissions by Olson land type (Wang et al, 1998; Bey et al, 2000)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">light.table</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Polynomial coefficients for isoprene emissions (Wang et al, 1998)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">monotemis.table</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Biogenic emissions of monoterpenes</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">monotemis.v4-13.table</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Biogenic emissions of monoterpenes, with emissions from some landtypes 
+        modified. Read from this file if you are using GEOS&#150;CHEM v. 4.13 
+        or higher. </font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.11"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.11 
+  The <font face="Courier New, Courier, mono" size="2">biomass_200110/</font> 
+  subdirectories</b><br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD VALIGN=TOP align="left" width="40%"> <font face="Courier New, Courier, mono" size="1">bioburn.interannual.geos.2x25.1996<BR>
+      bioburn.interannual.geos.2x25.1997<BR>
+      bioburn.interannual.geos.2x25.1998<BR>
+      bioburn.interannual.geos.2x25.1999<BR>
+      bioburn.interannual.geos.2x25.2000<BR>
+      bioburn.interannual.geos.4x5.1996<BR>
+      bioburn.interannual.geos.4x5.1997<BR>
+      bioburn.interannual.geos.4x5.1998<BR>
+      bioburn.interannual.geos.4x5.1999<BR>
+      bioburn.interannual.geos.4x5.2000</font></TD>
+    <TD VALIGN=TOP> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Biomass burning emissions for 1996-2000 with interannual variability, 
+        compiled by Randall Martin. Binary punch file format. Revised 
+        version, October 2001, now includes emissions of 10 tracers (NOx, CO, 
+        ALK4, ACET, MEK, ALD2, PRPE, C3H8, CH2O, C2H6). These files supersede 
+        the files in bioburn_200104/. </font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2"> 
+      bioburn.seasonal.geos.2x25<BR>
+      bioburn.seasonal.geos.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Monthly mean (seasonal) biomass burning emissions from Jennifer Logan, 
+        Rose Yevich, and Amanda Staudt. Binary punch file format. 
+        Revised version, October 2001, now includes emissions of 10 tracers (NOx, 
+        CO, ALK4, ACET, MEK, ALD2, PRPE, C3H8, CH2O, C2H6). These files 
+        supersede the files in bioburn_200104/. </font>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2"> 
+      bioburn.annual.geos.2x25<BR>
+      bioburn.annual.geos.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Annual (sum of all months) biomass burning emissions from Jennifer Logan, 
+        Rose Yevich, and Amanda Staudt. Binary punch file format. 
+        Revised version, October 2001, now includes emissions of 10 tracers (NOx, 
+        CO, ALK4, ACET, MEK, ALD2, PRPE, C3H8, CH2O, C2H6). These files 
+        supersede the files in bioburn_200104/. </font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.12"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.12 
+  The <font face="Courier New, Courier, mono" size="2">cms_OH_200202/</font> subdirectories</b><br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">cms_OH.geos1.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        OH from Clarisa Spivakovsky, regridded to GEOS&#150;1 20 layer grid (for CO 
+        w/ parameterized OH)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">cms_OH.geos1.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        OH from Clarisa Spivakovsky, regridded to GEOS&#150;STRAT 26 layer grid (for 
+        CO w/ parameterized OH)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">cms_OH.geos1.4x5</font> 
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        OH from Clarisa Spivakovsky, regridded to GEOS&#150;3 48 layer grid (for CO 
+        w/ parameterized OH)</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.13"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.13 
+  The <font face="Courier New, Courier, mono" size="2">drydep_200203/</font> subdirectories<br>
+  <br>
+  </b></font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">drydep.coef</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Polynomial coefficients for dry deposition (Wesely, 1989)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">drydep.table</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Olson land types and dry deposition resistances (Wesely, 1989; Jacob et 
+        al, 1990, 1992)</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.14"></a><b><font face="Arial, Helvetica, sans-serif" size="2">4.1.14 
+  The <font face="Courier New, Courier, mono" size="2">dust_200203/</font> subdirectories<br>
+  <br>
+  </font></b>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">dust.geos1.2x25<BR>
+      dust.geos1.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica" SIZE=-1> Mineral dust optical 
+        depths for FAST-J on GEOS&#150;1 20 layer grid (supplied to us by Paul 
+        Ginoux)</FONT> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">dust.geoss.2x25.1996<BR>
+      dust.geoss.4x5.1996</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica" SIZE=-1> 1996 Mineral dust 
+        optical depths for FAST-J on GEOS&#150;STRAT 26 layer grid for the year 
+        1996 (supplied to us by Paul Ginoux)</FONT> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <td align="left" width="40%"><font face="Courier New, Courier, mono" size="2">dust.geoss.2x25.1997<br>
+      dust.geoss.4x5.1997 dust.geoss.2x25.1997<BR>
+      dust.geoss.4x5.1997</font> 
+    <TD> 
+      <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica" SIZE=-1> 1997 Mineral dust 
+        optical depths for FAST-J on GEOS&#150;STRAT 26 layer grid for the year 
+        1997 (supplied to us by Paul Ginoux)</FONT> 
+  </TR>
+  <tr valign=TOP> 
+    <td align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">dust.geoss3.2x25<br>
+      dust.geoss3.4x5</font> </td>
+    <td> 
+      <p align=JUSTIFY><font face="Arial,Helvetica" size=-1> Mineral dust optical 
+        depths for FAST-J on GEOS&#150;3 48 layer grid (supplied to us by Paul 
+        Ginoux)</font> 
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">dust.geoss4.2x25<BR>
+      dust.geoss4.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica" SIZE=-1> Mineral dust optical 
+        depths for FAST-J on GEOS&#150;4 55 layer grid (supplied to us by Paul 
+        Ginoux)</FONT> 
+    
+  </TR>
+</TABLE>
+
+<p align=justify> <font face="Arial, Helvetica, sans-serif" size="2"> <b>NOTE:</b> 
+  GEOS&#150;CHEM v6&#150;02&#150;05 now allows you do on-line dust mobilization 
+  by carrying 4 extra dust tracers instead of reading these monthly mean dust-fields 
+  from disk. e <a href="geos_chem_5.html#5.2.3">input.geos</a> file, if the logical 
+  switch <font face="Courier New, Courier, mono">LDUST = T</font> (see the <a href="geos_chem_5.html#5.2.3">input.geos</a> 
+  file) then the on-line dust mobilization will be switched on. (You have a choice 
+  of either using the DEAD scheme from Charlie Zender or the GOCART scheme of 
+  Paul Ginoux). </font></P>
+<P>
+<HR>
+<P> <A NAME="4.1.15"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.15 
+  The <font face="Courier New, Courier, mono" size="2">fastj_200203/</font> subdirectories<br>
+  <br>
+  </b></font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">jv_atms.dat</font> 
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        FAST-J &quot;standard&quot; temperature and ozone climatological profiles 
+        (Wild et al, 1999)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">jv_atms.dat.1997</font> 
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        FAST-J &quot;standard&quot; temperature and ozone climatological profiles 
+        scaled to 1997 (Andrew Fusco)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">jv_spec.dat</font> 
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        FAST-J species absorption cross sections and quantum yields with pressure 
+        dependencies (Wild et al, 1999)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">jv_spec.dat.rvm</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        jv_spec.dat file which also contains additional cross-section information 
+        for 7 mineral dust types (Randall Martin)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">jv_spec.dat.v4-30</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        jv_spec.dat file which also contains cross-sections for 7 mineral dust 
+        types, and for the combination of 5 aerosol types AND 5 relative humidity 
+        bins (by Randall Martin). You should use this file if you are using 
+        GEOS&#150;CHEM v. 4.30 or 4.31.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">jv_spec.dat.v4-32</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        jv_spec.dat file which contains everything in jv_spec.dat.v4-30, but has 
+        cross-sections for JO<SUP>1</SUP>D taken from JPL 2000 (by Mat Evans). 
+        You should use this file if you are using GEOS&#150;CHEM v. 4.32 or higher.</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.16"></a> <b><FONT FACE="Arial,Helvetica" SIZE=-1><font face="Arial, Helvetica, sans-serif">4.1.16 
+  The <font face="Courier New, Courier, mono" size="2">fossil_200104/</font> subdirectories</font></font></b><FONT FACE="Arial,Helvetica" SIZE=-1><font face="Arial, Helvetica, sans-serif"><br>
+  <br>
+  </font></font> 
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <FONT FACE="Arial,Helvetica" SIZE=-1> 
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">merge_nobiofuels.geos.2x25<BR>
+      merge_nobiofuels.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Anthropogenic emissions, with contributions from biofuels removed so as 
+        to avoid double-counting. Version released April 2001, by Jennifer 
+        Logan, Rose Yevich, and Amanda Staudt. Binary punch file format. 
+        Contains 10 emission species. (NOx, CO, ALK4, ACET, MEK, ALD2, PRPE, C3H8, 
+        CH2O, ETHE, SOx). These files now supersede the merge.4x5_CTM* and 
+        merge.2x25_CTM* files.</font> 
+    </TD>
+  </TR>
+  </font> 
+  <TR VALIGN=TOP><FONT FACE="Arial,Helvetica" SIZE=-1> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">MELD_N96_70_HC</font></TD>
+    </font> 
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        File containing day of week scale factors for anthropogenic emissions 
+        for the GEOS&#150;CHEM 4 x 5 grid.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">MELD2x25</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        File containing day of week scale factors for anthropogenic emissions 
+        for the GEOS&#150;CHEM 2 x 2.5 grid.</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.17"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.17 
+  The <font face="Courier New, Courier, mono" size="2">leaf_area_index_200202/</font> 
+  subdirectories</b><br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">lai01.global<BR>
+      lai02.global<BR>
+      lai03.global<BR>
+      lai04.global<BR>
+      lai05.global<BR>
+      lai06.global<BR>
+      lai07.global<BR>
+      lai08.global<BR>
+      lai09.global<BR>
+      lai10.global<BR>
+      lai11.global<BR>
+      lai12.global</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Global leaf area indices by month (Wang et al, 1998)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">vegtype.global</font> 
+    </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Vegetation types -- Olson classification (Wang et al, 1998)</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.18"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.18 
+  The <font face="Courier New, Courier, mono" size="2">lightning_NOx_200203/</font> 
+  subdirectories<br>
+  <br>
+  </b></font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">light_dist.dat</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Vertical distribution of lightning NOx emissions, with a vertical resolution 
+        of 0.16 km. This is used for GEOS&#150;1 or GEOS&#150;STRAT vertical grids. 
+        (Pickering, 1998)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">light_dist.dat.geos3</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Vertical distribution of lightning NOx emissions, with a vertical resolution 
+        of 0.05 km. This is used for the GEOS&#150;3 vertical grid. (Pickering, 
+        1998)</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.19"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.19 
+  The <font face="Courier New, Courier, mono" size="2">pco_lco_200203/</font> 
+  subdirectories</b><br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">COloss.geos1.2x25<BR>
+      COloss.geos1.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Stratospheric 
+        L(CO) rates obtained from Hans Schneider's 2D model (Schneider et al, 
+        2000), regridded to the GEOS&#150;1 20 layer vertical grid.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">COloss.geoss.2x25<BR>
+      COloss.geoss.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Stratospheric 
+        L(CO) rates obtained from Hans Schneider's 2D model (Schneider et al, 
+        2000), regridded to the GEOS&#150;STRAT 26 layer vertical grid.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">COloss.geos3.2x25<BR>
+      COloss.geos3.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Stratospheric 
+        L(CO) rates obtained from Hans Schneider's 2D model (Schneider et al, 
+        2000), regridded to the GEOS&#150;3 48 layer vertical grid.</font> 
+    </TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">COloss.geos4.2x25<br>
+      COloss.geos4.4x5</font> </td>
+    <td> 
+      <p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Stratospheric 
+        L(CO) rates obtained from Hans Schneider's 2D model (Schneider et al, 
+        2000), regridded to the GEOS&#150;4 55 layer vertical grid.</font> 
+    </td>
+  </tr>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.20"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.20 
+  The <font face="Courier New, Courier, mono" size="2">pnoy_200106/</font> subdirectories</b><br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">pnoy_above_10mb.geos1.2x25<BR>
+      pnoy_above_10mb.geos1.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> P(NOy), 
+        taken from Hans Schneider's 2D model. Used for the NOy upper boundary 
+        flux condition for the GEOS&#150;1 20 layer vertical grid. (Schneider 
+        et al, 2000). Revised Version June 2001.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">pnoy_nox_hno3.geos1.2x25<BR>
+      pnoy_nox_hno3.geos1.4x5</font> 
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+        P(NOy), [NO], [NO2], [NO3], and [HNO3] taken from a 2-D stratospheric 
+        model (Schneider et al, 2000). Used for the NOy upper boundary flux condition 
+        for the GEOS&#150;1 20 layer vertical grid. Revised Version June 2001 
+        by Bob Yantosca to correct some negative numbers in the original files.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">pnoy_nox_hno3.geoss.2x25<BR>
+      pnoy_nox_hno3.geoss.4x5</font> 
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+        P(NOy), [NO], [NO2], [NO3], and [HNO3] taken from a 2-D stratospheric 
+        model (Schneider et al, 2000). Used for the NOy upper boundary flux condition 
+        for the GEOS&#150;STRAT 26 layer vertical grid. Revised Version June 2001 
+        by Bob Yantosca to correct some negative numbers in the original files.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">pnoy_nox_hno3.geos3.2x25<BR>
+      pnoy_nox_hno3.geos3.4x5</font> 
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+        P(NOy), [NO], [NO2], [NO3], and [HNO3] taken from a 2-D stratospheric 
+        model (Schneider et al, 2000). Used for the NOy upper boundary flux condition 
+        for the GEOS&#150;3 48 layer vertical grid. Revised Version June 2001 
+        by Bob Yantosca to correct some negative numbers in the original files.</font> 
+    </TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">pnoy_nox_hno3.geos4.2x25<br>
+      pnoy_nox_hno3.geos4.4x5</font> 
+    <td> 
+      <p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Contains 
+        P(NOy), [NO], [NO2], [NO3], and [HNO3] taken from a 2-D stratospheric 
+        model (Schneider et al, 2000). Used for the NOy upper boundary flux condition 
+        for the GEOS&#150;4 55 layer vertical grid. Created January 2003.</font>
+    </td>
+  </tr>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.21"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.21 
+  The <font face="Courier New, Courier, mono" size="2">scalefoss_200202/</font> 
+  subdirectories<br>
+  <br>
+  </b></font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD width="40%"> <font face="Courier New, Courier, mono" size="1">scalefoss.liq.2x25.1960<BR>
+      scalefoss.liq.2x25.1985<BR>
+      scalefoss.liq.2x25.1986<BR>
+      scalefoss.liq.2x25.1987<BR>
+      scalefoss.liq.2x25.1988<BR>
+      scalefoss.liq.2x25.1989<BR>
+      scalefoss.liq.2x25.1990<BR>
+      scalefoss.liq.2x25.1991<BR>
+      scalefoss.liq.2x25.1992<BR>
+      scalefoss.liq.2x25.1993<BR>
+      scalefoss.liq.2x25.1994<BR>
+      scalefoss.liq.2x25.1995<BR>
+      scalefoss.liq.2x25.1996<BR>
+      scalefoss.liq.4x5.1960<BR>
+      scalefoss.liq.4x5.1985<BR>
+      scalefoss.liq.4x5.1986<BR>
+      scalefoss.liq.4x5.1987<BR>
+      scalefoss.liq.4x5.1988<BR>
+      scalefoss.liq.4x5.1989<BR>
+      scalefoss.liq.4x5.1990<BR>
+      scalefoss.liq.4x5.1991<BR>
+      scalefoss.liq.4x5.1992<BR>
+      scalefoss.liq.4x5.1993<BR>
+      scalefoss.liq.4x5.1994<BR>
+      scalefoss.liq.4x5.1995<BR>
+      scalefoss.liq.4x5.1996</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Scale 
+        factor maps to adapt fossil fuel emissions (baseline 1985) to years following 
+        1985. scalefoss.liq* are used for CO and VOC emissions. These 
+        scaling factors were derived from liquid fuel CO2 emissions with some 
+        adjustments for regulated countries. Updated on 09 Apr 2001 by Andrew 
+        Fusco and Bob Yantosca in order to add emissions data from CDIAC for 1996. 
+        Scale factors for 1997, 1998 were added in late 2001. Contact: Contact: 
+        <A HREF="mailto:bmy@io.harvard.edu">Bob Yantosca</A>.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%"> <font face="Courier New, Courier, mono" size="1">scalefoss.tot.2x25.1960<BR>
+      scalefoss.tot.2x25.1985<BR>
+      scalefoss.tot.2x25.1986<BR>
+      scalefoss.tot.2x25.1987<BR>
+      scalefoss.tot.2x25.1988<BR>
+      scalefoss.tot.2x25.1989<BR>
+      scalefoss.tot.2x25.1990<BR>
+      scalefoss.tot.2x25.1991<BR>
+      scalefoss.tot.2x25.1992<BR>
+      scalefoss.tot.2x25.1993<BR>
+      scalefoss.tot.2x25.1994<BR>
+      scalefoss.tot.2x25.1995<BR>
+      scalefoss.tot.2x25.1996<BR>
+      scalefoss.tot.4x5.1960<BR>
+      scalefoss.tot.4x5.1985<BR>
+      scalefoss.tot.4x5.1986<BR>
+      scalefoss.tot.4x5.1987<BR>
+      scalefoss.tot.4x5.1988<BR>
+      scalefoss.tot.4x5.1989<BR>
+      scalefoss.tot.4x5.1990<BR>
+      scalefoss.tot.4x5.1991<BR>
+      scalefoss.tot.4x5.1992<BR>
+      scalefoss.tot.4x5.1993<BR>
+      scalefoss.tot.4x5.1994<BR>
+      scalefoss.tot.4x5.1995<BR>
+      scalefoss.tot.4x5.1996<BR>
+      scalefoss.tot.4x5.1997<BR>
+      scalefoss.tot.4x5.1998</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Likewise 
+        for NOx emissions. Derived from total CO2 emissions. Updated 
+        on 09 Apr 2001 by Andrew Fusco and Bob Yantosca in order to add emissions 
+        data from CDIAC for 1996. Scale factors for 1997, 1998 were added 
+        in late 2001. Contact: <A HREF="mailto:bmy@io.harvard.edu">Bob Yantosca</A>.</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.22"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.22 
+  The <font face="Courier New, Courier, mono" size="2">slowj_200203/</font> subdirectories<br>
+  <br>
+  </b></font>
+<TABLE VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">8col.dat</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Cross-sections of SLOW-J photolysis species</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">jvalue.dat</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        SLOW-J input file (for sol.f), contains wavelength bins, temperature, 
+        and O3 profiles</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">o3du.dat</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        SLOW-J ozone columns, by season and latitude, in Dobson Units</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P align=justify><font face="Arial, Helvetica, sans-serif" size="2"><b>NOTE:</b> 
+  For the most part, these files are obsolete, as the SLOW&#150;J photolysis scheme 
+  has been deprecated.</font></P>
+<HR>
+<P> <A NAME="4.1.23"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.23 
+  The <font face="Courier New, Courier, mono" size="2">soil_NOx_200203/</font> 
+  subdirectories</b><br>
+  <br>
+  </font>
+<TABLE VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"> <font face="Courier New, Courier, mono" size="2">climatprep2x25.dat<BR>
+      climatprep4x5.dat</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Monthly soil precipitation for soil NOx emissions (Wang et al, 1998) </font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">fert_scale.dat</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Fertilizer NOx emissions (Wang et al, 1998)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">soiltype.dat</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Mapping from Olson land type to soil land type (Wang et al, 1998)</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.24"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.24 
+  The <font face="Courier New, Courier, mono" size="2">stratOH_200203/</font> 
+  subdirectories</b><br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD width="40%"> <font face="Courier New, Courier, mono" size="2">stratOH.geos1.2x25<BR>
+      stratOH.geos1.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Zonal 
+        mean stratospheric OH, taken from a 2-D stratospheric model (Schneider 
+        et al 2000), regridded to the GEOS&#150;1 20 layer vertical grid. Used 
+        by <font face="Courier New, Courier, mono">schem.f</font> to prevent tracers 
+        from building up in the stratosphere.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%"> <font face="Courier New, Courier, mono" size="2">stratOH.geoss.2x25<BR>
+      stratOH.geoss.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Zonal 
+        mean stratospheric OH, taken from a 2-D stratospheric model (Schneider 
+        et al 2000), regridded to the GEOS&#150;STRAT 26 layer vertical grid. 
+        Used by <font face="Courier New, Courier, mono">schem.f</font> to prevent 
+        tracers from building up in the stratosphere.</font> 
+    </TD>
+  </TR>
+  <tr valign=TOP> 
+    <td width="40%"> <font face="Courier New, Courier, mono" size="2">stratOH.geos3.2x25<br>
+      stratOH.geos3.4x5</font> </td>
+    <td> 
+      <p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Zonal 
+        mean stratospheric OH, taken from a 2-D stratospheric model (Schneider 
+        et al 2000), regridded to the GEOS&#150;3 48 layer vertical grid. Used 
+        by <font face="Courier New, Courier, mono">schem.f</font> to prevent tracers 
+        from building up in the stratosphere.</font> 
+    </td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD width="40%"> <font face="Courier New, Courier, mono" size="2">stratOH.geos4.2x25<BR>
+      stratOH.geos4.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Zonal 
+        mean stratospheric OH, taken from a 2-D stratospheric model (Schneider 
+        et al 2000), regridded to the GEOS&#150;4 55 layer vertical grid. Used 
+        by <font face="Courier New, Courier, mono">schem.f</font> to prevent tracers 
+        from building up in the stratosphere.</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.25"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.25 
+  The <font face="Courier New, Courier, mono" size="2">stratjv_200203/</font> 
+  subdirectories<br>
+  <br>
+  </b></font>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">stratjv.geos1.2x25<BR>
+      stratjv.geos1.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Zonal 
+        mean J-values (SLOW-J model output) for the GEOS&#150;1 20 layer vertical 
+        grid. Used by <font face="Courier New, Courier, mono"> schem.f </font>to 
+        prevent certain tracers from building up in the stratosphere. </font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">stratjv.geoss.2x25<BR>
+      stratjv.geoss.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Zonal 
+        mean J-values (SLOW-J model output) for the GEOS&#150;STRAT 26 layer vertical 
+        grid. Used by<font face="Courier New, Courier, mono"> schem.f </font>to 
+        prevent certain tracers from building up in the stratosphere. </font> 
+    </TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">stratjv.geos3.2x25<br>
+      stratjv.geos3.4x5</font> </td>
+    <td> 
+      <p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Zonal 
+        mean J-values (SLOW-J model output) for the GEOS&#150;3 48 layer vertical 
+        grid. Used by<font face="Courier New, Courier, mono"> schem.f </font>to 
+        prevent certain tracers from building up in the stratosphere. </font> 
+    </td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">stratjv.geos4.2x25<BR>
+      stratjv.geos4.4x5</font> </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Zonal 
+        mean J-values (SLOW-J model output) for the GEOS&#150;3 55 layer vertical 
+        grid. Used by<font face="Courier New, Courier, mono"> schem.f </font>to 
+        prevent certain tracers from building up in the stratosphere. </font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<!-- ================================================================== -->
+
+<P><HR>
+<P> <A NAME="4.1.26"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.26 
+  The <font face="Courier New, Courier, mono" size="2">sulfate_sim_200210/</font> 
+  subdirectories</b></font><br>
+  <br>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2"> 
+      DMS_seawater.geos.2x25<br>
+      DMS_seawater.geos.4x5<br>
+      </font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Binary 
+        punch files containing monthly average DMS seawater concentrations in 
+        nm/ML. From Andreae.</font> 
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> 
+      <p><font face="Courier New, Courier, mono" size="2">HNO3.geos1.2x25<br>
+        HNO3.geoss.2x25<br>
+        HNO3.geos3.2x25<br>
+        HNO3.geos4.2x25<br>
+        HNO3.geos1.4x5<br>
+        HNO3.geoss.4x5<br>
+        HNO3.geos3.4x5<br>
+        HNO3.geos4.4x5</font></p>
+    </TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Binary 
+        punch files containing monthly averaged HNO3 concentrations [v/v], required 
+        for the offline sulfate simulation. These fields were archived from a 
+        GEOS&#150;CHEM full chemistry simulation (GEOS&#150;3, 4 x 5) and regridded 
+        to 2 x 2.5 and 4 x 5 grids. </font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> 
+      <p><font face="Courier New, Courier, mono" size="2">JH2O2.geos1.2x25<br>
+        JH2O2.geoss.2x25<br>
+        JH2O2.geos3.2x25<br>
+        JH2O2.geos4.2x25<br>
+        JH2O2.geos1.4x5<br>
+        JH2O2.geoss.4x5<br>
+        JH2O2.geos3.4x5<br>
+        JH2O2.geos4.4x5 </font></p>
+    </TD>
+    <TD> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Binary punch files 
+        containing monthly averaged J(H2O2) photolysis rates [1/s], required for 
+        the offline sulfate simulation. These fields were archived from a GEOS&#150;CHEM 
+        full chemistry simulation (GEOS&#150;3, 4 x 5) and regridded to 2 x 2.5 
+        and 4 x 5 grids.</font></p>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">NH3_biofuel.geos.2x25<br>
+      NH3_biofuel.geos.4x5</font></TD>
+    <TD><font face="Arial, Helvetica, sans-serif" size="2">Binary punch files 
+      containing NH3 biofuel burning emissions in kg/month. </font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">NO3.geos1.2x25<br>
+      NO3.geoss.2x25<br>
+      NO3.geos3.2x25<br>
+      NO3.geos4.2x25 <br>
+      NO3.geos1.4x5<br>
+      NO3.geoss.4x5<br>
+      NO3.geos3.4x5<br>
+      NO3.geos4.4x5 </font></TD>
+    <TD> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Binary punch files 
+        containing monthly averaged NO3 concentrations [v/v], required for the 
+        offline sulfate simulation. These fields were archived from a GEOS&#150;CHEM 
+        full chemistry simulation (GEOS&#150;3, 4 x 5) and regridded to 2 x 2.5 
+        and 4 x 5 grids.</font></p>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">O3.geos1.2x25<br>
+      O3.geoss.2x25<br>
+      O3.geos3.2x25<br>
+      O3.geos4.2x25<br>
+      O3.geos1.4x5<br>
+      O3.geoss.4x5<br>
+      O3.geos3.4x5<br>
+      O3.geos4.4x5</font></TD>
+    <TD><font face="Arial, Helvetica, sans-serif" size="2">Binary punch files 
+      containing monthly averaged O3 concentrations [v/v], required for the offline 
+      sulfate simulation. These fields were archived from a GEOS&#150;CHEM full 
+      chemistry simulation (GEOS&#150;3, 4 x 5) and regridded to 2 x 2.5 and 4 
+      x 5 grids.</font></TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left" width="40%"> <font face="Courier New, Courier, mono" size="2">PH2O2.geos1.2x25<br>
+      PH2O2.geoss.2x25<br>
+      PH2O2.geos3.2x25<br>
+      PH2O2.geos4.2x25<br>
+      PH2O2.geos1.4x5<br>
+      PH2O2.geoss.4x5<br>
+      PH2O2.geos3.4x5<br>
+      PH2O2.geos4.4x5 </font></td>
+    <td> 
+      <p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Binary 
+        punch files containing monthly averaged P(H2O2) chemical production rates 
+        [molec/cm3/s], required for the offline sulfate simulation. These fields 
+        were archived from a GEOS&#150;CHEM full chemistry simulation (GEOS&#150;3, 
+        4 x 5) and regridded to 2 x 2.5 and 4 x 5 grids. </font> 
+    </td>
+  </tr>
+  <tr valign=TOP> 
+    <td align="left" width="40%"> <font face="Courier New, Courier, mono" size="2"> 
+      SST.geos.2x25<br>
+      SST.geos.4x5 </font></td>
+    <td> 
+      <p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Binary 
+        punch file containing monthly mean sea surface temperatures at 2 x 2.5 
+        and 4 x 5 resolutions. From Mian Chin.</font> 
+    </td>
+  </tr>
+  <tr valign=TOP>
+    <td align="left" width="40%"><font face="Courier New, Courier, mono" size="2">shipSOx.geos.2x25<br>
+      shipSOx.geos.4x5 </font></td>
+    <td><font face="Arial, Helvetica, sans-serif" size="2">SO2 emissions from 
+      ship exhaust, from Corbett et al. The native resolution of the data is 2 
+      x 2 degrees. This was regridded to the GEOS&#150;CHEM 2 x 2.5 and 4 x 5 
+      grids by Becky Alexander.</font></td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"> <font face="Courier New, Courier, mono" size="2"> 
+      <font size="1">aircraft.2x2.5.s20.1992.apr.gz<BR>
+      aircraft.2x2.5.s20.1992.aug.gz<BR>
+      aircraft.2x2.5.s20.1992.dec.gz<BR>
+      aircraft.2x2.5.s20.1992.feb.gz<BR>
+      aircraft.2x2.5.s20.1992.jan.gz<BR>
+      aircraft.2x2.5.s20.1992.jul.gz<BR>
+      aircraft.2x2.5.s20.1992.jun.gz<BR>
+      aircraft.2x2.5.s20.1992.mar.gz<BR>
+      aircraft.2x2.5.s20.1992.may.gz<BR>
+      aircraft.2x2.5.s20.1992.nov.gz<BR>
+      aircraft.2x2.5.s20.1992.oct.gz<BR>
+      aircraft.2x2.5.s20.1992.sep.gz </font></font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> SO2 
+        emissions from aircraft. These are fuel burned in [kg/box/day], from AEAP 
+        for 1992. SO2 emission is calculated by assuming an emission index EI 
+        of 1.0, i.e., 1g of SO2 emitted per kg of fuel burned. It is also assumed 
+        that there is no diurnal variation of emission rate. Used for the sulfate 
+        simulation (NSRCX==10). These are temporarily GNU zipped in order to save 
+        space.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">kmc198.bin<br>
+      kmc223.bin<br>
+      kmc248.bin<br>
+      kmc273.bin<br>
+      kmc298.bin<br>
+      kmc323.bin </font></TD>
+    <TD><font face="Arial, Helvetica, sans-serif" size="2">Binary files containing 
+      data used to initialize common blocks in <font face="Courier New, Courier, mono" size="2">isoropia_mod.f</font>, 
+      which is used to compute aerosol thermodynamic equilibrium. <br>
+      <br>
+      In <font face="Courier New, Courier, mono" size="2">Code.v5-03-01</font>, 
+      <font face="Courier New, Courier, mono" size="2">isoropia_mod.f</font> has 
+      not been implemented yet, pending further testing. The module <font face="Courier New, Courier, mono" size="2">rpmares_mod.f</font> 
+      contains the routines to compute thermodynamic equilibrium.</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">scalefoss.SOx.4x5.1998</font></TD>
+    <TD><font face="Arial, Helvetica, sans-serif" size="2">Fossil fuel scale 
+      factors used to scale up GEIA SOx emissions from the baseline year 1985 
+      to 1998. From Rokjin Park.</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">volcano.con.2x2.5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Non-eruptive 
+        volcanic SO2 emission from GEIA in [Mg SO2/box/day] at 2 x 2.5 resolution. 
+        Used for the sulfate simulation (NSRCX==10). </font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="40%"><font face="Courier New, Courier, mono" size="2">volcano.erup.1994.2x2.5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Non-eruptive 
+        volcanic SO2 emission from GEIA in [Mg SO2/box/day] at 2 x 2.5 resolution. 
+        Used for the sulfate simulation (NSRCX==10). </font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.27"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.27 
+  The <font face="Courier New, Courier, mono" size="2">TOMS_O3col_200202/</font> 
+  subdirectories</b></font><br>
+  <br>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP>
+    <TD width="40%"> <font face="Courier New, Courier, mono" size="2">o3col.TOMS.1988.geos1.4x5<BR>
+      o3col.TOMS.1989.geos1.4x5<BR>
+      o3col.TOMS.1990.geos1.4x5<BR>
+      o3col.TOMS.1991.geos1.4x5<BR>
+      o3col.TOMS.1992.geos1.4x5<BR>
+      o3col.TOMS.1993.geos1.4x5<BR>
+      o3col.TOMS.1996.geos1.4x5<BR>
+      o3col.TOMS.1997.geos1.4x5<BR>
+      o3col.TOMS.1998.geos1.4x5<BR>
+      o3col.TOMS.1999.geos1.4x5</font> </TD>
+  <TD>
+      <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica" SIZE=-1> <font face="Arial, Helvetica, sans-serif">Ozone 
+        columns from TOMS for 1985-1999 (used for CO simulation w/ parameterized 
+        OH)</font></FONT> 
+    </TD>
+ </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.28"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.28 
+  The <font face="Courier New, Courier, mono" size="2">tagged_CO_200106/</font> 
+  subdirectories<br>
+  </b></font>
+<P>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">acetone.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Monthly mean emissions of direct biogenic acetone and acetone from grasslands, 
+        archived from a 1994 GEOS&#150;CHEM model simulation</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="30%" align="left"><font face="Courier New, Courier, mono" size="2">ch3oh.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Monthly mean rates of CO production from methanol (CH3OH), archived from 
+        a 4x5 GEOS&#150;STRAT tagged CO simulation from 1996. This field is only 
+        utilized by the GEOS&#150;3 tagged CO simulation.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="30%" align="left"><font face="Courier New, Courier, mono" size="2">isop96.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Monthly mean rates of CO production from isoprene (C5H8), archived from 
+        a 4x5 GEOS&#150;STRAT tagged CO simulation from 1996. This field is only 
+        utilized by the GEOS&#150;3 tagged CO simulation.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="30%" align="left"><font face="Courier New, Courier, mono" size="2">isop96.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Monthly mean rates of CO production from monterpenes, archived from a 
+        4x5 GEOS&#150;STRAT tagged CO simulation from 1996. This field is only 
+        utilized by the GEOS&#150;3 tagged CO simulation.</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR>
+<P> <A NAME="4.1.29"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.29 
+  The <font face="Courier New, Courier, mono" size="2">uvalbedo_200111/</font> 
+  subdirectories</b></font><br>
+  <br>
+<TABLE ALIGN=CENTER VALIGN=TOP CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP>
+    <TD width="40%" align="left"> <font face="Courier New, Courier, mono" size="2">uvalbedo.geos.2x25<BR>
+      uvalbedo.geos.4x5</font></TD>
+  <TD>
+      <P ALIGN=JUSTIFY><FONT FACE="Arial,Helvetica" SIZE=-1> <font face="Arial, Helvetica, sans-serif">Monthly 
+        mean UV albedoes for FAST-J photolysis (340 nm - 380 nm, from TOMS, cf. 
+        Herman &amp; Celarier 1998)</font></FONT> 
+    </TD>
+ </TR>
+</TABLE>
+
+<br>
+<hr>
+<p><a name="4.1.30"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.30 
+  The <font face="Courier New, Courier, mono" size="2">TOMS_200307/</font> subdirectories</b></font><br>
+</p>
+<table align=CENTER valign=TOP cellspacing=4 cellpadding=4 border=0 width="99%">
+  <tr valign=TOP> 
+    <td width="40%" align="left"> 
+      <p><font face="Courier New, Courier, mono" size="2">TOMS_O3col_1997.geos.2x25<br>
+        TOMS_O3col_1998.geos.2x25<br>
+        TOMS_O3col_1999.geos.2x25<br>
+        TOMS_O3col_2000.geos.2x25<br>
+        TOMS_O3col_2001.geos.2x25<br>
+        TOMS_O3col_2002.geos.2x25<br>
+        </font><font face="Courier New, Courier, mono" size="2">TOMS_O3col_1997.geos.4x5<br>
+        TOMS_O3col_1998.geos.4x5<br>
+        TOMS_O3col_1999.geos.4x5<br>
+        TOMS_O3col_2000.geos.4x5<br>
+        TOMS_O3col_2001.geos.4x5<br>
+        TOMS_O3col_2002.geos.4x5 </font></p>
+      </td>
+    <td> 
+      <p align=JUSTIFY><font face="Arial,Helvetica" size=-1> <font face="Arial, Helvetica, sans-serif">Ozone 
+        columns from EP&#150;TOMS data for the years 1997 thru 2002, regridded 
+        to GEOS 2 x 2.5 and 4 x 5 grids.</font></font>
+    </td>
+  </tr>
+</table>
+<br>
+<HR>
+<P> <A NAME="4.1.31"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>4.1.31 
+  Other files (mostly obsolete)<br>
+  <br>
+  </b></font>
+<TABLE CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%" align="center">
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">CH4_aseasonal.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Annual (aseasonal) emissions of CH<sub>4</sub> from <a HREF="http://www.giss.nasa.gov./gpol/abstracts/1991/FungJohn.html">Fung 
+        et. al. 1991</a>. CH<sub>4</sub> sources include animals, landfills, 
+        natural gas venting, natural gas pipeline leakage, coal mining, termites, 
+        hydrates/clathrates in the Soviet arctic, hydrates/clathrates from 76<sup>o</sup>N 
+        - 84<sup>o</sup>N, and loss via soil absorption. Units are kg CH<sub>4</sub>/m<sup>2</sup>/year. 
+        Regridded from original 1 x 1 resolution to the GEOS&#150;CHEM 4 x 5 grid.</font> 
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="30%" align="left"><font face="Courier New, Courier, mono" size="2">CH4_monthly.geos.4x5</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Monthly emissions of CH<sub>4</sub> from <a HREF="http://www.giss.nasa.gov./gpol/abstracts/1991/FungJohn.html">Fung 
+        et. al. 1991</a>. CH<sub>4</sub> sources include rice paddies, wetlands, 
+        bogs, swamps, tundra, and biomass burning. Units are kg CH<sub>4</sub>/m<sup>2</sup>/month. 
+        Regridded from original 1 x 1 resolution to the GEOS&#150;CHEM 4 x 5 grid. 
+        </font>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="30%" align="left"><font face="Courier New, Courier, mono" size="2">O3.profiles.year</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Monthly mean SAGE sonde data plus high latitude data from HALOE (used 
+        for CO w/ parameterized OH)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="30%" align="left"><font face="Courier New, Courier, mono" size="2">Srefl.table</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Reflectivity table (used for CO w/ parameterized OH)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="30%" align="left"><font face="Courier New, Courier, mono" size="2">TOMSAI</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        TOMS Aerosol Indices for years 1985-1996, used to impose interannual variability 
+        on seasonal biomass burning emissions.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="30%" align="left"><font face="Courier New, Courier, mono" size="2">chemga.dat</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Aerosol parameters for SMVGEAR</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="30%" align="left"><font face="Courier New, Courier, mono" size="2">o3.aut</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Autumn 
+        ozone columns (for CO w/ parameterized OH)</font>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="30%" align="left"><font face="Courier New, Courier, mono" size="2">o3.spr</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Spring ozone columns (for CO w/ parameterized OH)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD height="2" width="30%" align="left"><font face="Courier New, Courier, mono" size="2">o3.sum</font></TD>
+    <TD height="2"> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Summer ozone columns (for CO w/ parameterized OH)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="30%" align="left"><font face="Courier New, Courier, mono" size="2">o3.win</font></TD>
+    <TD> 
+      <P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+        Winter ozone columns (for CO w/ parameterized OH)</font> 
+    </TD>
+  </TR>
+</TABLE>
+
+<P><HR><P>
+<CENTER>
+    <A HREF="geos_chem_3.html"><font face="Arial, Helvetica, sans-serif" size="2">[Return 
+    to Chapter 3]</font></A><font face="Arial, Helvetica, sans-serif" size="2"> 
+    | <A HREF="geos_chem_5.html">[Go on to Chapter 5]</A></font> 
+  </CENTER>
+</BODY>
+</HTML>

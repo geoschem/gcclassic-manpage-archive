@@ -1,0 +1,441 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS&#8211;Chem Online User's Guide</title>
+
+<meta name="description" contents="Information about the GEOS&#8211;Chem tropospheric chemistry model">
+<meta name="keywords" contents="Atmospheric Chemistry,Computer Models,GEOS&#8211;Chem,Harvard/GEOS-CTM,GEOS-CTM,GEOS,DAO,Tropospheric Chemistry">
+<link rel="stylesheet" href="../../../gc.css" type="text/css">
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&#8211;Chem
+v8&#8211;02&#8211;01 Online User's Guide</p>
+<p class="size14bi" align="center"><a href="appendix_6.html">Previous</a> | <a href="chapter_1.html">Next</a> | <a href="appendix_8.html" target="_parent">Printable
+View (no frames)</a></p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size24bi"><a name="A8"></a>Appendix
+8: Addenda to GEOS&#8211;Chem Online User's Guide</p>
+<p align="justify">In this section we will post additions
+and corrections to the GEOS&#8211;Chem Online User's Guide.</p>
+<p align="left" class="size14bi"><a href="#A8.1">Addenda for v8&#8211;02&#8211;02</a> | <a href="#A8.2">Addenda for v8&#8211;02&#8211;03</a> | <a href="#A8.3">Addenda for v8&#8211;02&#8211;04</a></p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="A8.1"></a>A8.1:
+Addenda for beta release v8&#8211;02&#8211;02</p>
+<p class="size16bi" align="justify">Chapter 1 </p>
+<p align="justify"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-02" target="_blank">GEOS&#8211;Chem v8&#8211;02&#8211;02</a> includes the
+following revisions over <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-01" target="_blank">GEOS&#8211;Chem v8&#8211;02&#8211;01</a>:</p>
+<ul>
+<li>
+<p class="size16" align="justify">All of the
+minor bug fixes and updates originally published in the<a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Bugs_and_fixes" target="_blank"> Bugs and Fixes</a> (plus a few more
+extra updates!) have now been standardized. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-02#Previous_issues_now_resolved_in_v8-02-02" target="_blank">See this wiki page for a complete listing</a>.</p>
+</li>
+<li>Addition of an optional non-local PBL scheme when using
+GEOS-5 met fields only.</li>
+<li>
+<p class="size16" align="justify">Implementation
+of BOND inventory for BC and OC with seasonal variations.</p>
+</li>
+<li>Introduction of a logical to choose to use BOND or COOKE
+over N. America.</li>
+</ul>
+<p class="size16bi" align="justify">Chapter 2</p>
+<p align="justify">You may obtain the GEOS&#8211;Chem v8&#8211;02&#8211;02
+source code and benchmark simulation package via anonymous FTP from:</p>
+<blockquote>
+<pre>ftp ftp.as.harvard.edu<br>cd pub/geos-chem/beta_releases<br>get GEOS-Chem.v8-02-02-beta.stdrun.tar.gz<br></pre>
+</blockquote>
+<p><span class="size16bi">Chapter 4</span></p>
+<p>The new BOND inventory data can be found in the new
+subdirectories:</p>
+<blockquote>
+<pre>ftp/pub/geos-chem/data/GEOS_4x5/carbon_200905<br>ftp/pub/geos-chem/data/GEOS_2x25/carbon_200905</pre>
+</blockquote>
+<p class="size16bi">Chapter 5</p>
+<p>There are new options in input.geos.</p>
+<p><span class="size14b">Convection menu:</span></p>
+<pre>01:%%% CONVECTION MENU %%% :<br>02:Turn on Cloud Conv? : T<br>03:Turn on PBL Mixing? : T<br>04:=&gt; Use non-local PBL?&nbsp; : F<br>05:Convect Timestep (min) : 30</pre>
+<p align="justify">04: &nbsp;Specify LNLPBL (located in source
+code file <tt>logical_mod.f</tt>). Set LNLPBL to T to turn
+on the non-local PBL mixing. Only available with GEOS-5 met fields.</p>
+<p class="size14b">Emission menu:</p>
+<pre>39: =&gt; ship SO2 Colbert ? : F<br>40: =&gt; ship SO2 Arctas ? : T<br>41: Use COOKE BC/OC (N. Am.): F<br>42: Use AVHRR-derived LAI? : T<br></pre>
+<p align="justify">41: Specify LCOOKE (located in source code file <tt>logical_mod.f</tt>). Set LCOOKE to T to use the COOKE inventory over the United States, to F to use BOND inventory.</p>
+<p align="justify">Previous versions of GEOS-Chem automatically used COOKE over the United States. This is because the older BOND  BC and OC emission inventory was annual but not seasonal. Therefore, in order to impose a seasonality, the BOND emissions over North America were overwritten with the monthly COOKE emissions.</p>
+<p align="justify">In GEOS&#8211;Chem v8&#8211;02&#8211;02, we now use a newer BOND inventory for  BC and OC  which already has a seasonality imposed. Therefore this now renders the  COOKE inventory unnecesssary. Most users should set LCOOKE to F; this will ensure that the newer BOND inventory with seasonality will be used. However, if you need to use the older BOND inventory with COOKE over North America (for  backwards compatibility in your research), then set COOKE to T.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="A8.2"></a>A8.2: Addenda for beta release v8&#8211;02&#8211;03</p>
+<p class="size16bi" align="justify">Chapter 1 </p>
+<p align="justify"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-03" target="_blank">GEOS&#8211;Chem v8&#8211;02&#8211;03</a> includes the following revisions over <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-02" target="_blank">GEOS&#8211;Chem v8&#8211;02&#8211;02</a>:</p>
+<ul>
+  <li>  <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/KPP_solvers_FAQ" target="_blank">KPP chemical solver package </a> <em>(Adrian Sandu group @ Virginia Tech)</em></li>
+  <li> ICOADS ship emissions <em>(Chulkyu Lee)</em></li>
+  <li> Use of GEOS&#8211;5 ozone columns <em>(C. Carouge)</em></li>
+  <li> Removal of support for obsolete SGI and COMPAQ compilers <em>(GEOS&#8211;Chem support team)</em></li>
+  <li> Updated CH4 offline simulation <em>(K. Wecht, C. Pickett-Heaps)</em></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Makefile_Structure" target="_blank">Updated makefile structure </a> <em>(GEOS&#8211;Chem support team)</em></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Diagnostic_time_step" target="_blank">Fix for diagnostic time step</a> <em>(C. Carouge)</em></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-03#Previous_issues_now_resolved_in_v8-02-03" target="_blank">Various bug fixes</a> <em>(GEOS&#8211;Chem support team)</em></li>
+</ul>
+<p align="justify"><strong>Important!</strong>  GEOS&#8211;Chem v8&#8211;02&#8211;03 has a totally new makefile structure. The <a href="http://www.gnu.org/software/make/" target="_blank">GNU Make utility</a> is now required in order to compile GEOS&#8211;Chem. Please see our <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Makefile_Structure" target="_blank">GEOS&#8211;Chem Makefile Structure wiki page</a> for more information. We also have posted several <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Makefile_Structure#Examples" target="_blank">examples of how to build GEOS-Chem </a> using the new Makefiles. </p>
+<p class="size16bi">Chapter 2</p>
+<p align="justify">You may obtain the GEOS&#8211;Chem v8&#8211;02&#8211;03 source code and benchmark simulation package via anonymous FTP from:</p>
+<blockquote>
+  <pre>ftp ftp.as.harvard.edu<br>cd pub/geos-chem/beta_releases<br>get GEOS-Chem.v8-02-03-beta.stdrun.tar.gz</pre>
+</blockquote>
+<p class="size16bi">Chapter 4</p>
+<p align="justify">As described in <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-03#Corrected_Bond_et_al_BC.2FOC_emissions" target="_blank">this wiki post</a>, the Bond BC/OC inventory files that were released in GEOS&#8211;Chem v8&#8211;02&#8211;02 were buggy and should not be used. You will have to download the new Bond BC/OC inventory files from: </p>
+<blockquote>
+<pre>ftp ftp.as.harvard.edu
+cd /pub/geos-chem/data/GEOS_4x5/carbon_200909
+mget *
+cd /pub/geos-chem/data/GEOS_2x25/carbon_200909
+mget *</pre>
+</blockquote>
+<p>Also, if you are interested in the offline CH4 simulation, you will need to download the files in:</p>
+<blockquote>
+<pre>ftp ftp.as.harvard.edu
+cd /pub/geos-chem/data/GEOS_4x5/CH4_200909
+mget *
+cd /pub/geos-chem/data/GEOS_2x25/CH4_200909/wetlands
+mget *</pre>
+</blockquote>
+<p class="size16bi">Chapter 5</p>
+<p>There are some changes in the<span class="courier16"> input.geos</span> file:</p>
+<p class="size14b">Emissions Menu:</p>
+<blockquote>
+<pre>Use SHIP emissions      :---
+ => global EDGAR ?      : T
+ => global ICOADS ?     : F
+ => EMEP over EUROPE ?  : T
+ => ship SO2 Corbett ?  : F
+ => ship SO2 Arctas ?   : T
+Use COOKE BC/OC (N. Am.): T</pre>
+</blockquote>
+<p align="justify">There is a new line to toggle the ICOADS ship emissions on or off. Also, the Cooke BC/OC emissions should now be set to TRUE.</p>
+<p class="size14b">Chemistry Menu: </p>
+<blockquote>
+<pre>%%% CHEMISTRY MENU %%%  : 
+Turn on Chemistry?      : T
+Chemistry Timestep [min]: 60
+Use Embedded Chemistry? : F
+ -- IE0, JE0, IE1, JE1  :     0    0    0    0
+Read and save CSPEC_FULL: F
+USE solver coded by KPP : T
+</pre>
+</blockquote>
+<p align="justify"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/KPP_solvers_FAQ" target="_blank">The KPP solver code</a> is built into GEOS&#8211;Chem at compile time. You may switch between the KPP solver and the SMVGEAR solver at runtime. The last line of the Chemistry Menu contains the toggle switch between KPP and SMVGEAR. </p>
+<p align="justify">At present, the KPP solver is available for the standard (43-tracer) and secondary organic aerosol (54-tracer) GEOS&#8211;Chem simulations. <em><strong><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/KPP_solvers_FAQ#What_are_the_pros_of_using_KPP.3F" target="_blank">For several reasons</a>, we recommend that you use the KPP solver with the Rosenbrock integrator option rather than SMVGEAR.</strong></em></p>
+<p align="justify">The following environment variables control which KPP solver options are compiled into GEOS&#8211;Chem:</p>
+<blockquote>
+  <pre>NTRAC=43
+NTRAC=54
+KPPSOLVER=rosenbrock
+KPPSOLVER=radau5
+KPPSOLVER=runge_kutta
+KPPSOLVER=lsodes</pre>
+</blockquote>
+<p align="justify"><span class="courier16">NTRAC</span> selects the number of tracers that you are using, and <span class="courier16">KPPSOLVER</span> selects one of 4 different types of integration methods.</p>
+<p align="justify">For example, if you wanted to compile GEOS&#8211;Chem for the 54-tracer SOA simulation using the KPP <span class="courier16">lsodes</span> solver, you would type the following at the command line:</p>
+<blockquote>
+<pre>make NTRAC=54 KPPSOLVER=lsodes</pre>
+</blockquote>
+<p align="justify">etc. On the other hand, If you just type:</p>
+<blockquote>
+<pre>make</pre>
+</blockquote>
+<p align="justify">then the compilation will use the default values <span class="courier16">NTRAC=43</span> and <span class="courier16">KPPSOLVER=rosenbrock</span> are the defaults. For more information, please  see our <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_Makefile_Structure#Examples">examples of how to build GEOS-Chem </a> using the new Makefiles. </p>
+<p class="size14b">Methane menu:</p>
+<p>There is a new menu for the tagged methane simulation.</p>
+<blockquote>
+ <pre align="justify">%%% CH4 MENU %%%        :
+Compute CH4 budget?     : F
+Use Gas & Oil emis?     : T
+Use Coal Mine emis?     : T
+Use Livestock emis?     : T
+Use Waste emis?         : T
+Use Biofuel emis?       : T
+Use Rice emis?          : T
+Use Ot. Anthro emis?    : T
+Use Biomass emis?       : T
+Use Wetlands emis?      : T
+Use Soil Absorption?    : T
+Use Ot. Natural emis?   : T</pre>
+</blockquote>
+<p>The first line let you choose if you want to calculate a
+monthly CH4 budget or not. Note it's only possible if you run full
+months. The other lines toggle the different
+CH4 emissions on or off.</p>
+<p>NOTE: If the CH4 MENU is not in your <span class="courier16">input.geos</span> file, then you can cut and paste the above text into the <span class="courier16">input.geos</span> file. </p>
+<p class="size16bi">Chapter 6</p>
+<p class="size14b">Checklist for tagged methane simulation</p>
+<p align="justify">Here is a quick checklist of how
+various options should be set in the input.geos file for a typical
+tagged methane simulation. </p>
+<p class="size16bi">Simulation Menu:</p>
+<blockquote>
+  <p>Specify the starting and ending times of the model run, as
+well as data and run directories, etc.</p>
+</blockquote>
+<p class="size16bi">Tracer Menu:</p>
+<blockquote>
+  <pre>%%% TRACER MENU %%%     : 
+Type of simulation      : 9
+Number of Tracers       : 12
+Tracer Entries -------> : TR# Name     g/mole Tracer Members; () = emitted
+Tracer #1               : 1   CH4_tot  16.0   CH4
+Tracer #2               : 2   CH4_ga   16.0   CH4
+Tracer #3               : 3   CH4_co   16.0   CH4
+Tracer #4               : 4   CH4_ef   16.0   CH4
+Tracer #5               : 5   CH4_wa   16.0   CH4
+Tracer #6               : 6   CH4_bf   16.0   CH4
+Tracer #7               : 7   CH4_ri   16.0   CH4
+Tracer #8               : 8   CH4_oa   16.0   CH4
+Tracer #9               : 9   CH4_bb   16.0   CH4
+Tracer #10              : 10  CH4_wl   16.0   CH4
+Tracer #11              : 11  CH4_sa   16.0   CH4
+Tracer #12              : 12  CH4_on   16.0   CH4</pre>
+  <p align="justify">Tracer 1 is global total of <tt>CH4.</tt>
+Tracers 2-12 are CH4 tracers for each type of emission and are named
+accordingly.</p>
+  <p align="justify">It is also possible to run a
+simulation with any subset of these tracers. For example:</p>
+  <pre>%%% TRACER MENU %%%     : 
+Type of simulation      : 9
+Number of Tracers       : 3
+Tracer Entries -------> : TR# Name     g/mole Tracer Members; () = emitted
+Tracer #1               : 1   CH4_tot  16.0   CH4
+Tracer #3               : 3   CH4_co   16.0   CH4
+Tracer #8               : 8   CH4_oa   16.0   CH4
+</pre>
+</blockquote>
+<p class="size16bi">Aerosol Menu:</p>
+<blockquote>
+  <p align="justify">The tagged methane simulation does
+not use any of the sulfate, carbon, etc. tracers, so you can set all of
+the switches in the <tt>AEROSOL MENU</tt> section to <tt>F</tt>
+(false).</p>
+</blockquote>
+<p class="size16bi">Transport Menu:</p>
+<blockquote>
+  <pre>Turn on Transport       : T
+ => Use Flux Correction?: F
+ => Fill Negative Values: T
+ => IORD, JORD, KORD    : 3 3 7
+Transport Timestep [min]: 30
+Use strat O3/NOy BC's   : F</pre>
+  <p align="justify">The transport timestep should be 30
+min (<a href="appendix_2.html#A2.2">4&deg; x 5&deg;</a>),
+15
+min (<a href="appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>),
+or 10 min (<a href="appendix_2.html#A2.5">1&deg; x 1&deg;</a>).
+Also you should not use flux correction since that is more
+computationally expensive. You should also turn off the flux of O3 and
+NOy from the stratosphere (we don't need that for the CH4 simulation). </p>
+</blockquote>
+<p class="size16bi">Convection Menu:</p>
+<blockquote>
+  <pre>Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+Convect Timestep (min)  : 30</pre>
+The convection timestep should be the same as the transport timestep.
+</blockquote>
+<p class="size16bi">Chemistry Menu:</p>
+<blockquote>
+  <pre>Turn on Chemistry?      : T
+Chemistry Timestep [min]: 1440</pre>
+  <p align="justify">The chemistry timestep should be 1440
+min, i.e. 24 hours. Also, the embedded chemistry options do
+not have any effect on the methane simulation.</p>
+</blockquote>
+<p class="size16bi">Deposition Menu:</p>
+<blockquote>
+  <pre>Turn on Dry Deposition? : F<br>Turn on Wet Deposition? : F</pre>
+  <p align="justify">Both dry and wet deposition can be
+turned off. </p>
+</blockquote>
+<p class="size16bi">Emissions Menu:</p>
+<blockquote>
+  <pre>Turn on emissions?      :
+Emiss timestep (min)    : 30</pre>
+  <p align="justify">The rest of the switches in the
+emissions menu should be all set&nbsp;to <tt>F</tt>
+(false).</p>
+</blockquote>
+<p class="size16bi">Output Menu:</p>
+<blockquote>
+  <p align="justify">Schedule days for diagnostic output
+as described above in <a href="../../man_cc/chapter_6.html#6.1.1">Chapter
+6.1.1</a>.</p>
+</blockquote>
+<p class="size16bi">Diagnostic Menu:</p>
+<blockquote>
+  <p align="justify">Here is a list of some of the more
+important diagnostics that you can save out for a typical GEOS–Chem
+tagged methane simulation. </p>
+  <pre>%%% DIAGNOSTIC MENU %%% :
+Binary punch file name  : ctm.bpch
+Diagnostic Entries ---> : L  Tracers to print out for each diagnostic
+...
+ND19: CH4 loss          : 30 all
+...
+ND24: E/W transpt flx   : 30 all
+ND25: N/S transpt flx   : 30 all
+ND26: U/D transpt flx   : 30 all
+...
+ND31: Surface pressure  :  1 all
+...
+ND45: Tracer Conc's     : 30 all
+ ==> ND45 Time range    :    0 24
+...
+ND58: CH4 Emissions     :  1 all
+...
+ND60: Wetland Fraction  :  1 all
+...
+ND68: Airmass/Boxheight : 30 all
+ND69: Surface area      :  1 all</pre>
+  <p align="justify">For more information about the
+Diagnostic Menu, refer to <a
+ href="../../man_cc/chapter_5.html#5.2.1.13">Chapter
+5.2.1.13</a>.</p>
+</blockquote>
+<p class="size16bi">Prod &amp; Loss Menu:</p>
+<blockquote>
+  <pre>%%% PROD &amp; LOSS MENU %%%:<br>Turn on P/L (ND65) diag?:
+# of levels for ND65    : 30
+Save O3 P/L (ND20)?     : F
+Number of P/L families  : 0</pre>
+  <p align="justify">Production &amp; loss of tagged
+methane tracers are handled in the ND19 and ND58 diagnostics, so you
+can turn off
+all the switches in the Prod &amp; Loss Menu as shown above.</p>
+  <p align="justify">For more information about the Prod
+&amp; Loss Menu, refer to <a
+ href="../../man_cc/chapter_5.html#5.2.1.19">Chapter
+5.2.1.19</a>.</p>
+</blockquote>
+<p class="size16bi" align="justify">Methane Menu:
+</p>
+<blockquote>
+  <pre align="justify">%%% CH4 MENU %%%        :
+Compute CH4 budget?     : F
+Use Gas & Oil emis?     : T
+Use Coal Mine emis?     : T
+Use Livestock emis?     : T
+Use Waste emis?         : T
+Use Biofuel emis?       : T
+Use Rice emis?          : T
+Use Ot. Anthro emis?    : T
+Use Biomass emis?       : T
+Use Wetlands emis?      : T
+Use Soil Absorption?    : T
+Use Ot. Natural emis?   : T</pre>
+  <p align="justify">You should turn on all emissions if
+you want to simulate the total CH4 concentration.</p>
+  <p align="justify">NOTE: If the CH4 MENU is not in your <span class="courier16">input.geos</span> file, then you can cut and paste the above text into the <span class="courier16">input.geos</span> file. </p>
+</blockquote>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="A8.3"></a>A8.3: Addenda for beta release v8&#8211;02&#8211;04</p>
+<p class="size16bi" align="justify">Chapter 1 </p>
+<p align="justify"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-04" target="_blank">GEOS&#8211;Chem v8&#8211;02&#8211;04</a> includes the following revisions over <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-03" target="_blank">GEOS&#8211;Chem v8&#8211;02&#8211;03</a>:</p>
+<ul>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Linoz_stratospheric_ozone_chemistry" target="_blank">LINOZ stratospheric ozone chemistry</a> <em>(Dylan Jones group @ U. Toronto)</em></li>
+  <li> <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Volcanic_SO2_emissions_from_Aerocom" target="_blank">Updated inventory of volcanic SO2 emissions from AeroCom</a> <em>(J. Fisher)</em></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/EPA/NEI05_North_American_emissions" target="_blank">EPA/NEI2005 regional emissions inventory for North America</a> <em>(P. Le Sager)</em></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Chemistry_Issues#near-IR_photolysis_of_HNO4" target="_blank">Update to near-IR photolysis of HNO4 </a><em>(J. Mao)</em></li>
+  <li> Update to <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MEGAN_biogenic_emissions#MEGAN_in_GEOS-Chem_v8-02-04_and_later_versions" target="_blank">MEGAN v2.1 biogenic emissions</a> <em>(M. Barkley)</em></li>
+  <li><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-04#Fixes_and_updates_in_seasalt_mod.f" target="_blank">Updates and fixes for sea salt aerosols </a><em>(L. Jaegl&eacute;, B. Alexander)</em></li>
+</ul>
+<p>Several <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-04#Previous_issues_now_resolved_in_v8-02-04" target="_blank">fixes and improvements</a> were also incorporated into  GEOS&#8211;Chem v8&#8211;02&#8211;04. Some <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-04#Outstanding_issues_not_yet_resolved_in_v8-02-04" target="_blank">issues that were not resolved in v8&#8211;02&#8211;04</a> will be fixed in the next version, <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-05" target="_blank">v8&#8211;02&#8211;05</a>.</p>
+<p class="size16bi">Chapter 2</p>
+<p align="justify">You may obtain the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-04" target="_blank">GEOS&#8211;Chem v8&#8211;02&#8211;04</a> source code and benchmark simulation package via anonymous FTP from:</p>
+<blockquote>
+  <pre>ftp ftp.as.harvard.edu<br>cd pub/geos-chem/beta_releases<br>get GEOS-Chem.v8-02-04-beta.stdrun.tar.gz</pre>
+</blockquote>
+<p> In v8&#150;02&#150;04, we had to modify the restart file in order to benchmark the code using the LINOZ stratospheric chemistry. This prevented us from directly comparing  a 1-month  benchmark of v8&#150;02&#150;04 (with the LINOZ option switched on) to  the previous version <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-03" target="_blank">GEOS&#150;Chem v8&#150;02&#150;03</a>.</p>
+<p>Therefore, 3 1-month  benchmark runs were performed. The TAR file <span class="courier16">GEOS-Chem.v8-02-04-beta.stdrun.tar.gz</span> contains the three directories: </p>
+<ol>
+  <li class="courier16">Run0/geos5_oldrestart</li>
+  <li class="courier16">Run0/geos5_Linozrestart</li>
+  <li class="courier16"> Run1/geos5 </li>
+</ol>
+<p>The benchmark in <span class="courier16">Run0/geos5_oldrestart</span> was used to compare v8&#150;02&#150;04 and v8&#150;02&#150;03. </p>
+<p>The benchmark <span class="courier16">Run1/geos5 </span>uses  LINOZ and <span class="courier16">Run0/geos5_Linozrestart</span> is an intermediate step. </p>
+<p>For versions 8-02-04 and after, we strongly recommend to use LINOZ in your simulations, so please use the input files (particularly the restart file) from the directory <span class="courier16">Run1/geos5</span>. </p>
+<p class="size16bi">Chapter 4</p>
+<blockquote>
+  <pre>wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_1x1/EMEP_200911/"
+wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_1x1/MODIS_LAI_200911/"
+wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_1x1/EDGAR_200607/"
+wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_1x1/anth_scale_factors_200911/"
+wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_1x1/NEI2005_200910/"
+wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_1x1/MEGAN_200909/"
+wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_1x1/volcano_SO2_200909/"
+wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_2x2.5/MODIS_LAI_200911/"
+wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_2x2.5/CH4_200911/"
+wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_4x5/MODIS_LAI_200911/"
+wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_4x5/CH4_200911/"
+wget -r -nH "ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_4x5/carbon_200909/"
+</pre>
+</blockquote>
+<p align="justify">We recommend using the Unix <tt>wget</tt> utility for downloading entire directories recursively.  For more information about <tt>wget</tt>, please see the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Downloading_GEOS-Chem_source_code_and_data#Using_wget_to_download_files" target="_blank">GEOS-Chem data download wiki page</a>.</p>
+
+<p class="size16bi">Chapter 5</p>
+<p>There are some changes in the<span class="courier16"> input.geos</span> file:</p>
+<p class="size14b">Simulation Menu :</p>
+<blockquote>
+  <pre>Use LINOZ strat chem?   : T</pre>
+</blockquote>
+<p>This is a new line to toggle the<a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Linoz_stratospheric_ozone_chemistry" target="_blank"> Linoz stratospheric ozone chemistry</a> on or off. The Linoz algorithm is a linearized ozone chemistry for the stratosphere, and replaces the &quot;Synoz&quot; (synthetic flux of ozone through the tropopause) algorithm. </p>
+<p class="size14b">Emissions Menu:</p>
+<p><em>1. Anthropogenic Emissions</em></p>
+<blockquote>
+  <pre>Include anthro emiss?   : T
+ ...
+ =&gt; Use NEI2005 emiss?  : T</pre>
+</blockquote>
+<p align="justify"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-02-04" target="_blank">GEOS&#8211;Chem v8&#8211;02&#8211;04</a> is the first version that contains the 2005 version of the EPA/NEI North American regional emissions inventory. You may toggle the EPA/NEI 2005 inventory on or off with the above line of code. </p>
+<p align="justify">Also note, if the switches for EPA/NEI99 and EPA/NEI2005 emissions are both turned on, then the code will pick the EPA/NEI2005 emissions.</p>
+<p align="justify"><em>2. Biogenic Emissions </em></p>
+<blockquote>
+  <pre>Include biogenic emiss? : T
+ =&gt; Use MEGAN inventory?: T
+ =&gt; Use PCEEA model?    : T
+ =&gt; Use MEGAN for MONO? : T</pre>
+</blockquote>
+<p align="justify">GEOS&#8211;Chem v8&#8211;02&#8211;04 now uses the updated <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MEGAN_biogenic_emissions#MEGAN_in_GEOS-Chem_v8-02-04_and_later_versions" target="_blank">version 2.1 of the MEGAN biogenic emissions inventory.</a> You may toggle MEGAN emissions on or off with the<span class="courier16"> =&gt; Use MEGAN inventory?: </span>line. If MEGAN is turned off, then the older GEIA biogenic emissions will be used by default. </p>
+<p align="justify">MEGAN v2.1 contains a couple of different options.</p>
+<ol>
+  <li>
+    <p align="justify">If you turn off the PCEEA model (by setting the line <span class="courier16">=&gt; Use PCEEA model? : F</span> ), then MEGAN will use the existing canopy model, but with updated leaf-age and temperature algorithms. This option is closest to the previous implementation of MEGAN in GEOS&#8211;Chem v8&#8211;02&#8211;03 and prior versions.</p>
+  </li>
+  <li>
+    <p align="justify">If you turn on the PCEEA model (by setting the line <span class="courier16">=&gt; Use PCEEA model? : T </span> ), then MEGAN will follow the approach of Guenther 2006. It will not use a canopy model, but will take into account  the light dependency of monoterpene emissions.</p>
+  </li>
+</ol>
+<p align="justify"><em>3. Leaf Area Indices</em></p>
+<blockquote>
+  <pre>Use AVHRR-derived LAI?  : F
+Use MODIS-derived LAI?  : T
+</pre>
+</blockquote>
+<p align="justify">NOTE: 
+
+
+The <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Talk:GEOS-Chem_v8-02-04" target="_blank">discussion about the GEOS&#150;Chem v8&#150;02&#150;04 benchmark simulations </a> has revealed that one should always use the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/MODIS_leaf_area_indices" target="_blank">MODIS-derived leaf area index product </a> when using the updated MEGAN v2.1 biogenic emissions in GEOS&#150;Chem. This is because the older AVHRR-derived leaf area index product (used by the previous implementation of MEGAN in GEOS&#150;Chem) is <a href="http://acmg.seas.harvard.edu/geos/wiki_docs/benchmarks/MODIS_LAI_vs_AVHRR_LAI.pdf" target="_blank">biased high w/r/t MODIS </a> and will <a href="http://acmg.seas.harvard.edu/geos/wiki_docs/benchmarks/Isoprene_v8-02-04_Run0_vs_Run1.pdf" target="_blank">produce more isoprene </a> as a result.</p>
+<p align="justify">Because of this finding, we have installed a trap into <span class="courier16">input_mod.f</span> which will always make sure that the MODIS-derived LAI product is used whenever the MEGAN v2.1 biogenic emissions are turned on.</p>
+<p align="justify">Also note, the MODIS-derived LAI product is not only used for the MEGAN v2.1 biogenic emissions, but also for all other operations that require it (e.g. soil NOx emissions, dry deposition, etc.) </p>
+<p align="justify">The AVHRR-derived LAI product is now more or less obsolete in GEOS&#150;Chem. </p>
+<p class="size14b">Aerosols Menu: </p>
+<blockquote>
+  <pre>Online SEASALT AEROSOLS : T
+ =&gt; SALA radius bin [um]: 0.1  0.5
+ =&gt; SALC radius bin [um]: 0.5  4.0
+</pre>
+</blockquote>
+<p align="justify">Lyatt Jaegle has recommended changing the upper limit of the  coarse-mode sea-salt aerosol (SALC) bin down from 10 microns to 4 microns. For more information, please see <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Sea_salt_aerosols#Modification_of_size_bins_for_coarse_mode_aerosols" target="_blank">Lyatt's post on the sea salt aerosols page of the GEOS-Chem wiki</a>.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size14bi" align="center"><a href="appendix_6.html">Previous</a> | <a href="chapter_1.html">Next</a> | <a href="appendix_8.html" target="_parent">Printable
+View (no frames)</a></p>
+</body>
+</html>

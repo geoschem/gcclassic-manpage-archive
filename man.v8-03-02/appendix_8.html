@@ -1,0 +1,919 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS–Chem Online User's Guide</title>
+  <meta name="description" contents="Information about the GEOS–Chem tropospheric chemistry model">
+  <meta name="keywords" contents="Atmospheric Chemistry,Computer Models,GEOS–Chem,Harvard/GEOS-CTM,GEOS-CTM,GEOS,DAO,Tropospheric Chemistry">
+  <link rel="stylesheet" href="../../../gc.css" type="text/css">
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+  <meta name="GENERATOR" content="OpenOffice.org 3.2  (Linux)">
+  <style type="text/css">
+	<!--
+		@page { margin: 0.79in }
+		P { margin-bottom: 0.08in }
+	-->
+	</style>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=utf-8">
+  <meta name="GENERATOR" content="OpenOffice.org 3.2  (Linux)">
+  <style type="text/css">
+	<!--
+		@page { margin: 0.79in }
+		P { margin-bottom: 0.08in }
+		A:link { color: #0000ff }
+	-->
+	</style>
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS–Chem v8–03–01 Online User's Guide</p>
+
+<p class="size14bi" align="center"><a href="../../man.v8-03-01/appendix_6.html">Previous</a> | <a href="../../man.v8-03-01/chapter_1.html">Next</a> | <a href="../../man.v8-03-01/appendix_8.html" target="_parent">Printable View (no frames)</a></p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size24bi"><a name="A8"></a>Appendix 8: Addenda to GEOS–Chem Online User's Guide</p>
+<p align="justify">In this section we will post additions and corrections to the GEOS–Chem Online User's Guide.</p>
+<p class="size14bi" align="justify"><a href="#A8.1">Addenda for v8–03–02</a></p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="A8.1"></a>A8.1 Addenda for beta release v8-03-02</p>
+
+<p class="size16bi">Chapter 1</p>
+
+<p align="justify"><a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-03-02" target="_blank">GEOS–Chem v8–03–02</a> includes the
+following revisions over <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-03-01" target="_blank">GEOS–Chem v8–03–01</a>:</p>
+<ul>
+  <li>All post-benchmark patches from GEOS-Chem v8-03-01 are standardized in addition to several bugs and fixes. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_v8-03-02#Previous_issues_now_resolved_in_v8-02-02" target="_blank">See this wiki page for a complete listing</a>.</li>
+  <li>Updated mercury with new chemistry, ocean and terrestrial models.</li>
+  <li>Updated CO2 simulation</li>
+  <li>Liquid water content taken from GEOS-5 met fields</li>
+</ul>
+
+<p class="size16bi">Chapter 2</p>
+<p align="justify">The GTMM run directory is saved as an independent Git repository.  To download it, please type:</p>
+<blockquote><pre>git clone git://git.as.harvard.edu/bmy/GTMM-rundir/4x5/geos5 LOCAL-DIR-NAME</pre></blockquote>
+<p align="justify">where <tt>LOCAL-DIR-NAME</tt> is the name you chose for your local directory to contain GEOS&#150;Chem.</p>
+<p>For description of the files in the GTMM run directory, please refer to this <a href="../../man.v8-03-01/files/GTMM_manual.pdf" target="_blank">PDF</a>.</p>
+
+<p class="size16bi">Chapter 3</p>
+<p align="justify">The GTMM code is not compiled by default with GEOS&#150;Chem to save compilation time when not using it. To learn how to compile GTMM code
+to run online with GEOS&#150;Chem or offline, please refer to this <a href="../../man.v8-03-01/files/GTMM_manual.pdf" target="_blank">PDF</a>.</p>
+
+<p class="size16bi">Chapter 4</p>
+
+<p align="justify">Emissions from NEI 2005 inventory are updated to fix a bug. Please
+download the data from:</p>
+
+<blockquote>
+  <pre>ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_1x1/NEI2005_201007/</pre></blockquote>
+
+<p>The mercury data are updated and reorganized. For GEOS-Chem version
+8-03-02, you need to download the data from:<br>
+</p>
+
+<blockquote><pre>ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_1x1/mercury_201002/<br>ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_4x5/mercury_201007/</pre></blockquote>
+
+<p align="justify">The CO2 data are updated. For GEOS-Chem version 8-03-02, you need to download the data from:</p>
+
+<blockquote>
+<pre>ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_1x1/CO2_201003/
+ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_4x5/CO2_201003/
+ftp://ftp.as.harvard.edu/pub/geos-chem/data/GEOS_2x2.5/CO2_201003/</pre>
+</blockquote>
+
+<p class="size16bi">Chapter 5</p>
+
+<p class="size14b" align="justify">CO2 menu</p>
+
+<p align="justify">NOTE:<br>This menu only controls options for the CO<sub>2</sub> and tagged CO<sub>2</sub>
+simulation. A more detailed account of all settings can be found in <i>Nassar et al.</i> (2010), “Modeling CO<sub>2</sub> with improved
+emission inventories and CO<sub>2</sub> production from the oxidation of other carbon species”, Geoscientific Model Development, <i>in
+preparation</i>.</p>
+
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt> file, but have been included for reference.</p>
+
+<blockquote>
+<pre>01: %%% CO2 SIM MENU %%%    :
+02: Fossil Fuel Emissions   :---
+03:   Generic FF emissions  : F
+04:   Annual FF emissions   : F
+05:   Monthly FF emissions  : T
+06: 3-D Chemical Oxid Source: F
+07: Biomass Burn emissions  :---
+08:   Seasonal only biomass : F
+09:   GFED2 monthly biomass : F
+10:   GFED2 8-day biomass   : T
+11: Biofuel emissions       : T
+12: Terrestrial Exchange    :---
+13:   CASA daily avg NEP    : F
+14:   CASA diurnal cycle NEP: T
+15:   Net Ter Ex original   : F
+16:   Net Ter Ex climatology: T
+17: Ocean Exchange          :---
+18:   Takahashi 1997        : F
+19:   Takahashi 2009 annual : F
+20:   Takahashi 2009 monthly: T
+21: Ship & Plane Emissions  :---
+22:   EDGAR ship emissions  : F
+23:   ICOADS ship emissions : T
+24:   Aviation emissions    : T
+25: Tagged CO2 runs         :---
+26:   Save Fossil CO2 Bkgrd : F
+27:   Tag Bios/Ocean CO2 reg: F
+28:   Tag Land FF CO2 reg   : F
+29    Tag Global Ship CO2   : F
+30:   Tag Global Plane CO2  : F </pre>
+</blockquote>
+
+<table style="width: 100%;" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+
+  <col width="32"> <col width="579"> <tbody>
+    <tr bgcolor="#cccccc">
+      <th> <b>Line</b> </th>
+      <th> <b>Description</b> </th>
+    </tr>
+    <tr>
+      <td style="width: 32px;">
+      <p>1</p>
+      </td>
+      <td width="579">
+      <p>Header line </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>2</p>
+      </td>
+      <td width="579">
+      <p>Fossil Fuel sub-header line (select only one option in this
+section)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>3</p>
+      </td>
+      <td width="579">
+      <p>Annually averaged fossil fuel emissions for 1995 from CDIAC
+[Andres et al., 1996]</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>4</p>
+      </td>
+      <td width="579">
+      <p>Year-specific annually averaged fossil fuel emissions from
+CDIAC [Andres et al., 1996], with 2007-2009 scaled based on [Boden et
+al., 2009; LeQuere, 2009] </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>5</p>
+      </td>
+      <td width="579">
+      <p>Month and year-specific monthly averaged fossil fuel emissions
+from CDIAC [Andres et al., 1996], with 2007-2009 scaled based on [Boden
+et al., 2009; LeQuere, 2009]</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>6</p>
+      </td>
+      <td width="579">
+      <p>3-D CO<sub>2</sub> chemical source from oxidation of CO, CH<sub>4</sub>
+and NMHCs based on Suntharalingam et al. [2005], with appropriate
+surface emission corrections.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>7</p>
+      </td>
+      <td width="579">
+      <p>Biomass Burning sub-header line (select only one option in
+this section)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>8</p>
+      </td>
+      <td width="579">
+      <p>Seasonally approximated biomass burning emissions from Duncan
+et al. [2003]</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>9</p>
+      </td>
+      <td width="579">
+      <p>Global Fire Emission Database (GFED) version 2 – monthly
+(1997-2008). NOTE: The choice of GFED emissions in the <tt>CO2 MENU</tt> must be consistent with the choice in the <tt>EMISSIONS MENU.</tt><br></p>
+</td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>10</p>
+      </td>
+      <td width="579">
+      <p>Global Fire Emission Database (GFED) version 2 – 8-day
+(2001-2007). NOTE: The choice of GFED emissions in the <tt>CO2 MENU</tt> must be consistent with the choice in the <tt>EMISSIONS MENU.</tt></p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>11</p>
+      </td>
+      <td width="579">
+      <p>Biofuel Emissions – Yevich and Logan [2003]</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>12</p>
+      </td>
+      <td width="579">
+      <p>Terrestrial Exchange sub-header line (select one balanced
+biosphere option and one Net Terrestrial Exchange option)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>13</p>
+      </td>
+      <td width="579">
+      <p>CASA model daily average Net Ecosystem Production (balanced –
+no net annual flux) [Potter et al., 1993; Olsen and Randerson, 2004]</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>14</p>
+      </td>
+      <td width="579">
+      <p>CASA model 3-hourly Net Ecosystem Production (balanced – no
+net annual flux) [Potter et al., 1993; Olsen and Randerson, 2004]</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>15</p>
+      </td>
+      <td width="579">
+      <p>Net Terrestrial Exchange (original) of -1.01 PgC/yr </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>16</p>
+      </td>
+      <td width="579">
+      <p>Net Terrestrial Exchange (climatology) of -5.29 PgC/yr [Baker
+et al., 2006] adjusted for biomass/biofuel burning</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>17</p>
+      </td>
+      <td width="579">
+      <p>Ocean Exchange sub-header line (select only one option in this
+section)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>18</p>
+      </td>
+      <td width="579">
+      <p>Annual ocean flux climatology of non-El Niño years from
+Takahashi et al. [1997]</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>19</p>
+      </td>
+      <td width="579">
+      <p>Annual ocean flux climatology of non-El Niño years from
+Takahashi et al. [2009]</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>20</p>
+      </td>
+      <td width="579">
+      <p>Monthly ocean flux climatology of non-El Niño years from
+Takahashi et al. [2009]</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>21</p>
+      </td>
+      <td width="579">
+      <p>Ship and Plane sub-header (select no more than one ship option
+and one aviation option)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>22</p>
+      </td>
+      <td width="579">
+      <p>International ship CO<sub>2</sub> emissions
+(annually-averaged) with simplified distribution from EDGAR scaled to
+scaled to annual values for 1985-2006 [Endresen et al. 2007].</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>23</p>
+      </td>
+      <td width="579">
+      <p>International ship CO<sub>2</sub> emissions based on the
+International Comprehensive Ocean Atmosphere Data Set (ICOADS) with
+monthly variability [Corbett &amp; Koehler, 2003, 2004; Wang et al.,
+2008] scaled to annual values for 1985-2006 [Endresen et al. 2007].</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>24</p>
+      </td>
+      <td width="579">
+      <p>Aviation emission 3-D distribution from fuel burn (GEOS-Chem
+sulfate aerosol simulation) scaled to annual CO<sub>2</sub> values for
+1985-2002 [Sausen &amp; Schumann, 2000; Kim et al., 2005; 2007;
+Wilkerson et al., 2010] and estimates for 2002-2009. An associated
+surface correction automatically removes domestic aviation emissions
+from the main fossil fuel source in continental size regions. </p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>25</p>
+      </td>
+      <td width="579">
+      <p>Tagged CO<sub>2</sub> sub-header line (select all that apply)</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>26</p>
+      </td>
+      <td width="579">
+      <p>Save CO<sub>2</sub> background</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>27</p>
+      </td>
+      <td width="579">
+      <p>Tag biosphere regions (28), ocean regions (11) and the Rest of
+the World (ROW) as specified in the Regions_land.dat and
+Regions_ocean.dat files</p>
+      <p class="size14bi">NOTE: Tagged tracers should be customized by each user and the present configuration will not work for resolutions other than 2x2.5.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>28</p>
+      </td>
+      <td width="579">
+      <p>Tag fossil fuel regions (28) as specified in the
+Regions_land.dat file and ROW</p>
+      <p class="size14bi">NOTE: Tagged tracers should be customized by each user and the present configuration will not work for resolutions other than 2x2.5.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>29</p>
+      </td>
+      <td width="579">
+       <p>Tag global ship emissions as a single tracer</p>
+       <p class="size14bi">NOTE: Tagged tracers should be customized by each user and the present configuration will not work for resolutions other than 2x2.5.</p>
+      </td>
+    </tr>
+    <tr>
+      <td width="32">
+      <p>30</p>
+      </td>
+      <td width="579">
+       <p>Tag global aviation emissions as a single tracer</p>
+       <p class="size14bi">NOTE: Tagged tracers should be customized by each user and the present configuration will not work for resolutions other than 2x2.5.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="size14">REFERENCES:</p>
+<ol>
+  <li>Andres, R. J., G. Marland, I. Fung, and
+E. Matthews (1996), A 1&deg;x1&deg; distribution of carbon dioxide
+emissions from fossil fuel consumption and cement manufacture, <i>Global
+Biogeochem. Cycles</i>, 10, 419– 429.</li>
+  <li>Baker, D. F., et al. (2006), TransCom 3
+inversion intercomparison: Impact of transport model errors on the
+interannual variability of regional CO<sub>2</sub> fluxes, 1988-2003,
+    <i>Global Biogeochem. Cycles</i>, 20, GB1002,
+doi:10.1029/2004GB002439.</li>
+  <li>Boden, T.A., G. Marland, and R.J.
+Andres (2009), Global, Regional, and National Fossil-Fuel CO<sub>2</sub>
+Emissions. Carbon Dioxide Information Analysis Center, Oak Ridge
+National Laboratory, U.S. Department of Energy, Oak Ridge, Tenn.,
+U.S.A. doi 10.3334/CDIAC/00001.</li>
+  <li>Corbett &amp; Koehler (2003), Updated
+emissions from ocean shipping, <i>J. Geophys. Res.,</i> 108, D20,
+4650.</li>
+  <li>Corbett, J. J., and H.
+W.
+Koehler (2004), Considering alternative input parameters in an
+activity-based ship fuel consumption and emissions model: Reply to
+comment by Øyvind Endresen et al. on ‘‘Updated emissions from
+ocean shipping,’’ <i>J. Geophys. Res.</i>, 109.</li>
+  <li>Duncan, B. N., R. V. Martin, A. C.
+Staudt, R. Yevich, and J. A. Logan (2003), Interannual and seasonal
+variability of biomass burning emissions constrained by satellite
+observations, <i>J. Geophys. Res.</i>, 108(D2), 4100,
+doi:10.1029/2002JD002378.</li>
+  <li>Endresen, O, et al. (2007), A
+historical reconstruction of ships fuel consumption and emissions, J.
+Geophys. Res., 112, D12301.</li>
+  <li>Kim, B. Y., et al. (2005) System for
+assessing Aviation's Global Emissions (SAGE) Version 1.5 global
+Aviation Emissions Inventories for 2000-2004.</li>
+  <li>Kim, B. Y., et al. (2007), System for
+assessing Aviation’s Global Emissions (SAGE), Part 1: Model
+description and inventory results, Transportation Research Part D 12,
+325–346.</li>
+  <li>Le Quere, C. et al.(2009), Trends in
+the sources and sinks of carbon dioxide, <i>Nature Geoscience</i>,
+doi:10.1038/ngeo689.</li>
+  <li>Olsen, S. C., and J. T. Randerson
+(2004), Differences between surface and column atmospheric CO<sub>2</sub>
+and implications for carbon cycle research, <i>J. Geophys. Res.</i>,
+109, D02301, doi:10.1029/2003JD003968.</li>
+  <li>Potter, C. S., J. T. Randerson, C. B.
+Field, P. A. Matson, P. M. Vitousek, H. A. Mooney, and S. A. Klooster
+(1993), Terrestrial ecosystem production: A process model based on
+global satellite and surface data, <i>Global Biogeochem. Cycles</i>,
+7, 811– 841.</li>
+  <li>Sausen, R. and U. Schumann (2000),
+Estimates of the Climate Response to Aircraft CO<sub>2</sub> and NO<sub>x</sub>
+Emissions Scenarios, <i>Climate Change</i>, 44: 27-58.</li>
+  <li>Suntharalingam, P., J. T. Randerson, N.
+Krakauer, J. A. Logan, and D. J. Jacob (2005), Influence of reduced
+carbon emissions and oxidation on the distribution of atmospheric
+CO<sub>2</sub>: Implications for inversion analyses, <i>Global
+Biogeochem. Cycles</i>, 19, GB4003.</li>
+  <li>Takahashi, T., R. A. Feely, R. Weiss,
+R. H. Wanninkhof, D. W. Chipman, S. C. Sutherland, T. T. Takahashi
+(1997), Global air-sea flux of CO<sub>2</sub>: an estimate based on
+measurements of sea-air pCO<sub>2</sub> difference, <i>Proc. Natl.
+Acad. Sci.</i>, 94, 8292–8299.</li>
+  <li>Takahashi, T., et al. (2009),
+Climatological mean and decadal change in surface ocean pCO<sub>2</sub>,
+and net sea–air CO<sub>2</sub> flux over the global oceans,
+    <i>Deep-Sea Res. II</i>, doi:10.1016/j.dsr2.2008.12.009.</li>
+  <li>Wang, C., J.J. Corbett, J. Firestone
+(2008), Modeling Energy Use and Emissions from North American
+Shipping: Application of the Ship Traffic, Energy, and Environment
+Model, <i>Environ. Sci. Technol.</i> 41, 3226-3232.</li>
+  <li>Wilkersen, J.T. et al. (2010), Analysis
+of emission data from global commercial Aviation: 2004 and 2006,
+    <i>Atmos. Chem. Phys. Disc.</i>, 10, 2945-2983.</li>
+  <li>Yevich, R., and J. A. Logan (2003), An
+assessment of biofuel use and burning of agricultural waste in the
+developing world, <i>Global Biogeochem. Cycles</i>, 17(4), 1095,
+doi:10.1029/2002GB001952.</li>
+</ol>
+
+<p class="size14b">Mercury menu</p>
+<p align="justify">NOTE:<br>The mercury menu needs to be listed before the diagnostic menu in input.geos for GTMM to work properly.</p>
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt> file, but have been included for reference.</p>
+
+<blockquote>
+<pre>01: %%% MERCURY MENU %%%    :
+02: Use anthro Hg emiss for : 2000
+03: Error check tag/tot Hg? : F
+04: Use dynamic ocean Hg?   : T
+05: Preindustrial sim?      : F
+06: Ocean Hg restart file   : ocean.totHg.YYYYMMDDhh
+07: Use GTMM soil model?    : F
+08: GTMM Hg restart file    : GTM.totHg.YYYYMMDDh</pre>
+</blockquote>
+
+<table style="width: 100%;" border="1" bordercolor="#000000" cellpadding="5" cellspacing="0">
+
+  <tbody>
+    <tr>
+      <th style="background-color: rgb(204, 204, 204); width: 32px;">
+Line </th>
+      <th style="background-color: rgb(204, 204, 204);"> Description </th>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">1<br>
+      </td>
+      <td style="vertical-align: top;">Header line</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">2<br>
+      </td>
+      <td style="vertical-align: top;">Specify ANTHRO_Hg_YEAR (located
+in source code file <tt>mercury_mod.f</tt>), which is the
+baseline year of the anthropogenic mercury emissions that are used in
+the <a href="../../man.v8-03-01/chapter_6.html#6.1.7">tagged mercury
+simulation</a>. Current options are either 1995 or 2000.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">3<br>
+      </td>
+      <td style="vertical-align: top;">Specify USE_CHECKS (located in
+source code file file <tt>ocean_mercury_mod.f</tt>).
+Set USE_CHECKS to T to stop with an error message if the sum of tagged
+tracers does not equal the total tracer, or F otherwise. This is useful
+for debugging.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">4<br>
+      </td>
+      <td style="vertical-align: top;">Specify LDYNOCEAN (located in
+source code file <tt>logical_mod.f</tt>). Set LDYNOCEAN to
+T to use the online ocean mercury model (in source code file <tt>ocean_mercury_mod.f</tt>)
+or F to read ocean mercury concentrations from monthly mean files on disk.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">5<br>
+      </td>
+      <td style="vertical-align: top;">Set to T if you want to run a
+preindustrial simulation (turn off anthropogenic emissions), to F
+otherwise.<br>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">6<br>
+      </td>
+      <td style="vertical-align: top;">If
+you are have set LDYNOCEAN to T (i.e. you are using the online ocean
+mercury model), then you can specify the name of the ocean mercury
+restart file. This file saves the concentrations of oceanic mercury
+tracers for continuing the run at a later stage.</td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">7<br>
+      </td>
+      <td style="vertical-align: top;"><p>Set
+        to T if you want to run GTMM online in GEOS-Chem. Note, that to use
+        GTMM online, you need to first run GTMM offline up to equilibrium and
+        to compile GEOS-Chem with GTMM enabled. For more information, please
+      refer to this <a href="../../man.v8-03-01/files/GTMM_manual.pdf" target="_blank">document</a>.</p>
+      </td>
+    </tr>
+    <tr>
+      <td style="vertical-align: top;">8<br>
+      </td>
+      <td style="vertical-align: top;">If you are using the GTMM
+online, then you can specify the name of the GTMM mercury
+restart file. This file saves the monthly depositions of mercury
+tracers for continuing the run at a later stage.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p align="justify">For GTMM run directory, see this <a href="../../man.v8-03-01/files/GTMM_manual.pdf" target="_blank">document</a>.</p>
+
+<p class="size16bi">Chapter 6</p>
+<p class="size18b">Checklist for CO2 simulation</p>
+<p align="justify">Here is a quick checklist of how various options should be set in the <tt>input.geos</tt> file for a typical CO<sub>2</sub> simulation.</p>
+
+<p class="size16bi">Simulation Menu:</p>
+
+<blockquote>
+<p align="justify">Specify the starting and ending times of the model run, as well as data and run directories, etc.</p>
+</blockquote>
+
+<p class="size16bi">Tracer Menu:</p>
+
+<blockquote>
+<pre>%%%TRACER MENU %%%      :
+Type of simulation      : 12
+Number of Tracers       : 1 
+Tracer Entries -------  : TR#  Name  g/mole Tracer Members; () = emitted
+Tracer #1               : 1    CO2    44.0</pre>
+
+<p align="justify">More source tracers can be used if desired for example in the alternate selection, where emission from 1) Total CO<sub>2</sub>;
+2) Fossil
+Fuel (land) and cement manufacture, 3) Ocean exchange, 4) Balanced Biosphere; 5) Biomass Burning Emissions; 6) Biofuel Burning Emissions; 7) Net Terrestrial Exchange; 8) Ship Emissions; 9) Aviation Emissions; 10) Chemical Source; 11) Chemical Source surface correction. NOTE: If the restart file and input.geos do not have the same number of tracers, the run will crash before completion.</p>
+
+<pre>Type of simulation      : 12
+Number of Tracers       : 10
+Tracer Entries -------> : TR#  Name  g/mole Tracer Members; () = emitted
+Tracer #1               : 1    CO2    44.0
+Tracer #2               : 2    CO2    44.0
+Tracer #3               : 3    CO2    44.0
+Tracer #4               : 4    CO2    44.0
+Tracer #5               : 5    CO2    44.0
+Tracer #6               : 6    CO2    44.0
+Tracer #7               : 7    CO2    44.0
+Tracer #8               : 8    CO2    44.0
+Tracer #9               : 9    CO2    44.0
+Tracer #10              : 10   CO2    44.0
+Tracer #11              : 11   CO2    44.0</pre>
+
+<p align="justify">Configuration  
+for a full tagged-CO<sub>2</sub> run is shown below (appropriate
+selections at the end of the CO<sub>2</sub> menu are also required).
+Tracers 1-11 are as above. Tracer 12 is the background including only
+Fossil Fuel CO<sub>2</sub>. Tracers 13-52 are for 40 geographical
+regions, tracer 53 is shipping and tracer 54 is aviation. Remember,
+if the restart file and <tt>input.geos</tt> do not have the same number of
+tracers, the run will crash before completion.</p>
+
+
+<pre>Type of simulation      : 12
+Number of Tracers       : 52
+Tracer Entries -------> : TR#  Name  g/mole Tracer Members; () = emitted
+Tracer #1               : 1    CO2    44.0 
+Tracer #2               : 2    CO2    44.0
+..
+Tracer #53              : 53   CO2    44.0
+Tracer #54              : 54   CO2    44.0</pre>
+</blockquote>
+
+
+<p class="size16bi">Transport Menu:</p>
+
+<blockquote>
+<pre>Turn on Transport       : T
+ => Use Flux Correction?: F
+ => Fill Negative Values: T
+ => IORD, JORD, KORD    : 3 3 7
+Transport Timestep [min]: 15
+Use strat O3/NOy BC's   : F</pre>
+
+<p align="justify">The transport
+timestep should be 30 min (<font color="#0000ff"><u><a href="../../man.v8-03-01/appendix_2.html#A2.2">4&deg;
+x 5&deg;</a></u></font>), 15 min (<font color="#0000ff"><u><a href="../../man.v8-03-01/appendix_2.html#A2.3">2&deg;
+x 2.5&deg;</a></u></font>), or 10 min (<font color="#0000ff"><u><a href="../../man.v8-03-01/appendix_2.html#A2.5">1&deg;
+x 1</a></u></font>&deg;). Also you should not use flux correction since
+that is more computationally expensive.</p>
+</blockquote>
+
+<p class="size16bi">Convection Menu:</p>
+<blockquote>
+<pre>Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+Convect Timestep (min)  : 15</pre>
+
+<p align="justify">The convection timestep should be the same as the transport timestep.</p> 
+</blockquote>
+
+<p class="size16bi">Chemistry Menu:</p>
+<blockquote>
+<pre>Turn on Chemistry?      : T
+Chemistry Timestep [min]: 30</pre>
+</blockquote>
+
+<p class="size16bi">Emissions Menu:</p>
+<blockquote>
+<pre>Turn on emissions?      : T
+Emiss timestep (min)    : 30
+</pre>
+
+<p align="justify">The emission timestep should be double the transport timestep (this is the <font color="#0000ff"><u><a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_blank">Strang 
+operator splitting</a></u></font>). These settings should be overwritten by selections in the <tt>CO2 MENU</tt>,
+but to play it safe, if there is redundancy they should be set to be consistent. In the following switches, only the GFED switches can affect the
+simulation. They must be consistent with the choice made in the <tt>CO2 MENU</tt>. The rest of the switches in the emissions menu will not have any affect on the CO<sub>2</sub> simulation, so you can set them all to <font face="Courier New, monospace"><font size="2">F</font></font>
+(false).</p>
+</blockquote>
+
+<p class="size16bi" style="margin-top: 0.19in; margin-bottom: 0.19in;">CO<sub>2</sub>
+Menu:</p>
+<blockquote>
+<pre>%%% CO2 SIM MENU %%%    :
+Fossil Fuel Emissions   :---
+  Generic FF emissions  : F
+  Annual FF emissions   : F
+  Monthly FF emissions  : T
+3-D Chemical Oxid Source: F
+Biomass Burn emissions  :---
+  Seasonal only biomass : F
+  GFED2 monthly biomass : F
+  GFED2 8-day biomass   : T
+Biofuel emissions       : T
+Terrestrial Exchange    :---
+  CASA daily avg NEP    : F
+  CASA diurnal cycle NEP: T
+  Net Ter Ex original   : F
+  Net Ter Ex climatology: T
+Ocean Exchange          :---
+  Takahashi 1997        : F
+  Takahashi 2009 annual : F
+  Takahashi 2009 monthly: T
+Ship & Plane Emissions  :---
+  EDGAR ship emissions  : F
+  ICOADS ship emissions : T
+  Aviation emissions 3-D: T
+Tagged CO2 runs         :---
+  Save Fossil CO2 Bkgrd : F
+  Tag Bios/Ocean CO2 reg: F
+  Tag Land FF CO2 reg   : F
+  Tag Global Ship CO2   : F
+  Tag Global Plane CO2  : F<br></pre>
+  
+<p align="justify">The above CO<sub>2</sub> menu configuration is the default for a single tracer run. Other options like the chemical source can be selected by the user. The tagged tracer options have not been selected. A standard tagged tracer configuration is available in the code for 2x2.5 but this can be customized by the user or set up for other resolutions by modification of the code and the Regions_land.dat and Regions_ocean.dat files, which reside in the run directory.</p>
+</blockquote>
+
+<p class="size16bi">Output Menu:</p>
+<blockquote>
+<p  align="justify">Schedule days for diagnostic output as described above in <a href="../../man.v8-03-01/chapter_6.html#6.1.1">Chapter 6.1.1</a>.</p>
+</blockquote>
+
+<p class="size16bi">Diagnostic Menu:</p>
+<blockquote>
+<p align="justify">The only diagnostic here which is unique to the CO<sub>2</sub> simulation is ND04, the CO<sub>2</sub>. Sources 1-7, and 10 are 2-D (surface level) and sources 8-10 are 3-D with all model levels.</p>
+
+<pre>%%% DIAGNOSTIC MENU %%% :<br>ND04: CO2 Sources       :  1   1 2 3 4 5 6 7 8 9 10</pre>
+
+<p align="justify">For more information about the Diagnostic Menu, refer to <a href="../../man.v8-03-01/chapter_5.html#5.2.1.13">Chapter
+5.2.1.13</a>.</p></blockquote>
+<p class="size18b">Checklist for Hg simulation</p>
+
+<p align="justify">Here is a quick checklist of how various options should be set in the <tt>input.geos</tt> file for a typical mercury simulation.</p>
+
+<p class="size16bi">Simulation Menu:</p>
+<p align="justify">Specify the starting and ending times of the model run, as well as data and run directories, etc.</p>
+
+<p class="size16bi">Tracer Menu:</p>
+
+<blockquote>
+<pre>%%% TRACER MENU %%%     : 
+Type of simulation      : 11
+Number of Tracers       : 21 
+Tracer Entries -------> : TR# Name       g/mole Tracer Members; () = emitted
+Tracer #1               : 1   Hg0        201.0
+Tracer #2               : 2   Hg2        201.0
+Tracer #3               : 3   HgP        201.0
+Tracer #4               : 4   Hg0_an_na  201.0
+Tracer #5               : 5   Hg0_an_eu  201.0
+Tracer #6               : 6   Hg0_an_as  201.0
+Tracer #7               : 7   Hg0_an_rw  201.0
+Tracer #8               : 8   Hg0_oc     201.0
+Tracer #9               : 9   Hg0_ln     201.0
+Tracer #10              : 10  Hg0_nt     201.0
+Tracer #11              : 11  Hg2_an_na  201.0
+Tracer #12              : 12  Hg2_an_eu  201.0
+Tracer #13              : 13  Hg2_an_as  201.0
+Tracer #14              : 14  Hg2_an_rw  201.0
+Tracer #15              : 15  Hg2_oc     201.0
+Tracer #16              : 16  Hg2_ln     201.0
+Tracer #17              : 17  Hg2_nt     201.0
+Tracer #18              : 18  HgP_an_na  201.0
+Tracer #19              : 19  HgP_an_eu  201.0
+Tracer #20              : 20  HgP_an_as  201.0
+Tracer #21              : 21  HgP_an_rw  201.0</pre>
+
+<p align="justify">Tracers 1-3 are global totals of <tt>Hg0, Hg2, HgP.</tt> Tracers 4-21 are geographically tagged tracers of <tt>Hg0, Hg2, HgP</tt> and are named accordingly to reflect which geographical region they are emitted from.</p>
+
+<p align="justify">It is also possible to run a simulation with just the global total tracers <tt>Hg0, Hg2, HgP.</tt><br> NOTE: GTMM model is not enabled for tagged simulation. GTMM can be used when running the total tracers only.</p>
+</blockquote>
+
+<p class="size16bi">Aerosol Menu:</p>
+
+<blockquote>
+<p align="justify">The tagged mercury simulation does not use any of the sulfate, carbon, etc. tracers, so you can set all of the switches in the <tt>AEROSOL MENU</tt> section to <tt>F</tt> (false).</p>
+</blockquote>
+
+<p class="size16bi">Transport Menu:</p> 
+
+<blockquote>
+<pre>Turn on Transport       : T 
+ => Use Flux Correction?: F
+ => Fill Negative Values: T 
+ => IORD, JORD, KORD    : 3 3 7
+Transport Timestep [min]: 30
+Use strat O3/NOy BC's   : F</pre>
+ 
+  <p align="justify">The transport timestep should be 30
+min (<a href="../../man.v8-03-01/appendix_2.html#A2.2">4&deg; x 5&deg;</a>), 15
+min (<a href="../../man.v8-03-01/appendix_2.html#A2.3">2&deg; x 2.5&deg;</a>),
+or 10 min (<a href="../../man.v8-03-01/appendix_2.html#A2.5">1&deg; x 1&deg;</a>).
+Also you should not use flux correction since that is more
+computationally expensive. You should also turn on the flux of O3 and
+NOy from the stratosphere. We can also turn off the stratospheric flux
+boundary conditions.</p>
+</blockquote>
+
+<p class="size16bi">Convection Menu:</p>
+
+<blockquote>
+<pre>Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+ => Use non-local PBL?  : F
+Convect Timestep (min)  : 30</pre>
+
+<p align="justify">The convection timestep should be the same as the transport timestep.</p>
+</blockquote>
+
+<p class="size16bi">Chemistry Menu:</p>
+
+<blockquote>
+<pre>Turn on Chemistry?      : T
+Chemistry Timestep [min]: 60</pre>
+
+<p align="justify">The chemistry timestep should be double the transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_blank">Strang operator splitting</a>). </p> 
+</blockquote>
+
+<p class="size16bi" align="justify">Mercury Menu: </p>
+
+<blockquote>
+<pre align="justify">%%% MERCURY MENU %%%    : 
+Use anthro Hg emiss for : 2000
+Error check tag/tot Hg? : F
+Use dynamic ocean Hg?   : T
+Preindustrial sim?      : F
+Ocean Hg restart file   : ocean.totHg.YYYYMMDDhh
+Use GTMM soil model?    : F
+GTMM Hg restart file    : GTM.totHg.YYYYMMDDhh</pre>
+
+<p align="justify">You should use an Ocean restart file, when you use a dynamic ocean. To know more how to use GTMM model, please refer to this <a href="../../man.v8-03-01/files/GTMM_manual.pdf" target="_blank">document</a>.</p>
+</blockquote>
+
+<p class="size16bi">Deposition Menu:</p>
+<blockquote>
+<pre>Turn on Dry Deposition? : T
+Turn on Wet Deposition? : T</pre>
+<p align="justify">Both dry and wet deposition will be done every on chemistry timestep. </p>
+</blockquote>
+
+<p class="size16bi">Emissions Menu:</p>
+
+<blockquote>
+<pre>Turn on emissions?      : T
+Emiss timestep (min)    : 60</pre>
+
+<p align="justify">The emissions timestep should be double the transport timestep (this is the <a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_blank">Strang operator splitting</a>). The rest of the
+switches in the emissions menu will not have any affect on the tagged mercury simulation, so you can set them all to <tt>F</tt> (false).</p>
+</blockquote>
+
+<p class="size16bi">Output Menu:</p>
+
+<blockquote>
+<p align="justify">Schedule days for diagnostic output as described above in <a href="../../man.v8-03-01/chapter_6.html#6.1.1">Chapter 6.1.1</a>.</p>
+</blockquote>
+
+<p class="size16bi">Diagnostic Menu:</p>
+
+<blockquote>
+ <p align="justify">Here is a list of some of the more important diagnostics that you can save out for a typical GEOS–Chem tagged mercury simulation. </p>
+<pre>%%% DIAGNOSTIC MENU %%% : 
+Binary punch file name  : ctm.bpch
+Diagnostic Entries ---&gt; : L  Tracers to print out for each diagnostic
+...
+ND03: Hg emissions, P/L : 47  all
+...
+ND24: E/W transpt flx   : 47  all
+ND25: N/S transpt flx   : 47  all
+ND26: U/D transpt flx   : 47  all
+...
+ND31: Surface pressure  : 48  all
+...
+ND38: Cld Conv scav loss: 47  all
+ND39: Wetdep scav loss  : 47  all
+...
+ND44: Drydep flx/vel    : 1   all
+ND45: Tracer Conc's     : 47  all
+ ==> ND45 Time range    :     0 24
+ ...
+ND68: Airmass/Boxheight : 47  all
+ND69: Surface area      : 1   all</pre>
+
+<p align="justify">For more information about the Diagnostic Menu, refer to <a href="../../man.v8-03-01/chapter_5.html#5.2.1.13">Chapter 5.2.1.13</a>.</p>
+</blockquote>
+
+<p class="size16bi">Prod &amp; Loss Menu:</p>
+
+<blockquote>
+<pre>%%% PROD & LOSS MENU %%%:
+Turn on P/L (ND65) diag?: F
+# of levels for ND65    : 30
+Save O3 P/L (ND20)?     : F
+Number of P/L families  : 0</pre>
+
+<p align="justify">Production &amp; loss of tagged mercury tracers are handled in the ND03 diagnostic, so you can turn off all the switches in the Prod &amp; Loss Menu as shown above.</p>
+  
+<p align="justify">For more information about the Prod &amp; Loss Menu, refer to <a href="../../man.v8-03-01/chapter_5.html#5.2.1.19">Chapter 5.2.1.19</a>.</p>
+</blockquote>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size14bi" align="center"><a href="../../man.v8-03-01/appendix_6.html">Previous</a> | <a href="../../man.v8-03-01/chapter_1.html">Next</a> | <a href="../../man.v8-03-01/appendix_8.html" target="_parent">Printable View (no frames)</a></p>
+
+</body>
+</html>

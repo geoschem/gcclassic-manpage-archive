@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html><head><title>GEOS-Chem User's Guide</title>
+
+<link rel="stylesheet" type="text/css" href="../../../gc.css"><!-- Style sheet for font declarations -->
+
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+
+<script type="text/javascript" src="../../../geos_backlinks.js"></script><!-- JavaScript for breadcrumb links -->
+
+<p class="size20bi" align="center">GEOS-Chem v10-01 Online User's Guide</p>
+
+
+
+<p class="size14bi" align="center"><a href="chapter_1.html">Previous</a>
+
+| <a href="chapter_3.html">Next</a> | <a href="chapter_2.html" target="_parent">Printable View (no frames)</a></p>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+
+
+<p class="size24bi">2. Installation</p>
+
+
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+
+
+<p class="size20bi"><a name="WhatYouNeed" id="WhatYouNeed"></a>2.1 Requirements</p>
+
+<p align="justify">When first setting up GEOS-Chem on your
+
+  system, after checking that you meet the basic computer requirements outlined in Chapter 1.2 you will need to install the
+
+  following components :
+<ol>
+
+  <li>
+
+    <p align="justify"><strong>GEOS-Chem Source Code Directory</strong></p>
+
+  </li>
+
+  <li>
+
+    <p align="justify"><strong>GEOS-Chem Run Directory</strong></p>
+ 
+  </li>
+
+  <li>   <p align="justify"><strong>GEOS-Chem Shared Data Directories</strong>. </p>
+  </li>
+  
+  <li> <p align="justify"><strong>NetCDF Library Installation</strong></li>
+  
+</ol>
+
+<p align="justify">The GEOS-Chem source code directory and run directories are small enough to download directly to your own disk space in your Unix  account. You can download these with Git version control software, as described below in Sections 2.2 and 2.3. Please see the <a href="http://wiki.geos-chem.org/Version_control_with_Git" target="_blank">version control with Git wiki page</a> for information about installing Git.</p>
+
+<p align="justify">The GEOS-Chem shared data directories, on the other hand, contain many large files that probably cannot all fit into your own personal disk quota. Therefore, we recommend that you or your system administrator   download the shared data directories to a common disk space where all GEOS-Chem users in your group  can access them. Information about downloading shared data directories is in Section 2.4.</p>
+<p align="justify">Most of the data files read by GEOS-Chem  v10-01 are now in <a href="http://wiki.geos-chem.org/Preparing_data_files_for_use_with_HEMCO%23The_COARDS_netCDF_standard" target="_blank">COARDS-compliant netCDF format</a>. As part of our High-Performance Computing (HPC) GEOS-Chem project, we are in the process of  converting the  remaining binary data files   to netCDF format. This will facilitate running GEOS-Chem in (HPC) environments, such as our efforts to interface GEOS-Chem with the <a href="http://gmao.gsfc.nasa.gov/systems/geos5/" target="_blank">NASA GEOS-5 GCM</a>. Instructions on obtaining compatible netCDF libraries for use with GEOS-Chem  v10-01 are in Section 2.5.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="DownCode" id="DownCode"></a>2.2 Downloading GEOS-Chem Source Code Directory</p>
+
+
+
+<p align="justify">The GEOS-Chem source code directory contains the Makefile and Fortran-90 source code files (i.e. <tt>*.F, *.F90</tt> files). Compiling the source code with a Fortran compiler  creates the GEOS-Chem executable <tt>geos</tt>.</p>
+<p align="justify">The GEOS-Chem &quot;standard&quot; source code directory is kept in the following Git repository at Harvard University:</p>
+
+<blockquote><pre>git://git.as.harvard.edu/bmy/GEOS-Chem/</pre></blockquote>
+
+<p align="justify">All official releases of the  GEOS-Chem &quot;standard&quot; code shall originate from this repository. You can download the  latest official GEOS-Chem release by means of the <tt>git clone</tt> command by typing the following at the command line:</p>
+
+
+
+<blockquote>
+
+  <pre>git clone git://git.as.harvard.edu/bmy/GEOS-Chem Code.v10-01</pre>
+
+</blockquote>
+
+
+
+<p align="justify">This will create an exact copy (or &quot;clone&quot;) of the official GEOS-Chem repository to your local disk space in a directory named <tt>Code.v10-01</tt>. Using <tt>Code.v10-01</tt> as your local repository name is optional and you may specify a different directory name if you wish. Note that you will always get the most recent state of the repository, meaning the latest GEOS-Chem version or &quot;bug fix&quot; 
+
+patch. </p>
+<p align="justify">For detailed information about Git and downloading the GEOS-Chem source code, please visit the following wiki resources:</p>
+<ul>
+  <li><a href="http://wiki.geos-chem.org/Using_Git_with_GEOS-Chem%23Reverting_to_an_older_state_of_the_code" target="_blank" align="justify">Using Git with GEOS-Chem wiki page</a>  </li>
+  <li><a href="http://wiki.geos-chem.org/Version_control_with_Git" target="_blank">version control with Git wiki page</a></li>
+</ul>
+<p align="justify">If you wish to download an earlier version of GEOS-Chem using Git, such as v9-02 for example, please see the <a href="http://wiki.geos-chem.org/Using_Git_with_GEOS-Chem%23Reverting_to_an_older_state_of_the_code" target="_blank">Using Git with GEOS-Chem wiki page section on reverting to an older state of code</a>.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+
+
+<p class="size20bi"><a name="DownRun" id="DownRun"></a>2.3 Downloading GEOS-Chem Run
+
+Directories</p>
+
+<p align="justify">There is a unique run directory for every combination of GEOS-Chem simulation type, grid resolution, meteorological data source, and nested region. Each run directory contains the following:</p>
+<ul>
+  <li>Various  input configuration files that you can modify in order to select different options for your GEOS-Chem simulation</li>
+  <li>Files that define GEOS-Chem's  chemical and photolysis mechanisms</li>
+  <li>Restart files that hold the initial conditions for your GEOS-Chem  simulation</li>
+  <li>Router Makefile that enables actions such as compiling GEOS-Chem source code stored elsewhere on your system, copying the executable to the run directory, and running GEOS-Chem</li>
+</ul>
+
+<p align="justify">A collection of GEOS-Chem run directories are stored in the GEOS-Chem Unit Tester. You can create fresh copies of any of these GEOS-Chem run directories for your own use by using the gcCopyRunDirs perl script and the CopyRunDirs.input configuration file within the Unit Tester perl directory.</p>
+<p>For detailed information about downloading the GEOS-Chem Unit Tester using Git, please see the <a href="http://wiki.geos-chem.org/GEOS-Chem_Unit_Tester" target="_blank">Debugging with the GEOS-Chem Unit Tester wiki page</a>. Quick links to relevant subsections of this wiki page are as follows:</p>
+<ul>
+  <li><a href="http://wiki.geos-chem.org/GEOS-Chem_Unit_Tester%23Installing_the_GEOS-Chem_Unit_Tester" target="_blank">Installing the GEOS-Chem Unit Tester</a></li>
+  <li><a href="http://wiki.geos-chem.org/GEOS-Chem_Unit_Tester%23Specifying_unit_test_options_with_an_input_file" target="_blank">Specifying unit test options with an input file</a></li>
+  <li><a href="http://wiki.geos-chem.org/GEOS-Chem_Unit_Tester%23Generating_GEOS-Chem_run_directories" target="_blank">Generating GEOS-Chem run directories</a></li>
+  
+  
+</ul>
+<p align="justify">For detailed instructions on creating fresh copies of run directories for your GEOS-Chem simulations, please see the <a href="http://wiki.geos-chem.org/Creating_GEOS-Chem_run_directories" target="_blank">Creating GEOS-Chem run directories wiki page</a>. Quick links to relevant subsections of this wiki page are included below:</p>
+<ul>
+  <li><a href="http://wiki.geos-chem.org/Creating_GEOS-Chem_run_directories%23Downloading_the_GEOS-Chem_Unit_Tester" target="_blank">Downloading the GEOS-Chem Unit Tester</a></li>
+  <li><a href="http://wiki.geos-chem.org/Creating_GEOS-Chem_run_directories%23Editing_the_CopyRunDirs.input_file" target="_blank">Editing the CopyRunDirs.input file</a></li>
+  <li><a href="http://wiki.geos-chem.org/Creating_GEOS-Chem_run_directories%23Generating_a_Run_Directory" target="_blank">Generating a run directory</a></li>
+  <li><a href="http://wiki.geos-chem.org/Creating_GEOS-Chem_run_directories%23Available_run_directories" target="_blank">Run directories available from the Unit Tester</a></li>
+  <li><a href="http://wiki.geos-chem.org/Creating_GEOS-Chem_run_directories%23Run_directory_tips_and_tricks" target="_blank">Run directory tips and tricks</a></li>
+</ul>
+<p align="justify">Our 1-month benchmark run directories for <a href="http://wiki.geos-chem.org/GEOS-Chem_v10-01" target="_blank">GEOS-Chem v10-01</a> and later versions are also available. You may  download them via anonymous FTP from:</p>
+<blockquote>
+  <pre>ftp://ftp.as.harvard.edu/gcgrid/geos-chem/1mo_benchmarks
+  
+</pre>
+</blockquote>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+
+
+<p class="size20bi"><a name="DownData" id="DownData"></a>2.4 Downloading GEOS-Chem Shared Data
+
+Directories</p>
+
+
+
+<p align="justify">The GEOS-Chem shared data directories contain the various <a href="http://wiki.geos-chem.org/Overview_of_GMAO_met_data_products" target="_blank">met fields</a>, <a href="http://wiki.geos-chem.org/HEMCO_data_directories" target="_blank">emission inventories</a>, scale factors, and other data that GEOS-Chem reads in during the course of a simulation. </p>
+<p align="justify">Because of the large volume of data, you must download the  shared data directories via FTP or a similar utility such as <a href="http://www.gnu.org/software/wget/" target="_blank">wget</a>, <a href="https://addons.mozilla.org/en-US/firefox/addon/fireftp/" target="_blank">FireFTP</a>, or <a href="http://www.vandyke.com/products/securefx/index.html" target="_blank">SecureFX</a>. Tracking the shared data directory structure with Git is impossible due to its size. See the <a href="http://wiki.geos-chem.org/Minimum_system_requirements_for_GEOS-Chem#How_much_disk_space_will_I_need_for_GEOS-Chem.3F" target="_blank" class="size16">Minimum system requirements for GEOS-Chem wiki page</a> for information on  typical disk space requirements for GEOS-Chem.</p>
+
+<p align="justify">If your research group consists of several GEOS-Chem users, it is possible that you already have access to the GEOS-Chem shared directory structure on common disk space on your servers. If this is the case you should check that you have the most recent data directories and subdirectories prior to using  GEOS-Chem v10-01.</p>
+
+
+
+<p align="justify">For detailed instructions on downloading the shared data directories, please see the following wiki page subsections:</p>
+
+
+
+<ul>
+
+  <li>Downloading GEOS-Chem source code and data wiki page: 
+    <ul>
+      <li><a href="http://wiki.geos-chem.org/Downloading_GEOS-Chem_source_code_and_data%23Shared_data_directory_archives" target="_blank">Shared data directory archives</a></li>
+      <li><a href="http://wiki.geos-chem.org/Downloading_GEOS-Chem_source_code_and_data%23Using_wget_to_download_the_shared_data_directories" target="_blank">Using wget to download the shared data directories</a></li>
+      <li><a href="http://wiki.geos-chem.org/Downloading_GEOS-Chem_source_code_and_data%23Downloading_the_shared_data_directories_via_anonymous_FTP" target="_blank">Downloading the shared data directories via anonymous FTP</a></li>
+      <li><a href="http://wiki.geos-chem.org/Downloading_GEOS-Chem_source_code_and_data%23Downloading_the_HEMCO_data_directories" target="_blank">Downloading the HEMCO data directories</a></li>
+    </ul>
+  </li>
+  
+  <li>HEMCO data directories wiki page: 
+    <ul>
+      <li><a href="http://wiki.geos-chem.org/HEMCO_data_directories%23Downloading_the_HEMCO_data_directories" target="_blank">Downloading the HEMCO data directories</a></li>
+    </ul>
+  </li>
+</ul>
+<p><strong>Important Note!</strong> In GEOS-Chem v10-01, all shared data directories are now subdirectories of a single root directory called <tt>ExtData</tt>. If downloading the shared data directories for the first time, you (or your sysadmin/IT staff) must set up the ExtData directory prior to running  GEOS-Chem v10-01. If you have previously downloaded the GEOS-Chem shared data directories, you can simply add symbolic links from <tt>ExtData</tt> to the existing data directories. </p>
+<p>Please see the <a href="http://wiki.geos-chem.org/Setting_up_the_ExtData_directory" target="_blank">Setting up the <tt>ExtData</tt> directory wiki page</a> for detailed instructions on setting up your shared data directories so that they are compatible with  GEOS-Chem v10-01.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+<p class="size20bi"><a name="NetCDF" id="NetCDF"></a>2.5 Installing netCDF with the GEOS-Chem-Libraries Package</p>
+
+
+
+<p align="justify">GEOS-Chem v10-01  requires that you have a netCDF library installation on your your computer system.  On many modern computer systems, you can load pre-compiled libraries and software packages (such as netCDF, HDF5, IDL ifort compiler, etc.) with the <tt>module</tt> command. Check with your sysadmin or IT staff if <tt>module</tt> is already installed on your system. If it is, we recommend that you use <tt>module</tt> to load a version of the netCDF libraries into your computing environment.</p>
+<p align="justify">In order to facilitate building the netCDF library, the GEOS-Chem Support Team has constructed the <tt>GEOS-Chem-Libraries</tt> installer package. You (or your IT staff) can use the installer package to build a copy of the netCDF libraries if your computer system does not already have netCDF libraries installed.</p>
+
+
+
+<p align="justify">For detailed instructions on how to use the <tt>GEOS-Chem-Libraries</tt> installer program, please see the <a href="http://wiki.geos-chem.org/Installing_libraries_for_GEOS-Chem" target="_blank">Installing libraries for GEOS-Chem wiki page</a>. Here you will find an overview of the individual library files that are generated and the commands used to link to them.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+
+
+
+<p class="size14bi" align="center"><a href="chapter_1.html">Previous</a>
+
+| <a href="chapter_3.html">Next</a> | <a href="chapter_2.html" target="_parent">Printable View (no frames)</a></p>
+
+
+
+</body></html>
+

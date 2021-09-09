@@ -1,0 +1,3984 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><title>GEOS&#8211;Chem Online User's Guide</title>
+
+<link rel="stylesheet" type="text/css" href="../../../gc.css"><!-- Cascading style sheet for font declarations -->
+
+<style type="text/css">
+tr { vertical-align : top;
+text-align : left;
+}
+th { font-family : Arial, Helvetica, sans-serif; font-weight : bold; font-size : 16px; text-align : left;
+background-color : #CCCCCC } </style></head>
+<body style="background-color: rgb(255, 255, 255);">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script>
+<!-- JavaScript for breadcrumb links -->
+<p class="size20bi" align="center">GEOS&#8211;Chem
+v8&#8211;02&#8211;01 Online User's Guide</p>
+<p class="size14bi" align="center"><a href="chapter_4.html">Previous</a> | <a href="chapter_6.html">Next</a> | <a href="chapter_5.html" target="_parent">Printable View
+(no frames)</a></p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size24bi"><a name="5"></a>5.
+GEOS&#8211;Chem run directories</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="5.1"></a>5.1
+Overview</p>
+<p align="justify">Now that you have compiled the
+GEOS&#8211;Chem code and have installed <a href="chapter_4.html">your
+1° x 1°, 2° x 2.5° and 4° x 5° data directories</a>,
+it is time to set up the GEOS&#8211;Chem run directory. This is the directory
+where the GEOS&#8211;Chem executable resides, along with several input files
+which you must edit to specify exactly what you want the model to do -
+how long to run, what values to report back, etc.</p>
+<p align="justify"> You will probably want to have several
+run directories, each of which is customized to a particular model type
+(<a href="appendix_4.html#A4.1">GCAP</a>, <a href="appendix_4.html#A4.2">GEOS&#8211;3</a> or <a href="appendix_4.html#A4.3">GEOS-4</a>, or <a href="appendix_4.html#A4.4">GEOS&#8211;5</a>), a particular
+resolution (<a href="appendix_2.html#A2.3">2° x 2.5°</a>
+or <a href="appendix_2.html#A2.2">4° x 5°</a>), and
+<a href="appendix_1.html">specific simulation</a>.</p>
+<p align="justify">Here is an list of the input files that
+must be modified in your run directory. Detailed descriptions of each
+file then follow.</p>
+<p align="justify">Each of these files will be discussed
+in more detail below.</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th colspan="2">GEOS&#8211;Chem user input files</th>
+</tr>
+<tr>
+<td class="courier16" width="22%">input.geos</td>
+<td>
+<p>File containing all GEOS&#8211;Chem user options. In this
+file, you may specify the following options:</p>
+<ul class="disc">
+<li>Start &amp; end time of the simulation</li>
+<li>Names of the <a href="#5.2">input</a>
+&amp; <a href="#5.5">output files</a></li>
+<li>Which <a href="appendix_5.html">diagnostics</a>
+to save to disk</li>
+<li>Which operations (e.g. chemistry, transport, dry
+deposition, etc.) to turn on, etc.</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td class="courier16">Planeflight.dat </td>
+<td>Specifies flight tracks for which you want to save out
+specific tracers, chemical species, or met field quantities. </td>
+</tr>
+<tr>
+<th colspan="2" bgcolor="#cccccc">GEOS&#8211;Chem
+chemistry mechanism files</th>
+</tr>
+<tr>
+<td class="courier16">chemga.dat</td>
+<td>File containing some aerosol parameters for SMVGEAR II.
+</td>
+</tr>
+<tr valign="top">
+<td class="courier16">globchem.dat</td>
+<td>
+<p> List of chemical species and reactions for SMVGEAR II,
+which defines the <a href="../../chemistry_updates_v4.pdf" target="_blank">GEOS&#8211;Chem chemical mechanism</a>.</p>
+</td>
+</tr>
+<tr valign="top">
+<td class="courier16">mglob.dat</td>
+<td>
+<p> Setup file for SMVGEAR, containing convergence criteria
+and other parameters.</p>
+</td>
+</tr>
+<tr valign="top">
+<th colspan="2" bgcolor="#cccccc">GEOS&#8211;Chem
+photolysis mechanism files</th>
+</tr>
+<tr valign="top">
+<td class="courier16">jv_atms.dat</td>
+<td>
+<p> Contains O3 and temperature climatologies for FAST-J
+photolysis. </p>
+</td>
+</tr>
+<tr valign="top">
+<td class="courier16">jv_spec.dat</td>
+<td>
+<p> Contains cross-section and quantum yields for FAST-JX
+photolysis species.</p>
+<p class="size14bi"> NOTE: For now, GEOS-Chem v8-02-01 still uses the older FAST-J photolysis code, but we now feed it the updated cross-section inputs from the more recent FAST-JX code.</p></td>
+</tr>
+<tr valign="top">
+<td class="courier16">ratj.d</td>
+<td>
+<p>Links "Harvard species" to "FAST-JX" species. FAST-JX
+photolysis
+species are defined in the data file jv_spec.dat, Harvard species in
+chem.dat. </p>
+<p class="size14bi">NOTE: For now, GEOS-Chem v8-02-01 still uses the older
+  FAST-J photolysis code, but we now use the updated cross-section inputs
+  from the more recent FAST-JX code.</p></td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="5.2"></a>5.2
+GEOS&#8211;Chem user input files</p>
+<p align="justify">The files described in this section
+must be modified for every GEOS&#8211;Chem simulation. These files contain
+definitions of tracers, starting and ending times, diagnostics, and
+other relevant quantities. You should make it a habit of thoroughly
+checking these files before submitting a long GEOS&#8211;Chem run.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1"></a>5.2.1
+The input.geos file</p>
+<p align="justify">GEOS&#8211;Chem v8&#8211;02&#8211;01 combines all the
+input options and switches into a single input file, <tt>input.geos</tt>.
+All user-defined input switches and settings which customize GEOS&#8211;Chem
+output options are now defined witin this file. Also, much of the
+historical baggage from previous model versions has been eliminated. </p>
+<p align="justify">Click on the links below to view <tt>input.geos</tt>
+files for various types of GEOS&#8211;Chem simulations. (Files will open in a
+new browser window.)</p>
+<ul class="disc">
+<li><a href="files/input.geos.fullchem" target="_blank">NOx&#8211;Ox&#8211;Hydrocarbon&#8211;aerosol simulation
+(a.k.a. "full chemistry") simulation</a></li>
+<li><a href="files/input.geos.tagox" target="_blank">Tagged
+Ox simulation</a></li>
+<li><a href="files/input.geos.tagco" target="_blank">Tagged
+CO simulation</a></li>
+<li><a href="files/input.geos.co2" target="_blank">CO2
+simulation</a></li>
+<li><a href="files/input.geos.aerosol" target="_blank">Offline
+sulfate/carbon/dust/seasalt aerosol simulation</a></li>
+<li><a href="files/input.geos.tagHg" target="_blank">Tagged
+Hg simulation</a></li>
+<li><a href="files/input.geos.h2hd" target="_blank">H2
+and HD simulation</a> </li>
+</ul>
+<p align="justify">Note that the <tt>input.geos</tt>
+file is grouped
+into menus. Each menu controls the options for a particular aspect of a
+GEOS&#8211;Chem simulation. Here is a list of menus and the options which
+they control. You can click on the name of a menu for more information.</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th colspan="2">Simulation Menus</th>
+</tr>
+<tr>
+<td width="22%">
+<p><a href="#5.2.1.1">Simulation Menu</a></p>
+</td>
+<td>
+<p align="justify">Specifies the start &amp;
+stop times of the run, the restart file names, and the directory path
+information.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.2">Tracer Menu</a></p>
+</td>
+<td>
+<p align="justify">Specifies information about each
+tracer, including name, molecular weight, and, for family tracers,
+individual constituent species.</p>
+</td>
+</tr>
+<tr>
+<th colspan="2" bgcolor="#cccccc">Operations
+Menus</th>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.3">Transport Menu</a></p>
+</td>
+<td>
+<p align="justify">Specifies options for TPCORE
+transport.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.4">Convection Menu</a></p>
+</td>
+<td>
+<p align="justify">Specifies options for cloud
+convection and PBL mixing.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.5">Emissions Menu</a></p>
+</td>
+<td>
+<p align="justify">Specifies options for
+anthropogenic, biomass, biofuel, and biogenic emissions.</p>
+</td>
+</tr>
+<tr>
+<td><a href="#5.2.1.6">Future Menu</a> </td>
+<td>
+<p align="justify">Specifies options for future
+emissions scenarios.</p>
+<p class="size14bi" align="justify">NOTE:
+This is currently only implemented for use with the GCAP met fields.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.7">Aerosol Menu</a></p>
+</td>
+<td>
+<p align="justify">Specifies options for emissions
+and chemistry of sulfate, carbon, secondary organic, dust, and sea salt
+aerosols.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.8">Deposition Menu</a></p>
+</td>
+<td>
+<p align="justify">Specifies options for both dry
+and wet deposition.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.9">Chemistry Menu</a></p>
+</td>
+<td>
+<p align="justify">Specifies options for chemistry.</p>
+</td>
+</tr>
+<tr>
+<td><a href="#5.2.1.10">Mercury Menu</a>
+</td>
+<td>
+<p align="justify"> Specifies options for the tagged
+mercury simulation.</p>
+</td>
+</tr>
+<tr bgcolor="#cccccc">
+<th colspan="2">Diagnostic Menus</th>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.11">Output Menu</a></p>
+</td>
+<td>
+<p>Specifies dates on which diagnostic output will be saved
+to the binary punch file.</p>
+</td>
+</tr>
+<tr>
+<td><a href="#5.2.1.12">GAMAP Menu</a></td>
+<td>Specifies the path names for the GAMAP diaginfo.dat and
+tracerinfo.dat files, both of which are now written by GEOS&#8211;Chem.</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.13">Diagnostic Menu</a></p>
+</td>
+<td>
+<p>Specifies which binary punch file diagnostics to turn
+on, and which tracers to save to disk.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.14">Planeflight Menu</a></p>
+</td>
+<td>
+<p>Specifies the names of the files for the ND40 plane
+flight diagnostic.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.15">ND48 Menu</a></p>
+</td>
+<td>
+<p>Specifies options for the ND48 station timeseries
+diagnostic.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.16">ND49 Menu</a></p>
+</td>
+<td>
+<p>Specifies options for the ND49 instantaneous timeseries
+diagnostic.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.17">ND50 Menu</a></p>
+</td>
+<td>
+<p>Specifies options for the ND50 24-hour average
+timeseries diagnostic.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p> <a href="#5.2.1.18">ND51 Menu</a></p>
+</td>
+<td>
+<p>Specifies options for the ND51 "satellite" timeseries
+diagnostic.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.19">Prod &amp; Loss Menu</a></p>
+</td>
+<td>
+<p>Specifies options for the ND65 (chemical prod &amp;
+loss) and ND20 (save PO3, LO3 to disk for tagged Ox simulation)
+diagnostics.</p>
+</td>
+</tr>
+<tr bgcolor="#cccccc">
+<th colspan="2">Other Menus</th>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.20">Archived OH Menu</a></p>
+</td>
+<td height="30">
+<p>Specifies the directory path for offline OH data files.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.21">O3 P/L Menu</a></p>
+</td>
+<td>
+<p>Specifies the directory path for PO3 and LO3 rate files
+(for tagged Ox simulation)</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="#5.2.1.22">Nested Grid Menu</a></p>
+</td>
+<td>
+<p>Specifies options for the GEOS&#8211;3 nested grid simulation</p>
+</td>
+</tr>
+<tr>
+<td height="30">
+<p><a href="#5.2.1.23">Unix Cmds Menu</a></p>
+</td>
+<td>
+<p>Specifies Unix commands which are used for unzipping
+data on the fly.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p align="justify">The order of the menus are as follows:</p>
+<ul>
+<li>Simulation Menu and Tracer Menu must come first</li>
+<li>Then any of the Operations Menus</li>
+<li>Then any of the Diagnostic Menus</li>
+<li>Other Menus can go anywhere; by convention we will list
+them at the end of the file.</li>
+</ul>
+<p align="justify">Each of the menus is described in more
+detail below. We will describe the options and switches that a user
+must set in order to perform a NOx&#8211;Ox&#8211;Hydrocarbon&#8211;aerosol simulation
+(a.k.a. "full chemistry") simulation.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.1"></a>5.2.1.1
+The SIMULATION MENU</p>
+<p align="justify">Line numbers are not part of the
+<span class="courier16">input.geos</span> file, but have been included for reference.</p>
+<pre>01: %%% SIMULATION MENU %%% :
+02: Start YYYYMMDD, HHMMSS  : 20051001 000000
+03: End   YYYYMMDD, HHMMSS  : 20060101 000000
+04: Run directory           : /home/bmy/T/run.v8-01-01
+05: Input restart file      : restart.v8-01-01-geos5-Run1.YYYYMMDDhh
+06: Make new restart file?  :  T
+07: Output restart file(s)  : restart.v8-01-01-geos5-Run1.YYYYMMDDhh
+08: Root data directory     : /as/data/ctm/GEOS_4x5/
+09: =&gt; GCAP subdir          : AGRID/YYYY/MM/
+10: =&gt; GEOS-3 subdir        : GEOS_3/YYYY/MM/
+11: =&gt; GEOS-4 subdir        : GEOS_4_v4/YYYY/MM/
+12: =&gt; GEOS-5 subdir        : GEOS_5/YYYY/MM/
+13: Dir w/ 1x1 emissions etc: /as/data/ctm/GEOS_1x1/
+14: Temporary directory     : /home/bmy/TEMP/std/
+15: Unzip met fields?       : F
+16: Wait for met fields?    : F
+17: Use variable tropopause?: T
+18: Global offsets I0, J0   : 0 0</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc" valign="top">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify
+the starting date and time of the GEOS&#8211;Chem simulation. The date must
+be in YYYYMMDD format (4-digit year, month, and day). The time must be
+in HHMMSS format (hour, minute, and seconds). Note that since the
+GEOS&#8211;Chem dynamic timestep (see <a href="#5.2.1.3">Transport
+Menu</a>) is usually 10, 15, or 30 minutes, you can always set
+the seconds to zero. </p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify the ending date (YYYYMMDD
+format) and time (HHMMSS format) of the GEOS&#8211;Chem simulation.</p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify the name of the GEOS&#8211;Chem
+run directory (e.g. where the executable file and input files reside).</p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">Specify
+the name of the restart file, which contains the initial tracer
+concentrations. If you just specify the file name, GEOS&#8211;Chem will look
+for the restart file in the run directory. You may also specify an
+entire directory path. Also, you may include the following tokens in
+the file name: </p>
+<ul class="disc">
+<li>YYYY: GEOS&#8211;Chem will replace this with the 4-digit
+date value (e.g. 2001, 2002)</li>
+<li>MM: GEOS&#8211;Chem will replace this with the 2-digit
+month value (e.g. 01 .. 12)</li>
+<li>DD: GEOS&#8211;Chem will replace this with the 2-digit day
+value (e.g. 01 .. 31 )</li>
+<li>hh: GEOS&#8211;Chem will replace this with the 2-digit hour
+value (e.g. 01 .. 23)</li>
+<li>MM: GEOS&#8211;Chem will replace this with the 2-digit
+minutes value (e.g. 01 .. 59)</li>
+<li>ss: GEOS&#8211;Chem will replace this with the 2-digit
+seconds value (e.g. 01 .. 59)</li>
+</ul>
+<p align="justify">NOTE: Since the typical GEOS&#8211;Chem
+simulations start and end at the top of the hour, a restart file name
+such as restart.<tt>YYYYMMDDhh</tt> should suffice for most
+applications.</p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">If you want to create new restart
+files then set this to T. A new
+restart file will be saved at the same time when diagnostics are saved
+to the binary punch file. See <a href="#5.2.1.9">Output
+Menu</a> for more information.</p>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">Specify the name or file path for
+the output restart file(s). As described above, GEOS&#8211;Chem will replace
+the <tt>YYYY, MM, DD, hh, mm, ss</tt> tokens in the file
+name with the appropriate date or time values.</p>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<p align="justify">Specify
+DATA_DIR (located in source code file directory_mod.f). DATA_DIR is the
+root-level data directory path. The various shared data inputs (e.g.
+emissions, offline OH, offline dust &amp; aerosol concentrations,
+etc).
+are stored in subdirectories of DATA_DIR. Also, the met fields are
+stored in subdirectories of DATA_DIR.</p>
+</td>
+</tr>
+<tr>
+<td>9 </td>
+<td>
+<p align="justify">Specify the directory path where <a href="appendix_4.html#A4.1">GCAP met fields</a> are
+stored. You may include the YYYY and MM tokens as described above. This
+is stored in the variable GEOS_1_DIR in source code file
+directory_mod.f.)</p>
+</td>
+</tr>
+<tr>
+<td>10</td>
+<td>
+<p align="justify">Specify the directory path where <a href="appendix_4.html#A4.4">GEOS&#8211;3 met fields </a>are
+stored. You may include the YYYYYYYY and MM tokens as described above.
+This is stored in the variable <tt>GEOS_3_DIR</tt> in
+source code file directory_mod.f.</p>
+</td>
+</tr>
+<tr>
+<td>11</td>
+<td>
+<p align="justify">Specify the directory path where <a href="appendix_4.html#A4.3">GEOS&#8211;4 met fields</a> are
+stored. You may include the YYYYYYYY and MM tokens as described above.
+This is stored in the variable <tt>GEOS_4_DIR</tt> in
+source code file directory_mod.f.</p>
+</td>
+</tr>
+<tr>
+<td>12</td>
+<td>
+<p align="justify">Specify the directory path where <a href="appendix_4.html#A4.4">GEOS&#8211;5 met fields</a> are
+stored. You may include the YYYY and MM tokens as described above. This
+is stored in the variable <tt>GEOS_5_DIR</tt> in source
+code file directory_mod.f.</p>
+</td>
+</tr>
+<tr>
+<td>13</td>
+<td>
+<p align="justify">Specify
+DATA_DIR_1x1 (located in source code file directory_mod.f).
+DATA_DIR_1x1 is the root-level data directory path where emission files
+on the <a href="appendix_2.html#A2.5">GMAO 1° x 1°</a>
+and <a href="appendix_2.html#A2.7">generic 1° x 1°</a>
+grids are stored. GEOS&#8211;Chem v8&#8211;01&#8211;01 has the ability to regrid
+emissions (etc.) files on-the-fly from these 1° x 1° grids to the
+current model grid.</p>
+</td>
+</tr>
+<tr>
+<td>14</td>
+<td>
+<p align="justify">Specify
+TEMP_DIR (located in source code file directory_mod.f). TEMP_DIR is the
+path of a temporary directory into which met field files will be
+unzipped.</p>
+<p class="size14bi" align="justify">NOTE: You
+only need to specify this if you are unzipping met fields on the fly.</p>
+</td>
+</tr>
+<tr>
+<td>15</td>
+<td>
+<p align="justify">Specify LUNZIP (located in source
+code file <tt>logical_mod.f</tt>).
+LUNZIP determines whether GEOS&#8211;Chem will unzip met field files on the
+fly. If you have stored your met fields in gzipped format in order to
+save space, then you must set <tt>LUNZIP</tt> to T. If you
+have stored your met fields as unzipped, then set LUNZIP to F.</p>
+<p class="size14bi" align="justify">NOTE: You
+only need to specify this if you are unzipping met fields on the fly.</p>
+</td>
+</tr>
+<tr>
+<td>16</td>
+<td>
+<p align="justify">Specify LWAIT (located in source
+code file <tt>logical_mod.f</tt>).
+If you are unzipping met field files on the fly (i.e. if LUNZIP is set
+to T), then you may also specify if you want GEOS&#8211;Chem to wait until
+the met field files are completely unzipped before proceeding. It may
+be necessary to set LWAIT to T if you are using a simulation such as
+Radon or Tagged Ox where the chemistry takes less time than it does to
+unzip the met fields.</p>
+<p class="size14bi" align="justify">NOTE: You
+only need to specify this if you are unzipping met fields on the fly.</p>
+</td>
+</tr>
+<tr>
+  <td>17</td>
+  <td>Specify if you want to use the variable tropopause option. This should always be set to T if you are using GEOS&#8211;4 or GEOS&#8211;5 met fields. This should always be set to F if you are using GEOS&#8211;3 met fields.</td>
+</tr>
+<tr>
+<td>18</td>
+<td>
+<p align="justify">Specify the global offsets <tt>I0</tt>
+and <tt>J0</tt> which are located in source code file
+grid_mod.f). For a global run, <tt>I0</tt> and <tt>J0</tt>
+must both be set to zero. However, for nested grid runs, we must set <tt>I0</tt>
+and <tt>J0</tt>I0 and J0 to the appropriate offsets.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.2"></a>5.2.1.2
+The TRACER Menu</p>
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% TRACER MENU %%%     : 
+02: Type of simulation      : 3
+03: Number of Tracers       : 54                      
+04: Tracer Entries -------> : TR#   Name  g/mole   Tracer Members; () = emitted 
+05: Tracer #1               :   1   NOx     46.0   NO2  (NO)  NO3   HNO2      
+06: Tracer #2               :   2   Ox      48.0   (O3)   NO2   2NO3  
+07: Tracer #3               :   3   PAN    121.0
+08: Tracer #4               :   4   CO      28.0   (CO)
+09: Tracer #5               :   5   ALK4    12.0   (4C)
+10: Tracer #6               :   6   ISOP    12.0   (5C)
+11: Tracer #7               :   7   HNO3    63.0   (HNO3)
+12: Tracer #8               :   8   H2O2    34.0
+13: Tracer #9               :   9   ACET    12.0   (3C)
+14: Tracer #10              :  10   MEK     12.0   (4C)
+15: Tracer #11              :  11   ALD2    12.0   (2C)
+16: Tracer #12              :  12   RCHO    58.0
+17: Tracer #13              :  13   MVK     70.0
+18: Tracer #14              :  14   MACR    70.0
+19: Tracer #15              :  15   PMN    147.0
+20: Tracer #16              :  16   PPN    135.0
+21: Tracer #17              :  17   R4N2   119.0
+22: Tracer #18              :  18   PRPE    12.0   (3C)
+23: Tracer #19              :  19   C3H8    12.0   (3C)
+24: Tracer #20              :  20   CH2O    30.0   (CH2O)
+25: Tracer #21              :  21   C2H6    12.0   (2C)
+26: Tracer #22              :  22   N2O5   105.0
+27: Tracer #23              :  23   HNO4    79.0
+28: Tracer #24              :  24   MP      48.0
+29: Tracer #25              :  25   DMS     62.0
+30: Tracer #26              :  26   SO2     64.0
+31: Tracer #27              :  27   SO4     96.0
+32: Tracer #28              :  28   SO4s    96.0
+33: Tracer #29              :  29   MSA     96.0
+34: Tracer #30              :  30   NH3     17.0
+35: Tracer #31              :  31   NH4     18.0
+36: Tracer #32              :  32   NIT     62.0
+37: Tracer #33              :  33   NITs    62.0
+38: Tracer #34              :  34   BCPI    12.0
+39: Tracer #35              :  35   OCPI    12.0
+40: Tracer #36              :  36   BCPO    12.0
+41: Tracer #37              :  37   OCPO    12.0
+42: Tracer #38              :  38   ALPH    136.23<br>43: Tracer #39              :  39   LIMO    136.23<br>44: Tracer #40              :  40   ALCO    142.0<br>45: Tracer #41              :  41   SOG1    150.0<br>46: Tracer #42              :  42   SOG2    160.0<br>47: Tracer #43              :  43   SOG3    220.0<br>48: Tracer #44              :  44   SOG4    130.0<br>49: Tracer #45              :  45   SOA1    150.0<br>50: Tracer #46              :  46   SOA2    160.0<br>51: Tracer #47              :  47   SOA3    220.0<br>52: Tracer #48              :  48   SOA4    130.0<br>53: Tracer #49              :  49   DST1    29.0
+54: Tracer #50              :  50   DST2    29.0
+55: Tracer #51              :  51   DST3    29.0
+56: Tracer #52              :  52   DST4    29.0
+57: Tracer #53              :  53   SALA    36.0
+58: Tracer #54              :  54   SALC    36.0</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>Header line </td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify the type of GEOS&#8211;Chem
+simulation that you wish to perform. The choices are:</p>
+<ol>
+<li>Rn&#8211;Pb&#8211;Be simulation</li>
+<li>CH3I simulation (NOTE: this is old and in need of updating) </li>
+<li>NOx&#8211;Ox&#8211;Hydrocarbon&#8211;aerosol simulation w/ SMVGEAR
+solver (a.k.a. "full chemistry")</li>
+<li>HCN simulation</li>
+<li>### unused ###</li>
+<li>Tagged Ox simulation</li>
+<li>Tagged CO simulation</li>
+<li>C2H6 simulation</li>
+<li>CH4 simulation</li>
+<li>Offline aerosol simulation (sulfate, carbon,
+secondary organics, dust, and sea salt aerosols)</li>
+<li>Mercury simulation</li>
+<li>CO2 simulation</li>
+<li>H2 and HD simulation </li>
+</ol>
+<p align="justify">NOTE: In this example, the TRACER
+MENU is set up for a NOx&#8211;Ox&#8211;Hydrocarbon&#8211;aerosol (or "full chemistry")
+simulation.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify
+N_TRACERS (located in source code file tracer_mod.f). N_TRACERS is the
+number of tracers that will be included in the GEOS&#8211;Chem simulation.</p>
+<p align="justify">NOTE: <a href="chapter_6.html#6.1.1">If you are performing a
+"full-chemistry" simulation with include secondary organic aerosols</a>
+(as shown in the example above), then set N_TRACERS to 54. If you are
+not including secondary organic aerosols then set <tt>N_TRACERS</tt>
+to 43. If you are performing a dicarbonyl chemistry simulation then set
+N_TRACERS to 73.</p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Header line</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p>Entry for the NOx tracer. You must list the following
+information:</p>
+<ul class="disc">
+<li>Tracer number</li>
+<li>Tracer name (up to 14 characters)</li>
+<li>Molecular weight in g/mole</li>
+</ul>
+<p align="justify"> For most types of simulations
+this is all you need to list. However, for the
+NOx&#8211;Ox&#8211;Hydrocarbon&#8211;aerosol simulation (a.k.a. "full chemistry")
+simulation, you must also list the following information, which will be
+passed to the SMVGEAR chemistry solver routines:</p>
+<ul>
+<li>
+<p align="justify">If this is a family tracer,
+then you must specify the names of the individual species which
+constitute this tracer. In this example, NOx is a family consisting of
+NO2 + NO + NO3 + HNO2, so you must list these species names after the
+molecular weight as shown above. These can be separated by spaces (i.e.
+no commas or semicolons are needed).</p>
+</li>
+<li>
+<p align="justify">You must also denote species
+which have emission reactions in the SMVGEAR chemical mechanism by
+placing parentheses around the species name. In this case, all of the
+anthropogenic emissions which go into the NOx family are actually
+emissions of NO, so you must denote this by (NO).</p>
+</li>
+<li align="justify">
+<p align="justify">A number in front of an
+individual species name denotes the coefficient by which that species
+is to be multiplied. In the case of NOx, all of the species have a
+coefficient of one, and thus may be omitted.</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">Entry for the Ox tracer. As with
+NOx, you must list the tracer number, name, and molecular weight. You
+must also list this additional information:</p>
+<ul>
+<li>
+<p align="justify">Ox is a family tracer (which
+consists of O3 + NO2 + 2NO3). Therefore in the example above, you must
+list constituent species as shown above. Note that the coefficient in
+front of the NO3 is 2, which denotes that 2 molecules of NO3 are
+included in the Ox family.</p>
+</li>
+<li>
+<p align="justify">You must also denote species which have emission reactions in the SMVGEAR chemical mechanism by placing parentheses around the species name. In this case, all of the anthropogenic emissions which go into the Ox family are actually emissions of O3, so you must denote this by (O3).</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">Entry for the PAN tracer: As with
+NOx, you must list the tracer number, name, and molecular weight.
+However, PAN is not a family tracer (i.e. it has no constituent species
+other than itself). It also does not have an emission reaction defined
+in the SMVGEAR chemical mechanism. So this is all the information you
+need to give.</p>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<p align="justify">Entry for the CO tracer: As with
+NOx you must list the tracer number, name, and molecular weight.
+Although CO is not a family tracer (i.e. it has no constituent species
+other than itself), it is an emitted tracer in the SMVGEAR chemical
+mechanism. Therefore you need to list (CO) in parentheses after the
+molecular weight in g/mole.</p>
+</td>
+</tr>
+<tr>
+<td>9 </td>
+<td>
+<p align="justify">Entry for the ALK4 (C4 lumped
+alkanes) tracer: As with NOx you must list the tracer number, name, and
+molecular weight.</p>
+<p align="justify">In GEOS&#8211;Chem, several of the
+hydrocarbon tracers are not carried in molecules of tracer, but in
+equivalent atoms of carbon. ALK4 is one of these types of hydrocarbon
+tracers. Also, ALK4 has an emission reaction defined within the SMVGEAR
+chemistry mechanism. You can therefore denote this by placing (4C)
+after the molecular weight in g/mole. The 4C denotes that ALK4 consists
+of 4 carbon atoms, and the parentheses denote that ALK4 has an emission
+reaction in the SMVGEAR chemistry mechanism.</p>
+</td>
+</tr>
+<tr>
+<td>10</td>
+<td>
+<p align="justify">Entry for the ISOPRENE tracer.
+This is a hydrocarbon tracer which consists of 5 carbon atoms.</p>
+</td>
+</tr>
+<tr>
+<td>11&#8211;12</td>
+<td>
+<p align="justify">Entries for HNO3 and H2O2 tracers</p>
+</td>
+</tr>
+<tr>
+<td>13&#8211;15</td>
+<td>
+<p align="justify">Entries for hydrocarbon tracers:
+ACET (3 carbons), MEK (4 carbons), ALD2 (2 carbons)</p>
+</td>
+</tr>
+<tr>
+<td>16&#8211;21</td>
+<td>
+<p align="justify">Entries for RCHO, MVK, MACR, PMN,
+PPN, R4N2.</p>
+</td>
+</tr>
+<tr>
+<td>22&#8211;23</td>
+<td>
+<p align="justify">Entries for they hydrocarbon
+tracers PRPE (C3 lumped alkenes&#8212;3 carbons) and C3H8 (3 carbons).</p>
+</td>
+</tr>
+<tr>
+<td>24</td>
+<td>
+<p align="justify">Entry for CH2O (formaldehyde).
+This has an emission reaction defined in the SMVGEAR chemistry
+mechanism so we must list its name in parentheses after the molecular
+weight. </p>
+</td>
+</tr>
+<tr>
+<td>25</td>
+<td>
+<p align="justify">Entry for hydrocarbon tracer C2H6
+(2 carbons).</p>
+</td>
+</tr>
+<tr>
+<td>26&#8211;57</td>
+<td>
+<p align="justify">Entries for the rest of the
+GEOS&#8211;Chem tracers.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.3"></a>
+5.2.1.3 The TRANSPORT MENU</p>
+<p>Line numbers are not part of the <tt>input.geos</tt>file,
+but have been included for reference.</p>
+<pre>01: %%% TRANSPORT MENU %%%  :
+02: Turn on Transport       : T
+03:  =&gt; Use Flux Correction?: F
+04:  =&gt; Fill Negative Values: T 
+05:  =&gt; IORD, JORD, KORD    : 3 3 7
+06: Transport Timestep [min]: 30 
+07: Use strat O3/NOy BC's   : T
+</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify LTRAN located in source
+code file <tt>logical_mod.f</tt>). Set LTRAN to T to turn
+on TPCORE transport, or set to F to turn off TPCORE transport.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify LMFCT (located in source
+code file <tt>logical_mod.f</tt>). Setting LFMCT to T
+turns on flux-corrected transport in TPCORE.</p>
+<p class="size14bi" align="justify">NOTE:
+This has no effect for GEOS&#8211;4 and GEOS&#8211;5 simulations.</p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify LFILL (located in source
+code file <tt>logical_mod.f</tt>). Setting LFILL to T will
+cause TPCORE to fill negative values with zeroes.</p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">Specify the IORD, JORD, KORD
+transport options for TPCORE (located in source code file
+transport_mod.f). These settings determine how TPCORE performs
+transport in the E/W, N/S, and vertical directions. Recommended values
+are 3, 3, 7. </p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">Specify the transport timestep in
+minutes. Recommended values: 30 min (4x5), 15 min (2x25) and 10 min
+(1x1 or 1x125).  The transport timestep should be the smallest timestep used. </p></td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">Specify LUPBD (located in source
+code file <tt><tt>logical_mod.f</tt></tt>).
+Set LUPBD to T if you wish to impose a stratospheric flux boundary
+condition for NOy and Ox. If you are performing a full-chemistry or
+tagged Ox simulation then you should set LUPBD to T. Otherwise set
+LUPBD to F.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.4"></a>5.2.1.4
+The CONVECTION MENU</p>
+<p>Line numbers are not part of the <tt>input.geos</tt>file,
+but have been included for reference.</p>
+<pre>01: %%% CONVECTION MENU %%% :
+02: Turn on Cloud Conv?     : T
+03: Turn on PBL Mixing?     : T
+04: Convect Timestep (min)  : 30</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify LCONV (located in source
+code file <tt>logical_mod.f</tt>). Set LCONV to T to turn
+on cloud convection.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify LTURB (located in source
+code file <tt>logical_mod.f</tt>). Set LTURB to T to turn
+on PBL mixing.</p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify the convection timestep
+in minutes. It is recommended to set the convection timestep to the
+same value as the transport timestep. In all cases, the chemistry timestep must be a multiple of the
+transport timestep (i.e. TS_conv=X*TS_trans, where X is an integer).</p></td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.5"></a>5.2.1.5
+The EMISSIONS MENU </p>
+<p>Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% EMISSIONS MENU %%%  :
+02: Turn on emissions?      : T
+03: Emiss timestep (min)    : 60 
+04: Include anthro emiss?   : T
+05:  =&gt; Scale to (1985-2005): -1
+06:  =&gt; Use EMEP emissions? : T
+07:  =&gt; Use BRAVO emissions?: T
+08:  =&gt; Use EDGAR emissions?: T
+09:  =&gt; Use STREETS emiss?  : T
+10:  =&gt; Use CAC emissions?  : T
+11: Use EPA/NEI99 (anth+bf)?: T
+12: w/ ICARTT modif.?       : T
+13: w/ VISTAS NOx emis?     : F
+14: Include biofuel emiss?  : T
+15: Include biogenic emiss? : T
+16:  =&gt; Use MEGAN inventory?: T
+17:  =&gt; Use MEGAN for MONO? : T
+18: Include biomass emiss?  : T
+19:  =&gt; Seasonal biomass?   : T
+20:  =&gt; Scaled to TOMSAI?   : F
+21:  =&gt; Use GFED2 biomass?  :---
+22:  =&gt; monthly GFED2?      : T 
+23:  =&gt; 8-day GFED2?        : F 
+24:  =&gt; 3-hr GFED2?         : F
+25:  =&gt; synoptic GFED2?     : F
+26: Individual NOx sources  :---
+27:  =&gt; Use aircraft NOx?   : T
+28:  =&gt; Use lightning NOx   : T
+29:     =&gt; Scale glb flrate?: T
+30:     =&gt; OTD reg redist?  : F
+31:     =&gt; OTD loc redist?  : T
+32:     =&gt; Use CTH param?   : T
+33:     =&gt; Use MFLUX param? : F
+34:     =&gt; Use PRECON param?: F
+35:  =&gt; Use soil NOx        : T
+36: Use SHIP emissions      :---
+37:  =&gt; global EDGAR ?      : T
+38:  =&gt; EMEP over EUROPE ?  : T
+39:  =&gt; ship SO2 Corbett ?  : F
+40:  =&gt; ship SO2 Arctas ?   : T
+41: Use AVHRR-derived LAI?  : T
+</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify LEMIS (located in source
+code file <tt>logical_mod.f</tt>). Set LEMIS to T to turn
+emissions in a GEOS&#8211;Chem simulation. Set LEMIS to F to turn off all
+emissions in a GEOS&#8211;Chem simulation.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify the emission timestep in
+minutes. For <a href="chapter_6.html#6.1.1">full-chemistry simulations</a>,&nbsp;you should use a time step that is double the transport timestep (Strang operator splitting). For other simulations, you should set this to the same value as the transport timestep. In all cases, the chemistry timestep must be a multiple of the transport timestep (i.e. TS_emis=X*TS_trans, where X is an integer).</p></td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify LANTHRO (located in
+source code file <tt>logical_mod.f</tt>). Set LANTHRO to T
+to include anthropogenic emission, or to F to shut off all
+anthropogenic emission. </p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">Specify FSCALYR (located in
+source code file <tt>CMN_O3</tt>).
+Specify the emission year for anthropogenic emissions. For each
+selected inventory (see below), if a dataset exists for that year, it
+is used. If not, the closest available year is used, and -for NOx, CO,
+and SOx only- emissions are <a href="chapter_4.html#4.2.1">scaled to the emission year</a>.
+Scale
+factors are available for 1985-2005. Before 1985, 1985 is used and
+after 2005, 2005 is used (except for Streets inventory that has a 2006
+set).
+<span class="size16b">It is recommended to set this input to -1 to let GEOS-Chem automatically scale data to the year simulated.</span></p>
+
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">Specify LEMEP (located in source
+code file <tt>logical_mod.f</tt>). Set LEMEP to T to
+include <a href="chapter_4.html#4.2.6">EMEP European
+anthropogenic emissions</a>, or to F otherwise. </p>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">Specify LBRAVO (located in source
+code file <tt>logical_mod.f</tt>). Set LBRAVO to T to
+include <a href="chapter_4.html#4.2.3">BRAVO
+anthropogenic emissions over Mexico</a>, or to F otherwise.</p>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<p align="justify">Specify LEDGAR (located in source
+code file <tt>logical_mod.f</tt>). Set LEDGAR to T to
+include <a href="chapter_4.html#4.2.5">EDGAR
+anthropogenic emissions</a>, or to F otherwise.</p>
+</td>
+</tr>
+<tr>
+<td>9</td>
+<td>
+<p align="justify">Specify LSTREETS (located in
+source code file <tt>logical_mod.f</tt>). Set LSTREETS to
+T to include <a href="chapter_4.html#4.2.17">David
+Streets SE Asian anthropogenic emissions</a>, or to F otherwise.</p>
+</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Specify LCAC (located in source code file <span class="courier16">logical_mod.f</span>). Set LCAC to T
+to include <a href="chapter_4.html#4.2.4">CAC
+anthropogenic emissions over Canada</a>, or to F otherwise.</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Specify LNEI99 (located in source code file <span class="courier16">logical_mod.f</span>). Set LNEI99 to
+T to&nbsp;overwrite <a href="chapter_4.html#4.2.8">anthropogenic</a>
+and <a href="chapter_4.html#4.3.15">biofuel</a>
+emissions over the continental USA with those from the EPA/NEI99
+inventory, or F to keep the default emissions over the continental USA.</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Specify LICARTT (located in source code file <span class="courier16">logical_mod.f</span>).</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Specify LVISTAS (located in source code file <span class="courier16">logical_mod.f</span>).</td>
+</tr>
+<tr>
+<td>14</td>
+<td>
+<p align="justify">Specify LBIOFUEL (located in
+source code file <tt>logical_mod.f</tt>). Set LBIOFUEL to
+T to include <a href="chapter_4.html#4.3.9">biofuel
+emissions</a>, or to F to shut off all biofuel emission.</p>
+</td>
+</tr>
+<tr>
+<td>15</td>
+<td>
+<p align="justify">Specify LBIOGENIC (located in
+source code file <tt>logical_mod.f</tt>). Set LBIOGENIC to
+T to include <a href="chapter_4.html#4.3.10">biogenic
+emissions</a> (e.g. ISOPRENE, MONOTERPENES), or to F to shut off
+all biogenic emission.</p>
+</td>
+</tr>
+<tr>
+<td>16</td>
+<td>
+<p align="justify">Specify LMEGAN (located in source
+code file <tt>logical_mod.f</tt>). Set LMEGAN to T to use <a href="chapter_4.html#4.2.14">biogenic emissions from the
+MEGAN inventory</a> for Isoprene and other VOC's, or to F to use
+the default GEIA biogenic emissions.</p>
+<p class="size14bi" align="justify">NOTE: The
+GEIA biogenic emissions are now deprecated. They will be removed in a
+future release of GEOS&#8211;Chem.</p>
+</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Specify LMONO (located in source code file <tt>logical_mod.f</tt>).
+Set LMONO to T to use&nbsp;<a href="chapter_4.html#4.2.14">biogenic
+emissions from the MEGAN inventory</a> for Monoterpenes and
+Methyl Butenol, or to F to use the default GEIA biogenic emissions. </td>
+</tr>
+<tr>
+<td>18</td>
+<td>
+<p align="justify">Specify LBIOMASS (located in
+source code file <tt>logical_mod.f</tt>). Set LBIOMASS to
+T to include <a href="chapter_4.html#4.3.11">biomass
+burning emissions</a>, or to F to shut off all biomass burning
+emissions.</p>
+</td>
+</tr>
+<tr>
+<td>19</td>
+<td>
+<p align="justify">Specify LBBSEA (located in source
+code file <tt>logical_mod.f</tt>).
+Set LBBSEA to T if you wish to use seasonal (aka climatological)
+biomass burning emissions. Set LBBSEA to F if you wish to use <a href="chapter_4.html#4.3.11">biomass burning emissions for
+specific years</a> (in order to establish interannual
+variability).</p>
+</td>
+</tr>
+<tr>
+<td>20</td>
+<td>
+<p align="justify">Specify LTOMSAI (located in
+source code file <tt>logical_mod.f</tt>). Set LTOMSAI to T
+if you wish to scale biomass burning to TOMS Aerosol Index data.</p>
+</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Header line</td>
+</tr>
+<tr>
+<td>22</td>
+<td>
+<p align="justify">Specify LGFED2BB (located in
+source code file <tt>logical_mod.f</tt>). Set LGFED2BB to
+T if you wish to use the <a href="chapter_4.html#4.2.10">monthly-mean
+GFED2 biomass emissions</a>, or to F otherwise. </p>
+</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Specify L8DAYBB (located in source code file <tt>logical_mod.f</tt>).
+Set L8DAYBB to T if you wish to use the <a href="chapter_4.html#4.2.12">weekly-mean GFED2 biomass
+emissions</a>, or to F otherwise.</td>
+</tr>
+<tr>
+<td>24</td>
+<td>Specify L3HRBB (located in source code file <tt>logical_mod.f</tt>).
+Set L3HRBB to T if you wish to use the <a href="chapter_4.html#4.2.11">3-hourly-mean GFED2 biomass
+emissions</a>, or to F otherwise.</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Specify LSYNOPB (located in source code file <tt>logical_mod.f</tt>).
+Set LSYNOPB to T if you wish to use the <a href="chapter_4.html#4.2.11">synoptic GFED2 biomass emissions</a>,
+or to F otherwise.</td>
+</tr>
+<tr>
+<td>26</td>
+<td>
+<p align="justify">Header line</p>
+</td>
+</tr>
+<tr>
+<td>27</td>
+<td>
+<p align="justify">Specify LAIRNOX (located in
+source code file <tt>logical_mod.f</tt>). Set LAIRNOX to T
+to include <a href="chapter_4.html#4.3.7">aircraft NOx
+emissions</a>, or to F to shut off all aircraft NOx emissions. </p>
+</td>
+</tr>
+<tr>
+<td>28</td>
+<td>
+<p align="justify">Specify LLIGHTNOX (located in
+source code file <tt>logical_mod.f</tt>). Set LLIGHTNOX to
+T to include <a href="chapter_4.html#4.3.19">lightning
+NOx emissions</a>, or to F to shut off all lightning NOx
+emissions. </p>
+</td>
+</tr>
+<tr>
+<td>29</td>
+<td>Specify LOTDSCALE (located in source code file <tt>logical_mod.f</tt>).
+Apply scaling factor to make sure annual average flash rate equals that
+of the OTD/LIS satellite-observed climatology.</td>
+</tr>
+<tr>
+<td>30</td>
+<td>
+<div align="justify">Specify LOTDREG (located in
+source code file <tt>logical_mod.f</tt>). Geographically
+redistribute lightning flashes to better match OTD/LIS
+satellite-observed flashes. Use a regional redistribution method. </div>
+</td>
+</tr>
+<tr>
+<td>31</td>
+<td>
+<div align="justify">Specify LOTDLOC (located in
+source code file <tt>logical_mod.f</tt>). Geographically
+redistribute lightning flashes to better match OTD/LIS
+satellite-observed flashes. Use a local redistribution method. </div>
+</td>
+</tr>
+<tr>
+<td>32</td>
+<td>
+<p align="justify">Specify LCTH (located in source
+code file <tt>logical_mod.f</tt>). Use the
+cloud-top-height parameterization for computing lightning NOx
+emissions. </p>
+<p class="size14bi">NOTE: This is the only
+parameterization currently implemented for GEOS&#8211;5. </p>
+</td>
+</tr>
+<tr>
+<td>33</td>
+<td>
+<p align="justify">Specify LMFLUX (located in source
+code file <tt>logical_mod.f</tt>). Use the convective mass
+flux parameterization for computing lightning NOx emissions</p>
+<p class="size14bi">NOTE: This has not yet been
+implemented for GEOS&#8211;5.</p>
+</td>
+</tr>
+<tr>
+<td>34</td>
+<td>
+<p align="justify">Specify LPRECON (located in
+source code file <tt>logical_mod.f</tt>). Use the
+convective precipitation parameterization for computing lightning NOx
+emissions.</p>
+<p class="size14bi">NOTE: This has not yet been
+implemented for GEOS&#8211;5.</p>
+</td>
+</tr>
+<tr>
+<td>35</td>
+<td>
+<p align="justify">Specify LSOILNOX (located in
+source code file <tt>logical_mod.f</tt>). Set LSOILNOX to
+T to include <a href="chapter_4.html#4.3.23">soil NOx
+emissions</a>, or to F to shut off all lightning NOx emissions. </p>
+</td>
+</tr>
+<tr>
+<td>36</td>
+<td>Header line</td>
+</tr>
+<tr>
+<td>37</td>
+<td>Specify LEDGARSHIP (located in source code file <tt>logical_mod.f</tt>).
+Set LEDGARSHIP to T to use <a href="chapter_4.html#4.2.5">EDGAR
+ship emissions</a>, or to F otherwise.</td>
+</tr>
+<tr>
+<td>38</td>
+<td>Specify LEMEPSHIP (located in source code file <tt>logical_mod.f</tt>).
+Set LEMEPSHIP to T to use <a href="chapter_4.html#4.2.7">EMEP
+ship emissions for Europe</a>, or to F otherwise.</td>
+</tr>
+<tr>
+<td>39</td>
+<td>
+<p align="justify">Specify LSHIPSO2 (located in
+source code file <tt>logical_mod.f</tt>). Set LSHIPSO2 to
+T to include SO2 <a href="chapter_4.html#4.3.26">emissions
+from ship exhaus</a>t, or to F to shut off SO2 emissions from
+ship exhaust.</p>
+</td>
+</tr>
+<tr>
+<td>40</td>
+<td>
+<p align="justify">Specify LARCSHIP (located in
+source code file <tt>logical_mod.f</tt>). Set LARCSHIP to
+include <a href="chapter_4.html#4.2.2">ARCTAS SO2 and CO2
+ship emissions</a>, or to F otherwise.</p>
+</td>
+</tr>
+<tr>
+<td>41</td>
+<td valign="top">
+<p align="justify">Specify LAVHRRLAI (located in
+source code file <tt>logical_mod.f</tt>). Set LAVHRRLAI to
+T to use leaf area indices obtained from the AVHRR satellite, or F to
+continue using the default LAI inventory (from Yuhang Wang, 1998). </p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.6"></a>5.2.1.6
+The FUTURE MENU </p>
+<p class="size14bi" align="justify">NOTE: At
+present, this menu controls options that only affect simulations with
+GCAP met fields. </p>
+<p>Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% FUTURE MENU %%%     :
+02: Use future emissions?   : F
+03: Which IPCC future year? : 2050
+04: Which IPCC scenario?    : A1</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify LFUTURE (located in
+source code file <tt>logical_mod.f</tt>). Set LFUTURE to T
+to scale present-day emissions to one of the IPCC future scenarios, or
+F otherwise. </p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify FUTURE_YEAR, which is the
+year to which the current emissions will be scaled. Current options are
+2030 and 2050. </p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify FUTURE_SCEN, which is the
+IPCC scenario to be used. Current options are: A1, B1. </p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.7"></a>5.2.1.7
+The AEROSOL MENU</p>
+<p>Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% AEROSOL MENU %%%    :
+02: Online SULFATE AEROSOLS : T
+03: Online CRYST/AQ AEROSOLS: F
+04: Online CARBON AEROSOLS  : T
+05: Online 2dy ORG AEROSOLS : T
+06: Online DUST AEROSOLS    : T
+07:  =&gt; Use DEAD emissions? : T
+08: Online SEASALT AEROSOLS : T
+09:  =&gt; SALA radius bin [um]: 0.1 0.5
+10:  =&gt; SALC radius bin [um]: 0.5 10.0
+11: Online dicarb. chem.    : F</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify LSULF (located in source
+code file <tt>logical_mod.f</tt>). Set LSULF to T to turn
+on emissions and chemistry for sulfate aerosols (DMS, SO2, SO4, MSA,
+NH3, NH4, NIT).</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify LCRYST (located in source
+code file <tt>logical_mod.f</tt>). Set LCRYST to T to turn
+on emissions and chemistry for crystalline sulfur and aqueous aerosols
+(AS, AHS, LET, SO4aq, NH4aq).</p>
+<p class="size14bi" align="justify">NOTE:
+This feature has not been implemented in GEOS&#8211;Chem v8&#8211;01&#8211;01. This will
+be fully implemented in a future version. For the time being, set
+LCRYST to F<font face="Arial, Helvetica, sans-serif">.</font></p>
+<font face="Arial, Helvetica, sans-serif"> </font></td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify LCARB (located in source
+code file <tt>logical_mod.f</tt>). Set LCARB to T to turn
+on emissions and chemistry for carbonaceous aerosols (BCPI, BCPO, OCPI,
+OCPO).</p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">Specify LSOA (located in source
+code file <tt>logical_mod.f</tt>). Set LSOA to T to turn
+on emissions and chemistry for secondary organic aerosols. Turning on
+the secondary organic aerosols will <a href="appendix_1.html#a1.3">add
+9 tracers</a> to the simulation.</p>
+<p align="justify"><span class="size14bi">NOTE:
+If you are going to use the SOA tracers, you must also change the
+setting of LISOPOH in the "globchem.dat" file from "D" (dead) to "A"
+(active). See ... for more information. </span></p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">Specify LDUST (located in source
+code file <tt>logical_mod.f</tt>). Set LDUST to T to turn
+on emissions and chemistry for mineral dust aerosol tracers (DST1,
+DST2, DST3, DST4).</p>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">Specify LDEAD (located in source
+code file <tt>logical_mod.f</tt>). Set LDEAD to T to use
+the dust source function from the DEAD model (cf. C. Zender). Set LDEAD
+to F to use the dust source function from the GOCART (cf. Paul Ginoux).
+</p>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<p align="justify">Specify LSSALT (located in source
+code file <tt>logical_mod.f</tt>). Set LSSALT to T to use
+the dust source function from the DEAD model (cf. C. Zender). Set LDEAD
+to F to use the dust source function from the GOCART (cf. Paul Ginoux).
+</p>
+</td>
+</tr>
+<tr>
+<td>9</td>
+<td>
+<p align="justify">Specify the edges which denote
+accumulation mode sea salt tracer in microns. (This is stored in
+variable SALA_REDGE_um in tracer_mod.f). Recommended setting: 0.1 to
+0.5 microns.</p>
+</td>
+</tr>
+<tr>
+<td>10</td>
+<td>
+<p align="justify">Specify the edges which denote
+coarse mode sea salt tracer in microns. (This is stored in variable
+SALC_REDGE_um in tracer_mod.f). Recommended setting: 0.5 to 10 microns.
+</p>
+</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Specify LDICARB (located in source code file <span class="courier16">logical_mod.f</span>). Set LDICARB
+to T if you are using the dicarbonyl chemistry simulations (73
+tracers), to F otherwise.</td>
+</tr>
+</tbody>
+</table>
+<p align="justify">NOTE: You may define the limits of the
+accumulation and coarse mode sea salt aerosol radius bins (in variables
+SALA_REDGE_um and SALC_REDGE_um) as you wish. However, the recommended
+values of 0.1&#8211;0.5 and 0.5&#8211;10 microns, respectively, were chosen in
+order to conform to the cross-sections and other optical settings as
+defined in the FAST&#8211;J input file jv_spec.dat. Therefore, unless you use
+the recommended values, you will not be able to archive aerosol optical
+depths for these aerosol types with the ND21, ND48, ND49, ND50, and
+ND51 diagnostics. </p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.8"></a>5.2.1.8
+The DEPOSITION MENU</p>
+<p>Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% DEPOSITION MENU %%% :
+02: Turn on Dry Deposition? : T
+03: Turn on Wet Deposition? : T</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify LDRYD (located in source
+code file <tt>logical_mod.f</tt>). Set LDRYD to T to turn
+on dry deposition, or F to turn off dry deposition.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify LWETD (located in source
+code file <tt>logical_mod.f</tt>). Set LWETD to T to turn
+on wet deposition, or F to turn off wet deposition.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.9"></a>5.2.1.9
+The CHEMISTRY MENU</p>
+<p>Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% CHEMISTRY MENU %%%  : 
+02: Turn on Chemistry?      : T
+03: Chemistry Timestep [min]: 60
+04: Use Embedded Chemistry? : F
+05:  =&gt; IE0, JE0, IE1, JE1  :   0   0   0   0
+06: Read and save CSPEC_FULL: T</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify LCHEM (located in source
+code file <tt>logical_mod.f</tt>). Set LCHEM to T to turn
+on chemistry, or F to turn off chemistry.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">For all simulations,
+you should use a chemistry time step that is double the transport time step
+(<a href="http://www.astro.uu.se/%7Ebf/course/numhd_course/5_1_1Operator_adding_versus.html" target="_blank">Strang operator splitting</a>).</p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">This option is no longer
+supported </p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">This option is no longer
+supported </p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Specify LSVCSPEC (located in source code file <span class="courier16">logical_mod.f</span>). Set LSVCSPEC
+to T to save all species (CSPEC_FULL array) in a restart file in
+addition to the standard restart file, which saves only the transported tracers or to F otherwise. If the option <span class="courier16">Make new restart file</span> is set to F in the <a href="#5.2.1.1">simulation menu</a>, then no restart file will be saved regardless of LSVCSPEC value.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.10"></a>5.2.1.10
+The MERCURY MENU</p>
+<p class="size14bi" align="justify">NOTE: This menu
+only controls options for the tagged Hg simulation. </p>
+<p>Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% MERCURY MENU %%%    : 
+02: Use anthro Hg emiss for : 2000
+03: Error check tag/tot Hg? : F
+04: Use dynamic ocean Hg?   : F
+05: Ocean Hg restart file   : ocean_Hg.YYYYMMDDhh</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify ANTHRO_Hg_YEAR (located
+in source code file <tt>mercury_mod.f</tt>), which is the
+baseline year of the anthropogenic mercury emissions that are used in
+the <a href="chapter_6.html#6.1.7">tagged mercury
+simulation</a>. Current options are either 1995 or 2000. </p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify USE_CHECKS (located in
+source code file file <tt>ocean_mercury_mod.f</tt>).
+Set USE_CHECKS to T to stop with an error message if the sum of tagged
+tracers does not equal the total tracer, or F otherwise. This is useful
+for debugging.</p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify LDYNOCEAN (located in
+source code file <tt>logical_mod.f</tt>). Set LDYNOCEAN to
+T to use the online ocean mercury model (in source code file <tt>ocean_mercury_mod.f</tt>)
+or F t<a href="chapter_4.html#4.2.9">o read ocean mercury
+concentrations from monthly mean files on disk</a>. </p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">If
+you are have set LDYNOCEAN to T (i.e. you are using the online ocean
+mercury model), then you can specify the name of the ocean mercury
+restart file. This file saves the concentrations of oceanic mercury
+tracers for continuing the run at a later stage.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.11"></a>5.2.1.11
+The OUTPUT MENU</p>
+<p>Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
+02: Schedule output for JAN : 3000000000000000000000000000000
+03: Schedule output for FEB : 30000000000000000000000000000 
+04: Schedule output for MAR : 3000000000000000000000000000000
+05: Schedule output for APR : 300000000000000000000000000000
+06: Schedule output for MAY : 3000000000000000000000000000000
+07: Schedule output for JUN : 300000000000000000000000000000
+08: Schedule output for JUL : 3000000000000000000000000000000
+09: Schedule output for AUG : 3000000000000000000000000000000
+10: Schedule output for SEP : 300000000000000000000000000000
+11: Schedule output for OCT : 3000000000000000000000000000000
+12: Schedule output for NOV : 300000000000000000000000000000
+13: Schedule output for DEC : 3000000000000000000000000000000</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Schedule diagnostic output for
+JANUARY. Place a 3 in the column corresponding to the day of the month
+(1&#8211;31) on which you want diagnostic output saved to the binary punch
+file. </p>
+<p align="justify">In the example above, the columns
+which indicate January 1st and February 1st both have a 3 listed there.
+This will cause GEOS&#8211;Chem to archive diagnostic data for the entire
+month of January and then save it to disk at 0 GMT on February 1st.
+(GEOS&#8211;Chem is smart enough not to write anything to disk at 0 GMT on
+January 1st, since this is the starting time of the simulation.)</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Schedule diagnostic output for
+FEBRUARY. </p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Schedule diagnostic output for
+MARCH.</p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">Schedule diagnostic output for
+APRIL.</p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">Schedule diagnostic output for
+MAY. </p>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">Schedule diagnostic output for
+JUNE. </p>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<p align="justify">Schedule diagnostic output for
+JULY. </p>
+</td>
+</tr>
+<tr>
+<td>9</td>
+<td>
+<p align="justify">Schedule diagnostic output for
+AUGUST. </p>
+</td>
+</tr>
+<tr>
+<td>10</td>
+<td>
+<p align="justify">Schedule diagnostic output for
+SEPTEMBER. </p>
+</td>
+</tr>
+<tr>
+<td>11</td>
+<td>
+<p align="justify">Schedule diagnostic output for
+OCTOBER. </p>
+</td>
+</tr>
+<tr>
+<td>12</td>
+<td>
+<p align="justify">Schedule diagnostic output for
+NOVEMBER.</p>
+</td>
+</tr>
+<tr>
+<td>13</td>
+<td>
+<p align="justify">Schedule diagnostic output for
+DECEMBER. </p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.12"></a>5.2.1.12
+The GAMAP MENU</p>
+<p>Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% GAMAP MENU %%%      : 
+02: diaginfo.dat path       : diaginfo.dat
+03: tracerinfo.dat path     : tracerinfo.dat</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Path name of <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_7.html#7.2" target="_blank">the
+<tt>diaginfo.dat</tt> file for GAMAP</a>.
+GEOS&#8211;Chem v8&#8211;01&#8211;01 will create this file, which will be customized to
+the particular simulation that is being done. </p>
+<p align="justify">This may be either a relative
+path name (i.e. <tt>diaginfo.dat</tt>) <br>
+or absolute path name (i.e. <tt>/home/bmy/T/run.v8-02-02/diaginfo.dat</tt>).</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Path name of <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_7.html#7.3" target="_blank">the
+<tt>tracerinfo.dat</tt> file for GAMAP</a>.
+GEOS&#8211;Chem v8&#8211;01&#8211;01 will create this file, which will be customized to
+the particular simulation that is being done. </p>
+<p align="justify">This may be either a relative
+path name (i.e. <tt>tracerinfo.dat</tt>) <br>
+or absolute path name (i.e. <tt>/home/bmy/T/run.v8-02-02/tracerinfo.dat</tt>).</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.13"></a>5.2.1.13
+The DIAGNOSTIC MENU</p>
+<p>Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<p>For more information about GEOS&#8211;Chem diagnostics, please see <a href="appendix_5.html">Appendix 5</a>. </p>
+<pre>01: %%% DIAGNOSTIC MENU %%% : 
+02: Binary punch file name  : ctm.bpch
+03: Diagnostic Entries ---&gt; : L Tracers to print out for each diagnostic
+04: ND01: Rn/Pb/Be source   : 0  all 
+05: ND02: Rn/Pb/Be decay    : 0  all 
+06: ND03: Hg emissions, P/L : 0  all 
+07: ND04: CO2 prod/loss     : 0  all 
+08: ND05: Sulfate prod/loss : 30 all 
+09: ND06: Dust aer source   : 1  all 
+10: ND07: Carbon aer source : 30 all 
+11: ND08: Seasalt aer source: 1  all 
+12: ND09: -                 : 0  all 
+13: ND10: H2/HD prod/loss   : 0  all 
+14: ND11: Acetone sources   : 0  all 
+15: ND12: BL fraction       : 0  all 
+16: ND13: Sulfur sources    : 0  all 
+17: ND14: Cld conv mass flx : 0  all 
+18: ND15: BL mix mass flx   : 0  all 
+19: ND16: LS/Conv prec frac : 0  all 
+20: ND17: Rainout fraction  : 0  all 
+21: ND18: Washout fraction  : 0  all
+22: ND19: -                 : 0  all
+23: ND21: Optical depths    : 0  all
+24: ND22: J-Values          : 20 all
+25:       =&gt; JV time range  :    11 13
+26: ND24: E/W transpt flx   : 30 all
+27: ND25: N/S transpt flx   : 30 all
+28: ND26: U/D transpt flx   : 30 all
+29: ND27: Strat NOx,Ox,HNO3 : 1  1 2 7
+30: ND28: Biomass emissions : 0  1 4 5 9 10 11 18 19 20 21
+31: ND29: CO sources        : 0  all
+32: ND30: Land Map          : 0  all
+33: ND31: Surface pressure  : 1  all
+34: ND32: NOx sources       : 0  all
+35: ND33: Column tracer     : 0  all
+36: ND34: Biofuel emissions : 0  1 4 5 9 10 11 18 19 20 21
+37: ND35: Tracers at 500 mb : 0  all
+38: ND36: Anthro emissions  : 0  1 4 5 9 10 18 19 21
+39: ND37: Updraft scav frac : 0  all
+40: ND38: Cld Conv scav loss: 0  all
+41: ND39: Wetdep scav loss  : 0  all
+42: ND41: Afternoon PBL ht  : 0  all
+43: ND42: SOA concentration : 0  all
+44: ND43: Chem OH,NO,HO2,NO2: 20 all
+45:   ==&gt; OH/HO2 time range :    0 24
+46:   ==&gt; NO/NO2 time range :    10 14
+47: ND44: Drydep flx/vel    : 1  all
+48: ND45: Tracer Conc's     : 30 all
+49: --&gt; ND45 Time range     :    0 24
+50: ND46: Biogenic emissions: 0  all
+51: ND47: 24-h avg trc conc : 0  all
+52: ND52: GAMMA HO2         : 0  all
+53: ND53: -                 : 0  all
+54: ND54: Time in t'sphere  : 0  all
+55: ND55: Tropopause height : 0  all
+56: ND56: Lightning flashes : 0  all
+57: ND57: -                 : 0  all
+58: ND58: -                 : 0  all
+59: ND59: -                 : 0  all
+60: ND60: -                 : 0  all
+61: ND61: -                 : 0  all
+62: ND62: Inst column maps  : 0  all
+63: ND63: -                 : 0  all
+64: ND64: -                 : 0  all
+65: ND66: DAO 3-D fields    : 0  all
+66: ND67: DAO 2-D fields    : 0  all
+67: ND68: Airmass/Boxheight : 0  all
+68: ND69: Surface area      : 0  all
+69: ND70: Debug output      : 0  all</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify the name of the <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2" target="_blank">binary
+punch file</a>. You may use date &amp; time tokens YYYY, MM,
+DD, hh, mm, ss and GEOS&#8211;Chem will replace these with the appropriate
+values. </p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Header line. </p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">ND01 (Rn&#8211;Pb&#8211;Be source) diagnostic
+settings. You must list the following information:</p>
+<ul class="disc">
+<li>Number of levels to save:<br>
+<ul class="circle">
+<li>Entering 0 will turn off this diagnostic.</li>
+<li> Entering 1 will archive data from level 1 (the
+surface level).</li>
+<li>Entering 20 will archive data from level from 1
+(surface) up to and including level 20. </li>
+<li>Entering 30 will archive data from level from 1
+(surface) up to and including level 30, etc.<br>
+<br>
+Note that the code is smart enough to prevent you from saving out more
+vertical levels than there are present for a given diagnostic.<br>
+<br>
+</li>
+</ul>
+</li>
+<li>Tracer numbers to save. If you want to save all
+tracers for a given diagnostic, just type the word all. If you want to
+save specific tracer numbers then list them individually (separated by
+spaces).</li>
+</ul>
+<p align="justify">You must list this information
+(number of levels and tracer numbers) for all other diagnostics in this
+menu. It is recommended to save out all tracers for a given diagnostic,
+unless you need to save disk space. </p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">ND02 (Rn&#8211;Pb&#8211;Be decay) diagnostic
+settings.</p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">ND03 (Mercury emissions,
+production &amp; loss) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">ND04 (CO2 prod/loss) diagnostic
+settings.</p>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<p align="justify">ND05 (sulfate prod &amp;
+loss) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>9</td>
+<td>
+<p align="justify">ND06 (mineral dust emissions)
+diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>10</td>
+<td>
+<p align="justify">ND07 (carbonaceous aerosol
+emissions) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>11</td>
+<td>
+<p align="justify">ND08 (sea salt aerosol emissions)
+diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+  <td>12</td>
+  <td>ND09 (Free diagnostic) </td>
+</tr>
+<tr>
+<td>13</td>
+<td>
+<p align="justify">ND10 (sources, production and
+loss of H2 and HD) diagnostic settings </p>
+</td>
+</tr>
+<tr>
+<td>14</td>
+<td>
+<p align="justify">ND11 (sea salt aerosol emissions)
+diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>15</td>
+<td>
+<p align="justify">ND12 (fraction of each layer in
+the PBL fraction) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>16</td>
+<td>
+<p align="justify">ND13 (sulfate aerosol emissions)
+diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>17</td>
+<td>
+<p align="justify">ND14 (mass flux from cloud
+convection) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>18</td>
+<td>
+<p align="justify">ND15 (mass flux from PBL mixing)
+diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>19</td>
+<td>
+<p align="justify">ND16 (fraction of grid box
+undergoing large scale &amp; convective precip) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>20</td>
+<td>
+<p align="justify">ND17 (fraction of soluble tracer
+lost to rainout) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>21</td>
+<td>
+<p align="justify">ND18 (fraction of soluble tracer
+lost to washout) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>22</td>
+<td>
+<p align="justify">Free diagnostic (reserved for
+future use).</p>
+</td>
+</tr>
+<tr>
+<td>23</td>
+<td>
+<p align="justify">ND21 (optical depths of cloud,
+dust, and aerosols) diagnsotic settings.</p>
+</td>
+</tr>
+<tr>
+<td>24</td>
+<td>
+<p align="justify">ND22 (J-value photolysis rates)
+diagnostic settings. </p>
+</td>
+</tr>
+<tr>
+<td>25</td>
+<td>
+<p align="justify">Specify the averaging period (in
+local time) for the ND22 diagnostic. In the example above, J-value data
+from grid boxes where it is between 11:00 and 13:00 local time will be
+averaged and then saved to disk.</p>
+</td>
+</tr>
+<tr>
+<td>26</td>
+<td>
+<p align="justify">ND24 (E/W transport mass fluxes)
+diagnostic settings</p>
+</td>
+</tr>
+<tr>
+<td>27</td>
+<td>
+<p align="justify">ND25 (N/S transport mass fluxes)
+diagnostic settings</p>
+</td>
+</tr>
+<tr>
+<td>28</td>
+<td>
+<p align="justify">ND26 (vertical transport mass
+fluxes) diagnostic settings</p>
+</td>
+</tr>
+<tr>
+<td>29</td>
+<td>
+<p align="justify">ND27 (flux of tracer from the
+stratosphere) diagnostic settings</p>
+</td>
+</tr>
+<tr>
+<td>30</td>
+<td>
+<p>ND28 (biomass burning emissions) diagnostic settings.
+NOTE: the only tracers that have biomass burning emissions defined are:</p>
+<ul class="disc">
+<li>1: NOx</li>
+<li>4: CO</li>
+<li>5: ALK4</li>
+<li>9: ACET</li>
+<li>10: MEK</li>
+<li>11: ALD2</li>
+<li>18: PRPE</li>
+<li>19: C3H8</li>
+<li>20: CH2O</li>
+<li>21: C2H6</li>
+</ul>
+<p>So you can just list these tracer numbers individually.</p>
+</td>
+</tr>
+<tr>
+<td>31</td>
+<td>
+<p align="justify">ND29 (sources of CO) diagnostic
+settings</p>
+</td>
+</tr>
+<tr>
+<td>32</td>
+<td>
+<p align="justify">ND30 (surface map) diagnostic
+settings</p>
+</td>
+</tr>
+<tr>
+<td>33</td>
+<td>
+<p align="justify">ND31 (surface pressure)
+diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>34</td>
+<td>
+<p align="justify">ND32 (sources of NOx) diagnostic
+settings.</p>
+</td>
+</tr>
+<tr>
+<td>35</td>
+<td>
+<p align="justify">ND33 (column tracer) diagnostic
+settings. NOTE: This is more or less obsolete.</p>
+</td>
+</tr>
+<tr>
+<td>36</td>
+<td>
+<p align="justify">ND34 (biofuel emissions)
+diagnostic settings. NOTE: the only tracers that have biomass burning
+emissions defined are: </p>
+<ul class="disc">
+<li>1: NOx</li>
+<li>4: CO</li>
+<li>5: ALK4</li>
+<li>9: ACET</li>
+<li>10: MEK</li>
+<li>11: ALD2</li>
+<li>18: PRPE</li>
+<li>19: C3H8</li>
+<li>20: CH2O</li>
+<li>21: C2H6</li>
+</ul>
+<p align="justify">So you can just list these tracer
+numbers individually.</p>
+</td>
+</tr>
+<tr>
+<td>37</td>
+<td>
+<p align="justify">ND35 (500 hPa tracers) diagnostic
+settings. NOTE: This is more or less obsolete now.</p>
+</td>
+</tr>
+<tr>
+<td>38</td>
+<td>
+<p align="justify">ND36 (anthropogenic emissions)
+diagnostic settings. NOTE: the only tracers that have anthropogenic
+emissions defined are: </p>
+<ul class="disc">
+<li>1: NOx</li><li>2: O3</li>
+<li>4: CO</li>
+<li>5: ALK4</li><li>6: ISOP</li><li>7: HNO3</li>
+<li>9: ACET</li>
+<li>10: MEK</li><li>11: ALD2</li>
+<li>18: PRPE</li>
+<li>19: C3H8</li>
+<li>21: C2H6</li>
+</ul>
+<p align="justify">So you can just list these tracer
+numbers individually.</p>
+</td>
+</tr>
+<tr>
+<td>39</td>
+<td>
+<p align="justify">ND37 (fraction of soluble tracer
+scavenged in updrafts in cloud convection) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>40</td>
+<td>
+<p align="justify">ND38 (rainout loss of soluble
+tracer in convective updrafts) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>41</td>
+<td>
+<p align="justify">ND39 (washout loss of soluble
+tracer in convective updrafts) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>42</td>
+<td>
+<p align="justify">ND41 (afternoon PBL height)
+diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>43</td>
+<td>
+<p align="justify">ND42 (secondary organic aerosol
+concentration) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>44</td>
+<td>
+<p align="justify">ND43 (chemically produced
+quantities) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>45</td>
+<td>
+<p align="justify">Specify the averaging period (in
+local time) for OH and HO2 in the ND43 diagnostic. It is recommended to
+average OH and HO2 from 00:00 to 24:00 hours local time (i.e. all day
+long). This is shown in the example above. </p>
+</td>
+</tr>
+<tr>
+<td>46</td>
+<td>
+<p align="justify">Specify the averaging period (in
+local time) for NO and NO2 in the ND43 diagnostic. It is recommended to
+average NO and NO2 from 10:00 to 14:00 hours local time (i.e. around
+noon time). This is shown in the example above. </p>
+</td>
+</tr>
+<tr>
+<td>47</td>
+<td>
+<p align="justify">ND44 (dry deposition fluxes
+&amp; velocities) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>48</td>
+<td>
+<p align="justify">ND45 (tracer concentrations)
+diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>49</td>
+<td>
+<p align="justify">Specify the averaging period (in
+local time) for tracers in the ND45 diagnostic. It is recommended to
+average tracers from 00:00 to 24:00 hours local time (i.e. all day
+long). This is shown in the example above. </p>
+</td>
+</tr>
+<tr>
+<td>50</td>
+<td>
+<p align="justify">ND46 (biogenic emissions)
+diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>51</td>
+<td>
+<p align="justify">ND47 (24-hour tracer
+concentrations) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>52</td>
+<td>ND52 (gamma(HO2) for the HO2 uptake by aerosols)</td>
+</tr>
+<tr>
+<td>53</td>
+<td>
+<p align="justify">Free diagnostic (reserved for
+future use)</p>
+</td>
+</tr>
+<tr>
+<td>54</td>
+<td>ND54 diagnostic -- computes the time that a given grid
+box spends in the troposphere.</td>
+</tr>
+<tr>
+<td>55</td>
+<td>
+<p align="justify">ND55 (tropopause height)
+diagnostic settings. </p>
+</td>
+</tr>
+<tr>
+<td>56</td>
+<td>
+<p align="justify">ND56 (lightning flashes)
+diagnostic settings. </p>
+</td>
+</tr>
+<tr>
+<td>57&#8211;61</td>
+<td>Free diagnostics (reserved for future use).</td>
+</tr>
+<tr>
+<td height="33">62</td>
+<td>
+<p align="justify">ND62 (instantaneous column maps)
+diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>63&#8211;64</td>
+<td>
+<p align="justify">Free diagnostics (reserved for
+future use).</p>
+</td>
+</tr>
+<tr>
+<td>65</td>
+<td>
+<p align="justify">ND66 (3-D met fields) diagnostic
+settings.</p>
+</td>
+</tr>
+<tr>
+<td>66</td>
+<td>
+<p align="justify">ND67 (2-D met fields) diagnostic
+settings.</p>
+</td>
+</tr>
+<tr>
+<td>67</td>
+<td>
+<p align="justify">ND68 (boxheight &amp; air
+mass) diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>68</td>
+<td>
+<p align="justify">ND69 (grid box surface area)
+diagnostic settings.</p>
+</td>
+</tr>
+<tr>
+<td>69</td>
+<td>
+<p align="justify">ND70 (turn on debug output)
+diagnostic settings.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.14"></a>5.2.1.14
+The PLANEFLIGHT MENU</p>
+<p class="size14bi" align="justify">We have IDL
+codes that can create a
+Planeflight.dat file from the DC8 and P3B navigation files from ARCTAS,
+ICARTT, and other aircraft missions. <a href="../../flight/index.html" target="_blank">Click here for more information</a>. </p>
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% PLANEFLIGHT MENU %%%:
+02: Turn on plane flt diag? : F
+03: Flight track info file  : Planeflight.dat.YYYYMMDD
+04: Output file name        : plane.log.YYYYMMDD</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Set this to T to turn on the
+plane flight following diagnostic (a.k.a. ND40 diagnostic). Set this
+switch to F to turn off the plane flight diagnostic.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify the name of the input
+file (usually called <tt>Planeflight.dat.YYYYMMDD</tt>)
+for the plane flight diagnostic. This file is described <a href="#5.2.2">below</a>.
+You may use date &amp; time tokens YYYY, MM, DD, hh, mm, ss as part
+fo
+the filename and GEOS&#8211;Chem will replace these with the appropriate
+values. </p>
+<p align="justify">If the plane flight diagnostic is
+turned on, then GEOS&#8211;Chem will look for a new <tt>Planeflight.dat.YYYYMMDD</tt>
+file for each YYYYMMDD date. Then it will save out various quantities
+along the flight track(s) define within the <tt>Planeflight.dat.YYYYMMDD</tt>
+file.</p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify the name of the output
+file (usually called plane.log) for the plane flight diagnostic. You
+may use date &amp; time tokens YYYY, MM, DD, hh, mm, ss as part fo
+the filename and GEOS&#8211;Chem will replace these with the appropriate
+values. </p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.15"></a>5.2.1.15
+The ND48 MENU</p>
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% ND48 MENU %%%       :
+02: Turn on ND48 stations   : T
+03: Station Timeseries file : stations.YYYYMMDD
+04: Frequency [min]         : 60
+05: Number of stations      : 3
+06: Station #1 (I,J,Lmax,N) : 23 34 1 1
+07: Station #2 (I,J,Lmax,N) : 23 34 1 97
+08: Station #3 (I,J,Lmax,N) : 23 34 1 98</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Set this to T to turn on the ND48
+station timeseries diagnostic. This allows you to save timeseries data
+of various quantities at specific grid boxes. Set this to F to turn off
+the ND48 station timeseries diagnostic.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify the name of the file
+which will contain output from the ND48 station timeseries diagnostic.
+This file will be in binary punch format and can be read by <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/index.html" target="_blank">GAMAP</a>.
+You may use date &amp; time tokens YYYY, MM, DD, hh, mm, ss as part
+fo the filename and GEOS&#8211;Chem will replace these with the appropriate
+values. </p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify the frequency in minutes
+at which data will be archived by the ND48 station timeseries
+diagnostic. Recommended values: 60 minutes or 120 minutes. </p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">Specify the number of ND48
+stations at which timeseries data will be saved to disk.</p>
+</td>
+</tr>
+<tr>
+<td>6&#8211;8</td>
+<td>
+<p align="justify">For each ND48 station, you must
+provide the following information (separated by spaces):</p>
+<ul class="disc">
+<li>Longitude index</li>
+<li>Latitude index</li>
+<li>Number of levels to save
+<ul>
+<li>If you type 1, it will just save the surface
+level. </li>
+<li>If you type 10, then it will save all levels from
+level 1 (surface) to level 10. </li>
+</ul>
+</li>
+<li>ND48 tracer number</li>
+</ul>
+<p align="justify">The list of ND48 diagnostic
+tracer numbers is as follows. </p>
+<ul class="disc">
+<li> 1&#8211;N_TRACERS : GEOS-Chem transported tracers [v/v]</li>
+<li>71 : Pure O3 (not Ox) concentration [v/v]</li>
+<li>72 : NO concentration [v/v] </li>
+<li>73 : NOy concentration [v/v] </li>
+<li>74 : OH concentration [molec/cm3] </li>
+<li>75 : NO2 concentration [v/v] </li>
+<li>76 : PBL heights [m] </li>
+<li>77 : PBL heights [levels ] </li>
+<li>78 : Air density [molec/cm3] </li>
+<li>79 : Cloud fractions [unitless] </li>
+<li>80 : Column optical depths [unitless] </li>
+<li>81 : Cloud top heights [hPa] </li>
+<li>82 : Sulfate aerosol optical depth [unitless] </li>
+<li>83 : Black carbon aerosol optical depth [unitless] </li>
+<li>84 : Organic carbon aerosol optical depth [unitless] </li>
+<li>85 : Accumulation mode seasalt optical depth
+[unitless] </li>
+<li>86 : Coarse mode seasalt optical depth [unitless] </li>
+<li>87 : Total dust optical depth [unitless] </li>
+<li>88 : Total seasalt tracer concentration [unitless] </li>
+<li>89&#8211;92: RESERVED FOR FUTURE USE</li>
+<li>93: Grid box height [m] </li>
+<li>94 : Relative humidity [%] </li>
+<li>95 : Sea level pressure [hPa] </li>
+<li>96 : Zonal wind (a.k.a. U-wind) [m/s] </li>
+<li>97 : Meridional wind (a.k.a. V-wind) [m/s] </li>
+<li>98 : P(surface) - PTOP [hPa] </li>
+<li>99 : Temperature [K]</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.16"></a>5.2.1.16
+The ND49 MENU</p>
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% ND49 MENU %%%       :
+02: Turn on ND49 diagnostic : T
+03: Inst 3-D timeser. file  : tsYYYYMMDD.bpch
+04: Tracers to include      : 94
+05: Frequency [min]         : 120
+06: IMIN, IMAX of region    : 70 30
+07: JMIN, JMAX of region    : 23 46
+08: LMIN, LMAX of region    : 1 20</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Set this to T to turn on the ND49
+instantaneous 3D timeseries diagnostic. This allows you to archive
+instantaneous timeseries data for various quantities from a 3D region
+of the globe.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify the name of the file
+which will contain output from the ND49 station timeseries diagnostic.
+This file will be in binary punch format and can be read by GAMAP. You
+may use date &amp; time tokens YYYY, MM, DD, hh, mm, ss as part fo
+the filename and GEOS&#8211;Chem will replace these with the appropriate
+values. </p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify the ND49 diagnostic
+quantities to save to disk. List individual tracer numbers separated by
+spaces. </p>
+<ul>
+<li> 1&#8211;N_TRACERS : GEOS-Chem transported tracers [v/v] </li>
+<li>74 : Pure O3 (not Ox) concentration [v/v]</li>
+<li>75 : NO concentration [v/v] </li>
+<li>76 : NOy concentration [v/v] </li>
+<li>77 : OH concentration [molec/cm3] </li>
+<li>78 : NO2 concentration [v/v] </li>
+<li>79 : PBL heights [m] </li>
+<li>80 : PBL heights [levels] </li>
+<li>81 : Air density [molec/cm3] </li>
+<li>82 : Cloud fractions [unitless] </li>
+<li>83 : Column optical depths [unitless] </li>
+<li>84 : Cloud top heights [hPa] </li>
+<li>85 : Sulfate aerosol optical depth [unitless] </li>
+<li>86 : Black carbon aerosol optical depth [unitless] </li>
+<li>87 : Organic carbon aerosol optical depth [unitless] </li>
+<li>88 : Accumulation mode seasalt optical depth
+[unitless] </li>
+<li>89 : Coarse mode seasalt optical depth [unitless] </li>
+<li>90 : Total dust optical depth [unitless] </li>
+<li>91 : Total seasalt tracer concentration [unitless] </li>
+<li>92: RESERVED FOR FUTURE USE</li>
+<li>93: Grid box height [m] </li>
+<li>94 : Relative humidity [%] </li>
+<li>95 : Sea level pressure [hPa] </li>
+<li>96 : Zonal wind (a.k.a. U-wind) [m/s] </li>
+<li>97 : Meridional wind (a.k.a. V-wind) [m/s] </li>
+<li>98 : P(surface) - PTOP [hPa] </li>
+<li>99 : Temperature [K]</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">Specify the frequency (in
+minutes) at which ND49 will save data for a 3D region of the globe data
+to disk. Recommended value: 180 min (3 hours). You may save data at a
+higher temporal resolution (e.g. every 60 min) but this will create
+HUGE data files! </p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">Specify IMIN and IMAX, the
+indices which determine the longitude extent of the 3D region of the
+globe. Note that these are indices and not actual longitude values. To
+specify all 360 degrees of longitude, type the following:</p>
+<ul>
+<li>For <a href="appendix_2.html#A2.1">GCAP
+4° x 5° grid</a>: 1 72 </li>
+<li>For <a href="appendix_2.html#A2.2">GMAO
+4° x 5° grid</a>: 1 72 </li>
+<li>For <a href="appendix_2.html#A2.3">GMAO
+2° x 2.5</a>° grid: 1 144 </li>
+</ul>
+<p align="justify">Also, note you can wrap around
+the date line. In the example shown above, IMIN=70 and IMAX=30. This
+will create a 3D region (assuming 4x5 grid) which starts at 165° E
+longitude and extends across the date line to 35° W longitude.</p>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">Specify JMIN and JMAX, the
+indices which determine the latitude extent of the 3D region of the
+globe. Note that these are indices and not actual latitude values. To
+specify all 180 degrees of latitude, type the following:</p>
+<ul>
+<li>For <a href="appendix_2.html#A2.1">GCAP
+4° x 5° grid</a>: 1 45</li>
+<li>For <a href="appendix_2.html#A2.2">GMAO
+4° x 5° grid</a>: 1 46</li>
+<li>For <a href="appendix_2.html#A2.3">GMAO
+2° x 2.5</a>° grid: 1 91</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<p align="justify">Specify LMIN and LMAX, the
+indices which determine the vertical extent of the 3D region of the
+globe.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.17"></a>5.2.1.17
+The ND50 MENU</p>
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% ND50 MENU %%%       :
+02: Turn on ND50 diagnostic : T
+03: 24-hr avg timeser. file : ts_24h_avg.YYYYMMDD.bpch
+04: Tracers to include      : 94
+05: IMIN, IMAX of region    : 1 72
+06: JMIN, JMAX of region    : 1 46
+07: LMIN, LMAX of region    : 1 20</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Set this to T to turn on the ND50
+24-hour 3D timeseries diagnostic. This allows you save to archive
+24-hour averaged data from a 3D region of the globe.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify the name of the file
+which will contain output from the ND49 station timeseries diagnostic.
+This file will be in binary punch format and can be read by GAMAP. You
+may use date &amp; time tokens YYYY, MM, DD, hh, mm, ss as part fo
+the filename and GEOS&#8211;Chem will replace these with the appropriate
+values. </p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify the ND50 diagnostic
+quantities to save to disk. List individual tracer numbers separated by
+spaces. </p>
+<ul class="disc">
+<li> 1&#8211;N_TRACERS : GEOS-Chem transported tracers [v/v] </li>
+<li>74 : Pure O3 (not Ox) concentration [v/v]</li>
+<li>75 : NO concentration [v/v] </li>
+<li>76 : NOy concentration [v/v] </li>
+<li>77 : OH concentration [molec/cm3] </li>
+<li>78 : NO2 concentration [v/v] </li>
+<li>79 : PBL heights [m] </li>
+<li>80 : PBL heights [levels] </li>
+<li>81 : Air density [molec/cm3] </li>
+<li>82 : Cloud fractions [unitless] </li>
+<li>83 : Column optical depths [unitless] </li>
+<li>84 : Cloud top heights [hPa] </li>
+<li>85 : Sulfate aerosol optical depth [unitless] </li>
+<li>86 : Black carbon aerosol optical depth [unitless] </li>
+<li>87 : Organic carbon aerosol optical depth [unitless] </li>
+<li>88 : Accumulation mode seasalt optical depth
+[unitless] </li>
+<li>89 : Coarse mode seasalt optical depth [unitless] </li>
+<li>90 : Total dust optical depth [unitless] </li>
+<li>91 : Total seasalt tracer concentration [unitless] </li>
+<li>92: RESERVED FOR FUTURE USE</li>
+<li>93: Grid box height [m] </li>
+<li>94 : Relative humidity [%] </li>
+<li>95 : Sea level pressure [hPa] </li>
+<li>96 : Zonal wind (a.k.a. U-wind) [m/s] </li>
+<li>97 : Meridional wind (a.k.a. V-wind) [m/s] </li>
+<li>98 : P(surface) - PTOP [hPa] </li>
+<li>99 : Temperature [K]</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">Specify
+IMIN and IMAX, the indices which determine the longitude extent of the
+3D region of the globe. Note that these are indices and not actual
+longitude values. To specify all 360 degrees of longitude, type the
+following:</p>
+<ul>
+<li>For <a href="appendix_2.html#A2.1">GCAP
+4° x 5° grid</a>: 1 72 </li>
+<li>For <a href="appendix_2.html#A2.2">GMAO
+4° x 5° grid</a>: 1 72 </li>
+<li>For <a href="appendix_2.html#A2.3">GMAO
+2° x 2.5</a>° grid: 1 144 </li>
+</ul>
+<p align="justify">Also,
+note you can wrap around the date line. In the example shown above,
+IMIN=70 and IMAX=30. This will create a 3D region (assuming 4x5 grid)
+which starts at 165° E longitude and extends across the date line to
+35° W longitude.</p>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">Specify
+JMIN and JMAX, the indices which determine the latitude extent of the
+3D region of the globe. Note that these are indices and not actual
+latitude values. To specify all 180 degrees of latitude, type the
+following:</p>
+<ul>
+<li>For <a href="appendix_2.html#A2.1">GCAP
+4° x 5° grid</a>: 1 45</li>
+<li>For <a href="appendix_2.html#A2.2">GMAO
+4° x 5° grid</a>: 1 46</li>
+<li>For <a href="appendix_2.html#A2.3">GMAO
+2° x 2.5</a>° grid: 1 91</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<p align="justify">Specify LMIN and LMAX, the
+indices which determine the vertical extent of the 3D region of the
+globe.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.18"></a>5.2.1.18
+The ND51 MENU</p>
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% ND51 MENU %%%       :
+02: Turn on ND51 diagnostic : T
+03: LT avg timeseries file  : ts_satellite.YYYYMMDD.bpch
+04: Tracers to include      : 94
+05: GMT Hour for disk write : 0
+06: Avg Period [LT hours]   : 10 12
+07: IMIN, IMAX of region    : 1 72
+08: JMIN, JMAX of region    : 23 46
+09: LMIN, LMAX of region    : 1 1</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td height="61">2</td>
+<td height="61">
+<p align="justify">Set this to T to turn on the ND51
+"satellite" 3D timeseries diagnostic. ND51 allows you to archive 3D
+data blocks for various quantities which have been time-averaged
+between 2 local times. This is useful for comparing model data to
+sun-synchronous satellites such as GOME or MOPITT which have morning
+overpass times. </p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify the name of the file
+which will contain output from the ND51 station timeseries diagnostic.
+This file will be in binary punch format and can be read by GAMAP. You
+may use date &amp; time tokens YYYY, MM, DD, hh, mm, ss as part fo
+the filename and GEOS&#8211;Chem will replace these with the appropriate
+values. </p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify the ND51 diagnostic
+quantities to save to disk. List individual tracer numbers separated by
+spaces. </p>
+<ul class="disc">
+<li> 1&#8211;N_TRACERS : GEOS-Chem transported tracers [v/v]</li>
+<li>74 : Pure O3 (not Ox) concentration [v/v]</li>
+<li>75 : NO concentration [v/v]</li>
+<li>76 : NOy concentration [v/v]</li>
+<li> 77 : OH concentration [molec/cm3]</li>
+<li>78 : NO2 concentration [v/v] </li>
+<li>79 : PBL heights [m] </li>
+<li>80 : PBL heights [levels] </li>
+<li>81 : Air density [molec/cm3] </li>
+<li>82 : Cloud fractions [unitless] </li>
+<li>83 : Column optical depths [unitless] </li>
+<li>84 : Cloud top heights [hPa] </li>
+<li>85 : Sulfate aerosol optical depth [unitless] </li>
+<li>86 : Black carbon aerosol optical depth [unitless] </li>
+<li>87 : Organic carbon aerosol optical depth [unitless] </li>
+<li>88 : Accumulation mode seasalt optical depth
+[unitless] </li>
+<li>89 : Coarse mode seasalt optical depth [unitless] </li>
+<li>90 : Total dust optical depth [unitless] </li>
+<li>91 : Total seasalt tracer concentration [unitless] </li>
+<li>92 : RESERVED FOR FUTURE USE</li>
+<li>93: Grid box height [m] </li>
+<li>94 : Relative humidity [%] </li>
+<li>95 : Sea level pressure [hPa] </li>
+<li>96 : Zonal wind (a.k.a. U-wind) [m/s] </li>
+<li>97 : Meridional wind (a.k.a. V-wind) [m/s] </li>
+<li>98 : P(surface) - PTOP [hPa] </li>
+<li>99 : Temperature [K]</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">Specify the time of day (in GMT
+hours) at which the ND51 timeseries file will be written to disk.
+Recommended value: 0 GMT each day. </p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">Specify the ND51 time averaging
+window (in local time hours). Only data from grid boxes where the local
+time falls within this window will be included in the diagnostic
+averaging process. Recommended values: 10:00 to 12:00 LT. This will
+cover both GOME and MOPITT overpasses.</p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">Specify
+IMIN and IMAX, the indices which determine the longitude extent of the
+3D region of the globe. Note that these are indices and not actual
+longitude values. To specify all 360 degrees of longitude, type the
+following:</p>
+<ul>
+<li>For <a href="appendix_2.html#A2.1">GCAP
+4° x 5° grid</a>: 1 72 </li>
+<li>For <a href="appendix_2.html#A2.2">GMAO
+4° x 5° grid</a>: 1 72 </li>
+<li>For <a href="appendix_2.html#A2.3">GMAO
+2° x 2.5</a>° grid: 1 144 </li>
+</ul>
+<p align="justify">Also,
+note you can wrap around the date line. In the example shown above,
+IMIN=70 and IMAX=30. This will create a 3D region (assuming 4x5 grid)
+which starts at 165° E longitude and extends across the date line to
+35° W longitude.</p>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">Specify
+JMIN and JMAX, the indices which determine the latitude extent of the
+3D region of the globe. Note that these are indices and not actual
+latitude values. To specify all 180 degrees of latitude, type the
+following:</p>
+<ul>
+<li>For <a href="appendix_2.html#A2.1">GCAP
+4° x 5° grid</a>: 1 45</li>
+<li>For <a href="appendix_2.html#A2.2">GMAO
+4° x 5° grid</a>: 1 46</li>
+<li>For <a href="appendix_2.html#A2.3">GMAO
+2° x 2.5</a>° grid: 1 91</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<p align="justify">Specify LMIN and LMAX, the
+indices which determine the vertical extent of the 3D region of the
+globe.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.19"></a>5.2.1.19
+The PROD &amp; LOSS MENU</p>
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% PROD &amp; LOSS MENU %%%:
+02: Turn on P/L (ND65) diag?: T
+03: # of levels for ND65    : 20
+04: Save O3 P/L (ND20)?     : F
+05: Number of P/L families  : 4 
+06: 1st chemical family     : POX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3
+07: 2nd chemical family     : LOX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3
+08: 3rd chemical family     : PCO: CO
+09: 4th chemical family     : LCO: CO</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Set this switch to T if you wish
+to save out chemical production for family tracers (a.k.a. the ND65
+diagnostic), or F otherwise.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Specify the number of levels to save for the chemical
+family production &amp; loss diagnostic.
+<ul>
+<li>If you type 1, it will just save the surface level. </li>
+<li>If you type 20, then it will save all levels from
+level 1 (surface) to level 20, etc.</li>
+</ul>
+<p align="justify">If you are performing a
+full-chemistry simulation, then you may only archive production and
+loss data within the troposphere. This is because SMVGEAR does not do
+chemistry in the stratosphere. For other types of simulations (e.g.
+tagged Ox, tagged CO), you may archive production and loss data from
+all levels.</p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Set this switch to T if you wish
+to archive P(Ox) and L(Ox) rates from a full chemistry simulation into
+binary punch format, so that these rates can be used to drive a future
+tagged Ox simulation (a.k.a. ND20 diagnostic). </p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<div align="justify">Specify the number of
+production and loss families to archive. You must list each family
+below.</div>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<div align="justify">Entry for the POx chemical
+production family (assuming we are performing a full-chemistry
+simulation). The family name comes first and must be followed by a
+colon. Then you must list the individual species which constitute the
+POx family. A number in front of a species name is the coefficient by
+which that species will be multiplied. (You do not have to list the
+coefficient if it is 1.) Since the family name POx begins with a P, it
+is interpreted to be a chemical production family. </div>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">Entry for the LOx chemical
+production family (assuming we are performing a full-chemistry
+simulation). You may proceed as described above. Since the family name
+LOx begins with an L, it is interpreted to be a chemical loss family. </p>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<p align="justify">Entry for the PCO chemical
+production family.</p>
+</td>
+</tr>
+<tr>
+<td>9</td>
+<td>
+<div align="justify">Entry for the LCO chemical
+production family.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.20"></a>5.2.1.20
+The ARCHIVED OH MENU</p>
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% ARCHIVED OH MENU %%%:
+02: Dir w/ archived OH files: /data/ctm/GEOS_MEAN/OHmerge/v5-07-08/</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>Header line </td>
+</tr>
+<tr>
+<td>2</td>
+<td>Specify
+OH_DIR (located in source code file directory_mod.f). OH_DIR is
+directory path where the offline monthly-mean OH files are stored.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.21"></a>5.2.1.21
+The O3 P/L MENU</p>
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01:%%% O3 P/L MENU %%%      :
+02: Dir w/ O3 P/L rate files: /data/ctm/GEOS_MEAN/O3_PROD_LOSS/2003.v6-01-05/</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td height="61">2</td>
+<td height="61">
+<p align="justify">Specify O3_PL_DIR (located in
+source code file directory_mod.f). O3_PL_DIR is directory path where
+the P(Ox) and L(Ox) rates are stored, or where they will be created.
+These rates, which have been archived from a full-chemistry simulation,
+are required to drive a tagged Ox simulation. </p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.22"></a>5.2.1.22
+The NESTED GRID MENU</p>
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% NESTED GRID MENU %%%: 
+02: Save TPCORE 4x5 BC's    : F
+03: TPCORE 4x5 BC directory : BC_4x5/
+04: 4x5 BC timestep [min]   : 180
+05: LL box of 4x5 BC region : 51 21
+06: UR box of 4x5 BC region : 67 37
+07: 1x1 offsets I0_W, J0_W  : 3 3</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify LWINDO (located in source
+code file <tt>logical_mod.f</tt>). Set LWINDO to T if you
+wish to save out boundary conditions from a 4x5 simulation, or F
+otherwise. In order to perform a 1° x 1° nested grid simulation, you
+must first save out boundary conditions at 4° x 5° resolution.</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify TPBC_DIR (located in
+source code file directory_mod.f). TPBC_DIR is the directory path where
+the 4° x 5° boundary conditions are stored. </p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify the frequency in minutes
+at which the 4° x 5° boundary conditions will be saved to disk.
+Recommended value: 180 min (3 hours).</p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">Specify I1_BC and J1_BC (located
+in source code file tpcore_bc_mod.f). I1_BC and J1_BC are the longitude
+and latitude indices of the grid box at the LOWER LEFT CORNER of the
+region in which 4° x 5° boundary conditions are being saved. In the
+example listed above, I1_BC=51 and J1_BC=21 denotes the grid box (70°E,
+10°S).</p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">Specify I2_BC and J2_BC (located
+in source code file tpcore_bc_mod.f). I2_BC and J2_BC are the longitude
+and latitude indices of the grid box at the UPPER RIGHT CORNER of the
+4° x 5° window region in which boundary conditions are being saved. In
+the example listed above, I2_BC=67 and J2_BC=37 denotes the grid box
+(150°E, 54°N).</p>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">Specify I0_W and J0_W (located in
+source code file tpcore_bc_mod.f). I0_W and J0_W are the 1° x 1° nested
+grid longitude and latitude offsets (in # of boxes) of the which are
+used to define an inner window reion in which transport is actually
+done. The region in which transport is done in the 1° x 1° window is
+smaller than the actual size of them 1° x 1° nested grid met fields in
+order to account for the boundary conditions. Please see the comments
+to the source code file tpcore_bc_mod.f for more information.
+Recommended values: I0_W=3 and J0_W=3<font face="Arial, Helvetica, sans-serif">.</font></p>
+<font face="Arial, Helvetica, sans-serif"> </font></td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.1.23"></a>5.2.1.23
+The UNIX CMDS MENU</p>
+<p align="justify">Line numbers are not part of the <tt>input.geos</tt>
+file, but have been included for reference.</p>
+<pre>01: %%% UNIX CMDS MENU %%%  : 
+02: Background symbol       : &amp; 
+03: Redirect symbol         : &gt;
+04: Unix remove command     : rm -f
+05: Unix pathname separator : /
+06: Unix wildcard character : *
+07: Unix unzip command      : gzip -dc
+08: Zip file suffix         : .gz</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<p align="justify">Header line </p>
+</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<p align="justify">Specify BACKGROUND (located in
+source code file unix_cmds_mod.f). Set BACKGROUND to the symbol which
+is used to place Unix jobs in the background. Recommended value:
+"&amp;".</p>
+</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<p align="justify">Specify
+REDIRECT (located in source code file unix_cmds_mod.f). Set REDIRECT to
+the symbol which is used to redirect output from one file to another.
+Recommended value: "&nbsp; &gt;". (NOTE: leave a space before
+the
+greater than sign.)</p>
+</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<p align="justify">Specify REMOVE_CMD (located in
+source code file unix_cmds_mod.f). Set REMOVE_CMD to the string which
+defines the Unix remove file command. Recommended value: "rm -f".</p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">Specify SEPARATOR (located in
+source code file unix_cmds_mod.f). Set SEPARATOR to the symbol which is
+used as the directory path separator. Recommended value: "/".</p>
+</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<p align="justify">Specify STAR (located in source
+code file unix_cmds_mod.f). Set STAR to the symbol which is used as the
+Unix wild card character. Recommended value: "*".</p>
+</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<p align="justify">Specify UNZIP_CMD (located in
+source code file unix_cmds_mod.f). Set UNZIP_CMD to the string which
+defines the file unzipping command. Recommended value: "gzip -dc".</p>
+</td>
+</tr>
+<tr>
+<td>8</td>
+<td>
+<p align="justify">Specify ZIP_SUFFIX (located in
+source code file unix_cmds_mod.f). Set ZIP_SUFFIX to the file extension
+string which is used to denote compressed files. Recommended value:
+".gz".</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.2.2"></a>5.2.2
+The Planeflight.dat.YYYYMMDD file</p>
+<p align="justify"><span class="size14bi">We
+have IDL codes that can
+create a Planeflight.dat file from the DC8 and P3B navigation files
+from ARCTAS, ICARTT, and other aircraft missions. <a href="../../flight/index.html" target="_blank">Click
+here for more information</a>. </span></p>
+<p align="justify">Sometimes it is necessary to compare
+GEOS&#8211;Chem
+output against aircraft observations. The plane flight following
+diagnostic (a.k.a. ND40 diagnostic) allows you to save out GEOS&#8211;Chem
+diagnostic quantities for grid boxes corresponding to aircraft flight
+tracks. This prevents you from having to save out huge 3-D punch files
+with lots of species.</p>
+<p align="justify">The <tt>Planeflight.dat.YYYYMMDD</tt>
+files allow
+you to specify the diagnostic quantities (tracers, reaction rates, met
+fields, or chemical species) that you want to print out for a specific
+longitude, latitude, altitude, and time. A sample <tt>Planeflight.dat.YYYYMMDD</tt>
+file is given below. Of course if you have lots of flight track data
+points, your file will be much longer. </p>
+<p align="justify">In GEOS&#8211;Chem v7&#8211;03&#8211;06 and higher
+versions, the plane
+flight following diagnostic has been modified to be consistent with the
+method of saving out plane flight data used in the ICARTT mission. If
+the plane flight following diagnostic is switched on, then it will look
+for a new <tt>Planeflight.dat.YYYYMMDD</tt> file each day.
+If a <tt>Planeflight.dat.YYYYMMDD</tt>
+file is found for a given day, then GEOS&#8211;Chem will save out diagnostic
+quantities along the flight track(s) specified within the file.</p>
+<pre>01: Planeflight.dat
+02: Bob Yantosca
+03: 26 Apr 2004
+04: -------------------------------------------------------------------------------
+05: 9 &lt; -- # of variables to be output (list them below, one per line)
+06: -------------------------------------------------------------------------------
+07: TRA_004
+08: O3
+09: REA_O1D
+10: REA_001
+11: REA_299
+12: GMAO_TEMP
+13: GMAO_ABSH
+14: GMAO_SURF
+15: AODB_SULF
+16: AODC_BLKC
+17: -------------------------------------------------------------------------------
+18: Now give the times and locations of the flight
+19: -------------------------------------------------------------------------------
+20: Point Type  DD-MM-YYYY HH:MM   LAT    LON    PRESS
+21:     1 P3B04 01-01-2003 00:00   42.00  290.00 500.00
+22:     2 DC801 01-01-2003 00:00   42.00  290.00 500.00
+23:     3 P3B04 01-01-2003 01:00   41.00  290.00 500.00
+24:     4 DC801 01-01-2003 01:00   42.00  289.00 500.00
+25:     5 P3B04 01-01-2003 02:00   40.00  290.00 500.00
+26: 99999 END   0- 0- 0    0 :0    0.00   0.00   0.00
+</pre>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr bgcolor="#cccccc">
+<th width="7%">Line</th>
+<th>Description</th>
+</tr>
+<tr>
+<td>1&#8211;4</td>
+<td>
+<p align="justify">Header lines with comments</p>
+</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<p align="justify">Number of diagnostic quantities
+to print out. </p>
+</td>
+</tr>
+<tr>
+<td height="30">6</td>
+<td height="30">
+<p align="justify">Separator line </p>
+</td>
+</tr>
+<tr>
+<td>7&#8211;16</td>
+<td>
+<p align="justify">Here we list the diagnostic
+quantities that we want to print out at each flight track location.
+(For clarity, only a few flight track locations are listed, but in
+reality, you can list thousands of locations.) </p>
+<p align="justify">There are four different kinds of
+diagnostic quantities:</p>
+<ul>
+<li>Tracers (e.g. <font size="2"> TRA_001, <font size="2"> &nbsp;TRA_002, ...)</font></font></li>
+<font size="2"><font size="2"> <li>SMVGEAR
+reaction rates (e.g. REA_001, <font size="2">
+&nbsp;REA_295)</font></li>
+<font size="2"> <li>SMVGEAR species
+concentrations (e.g. O3)</li>
+<li>Met field quantities (e.g. GMAO_TEMP, GMAO_ABSH,
+GMAO_SURF)</li>
+<li>Aerosol optical depths (e.g. AODB_SULF, AODC_BLKC)</li>
+</font></font></font>
+</ul>
+<font size="2"><font size="2"><font size="2"> </font></font></font>
+<p><font size="2"><font size="2"><font size="2">NOTES:</font></font></font></p>
+<font size="2"><font size="2"><font size="2"> </font></font></font>
+<ul>
+<font size="2"><font size="2"><font size="2"> <li>Tracer numbers correspond to the same
+order listed in inptr.ctm. In the file above, TRA_004 refers to CO.
+
+</li>
+<li>Reaction rate numbers correspond to the order listed
+in globchem.dat and smv2.log. In the file above, REA_001 refers to O3 +
+NO -&gt; NO2+ O2 and REA_299 refers to the photolysis reaction NO2
+-&gt; NO + O3.
+
+</li>
+<li>SMVGEAR species names must correspond to the species
+names listed in globchem.dat.
+
+</li>
+<li>Allowable GMAO met fields variable names are:
+<ul>
+<li>GMAO_TEMP (temperature), </li>
+<li>GMAO_ABSH (absolute humidity) </li>
+<li>GMAO_SURF (aerosol surface area)</li>
+<li>GMAO_PSFC (surface pressure)</li>
+<li>GMAO_UWND (zonal winds)</li>
+<li>GMAO_VWND (meridional winds)<br>
+</li>
+</ul>
+</li>
+<li>Allowable aerosol optical depth variable names are:
+<ul>
+<li>AODB_SULF (sulfate optical depth&#8212;column from
+surface up to location of aircraft)</li>
+<li>AODB_BLKC (black carbon optical depth&#8212;column from
+surface up to location of aircraft)</li>
+<li>AODB_ORGC (organic carbon optical depth&#8212;column
+from surface up to location of aircraft)</li>
+<li>AODB_SALA (accumulation mode sea salt optical
+depth&#8212;column from surface up to location of aircraft)</li>
+<li>AODB_SALC (coarse mode sea salt optical
+depth&#8212;column from surface up to location of aircraft)<br>
+</li>
+<li>AODC_SULF (sulfate optical depth&#8212;tropospheric
+column)</li>
+<li>AODC_BLKC (black carbon optical
+depth&#8212;tropospheric column)</li>
+<li>AODC_ORGC (organic carbon optical
+depth&#8212;tropospheric column)</li>
+<li>AODC_SALA (accumulation mode sea salt optical
+depth&#8212;tropospheric column)</li>
+<li>AODC_SALC (coarse mode sea salt optical
+depth&#8212;tropospheric column)</li>
+</ul>
+</li>
+</font></font></font>
+</ul>
+<font size="2"><font size="2"><font size="2"> </font></font></font>
+<p align="justify"><font size="2"><font size="2"><font size="2">As shown above, you may
+specify multiple flight tracks in a Planeflight.dat file. The only
+restriction is that flight track locations must be listed in increasing
+order of GMT. </font></font></font></p>
+</td>
+</tr>
+<tr>
+<td>17&#8211;19</td>
+<td>
+<p align="justify">Separator Lines </p>
+</td>
+</tr>
+<tr>
+<td>20</td>
+<td>
+<p align="justify">Comment line which shows you
+where to line up each column field of the flight track points.</p>
+</td>
+</tr>
+<tr>
+<td>21&#8211;25</td>
+<td>
+<p align="justify">Here we list quantities which
+define each flight track point. Make sure that each field lines up with
+the guides in the line above.</p>
+<ul>
+<li>Point : Flight track data point number (used
+internally for reference)</li>
+<li>Type&nbsp;&nbsp;: A short string that denotes
+the aircraft type and flight number. </li>
+<li>Date&nbsp;&nbsp;: List the day, month, and
+year (GMT date) for each flight track point.</li>
+<li>HH:MM&nbsp;: List the hour and minute (GMT time)
+for each flight track point.</li>
+<li>Lat&nbsp;&nbsp;&nbsp;: List the latitude
+(-90 to 90 degrees) for each flight track point.</li>
+<li>Lon&nbsp;&nbsp;&nbsp;: List the longitude
+(0 to 360 degrees) for each flight track point.</li>
+<li>Press&nbsp;: List the pressure in hPa for each
+flight track point.</li>
+</ul>
+<p align="justify">GEOS&#8211;Chem will loop through each
+of the flight track points listed in Planeflight.dat and print out each
+of the diagnostic quantities. GEOS&#8211;Chem will pick the nearest model box
+to each flight track point for comparison. In the future we may
+introduce a more intelligent interpolation scheme.</p>
+<p align="justify">Note that it is OK to list flight
+track points from more than one aircraft in the same
+Planeflight.dat.YYYYMMDD file (as is shown above). However, all flight
+track points must be listed in increasing order of GMT time or else
+they will not be interpreted correctly by GEOS&#8211;Chem.</p>
+</td>
+</tr>
+<tr>
+<td>26</td>
+<td>
+<p align="justify">Ending line</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="5.3"></a>5.3.
+GEOS&#8211;Chem chemistry mechanism files</p>
+<p align="justify">In this section are included GEOS&#8211;Chem
+input files
+which only need to be modified every once and a while. These include
+files which describe the chemistry and photolysis mechanisms. You
+should only have to modify these files if you wish to change the
+chemical mechanism or photolysis mechanism.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.3.1"></a>5.3.1
+The mglob.dat file</p>
+<p align="justify">This file contains convergence criteria
+and other
+parameters for SMVGEAR II (and hence is only needed for the
+full-chemistry simulation). Here is a typical example:</p>
+<p align="justify">Click <a href="files/mglob.dat" target="_blank">HERE</a> to view the current <tt>mglob.dat</tt>
+file. This file will open in a new browser window.</p>
+<p align="justify">The three most important parameters in
+this file are:</p>
+<blockquote>
+<pre>ERRMAXU : Relative error convergence criterion for SMVGEAR II urban domain<br>YLOWU : Absolute error convergence criterion for SMVGEAR II urban domain</pre>
+</blockquote>
+<p align="justify"> Recommended values: ERRMAXU = 1.0E-01; YLOWU = 1.0E+06</p>
+<p align="justify"> You should not normally have to modify
+this file, unless the chemistry does not converge at a particular
+location. </p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.3.2"></a>5.3.2
+The globchem.dat file</p>
+<p align="justify">This file defines the <a href="http://homepages.see.leeds.ac.uk/%7Elecmje/GEOS-CHEM/GEOS-CHEM_Chemistry.htm" target="_blank">chemistry mechanism that SMVGEAR II will use</a>.
+If you feel that something should be changed in this file, please
+consult with Daniel Jacob.</p>
+<p align="justify">Click <a href="files/globchem.dat" target="_blank">HERE</a> to view the current <tt>globchem.dat</tt>
+file. This file will open in a new browser window.</p>
+<p align="justify">NOTE: In SMVGEAR I, the chemistry
+mechanism was
+stored in a file called chem.dat. In SMVGEAR II, the name of the
+chemistry mechnanism file has been changed to globchem.dat. The file
+format has also changed accordingly.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.3.3"></a>5.3.3
+The chemga.dat file</p>
+<p align="justify">This file defines some aerosol
+properties for the
+full-chemistry run with the SMVGEAR solver. This file is read in by
+SMVGEAR routine chemset.f. You should not modify these without first
+consulting with Daniel Jacob.</p>
+<p align="justify">Click <a href="files/chemga.dat" target="_blank">HERE</a> to view the current <tt>chemga.dat</tt>
+file. This file will open in a new browser window.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="5.4"></a>5.4.
+GEOS&#8211;Chem photolysis mechanism files</p>
+<p align="justify">In this section are included GEOS&#8211;Chem
+input files
+which only need to be modified every once and a while. These include
+files which describe the chemistry and photolysis mechanisms. You
+should only have to modify these files if you wish to change the
+chemical mechanism or photolysis mechanism.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.4.1"></a>
+5.4.1 The ratj.d file</p>
+<p align="justify">NOTE: GEOS-Chem v8-02-01 uses the older FAST-J
+photolysis code. However, we have updated FAST-J so that it uses the
+same photolysisspecies as the newer FAST-JX code.</p>
+<p align="justify">This file lists the species names and branching
+ratios for FAST-JX photolysis species. Unless you are changing the
+chemistry mechanism, you should not have to change this file.</p>
+<p align="justify"> Click <a href="files/ratj.d" target="_blank">HERE</a> to view the current ratj.d
+file. This file will open in a new browser window.</p>
+<p align="justify">The photolysis reactions listed in
+ratj.d should
+correspond to those listed in globchem.dat. If they do not, then FAST-JX
+will stop execution with an indexing error message.</p>
+<p align="justify">The pound sign (#) is treated as a
+comment
+character. If you want to place comments at the top of the file, make
+sure the first column begins with a #. Also, everything below the 9999
+(in line 72) will not be read in. You can use this space for comments
+as well.</p>
+<p align="justify"> If you are trying to run a CH<sub>3</sub>I
+simulation, then you should use <a href="files/ratj.d.ch3i" target="_blank">this version</a> of ratj.d, which
+includes information for methyl iodide. This file will open in a new
+browser window.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.4.2"></a>
+5.4.2 The jv_atms.dat file</p>
+<p align="justify">This file contains climatology for O3
+and
+temperature, as used with the FAST-J photolysis code. You should not
+modify this file unless you wish to change some parameters for the
+photolysis.</p>
+<p align="justify">Click <a href="files/jv_atms.dat" target="_blank">HERE</a> to view the current
+jv_atms.dat file. This file will open in a new browser window.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.4.3"></a>5.4.3
+The jv_spec.dat file</p>
+<p align="justify">NOTE: GEOS-Chem v8-02-01 uses the older FAST-J
+photolysis code. However, we have updated this so that it uses the same
+cross sectionsfrom the newer FAST-JX code.</p><p align="justify">This file contains cross-sections and
+quantum
+yields for FAST-JX photolysis species. The current file is listed below.
+You should not have to modify this file unless you wish to change some
+parameters for the photolysis.</p>
+<p align="justify">Click <a href="files/jv_spec.dat" target="_blank">HERE</a> to view the current
+<span class="courier16">jv_spec.dat</span> file. This file will open in a new browser window.</p>
+<p align="justify">For more information on the format of jv_spec.dat see <a href="../../../wiki_docs/chemistry/jv_spec_format.pdf" target="_blank">HERE</a>. This file will open in a new browser window.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size20bi"><a name="5.5"></a>5.5
+Output Files</p>
+<p align="justify"> Here follows a list of the files that
+GEOS&#8211;Chem
+will create in the user's run directory. Some files include a YYYYMMDD
+date string as part of the file name.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.5.1"></a>5.5.1
+Files created by GEOS&#8211;Chem</p>
+<table border="1" bordercolor="#000000" cellpadding="5" cellspacing="0" width="100%">
+<tbody>
+<tr>
+<th width="40%">File </th>
+<th>Description </th>
+</tr>
+<tr>
+<td class="courier16">stations.YYYYMMDD</td>
+<td>
+<p align="justify">Output file (<a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2">binary punch
+format</a>) from the ND48 station timeseries diagnostic.</p>
+<p align="justify">A new file (timestamped with
+YYYYMMDD) will be created for each new day.</p>
+<p class="size14bi" align="justify">NOTE: You
+can use the GAMAP routine GC_COMBINE_ND48 to work with this file. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GAMAP_tips_and_tricks#Combining_output_from_timeseries_files" target="_blank">Click here for more information</a>.</p>
+</td>
+</tr>
+<tr>
+<td class="courier16">tsYYYYMMDD.bpch</td>
+<td>
+<p align="justify">Output file (<a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2">binary punch
+format</a>) from the ND49 instantaneous timeseries diagnostic.</p>
+<p align="justify">A new file (timestamped with
+YYYYMMDD) will be created for each new day.</p>
+<p class="size14bi" align="justify">NOTE: You
+can use the GAMAP routine GC_COMBINE_ND49 to work with this file. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GAMAP_tips_and_tricks#Combining_output_from_timeseries_files" target="_blank">Click here for more information</a>.</p>
+</td>
+</tr>
+<tr>
+<td class="courier16">ts_24hr_avg.YYYYMMDD.bpch</td>
+<td>
+<p align="justify">Output file (<a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2">binary punch
+format</a>) from the ND50 24-hr average timeseries diagnostic.</p>
+<p align="justify">A new file (timestamped with
+YYYYMMDD) will be created for each new day.</p>
+<p class="size14bi" align="justify">NOTE: You
+can use the GAMAP routine GC_COMBINE_ND49 to work with this file. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GAMAP_tips_and_tricks#Combining_output_from_timeseries_files" target="_blank">Click here for more information</a>.</p>
+</td>
+</tr>
+<tr>
+<td class="courier16">ts_satellite.YYYYMMDD.bpch</td>
+<td>
+<p align="justify">Output file (<a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2">binary punch
+format</a>) from the ND51 local-time-averaged timeseries, also
+known as satellite timeseries).</p>
+<p align="justify">A new file (timestamped with
+YYYYMMDD) will be created for each new day.</p>
+<p class="size14bi" align="justify">NOTE: You
+can use the GAMAP routine GC_COMBINE_ND49 to work with this file. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GAMAP_tips_and_tricks#Combining_output_from_timeseries_files" target="_blank">Click here for more information</a>.</p>
+</td>
+</tr>
+<tr>
+<td class="courier16">restart.YYYYMMDD</td>
+<td>
+<p align="justify">Restart file (<a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2">binary punch
+format</a>) for gas-phase and aerosol tracers for year/month/date
+YYYYMMDD. </p>
+<p align="justify">This file saves instantaneous
+concentrations of all tracers on all levels for continuation of the run
+at a later stage.</p>
+<p class="size14bi" align="justify">NOTE: You
+may use the GAMAP routines <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/by_alphabet/gamap_r.html#REGRIDV_RESTART" target="_blank">REGRIDV_RESTART</a> and <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/by_alphabet/gamap_r.html#REGRIDH_RESTART" target="_blank">REGRIDH_RESTART</a> to vertically and
+horizontally regrid restart files from one grid to another.</p>
+</td>
+</tr>
+<tr><td><pre>restart.cspec.YYYYMMDDhh</pre></td><td><p align="justify">Restart file (<a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2">binary punch
+format</a>) for all chemical species for year/month/day/hour
+YYYYMMDDhh. </p>
+<p align="justify">This file saves instantaneous
+concentrations of all tracers on all levels for continuation of the run
+at a later stage.</p>
+</td></tr><tr>
+<td class="courier16">restart_gprod_aprod.YYYYMMDDhh
+</td>
+<td>
+<p align="justify">Restart file (<a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2">binary punch
+format</a>) for APROD and GPROD quantities for year/month/date
+YYYYMMDD.</p>
+<p align="justify">This file saves the various
+quantities stored in the APROD and GPROD arrays in GEOS&#8211;Chem source
+code file <tt>carbon_mod.f</tt> for continuation of the
+run at a later stage.</p>
+<p align="justify">This is necessary if you are
+performing a simulation with <a href="chapter_6.html#6.1.1">secondary
+organic aerosol tracers</a>.</p>
+<p class="size14bi" align="justify">NOTE: You
+can use the GAMAP routines REWRITE_AGPROD, <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/by_alphabet/gamap_r.html#REGRIDV_RESTART" target="_blank">REGRIDV_RESTART</a>, and <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/by_alphabet/gamap_r.html#REGRIDH_RESTART" target="_blank">REGRIDH_RESTART</a> to regrid these
+files from one horizontal resolution to another. <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/GAMAP_tips_and_tricks#Renaming_and_Regridding_APROD.2FGPROD_restart_files" target="_blank">Click here for more information</a>.</p>
+</td>
+</tr>
+<tr>
+<td class="courier16">ocean_Hg.YYYYMMDDhh</td>
+<td>
+<p align="justify">Restart file (<a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2">binary punch
+format</a>) for the online mercury model for year/month/date
+YYYYMMDD.</p>
+<p align="justify">This file saves the
+concentrations of tagged mercury tracers in the ocean (from GEOS&#8211;Chem
+source code file <tt>ocean_mercury_mod.f</tt>) for
+continuation of the run at a later stage.</p>
+<p align="justify"><span class="size14bi">NOTE:
+You may use the GAMAP routines <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/by_alphabet/gamap_r.html#REGRIDV_RESTART" target="_blank">REGRIDV_RESTART</a> and <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/by_alphabet/gamap_r.html#REGRIDH_RESTART" target="_blank">REGRIDH_RESTART</a> to vertically and
+horizontally regrid restart files from one grid to another.</span></p>
+</td>
+</tr>
+<tr>
+<td class="courier16">ctm.bpch</td>
+<td>
+<p align="justify">File (<a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_6.html#6.2">binary punch
+format</a>) containing time-averaged diagnostic output from
+GEOS&#8211;Chem. Most of the <a href="appendix_5.html">GEOS&#8211;Chem
+diagnostics</a> will place their output in this file.</p>
+<p align="justify">A single file containing multiple
+data blocks will be created.</p>
+</td>
+</tr>
+<tr>
+<td class="courier16">diaginfo.dat</td>
+<td>
+<p align="justify">File (text format) that lists
+diagnostic categories contained in the <tt>ctm.bpch</tt>
+file. This file facilitates reading and plotting of the data with the
+GAMAP package.</p>
+<p align="justify">For more information, please see
+the GAMAP Online User's Guide, <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_7.html#7.2" target="_blank">Chapter
+7.2.</a></p>
+</td>
+</tr>
+<tr>
+<td class="courier16">tracerinfo.dat</td>
+<td>
+<p align="justify">File (text format) that lists the
+tracer numbers for each diagnostic category contained in the <tt>ctm.bpch</tt>
+file. This file facilitates reading and plotting of the data with the
+GAMAP package.</p>
+<p align="justify">For more information, please see
+the GAMAP Online User's Guide, <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/Chapter_7.html#7.3" target="_blank">Chapter
+7.3.</a></p>
+</td>
+</tr>
+<tr>
+<td class="courier16">smv2.log</td>
+<td>
+<p align="justify">File (text format) containing
+echo-back of input from SMVGEAR II. Check this file to see if SMVGEAR
+read the <tt><a href="#5.3.2">globchem.dat</a></tt><a href="#5.3.2"> file</a> properly. </p>
+<p align="justify">This
+file will also contain information about reactions and species used by
+the ND65 prod-loss diagnostic. (This file is only produced when SMVGEAR
+is used, i.e. for full <a href="chapter_6.html#6.1.1">NOx-Ox-hydrocarbon
+chemistry only</a>.)</p>
+</td>
+</tr>
+<tr>
+<td class="courier16">plane.log.YYYYMMDD</td>
+<td>
+<p align="justify">File (text format) containing
+output from the <a href="#5.2.1.13">ND40 planeflight
+diagnostic</a>, scheduled via the <tt>Planeflight.dat</tt>
+file (see above).</p>
+<p class="size14bi" align="justify">NOTE: You
+can use GAMAP routines <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/by_alphabet/gamap_c.html#CTM_READ_PLANEFLIGHT" target="_blank">CTM_READ_PLANEFLlGHT</a> and <a href="file:///C|/Documents and Settings/Bob Yantosca/My Documents/Web Sites/gamap/doc/by_alphabet/gamap_p.html#PLANE_PLOT" target="_blank">PLANE_PLOT</a> to read and plot output
+from this file.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size18bi"><a name="5.5.2"></a>5.5.2
+Sending GEOS&#8211;Chem output to a log file</p>
+<p align="justify">The standard practice is to <a href="chapter_6.html#6.2.1">redirect GEOS&#8211;Chem output to a
+file named <tt>log</tt>, <tt>geos.log</tt> or
+something similar</a>.
+This log file will contain the standard output from the model run, as
+well as any warnings or error messages. This log file can be checked
+periodically to indicate the run status. See <a href="chapter_6.html">Section 6: Running GEOS&#8211;Chem</a>.</p>
+<p align="justify">Bob Yantosca's <a href="../../testrun/index.html" target="_blank">TESTRUN</a>
+package makes it easy to run GEOS&#8211;Chem and to send both stdout and
+stderr output to the same log file.</p>
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"></p>
+<p class="size14bi" align="center"><a href="chapter_4.html">Previous</a> | <a href="chapter_6.html">Next</a> | <a href="chapter_5.html" target="_parent">Printable View
+(no frames)</a></p>
+</body></html>

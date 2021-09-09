@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>GEOS-Chem User's Guide</title>
+<link rel="stylesheet" type="text/css" href="../../../gc.css">
+</head>
+
+<body style="background-color: rgb(255, 255, 255);">
+<div style="width:1000px; margin:auto;">
+<script type="text/javascript" src="../../../geos_backlinks.js"></script><!-- JavaScript for breadcrumb links -->
+
+<h2 align="center">GEOS-Chem v11-01 Online User's Guide</h2>
+<h5 align="center"><a href="chapter_4.html">Previous</a> | <a href="chapter_6.html">Next</a> | <a href="chapter_5.html" target="_parent">Printable View (no frames)</a></h5>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h1>5. GEOS-Chem Source Code Directory</h1>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<p>The GEOS-Chem source code directory contains the Makefile and Fortran-90 source code files (i.e. <tt>*.F, *.F90</tt> files). Compiling the source code with a Fortran compiler  creates the GEOS-Chem executable <tt>geos</tt>.</p>
+<p>The GEOS-Chem source code directory is kept in the following Git repository on Bitbucket.org:</p>
+
+<blockquote><tt>https://bitbucket.org/gcst/geos-chem</tt></blockquote>
+
+<p>All official releases of the  GEOS-Chem code shall originate from this repository. You can download the  latest official GEOS-Chem release by means of the <tt>git clone</tt> command by typing the following at the command line:</p>
+
+<blockquote><tt>git clone https://bitbucket.org/gcst/geos-chem Code.v11-01<br><br>
+cd Code.v11-01<br><br>git checkout v11-01-Patches</tt></blockquote>
+
+<p>This will create an exact copy (or clone) of the official GEOS-Chem repository to your local disk space in a directory named <tt>Code.v11-01</tt>. Using <tt>Code.v11-01</tt> as your local repository name is optional and you may specify a different directory name if you wish. When you clone the source code you will always get the most recent state of the repository, meaning the latest GEOS-Chem version or bug fix patch.</p>
+<blockquote>
+  <p class="red">NOTE:  After the v11-01 public release date (01 Feb 2017), we discovered <a href="http://wiki.geos-chem.org/Cloud_convection#Computational_bottleneck_in_the_v11-01_convection_module" target="_blank">a computational bottleneck in the v11-01 convection module</a> that was caused by an unparallelized loop. We have pushed a fix for this issue to the <strong>v11-01-Patches</strong> branch of the GEOS-Chem repository on Bitbucket.org. To make sure that this fix is activated in your GEOS-Chem source code, check out the <strong>v11-01-Patches</strong> branch immediately after cloning the repository (as shown above).</p></blockquote>
+<p>You can download as many copies of the GEOS-Chem source code as you wish. For example, you might want to keep a clean v11-01 source code directory and then have one or more v11-01 source code directories that you use for development or debugging. Alternatively, you may use Git version control to keep all of your work in different branches of a single clone of the repository. For detailed information about Git and downloading the GEOS-Chem source code, please visit the following GEOS-Chem wiki pages:</p>
+<ul class="disc">
+  <li><a href="http://wiki.geos-chem.org/Using_Git_with_GEOS-Chem" target="_blank">Using Git with GEOS-Chem</a>  </li>
+  <li><a href="http://wiki.geos-chem.org/Version_control_with_Git" target="_blank">Version control with Git</a></li>
+</ul>
+<p>If you wish to obtain an earlier version of GEOS-Chem, such as v10-01, please see the <a href="http://wiki.seas.harvard.edu/geos-chem/index.php/Using_Git_with_GEOS-Chem#Reverting_to_an_older_state_of_the_code" target="_blank">Reverting to an older state of the code</a> wiki post.</p>
+
+<p><img src="../../../img/black_rule.jpg" height="2" width="100%"/></p>
+
+<h5 align="center"><a href="chapter_4.html">Previous</a> | <a href="chapter_6.html">Next</a> | <a href="chapter_5.html" target="_parent">Printable View (no frames)</a></h5>
+
+</div>
+</body>
+</html>

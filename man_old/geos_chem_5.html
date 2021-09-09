@@ -1,0 +1,2720 @@
+<HTML>
+<HEAD>
+<TITLE>GEOS&#150;CHEM User's Guide</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="FF0000" HLINK="#FFFF00">
+<CENTER>
+  <p><font face="Arial, Helvetica, sans-serif" size="2"><b>GEOS&#150;CHEM v6&#150;02&#150;05 
+    User's Guide<br>Contact: 
+    Bob Yantosca (<A HREF="mailto:bmy@io.harvard.edu">bmy@io.harvard.edu</A>)</b></font></p>
+  </CENTER>
+
+<P><HR>
+<P> <A NAME="5"></a><font face="Arial, Helvetica, sans-serif" size="+1"><b>5. 
+  GEOS&#150;CHEM run directories</b></font>
+<P>
+<hr>
+<P><A NAME="5.1"></a><b><font face="Arial, Helvetica, sans-serif" size="2">5.1 
+  User-modifiable input files stored in the run directory</font></b>
+<P align=justify><font face="Arial, Helvetica, sans-serif" size="2">Now that 
+  you have compiled the GEOS&#150;CHEM code and have installed your 2 x 2.5 and/or 
+  4 x 5 data directories, it is time to set up the GEOS&#150;CHEM <b>run directory</b>. 
+  This is the directory where the GEOS&#150;CHEM executable resides, along with 
+  several input files which you must edit to specify exactly what you want the 
+  model to do - how long to run, what values to report back, etc. </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Typically, 
+  you will probably want to have several run directories, each of which is customized 
+  to a particular model type (<A HREF="geos_chem_a3.html#A3.2">GEOS&#150;1</A>, 
+  <A HREF="geos_chem_a3.html#A3.3">GEOS&#150;STRAT</A>, <A HREF="geos_chem_a3.html#A3.4">GEOS&#150;3</A> 
+  or <a href="geos_chem_a3.html#A3.5">GEOS-4</a>), a particular resolution (<A HREF="geos_chem_a2.html#A2.2">2 
+  x 2.5</A> or <A HREF="geos_chem_a2.html#A2.1">4 x 5</A>), and <A HREF="geos_chem_a1.html">specific 
+  simulation</A>. </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Keep in 
+  mind that many of the input files were &quot;inherited&quot; when we merged 
+  the Harvard emissions, deposition, and chemistry routines into the GEOS&#150;CHEM 
+  model. These routines had been developed for use with the GISS&#150;II CTM, 
+  and therefore contained many features that were not relevant to the GEOS&#150;CHEM 
+  model. Starting with the release of GEOS&#150;CHEM v4&#150;33 and later versions, 
+  much of the GISS-specific code has been eliminated. Therefore, some of the switches 
+  found in input files such as inptr.ctm and input.ctm no longer serve any useful 
+  purpose. We have denoted these switches as <font face="Courier New, Courier, mono">***OBSOLETE***</font> 
+  in the following documentation. At a later date we hope to be able to consolidate 
+  many of the GEOS&#150;CHEM input files and to remove obsolete switches. </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Here is 
+  an alphabetical list of the input files that must be modified in your run directory. 
+  Detailed descriptions of each file then follow.<br>
+  <br>
+  </font>
+<TABLE ALIGN=CENTER HALIGN=CENTER VALIGN=MIDDLE CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <FONT FACE="Arial,Helvetica" SIZE=-1> 
+  <TR> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">chemga.dat</font></TD>
+    <TD align="left" valign="top"> <font face="Arial, Helvetica, sans-serif" size="2"> 
+      File containing some aerosol parameters for SMVGEAR II.</font> </TD>
+  </TR>
+  </font> 
+  <TR VALIGN=TOP> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">diag.dat</font></TD>
+    <TD align="left" valign="top"> <font face="Arial, Helvetica, sans-serif" size="2"> 
+      Defines which tracers are to be printed out for each GEOS&#150;CHEM diagnostic.</font> 
+    </TD>
+  </TR>
+  <tr valign=TOP> 
+    <td align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">globchem.dat</font></td>
+    <td align="left" valign="top"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2"> List of chemical 
+        species and reactions for SMVGEAR II, which defines the <a href="../../../documentation/geos_mech.html" target="_blank">GEOS&#150;CHEM 
+        chemical mechanism</a>.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="2"><b>NOTE:</b> This 
+        file normally should not be modified unless you are updating the chemistry 
+        mechanism.</font></p>
+    </td>
+  </tr>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">inptr.ctm</font> 
+    <TD align="left" valign="top"> <font face="Arial, Helvetica, sans-serif" size="2"> 
+      <a href="geos_chem_a1.html">Tracer names, molecular weights</a>, and a list 
+      of stations for the ND48 timeseries diagnostic.</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">input.ctm</font></TD>
+    <TD align="left" valign="top"> <font face="Arial, Helvetica, sans-serif" size="2"> 
+      This file together with <font face="Courier New, Courier, mono" size="2">input.geos</font> 
+      will require changes for every run you do. In this file you set switches 
+      to schedule diagnostic output. <a href="#5.2.2">See detailed description 
+      below.</a></font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">input.geos</font></TD>
+    <TD align="left" valign="top"> <font face="Arial, Helvetica, sans-serif" size="2"> 
+      GEOS model specific input. Contains start and end time of the model run, 
+      plus on/off switches for each operation.</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">jv_atms.dat</font></TD>
+    <TD align="left" valign="top"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2"> Contains O3 and 
+        temperature climatologies for FAST-J photolysis. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="2"><b>NOTE:</b> This 
+        file normally should not be modified unless you are updating the photolysis 
+        mechanism.</font></p>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">jv_spec.dat</font></TD>
+    <TD align="left" valign="top"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2"> Contains cross-section 
+        and quantum yields for FAST-J photolysis species.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="2"><b>NOTE:</b> This 
+        file normally should not be modified unless you are updating the photolysis 
+        mechanism.)</font></p>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">mglob.dat</font></TD>
+    <TD align="left" valign="top"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2"> Setup file for SMVGEAR, 
+        containing convergence criteria and other parameters. </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="2"><b>NOTE:</b> This 
+        file should not normally be modified.</font></p>
+      </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">prodloss.dat</font> 
+    <TD align="left" valign="top"> <font face="Arial, Helvetica, sans-serif" size="2"> 
+      Specifies chemical production &amp; loss families for the ND65 diagnostic.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">Planeflight.dat</font> 
+    <TD align="left" valign="top"><font face="Arial, Helvetica, sans-serif" size="2">Specifies 
+      flight tracks for which you want to save out specific tracers, chemical 
+      species, or met field quantities.</font></TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">ratj.d</font></TD>
+    <TD align="left" valign="top"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2"> Links &quot;Harvard 
+        species&quot; to &quot;FAST-J&quot; species. FAST-J photolysis species 
+        are defined in the data file <font face="Courier New, Courier, mono" size="2">jv_spec.dat</font>, 
+        Harvard species in <font face="Courier New, Courier, mono" size="2">chem.dat</font>.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="2"><b>NOTE:</b> This 
+        file normally should not be modified unless you are updating the photolysis 
+        mechanism.</font></p>
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">timeseries.dat</font></TD>
+    <TD align="left" valign="top"> <font face="Arial, Helvetica, sans-serif" size="2"> 
+      Defines regions and time windows for high-resolution time series diagnostics 
+      (ND49, ND50, ND51).</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD align="left" width="30%" valign="top"><font face="Courier New, Courier, mono" size="2">tracer.dat</font> 
+    <TD align="left" valign="top"> <font face="Arial, Helvetica, sans-serif" size="2"> 
+      Allows you to define &quot;family&quot; tracers for the SMVGEAR chemistry 
+      solver. Family tracers are tracers such as NOx and Ox which contain more 
+      than one chemical species.</font></TD>
+  </TR>
+</TABLE>
+
+<P><font face="Arial, Helvetica, sans-serif" size="2">These files will be discussed 
+  in more detail below. </font> 
+<P><HR>
+<P><font face="Arial, Helvetica, sans-serif" size="2"><b><a name="5.2"></a>5.2 
+  Input files that need to be modified for every GEOS&#150;CHEM simulation</b></font> 
+<P><font face="Arial, Helvetica, sans-serif" size="2">The files described in 
+  this section must be modified for every GEOS&#150;CHEM simulation. These files contain 
+  definitions of tracers, starting and ending times, diagnostics, and other relevant 
+  quantities. You should make it a habit of thoroughly checking these files before 
+  submitting a long GEOS&#150;CHEM run.<br>
+  <br>
+  </font>
+<hr>
+<P><A NAME="5.2.1"></a><b><font face="Arial, Helvetica, sans-serif" size="2">5.2.1 
+  The <font face="Courier New, Courier, mono" size="2">inptr.ctm</font> file</font></b> 
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Here is 
+  what a typical <font face="Courier New, Courier, mono" size="2">inptr.ctm</font> 
+  file looks like for a GEOS&#150;CHEM full chemistry simulation with 31 tracers. Line 
+  numbers are provided for reference.</font><br>
+</p>
+
+<PRE>01: ==II==CCCC==RRRR.R========== The new "inptr.ctm" (bmy, 11/20/02) ==============
+02:    1  NOx     46.0          
+03:    2  Ox      48.0          
+04:    3  PAN    121.0          
+05:    4  CO      28.0          
+06:    5  ALK4    12.0
+07:    6  ISOP    12.0
+08:    7  HNO3    63.0
+09:    8  H2O2    34.0
+10:    9  ACET    12.0
+11:   10  MEK     12.0
+12:   11  ALD2    12.0
+13:   12  RCHO    58.0
+14:   13  MVK     70.0
+15:   14  MACR    70.0
+16:   15  PMN    147.0
+17:   16  PPN    135.0
+18:   17  R4N2   119.0
+19:   18  PRPE    12.0
+20:   19  C3H8    12.0
+21:   20  CH2O    30.0
+22:   21  C2H6    12.0
+23:   22  N2O5   108.0
+24:   23  HNO4    79.0
+25:   24  MP      48.0
+26:   25  DMS     62.0    
+27:   26  SO2     64.0
+28:   27  SO4     96.0
+29:   28  MSA     96.0
+30:   29  NH3     17.0
+31:   30  NH4     18.0
+32:   31  NIT     62.0
+33:   32  BCPI    12.0<br>34:   33  OCPI    12.0<br>35:   34  BCPO    12.0<br>36:   35  OCPO    12.0<br>37:   36  DST1    29.0<br>38:   37  DST2    29.0<br>39:   38  DST3    29.0<br>40:   39  DST4    29.0<br>41:   40  SALA    36.0<br>42:   41  SALC    36.0
+43: ---ND48 TIMESERIES STATIONS FOLLOW BELOW THIS LINE-----------------------------
+44:    23   34   01   00   04    # Save surface CO at Harvard Forest 
+45:    00   00   00   00   00    # Ending line of timeseries stations
+46: ===============================================================================
+47: 
+48: NOTE: This file is just a stopgap measure until we can totally rewrite the way
+49: in which GEOS&#150;CHEM reads input files from disk.  I got sick of the across-the-
+50: page format of the old "inptr.ctm", which was hard to read and maintain. I 
+51: also eliminated a lot of the obsolete stuff that was historical baggage which
+52: had its origins in the old GISS-II model from time immemorial.  
+53: 
+54: At some point we will combine this file with "input.geos" and "input.ctm" to 
+55: make one input file for GEOS&#150;CHEM.  Not sure when this will happen, hopefully
+56: in 2003.
+57:
+58: In this file we define the tracer names and the molecular weights.  Also, the 
+59: ND48 station diagnostics are scheduled here.  
+60:
+61:	        -- Bob Yantosca
+62:	           20 Nov 2002
+</PRE>
+<P ALIGN=JUSTIFY>
+  
+<table width="95%" border="0" cellpadding="5" cellspacing="5">
+  <tr align="left" valign="top"> 
+    <td height="6" width="10%"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></td>
+    <td height="6" width="92%"><b><font face="Arial, Helvetica, sans-serif" size="2">Description</font></b></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">1</font></td>
+    <td width="92%"><font face="Arial, Helvetica, sans-serif" size="2">Header 
+      line </font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2&#150;42</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Tracer number, name, 
+        and molecular weight (g/mole).</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Tracer numbers 
+          can be 2 digits maximum and must line up within the columns denoted 
+          by <font face="Courier New, Courier, mono" size="2">II</font>.<br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Tracer names are 
+          4 characters maximum and must line up within the columns denoted by 
+          <font face="Courier New, Courier, mono" size="2">CCCC</font>.<br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Tracer molecular 
+          weights must line up within the columns denoted by RRRR.R so that the 
+          decimal point falls underneath the decimal point of RRRR.R. </font></li>
+      </ul>
+      <P align=justify><font face="Arial, Helvetica, sans-serif" size="2">NOTE: 
+        the example shown here is for a 41 tracer full-chemistry simulation. If 
+        you are running a different type of GEOS&#150;CHEM simulation, make sure 
+        your tracers are listed accordingly. The number of tracers should be the 
+        same as the NTRACE setting in the file <font face="Courier New, Courier, mono" size="2">input.ctm</font> 
+        (see below).</font>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">43</font></td>
+    <td width="92%"><font face="Arial, Helvetica, sans-serif" size="2">Separator 
+      line </font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">44</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">ND48 station timeseries 
+        specifications, format is <font face="Courier New, Courier, mono" size="2">`5(I5)'</font></font></p>
+      <ul>
+        <LI><font face="Arial, Helvetica, sans-serif" size="2">Column 1: Longitude 
+          index (<font face="Courier New, Courier, mono">I<font face="Arial, Helvetica, sans-serif">)</font></font>. 
+          </font> 
+          <ul>
+            <li><font face="Arial, Helvetica, sans-serif" size="2"><font face="Courier New, Courier, mono">I</font> 
+              can range from 1&#150;144 (2 x 2.5 grid) or from 1&#150;72 (4 x 
+              5 grid).<br>
+              <br>
+              </font> </li>
+          </ul>
+        <LI><font face="Arial, Helvetica, sans-serif" size="2">Column 2: Latitude 
+          index (<font face="Courier New, Courier, mono">J<font face="Arial, Helvetica, sans-serif">)</font></font>. 
+          </font> 
+          <ul>
+            <li><font face="Arial, Helvetica, sans-serif" size="2"><font face="Courier New, Courier, mono">J</font> 
+              can range from 1&#150;91 (2 x 2.5 grid) or from 1&#150;46 (4 x 5 
+              grid).<br>
+              <br>
+              </font> </li>
+          </ul>
+        <LI><font face="Arial, Helvetica, sans-serif" size="2">Column 3: Level 
+          index (<font face="Courier New, Courier, mono">L</font>). </font> 
+          <ul>
+            <li><font face="Arial, Helvetica, sans-serif" size="2">All levels 
+              from the surface to level <font face="Courier New, Courier, mono">L</font> 
+              will be printed. </font></li>
+            <li><font face="Arial, Helvetica, sans-serif" size="2">For example, 
+              if you set <font face="Courier New, Courier, mono">L=20</font>, 
+              then all levels from 1&#150;20 will be printed at this station (which 
+              corresponds to longitude index <font face="Courier New, Courier, mono">I</font> 
+              and latitude index <font face="Courier New, Courier, mono">J</font>).<br>
+              <br>
+              </font> </li>
+          </ul>
+        <LI><font face="Arial, Helvetica, sans-serif" size="2">Column 4: M: Flag 
+          which denotes either transported tracers or chemical quantities: </font> 
+          <ul>
+            <li><font face="Arial, Helvetica, sans-serif" size="2">To print out 
+              transported tracers, set M = 0. </font></li>
+            <li><font face="Arial, Helvetica, sans-serif" size="2">To print out 
+              other quantities such as OH, O3, etc., set M = 1.<br>
+              (For a complete list of diagnostic quantities, please see the </font><font face="Arial, Helvetica, sans-serif" size="2"> 
+              comments to <font face="Courier New, Courier, mono" size="2">diag48.f<font face="Arial, Helvetica, sans-serif" size="2">.</font></font>)<br>
+              <br>
+              </font> </li>
+          </ul>
+        <LI><font face="Arial, Helvetica, sans-serif" size="2">Column 5: N: Tracer 
+          number of quantity to print out. </font> 
+          <ul>
+            <li><font face="Arial, Helvetica, sans-serif" size="2">See the comments 
+              to <font face="Courier New, Courier, mono" size="2">diag48.f </font>for 
+              a complete list of diagnostic quantities and the tracer numbers 
+              by which they are specified.</font></li>
+          </ul>
+      </UL>
+      <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">You 
+        probably don't need to worry about these unless you want to save out hourly 
+        data at a specific location on the globe (e.g. to compare with observations 
+        from CMDL sites or other monitoring stations).</font></p>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">46</font></td>
+    <td width="92%">
+      <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">We 
+        signal that there are no more ND48 timeseries stations by a row of double 
+        zeroes in '5(i5)' format.</font></P>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">47&#150;62</font></td>
+    <td width="92%"><font face="Arial, Helvetica, sans-serif" size="2">Comments</font></td>
+  </tr>
+</table>
+<P align=justify> <font face="Arial, Helvetica, sans-serif" size="2">NOTE: Hopefully 
+  in 2004 we will fold the information contained within <font face="Courier New, Courier, mono" size="2">input.geos</font> 
+  into a consolidated input file. Stay tuned. </font><br>
+<br>
+<HR>
+<P> <A NAME="5.2.2"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>5.2.2 
+  The <font face="Courier New, Courier, mono" size="2">input.ctm</font> file</b></font> 
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Here is 
+  a typical <font face="Courier New, Courier, mono" size="2">input.ctm</font> 
+  file for a 4 x 5 full chemistry simulation. Once again, line numbers are 
+  provided for reference.</font></p>
+<PRE>01: GLOBAL-RUN--4x5 GEOS&#150;CTM -- standard runs (11/00)
+02: T F F F F : LCONT,LSAVE,LINIT,LWINDO,LYRRD
+03: F T T F F : LSTRAT,LTROP,LSRCE,LZONE,LPUFF
+04: F F F F T : LSOM,LPFILT,LCONV4,LPLU,L2PM
+05: T T T T T : LBIONOX,LAIRNOX,LLIGHTNOX,LSOILNOX,LFFNOX
+06: T T T F F : LFOSSIL,LWOODCO,LUPBD,LBLMX,LEMBED
+07:    0    0    0    0  : IEBD1,IEBD2,JEBD1,JEBD2
+08: ### OBSOLETE LINE OMITTED ###
+09:     6   24   30   30   60   60   60   99 READ/WRITE/DYN/CONV/SRCE/CHEM/DIAG/INST
+10:    90   72   46   30   30   29    1    0 JS/IMX/JMX/LM/LTM/LCONVM/NINIT/ICASE
+11: ### OBSOLETE LINE OMITTED ###
+12: ### OBSOLETE LINE OMITTED ###
+13: ### OBSOLETE LINE OMITTED ###
+14: ### OBSOLETE LINE OMITTED ###
+15: ### OBSOLETE LINE OMITTED ###
+16:    41    0   72    0   46                     NTRACE,I0,IM,J0,JM
+17:  1985    3    0    0 1995                     IYEAR,NSRCX,IIII1,IIII2,FSCALYR
+18:     1    7  250    3   18                     LDIFF1,LDIFFM,KDIFFU,NSTRTC,NSKIPL
+19: -----123456789.123456789.123456789.1---1=ZERO + 2=BPCH + 4=PNCH
+20: JAN--3000000000000000000000000000000
+21: FEB--30000000000000000000000000000  
+22: MAR--3000000000000000000000000000000
+23: APR--300000000000000000000000000000
+24: MAY--3000000000000000000000000000000
+25: JUN--300000000000000000000000000000
+26: JUL--3000000000000000000000000000000
+27: AUG--3000000000000000000000000000000
+28: SEP--300000000000000000000000000000
+29: OCT--3000000000000000000000000000000
+30: NOV--300000000000000000000000000000
+31: DEC--3000000000000000000000000000000
+32: -----  1  2  3  4  5  6  7  8  9 10
+33: ND-01  0  0  0  0 30  0  0  0  0  0
+34: ND-11  0  0 30  0  0  0  0  0  0  0  
+35: ND-21  0  0  1  0  0  0  0  1  0  0 
+36: ND-31  1  1  0  1  0  1  0 30 30  0 
+37: ND-41  0  0 20  1 30  1  0  0  0  0 
+38: ND-51  0  0  0  0  0  0  0  0  0  0 
+39: ND-61  0  0  0  0  0  0  1  0  0  0
+40: ### OBSOLETE LINE OMITTED ###
+41: ### OBSOLETE LINE OMITTED ###
+42: ### OBSOLETE LINE OMITTED ###
+43: ### OBSOLETE LINE OMITTED ###
+</PRE>
+<p align=JUSTIFY> 
+  
+<table width="95%" border="0" cellpadding="5" cellspacing="5">
+  <tr align="left" valign="top"> 
+    <td height="6" width="10%"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></td>
+    <td height="6" width="92%"><b><font face="Arial, Helvetica, sans-serif" size="2">Description</font></b></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">1</font></td>
+    <td width="92%"><font face="Arial, Helvetica, sans-serif" size="2">Header 
+      line </font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">2&#150;6</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Logical Flags (T=on, 
+        F=off)</font> </p>
+      <ul>
+        <li><font face="Courier New, Courier, mono" size="2">LCONT &nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE ***</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LSAVE &nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LINIT &nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LWINDO &nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LYRRD &nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LSTRAT &nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LTROP &nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LSRCE &nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LZONE &nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE ***</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LPUFF &nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LSOM &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LPFILT &nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LCONV4 &nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LPLU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">L2PM &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LBIONOX &nbsp;&nbsp;: 
+          Turn on biomass burning emissions</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LAIRNOX &nbsp;&nbsp;: 
+          Turn on aircraft NOx emissions</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LLIGHTNOX : Turn 
+          on lightning NOx emissions</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LSOILNOX &nbsp;: 
+          Turn on soil NOx emissions</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LFFNOX &nbsp;&nbsp;&nbsp;: 
+          Turn on fossil fuel NOx, Ox emissions</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LFOSSIL &nbsp;&nbsp;: 
+          Turn on all fossil fuel emissions </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LWOODCO &nbsp;&nbsp;: 
+          Turn on CO emissions from wood burning </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LUPBD &nbsp;&nbsp;&nbsp;&nbsp;: 
+          Turn on O3, NOy strat fluxes</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LBLMX &nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LEMBED &nbsp;&nbsp;&nbsp;: 
+          Turn embedded chemistry on/off</font></li>
+      </ul>
+      <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">NOTE: The &quot;embedded 
+        chemistry&quot; option allows you to do chemistry in a smaller &quot;window&quot; 
+        region of the globe. This option is most likely to be used with the 2 
+        x 2.5 grid, in order to restrict chemistry to the Northern Hemisphere, 
+        to gain computational advantage.</font></p>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">7</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2"> Embedded Chemistry 
+        Region Settings:</font></p>
+      <ul>
+        <li><font face="Courier New, Courier, mono" size="2">IEBD1 : </font><font face="Arial, Helvetica, sans-serif" size="2">Lon 
+          index of lower left corner of embedded chemistry region</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">JEBD1&nbsp;: </font><font face="Arial, Helvetica, sans-serif" size="2">Lat 
+          index of lower left corner of embedded chemistry region</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">IEBD2&nbsp;: </font><font face="Arial, Helvetica, sans-serif" size="2">Lon 
+          index of upper right corner of embedded chemistry region</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">JEBD2&nbsp;: </font><font face="Arial, Helvetica, sans-serif" size="2">Lat 
+          index of upper right corner of embedded chemistry region</font></li>
+      </ul>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">8 </font></td>
+    <td width="92%"> 
+      <p><font face="Courier New, Courier, mono" size="2">*** OBSOLETE ***</font></p>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">9</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Specify timesteps 
+        for various operations:</font></p>
+      <ul>
+        <li><font face="Courier New, Courier, mono" size="2">READ &nbsp;: *** 
+          OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">WRITE : *** OBSOLETE 
+          *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">DYN &nbsp;&nbsp;: 
+          dynamics timestep [min]</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">CONV &nbsp;: convection 
+          timestep [min]</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">SRCE &nbsp;: emissions 
+          timestep [min]</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">CHEM &nbsp;: chemistry 
+          timestep [min]</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">DIAG &nbsp;: diagnostic 
+          timestep [min]</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">INST &nbsp;: *** 
+          OBSOLETE ***</font></li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">NOTES:</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">The dynamic timestep 
+          should be either 30 min (4 x 5) or 15 min (2 x 2.5).<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">The convection 
+          timestep is usually the same as the dynamic timestep.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">For full chemistry 
+          with SMVGEAR, the emissions &amp; chemistry timestep should be 60 minutes 
+          (since chemistry is very computationally expensive).<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">For other simulations 
+          (e.g Radon) with quick chemistry solvers, the chemistry timestep can 
+          be set equal to the dynamic timestep.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">The diagnostic 
+          timestep should be left at 60 minutes. This is only used for ND48 timeseries 
+          output.</font></li>
+      </ul>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">10&#150;15</font></td>
+    <td width="92%"> <font face="Courier New, Courier, mono" size="2">*** OBSOLETE 
+      ***</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">16</font></td>
+    <td width="92%"><font face="Arial, Helvetica, sans-serif" size="2">Line 16: 
+      Number of tracers and CTM window settings: </font> 
+      <ul>
+        <li> <font face="Courier New, Courier, mono" size="2">NTRACE : number 
+          of active tracers </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">I0 &nbsp;&nbsp;&nbsp;&nbsp;: 
+          I index offset for a window run</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">IM &nbsp;&nbsp;&nbsp;&nbsp;: 
+          I max for window</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">J0 &nbsp;&nbsp;&nbsp;&nbsp;: 
+          J index offset for a window run </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">JM &nbsp;&nbsp;&nbsp;&nbsp;: 
+          J max for window</font></li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">NOTES:</font></p>
+      <ul>
+        <li><font face="Courier New, Courier, mono" size="2">NTRACE<font face="Arial, Helvetica, sans-serif" size="2"> 
+          </font></font><font face="Arial, Helvetica, sans-serif" size="2">must 
+          be the same as the number of tracers listed in input.ctm<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">For a global run, 
+          set <font face="Courier New, Courier, mono" size="2">I0=0,</font> <font face="Courier New, Courier, mono" size="2">J0=0</font>, 
+          <font size="2"> <font face="Courier New, Courier, mono"> &nbsp;IM=IIPAR</font></font>, 
+          <font size="2"> <font face="Courier New, Courier, mono"> &nbsp;JM=JJPAR</font></font>, 
+          where <font face="Courier New, Courier, mono" size="2">IIPAR</font> 
+          and <font face="Courier New, Courier, mono" size="2">JJPAR</font> are 
+          the size parameters of the GEOS&#150;CHEM grid from header file <font face="Courier New, Courier, mono" size="2">CMN_SIZE</font>.</font></li>
+      </ul>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">17</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">More CTM variables:</font></p>
+      <ul>
+        <li> <font face="Courier New, Courier, mono" size="2">IYEAR &nbsp;&nbsp;: 
+          Always set to 1985. </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">NSRCX &nbsp;&nbsp;: 
+          Chemistry simulation selector </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">IIII1 &nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">IIII2 &nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">FSCALYR : Year for 
+          fossil fuel emissions scaling</font></li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Set NSRCX to one 
+        of the following values to select a specific type of chemistry simulation: 
+        </font></p>
+      <blockquote> 
+        <ol>
+          <li><font face="Arial, Helvetica, sans-serif" size="2">Rn-Pb-Be</font></li>
+          <li><font face="Arial, Helvetica, sans-serif" size="2">CH3I</font></li>
+          <li><font face="Arial, Helvetica, sans-serif" size="2">Coupled full 
+            chemistry simulation (w/ sulfate tracers)</font></li>
+          <li><font face="Arial, Helvetica, sans-serif" size="2">HCN</font></li>
+          <li><font face="Arial, Helvetica, sans-serif" size="2">CO with parameterized 
+            OH</font></li>
+          <li><font face="Arial, Helvetica, sans-serif" size="2">Tagged Ox</font></li>
+          <li><font face="Arial, Helvetica, sans-serif" size="2">Tagged CO</font></li>
+          <li><font face="Arial, Helvetica, sans-serif" size="2">Tagged C2H6</font></li>
+          <li><font face="Arial, Helvetica, sans-serif" size="2">CH4</font></li>
+          <li><font face="Arial, Helvetica, sans-serif" size="2">Offline sulfate 
+            simulation</font></li>
+        </ol>
+      </blockquote>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">18</font></td>
+    <td width="92%"><font face="Courier New, Courier, mono" size="2">*** OBSOLETE 
+      ***</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">19&#150;31</font></td>
+    <td width="92%"> 
+      <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">Scheduling diagnostic 
+        output from GEOS&#150;CHEM:</font> 
+      <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">Each day of the year 
+        is listed here. To schedule diagnostic output from the model on a particular 
+        day, place a 3 in the appropriate column. </font> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">If you place a 3 
+        only on the first day of each month, then the diagnostic quantities will 
+        be monthly mean values. If you place a 3 on every day of the year, you 
+        will get daily averaged values.</font>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">32&#150;39</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Diagnostics table. 
+        </font> 
+      <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">ND 
+        = Number of Diagnostic. Add the column number to the row number for the 
+        diagnostic number (there are 70). In each slot place the maximum level 
+        for which you want output. Note that some diagnostics are surface diagnostics, 
+        so you only need to place a 1 in the proper slot. Other diagnostics are 
+        3-D diagnostics; you can specify the highest level that you want to print 
+        out. For example, if you place a 1 in any slot, it will only save out 
+        the surface level. If on the other hand you place a 30 in the slot, it 
+        will save out 30 levels. </font>
+      <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">A quick 
+        description of GEOS&#150;CHEM diagnostics is provided below. You can find 
+        a further description of GEOS&#150;CHEM diagnostics in <a href="geos_chem_a5.html">Appendix 
+        5</a>. </font> 
+      <blockquote> 
+        <pre>Frequently Used Diagnostics: 
+ND01 : Rn-Pb-Be sources 
+ND02 : Rn-Pb-Be decay
+ND05 : Prod/loss of sulfur/nitrogen species<br>ND06 : Emissions of Desert Dust aerosols
+ND07 : Emissions of Black Carbon &amp; Organic Carbon aerosols
+ND08 : Emissions of Sea Salt aerosols
+ND11 : Acetone sources/sinks 
+ND13 : Emissions of sulfur/nitrogen species
+ND14 : Mass flux from cloud conv 
+ND15 : Mass flux from BL mixing 
+ND16 : Precip fraction
+ND17 : Rainout fraction 
+ND18 : Washout fraction 
+ND20 : Save P(O3) and L(O3) rates 
+ND21 : Optical depths 
+ND22 : J-values diagnostics 
+ND23 : CH3CCL3 lifetime 
+ND24 : E-W transport mass fluxes 
+ND25 : N-S transport mass fluxes 
+ND26 : Vertical transport mass fluxes 
+ND27 : X-trop fluxes: NOx,Ox,HNO3 
+ND28 : Biomass burning emissions 
+ND29 : CO sources
+ND30 : Land map 
+ND31 : Surface pressure 
+ND32 : NOx emissions 
+ND34 : Biofuel burning emissions 
+ND36 : Anthropogenic emissions
+ND37 : Wet scavenging fraction
+ND38 : Tracer lost to wet scavenging
+ND39 : Tracer lost to wet deposition
+ND40 : Follow a plane flight track
+ND41 : Afternoon PBL height
+ND43 : Chemical prod: OH,NO,HO2,NO2,NO3 
+ND44 : Drydep fluxes and velocities 
+ND45 : Tracer concentration  
+ND46 : Biogenic emissions 
+ND47 : 24-h avg concentrations
+ND48 : Station timeseries
+ND49 : Instantaneous 3-D timeseries
+ND50 : 24-h avg 3-D timeseries
+ND51 : Afternoon avg 3-D timeseries 
+ND52 : Column timeseries (esp. for ICARTT)
+ND55 : Tropopause heights 
+ND65 : Family prod/loss diagnostic
+ND66 : DAO 3-D met fields (UWND, VWND, TMPU, etc...)
+ND67 : DAO 2-D met fields (HFLUX, PBL, etc...)
+ND68 : Grid box heights, air mass, air density
+ND69 : Grid box surface areas
+ND70 : Print debug input to stdout</pre>
+      </blockquote>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">40&#150;43</font></td>
+    <td width="92%"><font face="Courier New, Courier, mono" size="2">*** OBSOLETE 
+      ***</font></td>
+  </tr>
+</table>
+<P> <font face="Arial, Helvetica, sans-serif" size="2"><b>NOTE:</b> Hopefully 
+  in 2004 we will fold the information contained within <font face="Courier New, Courier, mono" size="2">input.ctm</font> 
+  into a consolidated input file. Stay tuned. </font><br>
+<br>
+<HR>
+  
+<P> <A NAME="5.2.3"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>5.2.3 
+  The <font face="Courier New, Courier, mono" size="2">input.geos</font> file</b></font> 
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Here is 
+  a typical input.geos file for a GEOS&#150;3 4 x 5 full chemistry simulation. 
+  Line numbers are for reference and are not part of the file.</font></p>
+<PRE>01: TIMING VARIABLES--4 x 5 RUN------+-------+-------+---------+-------+--------+
+02:  010701 000000 010801 000000     |NYMDb  |NHMSb  |NYMDe    |NHMSe  |        |
+03:   21600   1800 000000            |NDT    |NTDT   |NDIAGTIME|       |        |
+04: GEOS-CHEM FLAGS------------------+-------+-------+---------+-------+--------+<br>05:    T   T   T   T   F             |LEMIS  |LDRYD  |LCHEM    |LTRAN  |LTPFV   |<br>06:    T   T   T   F   T             |LTURB  |LCONV  |LWETD    |LDBUG  |LMONOT  |<br>07:    T   T   T   T   F             |LWAIT  |LBBSEA |LUNZIP   |LSVGLB |LTOMSAI |<br>08:    F   T   F   T   T             |LMFCT  |LFILL  |LSTDRUN  |LDEAD  |LSHIPSO2|<br>09:    T   T   T   T   F             |LSULF  |LCARB  |LDUST    |LSSALT |LATEQ   |
+10: OTHER GEOS&#150;CHEM PARAMETERS-------+-------+-------+---------+-------+--------+
+11:    1.0     1.0                   |ALPHA_d|ALPHA_n|         |       |        |
+12:  200.0     0.0                   |Umax   |PSTP   |         |       |        |
+13:    3   3   7                     |IORD   |JORD   |KORD     |       |        |
+14:    2   0   0                     |J1     |IGD    |KS       |       |        |
+15: 2 PM, J-VALUE, NO, OH INTERVALS--+-------+-------+---------+-------+--------+
+16:   10.0    14.0                   |NO-HR1 |NO-HR2 |(for NO diagnostic)       | 
+17:   11.0    13.0                   |JV-HR1 |JV-HR2 |(for J-Value diagnostic)  |
+18:    0.0    24.0                   |OH-HR1 |OH-HR2 |(for OH diagnostic)       |
+19:    0.0    24.0                   |OTH-HR1|OTH-HR2|(for Other diagnostics)   |
+20: COMMAND STRINGS------------------+-------+-------+--------------------------+
+21:  &                               | BACKGROUND  (' &' for Unix environment ) |  
+22:  >                               | REDIRECT    (' >' for Unix environment ) |
+23: rm -f                            | REMOVE_CMD  ('rm' for Unix environment ) |
+24: /                                | SEPARATOR   ('/'  for Unix environment ) |
+25:                                  | SPACE       (' '  for Unix environment ) |
+26: gzcat                            | UNZIP_CMD   ('gzcat' or 'zcat' for Unix) |
+27: *                                | WILD_CARD   ('*'  for Unix environment ) |
+28: FILE SUFFIXES--------------------+------------------------------------------+
+29: .a3                              | A3_SUFFIX   (for DAO A-3  fields file  ) |
+30: .a6                              | A6_SUFFIX   (for DAO A-6  fields file  ) |
+31: .i6                              | I6_SUFFIX   (for DAO I-6  fields file  ) |
+32: .phis                            | PH_SUFFIX   (for DAO PHIS fields file  ) |
+33: .kzz                             | KZZ_SUFFIX  (for DAO KZZ  fields file  ) |
+34: .4x5                             | GRID_SUFFIX (either '.2x25' or '.4x5'  ) |
+35: .gz                              | ZIP_SUFFIX  (either '.gz'   or '.Z'    ) |
+36: DATA DIRECTORIES-----------------+------------------------------------------+
+37: /data/ctm/GEOS_4x5/              | DATA_DIR    (top level data directory  ) |
+38: GEOS_1/YYYY/MM/                  | GEOS_1_DIR  (subdir for GEOS&#150;1     data) |
+39: GEOS_S/YYYY/MM/                  | GEOS_S_DIR  (subdir for GEOS&#150;STRAT data) |
+40: GEOS_3/YYYY/MM/                  | GEOS_3_DIR  (subdir for GEOS&#150;3     data) |
+41: GEOS_4_v3/YYYY/MM/               | GEOS_4_DIR  (subdir for GEOS&#150;4     data) | 
+42: /users/ctm/bmy/TEMP/T1/          | TEMP_DIR    (dir for temp storage      ) |
+43:                                  +------------------------------------------+
+</PRE>
+  <p> </p>
+<table width="95%" border="0" cellpadding="5" cellspacing="5">
+  <tr align="left" valign="top"> 
+    <td height="6" width="10%"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></td>
+    <td height="6" width="92%"><b><font face="Arial, Helvetica, sans-serif" size="2">Description</font></b></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">1</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Lines 1-3: GEOS&#150;CHEM 
+        timing variables:</font></p>
+      <ul>
+        <li><font face="Courier New, Courier, mono" size="2">NYMDb &nbsp;&nbsp;&nbsp;&nbsp;: 
+          Beginning YYMMDD</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">NHMSb &nbsp;&nbsp;&nbsp;&nbsp;: 
+          Beginning HHMMSS</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">NYMDe &nbsp;&nbsp;&nbsp;&nbsp;: 
+          Ending YYMMDD</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">NHMSe &nbsp;&nbsp;&nbsp;&nbsp;: 
+          Ending HHMMSS</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">NDT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+          21600 sec.</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">NTDT &nbsp; &nbsp;&nbsp;&nbsp;: 
+          Dynamic timestep</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">NDIAGTIME : HHMMSS 
+          to print diagnostic output</font> </li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">NOTES:</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">To specify <font face="Courier New, Courier, mono" size="2">NYMDb</font>, 
+          <font size="2"> <font face="Courier New, Courier, mono"> NYMDe</font></font> 
+          for years prior to 1999, use e.g. <font face="Courier New, Courier, mono" size="2">990101</font>.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">To specify <font face="Courier New, Courier, mono" size="2">NYMDb</font>, 
+          <font size="2"> <font face="Times New Roman, Times, serif"> <font face="Courier New, Courier, mono">NYMDe</font></font></font> 
+          for the year 2000 and after, use e.g. <font size="2" face="Courier New, Courier, mono">010101</font>.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">The dynamic timestep 
+          <font size="2"> <font face="Courier New, Courier, mono"> NTDT</font></font> 
+          should be either 1800 sec (4 x 5) or 900 sec (2 x 2.5).<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Normally, <font face="Courier New, Courier, mono" size="2">NDIAGTIME</font> 
+          is set to the same value as NHMSe. This specifies the time of the day 
+          for which to print diagnostic output.</font></li>
+      </ul>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">4&#150;9</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;CHEM flags 
+        (T=on, F=off):</font><font face="Arial, Helvetica, sans-serif"><br>
+        </font> </p>
+      <ul>
+        <li><font face="Courier New, Courier, mono" size="2">LEMIS &nbsp;&nbsp;: 
+          Emissions</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LDRYD &nbsp;&nbsp;: 
+          Dry Deposition </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LCHEM &nbsp;&nbsp;: 
+          Chemistry </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LTRAN&nbsp; &nbsp;: 
+          Transport </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LTPFV&nbsp;&nbsp;&nbsp;: 
+          Use new fvDAS TPCORE for GEOS&#150;3 instead of TPCORE v7.1.m</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LTURB &nbsp;&nbsp;: 
+          Boundary Layer Mixing </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LCONV &nbsp;&nbsp;: 
+          Cloud Convection and Scavenging</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LWETD &nbsp;&nbsp;: 
+          Large Scale Wet Deposition </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LDBUG &nbsp;&nbsp;: 
+          *** OBSOLETE ***</font></li>
+        <li><font face="Courier New, Courier, mono" size="2"> LMONOT &nbsp;: Scale 
+          acetone source from monoterpenes</font></li>
+        <li><font face="Courier New, Courier, mono" size="2"> LWAIT &nbsp;&nbsp;: 
+          Wait for met fields to be unzipped</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LBBSEA &nbsp;: Use 
+          seasonal biomass burning</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LUNZIP&nbsp;&nbsp;: 
+          Unzip met field files on-the-fly</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LSVGLB &nbsp;: Save 
+          a restart file at end of run</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LTOMSAI : Scales 
+          seasonal biomass to TOMS AI</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LMFCT &nbsp;&nbsp;: 
+          TPCORE flux-corrected transport.</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LFILL &nbsp;&nbsp;: 
+          TPCORE filling flag</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LSTDRUN : Save masses 
+          at beginning/end of run</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LDEAD&nbsp;&nbsp;&nbsp;: 
+          Uses DEAD dust mobilization (from Zender) </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LSPLIT&nbsp; : Splits 
+          CO emissions into global regions.</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LSULF&nbsp;&nbsp;&nbsp;: 
+          Use sulfate aerosols (DMS,SO2,SO4,MSA,NH3,NH4,NIT)</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LCARB&nbsp;&nbsp;&nbsp;: 
+          Use carbon aerosols (BCPI,BCPO,OCPI,OCPO)</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LDUST&nbsp;&nbsp;&nbsp;: 
+          Use desert dust aerosols (DST1,DST2,DST3,DST4)</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LSSALT&nbsp;&nbsp;: 
+          Use seasalt aerosols (SALA,SALC)</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">LATEQ&nbsp;&nbsp;&nbsp;: 
+          For future expansion</font></li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">NOTES:</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">For some quick 
+          chemistry simulations, GEOS&#150;CHEM will iterate faster than the met 
+          fields can be unzipped. To cause GEOS&#150;CHEM to wait for met fields 
+          to be unzipped before proceeding, set <font face="Courier New, Courier, mono" size="2">LWAIT=T</font>.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">See the comments 
+          to <font face="Courier New, Courier, mono" size="2">biomass_mod.f</font> 
+          for an explanation of the seasonal and interannual biomass burning options. 
+          These are selected with flags <font face="Courier New, Courier, mono" size="2">LBBSEA</font> 
+          and <font face="Courier New, Courier, mono" size="2">LTOMSAI</font>. 
+          Also, one can scale the seasonal biomass burning emissions using the 
+          TOMS aerosol index product if so desired.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Recommended values 
+          for TPCORE flags: <font face="Courier New, Courier, mono" size="2">LMFCT= 
+          F</font>, <font face="Courier New, Courier, mono" size="2">LFILL=T</font>.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">For benchmark 
+          runs set <font face="Courier New, Courier, mono" size="2">LSTDRUN=T</font>. 
+          This will save the initial and final masses of Ox (for full-chemistry 
+          benchmarks) or Rn, Pb, and Be (for radionuclide benchmarks).<br>
+          <br>
+          </font></li>
+        <li> 
+          <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">If 
+            you are running GEOS&#150;CHEM with GEOS&#150;3 winds, you have the 
+            option of either using the new GEOS&#150;4 version of TPCORE, or the 
+            current version (v7.1.m). Setting LTPFV=T will select the new GEOS&#150;4/fvDAS 
+            TPCORE. This is useful when you want to test the difference between 
+            the two transport schemes. NOTE: If you are running GEOS&#150;CHEM 
+            with GEOS&#150;1 or GEOS&#150;STRAT winds, LTPFV will automatically 
+            be set to FALSE. If you are running GEOS&#150;CHEM with GEOS&#150;4/fvDAS 
+            winds, then LTPFV will be automatically set to TRUE, since these winds 
+            are incompatible with TPCORE v7.1.</font></p>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">10&#150;14</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Other GEOS&#150;CHEM 
+        PARAMETERS </font> </p>
+      <ul>
+        <li><font face="Courier New, Courier, mono" size="2">ALPHA_d : Fraction 
+          for daytime PBL mixing</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">ALPHA_a : Fraction 
+          for nighttime PBL mixing</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">Umax &nbsp;&nbsp;&nbsp;: 
+          Max wind speed for TPCORE [m/s]</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">PSTP &nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE *** </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">IORD &nbsp;&nbsp;&nbsp;: 
+          TPCORE E/W advection method</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">JORD &nbsp;&nbsp;&nbsp;: 
+          TPCORE N/S advection method</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">KORD &nbsp;&nbsp;&nbsp;: 
+          TPCORE vertical advection method</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">J1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+          *** OBSOLETE ***</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">IGD &nbsp;&nbsp;&nbsp;&nbsp;: 
+          TPCORE A-Grid (0) or C-Grid (1)</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">KS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 
+          Number of pressure-levels for TPCORE</font></li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">NOTES:</font></p>
+      <ul>
+        <li><font face="Courier New, Courier, mono" size="2">ALPHA_d</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          and <font face="Courier New, Courier, mono" size="2">ALPHA_n</font> 
+          should both be set to 1.0. We assume 100% mixing happens underneath 
+          the PBL top.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">A typical value 
+          for <font face="Courier New, Courier, mono" size="2">Umax</font> is 
+          200.0 m/s.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Recommended values 
+          for TPCORE advection options are <font face="Courier New, Courier, mono" size="2">IORD=3</font><font face="Courier New, Courier, mono">,</font> 
+          <font face="Courier New, Courier, mono" size="2">JORD=3</font>, and 
+          <font size="2"> <font face="Courier New, Courier, mono"> KORD=5</font></font> 
+          or <font face="Courier New, Courier, mono" size="2">KORD=7</font>. See 
+          the comments to <font face="Courier New, Courier, mono" size="2">tpcore_mod.f</font> 
+          for more information.<br>
+          <br>
+          </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">IGD</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          should always be set to zero. GEOS&#150;CHEM wind fields are on the 
+          A-grid (i.e. winds defined at the grid box centers). <br>
+          <br>
+          </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">KS</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          should also be set to zero. GEOS&#150;1, GEOS&#150;STRAT, and GEOS&#150;3 
+          grids are pure-sigma grids. (GEOS&#150;4 uses a different version of 
+          TPCORE.)</font></li>
+      </ul>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">15&#150;19</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Lines 15&#150;19: 
+        2 PM, J-Value, NO, OH Intervals: </font> </p>
+      <blockquote> 
+        <pre>
+NO-HR1  : Beginning and end of local time
+NO-HR2  :  interval for averaging NO values
+
+
+JV-HR1  : Beginning and end of local time
+JV-HR2  :  interval for averaging J-values
+
+
+OH-HR1  : Beginning and end of local time interval
+OH-HR2  :  for averaging OH, NO2, NO3 values
+           
+OTH-HR1 : Beginning and end of local time interval
+OTH-HR2 :  for the ND45 tracer conc. diagnostic 
+</pre>
+      </blockquote>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">NOTES:</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">NO is usually 
+          averaged in the afternoon, between 10AM and 2PM local time. You can 
+          change the <font face="Courier New, Courier, mono" size="2">NO-HR1</font> 
+          and <font face="Courier New, Courier, mono" size="2">NO-HR2</font> settings 
+          if necessary.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">J-values are usually 
+          averaged for noontime (between 11 AM and 1 PM local time). This facilitates 
+          comparison with noontime J-value observations at surface sites.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">OH, HO2, NO2, 
+          and NO3 are usually reported as 24-hour averages. To change this, modify 
+          the <font face="Courier New, Courier, mono" size="2">OH-HR1</font> and 
+          <font size="2"> <font face="Courier New, Courier, mono"> OH-HR2</font></font> 
+          settings accordingly.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">The <font face="Courier New, Courier, mono" size="2">OTH-HR1</font> 
+          and <font face="Courier New, Courier, mono" size="2">OTH-HR2</font> 
+          settings allow you to determine the time period over which the ND45 
+          concentration diagnostic is averaged. The default is to provide 24-hr 
+          averages. This setting rarely needs to be changed</font></li>
+      </ul>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">20&#150;27</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Unix command strings. 
+        You shouldn't have to change these. </font> 
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">30&#150;37</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">File Suffixes. </font><font face="Arial, Helvetica, sans-serif" size="2">These 
+        define the notations used to reference the A-3, A-6, and I-6 met fields. 
+        These should not have to be changed.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">NOTES:</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Also you may select 
+          the file suffix (this is usually <font face="Courier New, Courier, mono" size="2">.gz</font>) 
+          since met field files can be compressed using the GZIP utility. If for 
+          some reason we ever use a different compression utility, the proper 
+          file suffix can be supplied here. <br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Starting in GEOS&#150;CHEM 
+          v6&#150;02&#150;05, you have the option of reading uncompressed met 
+          fields directly from the data directory. To read uncompressed met fields, 
+          make sure that <font face="Courier New, Courier, mono">LUNZIP</font> 
+          is set to <font face="Courier New, Courier, mono">F</font>.<br>
+          <br>
+          </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">GRID_SUFFIX</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          is now obsolete, GEOS&#150;CHEM will supply the correct resolution string 
+          (e.g. <font face="Courier New, Courier, mono" size="2">4x5</font> or 
+          <font size="2"> <font face="Courier New, Courier, mono"> 2x25</font></font>) 
+          automatically</font></li>
+      </ul>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">36&#150;42</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;CHEM data 
+        and met-field directories:</font></p>
+      <ul>
+        <li><font face="Courier New, Courier, mono" size="2">DATA_DIR &nbsp;&nbsp;: 
+          Name of top-level data directory</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">GEOS_1_DIR : Name 
+          of GEOS&#150;1 met field subdirectory</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">GEOS_S_DIR : Name 
+          of GEOS&#150;STRAT met field subdirectory</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">GEOS_3_DIR : Name 
+          of GEOS&#150;3 met field subdirectory</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">GEOS_4_DIR : Name 
+          of GEOS&#150;4 met field subdirectory</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">TEMP_DIR&nbsp;&nbsp;&nbsp;: 
+          Name of temporary directory</font></li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Note that:</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">For the 4 x 5 
+          grid, <font size="2" face="Courier New, Courier, mono"> DATA_DIR</font> 
+          should be set to <font face="Courier New, Courier, mono" size="2">/data/ctm/GEOS_4x5</font>. 
+          Non-Harvard users who do not use this convention may specify their own 
+          root directory here.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">For the 2 x 2.5 
+          grid, <font size="2" face="Courier New, Courier, mono"> DATA_DIR</font> 
+          should be set to <font face="Courier New, Courier, mono" size="2">/data/ctm/GEOS_2x2.5</font>. 
+          Non-Harvard users who do not use this convention may specify their own 
+          root directory here.<br>
+          <br>
+          </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">TEMP_DIR</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          should be set to the name of a temporary directory in the user's space. 
+          GEOS&#150;CHEM will unzip the met fields into this temporary directory 
+          and then delete them after they have been read from disk.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Make sure that 
+          all directories end in a slash (/). </font></li>
+      </ul>
+      <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">You 
+        must also specify the location of the meterological field data files. 
+        These are usually located in subdirectories of the data directory. Directory 
+        paths for met field data files will typcially take one or two forms.( 
+        For purpose of illustration, we will look at the met field data directories 
+        for January 2001, but it is understood that other months follow this same 
+        pattern.)</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="2"><b>First form:</b></font></p>
+      <blockquote> 
+        <p><font face="Courier New, Courier, mono" size="2">/data/ctm/GEOS_2x2.5/GEOS_1/200101/<br>
+          /data/ctm/GEOS_2x2.5/GEOS_S/200101/<br>
+          /data/ctm/GEOS_2x2.5/GEOS_3/200101/<br>
+          /data/ctm/GEOS_2x2.5/GEOS_4/200101/</font></p>
+        <p><font face="Courier New, Courier, mono" size="2">/data/ctm/GEOS_4x5/GEOS_1/200101/<br>
+          /data/ctm/GEOS_4x5/GEOS_S/200101/<br>
+          /data/ctm/GEOS_4x5/GEOS_3/200101/<br>
+          /data/ctm/GEOS_4x5/GEOS_4/200101/</font></p>
+      </blockquote>
+      <p><font face="Arial, Helvetica, sans-serif" size="2"><b>Second Form:</b></font></p>
+      <blockquote> 
+        <p><font face="Courier New, Courier, mono" size="2">/data/ctm/GEOS_2x2.5/GEOS_1/2001/01/<br>
+          /data/ctm/GEOS_2x2.5/GEOS_S/2001/01/<br>
+          /data/ctm/GEOS_2x2.5/GEOS_3/2001/01/<br>
+          /data/ctm/GEOS_2x2.5/GEOS_4/2001/01/</font></p>
+        <p><font face="Courier New, Courier, mono" size="2">/data/ctm/GEOS_4x5/GEOS_1/2001/01/<br>
+          /data/ctm/GEOS_4x5/GEOS_S/2001/01/<br>
+          /data/ctm/GEOS_4x5/GEOS_3/2001/01/<br>
+          /data/ctm/GEOS_4x5/GEOS_4/2001/01/</font></p>
+      </blockquote>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">(i.e. similar to 
+        the first form, but with a &quot;/&quot; between <font face="Courier New, Courier, mono">2000</font>and 
+        <font face="Courier New, Courier, mono">01</font>.)</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">If the met field 
+        data files on your system is stored in directories whose names correspond 
+        to the first form (i.e. <font face="Courier New, Courier, mono">200101</font>), 
+        then you must make the following definitions in <font face="Courier New, Courier, mono">input.geos</font>:<br>
+        </font></p>
+      <ul>
+        <li><font face="Courier New, Courier, mono" size="2">GEOS_1_DIR</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          should be set to <font face="Courier New, Courier, mono" size="2">GEOS_1/YYYYMM/</font></font></li>
+        <li><font face="Courier New, Courier, mono" size="2">GEOS_S_DIR</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          should be set to <font face="Courier New, Courier, mono" size="2">GEOS_S/YYYYMM/</font></font></li>
+        <li><font face="Courier New, Courier, mono" size="2">GEOS_3_DIR</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          should be set to <font face="Courier New, Courier, mono" size="2">GEOS_3/YYYYMM/</font></font></li>
+        <li><font face="Courier New, Courier, mono" size="2">GEOS_4_DIR</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          should be set to <font face="Courier New, Courier, mono" size="2">GEOS_4/YYYYMM/</font></font></li>
+      </ul>
+      <P align=justify><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;CHEM 
+        will replace the <font face="Courier New, Courier, mono">YYYY</font> and 
+        <font face="Courier New, Courier, mono">MM</font> in these strings with 
+        the actual year and month. </font></p>
+      <P align=justify><font face="Arial, Helvetica, sans-serif" size="2">On 
+        the other hand, if the met field data files on your system is stored in 
+        directory paths which correspond to the second form then you must male 
+        the following defnitions in <font face="Courier New, Courier, mono">input.geos</font>:</font></p>
+      <ul>
+        <li><font face="Courier New, Courier, mono" size="2">GEOS_1_DIR</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          should be set to <font face="Courier New, Courier, mono" size="2">GEOS_1/YYYY/MM/</font></font></li>
+        <li><font face="Courier New, Courier, mono" size="2">GEOS_S_DIR</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          should be set to <font face="Courier New, Courier, mono" size="2">GEOS_S/YYYY/MM/</font></font></li>
+        <li><font face="Courier New, Courier, mono" size="2">GEOS_3_DIR</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          should be set to <font face="Courier New, Courier, mono" size="2">GEOS_3/YYYY/MM/</font></font></li>
+        <li><font face="Courier New, Courier, mono" size="2">GEOS_4_DIR</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          should be set to <font face="Courier New, Courier, mono" size="2">GEOS_4/YYYY/MM/</font></font></li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Likewise, GEOS&#150;CHEM 
+        w ill replace the <font face="Courier New, Courier, mono">YYYY</font> 
+        and <font face="Courier New, Courier, mono">MM</font> in these strings 
+        with the actual year and month. </font></p>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">43</font></td>
+    <td width="92%" height="23"><font face="Arial, Helvetica, sans-serif" size="2">Footer 
+      line</font></td>
+  </tr>
+</table>
+  
+<P><font face="Arial, Helvetica, sans-serif" size="2">NOTE: Hopefully in 2004 
+  we will fold the information contained within <font face="Courier New, Courier, mono" size="2">input.geos</font> 
+  into a consolidated input file. Stay tuned. </font><br>
+  <br>
+
+<hr>
+<P><a name="5.2.4"></a> <b><font face="Arial, Helvetica, sans-serif" size="2">5.2.4 
+  The <font face="Courier New, Courier, mono" size="2">diag.dat</font> file</font></b> 
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> The <font face="Courier New, Courier, mono" size="2">diag.dat</font> 
+  file allows you to only print out certain tracers for each diagnostic. This 
+  is useful when you want to reduce the size of the ctm.bpch output. file. Here 
+  is a typical example, with line numbers provided for reference.</font></p>
+<pre>01:  # DIAG.DAT -- specifies which tracers to print out for the NDxx diagnostics
+02:  #
+03:  # VERSION 5.03.01: bmy, 1/27/03
+04:  #
+05:  # NOTES:
+06:  # (1) Allowable syntax, e.g. 1-31  OR  1, 3-10, 11-16
+07:  #-----------------------------------------------------------------------------
+08:  # ND-       Tracers to read in
+09:  #--+--------+-----------------------------------------------------------------
+10:    01        1-3
+11:    02        1-3
+12:    03        1-41 
+13:    04        1-41 
+14:    05        1-41
+15:    06        1-41
+16:    07        1-41
+17:    08        1-41
+18:    09        1-41
+19:    10        1-41
+20:    11        1-41
+21:    12        1-41
+22:    13        1-41
+23:    14        1-41
+24:    15        1-41
+25:    16        1-41
+26:    17        1-41
+27:    18        1-41
+28:    19        1-41
+29:    21        1-41
+30:    22        1-41
+31:    24        1-41
+32:    25        1-41
+33:    26        1-41
+34:    27        1, 2, 7
+35:    28        1, 4, 5, 9, 10, 11, 18, 19, 20, 21 
+36:    29        1-5
+37:    30        1  
+38:    31        1
+39:    32        1-41
+40:    33        1-41
+41:    34        1, 4, 5, 9, 10, 11, 18, 19, 20, 21
+42:    35        1-41
+43:    36        1, 4, 5, 9, 10, 18, 19, 21
+44:    37        1-41
+45:    38        1-41
+46:    39        1-41
+47:    40        1-41
+48:    41        1
+49:    42        1-41
+50:    43        1-5
+51:    44        1-41
+52:    45        1-41
+53:    46        1-4
+54:    50        1
+55:    51        1-41
+56:    52        1-41
+57:    53        1-41
+58:    54        1-41
+59:    55        1-41
+60:    65        1-4
+61:    66        1-4
+62:    67        1-20
+63:    68        1-4</pre>
+<p align=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">For each 
+  ND-diagnostic number, list the tracer numbers that you want to print out. You 
+  can list these as single numbers separated by commas (e.g. 1, 5, 8) or by two 
+  numbers separated by a dash (e.g. 1&#150;41). </font> 
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> NOTE: The 
+  GEOS&#150;CHEM model will compute diagnostics for ALL tracers, but only the tracers 
+  listed in the <font face="Courier New, Courier, mono" size="2">diag.dat</font> 
+  file will be printed to the ASCII or binary punch file. Therefore, before 
+  asking &quot;why didn't I get output for tracer #?&quot;, consult the diag.dat 
+  file that you used to make sure that your tracer number was listed properly. 
+  <br>
+  <br>
+  </font>
+<hr>
+<p> <a name="5.2.5"></a> <b><font face="Arial, Helvetica, sans-serif" size="2">5.2.5 
+  The <font face="Courier New, Courier, mono">timeseries.dat</font> file</font></b> 
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> The <font face="Courier New, Courier, mono" size="2">timeseries.dat</font> 
+  file allows you to define a 3-D region for which timeseries output will be printed 
+  via the ND49, ND50, and ND51 diagnostics. Here is a typical example, with line 
+  numbers added for reference. </font></p>
+<pre>01:  # Informations about geopraphical domain for timeserie diagnostics.
+02:  # Turn on the diag 49 in input.ctm.
+03:  # imin,imax          = indices of the limit boxes of the domain in longitude.
+04:  #                      (note : imin can be greater than imax if 
+05:  #                      we are crossing the date line)    
+06:  # jmin,jmax          = indices of the limit boxes of the domain in latitude.
+07:  # layermin, layermax = range of vertical layers.
+08:  # date1,date2        = first date and ending date for the archival. 
+09:  #                      they are given as YYMMDD (idem as input.geos).
+10:  #                      the archival includes date1 and date2.
+11:  # frequency          = frequency for the archival.
+12:  # type of diag       = type of diag (see diag1.f for description).
+13:  #                      for now, only ND45 works. 
+14:  # tracers            = list of tracers corresponding to the diagnostic.  
+15:  # 
+16:  # Writing format : start with a "*" for each area
+17:  #                  put a "=" after each line description 
+18:  #                  put a "," between two data
+19:  # 
+20:  *area   #1
+21:   imin,imax          =  1,72
+22:   jmin,jmax          =  1,46
+23:   layermin, layermax =  1,20
+24:   date1,date2        =  970901,971201
+25:   frequency          =  240
+26:   type of diag       =  45
+27:   tracers            =  4,20,25,29,98,99</pre>
+<table width="95%" border="0" cellpadding="5" cellspacing="5">
+  <tr align="left" valign="top"> 
+    <td height="6" width="10%"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></td>
+    <td height="6" width="92%"><b><font face="Arial, Helvetica, sans-serif" size="2">Description</font></b></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">1-19</font></td>
+    <td width="92%"><font face="Arial, Helvetica, sans-serif" size="2">Header 
+      lines with information</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">20</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Denotes start first 
+        diagnostic area (usually there is only one area per <font face="Courier New, Courier, mono" size="2">timeseries.dat</font> 
+        file anyway...)</font></p>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">21</font></td>
+    <td width="92%"><font face="Courier New, Courier, mono" size="2">IMIN, IMAX</font>: 
+      <font size="2"> <font face="Arial, Helvetica, sans-serif"> Starting and 
+      ending longitude indices of the 3-D timeseries data block. You can use <a href="http://www-as.harvard.edu/chemistry/trop/gamap/" target="_blank">GAMAP</a> 
+      program ctm_index.pro to convert from an actual longitude/latitude to grid 
+      box indices.</font></font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">22</font></td>
+    <td width="92%"><font face="Courier New, Courier, mono" size="2">JMIN, JMAX</font>: 
+      <font size="2"> <font face="Arial, Helvetica, sans-serif"> Starting and 
+      ending latitude indices of the 3-D timeseries data block. You can use <a href="http://www-as.harvard.edu/chemistry/trop/gamap/" target="_blank">GAMAP</a> 
+      program ctm_index.pro to convert from an actual longitude/latitude to grid 
+      box indices.</font></font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">23</font></td>
+    <td width="92%"><font face="Courier New, Courier, mono" size="2">LAYERMIN, 
+      LAYERMAX</font>: <font size="2"> <font face="Arial, Helvetica, sans-serif"> 
+      Starting and ending vertical levels of the 3-D timeseries data block. Most 
+      of the time you will probably want to set <font face="Courier New, Courier, mono" size="2">LAYERMAX</font> 
+      equal to the maximum tropopause level (16 for <a href="geos_chem_a4.html#A4.1">GEOS&#150;1</a>, 
+      19 for <a href="geos_chem_a4.html#A4.2">GEOS&#150;STRAT</a>, 20 for <a href="geos_chem_a4.html#A4.3">GEOS&#150;3</a> 
+      , and 17 for <a href="geos_chem_a4.html#A4.4">GEOS&#150;4</a>.</font></font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">24</font></td>
+    <td width="92%"><font face="Courier New, Courier, mono" size="2">FREQUENCY: 
+      </font><font face="Arial, Helvetica, sans-serif" size="2"> the unit is 
+      minutes. For instantaneous concentrations (ND49), fields will be stored 
+      with this frequency. For animations of 1 week or less, a frequency 
+      of 60-180 is recommended. Longer term diagnostics are probably better 
+      done with 24h averages (ND50) </font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">25</font></td>
+    <td width="92%"><font face="Courier New, Courier, mono" size="2">DATE1, DATE2: 
+      </font><font face="Arial, Helvetica, sans-serif" size="2"> Specifies the 
+      starting and ending date for which 3-D timeseries will be produced. You 
+      can set this equal to the beginning and end times of your run (<font face="Courier New, Courier, mono" size="2">NYMDb</font> 
+      and <font face="Courier New, Courier, mono" size="2">NYMDe</font> in file 
+      <font size="2"> <font face="Courier New, Courier, mono"> input.geos</font></font>).</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">26</font></td>
+    <td width="92%"><font face="Courier New, Courier, mono" size="2">TYPE OF DIAG: 
+      </font><font face="Arial, Helvetica, sans-serif" size="2"> This feature 
+      was never really implemented. Leave this set at 45 (which specifies ND45 
+      concentrations). </font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">27</font></td>
+    <td width="92%"><font face="Courier New, Courier, mono" size="2">TRACERS: 
+      </font><font face="Arial, Helvetica, sans-serif" size="2"> Tracer numbers 
+      for 3-D timeseries output (without GAMAP offset). See <a href="#5.2.2">Section 
+      5.2.2, The <b>inptr.ctm</b> file</a>. <br>
+      <br>
+      NOTE: Some new tracer numbers (e.g. 98, 99) were added to save out extra 
+      fields in past versions. See the documentation in routines <font face="Courier New, Courier, mono" size="2">diag49.f, 
+      diag50.f, diag51_mod.f</font> for more information.</font> </td>
+  </tr>
+</table>
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">NOTE: Hopefully 
+  in 2004 we will fold the information contained within <font face="Courier New, Courier, mono" size="2">timeseries.dat</font> 
+  into a consolidated input file. Stay tuned. <br>
+  <br>
+  </font>
+<hr>
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"><b><a name="5.2.6"></a>5.2.6 
+  The <font face="Courier New, Courier, mono" size="2">Planeflight.dat</font> 
+  file</b></font> 
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Sometimes 
+  it is necessary to compare GEOS&#150;CHEM output against aircraft observations. The 
+  ND40 diagnostic allows you to save out GEOS&#150;CHEM diagnostic quantities for grid 
+  boxes corresponding to aircraft flight tracks. This prevents you from having 
+  to save out huge 3-D punch files with lots of species. </font>
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">The <font face="Courier New, Courier, mono" size="2">Planeflight.dat</font> 
+  file allows you to specify the diagnostic quantities (tracers, reaction rates, 
+  met fields, or chemical species) that you want to print out for a specific longitude, 
+  latitude, altitude, and time. A sample <font face="Courier New, Courier, mono" size="2">Planeflight.dat</font> 
+  file is given below. Of course if you have lots of flight track data points, 
+  your file will be much longer.</font>
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"><a href="mailto:mat@env.leeds.ac.uk" target="_blank">Mat 
+  Evans</a> has some IDL code which allows you to create a Planeflight.dat file 
+  from aircraft mission log files. Please contact him for further information.</font> 
+<pre>01: Planeflight.dat -- test for GEOS&#150;STRAT
+02: Bob Yantosca
+03: 26 Apr 2004
+04: -------------------------------------------------------------------------------
+05: 8        < -- # of variables to be output (list them below, one per line)
+06: -------------------------------------------------------------------------------
+07: TRA_004
+08: O3
+09: REA_O1D
+10: REA_001
+11: REA_295
+12: GMAO_TEMP
+13: GMAO_ABSH
+14: GMAO_SURF
+15: -------------------------------------------------------------------------------
+16:   Now give the times and locations of the flight
+17: -------------------------------------------------------------------------------
+18: Point  Type DD-MM-YYYY HH:MM     LAT     LON   PRESS
+19:    1 P3B04 01-01-2003 00:00   42.00  290.00  500.00
+20:    2 DC801 01-01-2003 00:00   42.00  290.00  500.00
+21:    3 P3B04 01-01-2003 01:00   41.00  290.00  500.00
+22:    4 DC801 01-01-2003 01:00   42.00  289.00  500.00
+23:    5 P3B04 01-01-2003 02:00   40.00  290.00  500.00
+24:    6 DC801 01-01-2003 02:00   42.00  288.00  500.00
+25:    7 P3B04 01-01-2003 03:00   39.00  290.00  500.00
+26:    8 DC801 01-01-2003 03:00   42.00  287.00  500.00
+27:    9 P3B04 01-01-2003 04:00   38.00  290.00  500.00
+28:   10 DC801 01-01-2003 04:00   42.00  286.00  500.00
+29:   11 P3B04 01-01-2003 05:00   37.00  290.00  500.00
+30:   12 DC801 01-01-2003 05:00   42.00  285.00  500.00
+31:   13 P3B04 01-01-2003 06:00   36.00  290.00  500.00
+32:   14 DC801 01-01-2003 06:00   42.00  284.00  500.00
+33:   15 P3B04 01-01-2003 07:00   35.00  290.00  500.00
+34:   16 DC801 01-01-2003 07:00   42.00  283.00  500.00
+35:   17 P3B04 01-01-2003 08:00   34.00  290.00  500.00
+36:   18 DC801 01-01-2003 08:00   42.00  282.00  500.00
+37:   19 P3B04 01-01-2003 09:00   33.00  290.00  500.00
+38:   20 DC801 01-01-2003 09:00   42.00  281.00  500.00
+39:   21 P3B04 01-01-2003 10:00   32.00  290.00  500.00
+40:   22 DC801 01-01-2003 10:00   42.00  280.00  500.00
+41:   23 P3B04 01-01-2003 11:00   31.00  290.00  500.00
+42:   24 DC801 01-01-2003 11:00   42.00  279.00  500.00
+43:   25 P3B04 01-01-2003 12:00   30.00  290.00  500.00
+44:   26 DC801 01-01-2003 12:00   42.00  278.00  500.00
+45:   27 P3B04 01-01-2003 13:00   29.00  290.00  500.00
+46:   28 DC801 01-01-2003 13:00   42.00  277.00  500.00
+47:   29 P3B04 01-01-2003 14:00   28.00  290.00  500.00
+48:   30 DC801 01-01-2003 14:00   42.00  276.00  500.00
+49:   31 P3B04 01-01-2003 15:00   27.00  290.00  500.00
+50:   32 DC801 01-01-2003 15:00   42.00  275.00  500.00
+51:   33 P3B04 01-01-2003 16:00   26.00  290.00  500.00
+52:   34 DC801 01-01-2003 16:00   42.00  274.00  500.00
+53:   35 P3B04 01-01-2003 17:00   25.00  290.00  500.00
+54:   36 DC801 01-01-2003 17:00   42.00  273.00  500.00
+55:   37 P3B04 01-01-2003 18:00   24.00  290.00  500.00
+56:   38 DC801 01-01-2003 18:00   42.00  272.00  500.00
+57:   39 P3B04 01-01-2003 19:00   23.00  290.00  500.00
+58:   40 DC801 01-01-2003 19:00   42.00  271.00  500.00
+59:   41 P3B04 01-01-2003 20:00   22.00  290.00  500.00
+60:   42 DC801 01-01-2003 20:00   42.00  270.00  500.00
+61:   43 P3B04 01-01-2003 21:00   21.00  290.00  500.00
+62:   44 DC801 01-01-2003 21:00   42.00  269.00  500.00
+63:   45 P3B04 01-01-2003 22:00   20.00  290.00  500.00
+64:   46 DC801 01-01-2003 22:00   42.00  268.00  500.00
+65:   47 P3B04 01-01-2003 23:00   19.00  290.00  500.00
+66:   48 DC801 01-01-2003 23:00   42.00  267.00  500.00
+67: 99999   END  0- 0-   0  0: 0    0.00    0.00    0.00
+</pre>
+<table width="95%" border="0" cellpadding="5" cellspacing="5">
+  <tr align="left" valign="top"> 
+    <td height="6" width="10%"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></td>
+    <td height="6" width="92%"><b><font face="Arial, Helvetica, sans-serif" size="2">Description</font></b></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">1&#150;4</font></td>
+    <td width="92%"><font face="Arial, Helvetica, sans-serif" size="2">Header 
+      lines with comments</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">5</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Number of diagnostic 
+        quantities to print out. </font></p>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%" height="30"><font face="Arial, Helvetica, sans-serif" size="2">6</font></td>
+    <td width="92%" height="30"><font face="Arial, Helvetica, sans-serif" size="2">Separator 
+      line </font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">7&#150;14</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Here we list the 
+        diagnostic quantities that we want to print out at each flight track location. 
+        There are four different kinds of diagnostic quantities:</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Tracers (e.g. 
+          <font size="2"> <font face="Courier New, Courier, mono"> TRA_001</font></font>, 
+          <font size="2"> <font face="Courier New, Courier, mono"> &nbsp;TRA_002</font></font>, 
+          ...)</font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">SMVGEAR reaction 
+          rates (e.g. <font face="Courier New, Courier, mono" size="2">REA_001</font>, 
+          <font size="2"> <font face="Courier New, Courier, mono"> &nbsp;REA_295</font></font>)</font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">SMVGEAR species 
+          concentrations (e.g. <font face="Courier New, Courier, mono" size="2">O3</font>)</font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Met field quantities 
+          (e.g. <font face="Courier New, Courier, mono" size="2">GMAO_TEMP, GMAO_ABSH, 
+          GMAO_SURF</font>)</font></li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">NOTES:</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Tracer numbers 
+          correspond to the same order listed in <font face="Courier New, Courier, mono" size="2">inptr.ctm</font>. 
+          In the file above, <font face="Courier New, Courier, mono" size="2">TRA_004<font face="Arial, Helvetica, sans-serif" size="2"> 
+          refers to CO.</font></font></font><font face="Arial, Helvetica, sans-serif" size="2"><font face="Courier New, Courier, mono" size="2"><font face="Arial, Helvetica, sans-serif" size="2"><br>
+          <br>
+          </font></font></font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Reaction rate 
+          numbers correspond to the order listed in <font face="Courier New, Courier, mono" size="2">globchem.dat</font> 
+          and <font face="Courier New, Courier, mono" size="2">smv2.log. </font>In 
+          the file above, <font face="Courier New, Courier, mono" size="2">REA_001</font> 
+          refers to <font face="Courier New, Courier, mono" size="2">O3 + NO -&gt; 
+          NO2+ O2</font> and <font face="Courier New, Courier, mono" size="2">REA_295</font> 
+          refers to the photolysis reaction <font face="Courier New, Courier, mono" size="2">NO2 
+          -&gt; NO + O3</font>.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">SMVGEAR species 
+          names must correspond to the species names listed in <font face="Courier New, Courier, mono">globchem.dat</font>.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Right now, the 
+          only allowable GMAO met fields that can be printed out are:</font>
+          <ul>
+            <li><font face="Arial, Helvetica, sans-serif" size="2"><font face="Courier New, Courier, mono">GMAO_TEMP</font> 
+              (temperature), </font></li>
+            <li><font face="Arial, Helvetica, sans-serif" size="2"><font face="Courier New, Courier, mono">GMAO_ABSH</font> 
+              (absolute humidity) </font></li>
+            <li><font face="Arial, Helvetica, sans-serif" size="2"><font face="Courier New, Courier, mono">GMAO_SURF</font> 
+              (aerosol surface area)</font></li>
+            <li><font face="Courier New, Courier, mono" size="2">GMAO_PSFC</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+              (surface pressure)</font></li>
+            <li><font face="Courier New, Courier, mono" size="2">GMAO_UWND</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+              (zonal winds)</font></li>
+            <li><font face="Courier New, Courier, mono" size="2">GMAO_VWND</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+              (meridional winds)</font></li>
+          </ul>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">15&#150;17</font></td>
+    <td width="92%"><font face="Arial, Helvetica, sans-serif" size="2">Separator 
+      Lines </font><font size="2" face="Arial, Helvetica, sans-serif"></font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">18</font></td>
+    <td width="92%"><font face="Arial, Helvetica, sans-serif" size="2">Comment 
+      line which shows you where to line up each column field of the flight track 
+      points.</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">19&#150;66</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Here we list quantities 
+        which define each flight track point. Make sure that each field lines 
+        up with the guides in the line above.</font></p>
+      <ul>
+        <li><font face="Courier New, Courier, mono" size="2">Point :</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          Flight track data point number (used internally for reference)</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">Type&nbsp;&nbsp;:</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          A short string that denotes the aircraft type and flight number. </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">Date&nbsp;&nbsp;:</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          List the day, month, and year (GMT date) for each flight track point.</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">HH:MM&nbsp;:</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          List the hour and minute (GMT time) for each flight track point.</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">Lat&nbsp;&nbsp;&nbsp;:</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          List the latitude (-90 to 90 degrees) for each flight track point.</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">Lon&nbsp;&nbsp;&nbsp;:</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          List the longitude (0 to 360 degrees) for each flight track point.</font></li>
+        <li><font face="Courier New, Courier, mono" size="2">Press&nbsp;:</font><font face="Arial, Helvetica, sans-serif" size="2"> 
+          List the pressure in hPa for each flight track point.</font></li>
+      </ul>
+      <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">GEOS&#150;CHEM 
+        will loop through each of the flight track points listed in<font face="Courier New, Courier, mono"> 
+        Planeflight.dat </font>and print out each of the diagnostic quantities. 
+        GEOS&#150;CHEM will pick the nearest model box to each flight track point 
+        for comparison. In the future we may introduce a more intelligent interpolation 
+        scheme.</font></p>
+      <p align=justify><font face="Arial, Helvetica, sans-serif" size="2">Note 
+        that it is OK to list flight track points from more than one aircraft 
+        in the same<font face="Courier New, Courier, mono"> Planeflight.dat </font>file 
+        (as is shown above). However, all flight track points must be listed in 
+        increasing order of GMT time or else they will not be interpreted correctly 
+        by GEOS&#150;CHEM.</font></p>
+      </td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">67</font></td>
+    <td width="92%"><font face="Arial, Helvetica, sans-serif" size="2">Ending 
+      line</font></td>
+  </tr>
+</table>
+<br>
+<hr>
+<p><a name="5.2.7"></a><font face="Arial, Helvetica, sans-serif" size="2"><b>5.2.7&nbsp; 
+  The <font face="Courier New, Courier, mono" size="2">prodloss.dat</font> file</b></font> 
+<p align=justify><font face="Arial, Helvetica, sans-serif" size="2">This file is where you 
+  specify the constituents of family tracers for the ND65 diagnostic. It is only 
+  needed for a full chemistry simulation or a single tracer Ox simulation. 
+  This file is similar to the tracer.dat file (see below). Here is a typical example 
+  with line numbers for reference.</font></p>
+<pre>
+01:  C ******** family information
+02:  C Please note that this file allows you to choose your own
+03:  C families for the prod/loss rates. The families have nothing
+04:  C to do with the tracers. You choose your own family names here.
+05:  C You also must have separate entries for the production and
+06:  C loss rates.
+07:  
+08:  C general form (for each family):
+09:  C line 1:    "*family " = signal for code to start reading input
+10:  C line 2:     family name
+11:  C line 3:     type = prod or loss
+12:  C line 4:     nmembers  = number of members in family
+13:  C line 5+:    list family members, one per line
+14:  C             Put the coefficient describing the contribution
+15:  C             of each molecule to the family in the second column.
+16:  
+17:  *family #1: family * POX = O3 + NO2 + 2NO3
+18:	     family     =  POX
+19:	     type       =  prod
+20:	     nmembers   =  9    coefficient
+21:	     member1    =  O3     1
+22:	     member2    =  NO2    1
+23:	     member3    =  NO3    2
+24:  *family #2: family * LOX = O3 + NO2 + 2NO3
+25:	     family     =  LOX
+26:	     type       =  loss
+27:	     nmembers   =  9    coefficient
+28:	     member1    =  O3     1
+29:	     member2    =  NO2    1
+30:	     member3    =  NO3    2
+31:  *family #3: family * PCO = CO
+32:	     family     =  PCO
+33:	     type       =  prod
+34:	     nmembers   =  1    coefficient
+35:	     member1    =  CO     1
+36:  *family #4: family * LCO = CO
+37:	     family     =  LCO
+38:	     type       =  loss
+39:	     nmembers   =  1    coefficient
+40:	     member1    =  CO     1</pre>
+<table width="95%" border="0" cellpadding="5" cellspacing="5">
+  <tr align="left" valign="top"> 
+    <td height="6" width="10%"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></td>
+    <td height="6" width="92%"><b><font face="Arial, Helvetica, sans-serif" size="2">Description</font></b></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">1&#150;15</font></td>
+    <td width="92%"><font face="Arial, Helvetica, sans-serif" size="2">Header 
+      lines with comments</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">16&#150;40</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Definitions for production/loss 
+        families for ND65 diagnostic.</font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">General form (for 
+        each family tracer): </font> </p>
+      <p> 
+      <ul>
+        <li> <font face="Courier New, Courier, mono" size="2">Line 1 &nbsp;: *family 
+          =<font face="Arial, Helvetica, sans-serif" size="2"> signal for code 
+          to start reading input<font face="Courier New, Courier, mono" size="2"> 
+          </font></font></font></li>
+        <li><font face="Courier New, Courier, mono" size="2">Line 2 &nbsp;: <font face="Arial, Helvetica, sans-serif" size="2">family 
+          name </font> </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">Line 3 &nbsp;: type 
+          <font face="Arial, Helvetica, sans-serif" size="2">= prod or loss</font> 
+          </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">Line 4 &nbsp;: nmembers 
+          <font face="Arial, Helvetica, sans-serif">= number of members in family 
+          </font> </font></li>
+        <li><font face="Courier New, Courier, mono" size="2">Line 5+ : <font face="Arial, Helvetica, sans-serif" size="2">list 
+          family members, one per line. Put the coefficient describing the contribution 
+          of each molecule to the family in the second column.</font> </font></li>
+      </ul>
+  </tr>
+</table>
+<p align=justify><font face="Arial, Helvetica, sans-serif" size="2">NOTE: Hopefully 
+  in 2004 we will fold the information contained within <font face="Courier New, Courier, mono" size="2"> timeseries.dat </font> 
+  into a consolidated input file. Stay tuned.<br>
+  </font></p>
+<hr>
+<p><a name="5.3"></a><font face="Arial, Helvetica, sans-serif"><b><font size="2">5.3. 
+  Input files which are modified infrequently</font></b></font> </p>
+<P align=justify><font face="Arial, Helvetica, sans-serif" size="2">In this section are included 
+  GEOS&#150;CHEM input files which only need to be modified every once and a while. 
+  These include files which describe the chemistry and photolysis mechanisms. 
+  You should only have to modify these files if you wish to change the chemical 
+  mechanism or photolysis mechanism. <br>
+  <br>
+  </font> 
+<hr>
+<P><font face="Arial, Helvetica, sans-serif" size="2"><b><a name="5.3.1"></a>5.3.1 
+  The <font face="Courier New, Courier, mono" size="2">tracer.dat</font> file</b></font> 
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> This file 
+  is used to define the family tracers for the SMVGEAR chemistry mechanism. Family 
+  tracers are tracers such as NOx or Ox which contain more than one chemical species. 
+  In <font face="Courier New, Courier, mono" size="2">tracer.dat</font>, we list 
+  which species of the family tracer is the emitted tracer. </font><font face="Arial, Helvetica, sans-serif" size="2">We 
+  also list the &quot;species coefficient&quot;, or many molecules of each individual 
+  species are contributed to the family tracer. For example, if we define Ox = 
+  O3 + NO2 + 2NO3, then O3 will have a coefficient of 1, NO2 will have a coefficient 
+  of 1, and NO3 will have a coefficient of 2. respectively.</font></p>
+<p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">In the current 
+  chemical mechanism, only NOx and Ox are family tracers. Certain hydrocarbon 
+  tracers (ALK4, ISOP, MEK, ALD2, PRPE, C3H8, C2H6) are carried through GEOS&#150;CHEM 
+  as atoms C instead of molecules tracer. For these species we list the number 
+  of moles carbon per mole tracer as the &quot;species coefficient&quot;.</font></p>
+<pre>001: C ******** tracer family information
+002: C general form (for each tracer):
+003: C line 1:    "*tracer #i . . ."
+004: C line 2:     nmembers  = number of members in family
+005: C line 3+:    list family members, one per line
+006: C             Put a 1 in the "emit_spec" column beside the
+007: C                species that are emitted. (Note: you can
+008: C                have only one emitted species per tracer family.)
+009: C             Put the coefficient of tracer constituent for each 
+010: C                molecule in the "coef_of_tconst" column.
+011: C                (the coef_of_tconst - 1 = ctrmb)
+012: C
+013: C             Example: NO3 has coefficient=2 for Ox, since NO3
+014: C                can photolyze twice to give two O atoms.
+015: C             Example: C3H8 has coefficient=3, since we traditionally
+016: C                have reported C3H8 as molecules of carbon.
+017: C
+018: C NOTE: We only have to specify the first 24 tracers since these will
+019: C       have chemistry done by SMVGEAR.  The tracers DMS, SO2, SO4,
+020: C       MSA, NH3, NH4, NIT do not need to be specified here since
+021: C       chemistry for these tracers is done in sulfate_mod.f.
+022: C       
+023: C       -- Bob Yantosca (22 Jan 2003)
+024: 
+025: *tracer #1 * NOX= NO2+ NO+ NO3+ HNO2
+026: 	     nmembers   =  4    emit_spec   coef_of_tconst
+027: 	     member1    =  NO2                1
+028: 	     member2    =  NO     1           1
+029: 	     member3    =  NO3                1
+030: 	     member4    =  HNO2               1
+031: *tracer #2: family * OX= O3+ NO2+ 2NO3
+032: 	     nmembers   =  3    emit_spec   coef_of_tconst
+033: 	     member1    =  O3                 1
+034: 	     member2    =  NO2                1
+035: 	     member3    =  NO3                2
+036: *tracer #3 * PAN
+037: 	     nmembers   =  1    emit_spec  coef_of_tconst
+038: 	     member1    =  PAN                1
+039: *tracer #4 * CO
+040: 	     nmembers   =  1    emit_spec  coef_of_tconst
+041: 	     member1    =  CO     1           1
+042: *tracer #5 HC2 (atoms C)= 4*ALK4
+043: 	     nmembers   =  1    emit_spec  coef_of_tconst
+044: 	     member1    =  ALK4   1           4
+045: *tracer #6 HC1 (atoms C)=  5*ISOP
+046: 	     nmembers   =  1    emit_spec  coef_of_tconst
+047: 	     member1    =  ISOP   1           5
+048: *tracer #7 * HNO3             
+049: 	     nmembers   =  1    emit_spec  coef_of_tconst
+050: 	     member1    =  HNO3               1
+051: *tracer #8 * H2O2
+052: 	     nmembers   =  1    emit_spec  coef_of_tconst
+053: 	     member1    =  H2O2               1
+054: *tracer #9 * ACET
+055: 	     nmembers   =  1    emit_spec  coef_of_tconst
+056: 	     member1    =  ACET   1           3 
+057: *tracer #10 * MEK
+058: 	     nmembers   =  1    emit_spec  coef_of_tconst
+059: 	     member1    =  MEK    1           4 
+060: *tracer #11 * ALD2
+061: 	     nmembers   =  1    emit_spec  coef_of_tconst
+062: 	     member1    =  ALD2   1           2 
+063: *tracer #12 * RCHO
+064: 	     nmembers   =  1    emit_spec  coef_of_tconst
+065: 	     member1    =  RCHO               1
+066: *tracer #13 * MVK
+067: 	     nmembers   =  1    emit_spec  coef_of_tconst
+068: 	     member1    =  MVK                1
+069: *tracer #14 * MACR
+070: 	     nmembers   =  1    emit_spec  coef_of_tconst
+071: 	     member1    =  MACR               1
+072: *tracer #15 * PMN
+073: 	     nmembers   =  1    emit_spec  coef_of_tconst
+074: 	     member1    =  PMN                1
+075: *tracer #16 * PPN
+076: 	     nmembers   =  1    emit_spec  coef_of_tconst
+077: 	     member1    =  PPN                1
+078: *tracer #17 * R4N2
+079: 	     nmembers   =  1    emit_spec  coef_of_tconst
+080: 	     member1    =  R4N2               1
+081: *tracer #18 tracer (atoms C) =  3*PRPE
+082: 	     nmembers   =  1    emit_spec  coef_of_tconst
+083: 	     member1    =  PRPE     1         3
+084: *tracer #19 tracer (atoms C) =  3*C3H8
+085:  	     nmembers   =  1    emit_spec  coef_of_tconst
+086:  	     member1    =  C3H8     1         3
+087:  *tracer #20 * CH2O
+088:  	     nmembers   =  1    emit_spec  coef_of_tconst
+089:  	     member1    =  CH2O     1         1
+090:  *tracer #21 tracer (atoms C) =  2*C2H6
+091:  	     nmembers   =  1    emit_spec  coef_of_tconst
+092:  	     member1    =  C2H6     1         2
+093:  *tracer #22 * N2O5
+094:  	     nmembers   =  1    emit_spec  coef_of_tconst
+095:  	     member1    =  N2O5               1
+096:  *tracer #23 * HNO4
+097:  	     nmembers   =  1    emit_spec  coef_of_tconst
+098:  	     member1    =  HNO4               1
+099:  *tracer #24 * MP 
+100:  	     nmembers   =  1    emit_spec  coef_of_tconst
+101:  	     member1    =  MP                 1
+102:  *tracer #25 * DMS 
+103:  	     nmembers   =  1    emit_spec  coef_of_tconst
+104:  	     member1    =  DMS                1
+105:  *tracer #26 * SO2 
+106:  	     nmembers   =  1    emit_spec  coef_of_tconst
+107:  	     member1    =  SO2                1
+108:  *tracer #27 * SO4
+109:  	     nmembers   =  1    emit_spec  coef_of_tconst
+110:  	     member1    =  SO4                1
+111:  *tracer #28 * MSA 
+112:  	     nmembers   =  1    emit_spec  coef_of_tconst
+113:  	     member1    =  MSA                1</pre>
+<table width="95%" border="0" cellpadding="5" cellspacing="5">
+  <tr align="left" valign="top"> 
+    <td height="24" width="10%"><b><font face="Arial, Helvetica, sans-serif" size="2">Line</font></b></td>
+    <td height="24" width="92%"><b><font face="Arial, Helvetica, sans-serif" size="2">Description</font></b></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">1-24</font></td>
+    <td width="92%"><font face="Arial, Helvetica, sans-serif" size="2">Header 
+      lines with information</font></td>
+  </tr>
+  <tr align="left" valign="top"> 
+    <td width="10%"><font face="Arial, Helvetica, sans-serif" size="2">25-</font></td>
+    <td width="92%"> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2">Definition of individual 
+        constituents for each family tracer. The general form is:</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Sub-Line 1 : <font face="Courier New, Courier, mono" size="2">*tracer 
+          #i<br>
+          <br>
+          </font></font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Sub-Line 2 : <font face="Courier New, Courier, mono" size="2">NMEMBERS</font> 
+          = number of members in family <br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Sub-Line 3 : List 
+          family members, one per line. <br>
+          <br>
+          Put a 1 in the <font face="Courier New, Courier, mono" size="2">emit_spec</font> 
+          column beside the species that are emitted. You may specify only one 
+          emitted species per tracer family. <br>
+          <br>
+          Put the coefficient of tracer constituent for each molecule in the &quot;coef_of_tconst&quot; 
+          column. (the coef_of_tconst - 1 = ctrmb). </font> 
+          <p align=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">Example: 
+            NO3 has coefficient=2 for Ox, since NO3 can photolyze twice to give 
+            two O atoms. </font> 
+          <p align=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">Example: 
+            C3H8 has coefficient=3, since we traditionally have reported C3H8 
+            as molecules of carbon. </font> 
+        </li>
+      </ul>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">NOTES:</font></p>
+      <ul>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">At this time there 
+          are only two family tracers (i.e. tracers that are a combination of 
+          more than one species) in the SMVGEAR full-chemistry simulation (NOx 
+          and Ox). The species of NOx that emits is NO, and the species of Ox 
+          that emits is NO2.<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">The<font face="Courier New, Courier, mono" size="2"> 
+          tracer.dat</font> file is used only for the SMVGEAR chemistry mechanism. 
+          We do not have to list DMS, SO2, SO4, MSA, NH3, NH4, or NIT, since chemistry 
+          for these tracers is handled by separate subroutines (in <font face="Courier New, Courier, mono" size="2">sulfate_mod.f</font>).<br>
+          <br>
+          </font></li>
+        <li><font face="Arial, Helvetica, sans-serif" size="2">Normally, you 
+          should not have to modify <font face="Courier New, Courier, mono" size="2">tracer.dat</font>. 
+          The only time when you might have to modify it is if you wish to change 
+          the definition of Ox to contain more odd oxygen species. </font></li>
+      </ul>
+  </tr>
+</table>
+<p align=justify><font face="Arial, Helvetica, sans-serif" size="2">NOTE: Hopefully 
+  in 2004 we will fold the information contained within <font face="Courier New, Courier, mono" size="2">tracer.dat</font> 
+  into a consolidated input file. Stay tuned.</font> 
+<P> 
+  <HR>
+  
+<P> <A NAME="5.3.2"></a><b><font face="Arial, Helvetica, sans-serif" size="2">5.3.2 
+  The <font face="Courier New, Courier, mono" size="2">mglob.dat</font> file</font></b> 
+<p><font face="Arial, Helvetica, sans-serif" size="2">This file contains convergence 
+  criteria and other parameters for SMVGEAR II (and hence is only needed for the 
+  full-chemistry simulation). Here is a typical example: </font></p>
+
+<PRE>MGLOB.DAT: SMVGEAR II GLOBAL INPUT DATA SET
+
+ $CTLFLG
+  IFSOLVE = 1,  ITESTGEAR = 0,
+  IFURBAN = 1,  IFTROP    = 0,  IFSTRAT   = 0,
+ $END
+ $CTLDIM
+  KULOOP   = 500,  
+  LYOUT    = 1,  LXOUT  = 1,  LZOUT    = 15,  
+ $END
+ $CTLTIM
+  CHEMINTV = 3600.,  
+ $END
+ $CTLPRT
+  IPRATES  = 0,  IPREADER = 1,  
+  IOSPEC   = 1,  IOREAC   = 1,        
+  APGASA   = ' ',            APGASB = ' ',           APGASC = ' ',  
+  APGASD   = ' ',            APGASE = ' ',           APGASF = ' ',    
+  APGASG   = ' ',            APGASH = ' ',
+ $END
+ $CLGEAR
+  IFREORD  = 0,        FRACDEC = 0.25,
+  PLOURB   = 900.0,    PLOTROP = 225.0, 
+  ERRMAXU  = 1.00E-01, YLOWU   = 1.0E+06, YHIU = 1.0E+07, HMAXDAYU = 9.0E+02,
+  ERRMAXR  = 1.00E-03, YLOWR   = 1.0E+05, YHIR = 1.0E+07, HMAXDAYR = 9.0E+02,
+  ERRMAXS  = 1.00E-03, YLOWS   = 1.0E+05, YHIS = 1.0E+07, HMAXDAYS = 9.0E+02,
+  HMAXNIT  = 2.00E+03, 
+ $END
+</PRE>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">The 
+  three most important parameters in this file are: </font>
+<blockquote>
+  <PRE>CHEMINTV : Chemistry interval in seconds.   
+ERRMAXU  : Relative error convergence criterion for SMVGEAR II urban domain
+YLOWU    : Absolute error convergence criterion for SMVGEAR II urban domain
+</PRE>
+</blockquote>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Recommended 
+  values: <font face="Courier New, Courier, mono">CHEMINTV = 3600; ERRMAXU = 1.0E-01; 
+  YLOWU = 1.0E+06 </font></font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> You should 
+  not normally have to modify this file, unless the chemistry does not converge 
+  at a particular location.</font>
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">NOTE: The 
+  <font face="Courier New, Courier, mono">mglob.dat</font> file of SMVGEAR II 
+  corresponds to the <font face="Courier New, Courier, mono">m.dat</font> file 
+  of SMVGEAR I. </font>
+<P> 
+  <HR>
+  
+<P> <A NAME="5.3.3"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>5.3.3 
+  The <font face="Courier New, Courier, mono" size="2">globchem.dat</font> file</b></font> 
+<p align=justify><font face="Arial, Helvetica, sans-serif" size="2">This file 
+  defines the <a href="../../../documentation/geos_mech.html" target="_blank">chemistry mechanism 
+  that SMVGEAR II will use</a>. If you feel that something should be changed in 
+  this file, please consult with Daniel Jacob. </font></p>
+<p align=justify><font face="Arial, Helvetica, sans-serif" size="2">NOTE: In 
+  SMVGEAR I, the chemistry mechanism was stored in a file called <font face="Courier New, Courier, mono">chem.dat</font>. 
+  In SMVGEAR II, the name of the chemistry mechnanism file has been changed to 
+  <font face="Courier New, Courier, mono">globchem.dat</font>. The file format 
+  has also changed accordingly.</font></p>
+<hr>
+<p> <a name="5.3.4"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>5.3.4 
+  The <font face="Courier New, Courier, mono" size="2">chemga.dat</font> file</b></font> 
+<p align=justify><font face="Arial, Helvetica, sans-serif" size="2">This file defines some 
+  aerosol properties for the full-chemistry run with the SMVGEAR solver. This 
+  file is read in by SMVGEAR routine <font face="Courier New, Courier, mono" size="2">chemset.f</font>. 
+  You should not modify these without first consulting with Daniel Jacob.</font></p>
+<pre>01: PARAMETERS FOR REACTIONS ON WET AEROSOLS (e.g., N2O5):
+02:        0.1!E10.3   astkcf -- sticking coefficient for rxns on aerosol
+03:        0.1!E10.3   xgdfcf -- gas phase diff. coef. (cm2/s) *NOT READ*
+04:     0.1E-4!E10.3   xarsrds-- radius of (dry) aerosol (cm)
+05: PARAMETERS FOR CONVERTING SULFATE M.R. DATA TO ARSL SFC AREA (cm2 arsl/cc air):
+06:        115!I10     mwarsl -- molecular weight of aerosol (g/mol) [98,115]
+07:     1.4E-0!E10.3   ruarsl -- denisity of aerosol (g/cc)
+08:      +0.39!F10.2   RH100  -- deliquescence point (%) (0.39 for NH4HSO4)
+09:         85!I10     iarsfa -- UNIT number for the file of sulfate M.R. data
+</PRE>
+
+<HR>
+  
+<P> <A NAME="5.3.5"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>5.3.5 
+  The <font face="Courier New, Courier, mono" size="2">ratj.d</font> file</b></font> 
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> 
+  This file lists the species names and branching ratios for FAST-J photolysis 
+  species. Unless you are changing the chemistry mechanism, you should not 
+  have to change this file. </font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Here is 
+  the <font face="Courier New, Courier, mono" size="2">ratj.d</font> file for 
+  the current GEOS&#150;CHEM full chemistry mechanism: </font></p>
+ 
+  
+<PRE>01:  # PHOTOLYSIS REACTIONS - MASTER RATEFILE - Paul Brown, Oliver Wild & David Rowley
+02:  # Centre for Atmospheric Science, Cambridge, U.K.  Release date:  22 November 1993
+03:  # SCCS version information: @(#)photol.d        1.2 5/11/94
+04:  # 
+05:  # Modified for Harvard chemistry: several reactions added, re-ordered per chem.dat
+06:  # Also putting in the Harvard names in col 1, the UCI x-sec names in last col !!!
+07:  #                                       -Prashant Murti [4/13/98]
+08:  #
+09:  # The new peroxide recycling now activates the following photolysis species:
+10:  #   GP,IAP,INPN,ISN1,ISNP,MAOP,MRP,PP,PRPN,RIP,VRP.
+11:  # Also be sure to set parameter JPMAX = 55 in "cmn_fj.h". 
+12:  #                                       - Randall Martin & Bob Yantosca [12/20/00]
+13:  #
+14:  #
+15:  # Harvard species             Products - UCI notation                              UCI xsec
+16:  # ===============           ===============================                        ========
+17: 	  1 H2O        PHOTON     OH         HO2                  0.00E+00  0.00      0.0         
+18: 	  2 HO2        PHOTON     OH         O(3P)                0.00E+00  0.00      0.0         
+19: 	  3 O2         PHOTON     O(3P)      O(3P)                0.00E+00  0.00    100.0  O2     
+20: 	  4 O3_P       PHOTON     O2         O(3P)                0.00E+00  0.00    100.0  O3     
+21: 	  5 O3         PHOTON     O2         O(1D)                0.00E+00  0.00    100.0  O3_1d  
+22: 	  6 NO2        PHOTON     NO         O(3P)                0.00E+00  0.00    100.0  NO2    
+23: 	  7 H2O2       PHOTON     OH         OH                   0.00E+00  0.00    100.0  H2O2   
+24: 	  8 MP         PHOTON     HCHO       OH         HO2       0.00E+00  0.00    100.0  ROOH   
+25: 	  9 CH2O       PHOTON     CO         HO2        HO2       0.00E+00  0.00    100.0  HCHO=H+
+26: 	 10 CH2O       PHOTON     CO         H2                   0.00E+00  0.00    100.0  HCHO=H2
+27: 	 11 HNO3       PHOTON     OH         NO2                  0.00E+00  0.00    100.0  HONO2  
+28: 	 12 HNO2       PHOTON     OH         NO                   0.00E+00  0.00    100.0  HONO   
+29: 	 13 HNO4       PHOTON     OH         NO3                  0.00E+00  0.00     33.3  HO2NO2 
+30: 	 14 HNO4       PHOTON     HO2        NO2                  0.00E+00  0.00     66.7  HO2NO2 
+31: 	 15 NO3        PHOTON     NO         O2                   0.00E+00  0.00    100.0  NO3=O2+
+32: 	 16 NO3        PHOTON     NO2        O(3P)                0.00E+00  0.00    100.0  NO3=O+ 
+33: 	 17 N2O5       PHOTON     NO3        NO         O(3P)     0.00E+00  0.00      0.0  N2O5   
+34: 	 18 N2O5       PHOTON     NO3        NO2                  0.00E+00  0.00    100.0  N2O5   
+35: 	 19 ALD2       PHOTON     CH4        CO                   0.00E+00  0.00    100.0  Acet=R+
+36: 	 20 ALD2       PHOTON     MeOO       HO2        CO        0.00E+00  0.00    100.0  Acet=RO
+37: 	 21 PAN        PHOTON     MeCO3      NO2                  0.00E+00  0.00    100.0  PAN    
+38: 	 22 RCHO       PHOTON     EtO2       HO2        CO        0.00E+00  0.00    100.0  RCHO   
+39: 	 23 ACET       PHOTON     MeCO3      MeOO                 0.00E+00  0.00    100.0  Acetone
+40: 	 24 MEK        PHOTON     MeCO3      EtOO                 0.00E+00  0.00    100.0  EtCOMe
+41: 	 25 MNO3       PHOTON     HCHO       H2O        NO2       0.00E+00  0.00    100.0  MeNO3  
+42: 	 26 GLYC       PHOTON     HCHO       HO2        CO        0.00E+00  0.00    100.0  HOMeCHO
+43: 	 27 GLYX       PHOTON     H2         CO                   0.00E+00  0.00     33.3  HCOCHO 
+44: 	 28 GLYX       PHOTON     CO         HO2                  0.00E+00  0.00     33.3  HCOCHO 
+45: 	 29 GLYX       PHOTON     HCHO       CO                   0.00E+00  0.00     33.3  HCOCHO 
+46: 	 30 MGLY       PHOTON     MeCO3      CO         HO2       0.00E+00  0.00     50.0  MeCOCHO
+47: 	 31 MGLY       PHOTON     Acet       CO                   0.00E+00  0.00     50.0  MeCOCHO
+48: 	 32 MVK        PHOTON     PRPE       CO                   0.00E+00  0.00     60.0  MeCOVi 
+49: 	 33 MVK        PHOTON     MeCO3      HCHO       CO  HO2   0.00E+00  0.00     20.0  MeCOVi 
+50: 	 34 MVK        PHOTON     MeOO       MAO3                 0.00E+00  0.00     20.0  MeCOVi 
+51: 	 35 MACR       PHOTON     MAO3       HO2                  0.00E+00  0.00     50.0  MACR   
+52: 	 36 MACR       PHOTON     CO  HO2  MGLY  HO2  MeCO3  HCHO 0.00E+00  0.00     50.0  MACR   
+53: 	 37 HAC        PHOTON     MeCO3      HCHO       HO2       0.00E+00  0.00    100.0  Acetone
+54: 	 38 ETP        PHOTON     OH         HO2        Acet      0.00E+00  0.00    100.0  ROOH   
+55: 	 39 RA3P       PHOTON     OH         HO2        RCHO      0.00E+00  0.00    100.0  ROOH   
+56: 	 40 RB3P       PHOTON     OH         HO2        RCHO      0.00E+00  0.00    100.0  ROOH   
+57: 	 41 R4P        PHOTON     OH         HO2        RCHO      0.00E+00  0.00    100.0  ROOH   
+58: 	 42 RP         PHOTON     OH         HO2        Acet      0.00E+00  0.00    100.0  ROOH   
+59: 	 43 R4N2       PHOTON     NO2 MeCOMe MEK MO2 HO2 ALD2 ... 0.00E+00  0.00    100.0  MeNO3  
+60: 	 44 MAP        PHOTON     OH         MO2                  0.00E+00  0.00    100.0  ROOH   
+61: 	 45 INPN       PHOTON     OH         HO2        RCHO NO2  0.00E+00  0.00    100.0  ROOH
+62: 	 46 PRPN       PHOTON     OH         HO2        RCHO NO2  0.00E+00  0.00    100.0  ROOH
+63: 	 47 PP         PHOTON     OH         HO2        RCHO      0.00E+00  0.00    100.0  ROOH
+64: 	 48 GP         PHOTON     OH         HO2        RCHO      0.00E+00  0.00    100.0  ROOH
+65: 	 49 GLP        PHOTON     OH         HO2        RCHO      0.00E+00  0.00    100.0  ROOH
+66: 	 50 RIP        PHOTON     OH HO2 CH2O MVK MACR RIO1 IALD  0.00E+00  0.00    100.0  ROOH
+67: 	 51 IAP        PHOTON     OH HO2  CO  H2  HAC  GLYC  MGLY 0.00E+00  0.00    100.0  ROOH
+68: 	 52 ISNP       PHOTON     OH         HO2        RCHO NO2  0.00E+00  0.00    100.0  ROOH
+69: 	 53 VRP        PHOTON     OH  HO2  CH2O  MCO3  GLYC  MGLY 0.00E+00  0.00    100.0  ROOH
+70: 	 54 MRP        PHOTON     OH  HO2  MGLY  HAC  CO  CH2O    0.00E+00  0.00    100.0  ROOH 
+71: 	 55 MAOP       PHOTON     OH         HO2        RCHO      0.00E+00  0.00    100.0  ROOH
+72:   9999                                                       0.00E-00  0.00      0.0         
+73:   
+74:   
+75:   
+76:   NOTES:                                                                          
+77:   -----                                                                           
+78:  [4/15/98]
+79:  Oliver Wild: All reaction data from JPL '97, IUPAC IV. IUPAC V is soon
+80:  expected. - ppm
+81:   
+82:   
+83:    All reaction data taken from IUPAC supplement IV unless otherwise indicated.
+84:   
+85:    JPL - data from JPL (latest assessment as far as possible)
+86: 										       
+87:    ? - reaction products unknown
+88:    * - user strongly advised to consult source material
+89:    B - branching ratio assumed equal for all channels in the absence of more information
+90:    U - upper limit for rate coefficient
+91:   
+92:   
+93:   Changes since 08/3/93 release:
+94:    O now written as O(3P)
+95: 										       
+96:  (Note that the second of the acetaldehyde channels above occurs at wavelengths
+97:  less than 289 nm, and therefore doesn't appear in the Fast-J region at all - 
+98:  I've simply included it here for completeness) - [from Oliver, 3/7/98]</PRE>
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">The photolysis 
+  reactions listed in <font face="Courier New, Courier, mono" size="2">ratj.d</font> 
+  should correspond to those listed in <font face="Courier New, Courier, mono" size="2">chem.dat</font>. 
+  If they do not, then FAST-J will stop execution with an indexing error message. 
+  </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">The pound 
+  sign (#) is treated as a comment character. If you want to place comments at 
+  the top of the file, make sure the first column begins with a #. Also, everything 
+  below the 9999 (in line 72) will not be read in. You can use this space 
+  for comments as well.</font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> If you are 
+  trying to run a CH<sub>3</sub>I simulation, then you should use the following 
+  <font face="Courier New, Courier, mono" size="2">ratj.d</font> file, which includes 
+  information for methyl iodide: </font> 
+<PRE>001:  # PHOTOLYSIS REACTIONS - MASTER RATEFILE - Paul Brown, Oliver Wild & David Rowley
+002:  # Centre for Atmospheric Science, Cambridge, U.K.  Release date:  22 November 1993
+003:  # SCCS version information: @(#)photol.d        1.2 5/11/94
+004:  # 
+005:  # Modified for Harvard chemistry: several reactions added, re-ordered per chem.dat
+006:  # Also putting in the Harvard names in col 1, the UCI x-sec names in last col !!!
+007:  #                                       -Prashant Murti [4/13/98]
+008:  #
+009:  #
+010:  # Harvard species             Products - UCI notation                              UCI xsec
+011:  # ===============           ===============================                        ========
+012:      1 H2O        PHOTON     OH         HO2                  0.00E+00  0.00      0.0         
+013:      2 HO2        PHOTON     OH         O(3P)                0.00E+00  0.00      0.0         
+014:      3 O2         PHOTON     O(3P)      O(3P)                0.00E+00  0.00    100.0  O2     
+015:      4 O3_P       PHOTON     O2         O(3P)                0.00E+00  0.00    100.0  O3     
+016:      5 CH3I       PHOTON     CH3        I                    0.00E+00  0.00    100.0  CH3I
+017:   9999                                                       0.00E-00  0.00      0.0 </PRE>
+<P> 
+  <HR>
+  
+<P> <A NAME="5.3.6"></a> <b><font face="Arial, Helvetica, sans-serif" size="2">5.3.6 
+  The<font face="Courier New, Courier, mono" size="2"> jv_atms.dat</font> file</font></b> 
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> This file 
+  contains climatology for O3 and temperature, as used with the FAST-J photolysis 
+  code. You should not modify this file unless you wish to change some parameters 
+  for the photolysis. The current file is listed below. </font> </p>
+ 
+  
+<PRE>jv_atms.dat:  T-O3 profs (McPeters/92 & Nagatani/91)  for FAST J-code (prather)   
+   18   12 latitudes x months                                                     
+A-85LAT 1M
+	 256.4  251.1  241.9  233.2  228.0  227.8  230.3  232.3  233.4  234.0  234.4
+	 235.0  236.3  238.7  242.0  245.4  248.9  252.4  256.7  263.2  271.5  279.5
+	 285.5  289.2  290.2  288.4  283.8  276.0  269.5  263.3  257.1  249.8  242.5
+	 235.0  227.0  218.2  209.1  199.9  190.7  170.7  170.4
+	 0.025  0.033  0.035  0.027  0.043  0.129  0.306  0.577  0.993  1.727  2.800
+	 3.637  3.896  3.841  3.957  4.253  4.750  5.369  5.849  5.959  5.630  4.829
+	 3.862  3.004  2.321  1.808  1.445  1.176  0.955  0.770  0.654
+etc...</PRE>
+<P> 
+  <HR>
+  
+<P> <A NAME="5.3.7"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>5.3.7 
+  The <font face="Courier New, Courier, mono" size="2">jv_spec.dat</font> file</b></font> 
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> This file 
+  contains cross-sections and quantum yields for FAST-J photolysis species. 
+  The current file is listed below. You should not have to modify this file 
+  unless you wish to change some parameters for the photolysis.</font></p>
+ 
+  
+<PRE>jv_spec.dat:  FAST-J, std JPL 00 (mje 4/02) -- aerosol & mineral dust (rvm, 3/02)
+NW-JValues   27    7    1    7     NJVAL, NWWW, NW1:NW2			       
+w-beg (nm)    289.00    298.25    307.45    312.45    320.30    345.00    412.45
+w-end (nm)    298.25    307.45    312.45    320.30    345.00    412.45    850.00
+w-eff (nm)      294.      303.      310.      316.      333.      380.      574.
+SOL#/cm2/s 7.352E+14 7.332E+14 5.022E+14 8.709E+14 3.786E+15 1.544E+16 2.110E+17
+Raylay cm2  6.18E-26  5.43E-26  4.92E-26  4.54E-26  3.63E-26  2.09E-26  3.83E-27
+BCarb m2/g     10.08      9.96      9.87      9.79      9.58      9.00      6.50
+O2     180								       
+O2     260								       
+O2     300								       
+O3     180 8.693E-19 2.365E-19 8.722E-20 3.694E-20 4.295E-21 1.804E-23 1.630E-21
+O3     260 9.189E-19 2.571E-19 9.673E-20 4.141E-20 5.457E-21 2.775E-23 1.630E-21
+O3     300 9.574E-19 2.777E-19 1.075E-19 4.725E-20 6.782E-21 4.824E-23 1.630E-21
+O3_1d  180 9.500E-01 9.330E-01 4.270E-01 6.930E-02 6.060E-02       0.0       0.0
+O3_1d  260 9.500E-01 9.420E-01 4.890E-01 1.360E-01 7.110E-02       0.0       0.0
+O3_1d  300 9.500E-01 9.550E-01 5.870E-01 2.370E-01 8.570E-02       0.0       0.0
+NO2    200 1.048E-19 1.494E-19 1.898E-19 2.295E-19 3.391E-19 4.230E-19 4.047E-22
+NO2    300 1.039E-19 1.462E-19 1.845E-19 2.223E-19 3.256E-19 4.150E-19 4.020E-22
+H2O2   200 8.838E-21 4.991E-21 3.190E-21 2.099E-21 7.716E-22 1.707E-23       0.0
+H2O2   300 9.801E-21 5.718E-21 3.773E-21 2.568E-21 1.020E-21 2.287E-23       0.0
+ROOH   300 5.883E-21 3.573E-21 2.437E-21 1.756E-21 7.428E-22 4.194E-23       0.0
+ROOH   300 5.883E-21 3.573E-21 2.437E-21 1.756E-21 7.428E-22 4.194E-23       0.0
+HCHO=H+223       0.0 1.969E-20 1.274E-20 1.971E-20 4.354E-21       0.0       0.0
+HCHO=H+293       0.0 1.873E-20 1.304E-20 1.896E-20 3.949E-21       0.0       0.0
+HCHO=H2223       0.0 6.475E-21 4.392E-21 9.027E-21 1.041E-20 1.946E-22       0.0
+HCHO=H2293       0.0 6.163E-21 4.500E-21 8.715E-21 9.434E-21 1.883E-22       0.0
+HONO2  200 3.706E-21 1.377E-21 5.451E-22 2.102E-22 2.154E-23 8.105E-26       0.0
+HONO2  300 4.747E-21 1.923E-21 8.314E-22 3.589E-22 4.764E-23 2.499E-25       0.0
+HONO   300       0.0       0.0 1.265E-20 3.469E-20 1.090E-19 8.644E-20 0.000E+00
+HONO   300       0.0       0.0 1.265E-20 3.469E-20 1.090E-19 8.644E-20 0.000E+00
+HO2NO2 300 2.869E-20 1.102E-20 5.222E-21 2.794E-21 3.255E-22       0.0       0.0
+HO2NO2 300 2.869E-20 1.102E-20 5.222E-21 2.794E-21 3.255E-22       0.0       0.0
+NO3=O+ 298       0.0       0.0       0.0       0.0       0.0       0.0 7.428E-19
+NO3=O+ 298       0.0       0.0       0.0       0.0       0.0       0.0 7.428E-19
+NO3=O2+298       0.0       0.0       0.0       0.0       0.0       0.0 9.569E-20
+NO3=O2+298       0.0       0.0       0.0       0.0       0.0       0.0 9.569E-20
+N2O5   225 4.130E-20 1.998E-20 1.167E-20 7.250E-21 2.296E-21 1.161E-22       0.0
+N2O5   300 5.718E-20 3.317E-20 2.223E-20 1.552E-20 6.409E-21 5.415E-22       0.0
+Acet=RO298 4.008E-20 2.869E-20 1.840E-20 3.626E-21       0.0       0.0       0.0
+Acet=RO298 4.008E-20 2.869E-20 1.840E-20 3.626E-21       0.0       0.0       0.0
+Acet=R+298       0.0       0.0       0.0       0.0       0.0       0.0       0.0
+Acet=R+298       0.0       0.0       0.0       0.0       0.0       0.0       0.0
+PAN    250 2.714E-21 9.251E-22 4.342E-22 2.290E-22 5.508E-23 6.551E-25       0.0
+PAN    298 3.931E-21 1.399E-21 6.730E-22 3.630E-22 9.301E-23 1.193E-24       0.0
+RCHO   298 5.203E-20 3.671E-20 2.220E-20 1.170E-20 1.569E-21       0.0       0.0
+RCHO   298 5.203E-20 3.671E-20 2.220E-20 1.170E-20 1.569E-21       0.0       0.0
+Acetone235 2.982E-20 1.301E-20 4.321E-21 1.038E-21 5.878E-23 1.529E-25 0.000E+00
+Acetone298 3.255E-20 1.476E-20 5.179E-21 1.304E-21 9.619E-23 2.671E-25 0.000E+00
+EtCOMe 298 1.432E-20 4.217E-21 1.150E-21 3.394E-22 4.706E-23       0.0       0.0
+EtCOMe 298 1.432E-20 4.217E-21 1.150E-21 3.394E-22 4.706E-23       0.0       0.0
+MeNO3  298 2.871E-20 1.080E-20 5.497E-21 3.460E-21 2.919E-22       0.0       0.0
+MeNO3  298 2.871E-20 1.080E-20 5.497E-21 3.460E-21 2.919E-22       0.0       0.0
+HOMeCHO296 2.322E-20 1.773E-20 1.139E-20 5.584E-21 3.639E-22       0.0       0.0
+HOMeCHO296 2.322E-20 1.773E-20 1.139E-20 5.584E-21 3.639E-22       0.0       0.0
+HCOCHO 298 9.701E-22 1.498E-21 8.257E-21 1.434E-21 2.078E-22 6.393E-22 3.277E-22
+HCOCHO 298 9.701E-22 1.498E-21 8.257E-21 1.434E-21 2.078E-22 6.393E-22 3.277E-22
+MeCOCHO298 2.381E-21 1.853E-21 1.296E-21 9.572E-22 3.327E-22 2.004E-21 4.255E-22
+MeCOCHO298 2.381E-21 1.853E-21 1.296E-21 9.572E-22 3.327E-22 2.004E-21 4.255E-22
+MeCOVi 298 1.388E-21 1.985E-21 2.587E-21 2.837E-21 3.115E-21 6.627E-22       0.0
+MeCOVi 298 1.388E-21 1.985E-21 2.587E-21 2.837E-21 3.115E-21 6.627E-22       0.0
+MACR   298 7.862E-22 1.215E-21 1.645E-21 1.804E-21 1.998E-21 3.654E-22       0.0
+MACR   298 7.862E-22 1.215E-21 1.645E-21 1.804E-21 1.998E-21 3.654E-22       0.0
+CH3I   225 3.289E-20 9.071E-21 4.037E-21 2.073E-21 3.577E-22 1.551E-24 0.000E+00
+CH3I   298 5.024E-20 1.479E-20 6.296E-21 3.199E-21 6.783E-22 6.121E-24 0.000E+00
+===================Pressure Dependencies========================================
+Pressure Dep: 1  							       
+Acetone    5.651E-20 1.595E-19 2.134E-19 1.262E-19 1.306E-19 1.548E-19 0.000E+00
+================================================================================
+NW-SCATTER   56  ! Scattering phase fns, scale extinct @ 999 nm    (mjp 99/07) 
+ w(nm)    Q    r-eff  ss-alb  pi(0) pi(1) pi(2) pi(3) pi(4) pi(5) pi(6) pi(7)  
+01 RAYLE  = Rayleigh phase						       
+  300   123.5  0.001  1.0000  1.000   0.0 0.500   0.0   0.0   0.0   0.0   0.0  
+  400    39.1  0.001  1.0000  1.000   0.0 0.500   0.0   0.0   0.0   0.0   0.0  
+  600     7.7  0.001  1.0000  1.000   0.0 0.500   0.0   0.0   0.0   0.0   0.0  
+  999     1.0  0.001  1.0000  1.000   0.0 0.500   0.0   0.0   0.0   0.0   0.0  
+02 ISOTR  = isotropic							       
+  300     1.0  0.001  1.0000  1.000   0.0   0.0   0.0   0.0   0.0   0.0   0.0  
+  400     1.0  0.001  1.0000  1.000   0.0   0.0   0.0   0.0   0.0   0.0   0.0  
+  600     1.0  0.001  1.0000  1.000   0.0   0.0   0.0   0.0   0.0   0.0   0.0  
+  999     1.0  0.001  1.0000  1.000   0.0   0.0   0.0   0.0   0.0   0.0   0.0  
+03 ABSRB  = fully absorbing 'soot', wavelength indep.			       
+  300     1.0  0.039  0.0000  1.000   0.0   0.0   0.0   0.0   0.0   0.0   0.0  
+  400     1.0  0.039  0.0000  1.000   0.0   0.0   0.0   0.0   0.0   0.0   0.0  
+  600     1.0  0.039  0.0000  1.000   0.0   0.0   0.0   0.0   0.0   0.0   0.0  
+  999     1.0  0.039  0.0000  1.000   0.0   0.0   0.0   0.0   0.0   0.0   0.0  
+04 S_Bkg = backgrnd stratospheric sulfate (n=1.46, log-norm: r=.09um/sigma=.6) 
+  300  2.7541  0.221  1.0000  1.000 2.157 2.767 2.627 2.457 2.098 1.792 1.518  
+  400  2.4017  0.221  1.0000  1.000 2.146 2.641 2.422 2.122 1.709 1.357 1.070  
+  600  1.6454  0.221  1.0000  1.000 2.076 2.377 2.023 1.608 1.177 0.846 0.599  
+  999  0.7449  0.221  1.0000  1.000 1.877 1.920 1.412 0.970 0.614 0.388 0.238  
+05 S_Vol = volcanic stratospheric sulfate (n=1.46, log-norm: r=.08um/sigma=.8) 
+  300  2.6437  0.386  1.0000  1.000 2.152 2.901 2.856 2.971 2.772 2.709 2.587  
+  400  2.5603  0.386  1.0000  1.000 2.142 2.810 2.706 2.691 2.421 2.254 2.066  
+  600  2.2221  0.386  1.0000  1.000 2.127 2.673 2.488 2.308 1.963 1.698 1.461  
+  999  1.5319  0.386  1.0000  1.000 2.076 2.458 2.165 1.841 1.449 1.142 0.898  
+06 W_H01 = water haze (H1/Deirm.) (n=1.335, gamma:  r-mode=0.1um / alpha=2)    
+  300  2.8438   0.25  1.0000  1.000 2.454 3.376 3.624 3.608 3.300 2.911 2.526  
+  400  2.3497   0.25  1.0000  1.000 2.431 3.235 3.355 3.108 2.686 2.180 1.690  
+  600  1.4037   0.25  1.0000  1.000 2.328 2.789 2.593 2.062 1.492 1.013 0.632  
+  999  0.5034   0.25  1.0000  1.000 1.916 1.870 1.233 0.704 0.338 0.154 0.062  
+07 W_H04 = water haze (H1/Deirm.) (n=1.335, gamma:  r-mode=0.4um / alpha=2)    
+  300  2.2995   1.00  1.0000  1.000 2.433 3.625 4.104 4.645 5.020 5.409 5.802  
+  400  2.4743   1.00  1.0000  1.000 2.341 3.475 3.863 4.320 4.589 4.878 5.125  
+  600  2.6719   1.00  1.0000  1.000 2.325 3.334 3.624 3.896 3.939 3.968 3.964  
+  999  2.9565   1.00  1.0000  1.000 2.434 3.393 3.685 3.709 3.528 3.213 2.903  
+08 W_C02 = water cloud (C1/Deirm.) (n=1.335, gamma:  r-mode=2.0um / alpha=6)   
+  300  2.1410   3.00  1.0000  1.000 2.544 3.886 4.572 5.256 5.933 6.530 7.291  
+  400  2.1778   3.00  1.0000  1.000 2.513 3.834 4.480 5.160 5.785 6.356 7.044  
+  600  2.2287   3.00  1.0000  1.000 2.483 3.767 4.359 4.998 5.542 6.054 6.639  
+  999  2.3071   3.00  1.0000  1.000 2.395 3.597 4.063 4.648 5.052 5.478 5.857  
+09 W_C04 = water cloud (C1/Deirm.) (n=1.335, gamma:  r-mode=4.0um / alpha=6)   
+  300  2.0835   6.00  1.0000  1.000 2.596 3.973 4.725 5.406 6.129 6.751 7.607  
+  400  2.1064   6.00  1.0000  1.000 2.571 3.936 4.660 5.345 6.056 6.670 7.492  
+  600  2.1345   6.00  1.0000  1.000 2.557 3.902 4.596 5.263 5.923 6.507 7.267  
+  999  2.1922   6.00  1.0000  1.000 2.499 3.799 4.418 5.081 5.667 6.213 6.851  
+10 W_C08 = water cloud (C1/Deirm.) (n=1.335, gamma:  r-mode=8.0um / alpha=6)   
+  300  2.0539  12.00  1.0000  1.000 2.619 4.013 4.798 5.476 6.232 6.870 7.780  
+  400  2.0643  12.00  1.0000  1.000 2.611 3.999 4.773 5.451 6.194 6.826 7.716  
+  600  2.0883  12.00  1.0000  1.000 2.589 3.965 4.712 5.394 6.121 6.744 7.599  
+  999  2.1236  12.00  1.0000  1.000 2.563 3.917 4.625 5.302 5.992 6.593 7.385  
+11 W_C13 = water cloud (C1/Deirm.) (n=1.335, gamma:  r-mode=13.3um / alpha=6)  
+  300  2.0440  20.00  1.0000  1.000 2.627 4.026 4.822 5.499 6.264 6.907 7.833  
+  400  2.0529  20.00  1.0000  1.000 2.620 4.014 4.800 5.477 6.234 6.872 7.783  
+  600  2.0716  20.00  1.0000  1.000 2.604 3.990 4.755 5.435 6.178 6.807 7.690  
+  999  2.0978  20.00  1.0000  1.000 2.585 3.955 4.691 5.368 6.077 6.688 7.520  
+12 W_L06 = water cloud (Lacis) (n=1.335, r-mode=5.5um / alpha=11/3)	       
+  300  2.0616  10.00  1.0000  1.000 2.613 4.002 4.779 5.458 6.205 6.839 7.735  
+  400  2.0747  10.00  1.0000  1.000 2.601 3.984 4.745 5.425 6.158 6.785 7.657  
+  600  2.1005  10.00  1.0000  1.000 2.580 3.947 4.679 5.359 6.070 6.684 7.514  
+  999  2.1423  10.00  1.0000  1.000 2.545 3.884 4.568 5.244 5.909 6.496 7.250  
+13 Ice-H = hexagonal ice cloud (Mishchenko)				       
+  300  2.0000    67.  1.0000  1.000 2.435 3.712 4.756 5.960 6.908 7.865 8.954  
+  400  2.0000    67.  1.0000  1.000 2.435 3.712 4.756 5.960 6.908 7.865 8.954  
+  600  2.0000    67.  1.0000  1.000 2.435 3.712 4.756 5.960 6.908 7.865 8.954  
+  999  2.0000    67.  1.0000  1.000 2.435 3.712 4.756 5.960 6.908 7.865 8.954  
+14 Ice-I = irregular ice cloud (Mishchenko)				       
+  300  2.0000    50.  1.0000  1.000 2.257 3.164 4.096 5.088 6.018 6.897 7.794  
+  400  2.0000    50.  1.0000  1.000 2.257 3.164 4.096 5.088 6.018 6.897 7.794  
+  600  2.0000    50.  1.0000  1.000 2.257 3.164 4.096 5.088 6.018 6.897 7.794  
+  999  2.0000    50.  1.0000  1.000 2.257 3.164 4.096 5.088 6.018 6.897 7.794  
+15 Mdust 0.15 = mineral dust (R.V.Martin)				       
+  300  3.0039  0.150  0.884 1.000 2.030 2.363 2.082 1.710 1.290  0.941  0.638  
+  400  2.4763  0.150  0.937 1.000 1.988 2.151 1.735 1.248 0.809  0.503  0.279  
+  600  1.2768  0.150  0.979 1.000 1.816 1.675 1.075 0.604 0.281  0.132  0.049  
+  999  0.3595  0.150  0.958 1.000 1.320 0.994 0.377 0.126 0.031  0.008  0.001  
+16 Mdust 0.25 = mineral dust (R.V.Martin)				       
+  300  2.9406  0.250  0.820 1.000 2.046 2.643 2.593 2.634 2.406  2.244  1.944  
+  400  3.1046  0.250  0.913 1.000 2.021 2.486 2.264 2.047 1.671  1.362  1.039  
+  600  2.6144  0.250  0.980 1.000 2.026 2.296 1.926 1.470 1.013  0.668  0.403  
+  999  1.2426  0.250  0.974 1.000 1.824 1.689 1.087 0.611 0.286  0.134  0.050  
+17 Mdust 0.4 = mineral dust (R.V.Martin)				       
+  300  2.6069  0.400  0.739 1.000 2.192 3.070 3.393 3.903 4.021  4.248  4.168  
+  400  2.8244  0.400  0.860 1.000 2.027 2.711 2.679 2.900 2.734  2.723  2.478  
+  600  3.1156  0.400  0.971 1.000 2.017 2.537 2.306 2.136 1.761  1.466  1.151  
+  999  2.4773  0.400  0.975 1.000 2.036 2.286 1.903 1.428 0.966  0.623  0.368  
+18 Mdust 0.8 = mineral dust (R.V.Martin)				       
+  300  2.3457  0.800  0.640 1.000 2.517 3.780 4.729 5.755 6.524  7.339  7.903  
+  400  2.4344  0.800  0.763 1.000 2.295 3.320 3.800 4.578 4.913  5.482  5.662  
+  600  2.6416  0.800  0.936 1.000 2.023 2.830 2.805 3.279 3.178  3.418  3.275  
+  999  3.0396  0.800  0.957 1.000 2.019 2.618 2.441 2.414 2.106  1.895  1.610  
+19 Mdust 1.5 = mineral dust (R.V.Martin)				       
+  300  2.2228  1.500  0.579 1.000 2.705 4.250 5.641 7.023 8.293  9.539 10.662  
+  400  2.2732  1.500  0.676 1.000 2.539 3.821 4.771 5.881 6.738  7.733  8.463  
+  600  2.3707  1.500  0.890 1.000 2.240 3.259 3.544 4.375 4.592  5.292  5.471  
+  999  2.5751  1.500  0.913 1.000 2.083 2.944 3.008 3.555 3.538  3.852  3.789  
+20 Mdust 2.5 = mineral dust (R.V.Martin)				       
+  300  2.1579  2.500  0.556 1.000 2.780 4.476 6.085 7.664 9.186 10.673 12.096  
+  400  2.1923  2.500  0.616 1.000 2.678 4.164 5.458 6.813 8.046  9.325 10.461  
+  600  2.2560  2.500  0.842 1.000 2.391 3.526 4.044 5.035 5.527  6.483  6.961  
+  999  2.3716  2.500  0.869 1.000 2.268 3.300 3.634 4.458 4.720  5.401  5.624  
+21 Mdust 4.0 = mineral dust (R.V.Martin)				       
+  300  2.1154  4.000  0.550 1.000 2.809 4.574 6.281 7.960 9.607 11.224 12.806  
+  400  2.1402  4.000  0.577 1.000 2.761 4.405 5.941 7.485 8.974 10.462 11.878  
+  600  2.1852  4.000  0.786 1.000 2.505 3.744 4.488 5.599 6.354  7.485  8.238  
+  999  2.2637  4.000  0.819 1.000 2.413 3.563 4.133 5.118 5.652  6.582  7.097  
+22 S00(rvm) Trop sulfate at RH=00 (n@400=1.44 log-norm: r=.05um/sigma=2.0)     
+  300  2.1411  0.159  1.0000  1.000 2.107 2.570 2.325 2.050 1.662 1.353 1.095  
+  400  1.5786  0.159  1.0000  1.000 2.116 2.510 2.228 1.873 1.461 1.126 0.865  
+  600  0.9088  0.159  1.0000  1.000 2.027 2.269 1.885 1.470 1.067 0.765 0.544  
+ 1000  0.3537  0.159  1.0000  1.000 1.815 1.865 1.368 0.952 0.619 0.404 0.260  
+23 S50(rvm) Trop sulfate at RH=50 (n@400=1.38 log-norm: r=.06um/sigma=2.0)     
+  300  2.3057  0.217  1.0000  1.000 2.274 2.963 2.935 2.768 2.430 2.099 1.812  
+  400  1.8327  0.217  1.0000  1.000 2.279 2.900 2.823 2.563 2.172 1.797 1.477  
+  600  1.1573  0.217  1.0000  1.000 2.212 2.679 2.473 2.112 1.683 1.309 1.006  
+ 1000  0.5062  0.217  1.0000  1.000 2.033 2.273 1.894 1.469 1.065 0.762 0.536  
+24 S70(rvm) Trop sulfate at RH=70 (n@400=1.36 log-norm: r=.07um/sigma=2.0)     
+  300  2.3816  0.241  1.0000  1.000 2.302 3.044 3.070 2.945 2.635 2.318 2.034  
+  400  1.9462  0.241  1.0000  1.000 2.310 2.986 2.964 2.743 2.371 1.998 1.673  
+  600  1.2726  0.241  1.0000  1.000 2.254 2.782 2.632 2.298 1.874 1.488 1.167  
+ 1000  0.5840  0.241  1.0000  1.000 2.089 2.388 2.053 1.635 1.218 0.891 0.642  
+25 S80(rvm) Trop sulfate at RH=80 (n@400=1.36 log-norm: r=.07um/sigma=2.0)     
+  300  2.4415  0.260  1.0000  1.000 2.317 3.092 3.153 3.060 2.773 2.471 2.196  
+  400  2.0391  0.260  1.0000  1.000 2.328 3.040 3.054 2.862 2.508 2.142 1.816  
+  600  1.3726  0.260  1.0000  1.000 2.280 2.851 2.740 2.429 2.011 1.620 1.289  
+ 1000  0.6501  0.260  1.0000  1.000 2.130 2.473 2.173 1.765 1.340 0.997 0.730  
+26 S90(rvm) Trop sulfate at RH=90 (n@400=1.35 log-norm: r=.08um/sigma=2.0)     
+  300  2.5294  0.297  1.0000  1.000 2.337 3.166 3.281 3.244 3.002 2.733 2.479  
+  400  2.1924  0.297  1.0000  1.000 2.352 3.121 3.194 3.053 2.733 2.386 2.067  
+  600  1.5527  0.297  1.0000  1.000 2.319 2.958 2.912 2.643 2.243 1.850 1.506  
+ 1000  0.7869  0.297  1.0000  1.000 2.189 2.606 2.366 1.979 1.547 1.181 0.887  
+27 S95(rvm) Trop sulfate at RH=95 (n@400=1.35 log-norm: r=.10um/sigma=2.0)     
+  300  2.6088  0.347  1.0000  1.000 2.349 3.227 3.392 3.420 3.232 3.012 2.796  
+  400  2.3545  0.347  1.0000  1.000 2.370 3.194 3.323 3.242 2.967 2.652 2.353  
+  600  1.7709  0.347  1.0000  1.000 2.352 3.060 3.083 2.866 2.494 2.107 1.759  
+ 1000  0.9688  0.347  1.0000  1.000 2.248 2.746 2.577 2.222 1.791 1.405 1.085  
+28 S99(rvm) Trop sulfate at RH=99 (n@400=1.34 log-norm: r=.14um/sigma=2.0)     
+  300  2.6638  0.498  1.0000  1.000 2.355 3.326 3.577 3.760 3.717 3.648 3.566  
+  400  2.6086  0.498  1.0000  1.000 2.384 3.311 3.540 3.603 3.454 3.252 3.045  
+  600  2.2570  0.498  1.0000  1.000 2.395 3.233 3.387 3.301 3.021 2.691 2.372  
+ 1000  1.4906  0.498  1.0000  1.000 2.346 3.015 3.005 2.751 2.356 1.957 1.601  
+29 BC00(rvm) Black C, RH=00 (n@400=1.75-.46i log-norm: r=.01um/sigma=2.0)      
+  300  1.0643  0.039  0.3128  1.000 1.361 1.201 0.710 0.410 0.231 0.135 0.080  
+  400  0.7563  0.039  0.2672  1.000 1.189 1.018 0.514 0.262 0.131 0.069 0.037  
+  600  0.4289  0.039  0.1920  1.000 0.961 0.828 0.324 0.135 0.056 0.024 0.011  
+ 1000  0.2166  0.039  0.0964  1.000 0.672 0.661 0.167 0.048 0.013 0.003 0.001  
+30 BC50(rvm) Black C, RH=50 (n@400=1.75-.46i log-norm: r=.01um/sigma=2.0)      
+  300  1.0643  0.039  0.3128  1.000 1.361 1.201 0.710 0.410 0.231 0.135 0.080  
+  400  0.7563  0.039  0.2672  1.000 1.189 1.018 0.514 0.262 0.131 0.069 0.037  
+  600  0.4289  0.039  0.1920  1.000 0.961 0.828 0.324 0.135 0.056 0.024 0.011  
+ 1000  0.2166  0.039  0.0964  1.000 0.672 0.661 0.167 0.048 0.013 0.003 0.001  
+31 BC70(rvm) Black C, RH=70 (n@400=1.75-.46i log-norm: r=.01um/sigma=2.0)      
+  300  1.0643  0.039  0.3128  1.000 1.361 1.201 0.710 0.410 0.231 0.135 0.080  
+  400  0.7563  0.039  0.2672  1.000 1.189 1.018 0.514 0.262 0.131 0.069 0.037  
+  600  0.4289  0.039  0.1920  1.000 0.961 0.828 0.324 0.135 0.056 0.024 0.011  
+ 1000  0.2166  0.039  0.0964  1.000 0.672 0.661 0.167 0.048 0.013 0.003 0.001  
+32 BC80(rvm) Black C, RH=80 (n@400=1.57-.27i log-norm: r=.01um/sigma=2.0)      
+  300  0.9310  0.047  0.3604  1.000 1.626 1.530 1.035 0.659 0.407 0.255 0.160  
+  400  0.6525  0.047  0.3131  1.000 1.438 1.291 0.768 0.439 0.245 0.140 0.081  
+  600  0.3640  0.047  0.2331  1.000 1.171 1.022 0.490 0.236 0.112 0.055 0.028  
+ 1000  0.1808  0.047  0.1220  1.000 0.827 0.768 0.254 0.089 0.030 0.010 0.003  
+33 BC90(rvm) Black C, RH=90 (n@400=1.48-.17i log-norm: r=.02um/sigma=2.0)      
+  300  0.8554  0.055  0.4318  1.000 1.811 1.807 1.338 0.919 0.608 0.402 0.266  
+  400  0.5876  0.055  0.3839  1.000 1.623 1.535 1.017 0.635 0.384 0.234 0.144  
+  600  0.3186  0.055  0.2989  1.000 1.341 1.206 0.664 0.356 0.187 0.101 0.054  
+ 1000  0.1518  0.055  0.1666  1.000 0.966 0.879 0.350 0.143 0.057 0.023 0.008  
+34 BC95(rvm) Black C, RH=95 (n@400=1.45-.14i log-norm: r=.02um/sigma=2.0)      
+  300  0.8369  0.059  0.4723  1.000 1.882 1.925 1.476 1.046 0.712 0.481 0.325  
+  400  0.5692  0.059  0.4251  1.000 1.697 1.644 1.136 0.735 0.459 0.288 0.181  
+  600  0.3039  0.059  0.3389  1.000 1.414 1.293 0.750 0.420 0.229 0.128 0.071  
+ 1000  0.1411  0.059  0.1961  1.000 1.029 0.935 0.399 0.174 0.074 0.032 0.013  
+35 BC99(rvm) Black C, RH=99 (n@400=1.39-.07i log-norm: r=.02um/sigma=2.0)      
+  300  0.8533  0.075  0.6328  1.000 2.076 2.294 1.941 1.506 1.109 0.802 0.576  
+  400  0.5647  0.075  0.5956  1.000 1.914 2.001 1.554 1.117 0.765 0.519 0.350  
+  600  0.2860  0.075  0.5187  1.000 1.643 1.599 1.074 0.682 0.416 0.256 0.157  
+ 1000  0.1184  0.075  0.3536  1.000 1.248 1.150 0.602 0.311 0.157 0.081 0.041  
+36 OC00(rvm) Organic C, RH=00 (n@400=1.53-.005i log-norm: r=.02um/sigma=2.0)   
+  300  1.0162  0.070  0.9530  1.000 1.871 1.938 1.467 1.056 0.706 0.480 0.316  
+  400  0.6261  0.070  0.9673  1.000 1.759 1.732 1.211 0.811 0.503 0.321 0.196  
+  600  0.2733  0.070  0.9493  1.000 1.559 1.436 0.876 0.522 0.290 0.168 0.093  
+ 1000  0.0833  0.070  0.7901  1.000 1.234 1.089 0.528 0.262 0.125 0.064 0.031  
+37 OC50(rvm) Organic C, RH=50 (n@400=1.44-.003i log-norm: r=.03um/sigma=2.0)   
+  300  1.1021  0.087  0.9716  1.000 2.040 2.288 1.914 1.500 1.095 0.789 0.565  
+  400  0.6904  0.087  0.9803  1.000 1.939 2.074 1.626 1.198 0.822 0.561 0.378  
+  600  0.3114  0.087  0.9696  1.000 1.739 1.732 1.207 0.802 0.498 0.313 0.193  
+ 1000  0.0955  0.087  0.8711  1.000 1.402 1.301 0.740 0.417 0.224 0.126 0.069  
+38 OC70(rvm) Organic C, RH=70 (n@400=1.42-.002i log-norm: r=.03um/sigma=2.0)   
+  300  1.1602  0.095  0.9771  1.000 2.095 2.408 2.079 1.675 1.258 0.928 0.680  
+  400  0.7380  0.095  0.9843  1.000 1.998 2.194 1.783 1.354 0.959 0.671 0.464  
+  600  0.3373  0.095  0.9759  1.000 1.805 1.845 1.342 0.924 0.596 0.385 0.245  
+ 1000  0.1047  0.095  0.8982  1.000 1.470 1.390 0.834 0.490 0.275 0.159 0.090  
+39 OC80(rvm) Organic C, RH=80 (n@400=1.40-.002i log-norm: r=.03um/sigma=2.0)   
+  300  1.2225  0.102  0.9811  1.000 2.134 2.499 2.208 1.817 1.393 1.047 0.781  
+  400  0.7864  0.102  0.9871  1.000 2.045 2.289 1.912 1.487 1.078 0.770 0.543  
+  600  0.3664  0.102  0.9805  1.000 1.858 1.937 1.455 1.030 0.682 0.451 0.294  
+ 1000  0.1150  0.102  0.9180  1.000 1.527 1.466 0.916 0.556 0.322 0.191 0.111  
+40 OC90(rvm) Organic C, RH=90 (n@400=1.38-.001i log-norm: r=.03um/sigma=2.0)   
+  300  1.3563  0.116  0.9867  1.000 2.196 2.646 2.424 2.062 1.634 1.265 0.972  
+  400  0.8922  0.116  0.9911  1.000 2.119 2.451 2.137 1.727 1.301 0.961 0.701  
+  600  0.4317  0.116  0.9869  1.000 1.946 2.099 1.661 1.229 0.850 0.583 0.394  
+ 1000  0.1401  0.116  0.9462  1.000 1.629 1.607 1.073 0.688 0.418 0.258 0.157  
+41 OC95(rvm) Organic C, RH=95 (n@400=1.37-.001i log-norm: r=.04um/sigma=2.0)   
+  300  1.5220  0.133  0.9909  1.000 2.248 2.781 2.631 2.306 1.885 1.502 1.186  
+  400  1.0365  0.133  0.9941  1.000 2.184 2.601 2.355 1.969 1.535 1.169 0.879  
+  600  0.5230  0.133  0.9915  1.000 2.031 2.262 1.877 1.446 1.042 0.740 0.517  
+ 1000  0.1771  0.133  0.9665  1.000 1.734 1.761 1.251 0.844 0.538 0.345 0.219  
+42 OC99(rvm) Organic C, RH=99 (n@400=1.350.000i log-norm: r=.05um/sigma=2.0)   
+  300  1.9223  0.177  0.9958  1.000 2.322 3.000 2.985 2.758 2.380 1.999 1.664  
+  400  1.4182  0.177  0.9975  1.000 2.288 2.866 2.763 2.452 2.032 1.637 1.301  
+  600  0.7958  0.177  0.9967  1.000 2.178 2.576 2.318 1.921 1.487 1.124 0.836  
+ 1000  0.3046  0.177  0.9883  1.000 1.935 2.089 1.655 1.224 0.851 0.586 0.398  
+43 SSa00(rvm) Sea Salt (accum), RH=00 (n@400=1.50 log-norm: r=.21um/sigma=2.0) 
+  300  2.4998  0.732  0.9999  1.000 2.122 3.044 3.083 3.688 3.676 4.110 4.155  
+  400  2.6308  0.732  1.0000  1.000 2.096 2.938 2.916 3.332 3.234 3.455 3.412  
+  600  2.7565  0.732  1.0000  1.000 2.092 2.812 2.714 2.854 2.633 2.591 2.435  
+ 1000  2.5373  0.732  0.9987  1.000 2.125 2.701 2.530 2.378 2.037 1.776 1.533  
+44 SSa50(rvm) Sea Salt (accum), RH=50 (n@400=1.38 log-norm: r=.34um/sigma=2.0) 
+  300  2.3632  1.177  1.0000  1.000 2.337 3.457 3.796 4.390 4.661 5.083 5.455  
+  400  2.4743  1.177  1.0000  1.000 2.318 3.383 3.677 4.144 4.330 4.586 4.814  
+  600  2.6330  1.177  1.0000  1.000 2.316 3.297 3.529 3.799 3.814 3.849 3.864  
+ 1000  2.6210  1.177  0.9995  1.000 2.345 3.224 3.387 3.422 3.241 3.028 2.821  
+45 SSa70(rvm) Sea Salt (accum), RH=70 (n@400=1.37 log-norm: r=.38um/sigma=2.0) 
+  300  2.3305  1.324  1.0000  1.000 2.368 3.522 3.911 4.518 4.845 5.290 5.712  
+  400  2.4328  1.324  1.0000  1.000 2.347 3.450 3.796 4.289 4.526 4.828 5.109  
+  600  2.5958  1.324  1.0000  1.000 2.338 3.359 3.640 3.953 4.027 4.111 4.175  
+ 1000  2.6449  1.324  0.9996  1.000 2.364 3.287 3.502 3.588 3.456 3.284 3.107  
+46 SSa80(rvm) Sea Salt (accum), RH=80 (n@400=1.36 log-norm: r=.42um/sigma=2.0) 
+  300  2.3054  1.457  1.0000  1.000 2.389 3.568 3.993 4.612 4.977 5.442 5.901  
+  400  2.3997  1.457  1.0000  1.000 2.367 3.498 3.881 4.395 4.678 5.011 5.334  
+  600  2.5625  1.457  1.0000  1.000 2.353 3.404 3.720 4.068 4.188 4.313 4.420  
+ 1000  2.6557  1.457  0.9997  1.000 2.374 3.329 3.579 3.705 3.615 3.479 3.334  
+47 SSa90(rvm) Sea Salt (accum), RH=90 (n@400=1.35 log-norm: r=.50um/sigma=2.0) 
+  300  2.2634  1.740  1.0000  1.000 2.423 3.640 4.121 4.759 5.193 5.694 6.222  
+  400  2.3437  1.740  1.0000  1.000 2.396 3.571 4.012 4.568 4.926 5.317 5.717  
+  600  2.4954  1.740  1.0000  1.000 2.373 3.471 3.843 4.253 4.458 4.662 4.853  
+ 1000  2.6519  1.740  0.9998  1.000 2.384 3.387 3.688 3.887 3.875 3.816 3.740  
+48 SSa95(rvm) Sea Salt (accum), RH=95 (n@400=1.35 log-norm: r=.60um/sigma=2.0) 
+  300  2.2247  2.119  1.0000  1.000 2.454 3.705 4.237 4.898 5.388 5.925 6.518  
+  400  2.2881  2.119  1.0000  1.000 2.428 3.644 4.141 4.734 5.166 5.612 6.093  
+  600  2.4211  2.119  1.0000  1.000 2.393 3.538 3.962 4.436 4.729 5.017 5.304  
+ 1000  2.6125  2.119  0.9998  1.000 2.390 3.440 3.787 4.064 4.140 4.174 4.187  
+49 SSa99(rvm) Sea Salt (accum), RH=99 (n@400=1.34 log-norm: r=.99um/sigma=2.0) 
+  300  2.1540  3.484  1.0000  1.000 2.518 3.828 4.455 5.141 5.742 6.338 7.067  
+  400  2.1920  3.484  1.0000  1.000 2.497 3.790 4.399 5.052 5.620 6.162 6.806  
+  600  2.2683  3.484  1.0000  1.000 2.455 3.700 4.248 4.841 5.318 5.769 6.271  
+ 1000  2.4312  3.484  0.9998  1.000 2.410 3.565 4.015 4.471 4.770 5.037 5.303  
+50 SSc00(rvm) Sea Salt (coarse), RH=00 (n@400=1.50 log-norm: r=1.8um/sigma=2.0)
+  300  2.1044  5.674  0.9995  1.000 2.411 3.610 3.964 4.970 5.369 6.477 7.058  
+  400  2.1270  5.674  1.0000  1.000 2.399 3.592 3.941 4.926 5.304 6.354 6.926  
+  600  2.1674  5.674  1.0000  1.000 2.372 3.544 3.872 4.823 5.158 6.119 6.644  
+ 1000  2.2422  5.674  0.9901  1.000 2.331 3.466 3.770 4.632 4.916 5.701 6.153  
+51 SSc50(rvm) Sea Salt (coarse), RH=50 (n@400=1.38 log-norm: r=2.8um/sigma=2.0)
+  300  2.0767  9.024  0.9998  1.000 2.547 3.870 4.492 5.262 5.886 6.637 7.545  
+  400  2.0932  9.024  1.0000  1.000 2.543 3.867 4.496 5.245 5.870 6.583 7.456  
+  600  2.1231  9.024  1.0000  1.000 2.525 3.836 4.449 5.182 5.783 6.455 7.262  
+ 1000  2.1768  9.024  0.9962  1.000 2.490 3.773 4.351 5.052 5.603 6.206 6.899  
+52 SSc70(rvm) Sea Salt (coarse), RH=70 (n@400=1.37 log-norm: r=3.2um/sigma=2.0)
+  300  2.0710 10.107  0.9999  1.000 2.563 3.901 4.555 5.300 5.955 6.677 7.597  
+  400  2.0863 10.107  1.0000  1.000 2.560 3.900 4.564 5.290 5.949 6.635 7.519  
+  600  2.1139 10.107  1.0000  1.000 2.544 3.873 4.524 5.237 5.875 6.526 7.347  
+ 1000  2.1631 10.107  0.9969  1.000 2.512 3.816 4.433 5.122 5.713 6.307 7.022  
+53 SSc80(rvm) Sea Salt (coarse), RH=80 (n@400=1.36 log-norm: r=3.5um/sigma=2.0)
+  300  2.0671 10.879  0.9999  1.000 2.573 3.920 4.597 5.326 6.002 6.706 7.631  
+  400  2.0815 10.879  1.0000  1.000 2.571 3.921 4.609 5.322 6.001 6.673 7.562  
+  600  2.1075 10.879  1.0000  1.000 2.557 3.898 4.575 5.276 5.937 6.577 7.406  
+ 1000  2.1534 10.879  0.9974  1.000 2.526 3.844 4.488 5.170 5.786 6.377 7.106  
+54 SSc90(rvm) Sea Salt (coarse), RH=90 (n@400=1.35 log-norm: r=4.2um/sigma=2.0)
+  300  2.0604 12.372  0.9999  1.000 2.586 3.946 4.651 5.363 6.063 6.750 7.681  
+  400  2.0734 12.372  1.0000  1.000 2.586 3.950 4.668 5.366 6.072 6.729 7.626  
+  600  2.0967 12.372  1.0000  1.000 2.574 3.932 4.642 5.332 6.023 6.653 7.496  
+ 1000  2.1377 12.372  0.9981  1.000 2.548 3.886 4.569 5.244 5.898 6.487 7.240  
+55 SSc95(rvm) Sea Salt (coarse), RH=95 (n@400=1.34 log-norm: r=5.1um/sigma=2.0)
+  300  2.0542 14.057  0.9999  1.000 2.597 3.967 4.694 5.395 6.113 6.788 7.724  
+  400  2.0658 14.057  1.0000  1.000 2.598 3.973 4.716 5.405 6.130 6.778 7.681  
+  600  2.0866 14.057  1.0000  1.000 2.589 3.960 4.699 5.380 6.096 6.720 7.574  
+ 1000  2.1230 14.057  0.9986  1.000 2.564 3.918 4.629 5.303 5.983 6.576 7.354  
+56 SSc99(rvm) Sea Salt (coarse), RH=99 (n@400=1.34 log-norm: r=8.6um/sigma=2.0)
+  300  2.0431 18.159  1.0000  1.000 2.611 3.992 4.743 5.433 6.171 6.839 7.788  
+  400  2.0523 18.159  1.0000  1.000 2.614 4.002 4.773 5.454 6.201 6.846 7.764  
+  600  2.0688 18.159  1.0000  1.000 2.609 3.997 4.770 5.447 6.190 6.816 7.695  
+ 1000  2.0973 18.159  0.9991  1.000 2.591 3.968 4.725 5.397 6.120 6.724 7.545  
+C===this section not read!===alternate O(1D) yields===can replace above data   
+OLD MJP Q'S								       
+O3_1d X180     0.950     0.868     0.112     0.004       0.0       0.0       0.0
+O3_1d X260     0.950     0.926     0.470     0.065       0.0       0.0       0.0
+O3_1d X300     0.950     0.938     0.605     0.130       0.0       0.0       0.0
+MICHELSEN Q'S								       
+O3_1d M180     0.953     0.960     0.308     0.020     0.001       0.0       0.0
+O3_1d M260     0.953     0.974     0.492     0.146     0.011       0.0       0.0
+O3_1d M300     0.953     0.973     0.567     0.267     0.024       0.0       0.0
+C====channel in Herzberg Contiuum to be added======(*caveat - not fully tested)=
+photolysis in the Herzberg continuum:  198-209 nm is core, 195-212 nm covers all
+J at top-of-atmosphere and X-sect for O2 and O3 (computing J at 12-14-16-18 km)
+QO2: HerzC  8.15E-24							       
+QO3: HerzC  4.40E-19							       
+O2    Jtoa  1.67E-10							       
+H1211 Jtoa  2.76E-05							       
+H2402 Jtoa  2.75E-05							       
+CCl4  Jtoa  1.31E-05 							       
+F11   Jtoa  7.24E-06							       
+H1301 Jtoa  2.82E-06							       
+N2O   Jtoa  3.36E-07							       
+================================================================================
+			    Spare Stuff - all from JPL 1997			       
+										   
+	Note:  in code, assume that lower temperature is given first.	       
+	Probably worth setting temperatures the same if only one x-section	       
+										   
+HONO   300       0.0       0.0 1.265E-20 3.469E-20 1.090E-19 8.644E-20 0.000E+00
+HONO   300       0.0       0.0 1.265E-20 3.469E-20 1.090E-19 8.644E-20 0.000E+00
+HCOCHO 298 9.701E-22 1.498E-21 8.257E-21 1.434E-21 2.078E-22 6.393E-22 3.277E-22
+HCOCHO 298 9.701E-22 1.498E-21 8.257E-21 1.434E-21 2.078E-22 6.393E-22 3.277E-22
+MeCOCHO298 2.381E-21 1.853E-21 1.296E-21 9.572E-22 3.327E-22 2.004E-21 4.255E-22
+MeCOCHO298 2.381E-21 1.853E-21 1.296E-21 9.572E-22 3.327E-22 2.004E-21 4.255E-22
+EtCOMe 298 1.432E-20 4.217E-21 1.150E-21 3.394E-22 4.706E-23       0.0       0.0
+EtCOMe 298 1.432E-20 4.217E-21 1.150E-21 3.394E-22 4.706E-23       0.0       0.0
+MeNO3  298 2.871E-20 1.080E-20 5.497E-21 3.460E-21 2.919E-22       0.0       0.0
+MeNO3  298 2.871E-20 1.080E-20 5.497E-21 3.460E-21 2.919E-22       0.0       0.0
+										   
+ClONO2 200 3.707E-20 1.816E-20 1.084E-20 6.951E-21 3.040E-21 9.423E-22 6.852E-24
+ClONO2 300 5.025E-20 2.610E-20 1.633E-20 1.079E-20 4.473E-21 1.204E-21 9.733E-24
+Cl2    200 7.653E-20 1.387E-19 1.882E-19 2.283E-19 2.549E-19 6.209E-20 6.456E-22
+Cl2    300 8.191E-20 1.403E-19 1.851E-19 2.204E-19 2.436E-19 6.467E-20 6.806E-22
+HOCl   300 5.573E-20 6.018E-20 5.862E-20 5.304E-20 3.178E-20 5.051E-21 0.000E+00
+HOCl   300 5.573E-20 6.018E-20 5.862E-20 5.304E-20 3.178E-20 5.051E-21 0.000E+00
+OClO   204 1.145E-18 1.946E-18 2.806E-18 3.170E-18 4.798E-18 3.213E-18 4.112E-20
+OClO   298 1.046E-18 1.664E-18 2.319E-18 2.925E-18 4.599E-18 3.407E-18 3.925E-20
+Cl2O2  230 9.769E-19 6.254E-19 4.331E-19 3.064E-19 1.572E-19 2.698E-20 1.615E-22
+Cl2O2  230 9.769E-19 6.254E-19 4.331E-19 3.064E-19 1.572E-19 2.698E-20 1.615E-22
+ClO    300 1.324E-18 4.496E-19 1.499E-19 5.197E-20 2.410E-21 0.000E+00 0.000E+00
+ClO    300 1.324E-18 4.496E-19 1.499E-19 5.197E-20 2.410E-21 0.000E+00 0.000E+00
+BrO    300 0.000E+00 1.932E-18 3.681E-18 4.221E-18 6.179E-18 6.431E-19 0.000E+00
+BrO    300 0.000E+00 1.932E-18 3.681E-18 4.221E-18 6.179E-18 6.431E-19 0.000E+00
+BrONO2 300 2.042E-19 1.575E-19 1.311E-19 1.134E-19 8.127E-20 3.397E-20 1.286E-21
+BrONO2 300 2.042E-19 1.575E-19 1.311E-19 1.134E-19 8.127E-20 3.397E-20 1.286E-21
+HOBr   300 2.604E-19 1.837E-19 1.390E-19 1.159E-19 1.137E-19 6.710E-20 1.146E-21
+HOBr   300 2.604E-19 1.837E-19 1.390E-19 1.159E-19 1.137E-19 6.710E-20 1.146E-21
+CHBr3  210 9.247E-21 1.877E-21 5.752E-22 2.123E-22 2.564E-23 9.540E-25 0.000E+00
+CHBr3  300 1.928E-20 5.034E-21 1.819E-21 7.631E-22 1.072E-22 9.540E-25 0.000E+00
+CF3I   210 1.297E-19 4.093E-20 1.624E-20 7.639E-21 1.297E-21 0.000E+00 0.000E+00
+CF3I   300 1.748E-19 6.652E-20 2.985E-20 1.476E-20 2.625E-21 0.000E+00 0.000E+00
+(and from Calvert 1967:							       
+ CH3I  300 4.194E-20 8.986E-21 4.210E-21 2.035E-21 2.943E-22 1.193E-24 0.000E+00
+ CH3I  300 4.194E-20 8.986E-21 4.210E-21 2.035E-21 2.943E-22 1.193E-24 0.000E+00
+)									       
+# To shut off Rayleigh scattering					       
+Raylay cm2  0.00E+00  0.00E+00  0.00E+00  0.00E+00  0.00E+00  0.00E+00  0.00E+00
+# To turn on Rayleigh scattering					       
+Raylay cm2  6.18E-26  5.43E-26  4.92E-26  4.54E-26  3.63E-26  2.09E-26  3.83E-27
+# Original cross section						       
+O3     180 8.693E-19 2.365E-19 8.722E-20 3.694E-20 4.295E-21 1.804E-23 1.630E-21
+O3     260 9.189E-19 2.571E-19 9.673E-20 4.141E-20 5.457E-21 2.775E-23 1.630E-21
+O3     300 9.574E-19 2.777E-19 1.075E-19 4.725E-20 6.782E-21 4.824E-23 1.630E-21
+# Original quantum yield						       
+O3_1d  180 9.500E-01 9.303E-01 3.089E-01 2.293E-02 8.747E-04       0.0       0.0
+O3_1d  260 9.500E-01 9.366E-01 4.618E-01 1.380E-01 9.857E-03       0.0       0.0
+O3_1d  300 9.500E-01 9.387E-01 5.385E-01 2.524E-01 2.138E-02       0.0       0.0
+# JPL 1997, replaced by Mat Evans 4/16/2002 for GEOS&#150;CHEM version 4.32	       
+O3_1d  180 9.500E-01 9.303E-01 3.089E-01 2.293E-02 8.747E-04       0.0       0.0
+O3_1d  260 9.500E-01 9.366E-01 4.618E-01 1.380E-01 9.857E-03       0.0       0.0
+O3_1d  300 9.500E-01 9.387E-01 5.385E-01 2.524E-01 2.138E-02       0.0       0.0</PRE>
+<P> 
+  <HR>
+  
+<P> <A NAME="5.4"></a> <font face="Arial, Helvetica, sans-serif" size="2"><b>5.4 
+  Output Files (created in the user's local run directory)</b></font>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Here follows 
+  a list of the files that GEOS&#150;CHEM will create in the user's run directory. 
+  Some files include a <font face="Courier New, Courier, mono" size="2">[YY]YYMMDD</font> 
+  date string as part of the file name. </font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Simulations 
+  using <A HREF="geos_chem_a4.html#A4.1">GEOS&#150;1</A> or <A HREF="geos_chem_a4.html#A4.2">GEOS&#150;STRAT</A> 
+  meteorological data will generate a 6-digit <font face="Courier New, Courier, mono" size="2">YYMMDD</font> 
+  date stamp (e.g. 940101). This is OK, since neither GEOS&#150;1 or GEOS&#150;STRAT 
+  straddles the 1999/2000 millennium boundary. </font></p>
+<p ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2"> Simulations 
+  using <A HREF="geos_chem_a4.html#A4.3">GEOS&#150;3</A> or <a href="geos_chem_a4.html#A4.4">GEOS&#150;4</a> 
+  meteorological data will generate an 8-digit <font face="Courier New, Courier, mono" size="2">YYYYMMDD</font> 
+  date stamp (e.g. 20010101). This is required to be Y2K compliant, as GEOS&#150;3 
+  data is available for the time period after January 1, 2000. </font></p>
+<P> 
+  
+<TABLE ALIGN=CENTER HALIGN=CENTER VALIGN=MIDDLE CELLSPACING=4 CELLPADDING=4 BORDER=0 width="99%">
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">ts[YY]YYMMDD.bpch</font></TD>
+    <TD> <font face="Arial, Helvetica, sans-serif" size="2"> Output file from 
+      diag49 (high-resolution time series, also known as <I>movie diagnostics</I>) 
+      for the date [YY]YYMMDD.</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">ts24h.bpch</font></TD>
+    <TD> <font face="Arial, Helvetica, sans-serif" size="2"> Output file from 
+      ND50 diagnostic (high-resolution time series for 24 hour average concentrations, 
+      aka &quot;movie diagnostics&quot;).</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">gctm.trc.[YY]YYMMDD</font></TD>
+    <TD> <font face="Arial, Helvetica, sans-serif" size="2"> <I>Restart file</I> 
+      for year/month/date [YY]YYMMDD. Saves instantaneous concentrations of all 
+      tracers on all levels for continuation of the run at a later stage.</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">ctm.ts</font></TD>
+    <TD> <font face="Arial, Helvetica, sans-serif" size="2"> <I>ND48 station</I> 
+      <I>time series</I> output in ASCII format. There is no corresponding 
+      binary version. This format may soon be replaced with the upcoming 
+      plane flight track diagnostics.</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">ctm.bpch</font></TD>
+    <TD> <font face="Arial, Helvetica, sans-serif" size="2"> <I>Binary punch 
+      file</I> output. This is the standard output format which interacts smoothly 
+      with the IDL <A HREF="../../../gamap/index.html" TARGET="_blank">GAMAP</a> 
+      package for analysis and plotting of your results.</font> </TD>
+  </TR>
+  <TR VALIGN=TOP> 
+    <TD width="40%" align="left" height="84"><font face="Courier New, Courier, mono" size="2">smv2.log</font></TD>
+    <TD height="84"> <font face="Arial, Helvetica, sans-serif" size="2"> Echo-back 
+      of input from SMVGEAR II. Check this file to see if SMVGEAR read the &quot;globchem.dat&quot; 
+      file properly. This file will also contain information about reactions and 
+      species used by the ND65 prod-loss diagnostic. (This file is only produced 
+      when SMVGEAR is used, i.e. for full NOx-Ox-hydrocarbon chemistry only.)</font> 
+    </TD>
+  </TR>
+  <TR VALIGN=TOP>
+    <TD width="40%" align="left"><font face="Courier New, Courier, mono" size="2">plane.log</font></TD>
+    <TD><font face="Arial, Helvetica, sans-serif" size="2">ASCII output from 
+      the ND40 planeflight diagnostic, scheduled via the Planeflight.dat file 
+      (see above).</font></TD>
+  </TR>
+</TABLE>
+  
+<P ALIGN=JUSTIFY> <font face="Arial, Helvetica, sans-serif" size="2">The standard 
+  practice is to redirect GEOS&#150;CHEM output to a file named <font face="Courier New, Courier, mono" size="2"> 
+  log </font> or <font face="Courier New, Courier, mono" size="2"> geos.log </font> 
+  or something similar. This log file will contain the standard output from the 
+  model run, as well as any warnings or error messages. This log file can be checked 
+  periodically to indicate the run status. See <A HREF="geos_chem_6.html">Section 
+  6: Running GEOS&#150;CHEM</A>. </font> 
+<P ALIGN=JUSTIFY><font face="Arial, Helvetica, sans-serif" size="2">You may also 
+  want to use Bob Yantosca's <a href="http://www-as.harvard.edu/chemistry/trop/geos/doc/testrun/index.html" target="_blank">TESTRUN 
+  </a>package, which simplfies compiling and running the GEOS&#150;CHEM model. 
+  </font> 
+<P> 
+  <HR>
+  <P> 
+    <CENTER>
+    <A HREF="geos_chem_4.html"><font face="Arial, Helvetica, sans-serif" size="2">[Return 
+    to Chapter 4]</font></A><font face="Arial, Helvetica, sans-serif" size="2"> 
+    | <A HREF="geos_chem_6.html">[Go on to Chapter 6]</A> </font> 
+  </CENTER>
+<P> 
+</BODY>
+</HTML>

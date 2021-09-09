@@ -1,0 +1,17 @@
+# PHOTOLYSIS REACTIONS - MASTER RATEFILE - Paul Brown, Oliver Wild & David Rowley
+# Centre for Atmospheric Science, Cambridge, U.K.  Release date:  22 November 1993
+# SCCS version information: @(#)photol.d        1.2 5/11/94
+# 
+# Modified for Harvard chemistry: several reactions added, re-ordered per chem.dat
+# Also putting in the Harvard names in col 1, the UCI x-sec names in last col !!!
+#                                       -Prashant Murti [4/13/98]
+#
+#
+# Harvard species             Products - UCI notation                              UCI xsec
+# ===============           ===============================                        ========
+      1 H2O        PHOTON     OH         HO2                  0.00E+00  0.00      0.0         
+      2 HO2        PHOTON     OH         O(3P)                0.00E+00  0.00      0.0         
+      3 O2         PHOTON     O(3P)      O(3P)                0.00E+00  0.00    100.0  O2     
+      4 O3_P       PHOTON     O2         O(3P)                0.00E+00  0.00    100.0  O3     
+      5 CH3I       PHOTON     CH3        I                    0.00E+00  0.00    100.0  CH3I
+   9999                                                       0.00E-00  0.00       0.0  
